@@ -9,13 +9,10 @@
 임은지6
 유제동3
 오호라!
-<<<<<<< HEAD
+
 임은지7
 임은지8
 최종찬14
 최종찬 15
-=======
-히히!
-
->>>>>>> branch 'main' of https://github.com/zzallang/test-project.git
+수정했으 함더 눌러봄
 
