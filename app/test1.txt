@@ -8,12 +8,7 @@
 임은지5
 임은지6
 유제동3
-<<<<<<< HEAD
-유제동44헤
-내가먼저 ㅠㅇ제동 헤
-=======
 오호라!
-임은지7
-임은지8
->>>>>>> branch 'main' of https://github.com/zzallang/test-project.git
+히히!
 아니 지금 잘되는지 모르겠어요jd
+히히!
