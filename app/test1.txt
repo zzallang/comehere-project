@@ -16,3 +16,4 @@
 임은지7
 임은지8
 >>>>>>> branch 'main' of https://github.com/zzallang/test-project.git
+아니 지금 잘되는지 모르겠어요jd
