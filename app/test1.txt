@@ -6,4 +6,8 @@ choijongchan
 =======
 임은지4
 임은지5
+<<<<<<< HEAD
+>>>>>>> branch 'main' of https://github.com/zzallang/test-project.git
+=======
+임은지6
 >>>>>>> branch 'main' of https://github.com/zzallang/test-project.git
