@@ -1,4 +1,9 @@
 유제동1
 이헌식2
 임은지3
+<<<<<<< HEAD
 choijongchan
+=======
+임은지4
+임은지5
+>>>>>>> branch 'main' of https://github.com/zzallang/test-project.git
