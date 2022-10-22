@@ -22,4 +22,9 @@ public class App {
     return "welcome";
   }
 
+  @GetMapping("/index")
+  public String index() {
+    return "index";
+  }
+
 }
