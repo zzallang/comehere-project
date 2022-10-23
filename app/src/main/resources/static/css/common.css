@@ -5,7 +5,6 @@
 }
 
 
-
 <!-- 여기모여 자체 css 설정 -->
 
 #header .category_button {
@@ -73,6 +72,7 @@
 
   #main .hot_week_menu { 
     width: 100%;
+    margin-top: 5px;
     margin-bottom: 10px;
     border-bottom: 1px solid black; 
     border-top: 1px solid black; 
@@ -111,13 +111,81 @@
   #main .new_chall_bar {
     width: 100%;
     border-bottom: 1px solid black; 
+    margin-top: 5px;
+    margin-bottom: 20px;
+  }
+  
+  
+ #main .new_chall_list {
+    width: 100%;
+  }
+  
+  #main .new_chall_list_li {
+  float: left;
+    margin-bottom: 20px;
+    margin-left: 20px;
   }
 
+  #main .new_chall_area{
+    padding: 10px;
+    border: 1px solid gray;
+    float: left;
+  }
+  
+  #main .new_chall_card{
+    width: 160px;
+  }
+
+#main .new_chall_area .new_chall_thumbnail {
+  position: relative;
+  -webkit-box-sizing: border-box;
+  box-sizing:border-box;
+  padding-bottom: 10px;
+  
+}
+
+#main .new_chall_area .new_chall_thumbnail img {
+  width: 100%;
+  height:100%
+}
+
+#main .new_chall_info {
+  padding-top: 10px;
+  width: 100%;
+  overflow: hidden;
+}
+
+#main .user_nick {
+  float: left;
+}
+
+#main .view_count {
+  float: right;
+  
+}
 
 
 
 
 <!-- 여기모여 자체 css 설정 끝!! -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 #header .user_area, #header .header_bottom, .event_area.event_horizental, .event_area.event_more, .event_area.event_wing, .list_mode .event_area.event_main {
