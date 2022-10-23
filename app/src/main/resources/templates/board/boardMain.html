@@ -174,7 +174,7 @@
               <div>조회수</div>
             </div>
             <div class="hot_week_content" data-th-each="board : ${boards}">
-              <div data-th-text="${board.cateno}">1</div>
+              <div data-th-text="${board.categoryNo}">1</div>
               <div><a href='detail?no=1'
                     data-th-href="@{detail(no=${board.no})}"
                     data-th-text="${board.title == ''} ? '(제목없음)' : ${board.title}">제목</a>
@@ -187,7 +187,50 @@
             <div style="float: right;" >+더보기</div>
             <h3>최근 챌린지 인증</h3>
             <div class="new_chall_bar"></div>
-            
+              <div class="new_chall_content" data-th-each="board : ${boards}">
+                <div>
+                <a data-th-href="@{detail(no=${board.no})}"
+                    data-th-text="${board.boardAttachedFiles}"></a>
+                </div>
+                <div><a href='detail?no=1'
+                      data-th-href="@{detail(no=${board.no})}"
+                      data-th-text="${board.title == ''} ? '(제목없음)' : ${board.title}">제목</a>
+                </div>
+                <div  data-th-text="${board.writer.name}">홍길동</div>
+                <div data-th-text="${board.viewCount}">17</div>
+              </div>
+              
+               <ul class="new_chall_list">
+                                                                                                                                            <li>
+                <article class="event_area event_card">
+                    <a class="gtag_bn_item_type1" href="/cs/a/77184?url=%2Fevent%2F264207" target="_blank" title="2022년 취ㆍ창업역량강화! MVP개발 교육" data-c="hotissue1"
+                       data-event_no="264207" data-event_title="2022년 취ㆍ창업역량강화! MVP개발 교육" data-creative_name="PC_메인_모임상단 타입2" data-creative_slot="1">
+                        <!-- 이미지 -->
+                        <div class="event_thumbnail">
+                            <img src="https://cfile1.onoffmix.com/attach/W8lpxIVf4XkiGdyb1Y0jDCr6ZRqTScmo">
+                        </div>
+
+                        <div class="event_info_area">
+                            <!-- 타이틀 -->
+                            <div class="title_area">
+                                <h5 class="title ellipsis">
+                                    2022년 취ㆍ창업역량강화! MVP개발 교육                                                </h5>
+                            </div>
+                            <!-- 정보 -->
+                            <div class="event_info">
+                                <div class="type_info">
+                                                                                            <span class="payment_type free">
+                                            무료    
+                                        </span>
+                                                                                    </div>
+                                <div class="date">10.27 (목) ~ 10.28 (금)</div>
+                            </div>
+                        </div>
+                    </a>
+                </article>
+            </li>
+       </ul>
+              
             
           </div>
         </section>
