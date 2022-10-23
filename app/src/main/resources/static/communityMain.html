@@ -71,10 +71,8 @@
                     </form>
                 </div>
             </div>
-            <!-- 
             <div class="header_bottom">
                 <div class="wide_max_width_area">
-             -->
                     <div class="category_section">
                         <div class="title_wrap">
                             <button class="btn_category">전체메뉴</button>
@@ -120,9 +118,88 @@
                                 </h1> -->
                             </section>
                         </div>
-            </div>
+                      </div>
+                    <div class="category_button">
+                        <div class="title_wrap">
+                            <button class="btn_category">
+                              <a href="#">운동하기</a>
+                            </button>
+                        </div>
+                        <div class="title_wrap">
+                            <button class="btn_category">
+                              <a href="#">건강관리</a>
+                            </button>
+                        </div>
+                        <div class="title_wrap">
+                            <button class="btn_category">
+                              <a href="#">커뮤니티</a>
+                            </button>
+                        </div>
+                        <div class="title_wrap">
+                            <button class="btn_category">
+                              <a href="#">공지사항</a>
+                            </button>
+                        </div>
 
+                    </div>
+                  </div>
+            </div> <!-- header_bottom -->
         </header>
+        
+        <main id="main" class="main_wrap">
+        <section class="section_top">
+          <h2 class="community_logo">
+            <a href="communityMaim.html">
+              <span class="text_logo"></span>
+              <img src="images/logo2.jpg" alt="여기모여_커뮤니티">
+            </a>
+          </h2>
+          <div class="section_lnb_wrap">
+            <div id="section_lnb" class="section_lnb">
+              <div><a href="communityFreeList">자유 게시판</a></div>
+              <div><a href="communityQnaList">질문 게시판</a></div>
+              <div><a href="communityHotdealList">핫딜 게시판</a></div>
+              <div><a href="communityEatList">식단 게시판</a></div>
+              <div><a href="communityChallengeList">챌린지 게시판</a></div>
+            </div>
+          </div>
+        </section>
+        <section class="section_content">
+          <div class="hot_week">
+            <h3>주간 인기글</h3>
+            <div class="hot_week_menu">
+              <div>분류</div>
+              <div>제목</div>
+              <div>작성자</div>
+              <div>조회수</div>
+            </div>
+            <div class="hot_week_content" data-th-each="board : ${boards}">
+              <div data-th-text="${board.cateno}">1</div>
+              <div><a href='detail?no=1'
+                    data-th-href="@{detail(no=${board.no})}"
+                    data-th-text="${board.title == ''} ? '(제목없음)' : ${board.title}">제목</a>
+              </div>
+              <div  data-th-text="${board.writer.name}">홍길동</div>
+              <div data-th-text="${board.viewCount}">17</div>
+            </div>
+          </div>
+          <div class="new_chall">
+            <div style="float: right;" >+더보기</div>
+            <h3>최근 챌린지 인증</h3>
+            <div class="new_chall_bar"></div>
+            
+            
+          </div>
+        </section>
+        
+        
+        
+        </main>
+        
+        
+        
+        
+        
     </body>
 
 </html>
