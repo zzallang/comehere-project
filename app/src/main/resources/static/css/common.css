@@ -171,6 +171,52 @@
 }
 
 
+/* 제동 css */
+  #sub_title {
+    font-size: 30px;
+    width: 1280px;
+    height: 50px;
+    margin: 0 auto;
+    padding-top: 20px;
+    padding-bottom: 10px;
+    padding-left: 60px;
+  }
+
+  #main .post_max_box {
+    width: 1280px;
+    height: 100%;
+    margin: 0 auto;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    margin-bottom: 30px;
+    background-color: white;
+    border-color: rgb(210, 204, 204);
+    border-style: solid;
+  }
+
+  #main .table_form {
+    width: 1200px;
+    margin: 0 auto;
+  }
+
+  #main .post_form1 {
+    font-size: 20px;
+    width: 100%;
+    height: 55px;
+  }
+  #main .post_form2 {
+    font-size: 20px;
+    width: 100%;
+    height: 100%;
+  }
+
+  #main .post_button_box {
+    font-size: 25px;
+    width: 100px;
+    padding-top: 10px;
+    padding-left: 1100px;
+    display: inline;
+  }
 
 
 <!-- 여기모여 자체 css 설정 끝!! -->

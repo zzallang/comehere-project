@@ -7,62 +7,26 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Document</title>
         <link rel="stylesheet" href="css/common.css">
+        <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
 
-        <style>
-
-          /* 게시글 전체 */
-          .container {
-            margin-left: 3%;
-            margin-right: 2%;
-          }
-            /* 게시판 이름 */
-            .top {
-                font-size: 30px;
-                margin-top: 20px;
-                line-height: 40px;
-            }
-
-            /* 게시글 양식 */
-            .wrap {
-                display: grid;
-                grid-auto-rows: 2fr 2fr 2fr;
-                grid-template-columns: 0.2fr 3fr 0.5fr 0.5fr 0.5fr;
-                text-align: center;
-                margin-top: 20px;
-                border-top: 3px solid silver;
-                border-bottom: 1px solid gray;
-            }
-
-            /* 게시글 내용 */
-            .content {
-              display: grid;
-                grid-auto-rows: 2fr 2fr 2fr;
-                grid-template-columns: 0.2fr 3fr 0.5fr 0.5fr 0.5fr;
-                padding-top: 10px;
-                padding-bottom: 10px;
-                text-align: center;
-                border-bottom: 1px solid gray;
-            }
-            
-            /* 게시글 제목 */
-            .title {
-              margin-left: 15px;
-              text-align: left;
-            }
-            .wrap > div {
-              margin-top: 10px;
-              margin-bottom: 10px; 
-            }
-
-
-        </style>
-
+        <!-- 썸머노트 에디터 -->
+        <script src="js/summernote/summernote-lite.js"></script>
+        <script src="js/summernote/lang/summernote-ko-KR.js"></script>
+        <link rel="stylesheet" href="css/summernote/summernote-lite.css">
         <script>
-          function title_click() {
-            location.replace("index1.html");
-          }
-
+            $(document).ready(function () {
+                //여기 아래 부분
+                $('#summernote').summernote({
+                    height: 500, // 에디터 높이
+                    minHeight: null, // 최소 높이
+                    maxHeight: null, // 최대 높이
+                    focus: true, // 에디터 로딩후 포커스를 맞출지 여부
+                    lang: "ko-KR", // 한글 설정
+                    placeholder: '최대 2048자까지 쓸 수 있습니다' //placeholder 설정
+                });
+            });
         </script>
+
     </head>
 
     <body>
@@ -97,7 +61,7 @@
                         <label for="searchInput">검색할 모임을 입력해주세요.</label>
                         <input
                             type="text"
-                            id="searchInput" 
+                            id="searchInput"
                             class="search_input"
                             name="s"
                             value=""
@@ -110,19 +74,9 @@
                             data-creative_name="PC_메인_검색창광고"
                             data-creative_slot="1">통합검색
                         </span>
-                        <!-- <script>
-                            gtag('event', 'view_promotion', {
-                                "non_interaction": true,
-                                "promotions": [
-                                    {
-                                        "id": "event_264452",
-                                        "name": "event_원하는 검색어를 입력하세요!",
-                                        "creative_name": "PC_메인_검색창광고",
-                                        "creative_slot": "1"
-                                    }
-                                ]
-                            });
-                        </script> -->
+                        <!-- <script> gtag('event', 'view_promotion', { "non_interaction": true,
+                        "promotions": [ { "id": "event_264452", "name": "event_원하는 검색어를 입력하세요!",
+                        "creative_name": "PC_메인_검색창광고", "creative_slot": "1" } ] }); </script> -->
                         <input type="submit" class="btn_search" value="검색" title="검색">
                     </form>
                 </div>
@@ -169,54 +123,84 @@
                                     </li>
 
                                 </ul>
-                                <!-- <h1>
-                                    <a href="/event/main">전체 모임 보기 &gt;</a>
-                                </h1> -->
+                                <!-- <h1> <a href="/event/main">전체 모임 보기 &gt;</a> </h1> -->
                             </section>
                         </div>
+                    </div>
+                    <div class="category_button">
+                        <div class="title_wrap">
+                            <button class="btn_category">
+                                <a href="#">운동하기</a>
+                            </button>
+                        </div>
+                        <div class="title_wrap">
+                            <button class="btn_category">
+                                <a href="#">건강관리</a>
+                            </button>
+                        </div>
+                        <div class="title_wrap">
+                            <button class="btn_category">
+                                <a href="#">커뮤니티</a>
+                            </button>
+                        </div>
+                        <div class="title_wrap">
+                            <button class="btn_category">
+                                <a href="#">공지사항</a>
+                            </button>
+                        </div>
 
-
+                    </div>
+                </div>
             </div>
-            
+            <!-- header_bottom -->
         </header>
 
-        <div class="container">
-          <div class="top">
-            <div>게시판 제목
-                <p>각 게시판에 대한 내용</p>
-            </div>
-          </div>
+        <!-- main_글작성 -->
+        <main id="main" class="main_wrap">
+            <section class="section_top">
+                <div id="sub_title">
+                    <h2>글작성</h2>
+                </div>
+            </section>
 
-          <div class="selectbox" align="right">
-            <select id="dataPerPage">
-              <option value="10">10개씩보기</option>
-              <option value="15">15개씩보기</option>
-              <option value="20">20개씩보기</option>
-            </select>
-          </div>
+            <section class="post_wrap">
+                <form
+                    class="post_max_box"
+                    action='add'
+                    method="post"
+                    enctype="multipart/form-data">
+                    <table class="table_form">
+                        <tr>
+                            <td><input
+                              style="background-color: rgb(229, 228, 228);"
+                                class="post_form1"
+                                name='boardSort'
+                                type='text'
+                                value='자유게시판'
+                                readonly="readOnly"></td>
+                        </tr>
+                        <tr>
+                            <td><input
+                              style="background-color: white;"
+                               class="post_form1" name='title' type='text' placeholder="제목을 입력해주세요." 
+                              ></td>
+                        </tr>
+                        <tr>
+                            <td>
+                              <textarea id="summernote" name="editordata"></textarea>
+                            </td>
+                        </tr>
 
-          <div class="wrap">
-              <div>번호</div>
-              <div>제목</div>
-              <div>작성자</div>
-              <div>등록일</div>
-              <div>조회수</div>
-          </div>
-          
-          <div class="content">
-            <div>1</div>
-            <div class="title" id="title" onclick="title_click()"> title 1
-              <span>[
-                <span>댓글</span>
-              ]
-              </span>
-            </div>
-            <div>user1</div>
-            <div>2022-10-23</div>
-            <div>1</div>
-          </div>
+                    </table>
+                    <div class="post_button_box">
+                        <button type='submit'>등록</button>
+                        <button type='reset'>취소</button>
+                    </div>
+                </form>
+            </section>
 
-        </div>
+        </main>
+
     </body>
 
 </html>
