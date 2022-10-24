@@ -7,6 +7,62 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Document</title>
         <link rel="stylesheet" href="css/common.css">
+
+        <style>
+
+          /* 게시글 전체 */
+          .container {
+            margin-left: 3%;
+            margin-right: 2%;
+          }
+            /* 게시판 이름 */
+            .top {
+                font-size: 30px;
+                margin-top: 20px;
+                line-height: 40px;
+            }
+
+            /* 게시글 양식 */
+            .wrap {
+                display: grid;
+                grid-auto-rows: 2fr 2fr 2fr;
+                grid-template-columns: 0.2fr 3fr 0.5fr 0.5fr 0.5fr;
+                text-align: center;
+                margin-top: 20px;
+                border-top: 3px solid silver;
+                border-bottom: 1px solid gray;
+            }
+
+            /* 게시글 내용 */
+            .content {
+              display: grid;
+                grid-auto-rows: 2fr 2fr 2fr;
+                grid-template-columns: 0.2fr 3fr 0.5fr 0.5fr 0.5fr;
+                padding-top: 10px;
+                padding-bottom: 10px;
+                text-align: center;
+                border-bottom: 1px solid gray;
+            }
+            
+            /* 게시글 제목 */
+            .title {
+              margin-left: 15px;
+              text-align: left;
+            }
+            .wrap > div {
+              margin-top: 10px;
+              margin-bottom: 10px; 
+            }
+
+
+        </style>
+
+        <script>
+          function title_click() {
+            location.replace("index1.html");
+          }
+
+        </script>
     </head>
 
     <body>
@@ -118,88 +174,49 @@
                                 </h1> -->
                             </section>
                         </div>
-                      </div>
-                    <div class="category_button">
-                        <div class="title_wrap">
-                            <button class="btn_category">
-                              <a href="#">운동하기</a>
-                            </button>
-                        </div>
-                        <div class="title_wrap">
-                            <button class="btn_category">
-                              <a href="#">건강관리</a>
-                            </button>
-                        </div>
-                        <div class="title_wrap">
-                            <button class="btn_category">
-                              <a href="#">커뮤니티</a>
-                            </button>
-                        </div>
-                        <div class="title_wrap">
-                            <button class="btn_category">
-                              <a href="#">공지사항</a>
-                            </button>
-                        </div>
 
-                    </div>
-                  </div>
-            </div> <!-- header_bottom -->
+
+            </div>
+            
         </header>
-        
-        <main id="main" class="main_wrap">
-        <section class="section_top">
-          <h2 class="community_logo">
-            <a href="communityMaim.html">
-              <span class="text_logo"></span>
-              <img src="images/logo2.jpg" alt="여기모여_커뮤니티">
-            </a>
-          </h2>
-          <div class="section_lnb_wrap">
-            <div id="section_lnb" class="section_lnb">
-              <div><a href="communityFreeList">자유 게시판</a></div>
-              <div><a href="communityQnaList">질문 게시판</a></div>
-              <div><a href="communityHotdealList">핫딜 게시판</a></div>
-              <div><a href="communityEatList">식단 게시판</a></div>
-              <div><a href="communityChallengeList">챌린지 게시판</a></div>
+
+        <div class="container">
+          <div class="top">
+            <div>게시판 제목
+                <p>각 게시판에 대한 내용</p>
             </div>
           </div>
-        </section>
-        <section class="section_content">
-          <div class="hot_week">
-            <h3>주간 인기글</h3>
-            <div class="hot_week_menu">
-              <div>분류</div>
+
+          <div class="selectbox" align="right">
+            <select id="dataPerPage">
+              <option value="10">10개씩보기</option>
+              <option value="15">15개씩보기</option>
+              <option value="20">20개씩보기</option>
+            </select>
+          </div>
+
+          <div class="wrap">
+              <div>번호</div>
               <div>제목</div>
               <div>작성자</div>
+              <div>등록일</div>
               <div>조회수</div>
-            </div>
-            <div class="hot_week_content" data-th-each="board : ${boards}">
-              <div data-th-text="${board.cateno}">1</div>
-              <div><a href='detail?no=1'
-                    data-th-href="@{detail(no=${board.no})}"
-                    data-th-text="${board.title == ''} ? '(제목없음)' : ${board.title}">제목</a>
-              </div>
-              <div  data-th-text="${board.writer.name}">홍길동</div>
-              <div data-th-text="${board.viewCount}">17</div>
-            </div>
           </div>
-          <div class="new_chall">
-            <div style="float: right;" >+더보기</div>
-            <h3>최근 챌린지 인증</h3>
-            <div class="new_chall_bar"></div>
-            
-            
+          
+          <div class="content">
+            <div>1</div>
+            <div class="title" id="title" onclick="title_click()"> title 1
+              <span>[
+                <span>댓글</span>
+              ]
+              </span>
+            </div>
+            <div>user1</div>
+            <div>2022-10-23</div>
+            <div>1</div>
           </div>
-        </section>
-        
-        
-        
-        </main>
-        
-        
-        
-        
-        
+
+        </div>
     </body>
 
 </html>
