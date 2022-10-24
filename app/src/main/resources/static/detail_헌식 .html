@@ -182,6 +182,7 @@
         <div class="container">
           <div class="top">
             <div> 게시판 상세보기 
+                <form action='update' method="post" enctype="multipart/form-data"></form>
             </div>
           </div>
 
@@ -342,8 +343,24 @@
                     <tbody><tr>
                         <td style="border:2px solid #707070; border-left:none; border-right:none;">
                             <table width="750" style="margin:5px 0;">
+                                <tr>
+                                    <th>첨부파일</th>
+                                    <td>
+                                      <ul>
+                                        <li data-th-each="file : ${board.attachedFiles}">
+                                          <a href="files/test.gif"
+                                             data-th-href="@{files/{path}(path=${file.filepath})}"
+                                             data-th-text="${file.filepath}">test.gif</a> 
+                                          [<a href="fileDelete?no=1"
+                                              data-th-href="@{fileDelete(no=${file.no})}">삭제</a>] 
+                                        </li>
+                                      </ul>
+                                      파일 추가: <input name='files' type="file" multiple>
+                                      <td align="right"><a href="./bbs_list.php?tb=board_qna&amp;id=&amp;pg=&amp;b_category=&amp;delivery="alt="목록" border="0">목록</a></td>
+                                    </td>
+                                  </tr>
                             <tbody><tr>
-                                <td align="right"><a href="./bbs_list.php?tb=board_qna&amp;id=&amp;pg=&amp;b_category=&amp;delivery="alt="목록" border="0">목록</a></td>
+                               
                             </tr>
                             </tbody></table>
                         </td>
