@@ -9,14 +9,9 @@
 }
 
 
-<<<<<<< HEAD
-
-< !-- 여기모여 자체 css 설정 -->#header .category_button {
-=======
 <!-- 여기모여 자체 css 설정 -->
 
 #header .category_button {
->>>>>>> branch 'main' of https://github.com/zzallang/comhere-project.git
   position: relative;
   float: left;
   margin-right: 20px
@@ -62,8 +57,6 @@
 #main .section_lnb>div {
   text-align: center;
   display: table-cell;
-<<<<<<< HEAD
-=======
   }
   #main .section_lnb > div > a { 
     display: block; 
@@ -203,7 +196,6 @@
 
 #header .user_area, #header .header_bottom, .event_area.event_horizental, .event_area.event_more, .event_area.event_wing, .list_mode .event_area.event_main {
   * zoom:1
->>>>>>> branch 'main' of https://github.com/zzallang/comhere-project.git
 }
 
 #main .section_lnb>div>a {
@@ -272,7 +264,9 @@
 
 
 
-< !-- 여기모여 자체 css 설정 끝 ! ! -->#header .user_area,
+
+
+#header .user_area,
 #header .header_bottom,
 .event_area.event_horizental,
 .event_area.event_more,
