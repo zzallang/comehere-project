@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 @EnableTransactionManagement
-//@MapperScan("com.bitcamp.board.dao")
 @SpringBootApplication
 public class App {
 
