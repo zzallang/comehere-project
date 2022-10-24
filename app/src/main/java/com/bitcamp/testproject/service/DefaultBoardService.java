@@ -5,8 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import com.bitcamp.testproject.dao.BoardDao;
+import com.bitcamp.testproject.vo.AttachedFile;
 import com.bitcamp.testproject.vo.Board;
-import com.bitcamp.testproject.vo.BoardAttachedFile;
 
 @Service
 public class DefaultBoardService implements BoardService {
@@ -23,7 +23,7 @@ public class DefaultBoardService implements BoardService {
     }
 
     // 2) 첨부파일 등록
-    if (board.getBoardAttachedFiles().size() > 0) {
+    if (board.getAttachedFiles().size() > 0) {
       boardDao.insertFiles(board);
     }
   }
@@ -37,7 +37,7 @@ public class DefaultBoardService implements BoardService {
     }
 
     // 2) 첨부파일 추가
-    if (board.getBoardAttachedFiles().size() > 0) {
+    if (board.getAttachedFiles().size() > 0) {
       boardDao.insertFiles(board);
     }
 
@@ -65,12 +65,12 @@ public class DefaultBoardService implements BoardService {
   }
 
   @Override
-  public BoardAttachedFile getBoardAttachedFile(int fileNo) throws Exception {
+  public AttachedFile getAttachedFile(int fileNo) throws Exception {
     return boardDao.findFileByNo(fileNo);
   }
 
   @Override
-  public boolean deleteBoardAttachedFile(int fileNo) throws Exception {
+  public boolean deleteAttachedFile(int fileNo) throws Exception {
     return boardDao.deleteFile(fileNo) > 0;
   }
 

@@ -2,8 +2,8 @@ package com.bitcamp.testproject.dao;
 
 import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
+import com.bitcamp.testproject.vo.AttachedFile;
 import com.bitcamp.testproject.vo.Board;
-import com.bitcamp.testproject.vo.BoardAttachedFile;
 
 @Mapper
 public interface BoardDao {
@@ -22,9 +22,9 @@ public interface BoardDao {
 
   int insertFiles(Board board);
 
-  BoardAttachedFile findFileByNo(int fileNo);
+  AttachedFile findFileByNo(int fileNo);
 
-  List<BoardAttachedFile> findFilesByBoard(int boardNo);
+  List<AttachedFile> findFilesByBoard(int boardNo);
 
   int deleteFile(int fileNo);
 
@@ -32,4 +32,17 @@ public interface BoardDao {
 
   int deleteFilesByMemberBoards(int memberNo);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
