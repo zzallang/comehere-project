@@ -18,8 +18,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 import com.bitcamp.testproject.service.BoardService;
+import com.bitcamp.testproject.vo.AttachedFile;
 import com.bitcamp.testproject.vo.Board;
-import com.bitcamp.testproject.vo.BoardAttachedFile;
 import com.bitcamp.testproject.vo.Member;
 
 @Controller
@@ -53,16 +53,16 @@ public class BoardController {
       MultipartFile[] files,
       HttpSession session) throws Exception {
 
-    board.setBoardAttachedFiles(saveBoardAttachedFiles(files));
+    board.setAttachedFiles(saveAttachedFiles(files));
     board.setWriter((Member) session.getAttribute("loginMember"));
 
     boardService.add(board);
     return "redirect:list";
   }
 
-  private List<BoardAttachedFile> saveBoardAttachedFiles(Part[] files)
+  private List<AttachedFile> saveAttachedFiles(Part[] files)
       throws IOException, ServletException {
-    List<BoardAttachedFile> attachedFiles = new ArrayList<>();
+    List<AttachedFile> attachedFiles = new ArrayList<>();
     String dirPath = sc.getRealPath("/board/files");
 
     for (Part part : files) {
@@ -72,14 +72,14 @@ public class BoardController {
 
       String filename = UUID.randomUUID().toString();
       part.write(dirPath + "/" + filename);
-      attachedFiles.add(new BoardAttachedFile(filename));
+      attachedFiles.add(new AttachedFile(filename));
     }
     return attachedFiles;
   }
 
-  private List<BoardAttachedFile> saveBoardAttachedFiles(MultipartFile[] files)
+  private List<AttachedFile> saveAttachedFiles(MultipartFile[] files)
       throws IOException, ServletException {
-    List<BoardAttachedFile> attachedFiles = new ArrayList<>();
+    List<AttachedFile> attachedFiles = new ArrayList<>();
     String dirPath = sc.getRealPath("/board/files");
 
     for (MultipartFile part : files) {
@@ -89,7 +89,7 @@ public class BoardController {
 
       String filename = UUID.randomUUID().toString();
       part.transferTo(new File(dirPath + "/" + filename));
-      attachedFiles.add(new BoardAttachedFile(filename));
+      attachedFiles.add(new AttachedFile(filename));
     }
     return attachedFiles;
   }
@@ -118,7 +118,7 @@ public class BoardController {
       HttpSession session) 
           throws Exception {
 
-    board.setBoardAttachedFiles(saveBoardAttachedFiles(files));
+    board.setAttachedFiles(saveAttachedFiles(files));
 
     checkOwner(board.getNo(), session);
 
@@ -156,7 +156,7 @@ public class BoardController {
       HttpSession session) 
           throws Exception {
 
-    BoardAttachedFile attachedFile = boardService.getBoardAttachedFile(no); 
+    AttachedFile attachedFile = boardService.getAttachedFile(no); 
 
     Member loginMember = (Member) session.getAttribute("loginMember");
     Board board = boardService.get(attachedFile.getBoardNo()); 
@@ -165,7 +165,7 @@ public class BoardController {
       throw new Exception("게시글 작성자가 아닙니다.");
     }
 
-    if (!boardService.deleteBoardAttachedFile(no)) {
+    if (!boardService.deleteAttachedFile(no)) {
       throw new Exception("게시글 첨부파일을 삭제할 수 없습니다.");
     }
 

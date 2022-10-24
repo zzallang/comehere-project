@@ -1,26 +1,26 @@
 package com.bitcamp.testproject.vo;
 
-import java.util.Date;
+import java.sql.Date;
 import java.util.List;
 
 public class Board {
 
   private int no;
-  private int categoryNo;
-  private Member writer;
   private String title;
-  private boolean active;
   private String content;
-  private Date createdDate;
+  private String password;
   private int viewCount;
+  private Date createdDate;
+  private Member writer;
 
-  private List<BoardAttachedFile> boardAttachedFiles;
+  // 첨부파일 정보를 저장할 필드
+  private List<AttachedFile> attachedFiles;
 
   @Override
   public String toString() {
-    return "Board [no=" + no + ", categoryNo=" + categoryNo + ", writer=" + writer + ", title="
-        + title + ", active=" + active + ", content=" + content + ", createdDate=" + createdDate
-        + ", viewCount=" + viewCount + ", boardAttacehdfiles=" + boardAttachedFiles + "]";
+    return "Board [no=" + no + ", title=" + title + ", content=" + content + ", password="
+        + password + ", viewCount=" + viewCount + ", createdDate=" + createdDate + ", writer="
+        + writer + "]";
   }
 
   public int getNo() {
@@ -31,36 +31,12 @@ public class Board {
     this.no = no;
   }
 
-  public int getCategoryNo() {
-    return categoryNo;
-  }
-
-  public void setCategoryNo(int categoryNo) {
-    this.categoryNo = categoryNo;
-  }
-
-  public Member getWriter() {
-    return writer;
-  }
-
-  public void setWriter(Member writer) {
-    this.writer = writer;
-  }
-
   public String getTitle() {
     return title;
   }
 
   public void setTitle(String title) {
     this.title = title;
-  }
-
-  public boolean isActive() {
-    return active;
-  }
-
-  public void setActive(boolean active) {
-    this.active = active;
   }
 
   public String getContent() {
@@ -71,12 +47,12 @@ public class Board {
     this.content = content;
   }
 
-  public Date getCreatedDate() {
-    return createdDate;
+  public String getPassword() {
+    return password;
   }
 
-  public void setCreatedDate(Date createdDate) {
-    this.createdDate = createdDate;
+  public void setPassword(String password) {
+    this.password = password;
   }
 
   public int getViewCount() {
@@ -87,15 +63,36 @@ public class Board {
     this.viewCount = viewCount;
   }
 
-  public List<BoardAttachedFile> getBoardAttachedFiles() {
-    return boardAttachedFiles;
+  public Date getCreatedDate() {
+    return createdDate;
   }
 
-  public void setBoardAttachedFiles(List<BoardAttachedFile> boardAttachedFiles) {
-    this.boardAttachedFiles = boardAttachedFiles;
+  public void setCreatedDate(Date createdDate) {
+    this.createdDate = createdDate;
   }
 
+  public Member getWriter() {
+    return writer;
+  }
 
+  public void setWriter(Member writer) {
+    this.writer = writer;
+  }
+
+  public List<AttachedFile> getAttachedFiles() {
+    return attachedFiles;
+  }
+
+  public void setAttachedFiles(List<AttachedFile> attachedFiles) {
+    this.attachedFiles = attachedFiles;
+  }
 
 
 }
+
+
+
+
+
+
+
