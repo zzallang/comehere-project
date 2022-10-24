@@ -116,25 +116,25 @@ INSERT INTO `tatlle_reason` (`trno`, `reason`) VALUES (6, '기타 사이트 목�
 
 -- 병민 
 -- 모임 (완료)
-INSERT INTO `party` (`pno`, `sno`, `lno`, `title`, `act`, `cont`, `cdt`, `headcnt`, `ptime`, `pdate`) VALUES (1, 1, 1, '종로 3대 파티원모집함', 1, '3대측정할 파티원모집함', '2022-09-09 09:09:00', 5, '11:00:00', '2022-09-16');
-INSERT INTO `party` (`pno`, `sno`, `lno`, `title`, `act`, `cont`, `cdt`, `headcnt`, `ptime`, `pdate`) VALUES (2, 2, 2, '클라이밍가실분', 1, '종로 동동이클라이밍장 좋아요 커몬요!', '2022-09-11 11:21:00', 5, '18:00:00', '2022-09-20');
-INSERT INTO `party` (`pno`, `sno`, `lno`, `title`, `act`, `cont`, `cdt`, `headcnt`, `ptime`, `pdate`) VALUES (3, 3, 3, '배드민턴 치실분?', 1, '종로쪽 공원에서 쳐요!', '2022-09-11 12:40:00', 4, '16:00:00', '2022-11-22');
-INSERT INTO `party` (`pno`, `sno`, `lno`, `title`, `act`, `cont`, `cdt`, `headcnt`, `ptime`, `pdate`) VALUES (4, 2, 4, '중구서 축구하십시더! ', 1, '축구 할 사람(최소풋살 할 사람)만큼 인원 구해봐요!', '2022-09-13 04:34:00', 10, '20:00:00', '2022-11-06');
-INSERT INTO `party` (`pno`, `sno`, `lno`, `title`, `act`, `cont`, `cdt`, `headcnt`, `ptime`, `pdate`) VALUES (5, 3, 5, '러닝 고고', 1, '신나게 달려보시져 ', '2022-09-13 08:04:00', 6, '13:00:00', '2022-10-06');
-INSERT INTO `party` (`pno`, `sno`, `lno`, `title`, `act`, `cont`, `cdt`, `headcnt`, `ptime`, `pdate`) VALUES (6, 4, 6, '축구 멤버구해요(골키퍼x)', 1, '골키퍼는 제가 하고, 다른 포지션 구합니다.', '2022-09-14 09:00:00', 8, '15:00:00', '2022-11-23');
-INSERT INTO `party` (`pno`, `sno`, `lno`, `title`, `act`, `cont`, `cdt`, `headcnt`, `ptime`, `pdate`) VALUES (7, 5, 7, '농구 2:2 하실분', 1, '간단하게 2:2로 농구 하러 오시죠', '2022-09-15 23:30:00', 4, '16:00:00', '2022-11-06');
-INSERT INTO `party` (`pno`, `sno`, `lno`, `title`, `act`, `cont`, `cdt`, `headcnt`, `ptime`, `pdate`) VALUES (8, 6, 8, '스크린 골프 하러갈 분들!!', 1, '스크린 골프 재밌게 배워볼 또래분들 구해요. 저도 여자인데, 남자분들 보단 여자분들 많이 와주세용.', '2022-09-16 15:01:00', 4, '19:00:00', '2022-10-29');
-INSERT INTO `party` (`pno`, `sno`, `lno`, `title`, `act`, `cont`, `cdt`, `headcnt`, `ptime`, `pdate`) VALUES (9, 2, 9, '클라이밍 지구력 연습 모임', 1, '지구력 테스트 같이 해보고 싶은데, 고민이신분들! 다같이 모여서 연습해봐요.', '2022-10-06 11:11:00', 8, '10:00:00', '2022-12-06');
-INSERT INTO `party` (`pno`, `sno`, `lno`, `title`, `act`, `cont`, `cdt`, `headcnt`, `ptime`, `pdate`) VALUES (10, 3, 10, '배드민턴 간단하게 치실 분?', 1, '동대문구 근처 사시는 분 신청 주세요~', '2022-10-06 13:20:00', 2, '09:00:00', '2022-11-04');
-INSERT INTO `party` (`pno`, `sno`, `lno`, `title`, `act`, `cont`, `cdt`, `headcnt`, `ptime`, `pdate`) VALUES (11, 1, 11, '헬스 유산소 같이 해요.', 1, '동대문 쪽 새로 생긴 헬스장에서 유산소 하실 분들 모여요!! 헬린이도 가능!', '2022-10-06 21:03:20', 4, '14:00:00', '2022-10-30');
-INSERT INTO `party` (`pno`, `sno`, `lno`, `title`, `act`, `cont`, `cdt`, `headcnt`, `ptime`, `pdate`) VALUES (12, 7, 12, '탁구 혼성으로 쳐요.', 1, '중랑쪽에 같이 할 커플분 오세용 ㅎㅎ', '2022-10-08 06:55:00', 4, '14:00:00', '2022-10-25');
-INSERT INTO `party` (`pno`, `sno`, `lno`, `title`, `act`, `cont`, `cdt`, `headcnt`, `ptime`, `pdate`) VALUES (13, 5, 13, '농구 간단하게 할 분들 있나요?', 1, '저녁에 간단하게 할 분들 편하게 와주세요.', '2022-10-11 22:40:00', 8, '20:00:00', '2022-10-19');
-INSERT INTO `party` (`pno`, `sno`, `lno`, `title`, `act`, `cont`, `cdt`, `headcnt`, `ptime`, `pdate`) VALUES (14, 9, 14, '러닝팸 모아요!! 런린이도 컴온!', 1, '런린이 분들도 편하게 들어오세요! 자주 모임 만들고 있어요 ㅎㅎ', '2022-10-12 11:07:00', 15, '19:00:00', '2022-10-28');
-INSERT INTO `party` (`pno`, `sno`, `lno`, `title`, `act`, `cont`, `cdt`, `headcnt`, `ptime`, `pdate`) VALUES (15, 6, 15, '골프 치러 갈 사람 모여라~', 1, '골프 관심 있으신분들 신청 주세요, 종로 쪽에서 진행할 예정입니다!', '2022-10-16 17:30:00', 6, '16:00:00', '2022-10-18');
-INSERT INTO `party` (`pno`, `sno`, `lno`, `title`, `act`, `cont`, `cdt`, `headcnt`, `ptime`, `pdate`) VALUES (16, 9, 14, '러닝팸 모아요!! 런린이도 대환영!', 1, '런린이 분들도 편하게 들어오세요! 지난 모임도 신규 유입 많았습니당 ㅎㅎㅎㅎ', '2022-10-18 17:30:00', 6, '17:00:00', '2022-10-27');
-INSERT INTO `party` (`pno`, `sno`, `lno`, `title`, `act`, `cont`, `cdt`, `headcnt`, `ptime`, `pdate`) VALUES (17, 2, 2, '클라이밍가실분~~', 1, '종로 동동이클라이밍장 갈 사람 맘편히 신청하세요. 커몬요!', '2022-10-18 11:21:00', 5, '19:00:00', '2022-10-20');
-INSERT INTO `party` (`pno`, `sno`, `lno`, `title`, `act`, `cont`, `cdt`, `headcnt`, `ptime`, `pdate`) VALUES (18, 5, 7, '농구 배울 여성분 ㅎ', 0, '농구 배우고 싶은 여성 분  신청 주세요^^', '2022-10-18 11:21:00', 2, '19:00:00', '2022-10-20');
-INSERT INTO `party` (`pno`, `sno`, `lno`, `title`, `act`, `cont`, `cdt`, `headcnt`, `ptime`, `pdate`) VALUES (19, 3, 5, '배드민턴 짝궁 구해요~~', 0, '좀 치는 사람 와요,, 못하는 사람 은 좀 뒤로 꺼지시고.. ㅎ ', '2022-10-18 11:21:00', 2, '19:00:00', '2022-10-20');
+INSERT INTO `party` (`pno`, `lno`, `title`, `act`, `cont`, `cdt`, `headcnt`, `ptime`, `pdate`) VALUES (1, 1, '종로 3대 파티원모집함', 1, '3대측정할 파티원모집함', '2022-09-09 09:09:00', 5, '11:00:00', '2022-09-16');
+INSERT INTO `party` (`pno`, `lno`, `title`, `act`, `cont`, `cdt`, `headcnt`, `ptime`, `pdate`) VALUES (2, 2, '클라이밍가실분', 1, '종로 동동이클라이밍장 좋아요 커몬요!', '2022-09-11 11:21:00', 5, '18:00:00', '2022-09-20');
+INSERT INTO `party` (`pno`, `lno`, `title`, `act`, `cont`, `cdt`, `headcnt`, `ptime`, `pdate`) VALUES (3, 3, '배드민턴 치실분?', 1, '종로쪽 공원에서 쳐요!', '2022-09-11 12:40:00', 4, '16:00:00', '2022-11-22');
+INSERT INTO `party` (`pno`, `lno`, `title`, `act`, `cont`, `cdt`, `headcnt`, `ptime`, `pdate`) VALUES (4, 4, '중구서 축구하십시더! ', 1, '축구 할 사람(최소풋살 할 사람)만큼 인원 구해봐요!', '2022-09-13 04:34:00', 10, '20:00:00', '2022-11-06');
+INSERT INTO `party` (`pno`, `lno`, `title`, `act`, `cont`, `cdt`, `headcnt`, `ptime`, `pdate`) VALUES (5, 5, '러닝 고고', 1, '신나게 달려보시져 ', '2022-09-13 08:04:00', 6, '13:00:00', '2022-10-06');
+INSERT INTO `party` (`pno`, `lno`, `title`, `act`, `cont`, `cdt`, `headcnt`, `ptime`, `pdate`) VALUES (6, 6, '축구 멤버구해요(골키퍼x)', 1, '골키퍼는 제가 하고, 다른 포지션 구합니다.', '2022-09-14 09:00:00', 8, '15:00:00', '2022-11-23');
+INSERT INTO `party` (`pno`, `lno`, `title`, `act`, `cont`, `cdt`, `headcnt`, `ptime`, `pdate`) VALUES (7, 7, '농구 2:2 하실분', 1, '간단하게 2:2로 농구 하러 오시죠', '2022-09-15 23:30:00', 4, '16:00:00', '2022-11-06');
+INSERT INTO `party` (`pno`, `lno`, `title`, `act`, `cont`, `cdt`, `headcnt`, `ptime`, `pdate`) VALUES (8, 8, '스크린 골프 하러갈 분들!!', 1, '스크린 골프 재밌게 배워볼 또래분들 구해요. 저도 여자인데, 남자분들 보단 여자분들 많이 와주세용.', '2022-09-16 15:01:00', 4, '19:00:00', '2022-10-29');
+INSERT INTO `party` (`pno`, `lno`, `title`, `act`, `cont`, `cdt`, `headcnt`, `ptime`, `pdate`) VALUES (9, 9, '클라이밍 지구력 연습 모임', 1, '지구력 테스트 같이 해보고 싶은데, 고민이신분들! 다같이 모여서 연습해봐요.', '2022-10-06 11:11:00', 8, '10:00:00', '2022-12-06');
+INSERT INTO `party` (`pno`, `lno`, `title`, `act`, `cont`, `cdt`, `headcnt`, `ptime`, `pdate`) VALUES (10, 10, '배드민턴 간단하게 치실 분?', 1, '동대문구 근처 사시는 분 신청 주세요~', '2022-10-06 13:20:00', 2, '09:00:00', '2022-11-04');
+INSERT INTO `party` (`pno`, `lno`, `title`, `act`, `cont`, `cdt`, `headcnt`, `ptime`, `pdate`) VALUES (11, 11, '헬스 유산소 같이 해요.', 1, '동대문 쪽 새로 생긴 헬스장에서 유산소 하실 분들 모여요!! 헬린이도 가능!', '2022-10-06 21:03:20', 4, '14:00:00', '2022-10-30');
+INSERT INTO `party` (`pno`, `lno`, `title`, `act`, `cont`, `cdt`, `headcnt`, `ptime`, `pdate`) VALUES (12, 12, '탁구 혼성으로 쳐요.', 1, '중랑쪽에 같이 할 커플분 오세용 ㅎㅎ', '2022-10-08 06:55:00', 4, '14:00:00', '2022-10-25');
+INSERT INTO `party` (`pno`, `lno`, `title`, `act`, `cont`, `cdt`, `headcnt`, `ptime`, `pdate`) VALUES (13, 13, '농구 간단하게 할 분들 있나요?', 1, '저녁에 간단하게 할 분들 편하게 와주세요.', '2022-10-11 22:40:00', 8, '20:00:00', '2022-10-19');
+INSERT INTO `party` (`pno`, `lno`, `title`, `act`, `cont`, `cdt`, `headcnt`, `ptime`, `pdate`) VALUES (14, 14, '러닝팸 모아요!! 런린이도 컴온!', 1, '런린이 분들도 편하게 들어오세요! 자주 모임 만들고 있어요 ㅎㅎ', '2022-10-12 11:07:00', 15, '19:00:00', '2022-10-28');
+INSERT INTO `party` (`pno`, `lno`, `title`, `act`, `cont`, `cdt`, `headcnt`, `ptime`, `pdate`) VALUES (15, 15, '골프 치러 갈 사람 모여라~', 1, '골프 관심 있으신분들 신청 주세요, 종로 쪽에서 진행할 예정입니다!', '2022-10-16 17:30:00', 6, '16:00:00', '2022-10-18');
+INSERT INTO `party` (`pno`, `lno`, `title`, `act`, `cont`, `cdt`, `headcnt`, `ptime`, `pdate`) VALUES (16, 14, '러닝팸 모아요!! 런린이도 대환영!', 1, '런린이 분들도 편하게 들어오세요! 지난 모임도 신규 유입 많았습니당 ㅎㅎㅎㅎ', '2022-10-18 17:30:00', 6, '17:00:00', '2022-10-27');
+INSERT INTO `party` (`pno`, `lno`, `title`, `act`, `cont`, `cdt`, `headcnt`, `ptime`, `pdate`) VALUES (17, 2, '클라이밍가실분~~', 1, '종로 동동이클라이밍장 갈 사람 맘편히 신청하세요. 커몬요!', '2022-10-18 11:21:00', 5, '19:00:00', '2022-10-20');
+INSERT INTO `party` (`pno`, `lno`, `title`, `act`, `cont`, `cdt`, `headcnt`, `ptime`, `pdate`) VALUES (18, 7, '농구 배울 여성분 ㅎ', 0, '농구 배우고 싶은 여성 분  신청 주세요^^', '2022-10-18 11:21:00', 2, '19:00:00', '2022-10-20');
+INSERT INTO `party` (`pno`, `lno`, `title`, `act`, `cont`, `cdt`, `headcnt`, `ptime`, `pdate`) VALUES (19, 5, '배드민턴 짝궁 구해요~~', 0, '좀 치는 사람 와요,, 못하는 사람 은 좀 뒤로 꺼지시고.. ㅎ ', '2022-10-18 11:21:00', 2, '19:00:00', '2022-10-20');
 
 
 -- 모임 참여 명단 (제동 완료)
