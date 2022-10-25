@@ -51,24 +51,6 @@ INSERT INTO `sports` (`sno`, `name`) VALUES (8, '야구');
 INSERT INTO `sports` (`sno`, `name`) VALUES (9, '러닝');
 INSERT INTO `sports` (`sno`, `name`) VALUES (10, '사이클');
 
--- 병민
--- 장소 (완료)
-INSERT INTO `location` (`lno`, `rno`, `sno`) VALUES (1, 1, 1);
-INSERT INTO `location` (`lno`, `rno`, `sno`) VALUES (2, 1, 2);
-INSERT INTO `location` (`lno`, `rno`, `sno`) VALUES (3, 1, 3);
-INSERT INTO `location` (`lno`, `rno`, `sno`) VALUES (4, 2, 2);
-INSERT INTO `location` (`lno`, `rno`, `sno`) VALUES (5, 3, 3);
-INSERT INTO `location` (`lno`, `rno`, `sno`) VALUES (6, 4, 4);
-INSERT INTO `location` (`lno`, `rno`, `sno`) VALUES (7, 5, 5);
-INSERT INTO `location` (`lno`, `rno`, `sno`) VALUES (8, 6, 6);
-INSERT INTO `location` (`lno`, `rno`, `sno`) VALUES (9, 6, 2);
-INSERT INTO `location` (`lno`, `rno`, `sno`) VALUES (10, 6, 3);
-INSERT INTO `location` (`lno`, `rno`, `sno`) VALUES (11, 6, 1);
-INSERT INTO `location` (`lno`, `rno`, `sno`) VALUES (12, 7, 7);
-INSERT INTO `location` (`lno`, `rno`, `sno`) VALUES (13, 8, 5);
-INSERT INTO `location` (`lno`, `rno`, `sno`) VALUES (14, 9, 9);
-INSERT INTO `location` (`lno`, `rno`, `sno`) VALUES (15, 1, 6);
-
 -- 관리자 (완료)
 INSERT INTO `admin` (`adno`, `name`, `id`, `email`, `pwd`, `cdt`) VALUES (1, '관리자', 'admin', 'admin@test.com', sha2('1111', 256), '2022-10-06 00:00:00');
 
@@ -116,25 +98,25 @@ INSERT INTO `tatlle_reason` (`trno`, `reason`) VALUES (6, '기타 사이트 목�
 
 -- 병민 
 -- 모임 (완료)
-INSERT INTO `party` (`pno`, `lno`, `title`, `act`, `cont`, `cdt`, `headcnt`, `ptime`, `pdate`) VALUES (1, 1, '종로 3대 파티원모집함', 1, '3대측정할 파티원모집함', '2022-09-09 09:09:00', 5, '11:00:00', '2022-09-16');
-INSERT INTO `party` (`pno`, `lno`, `title`, `act`, `cont`, `cdt`, `headcnt`, `ptime`, `pdate`) VALUES (2, 2, '클라이밍가실분', 1, '종로 동동이클라이밍장 좋아요 커몬요!', '2022-09-11 11:21:00', 5, '18:00:00', '2022-09-20');
-INSERT INTO `party` (`pno`, `lno`, `title`, `act`, `cont`, `cdt`, `headcnt`, `ptime`, `pdate`) VALUES (3, 3, '배드민턴 치실분?', 1, '종로쪽 공원에서 쳐요!', '2022-09-11 12:40:00', 4, '16:00:00', '2022-11-22');
-INSERT INTO `party` (`pno`, `lno`, `title`, `act`, `cont`, `cdt`, `headcnt`, `ptime`, `pdate`) VALUES (4, 4, '중구서 축구하십시더! ', 1, '축구 할 사람(최소풋살 할 사람)만큼 인원 구해봐요!', '2022-09-13 04:34:00', 10, '20:00:00', '2022-11-06');
-INSERT INTO `party` (`pno`, `lno`, `title`, `act`, `cont`, `cdt`, `headcnt`, `ptime`, `pdate`) VALUES (5, 5, '러닝 고고', 1, '신나게 달려보시져 ', '2022-09-13 08:04:00', 6, '13:00:00', '2022-10-06');
-INSERT INTO `party` (`pno`, `lno`, `title`, `act`, `cont`, `cdt`, `headcnt`, `ptime`, `pdate`) VALUES (6, 6, '축구 멤버구해요(골키퍼x)', 1, '골키퍼는 제가 하고, 다른 포지션 구합니다.', '2022-09-14 09:00:00', 8, '15:00:00', '2022-11-23');
-INSERT INTO `party` (`pno`, `lno`, `title`, `act`, `cont`, `cdt`, `headcnt`, `ptime`, `pdate`) VALUES (7, 7, '농구 2:2 하실분', 1, '간단하게 2:2로 농구 하러 오시죠', '2022-09-15 23:30:00', 4, '16:00:00', '2022-11-06');
-INSERT INTO `party` (`pno`, `lno`, `title`, `act`, `cont`, `cdt`, `headcnt`, `ptime`, `pdate`) VALUES (8, 8, '스크린 골프 하러갈 분들!!', 1, '스크린 골프 재밌게 배워볼 또래분들 구해요. 저도 여자인데, 남자분들 보단 여자분들 많이 와주세용.', '2022-09-16 15:01:00', 4, '19:00:00', '2022-10-29');
-INSERT INTO `party` (`pno`, `lno`, `title`, `act`, `cont`, `cdt`, `headcnt`, `ptime`, `pdate`) VALUES (9, 9, '클라이밍 지구력 연습 모임', 1, '지구력 테스트 같이 해보고 싶은데, 고민이신분들! 다같이 모여서 연습해봐요.', '2022-10-06 11:11:00', 8, '10:00:00', '2022-12-06');
-INSERT INTO `party` (`pno`, `lno`, `title`, `act`, `cont`, `cdt`, `headcnt`, `ptime`, `pdate`) VALUES (10, 10, '배드민턴 간단하게 치실 분?', 1, '동대문구 근처 사시는 분 신청 주세요~', '2022-10-06 13:20:00', 2, '09:00:00', '2022-11-04');
-INSERT INTO `party` (`pno`, `lno`, `title`, `act`, `cont`, `cdt`, `headcnt`, `ptime`, `pdate`) VALUES (11, 11, '헬스 유산소 같이 해요.', 1, '동대문 쪽 새로 생긴 헬스장에서 유산소 하실 분들 모여요!! 헬린이도 가능!', '2022-10-06 21:03:20', 4, '14:00:00', '2022-10-30');
-INSERT INTO `party` (`pno`, `lno`, `title`, `act`, `cont`, `cdt`, `headcnt`, `ptime`, `pdate`) VALUES (12, 12, '탁구 혼성으로 쳐요.', 1, '중랑쪽에 같이 할 커플분 오세용 ㅎㅎ', '2022-10-08 06:55:00', 4, '14:00:00', '2022-10-25');
-INSERT INTO `party` (`pno`, `lno`, `title`, `act`, `cont`, `cdt`, `headcnt`, `ptime`, `pdate`) VALUES (13, 13, '농구 간단하게 할 분들 있나요?', 1, '저녁에 간단하게 할 분들 편하게 와주세요.', '2022-10-11 22:40:00', 8, '20:00:00', '2022-10-19');
-INSERT INTO `party` (`pno`, `lno`, `title`, `act`, `cont`, `cdt`, `headcnt`, `ptime`, `pdate`) VALUES (14, 14, '러닝팸 모아요!! 런린이도 컴온!', 1, '런린이 분들도 편하게 들어오세요! 자주 모임 만들고 있어요 ㅎㅎ', '2022-10-12 11:07:00', 15, '19:00:00', '2022-10-28');
-INSERT INTO `party` (`pno`, `lno`, `title`, `act`, `cont`, `cdt`, `headcnt`, `ptime`, `pdate`) VALUES (15, 15, '골프 치러 갈 사람 모여라~', 1, '골프 관심 있으신분들 신청 주세요, 종로 쪽에서 진행할 예정입니다!', '2022-10-16 17:30:00', 6, '16:00:00', '2022-10-18');
-INSERT INTO `party` (`pno`, `lno`, `title`, `act`, `cont`, `cdt`, `headcnt`, `ptime`, `pdate`) VALUES (16, 14, '러닝팸 모아요!! 런린이도 대환영!', 1, '런린이 분들도 편하게 들어오세요! 지난 모임도 신규 유입 많았습니당 ㅎㅎㅎㅎ', '2022-10-18 17:30:00', 6, '17:00:00', '2022-10-27');
-INSERT INTO `party` (`pno`, `lno`, `title`, `act`, `cont`, `cdt`, `headcnt`, `ptime`, `pdate`) VALUES (17, 2, '클라이밍가실분~~', 1, '종로 동동이클라이밍장 갈 사람 맘편히 신청하세요. 커몬요!', '2022-10-18 11:21:00', 5, '19:00:00', '2022-10-20');
-INSERT INTO `party` (`pno`, `lno`, `title`, `act`, `cont`, `cdt`, `headcnt`, `ptime`, `pdate`) VALUES (18, 7, '농구 배울 여성분 ㅎ', 0, '농구 배우고 싶은 여성 분  신청 주세요^^', '2022-10-18 11:21:00', 2, '19:00:00', '2022-10-20');
-INSERT INTO `party` (`pno`, `lno`, `title`, `act`, `cont`, `cdt`, `headcnt`, `ptime`, `pdate`) VALUES (19, 5, '배드민턴 짝궁 구해요~~', 0, '좀 치는 사람 와요,, 못하는 사람 은 좀 뒤로 꺼지시고.. ㅎ ', '2022-10-18 11:21:00', 2, '19:00:00', '2022-10-20');
+INSERT INTO `party` (`pno`, `rno`, `sno`, `title`, `act`, `cont`, `cdt`, `headcnt`, `ptime`, `pdate`) VALUES (1, 1, 1, '종로 3대 파티원모집함', 1, '3대측정할 파티원모집함', '2022-09-09 09:09:00', 5, '11:00:00', '2022-09-16');
+INSERT INTO `party` (`pno`, `rno`, `sno`, `title`, `act`, `cont`, `cdt`, `headcnt`, `ptime`, `pdate`) VALUES (2, 1, 2, '클라이밍가실분', 1, '종로 동동이클라이밍장 좋아요 커몬요!', '2022-09-11 11:21:00', 5, '18:00:00', '2022-09-20');
+INSERT INTO `party` (`pno`, `rno`, `sno`, `title`, `act`, `cont`, `cdt`, `headcnt`, `ptime`, `pdate`) VALUES (3, 1, 3, '배드민턴 치실분?', 1, '종로쪽 공원에서 쳐요!', '2022-09-11 12:40:00', 4, '16:00:00', '2022-11-22');
+INSERT INTO `party` (`pno`, `rno`, `sno`, `title`, `act`, `cont`, `cdt`, `headcnt`, `ptime`, `pdate`) VALUES (4, 2, 2, '중구서 축구하십시더! ', 1, '축구 할 사람(최소풋살 할 사람)만큼 인원 구해봐요!', '2022-09-13 04:34:00', 10, '20:00:00', '2022-11-06');
+INSERT INTO `party` (`pno`, `rno`, `sno`, `title`, `act`, `cont`, `cdt`, `headcnt`, `ptime`, `pdate`) VALUES (5, 3, 3, '러닝 고고', 1, '신나게 달려보시져 ', '2022-09-13 08:04:00', 6, '13:00:00', '2022-10-06');
+INSERT INTO `party` (`pno`, `rno`, `sno`, `title`, `act`, `cont`, `cdt`, `headcnt`, `ptime`, `pdate`) VALUES (6, 4, 4, '축구 멤버구해요(골키퍼x)', 1, '골키퍼는 제가 하고, 다른 포지션 구합니다.', '2022-09-14 09:00:00', 8, '15:00:00', '2022-11-23');
+INSERT INTO `party` (`pno`, `rno`, `sno`, `title`, `act`, `cont`, `cdt`, `headcnt`, `ptime`, `pdate`) VALUES (7, 5, 5, '농구 2:2 하실분', 1, '간단하게 2:2로 농구 하러 오시죠', '2022-09-15 23:30:00', 4, '16:00:00', '2022-11-06');
+INSERT INTO `party` (`pno`, `rno`, `sno`, `title`, `act`, `cont`, `cdt`, `headcnt`, `ptime`, `pdate`) VALUES (8, 6, 6, '스크린 골프 하러갈 분들!!', 1, '스크린 골프 재밌게 배워볼 또래분들 구해요. 저도 여자인데, 남자분들 보단 여자분들 많이 와주세용.', '2022-09-16 15:01:00', 4, '19:00:00', '2022-10-29');
+INSERT INTO `party` (`pno`, `rno`, `sno`, `title`, `act`, `cont`, `cdt`, `headcnt`, `ptime`, `pdate`) VALUES (9, 6, 2, '클라이밍 지구력 연습 모임', 1, '지구력 테스트 같이 해보고 싶은데, 고민이신분들! 다같이 모여서 연습해봐요.', '2022-10-06 11:11:00', 8, '10:00:00', '2022-12-06');
+INSERT INTO `party` (`pno`, `rno`, `sno`, `title`, `act`, `cont`, `cdt`, `headcnt`, `ptime`, `pdate`) VALUES (10, 6, 3, '배드민턴 간단하게 치실 분?', 1, '동대문구 근처 사시는 분 신청 주세요~', '2022-10-06 13:20:00', 2, '09:00:00', '2022-11-04');
+INSERT INTO `party` (`pno`, `rno`, `sno`, `title`, `act`, `cont`, `cdt`, `headcnt`, `ptime`, `pdate`) VALUES (11, 6, 1, '헬스 유산소 같이 해요.', 1, '동대문 쪽 새로 생긴 헬스장에서 유산소 하실 분들 모여요!! 헬린이도 가능!', '2022-10-06 21:03:20', 4, '14:00:00', '2022-10-30');
+INSERT INTO `party` (`pno`, `rno`, `sno`, `title`, `act`, `cont`, `cdt`, `headcnt`, `ptime`, `pdate`) VALUES (12, 7, 7, '탁구 혼성으로 쳐요.', 1, '중랑쪽에 같이 할 커플분 오세용 ㅎㅎ', '2022-10-08 06:55:00', 4, '14:00:00', '2022-10-25');
+INSERT INTO `party` (`pno`, `rno`, `sno`, `title`, `act`, `cont`, `cdt`, `headcnt`, `ptime`, `pdate`) VALUES (13, 8, 5, '농구 간단하게 할 분들 있나요?', 1, '저녁에 간단하게 할 분들 편하게 와주세요.', '2022-10-11 22:40:00', 8, '20:00:00', '2022-10-19');
+INSERT INTO `party` (`pno`, `rno`, `sno`, `title`, `act`, `cont`, `cdt`, `headcnt`, `ptime`, `pdate`) VALUES (14, 9, 9, '러닝팸 모아요!! 런린이도 컴온!', 1, '런린이 분들도 편하게 들어오세요! 자주 모임 만들고 있어요 ㅎㅎ', '2022-10-12 11:07:00', 15, '19:00:00', '2022-10-28');
+INSERT INTO `party` (`pno`, `rno`, `sno`, `title`, `act`, `cont`, `cdt`, `headcnt`, `ptime`, `pdate`) VALUES (15, 1, 6, '골프 치러 갈 사람 모여라~', 1, '골프 관심 있으신분들 신청 주세요, 종로 쪽에서 진행할 예정입니다!', '2022-10-16 17:30:00', 6, '16:00:00', '2022-10-18');
+INSERT INTO `party` (`pno`, `rno`, `sno`, `title`, `act`, `cont`, `cdt`, `headcnt`, `ptime`, `pdate`) VALUES (16, 9, 9, '러닝팸 모아요!! 런린이도 대환영!', 1, '런린이 분들도 편하게 들어오세요! 지난 모임도 신규 유입 많았습니당 ㅎㅎㅎㅎ', '2022-10-18 17:30:00', 6, '17:00:00', '2022-10-27');
+INSERT INTO `party` (`pno`, `rno`, `sno`, `title`, `act`, `cont`, `cdt`, `headcnt`, `ptime`, `pdate`) VALUES (17, 1, 2, '클라이밍가실분~~', 1, '종로 동동이클라이밍장 갈 사람 맘편히 신청하세요. 커몬요!', '2022-10-18 11:21:00', 5, '19:00:00', '2022-10-20');
+INSERT INTO `party` (`pno`, `rno`, `sno`, `title`, `act`, `cont`, `cdt`, `headcnt`, `ptime`, `pdate`) VALUES (18, 5, 5, '농구 배울 여성분 ㅎ', 0, '농구 배우고 싶은 여성 분  신청 주세요^^', '2022-10-18 11:21:00', 2, '19:00:00', '2022-10-20');
+INSERT INTO `party` (`pno`, `rno`, `sno`, `title`, `act`, `cont`, `cdt`, `headcnt`, `ptime`, `pdate`) VALUES (19, 3, 3, '배드민턴 짝궁 구해요~~', 0, '좀 치는 사람 와요,, 못하는 사람 은 좀 뒤로 꺼지시고.. ㅎ ', '2022-10-18 11:21:00', 2, '19:00:00', '2022-10-20');
 
 
 -- 모임 참여 명단 (제동 완료)
@@ -313,22 +295,6 @@ INSERT INTO `party_review_file` (`prfno`, `filepath`, `prno`) VALUES (11, '/User
 INSERT INTO `party_review_file` (`prfno`, `filepath`, `prno`) VALUES (12, '/Users/parkbyeongmin/git/teamproject-comehere/comehere-app/comehere-server/doc/comehere_party_review_file 12.jpeg', 12);
 
 
-
--- 목표 종찬 완료
-INSERT INTO `plan` (`plno`, `mno`, `title`, `act`, `dday`, `chl`) VALUES (1, 1, '근성장', 1, '2022-10-22', 100.00);
-INSERT INTO `plan` (`plno`, `mno`, `title`, `act`, `dday`, `chl`) VALUES (2, 2, '살크업', 0, '2022-11-21', 71.00);
-INSERT INTO `plan` (`plno`, `mno`, `title`, `act`, `dday`, `chl`) VALUES (3, 3, '다이어트', 0, '2022-12-31', 49.90);
-INSERT INTO `plan` (`plno`, `mno`, `title`, `act`, `dday`, `chl`) VALUES (4, 4, '득근하기', 1, '2022-10-20', 35.50);
-INSERT INTO `plan` (`plno`, `mno`, `title`, `act`, `dday`, `chl`) VALUES (5, 5, '체중조절', 0, '2022-11-28', 73.50);
-INSERT INTO `plan` (`plno`, `mno`, `title`, `act`, `dday`, `chl`) VALUES (6, 1, '근성장(2차)', 0, '2022-12-22', 25.00);
-
-INSERT INTO `plan` (`plno`, `mno`, `title`, `act`, `dday`, `chl`) VALUES (7, 7, '줄넘기', 1, '2022-10-26', 60.50);
-INSERT INTO `plan` (`plno`, `mno`, `title`, `act`, `dday`, `chl`) VALUES (8, 8, '헬스', 0, '2023-01-20', 40.00);
-INSERT INTO `plan` (`plno`, `mno`, `title`, `act`, `dday`, `chl`) VALUES (9, 3, '달리기', 0, '2022-12-31', 49.90);
-INSERT INTO `plan` (`plno`, `mno`, `title`, `act`, `dday`, `chl`) VALUES (10, 10, '다이어트', 1, '2023-11-01', 65.50);
-INSERT INTO `plan` (`plno`, `mno`, `title`, `act`, `dday`, `chl`) VALUES (11, 4, '득근하기(2차)', 0, '2022-12-27', 15.30);
-INSERT INTO `plan` (`plno`, `mno`, `title`, `act`, `dday`, `chl`) VALUES (12, 12, '살찌우기', 0, '2023-01-15', 45.00);
-
 -- 1:1 문의하기 종찬완료
 INSERT INTO `qna` (`qno`, `mno`, `title`, `act`, `cont`, `cdt`, `acont`, `adt`) VALUES (1, 1, '이용 문의 드려요', 0, '모임 설정하는데 지역 설정을 하나만 할 수 있나요?', '2022-10-10 18:12:39', NULL, NULL);
 INSERT INTO `qna` (`qno`, `mno`, `title`, `act`, `cont`, `cdt`, `acont`, `adt`) VALUES (2, 3, '탈퇴하면 정보 다 사라지나요?', 1, '탈퇴하려 하는데 탈퇴하면 제가 쓴 글이나 정보 다 사라지나요? 아니면 남아있나요? ', '2022-10-11 18:12:39', '안녕하세요? 여기모여 관리자입니다.\n\n탈퇴 시 회원정보는 삭제되지만 활동내용(게시글, 댓글) 등은 삭제처리가 되지 않습니다.\n\n삭제가 필요한 경우 회원탈퇴 전 개별적으로 삭제 후 회원탈퇴를 진행하시길 바랍니다.\n\n감사합니다.', '2022-10-12 19:10:22');
@@ -358,26 +324,6 @@ INSERT INTO `scrap` (`mno`, `bno`) VALUES (10, 3);
 INSERT INTO `scrap` (`mno`, `bno`) VALUES (10, 1);
 INSERT INTO `scrap` (`mno`, `bno`) VALUES (10, 2);
 INSERT INTO `scrap` (`mno`, `bno`) VALUES (10, 4);
-
--- 장소 후기
--- 은지 완료
-INSERT INTO `location_review` (`lrno`, `mno`, `pno`, `act`, `title`, `cont`, `star`, `cdt`) VALUES (1, 4, 1, 1, '기구가 최신이라 좋아요', '전에 다니던 곳은 끼익끼익 소리나서 별로였는데 좋았습니다', 5.00, '2022-09-20 19:56:52');
-INSERT INTO `location_review` (`lrno`, `mno`, `pno`, `act`, `title`, `cont`, `star`, `cdt`) VALUES (2, 3, 1, 1, '정수기가 곳곳에 있어서 좋아요', '물뜨러가기 너무 멀었었는데 여기는 이곳저곳에 있어서 좋았어요', 5.00, '2022-09-20 19:57:56');
-INSERT INTO `location_review` (`lrno`, `mno`, `pno`, `act`, `title`, `cont`, `star`, `cdt`) VALUES (3, 2, 1, 1, '별로입니다', '바선생나왔어요;;', 1.00, '2022-09-30 19:58:21');
-INSERT INTO `location_review` (`lrno`, `mno`, `pno`, `act`, `title`, `cont`, `star`, `cdt`) VALUES (4, 5, 2, 1, '밀가루? 하얀 가루 묻히면 안미끄러진다고 했는데', '그래도 미끄러워지네요 아직 제 실력이 부족해서겠죠?', 3.00, '2022-09-30 19:59:08');
-INSERT INTO `location_review` (`lrno`, `mno`, `pno`, `act`, `title`, `cont`, `star`, `cdt`) VALUES (5, 4, 2, 1, '한강에서 연습하니 좋았습니다', '바람도 선선하니 불고 저녁에 나오니까 상쾌하네요', 5.00, '2022-09-30 19:59:52');
-INSERT INTO `location_review` (`lrno`, `mno`, `pno`, `act`, `title`, `cont`, `star`, `cdt`) VALUES (6, 3, 2, 1, '야외다보니 야광 콕을 써야해서 신기했스빈다', '야광 콕 처음보는데 저녁에서 무리 없이 조명에 눈 아플 일도 없어 더 좋은 것 같아요', 4.00, '2022-09-30 20:00:36');
-INSERT INTO `location_review` (`lrno`, `mno`, `pno`, `act`, `title`, `cont`, `star`, `cdt`) VALUES (7, 1, 2, 1, '코트는 다 같이 쓰는건데', '욕심부리는 사람들 때문에 기다리다 집 갔네요', 1.00, '2022-09-30 20:01:10');
-INSERT INTO `location_review` (`lrno`, `mno`, `pno`, `act`, `title`, `cont`, `star`, `cdt`) VALUES (8, 1, 13, 1, '미끄러지지 않게 관리하는 코트같아서 좋았습니다', '가끔 넘어져서 한동안 못하는 경우도 있는데 여기는 그 동안 한 번도 안 다쳤어요', 4.00, '2022-10-20 20:39:13');
-INSERT INTO `location_review` (`lrno`, `mno`, `pno`, `act`, `title`, `cont`, `star`, `cdt`) VALUES (9, 3, 13, 1, '농구 처음해봤는데', '아직 익숙해지지 않아 바닥이 좀 미끄러워요 다음부턴 농구화를 신고 와야겠네요', 3.00, '2022-10-20 20:39:40');
-INSERT INTO `location_review` (`lrno`, `mno`, `pno`, `act`, `title`, `cont`, `star`, `cdt`) VALUES (10, 7, 13, 0, '답답한 코트장도 있는데 곳곳에 공기청정기에', '환기까지 주기적으로 해줘서 상쾌하게 운동했습니다', 5.00, '2022-10-20 20:40:06');
-INSERT INTO `location_review` (`lrno`, `mno`, `pno`, `act`, `title`, `cont`, `star`, `cdt`) VALUES (11, 2, 13, 1, '요즘같은 코로나 시대에', '열체크하는게 믿음직스럽네요', 4.00, '2022-10-20 20:40:30');
-INSERT INTO `location_review` (`lrno`, `mno`, `pno`, `act`, `title`, `cont`, `star`, `cdt`) VALUES (12, 8, 17, 1, '클라이밍 처음해봤습니다', '직원분들께서 친절하게 기초를 알려주셔서 좋았어요', 5.00, '2022-10-20 20:41:01');
-INSERT INTO `location_review` (`lrno`, `mno`, `pno`, `act`, `title`, `cont`, `star`, `cdt`) VALUES (13, 3, 15, 1, '골프 장이 잔디가 잘 관리되어 있어요', '잔디ㅏ 보기 싫게 관리도 안되어있고 비싼곳도 많은데 여긴 괜찮네요', 4.00, '2022-10-20 20:41:56');
-INSERT INTO `location_review` (`lrno`, `mno`, `pno`, `act`, `title`, `cont`, `star`, `cdt`) VALUES (14, 4, 15, 1, '제가 있던 홀은 잔디가 전부 패여있었어요', '연못에 있는 공도 안줍는 것 같아요', 2.00, '2022-10-20 20:42:27');
-INSERT INTO `location_review` (`lrno`, `mno`, `pno`, `act`, `title`, `cont`, `star`, `cdt`) VALUES (15, 5, 13, 1, '사진보시면 압니다', '이런 곳이에요 깔끔하지만 스케줄 관리가 꼬여서 잘 알아보고 가셔야 할 듯', 3.00, '2022-10-20 20:43:26');
-INSERT INTO `location_review` (`lrno`, `mno`, `pno`, `act`, `title`, `cont`, `star`, `cdt`) VALUES (16, 1, 17, 1, '예전에 왔던 곳인데', '리뉴얼 했는지 하드코어도 많아져서 좋아요', 4.00, '2022-10-20 20:43:58');
-INSERT INTO `location_review` (`lrno`, `mno`, `pno`, `act`, `title`, `cont`, `star`, `cdt`) VALUES (17, 6, 15, 1, '이전에 처음으로 홀인원 쳤던 곳이라 좋았는데', '공도 여기저기 굴러다니고 캐디가 휴대폰만 하고 별로 였어요', 2.00, '2022-10-20 20:44:36');
 
 -- 병민 
 -- 게시글 댓글 (완료)
@@ -469,18 +415,6 @@ INSERT INTO `board_tatlle` (`btno`, `mno`, `decbno`, `trno`, `tdt`, `cont`, `com
 INSERT INTO `board_tatlle` (`btno`, `mno`, `decbno`, `trno`, `tdt`, `cont`, `comdt`) VALUES (11, 6, 65, 6, '2022-10-17 19:09:04', '블랙처리 됐습니다.', '2022-10-18 19:09:04');
 INSERT INTO `board_tatlle` (`btno`, `mno`, `decbno`, `trno`, `tdt`, `cont`, `comdt`) VALUES (12, 7, 65, 6, '2022-10-18 19:09:04', '블랙처리 됐습니다.', '2022-10-18 19:09:04');
 
--- 장소 후기 첨부파일
--- 은지
-INSERT INTO `location_review_file` (`lrfno`, `filepath`, `lrno`) VALUES (1, 'https://source.unsplash.com/random', 1);
-INSERT INTO `location_review_file` (`lrfno`, `filepath`, `lrno`) VALUES (2, 'https://source.unsplash.com/random', 13);
-INSERT INTO `location_review_file` (`lrfno`, `filepath`, `lrno`) VALUES (3, 'https://source.unsplash.com/random', 15);
-INSERT INTO `location_review_file` (`lrfno`, `filepath`, `lrno`) VALUES (4, 'https://source.unsplash.com/random', 2);
-INSERT INTO `location_review_file` (`lrfno`, `filepath`, `lrno`) VALUES (5, 'https://source.unsplash.com/random', 1);
-INSERT INTO `location_review_file` (`lrfno`, `filepath`, `lrno`) VALUES (6, 'https://source.unsplash.com/random', 1);
-INSERT INTO `location_review_file` (`lrfno`, `filepath`, `lrno`) VALUES (7, 'https://source.unsplash.com/random', 13);
-INSERT INTO `location_review_file` (`lrfno`, `filepath`, `lrno`) VALUES (8, 'https://source.unsplash.com/random', 15);
-INSERT INTO `location_review_file` (`lrfno`, `filepath`, `lrno`) VALUES (9, 'https://source.unsplash.com/random', 2);
-
 -- 회원 신고 (헌식완료)
 INSERT INTO `member_tatlle` (`mtno`, `mnoee`, `mnoer`, `trno`, `tdt`, `cont`, `comdt`) VALUES (1, 2, 5, 1, '2022-10-06 00:00:00', '승인되지 않았습니다.', '2022-10-06 16:13:33');
 INSERT INTO `member_tatlle` (`mtno`, `mnoee`, `mnoer`, `trno`, `tdt`, `cont`, `comdt`) VALUES (2, 2, 5, 1, '2022-10-06 00:00:00', '블랙처리 되었습니다.', '2022-10-06 16:13:33');
@@ -545,12 +479,12 @@ INSERT INTO `party_file` (`pfno`, `filepath`, `pno`) VALUES (10, 'http://image.a
 
 -- 댓글 신고
 -- 은지 완료
-INSERT INTO `comment_tatlle` (`ctno`, `mno`, `bcno`, `trno`, `tdt`, `cont`, `comdt`) VALUES (1, 2, 42, 3, '2022-10-12 19:40:56', '블랙처리 됐습니다.', '2022-10-20 19:42:14');
-INSERT INTO `comment_tatlle` (`ctno`, `mno`, `bcno`, `trno`, `tdt`, `cont`, `comdt`) VALUES (2, 11, 43, 2, '2022-10-13 19:42:47', '블랙처리 됐습니다.', '2022-10-20 19:42:57');
-INSERT INTO `comment_tatlle` (`ctno`, `mno`, `bcno`, `trno`, `tdt`, `cont`, `comdt`) VALUES (3, 8, 44, 2, '2022-10-13 19:43:17', '블랙처리 됐습니다.', '2022-10-20 19:43:22');
-INSERT INTO `comment_tatlle` (`ctno`, `mno`, `bcno`, `trno`, `tdt`, `cont`, `comdt`) VALUES (4, 3, 10, 1, '2022-10-12 19:43:36', NULL, NULL);
-INSERT INTO `comment_tatlle` (`ctno`, `mno`, `bcno`, `trno`, `tdt`, `cont`, `comdt`) VALUES (5, 10, 26, 6, '2022-10-20 19:44:06', NULL, NULL);
-INSERT INTO `comment_tatlle` (`ctno`, `mno`, `bcno`, `trno`, `tdt`, `cont`, `comdt`) VALUES (6, 4, 32, 1, '2022-10-12 19:44:19', '승인되지 않았습니다.', '2022-10-20 19:44:34');
+INSERT INTO `board_comment_tatlle` (`bctno`, `mno`, `bcno`, `trno`, `tdt`, `cont`, `comdt`) VALUES (1, 2, 42, 3, '2022-10-12 19:40:56', '블랙처리 됐습니다.', '2022-10-20 19:42:14');
+INSERT INTO `board_comment_tatlle` (`bctno`, `mno`, `bcno`, `trno`, `tdt`, `cont`, `comdt`) VALUES (2, 11, 43, 2, '2022-10-13 19:42:47', '블랙처리 됐습니다.', '2022-10-20 19:42:57');
+INSERT INTO `board_comment_tatlle` (`bctno`, `mno`, `bcno`, `trno`, `tdt`, `cont`, `comdt`) VALUES (3, 8, 44, 2, '2022-10-13 19:43:17', '블랙처리 됐습니다.', '2022-10-20 19:43:22');
+INSERT INTO `board_comment_tatlle` (`bctno`, `mno`, `bcno`, `trno`, `tdt`, `cont`, `comdt`) VALUES (4, 3, 10, 1, '2022-10-12 19:43:36', NULL, NULL);
+INSERT INTO `board_comment_tatlle` (`bctno`, `mno`, `bcno`, `trno`, `tdt`, `cont`, `comdt`) VALUES (5, 10, 26, 6, '2022-10-20 19:44:06', NULL, NULL);
+INSERT INTO `board_comment_tatlle` (`bctno`, `mno`, `bcno`, `trno`, `tdt`, `cont`, `comdt`) VALUES (6, 4, 32, 1, '2022-10-12 19:44:19', '승인되지 않았습니다.', '2022-10-20 19:44:34');
 
 -- 관심지역
 -- 은지 완료
@@ -604,3 +538,8 @@ INSERT INTO `favorite_sport` (`sno`, `mno`) VALUES (5, 4);
 INSERT INTO `favorite_sport` (`sno`, `mno`) VALUES (5, 5);
 INSERT INTO `favorite_sport` (`sno`, `mno`) VALUES (5, 9);
 INSERT INTO `favorite_sport` (`sno`, `mno`) VALUES (5, 12);
+
+
+-- 모임 댓글신고
+INSERT INTO `party_comment_tatlle` (`pctno`, `mno`, `pcno`, `trno`, `tdt`, `cont`, `comdt`) VALUES (1, 2, 1, 1, '2022-10-12 00:00:00', '내용', '2022-10-20 00:00:00');
+INSERT INTO `party_comment_tatlle` (`pctno`, `mno`, `pcno`, `trno`, `tdt`) VALUES (2, 3, 2, 2, '2022-10-14 00:00:00');

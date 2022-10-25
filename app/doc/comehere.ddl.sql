@@ -16,14 +16,8 @@ DROP TABLE IF EXISTS region RESTRICT;
 -- 모임
 DROP TABLE IF EXISTS party RESTRICT;
 
--- 장소
-DROP TABLE IF EXISTS location RESTRICT;
-
 -- 모임후기
 DROP TABLE IF EXISTS party_review RESTRICT;
-
--- 나의 목표
-DROP TABLE IF EXISTS plan RESTRICT;
 
 -- 댓글
 DROP TABLE IF EXISTS board_comment RESTRICT;
@@ -55,12 +49,6 @@ DROP TABLE IF EXISTS party_review_file RESTRICT;
 -- 모임 댓글
 DROP TABLE IF EXISTS party_comment RESTRICT;
 
--- 장소후기 첨부파일
-DROP TABLE IF EXISTS location_review_file RESTRICT;
-
--- 장소후기
-DROP TABLE IF EXISTS location_review RESTRICT;
-
 -- 알림
 DROP TABLE IF EXISTS alert RESTRICT;
 
@@ -76,8 +64,8 @@ DROP TABLE IF EXISTS member_tatlle RESTRICT;
 -- 게시글카테고리
 DROP TABLE IF EXISTS board_category RESTRICT;
 
--- 댓글신고
-DROP TABLE IF EXISTS comment_tatlle RESTRICT;
+-- 게시글 댓글신고
+DROP TABLE IF EXISTS board_comment_tatlle RESTRICT;
 
 -- 공지사항 첨부파일
 DROP TABLE IF EXISTS notice_file RESTRICT;
@@ -87,6 +75,9 @@ DROP TABLE IF EXISTS tatlle_reason RESTRICT;
 
 -- 신청처리
 DROP TABLE IF EXISTS party_status RESTRICT;
+
+-- 모임 댓글신고
+DROP TABLE IF EXISTS party_comment_tatlle RESTRICT;
 
 -- 회원
 CREATE TABLE member (
@@ -225,7 +216,8 @@ ALTER TABLE region
 -- 모임
 CREATE TABLE party (
   pno     INTEGER      NOT NULL COMMENT '모임 일련번호', -- 모임 일련번호
-  lno     INTEGER      NOT NULL COMMENT '장소 일련번호', -- 장소 일련번호
+  rno     INTEGER      NOT NULL COMMENT '지역일련번호', -- 지역일련번호
+  sno     INTEGER      NOT NULL COMMENT '운동일련번호', -- 운동일련번호
   title   VARCHAR(255) NOT NULL COMMENT '제목', -- 제목
   act     BOOLEAN      NOT NULL DEFAULT 1 COMMENT '활성화여부', -- 활성화여부
   cont    MEDIUMTEXT   NOT NULL COMMENT '내용', -- 내용
@@ -246,32 +238,15 @@ ALTER TABLE party
 ALTER TABLE party
   MODIFY COLUMN pno INTEGER NOT NULL AUTO_INCREMENT COMMENT '모임 일련번호';
 
--- 장소
-CREATE TABLE location (
-  lno INTEGER NOT NULL COMMENT '장소 일련번호', -- 장소 일련번호
-  rno INTEGER NOT NULL COMMENT '지역일련번호', -- 지역일련번호
-  sno INTEGER NOT NULL COMMENT '운동일련번호' -- 운동일련번호
-)
-COMMENT '장소';
-
--- 장소
-ALTER TABLE location
-  ADD CONSTRAINT PK_location -- 장소 기본키
-    PRIMARY KEY (
-      lno -- 장소 일련번호
-    );
-
-ALTER TABLE location
-  MODIFY COLUMN lno INTEGER NOT NULL AUTO_INCREMENT COMMENT '장소 일련번호';
-
 -- 모임후기
 CREATE TABLE party_review (
   prno  INTEGER      NOT NULL COMMENT '후기 일련번호', -- 후기 일련번호
   mno   INTEGER      NOT NULL COMMENT '회원번호', -- 회원번호
   pno   INTEGER      NOT NULL COMMENT '모임 일련번호', -- 모임 일련번호
-  star  DEC(3,2)     NOT NULL COMMENT '별점', -- 별점
+  act   BOOLEAN      NOT NULL DEFAULT 1 COMMENT '활성화여부', -- 활성화여부
   title VARCHAR(255) NOT NULL COMMENT '제목', -- 제목
   cont  MEDIUMTEXT   NOT NULL COMMENT '내용', -- 내용
+  star  DEC(3,2)     NOT NULL COMMENT '별점', -- 별점
   cdt   DATETIME     NOT NULL DEFAULT now() COMMENT '등록일' -- 등록일
 )
 COMMENT '모임후기';
@@ -285,27 +260,6 @@ ALTER TABLE party_review
 
 ALTER TABLE party_review
   MODIFY COLUMN prno INTEGER NOT NULL AUTO_INCREMENT COMMENT '후기 일련번호';
-
--- 나의 목표
-CREATE TABLE plan (
-  plno  INTEGER      NOT NULL COMMENT '계획 일련번호', -- 계획 일련번호
-  mno   INTEGER      NOT NULL COMMENT '회원번호', -- 회원번호
-  title VARCHAR(255) NOT NULL COMMENT '계획 명', -- 계획 명
-  act   BOOLEAN      NOT NULL DEFAULT 0 COMMENT '달성여부', -- 달성여부
-  dday  DATE         NULL     COMMENT '목표일', -- 목표일
-  chl   DEC(5,2)     NOT NULL COMMENT '목표치' -- 목표치
-)
-COMMENT '나의 목표';
-
--- 나의 목표
-ALTER TABLE plan
-  ADD CONSTRAINT PK_plan -- 나의 목표 기본키
-    PRIMARY KEY (
-      plno -- 계획 일련번호
-    );
-
-ALTER TABLE plan
-  MODIFY COLUMN plno INTEGER NOT NULL AUTO_INCREMENT COMMENT '계획 일련번호';
 
 -- 댓글
 CREATE TABLE board_comment (
@@ -499,6 +453,7 @@ CREATE TABLE party_comment (
   mno  INTEGER    NOT NULL COMMENT '회원번호', -- 회원번호
   pno  INTEGER    NOT NULL COMMENT '모임 일련번호', -- 모임 일련번호
   cont MEDIUMTEXT NOT NULL COMMENT '내용', -- 내용
+  act  BOOLEAN    NOT NULL DEFAULT 1 COMMENT '활성화여부', -- 활성화여부
   cdt  DATETIME   NOT NULL DEFAULT now() COMMENT '등록일' -- 등록일
 )
 COMMENT '모임 댓글';
@@ -512,46 +467,6 @@ ALTER TABLE party_comment
 
 ALTER TABLE party_comment
   MODIFY COLUMN pcno INTEGER NOT NULL AUTO_INCREMENT COMMENT '모임댓글번호';
-
--- 장소후기 첨부파일
-CREATE TABLE location_review_file (
-  lrfno    INTEGER      NOT NULL COMMENT '장소후기첨부번호', -- 장소후기첨부번호
-  filepath VARCHAR(255) NOT NULL COMMENT '파일경로', -- 파일경로
-  lrno     INTEGER      NOT NULL COMMENT '후기 일련번호' -- 후기 일련번호
-)
-COMMENT '장소후기 첨부파일';
-
--- 장소후기 첨부파일
-ALTER TABLE location_review_file
-  ADD CONSTRAINT PK_location_review_file -- 장소후기 첨부파일 기본키
-    PRIMARY KEY (
-      lrfno -- 장소후기첨부번호
-    );
-
-ALTER TABLE location_review_file
-  MODIFY COLUMN lrfno INTEGER NOT NULL AUTO_INCREMENT COMMENT '장소후기첨부번호';
-
--- 장소후기
-CREATE TABLE location_review (
-  lrno  INTEGER      NOT NULL COMMENT '후기 일련번호', -- 후기 일련번호
-  mno   INTEGER      NOT NULL COMMENT '회원번호', -- 회원번호
-  pno   INTEGER      NOT NULL COMMENT '모임 일련번호', -- 모임 일련번호
-  title VARCHAR(255) NOT NULL COMMENT '제목', -- 제목
-  cont  MEDIUMTEXT   NOT NULL COMMENT '내용', -- 내용
-  star  DEC(3,2)     NOT NULL COMMENT '별점', -- 별점
-  cdt   DATETIME     NOT NULL DEFAULT now() COMMENT '등록일' -- 등록일
-)
-COMMENT '장소후기';
-
--- 장소후기
-ALTER TABLE location_review
-  ADD CONSTRAINT PK_location_review -- 장소후기 기본키
-    PRIMARY KEY (
-      lrno -- 후기 일련번호
-    );
-
-ALTER TABLE location_review
-  MODIFY COLUMN lrno INTEGER NOT NULL AUTO_INCREMENT COMMENT '후기 일련번호';
 
 -- 알림
 CREATE TABLE alert (
@@ -649,9 +564,9 @@ ALTER TABLE board_category
 ALTER TABLE board_category
   MODIFY COLUMN cateno INTEGER NOT NULL AUTO_INCREMENT COMMENT '게시글카테고리번호';
 
--- 댓글신고
-CREATE TABLE comment_tatlle (
-  ctno  INTEGER    NOT NULL COMMENT '신고번호', -- 신고번호
+-- 게시글 댓글신고
+CREATE TABLE board_comment_tatlle (
+  bctno INTEGER    NOT NULL COMMENT '신고번호', -- 신고번호
   mno   INTEGER    NOT NULL COMMENT '신고자', -- 신고자
   bcno  INTEGER    NOT NULL COMMENT '댓글번호', -- 댓글번호
   trno  INTEGER    NOT NULL COMMENT '신고사유번호', -- 신고사유번호
@@ -659,17 +574,17 @@ CREATE TABLE comment_tatlle (
   cont  MEDIUMTEXT NULL     COMMENT '처리내용', -- 처리내용
   comdt DATETIME   NULL     COMMENT '처리일' -- 처리일
 )
-COMMENT '댓글신고';
+COMMENT '게시글 댓글신고';
 
--- 댓글신고
-ALTER TABLE comment_tatlle
-  ADD CONSTRAINT PK_comment_tatlle -- 댓글신고 기본키
+-- 게시글 댓글신고
+ALTER TABLE board_comment_tatlle
+  ADD CONSTRAINT PK_board_comment_tatlle -- 게시글 댓글신고 기본키
     PRIMARY KEY (
-      ctno -- 신고번호
+      bctno -- 신고번호
     );
 
-ALTER TABLE comment_tatlle
-  MODIFY COLUMN ctno INTEGER NOT NULL AUTO_INCREMENT COMMENT '신고번호';
+ALTER TABLE board_comment_tatlle
+  MODIFY COLUMN bctno INTEGER NOT NULL AUTO_INCREMENT COMMENT '신고번호';
 
 -- 공지사항 첨부파일
 CREATE TABLE notice_file (
@@ -714,6 +629,25 @@ ALTER TABLE party_status
       psno -- 신청처리번호
     );
 
+-- 모임 댓글신고
+CREATE TABLE party_comment_tatlle (
+  pctno INTEGER    NOT NULL COMMENT '신고번호', -- 신고번호
+  mno   INTEGER    NOT NULL COMMENT '신고자', -- 신고자
+  pcno  INTEGER    NOT NULL COMMENT '모임댓글번호', -- 모임댓글번호
+  trno  INTEGER    NOT NULL COMMENT '신고사유번호', -- 신고사유번호
+  tdt   DATETIME   NOT NULL DEFAULT now() COMMENT '신고일', -- 신고일
+  cont  MEDIUMTEXT NULL     COMMENT '처리내용', -- 처리내용
+  comdt DATETIME   NULL     COMMENT '처리일' -- 처리일
+)
+COMMENT '모임 댓글신고';
+
+-- 모임 댓글신고
+ALTER TABLE party_comment_tatlle
+  ADD CONSTRAINT PK_party_comment_tatlle -- 모임 댓글신고 기본키
+    PRIMARY KEY (
+      pctno -- 신고번호
+    );
+
 -- 게시글
 ALTER TABLE board
   ADD CONSTRAINT FK_member_TO_board -- 회원 -> 게시글
@@ -746,17 +680,7 @@ ALTER TABLE board_file
 
 -- 모임
 ALTER TABLE party
-  ADD CONSTRAINT FK_location_TO_party -- 장소 -> 모임
-    FOREIGN KEY (
-      lno -- 장소 일련번호
-    )
-    REFERENCES location ( -- 장소
-      lno -- 장소 일련번호
-    );
-
--- 장소
-ALTER TABLE location
-  ADD CONSTRAINT FK_region_TO_location -- 운동 지역 -> 장소
+  ADD CONSTRAINT FK_region_TO_party -- 운동 지역 -> 모임
     FOREIGN KEY (
       rno -- 지역일련번호
     )
@@ -764,9 +688,9 @@ ALTER TABLE location
       rno -- 지역일련번호
     );
 
--- 장소
-ALTER TABLE location
-  ADD CONSTRAINT FK_sports_TO_location -- 운동 분류 -> 장소
+-- 모임
+ALTER TABLE party
+  ADD CONSTRAINT FK_sports_TO_party -- 운동 분류 -> 모임
     FOREIGN KEY (
       sno -- 운동일련번호
     )
@@ -784,16 +708,6 @@ ALTER TABLE party_review
     REFERENCES party_members ( -- 모임참여명단
       mno, -- 회원번호
       pno  -- 모임 일련번호
-    );
-
--- 나의 목표
-ALTER TABLE plan
-  ADD CONSTRAINT FK_member_TO_plan -- 회원 -> 나의 목표
-    FOREIGN KEY (
-      mno -- 회원번호
-    )
-    REFERENCES member ( -- 회원
-      mno -- 회원번호
     );
 
 -- 댓글
@@ -936,28 +850,6 @@ ALTER TABLE party_comment
       mno -- 회원번호
     );
 
--- 장소후기 첨부파일
-ALTER TABLE location_review_file
-  ADD CONSTRAINT FK_location_review_TO_location_review_file -- 장소후기 -> 장소후기 첨부파일
-    FOREIGN KEY (
-      lrno -- 후기 일련번호
-    )
-    REFERENCES location_review ( -- 장소후기
-      lrno -- 후기 일련번호
-    );
-
--- 장소후기
-ALTER TABLE location_review
-  ADD CONSTRAINT FK_party_members_TO_location_review -- 모임참여명단 -> 장소후기
-    FOREIGN KEY (
-      mno, -- 회원번호
-      pno  -- 모임 일련번호
-    )
-    REFERENCES party_members ( -- 모임참여명단
-      mno, -- 회원번호
-      pno  -- 모임 일련번호
-    );
-
 -- 알림
 ALTER TABLE alert
   ADD CONSTRAINT FK_member_TO_alert -- 회원 -> 알림
@@ -1048,9 +940,9 @@ ALTER TABLE member_tatlle
       trno -- 신고사유번호
     );
 
--- 댓글신고
-ALTER TABLE comment_tatlle
-  ADD CONSTRAINT FK_member_TO_comment_tatlle -- 회원 -> 댓글신고
+-- 게시글 댓글신고
+ALTER TABLE board_comment_tatlle
+  ADD CONSTRAINT FK_member_TO_board_comment_tatlle -- 회원 -> 게시글 댓글신고
     FOREIGN KEY (
       mno -- 신고자
     )
@@ -1058,9 +950,9 @@ ALTER TABLE comment_tatlle
       mno -- 회원번호
     );
 
--- 댓글신고
-ALTER TABLE comment_tatlle
-  ADD CONSTRAINT FK_board_comment_TO_comment_tatlle -- 댓글 -> 댓글신고
+-- 게시글 댓글신고
+ALTER TABLE board_comment_tatlle
+  ADD CONSTRAINT FK_board_comment_TO_board_comment_tatlle -- 댓글 -> 게시글 댓글신고
     FOREIGN KEY (
       bcno -- 댓글번호
     )
@@ -1068,9 +960,9 @@ ALTER TABLE comment_tatlle
       bcno -- 댓글번호
     );
 
--- 댓글신고
-ALTER TABLE comment_tatlle
-  ADD CONSTRAINT FK_tatlle_reason_TO_comment_tatlle -- 신고사유 카테고리 -> 댓글신고
+-- 게시글 댓글신고
+ALTER TABLE board_comment_tatlle
+  ADD CONSTRAINT FK_tatlle_reason_TO_board_comment_tatlle -- 신고사유 카테고리 -> 게시글 댓글신고
     FOREIGN KEY (
       trno -- 신고사유번호
     )
@@ -1086,4 +978,34 @@ ALTER TABLE notice_file
     )
     REFERENCES notice ( -- 공지사항
       nno -- 게시글번호
+    );
+
+-- 모임 댓글신고
+ALTER TABLE party_comment_tatlle
+  ADD CONSTRAINT FK_party_comment_TO_party_comment_tatlle -- 모임 댓글 -> 모임 댓글신고
+    FOREIGN KEY (
+      pcno -- 모임댓글번호
+    )
+    REFERENCES party_comment ( -- 모임 댓글
+      pcno -- 모임댓글번호
+    );
+
+-- 모임 댓글신고
+ALTER TABLE party_comment_tatlle
+  ADD CONSTRAINT FK_tatlle_reason_TO_party_comment_tatlle -- 신고사유 카테고리 -> 모임 댓글신고
+    FOREIGN KEY (
+      trno -- 신고사유번호
+    )
+    REFERENCES tatlle_reason ( -- 신고사유 카테고리
+      trno -- 신고사유번호
+    );
+
+-- 모임 댓글신고
+ALTER TABLE party_comment_tatlle
+  ADD CONSTRAINT FK_member_TO_party_comment_tatlle -- 회원 -> 모임 댓글신고
+    FOREIGN KEY (
+      mno -- 신고자
+    )
+    REFERENCES member ( -- 회원
+      mno -- 회원번호
     );
