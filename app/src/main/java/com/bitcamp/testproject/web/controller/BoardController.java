@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 import com.bitcamp.testproject.service.BoardService;
-import com.bitcamp.testproject.vo.AttachedFile;
+import com.bitcamp.testproject.vo.BoardAttachedFile;
 import com.bitcamp.testproject.vo.Board;
 import com.bitcamp.testproject.vo.Member;
 
@@ -60,9 +60,9 @@ public class BoardController {
     return "redirect:list";
   }
 
-  private List<AttachedFile> saveAttachedFiles(Part[] files)
+  private List<BoardAttachedFile> saveAttachedFiles(Part[] files)
       throws IOException, ServletException {
-    List<AttachedFile> attachedFiles = new ArrayList<>();
+    List<BoardAttachedFile> attachedFiles = new ArrayList<>();
     String dirPath = sc.getRealPath("/board/files");
 
     for (Part part : files) {
@@ -72,14 +72,14 @@ public class BoardController {
 
       String filename = UUID.randomUUID().toString();
       part.write(dirPath + "/" + filename);
-      attachedFiles.add(new AttachedFile(filename));
+      attachedFiles.add(new BoardAttachedFile(filename));
     }
     return attachedFiles;
   }
 
-  private List<AttachedFile> saveAttachedFiles(MultipartFile[] files)
+  private List<BoardAttachedFile> saveAttachedFiles(MultipartFile[] files)
       throws IOException, ServletException {
-    List<AttachedFile> attachedFiles = new ArrayList<>();
+    List<BoardAttachedFile> attachedFiles = new ArrayList<>();
     String dirPath = sc.getRealPath("/board/files");
 
     for (MultipartFile part : files) {
@@ -89,7 +89,7 @@ public class BoardController {
 
       String filename = UUID.randomUUID().toString();
       part.transferTo(new File(dirPath + "/" + filename));
-      attachedFiles.add(new AttachedFile(filename));
+      attachedFiles.add(new BoardAttachedFile(filename));
     }
     return attachedFiles;
   }
@@ -156,7 +156,7 @@ public class BoardController {
       HttpSession session) 
           throws Exception {
 
-    AttachedFile attachedFile = boardService.getAttachedFile(no); 
+    BoardAttachedFile attachedFile = boardService.getAttachedFile(no); 
 
     Member loginMember = (Member) session.getAttribute("loginMember");
     Board board = boardService.get(attachedFile.getBoardNo()); 

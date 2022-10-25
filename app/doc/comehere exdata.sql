@@ -213,18 +213,18 @@ INSERT INTO `party_members` (`mno`, `pno`, `psno`, `auth`) VALUES (5, 18, 2, 0);
 INSERT INTO `party_members` (`mno`, `pno`, `psno`, `auth`) VALUES (6, 19, 3, 0);
 
 -- 모임 후기 (제동 완료) - 완료된 모임에 대해서만 후기 작성하는거임
-INSERT INTO `party_review` (`prno`, `mno`, `pno`, `star`, `title`, `cont`, `cdt`) VALUES (1, 1, 2, 5.00, '3대 치고 왔습니다', '벤치 100 스쿼트 120 대드 140 했습니다 얼른 3대 400 찍고싶네요', '2022-10-11 18:12:39');
-INSERT INTO `party_review` (`prno`, `mno`, `pno`, `star`, `title`, `cont`, `cdt`) VALUES (2, 7, 5, 4.00, '배드민턴 장 다녀왔습니다', '안전 장치도 잘 되어 있고 좋네요', '2022-10-11 18:12:39');
-INSERT INTO `party_review` (`prno`, `mno`, `pno`, `star`, `title`, `cont`, `cdt`) VALUES (3, 6, 5, 5.00, '전직 국대와 경기하니 좋네요', '모임장님이 전 국대셔서 라켓 잡는 법까지 세세하게 알려주셔서 좋았습니다', '2022-10-11 18:12:39');
-INSERT INTO `party_review` (`prno`, `mno`, `pno`, `star`, `title`, `cont`, `cdt`) VALUES (4, 6, 15, 3.00, '조기골프 결성', '여러번 해봤는데 마음이 잘 맞아서 매주 조기골프 하기로 했습니다 ^^', '2022-10-11 18:12:39');
-INSERT INTO `party_review` (`prno`, `mno`, `pno`, `star`, `title`, `cont`, `cdt`) VALUES (5, 3, 15, 2.00, '좋습니다', '좋아요', '2022-10-11 18:12:39');
-INSERT INTO `party_review` (`prno`, `mno`, `pno`, `star`, `title`, `cont`, `cdt`) VALUES (6, 1, 15, 5.00, '골프 모임 굿', '골퍼 준비 중인데 같은 마음으로 모인 분들이여서 좋은 꿀팁 많이 얻고 갑니다', '2022-10-11 18:48:33');
-INSERT INTO `party_review` (`prno`, `mno`, `pno`, `star`, `title`, `cont`, `cdt`) VALUES (7, 8, 13, 2.00, '저는 개인적으로 별로네요', '너무 사람들이 저돌적으로 해서 하마터면 다칠뻔 했어요', '2022-10-11 18:48:33');
-INSERT INTO `party_review` (`prno`, `mno`, `pno`, `star`, `title`, `cont`, `cdt`) VALUES (8, 8, 17, 5.00, '함께 즐기는 클라이밍', '저는 이렇게 쉬운건지 처음 알았네요 좋은 정보 얻어갑니다', '2022-10-11 18:48:33');
-INSERT INTO `party_review` (`prno`, `mno`, `pno`, `star`, `title`, `cont`, `cdt`) VALUES (9, 1, 17, 5.00, '여럿이서하니 좋네요', '항상 혼자 연습했는데 같이 하니까 좋아요~', '2022-10-11 18:48:33');
-INSERT INTO `party_review` (`prno`, `mno`, `pno`, `star`, `title`, `cont`, `cdt`) VALUES (10, 6, 12, 5.00, '또래들과 함께 할 수 있어서 좋아요', '또래들하고 하니 참 재밌네요', '2022-10-11 18:48:33');
-INSERT INTO `party_review` (`prno`, `mno`, `pno`, `star`, `title`, `cont`, `cdt`) VALUES (11, 5, 12, 4.00, '탁구의 진면목!', '역시 재밌네요 또 모엿으면 좋겠네요', '2022-10-11 18:48:33');
-INSERT INTO `party_review` (`prno`, `mno`, `pno`, `star`, `title`, `cont`, `cdt`) VALUES (12, 3, 12, 2.00, '제가 하기 좀 어려운듯..', '너무 고수들이 있어서 아직 제가 할 실력은 안되는거같아요..', '2022-10-11 18:48:33');
+INSERT INTO `party_review` (`prno`, `mno`, `pno`, `act`, `title`, `star`, `cont`, `cdt`) VALUES (1, 1, 2, 1, '3대 치고 왔습니다', 5.00, '벤치 100 스쿼트 120 대드 140 했습니다 얼른 3대 400 찍고싶네요', '2022-10-11 18:12:39');
+INSERT INTO `party_review` (`prno`, `mno`, `pno`, `act`, `title`, `star`, `cont`, `cdt`) VALUES (2, 7, 5, 1, '배드민턴 장 다녀왔습니다', 4.00, '안전 장치도 잘 되어 있고 좋네요', '2022-10-11 18:12:39');
+INSERT INTO `party_review` (`prno`, `mno`, `pno`, `act`, `title`, `star`, `cont`, `cdt`) VALUES (3, 6, 5, 1, '전직 국대와 경기하니 좋네요', 5.00, '모임장님이 전 국대셔서 라켓 잡는 법까지 세세하게 알려주셔서 좋았습니다', '2022-10-11 18:12:39');
+INSERT INTO `party_review` (`prno`, `mno`, `pno`, `act`, `title`, `star`, `cont`, `cdt`) VALUES (4, 6, 15, 1, '조기골프 결성', 3.00, '여러번 해봤는데 마음이 잘 맞아서 매주 조기골프 하기로 했습니다 ^^', '2022-10-11 18:12:39');
+INSERT INTO `party_review` (`prno`, `mno`, `pno`, `act`, `title`, `star`, `cont`, `cdt`) VALUES (5, 3, 15, 0, '좋습니다', 2.00, '좋아요', '2022-10-11 18:12:39');
+INSERT INTO `party_review` (`prno`, `mno`, `pno`, `act`, `title`, `star`, `cont`, `cdt`) VALUES (6, 1, 15, 1, '골프 모임 굿', 5.00, '골퍼 준비 중인데 같은 마음으로 모인 분들이여서 좋은 꿀팁 많이 얻고 갑니다', '2022-10-11 18:48:33');
+INSERT INTO `party_review` (`prno`, `mno`, `pno`, `act`, `title`, `star`, `cont`, `cdt`) VALUES (7, 8, 13, 1, '저는 개인적으로 별로네요', 2.00, '너무 사람들이 저돌적으로 해서 하마터면 다칠뻔 했어요', '2022-10-11 18:48:33');
+INSERT INTO `party_review` (`prno`, `mno`, `pno`, `act`, `title`, `star`, `cont`, `cdt`) VALUES (8, 8, 17, 1, '함께 즐기는 클라이밍', 5.00, '저는 이렇게 쉬운건지 처음 알았네요 좋은 정보 얻어갑니다', '2022-10-11 18:48:33');
+INSERT INTO `party_review` (`prno`, `mno`, `pno`, `act`, `title`, `star`, `cont`, `cdt`) VALUES (9, 1, 17, 1, '여럿이서하니 좋네요', 5.00, '항상 혼자 연습했는데 같이 하니까 좋아요~', '2022-10-11 18:48:33');
+INSERT INTO `party_review` (`prno`, `mno`, `pno`, `act`, `title`, `star`, `cont`, `cdt`) VALUES (10, 6, 12, 1, '또래들과 함께 할 수 있어서 좋아요', 5.00, '또래들하고 하니 참 재밌네요', '2022-10-11 18:48:33');
+INSERT INTO `party_review` (`prno`, `mno`, `pno`, `act`, `title`, `star`, `cont`, `cdt`) VALUES (11, 5, 12, 1, '탁구의 진면목!', 4.00, '역시 재밌네요 또 모엿으면 좋겠네요', '2022-10-11 18:48:33');
+INSERT INTO `party_review` (`prno`, `mno`, `pno`, `act`, `title`, `star`, `cont`, `cdt`) VALUES (12, 3, 12, 1, '제가 하기 좀 어려운듯..', 2.00, '너무 고수들이 있어서 아직 제가 할 실력은 안되는거같아요..', '2022-10-11 18:48:33');
 
 
 
@@ -361,23 +361,23 @@ INSERT INTO `scrap` (`mno`, `bno`) VALUES (10, 4);
 
 -- 장소 후기
 -- 은지 완료
-INSERT INTO `location_review` (`lrno`, `mno`, `pno`, `title`, `cont`, `star`, `cdt`) VALUES (1, 4, 1, '기구가 최신이라 좋아요', '전에 다니던 곳은 끼익끼익 소리나서 별로였는데 좋았습니다', 5.00, '2022-09-20 19:56:52');
-INSERT INTO `location_review` (`lrno`, `mno`, `pno`, `title`, `cont`, `star`, `cdt`) VALUES (2, 3, 1, '정수기가 곳곳에 있어서 좋아요', '물뜨러가기 너무 멀었었는데 여기는 이곳저곳에 있어서 좋았어요', 5.00, '2022-09-20 19:57:56');
-INSERT INTO `location_review` (`lrno`, `mno`, `pno`, `title`, `cont`, `star`, `cdt`) VALUES (3, 2, 1, '별로입니다', '바선생나왔어요;;', 1.00, '2022-09-30 19:58:21');
-INSERT INTO `location_review` (`lrno`, `mno`, `pno`, `title`, `cont`, `star`, `cdt`) VALUES (4, 5, 2, '밀가루? 하얀 가루 묻히면 안미끄러진다고 했는데', '그래도 미끄러워지네요 아직 제 실력이 부족해서겠죠?', 3.00, '2022-09-30 19:59:08');
-INSERT INTO `location_review` (`lrno`, `mno`, `pno`, `title`, `cont`, `star`, `cdt`) VALUES (5, 4, 2, '한강에서 연습하니 좋았습니다', '바람도 선선하니 불고 저녁에 나오니까 상쾌하네요', 5.00, '2022-09-30 19:59:52');
-INSERT INTO `location_review` (`lrno`, `mno`, `pno`, `title`, `cont`, `star`, `cdt`) VALUES (6, 3, 2, '야외다보니 야광 콕을 써야해서 신기했스빈다', '야광 콕 처음보는데 저녁에서 무리 없이 조명에 눈 아플 일도 없어 더 좋은 것 같아요', 4.00, '2022-09-30 20:00:36');
-INSERT INTO `location_review` (`lrno`, `mno`, `pno`, `title`, `cont`, `star`, `cdt`) VALUES (7, 1, 2, '코트는 다 같이 쓰는건데', '욕심부리는 사람들 때문에 기다리다 집 갔네요', 1.00, '2022-09-30 20:01:10');
-INSERT INTO `location_review` (`lrno`, `mno`, `pno`, `title`, `cont`, `star`, `cdt`) VALUES (8, 1, 13, '미끄러지지 않게 관리하는 코트같아서 좋았습니다', '가끔 넘어져서 한동안 못하는 경우도 있는데 여기는 그 동안 한 번도 안 다쳤어요', 4.00, '2022-10-20 20:39:13');
-INSERT INTO `location_review` (`lrno`, `mno`, `pno`, `title`, `cont`, `star`, `cdt`) VALUES (9, 3, 13, '농구 처음해봤는데', '아직 익숙해지지 않아 바닥이 좀 미끄러워요 다음부턴 농구화를 신고 와야겠네요', 3.00, '2022-10-20 20:39:40');
-INSERT INTO `location_review` (`lrno`, `mno`, `pno`, `title`, `cont`, `star`, `cdt`) VALUES (10, 7, 13, '답답한 코트장도 있는데 곳곳에 공기청정기에', '환기까지 주기적으로 해줘서 상쾌하게 운동했습니다', 5.00, '2022-10-20 20:40:06');
-INSERT INTO `location_review` (`lrno`, `mno`, `pno`, `title`, `cont`, `star`, `cdt`) VALUES (11, 2, 13, '요즘같은 코로나 시대에', '열체크하는게 믿음직스럽네요', 4.00, '2022-10-20 20:40:30');
-INSERT INTO `location_review` (`lrno`, `mno`, `pno`, `title`, `cont`, `star`, `cdt`) VALUES (12, 8, 17, '클라이밍 처음해봤습니다', '직원분들께서 친절하게 기초를 알려주셔서 좋았어요', 5.00, '2022-10-20 20:41:01');
-INSERT INTO `location_review` (`lrno`, `mno`, `pno`, `title`, `cont`, `star`, `cdt`) VALUES (13, 3, 15, '골프 장이 잔디가 잘 관리되어 있어요', '잔디ㅏ 보기 싫게 관리도 안되어있고 비싼곳도 많은데 여긴 괜찮네요', 4.00, '2022-10-20 20:41:56');
-INSERT INTO `location_review` (`lrno`, `mno`, `pno`, `title`, `cont`, `star`, `cdt`) VALUES (14, 4, 15, '제가 있던 홀은 잔디가 전부 패여있었어요', '연못에 있는 공도 안줍는 것 같아요', 2.00, '2022-10-20 20:42:27');
-INSERT INTO `location_review` (`lrno`, `mno`, `pno`, `title`, `cont`, `star`, `cdt`) VALUES (15, 5, 13, '사진보시면 압니다', '이런 곳이에요 깔끔하지만 스케줄 관리가 꼬여서 잘 알아보고 가셔야 할 듯', 3.00, '2022-10-20 20:43:26');
-INSERT INTO `location_review` (`lrno`, `mno`, `pno`, `title`, `cont`, `star`, `cdt`) VALUES (16, 1, 17, '예전에 왔던 곳인데', '리뉴얼 했는지 하드코어도 많아져서 좋아요', 4.00, '2022-10-20 20:43:58');
-INSERT INTO `location_review` (`lrno`, `mno`, `pno`, `title`, `cont`, `star`, `cdt`) VALUES (17, 6, 15, '이전에 처음으로 홀인원 쳤던 곳이라 좋았는데', '공도 여기저기 굴러다니고 캐디가 휴대폰만 하고 별로 였어요', 2.00, '2022-10-20 20:44:36');
+INSERT INTO `location_review` (`lrno`, `mno`, `pno`, `act`, `title`, `cont`, `star`, `cdt`) VALUES (1, 4, 1, 1, '기구가 최신이라 좋아요', '전에 다니던 곳은 끼익끼익 소리나서 별로였는데 좋았습니다', 5.00, '2022-09-20 19:56:52');
+INSERT INTO `location_review` (`lrno`, `mno`, `pno`, `act`, `title`, `cont`, `star`, `cdt`) VALUES (2, 3, 1, 1, '정수기가 곳곳에 있어서 좋아요', '물뜨러가기 너무 멀었었는데 여기는 이곳저곳에 있어서 좋았어요', 5.00, '2022-09-20 19:57:56');
+INSERT INTO `location_review` (`lrno`, `mno`, `pno`, `act`, `title`, `cont`, `star`, `cdt`) VALUES (3, 2, 1, 1, '별로입니다', '바선생나왔어요;;', 1.00, '2022-09-30 19:58:21');
+INSERT INTO `location_review` (`lrno`, `mno`, `pno`, `act`, `title`, `cont`, `star`, `cdt`) VALUES (4, 5, 2, 1, '밀가루? 하얀 가루 묻히면 안미끄러진다고 했는데', '그래도 미끄러워지네요 아직 제 실력이 부족해서겠죠?', 3.00, '2022-09-30 19:59:08');
+INSERT INTO `location_review` (`lrno`, `mno`, `pno`, `act`, `title`, `cont`, `star`, `cdt`) VALUES (5, 4, 2, 1, '한강에서 연습하니 좋았습니다', '바람도 선선하니 불고 저녁에 나오니까 상쾌하네요', 5.00, '2022-09-30 19:59:52');
+INSERT INTO `location_review` (`lrno`, `mno`, `pno`, `act`, `title`, `cont`, `star`, `cdt`) VALUES (6, 3, 2, 1, '야외다보니 야광 콕을 써야해서 신기했스빈다', '야광 콕 처음보는데 저녁에서 무리 없이 조명에 눈 아플 일도 없어 더 좋은 것 같아요', 4.00, '2022-09-30 20:00:36');
+INSERT INTO `location_review` (`lrno`, `mno`, `pno`, `act`, `title`, `cont`, `star`, `cdt`) VALUES (7, 1, 2, 1, '코트는 다 같이 쓰는건데', '욕심부리는 사람들 때문에 기다리다 집 갔네요', 1.00, '2022-09-30 20:01:10');
+INSERT INTO `location_review` (`lrno`, `mno`, `pno`, `act`, `title`, `cont`, `star`, `cdt`) VALUES (8, 1, 13, 1, '미끄러지지 않게 관리하는 코트같아서 좋았습니다', '가끔 넘어져서 한동안 못하는 경우도 있는데 여기는 그 동안 한 번도 안 다쳤어요', 4.00, '2022-10-20 20:39:13');
+INSERT INTO `location_review` (`lrno`, `mno`, `pno`, `act`, `title`, `cont`, `star`, `cdt`) VALUES (9, 3, 13, 1, '농구 처음해봤는데', '아직 익숙해지지 않아 바닥이 좀 미끄러워요 다음부턴 농구화를 신고 와야겠네요', 3.00, '2022-10-20 20:39:40');
+INSERT INTO `location_review` (`lrno`, `mno`, `pno`, `act`, `title`, `cont`, `star`, `cdt`) VALUES (10, 7, 13, 0, '답답한 코트장도 있는데 곳곳에 공기청정기에', '환기까지 주기적으로 해줘서 상쾌하게 운동했습니다', 5.00, '2022-10-20 20:40:06');
+INSERT INTO `location_review` (`lrno`, `mno`, `pno`, `act`, `title`, `cont`, `star`, `cdt`) VALUES (11, 2, 13, 1, '요즘같은 코로나 시대에', '열체크하는게 믿음직스럽네요', 4.00, '2022-10-20 20:40:30');
+INSERT INTO `location_review` (`lrno`, `mno`, `pno`, `act`, `title`, `cont`, `star`, `cdt`) VALUES (12, 8, 17, 1, '클라이밍 처음해봤습니다', '직원분들께서 친절하게 기초를 알려주셔서 좋았어요', 5.00, '2022-10-20 20:41:01');
+INSERT INTO `location_review` (`lrno`, `mno`, `pno`, `act`, `title`, `cont`, `star`, `cdt`) VALUES (13, 3, 15, 1, '골프 장이 잔디가 잘 관리되어 있어요', '잔디ㅏ 보기 싫게 관리도 안되어있고 비싼곳도 많은데 여긴 괜찮네요', 4.00, '2022-10-20 20:41:56');
+INSERT INTO `location_review` (`lrno`, `mno`, `pno`, `act`, `title`, `cont`, `star`, `cdt`) VALUES (14, 4, 15, 1, '제가 있던 홀은 잔디가 전부 패여있었어요', '연못에 있는 공도 안줍는 것 같아요', 2.00, '2022-10-20 20:42:27');
+INSERT INTO `location_review` (`lrno`, `mno`, `pno`, `act`, `title`, `cont`, `star`, `cdt`) VALUES (15, 5, 13, 1, '사진보시면 압니다', '이런 곳이에요 깔끔하지만 스케줄 관리가 꼬여서 잘 알아보고 가셔야 할 듯', 3.00, '2022-10-20 20:43:26');
+INSERT INTO `location_review` (`lrno`, `mno`, `pno`, `act`, `title`, `cont`, `star`, `cdt`) VALUES (16, 1, 17, 1, '예전에 왔던 곳인데', '리뉴얼 했는지 하드코어도 많아져서 좋아요', 4.00, '2022-10-20 20:43:58');
+INSERT INTO `location_review` (`lrno`, `mno`, `pno`, `act`, `title`, `cont`, `star`, `cdt`) VALUES (17, 6, 15, 1, '이전에 처음으로 홀인원 쳤던 곳이라 좋았는데', '공도 여기저기 굴러다니고 캐디가 휴대폰만 하고 별로 였어요', 2.00, '2022-10-20 20:44:36');
 
 -- 병민 
 -- 게시글 댓글 (완료)
@@ -518,16 +518,16 @@ INSERT INTO `notice_file` (`nfno`, `filepath`, `nno`) VALUES (10, 'http://image.
 
 -- 모임 댓글 (헌식 완료)
 
-INSERT INTO `party_comment` (`pcno`, `mno`, `pno`, `cont`, `cdt`) VALUES (1, 1, 2, '종로 클라이밍 참여하고싶어요!', '2022-10-06 00:00:00');
-INSERT INTO `party_comment` (`pcno`, `mno`, `pno`, `cont`, `cdt`) VALUES (2, 2, 3, '배드민턴 잘쳐요!!!', '2022-10-06 00:00:00');
-INSERT INTO `party_comment` (`pcno`, `mno`, `pno`, `cont`, `cdt`) VALUES (3, 3, 4, '축구 몇명에서 하나요??!', '2022-10-06 00:00:00');
-INSERT INTO `party_comment` (`pcno`, `mno`, `pno`, `cont`, `cdt`) VALUES (4, 4, 5, '신나게 달리고 싶어요!', '2022-10-06 00:00:00');
-INSERT INTO `party_comment` (`pcno`, `mno`, `pno`, `cont`, `cdt`) VALUES (5, 5, 6, '미드필더 신청합니다!!', '2022-10-06 00:00:00');
-INSERT INTO `party_comment` (`pcno`, `mno`, `pno`, `cont`, `cdt`) VALUES (6, 6, 7, '리바운드 잘해요!', '2022-10-06 00:00:00');
-INSERT INTO `party_comment` (`pcno`, `mno`, `pno`, `cont`, `cdt`) VALUES (7, 7, 8, '아 고민이 되내요 지역은 가까운데', '2022-10-06 00:00:00');
-INSERT INTO `party_comment` (`pcno`, `mno`, `pno`, `cont`, `cdt`) VALUES (8, 8, 9, '시간이 안맞네요 ㅜㅜ 시간 맞을때 신청할게요', '2022-10-06 00:00:00');
-INSERT INTO `party_comment` (`pcno`, `mno`, `pno`, `cont`, `cdt`) VALUES (9, 9, 10, '초보도 가능한가요?', '2022-10-06 00:00:00');
-INSERT INTO `party_comment` (`pcno`, `mno`, `pno`, `cont`, `cdt`) VALUES (10, 10, 11, '처음해보는데 신청가능한가요?', '2022-10-06 00:00:00');
+INSERT INTO `party_comment` (`pcno`, `mno`, `pno`, `cont`, `act`, `cdt`) VALUES (1, 1, 2, '종로 클라이밍 참여하고싶어요!', 1, '2022-10-06 00:00:00');
+INSERT INTO `party_comment` (`pcno`, `mno`, `pno`, `cont`, `act`, `cdt`) VALUES (2, 2, 3, '배드민턴 잘쳐요!!!', 1, '2022-10-06 00:00:00');
+INSERT INTO `party_comment` (`pcno`, `mno`, `pno`, `cont`, `act`, `cdt`) VALUES (3, 3, 4, '축구 몇명에서 하나요??!', 1, '2022-10-06 00:00:00');
+INSERT INTO `party_comment` (`pcno`, `mno`, `pno`, `cont`, `act`, `cdt`) VALUES (4, 4, 5, '신나게 달리고 싶어요!', 1, '2022-10-06 00:00:00');
+INSERT INTO `party_comment` (`pcno`, `mno`, `pno`, `cont`, `act`, `cdt`) VALUES (5, 5, 6, '미드필더 신청합니다!!', 1, '2022-10-06 00:00:00');
+INSERT INTO `party_comment` (`pcno`, `mno`, `pno`, `cont`, `act`, `cdt`) VALUES (6, 6, 7, '리바운드 잘해요!', 1, '2022-10-06 00:00:00');
+INSERT INTO `party_comment` (`pcno`, `mno`, `pno`, `cont`, `act`, `cdt`) VALUES (7, 7, 8, '아 고민이 되내요 지역은 가까운데', 1, '2022-10-06 00:00:00');
+INSERT INTO `party_comment` (`pcno`, `mno`, `pno`, `cont`, `act`, `cdt`) VALUES (8, 8, 9, '시간이 안맞네요 ㅜㅜ 시간 맞을때 신청할게요', 1, '2022-10-06 00:00:00');
+INSERT INTO `party_comment` (`pcno`, `mno`, `pno`, `cont`, `act`, `cdt`) VALUES (9, 9, 10, '초보도 가능한가요?', 1, '2022-10-06 00:00:00');
+INSERT INTO `party_comment` (`pcno`, `mno`, `pno`, `cont`, `act`, `cdt`) VALUES (10, 10, 11, '처음해보는데 신청가능한가요?', 0, '2022-10-06 00:00:00');
 
 -- 모임 첨부파일 헌식
 

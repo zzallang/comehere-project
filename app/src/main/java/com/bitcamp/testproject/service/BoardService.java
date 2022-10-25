@@ -1,7 +1,7 @@
 package com.bitcamp.testproject.service;
 
 import java.util.List;
-import com.bitcamp.testproject.vo.AttachedFile;
+import com.bitcamp.testproject.vo.BoardAttachedFile;
 import com.bitcamp.testproject.vo.Board;
 
 // 비즈니스 로직을 수행하는 객체의 사용규칙(호출규칙)
@@ -18,7 +18,7 @@ public interface BoardService {
 
   List<Board> list() throws Exception;
 
-  AttachedFile getAttachedFile(int fileNo) throws Exception;
+  BoardAttachedFile getAttachedFile(int fileNo) throws Exception;
 
   boolean deleteAttachedFile(int fileNo) throws Exception;
 
