@@ -11,6 +11,12 @@ public class PartyReviewAttachedFile {
     this.filepath = filepath;
   }
 
+  @Override
+  public String toString() {
+    return "PartyReviewAttachedFile [no=" + no + ", filepath=" + filepath + ", partyReviewNo="
+        + partyReviewNo + "]";
+  }
+
   public int getNo() {
     return no;
   }
@@ -34,5 +40,6 @@ public class PartyReviewAttachedFile {
   public void setPartyReviewNo(int partyReviewNo) {
     this.partyReviewNo = partyReviewNo;
   }
+
 
 }
