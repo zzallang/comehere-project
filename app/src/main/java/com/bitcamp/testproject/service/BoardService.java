@@ -3,6 +3,7 @@ package com.bitcamp.testproject.service;
 import java.util.List;
 import com.bitcamp.testproject.vo.AttachedFile;
 import com.bitcamp.testproject.vo.Board;
+import com.bitcamp.testproject.vo.BoardJd;
 
 // 비즈니스 로직을 수행하는 객체의 사용규칙(호출규칙)
 //
@@ -22,6 +23,12 @@ public interface BoardService {
 
   boolean deleteAttachedFile(int fileNo) throws Exception;
 
+  //  제동 소스 
+
+  void addPost(BoardJd boardJd, int cateNo) throws Exception;
+
+
+  ////////////
 }
 
 

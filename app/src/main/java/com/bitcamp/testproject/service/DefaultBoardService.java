@@ -7,6 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.bitcamp.testproject.dao.BoardDao;
 import com.bitcamp.testproject.vo.AttachedFile;
 import com.bitcamp.testproject.vo.Board;
+import com.bitcamp.testproject.vo.BoardJd;
 
 @Service
 public class DefaultBoardService implements BoardService {
@@ -73,6 +74,21 @@ public class DefaultBoardService implements BoardService {
   public boolean deleteAttachedFile(int fileNo) throws Exception {
     return boardDao.deleteFile(fileNo) > 0;
   }
+
+  //  제동 소스
+  @Transactional
+  @Override
+  public void addPost(BoardJd boardJd, int cateNo) throws Exception {
+
+    // 카테고리 번호 찾기
+    boardJd.setCateno(cateNo);
+
+    if (boardDao.insertPost(boardJd) == 0) {
+      throw new Exception("게시글 등록 실패!");
+    }
+  }
+
+  //////////
 
 }
 

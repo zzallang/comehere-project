@@ -4,9 +4,19 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import com.bitcamp.testproject.vo.AttachedFile;
 import com.bitcamp.testproject.vo.Board;
+import com.bitcamp.testproject.vo.BoardCategory;
+import com.bitcamp.testproject.vo.BoardJd;
 
 @Mapper
 public interface BoardDao {
+
+  //  제동 소스
+
+  int insertPost(BoardJd boardJd);
+
+  BoardCategory findCateNo(String category);
+
+  //
 
   int insert(Board board);
 
@@ -31,6 +41,8 @@ public interface BoardDao {
   int deleteFiles(int boardNo);
 
   int deleteFilesByMemberBoards(int memberNo);
+
+
 }
 
 
