@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import com.bitcamp.testproject.dao.BoardDao;
-import com.bitcamp.testproject.vo.AttachedFile;
+import com.bitcamp.testproject.vo.BoardAttachedFile;
 import com.bitcamp.testproject.vo.Board;
 import com.bitcamp.testproject.vo.BoardJd;
 
@@ -66,7 +66,7 @@ public class DefaultBoardService implements BoardService {
   }
 
   @Override
-  public AttachedFile getAttachedFile(int fileNo) throws Exception {
+  public BoardAttachedFile getAttachedFile(int fileNo) throws Exception {
     return boardDao.findFileByNo(fileNo);
   }
 

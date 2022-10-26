@@ -1,7 +1,7 @@
 package com.bitcamp.testproject.service;
 
 import java.util.List;
-import com.bitcamp.testproject.vo.AttachedFile;
+import com.bitcamp.testproject.vo.BoardAttachedFile;
 import com.bitcamp.testproject.vo.Board;
 import com.bitcamp.testproject.vo.BoardJd;
 
@@ -19,7 +19,7 @@ public interface BoardService {
 
   List<Board> list() throws Exception;
 
-  AttachedFile getAttachedFile(int fileNo) throws Exception;
+  BoardAttachedFile getAttachedFile(int fileNo) throws Exception;
 
   boolean deleteAttachedFile(int fileNo) throws Exception;
 
