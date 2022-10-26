@@ -17,6 +17,13 @@ public class PartyReview {
   // 첨부파일 정보를 저장할 필드
   private List<PartyReviewAttachedFile> partyReviewAttachedFiles;
 
+  @Override
+  public String toString() {
+    return "PartyReview [no=" + no + ", writer=" + writer + ", party=" + party + ", active="
+        + active + ", title=" + title + ", content=" + content + ", star=" + star + ", createdDate="
+        + createdDate + ", partyReviewAttachedFiles=" + partyReviewAttachedFiles + "]";
+  }
+
   public int getNo() {
     return no;
   }
@@ -88,6 +95,7 @@ public class PartyReview {
   public void setPartyReviewAttachedFiles(List<PartyReviewAttachedFile> partyReviewAttachedFiles) {
     this.partyReviewAttachedFiles = partyReviewAttachedFiles;
   }
+
 
 }
 

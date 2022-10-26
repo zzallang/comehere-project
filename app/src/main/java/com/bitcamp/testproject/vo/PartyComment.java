@@ -11,13 +11,6 @@ public class PartyComment {
   private boolean active;
   private Date createdDate;
 
-
-  public PartyComment() {}
-
-  public PartyComment(int partyNo) {
-    this.partyNo = partyNo;
-  }
-
   @Override
   public String toString() {
     return "PartyComment [no=" + no + ", writer=" + writer + ", partyNo=" + partyNo + ", content="
