@@ -32,6 +32,21 @@
     insert into board(cateno,mno,title,cont) 
     values(#{cateno},1,#{title},#{content})
   </insert>
+  
+  <select id="postFindByNo" resultMap="boardJdMap">
+    select
+      bno,
+      cateno,
+      title,
+      cont,
+      cdt,
+      vw_cnt
+    from 
+      board
+
+    where 
+      bno=#{value}
+  </select>
 
 
 </mapper>

@@ -1,8 +1,8 @@
 package com.bitcamp.testproject.service;
 
 import java.util.List;
-import com.bitcamp.testproject.vo.BoardAttachedFile;
 import com.bitcamp.testproject.vo.Board;
+import com.bitcamp.testproject.vo.BoardAttachedFile;
 import com.bitcamp.testproject.vo.BoardJd;
 
 // 비즈니스 로직을 수행하는 객체의 사용규칙(호출규칙)
@@ -27,6 +27,7 @@ public interface BoardService {
 
   void addPost(BoardJd boardJd, int cateNo) throws Exception;
 
+  BoardJd postGet(int no) throws Exception;
 
   ////////////
 }

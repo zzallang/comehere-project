@@ -5,8 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import com.bitcamp.testproject.dao.BoardDao;
-import com.bitcamp.testproject.vo.BoardAttachedFile;
 import com.bitcamp.testproject.vo.Board;
+import com.bitcamp.testproject.vo.BoardAttachedFile;
 import com.bitcamp.testproject.vo.BoardJd;
 
 @Service
@@ -86,6 +86,11 @@ public class DefaultBoardService implements BoardService {
     if (boardDao.insertPost(boardJd) == 0) {
       throw new Exception("게시글 등록 실패!");
     }
+  }
+
+  @Override
+  public BoardJd postGet(int no) throws Exception {
+    return boardDao.postFindByNo(no); 
   }
 
   //////////
