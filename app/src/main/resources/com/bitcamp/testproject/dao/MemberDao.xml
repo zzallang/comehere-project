@@ -13,7 +13,7 @@
   </resultMap>
 
   <insert id="insert" parameterType="member">
-    insert into app_member(name,email,pwd) 
+    insert into member(name,email,pwd) 
     values(#{name},#{email},sha2(#{password},256))
   </insert>
 
@@ -24,7 +24,7 @@
       email,
       cdt
     from 
-      app_member 
+      member 
     where 
       mno=#{value}
   </select>
@@ -47,13 +47,13 @@
       email,
       cdt 
     from 
-      app_member 
+      member 
     where 
       email=#{email} and pwd=sha2(#{password},256)
   </select>
   
   <update id="update" parameterType="Member">
-    update app_member set 
+    update member set 
       name=#{name}, 
       email=#{email}, 
       pwd=sha2(#{password},256) 
@@ -62,7 +62,7 @@
   </update>
   
   <delete id="delete">
-    delete from app_member 
+    delete from member 
     where mno=#{value}
   </delete>
 
