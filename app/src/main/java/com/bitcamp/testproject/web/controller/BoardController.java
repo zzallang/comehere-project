@@ -7,19 +7,22 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
+
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
+
 import com.bitcamp.testproject.service.BoardService;
-import com.bitcamp.testproject.vo.BoardAttachedFile;
 import com.bitcamp.testproject.vo.Board;
+import com.bitcamp.testproject.vo.BoardAttachedFile;
 import com.bitcamp.testproject.vo.Member;
 
 @Controller
@@ -53,7 +56,7 @@ public class BoardController {
       MultipartFile[] files,
       HttpSession session) throws Exception {
 
-    board.setAttachedFiles(saveAttachedFiles(files));
+    board.setBoardAttachedFiles(saveAttachedFiles(files));
     board.setWriter((Member) session.getAttribute("loginMember"));
 
     boardService.add(board);
@@ -118,7 +121,7 @@ public class BoardController {
       HttpSession session) 
           throws Exception {
 
-    board.setAttachedFiles(saveAttachedFiles(files));
+    board.setBoardAttachedFiles(saveAttachedFiles(files));
 
     checkOwner(board.getNo(), session);
 

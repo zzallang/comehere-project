@@ -1,12 +1,14 @@
 package com.bitcamp.testproject.service;
 
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
 import com.bitcamp.testproject.dao.BoardDao;
-import com.bitcamp.testproject.vo.BoardAttachedFile;
 import com.bitcamp.testproject.vo.Board;
+import com.bitcamp.testproject.vo.BoardAttachedFile;
 
 @Service
 public class DefaultBoardService implements BoardService {
@@ -23,7 +25,7 @@ public class DefaultBoardService implements BoardService {
     }
 
     // 2) 첨부파일 등록
-    if (board.getAttachedFiles().size() > 0) {
+    if (board.getBoardAttachedFiles().size() > 0) {
       boardDao.insertFiles(board);
     }
   }
@@ -37,7 +39,7 @@ public class DefaultBoardService implements BoardService {
     }
 
     // 2) 첨부파일 추가
-    if (board.getAttachedFiles().size() > 0) {
+    if (board.getBoardAttachedFiles().size() > 0) {
       boardDao.insertFiles(board);
     }
 

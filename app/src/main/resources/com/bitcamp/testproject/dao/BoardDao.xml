@@ -18,14 +18,14 @@
     </association>
     
     <!-- 조인 결과에서 같은 게시글에 대해 여러 개의 첨부 파일 데이터를 담을 경우 -->
-    <collection property="attachedFiles" ofType="attachedFile">
+    <collection property="boardAttachedFiles" ofType="boardAttachedFile">
       <id column="bfno" property="no"/>
       <result column="filepath" property="filepath"/>
     </collection>
     
   </resultMap>
   
-  <resultMap type="attachedFile" id="attachedFileMap">
+  <resultMap type="BoardAttachedFile" id="attachedFileMap">
     <id column="bfno" property="no"/>
     <result column="filepath" property="filepath"/>
     <result column="bno" property="boardNo"/>
