@@ -86,6 +86,22 @@
           margin-left: 20vw;
           margin-right: 20vw;
         }
+        
+        .infoMenu {
+        display: table;
+        list-style: none;
+        text-align: center;
+        font-size: 20px;
+        margin-left: auto;
+        margin-right: auto;
+        }
+        
+        .infoMenuOn {
+          float:left;
+          margin-left: 30px;
+          margin-right: 10px;
+          margin-bottom: 50px;
+        }
         </style>
     </head>
         <body>
@@ -124,16 +140,20 @@
           <!-- header section end -->
           <!-- contact section start -->
           <div class="contact_section layout_padding">
+            <div class= info>
+              <ul class="infoMenu">
+                <li class= "infoMenuOn">회원 정보 변경</li>
+                <li class= "infoMenuOn">건강 관리</li>
+                <li class= "infoMenuOn">모임 관리</li>
+                <li class= "infoMenuOn">작성글/스크랩</li>
+              </ul>
+            </div>
             <div class="container">
               <div class="row">
                 <div class="col-md-6">
                   <h1 class="contact_text">개인정보 수정</h1>
                   <div class="mail_sectin">
                     <form method="post" id="joinForm">
-                      <input type="text" class="email-bt" placeholder="아이디" name="id">
-                        <div class="cross-check-bt"><a href="#">중복확인</a></div>
-                      <input type="text" class="email-bt" placeholder="이름" name="name">
-                      <input type="text" class="email-bt" placeholder="생년월일" name="birthday"> 
                       <input type="text" class="email-bt" placeholder="휴대폰 번호" name="tel"> 
                       <input type="email" class="email-bt2" placeholder="이메일" name="email"> 
                           <span class=골뱅이>@</span>
@@ -149,8 +169,8 @@
                         </select><br /> 
                       <input type="text" class="email-bt" placeholder="닉네임" name="nickname">
                         <div class="cross-check-bt"><a href="#">중복확인</a></div>
-                      <input type="password" class="email-bt" placeholder="비밀번호" name="password"> 
-                      <input type="password" class="email-bt" placeholder="비밀번호 확인" name="password"> 
+                      <input type="password" class="email-bt" placeholder="새 비밀번호" name="password"> 
+                      <input type="password" class="email-bt" placeholder="새 비밀번호 확인" name="password"> 
                         <select class="email-bt2" id="region" name="region_domain">
                           <option value="---선택---">---선택---</option>
                           <option value="종로구">종로구</option>
@@ -234,7 +254,7 @@
                         <option value="사이클">사이클</option>
                       </select><br />
                     </form>
-                    <div class="send_bt"><a href="main" onclick="joinInfoSubmit();">회원가입</a></div>
+                    <div class="send_bt"><a href="main" onclick="joinInfoSubmit();">확인</a></div>
                   </div>
                 </div>
               </div>
