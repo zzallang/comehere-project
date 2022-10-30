@@ -208,6 +208,20 @@ button {
      cursor: pointer;
 }
 
+.btnon {
+    height: 65px;
+    width: 490px;
+    margin-top: 1px;
+    border: none;
+    border-radius: 10px;
+    font-size: 25px;
+    font-weight: bold;
+    background-color: #000;
+    color: white;
+}
+
+
+
 .full {
      float: left;
      width: 100%;
