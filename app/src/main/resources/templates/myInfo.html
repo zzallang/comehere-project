@@ -34,9 +34,13 @@
           media="screen">
         
         <style type="text/css">
+        .email-bt {
+          width: 500px;
+        }
+
         .email-bt2 {
           color: #989696;
-          width: 44%; 
+          width: 236px; 
           height : 55px; 
           font-size : 18px;
           padding: 15px;
@@ -49,15 +53,29 @@
         
         .email-bt3 {
           color: #989696;
-          width: 45%;
-          height: 55px;
-          font-size: 18px;
+          width: 236px; 
+          height : 55px; 
+          font-size : 18px;
           padding: 15px;
           margin-top: 30px;
-          margin-left: 23px; 
-          border : 0px;
-          border-radius: 5px;
+          margin-left: 24px;
           border: 0px;
+          border-radius: 5px;
+          height: 55px;
+          font-size: 18px;
+        }
+        
+          .phoneNumber {
+          color: #989696;
+          width: 500px; 
+          height : 55px; 
+          font-size : 18px;
+          padding: 15px;
+          margin-top: 30px;
+          border: 0px;
+          border-radius: 5px;
+          height: 55px;
+          font-size: 18px;
         }
         
         .골뱅이 {
@@ -67,10 +85,6 @@
         
         .contact_section {
           background-size: cover;
-        }
-        
-        .email-bt {
-          width: 95%;
         }
         
         .cross-check-bt {
@@ -156,7 +170,7 @@
                     <form method="post" id="joinForm">
                       <input type="text" class="email-bt" placeholder="이름" name="name" readonly>
                       <input type='date' class="email-bt" placeholder="생년월일" name="birthday" readonly>
-                      <input type="tel" class="email-bt" placeholder="휴대폰 번호" name="tel" > 
+                      <input type="text" class="phoneNumber" placeholder="(-) 제외 입력" name="tel" required pattern="[0-9]{2,3}-[0-9]{3,4}-[0-9]{4}" maxlength="13"><br/> 
                       <input type="email" class="email-bt2" placeholder="이메일" name="email"> 
                           <span class=골뱅이>@</span>
                         <select class="email-bt2" id="mail_domain" name="mail_domain">
@@ -344,16 +358,22 @@
             <!-- javascript -->
             <script src="js/owl.carousel.js"></script>
             <script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+            <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
             <script>
-              function joinInfoSubmit() {
-                var form = document.getElementById("joinForm");
-                console.log(form);
-                const formData = new FormData(form);
-                const request = new XMLHttpRequest();
-                request.open("POST", "/app/sign-up");
-                request.send(formData);
-              }
+            $(document).on("keyup", ".phoneNumber", function () {
+              $(this).val(
+                $(this)
+                  .val()
+                  .replace(/[^0-9]/g, "")
+                  .replace(
+                    /(^02|^0505|^1[0-9]{3}|^0[0-9]{2})([0-9]+)?([0-9]{4})$/,
+                    "$1-$2-$3"
+                  )
+                  .replace("—", "-")
+              );
+            });
             </script>
+
         </body>
 
 </html>
