@@ -12,7 +12,12 @@
     <result column="cdt" property="createdDate"/>
   </resultMap>
 
+<<<<<<< HEAD
   <insert id="insert" parameterType="member">
+=======
+  <insert id="insert" parameterType="member" useGeneratedKeys="true"
+    keyProperty="no">
+>>>>>>> 16e73abd21379b65b85e071eaae3e6f236ab1bec
     insert into member(name,email,pwd) 
     values(#{name},#{email},sha2(#{password},256))
   </insert>
@@ -35,7 +40,7 @@
       name,
       email 
     from 
-      app_member 
+      member 
     order by 
       name
   </select>
