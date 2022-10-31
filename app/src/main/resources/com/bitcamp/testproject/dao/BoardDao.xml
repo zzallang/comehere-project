@@ -19,17 +19,12 @@
       
     </association>
     
-<<<<<<< HEAD
-=======
     <!-- 조인 결과에서 같은 게시글에 대해 여러 개의 첨부 파일 데이터를 담을 경우 -->
->>>>>>> 16e73abd21379b65b85e071eaae3e6f236ab1bec
     <collection property="boardAttachedFiles" ofType="boardAttachedFile">
       <id column="bfno" property="no"/>
       <result column="filepath" property="filepath"/>
       <result column="bno" property="boardNo"/>
     </collection>
-<<<<<<< HEAD
-=======
     
   </resultMap>
   
@@ -37,7 +32,6 @@
     <id column="bfno" property="no"/>
     <result column="filepath" property="filepath"/>
     <result column="bno" property="boardNo"/>
->>>>>>> 16e73abd21379b65b85e071eaae3e6f236ab1bec
   </resultMap>
   
   

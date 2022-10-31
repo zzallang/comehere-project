@@ -20,13 +20,11 @@ public class Board {
   // 댓글을 저장할 필드
   private List<BoardComment> boardComment;
 
-<<<<<<< HEAD
-public List<Board> getAttachedFiles() {
+  public List<Board> getAttachedFiles() {
     // TODO Auto-generated method stub
     return null;
-}
-=======
-  public int getNo() {
+  }
+      public int getNo() {
     return no;
   }
 
@@ -105,10 +103,6 @@ public List<Board> getAttachedFiles() {
   public void setBoardComment(List<BoardComment> boardComment) {
     this.boardComment = boardComment;
   }
-
-
->>>>>>> 16e73abd21379b65b85e071eaae3e6f236ab1bec
-
 }
 
 
