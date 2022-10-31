@@ -17,15 +17,11 @@ public class Board {
   // 첨부파일 정보를 저장할 필드
   private List<BoardAttachedFile> boardAttachedFiles;
 
-  // 댓글을 저장할 필드
-  private List<BoardComment> boardComment;
-
   @Override
   public String toString() {
     return "Board [no=" + no + ", cateno=" + cateno + ", writer=" + writer + ", title=" + title
         + ", active=" + active + ", content=" + content + ", createdDate=" + createdDate
-        + ", viewCount=" + viewCount + ", boardAttachedFiles=" + boardAttachedFiles
-        + ", boardComment=" + boardComment + "]";
+        + ", viewCount=" + viewCount + ", boardAttachedFiles=" + boardAttachedFiles + "]";
   }
 
   public int getNo() {
@@ -98,14 +94,6 @@ public class Board {
 
   public void setBoardAttachedFiles(List<BoardAttachedFile> boardAttachedFiles) {
     this.boardAttachedFiles = boardAttachedFiles;
-  }
-
-  public List<BoardComment> getBoardComment() {
-    return boardComment;
-  }
-
-  public void setBoardComment(List<BoardComment> boardComment) {
-    this.boardComment = boardComment;
   }
 
 
