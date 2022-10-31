@@ -155,7 +155,7 @@ a,
 }
 
 img {
-     max-width: 100%;
+     max-width: 30%;
      height: auto;
 }
 
@@ -1032,6 +1032,10 @@ textarea#comment::placeholder {
     color: #fdbe28;
 }
 
+.col-md-6 {
+margin-left: 14vw;
+margin-right: 14vw;
+}
 
 
 
