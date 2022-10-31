@@ -33,8 +33,6 @@
   </resultMap>
   
   
-  
-  
   <insert id="insertBoard" parameterType="board"
           useGeneratedKeys="true" keyColumn="bno" keyProperty="no">
     insert into board(cateno,mno,title,cont) 

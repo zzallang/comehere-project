@@ -96,7 +96,6 @@ public class Board {
     this.boardAttachedFiles = boardAttachedFiles;
   }
 
-
 }
 
 
