@@ -24,6 +24,10 @@ public class Board {
         + ", viewCount=" + viewCount + ", boardAttachedFiles=" + boardAttachedFiles + "]";
   }
 
+  public List<Board> getAttachedFiles() {
+    // TODO Auto-generated method stub
+    return null;
+  }
   public int getNo() {
     return no;
   }

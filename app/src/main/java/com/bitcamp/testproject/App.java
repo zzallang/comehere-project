@@ -19,8 +19,7 @@ public class App {
   @GetMapping("/")
   public String welcome() {
 
-    return "main";
+    return "index";
   }
-
 
 }

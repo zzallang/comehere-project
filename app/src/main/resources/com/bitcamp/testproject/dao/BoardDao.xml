@@ -56,20 +56,6 @@
       b.cdt,
       b.vw_cnt,
       bf.bfno,
-      bf.filepath
-    from 
-      board b
-      left outer join board_file bf on b.bno = bf.bno
-    where 
-      b.bno=#{value}
-  </select>
-  
-  <select id="findAllBoard" resultMap="boardMap">
-    select
-      b.bno,
-      b.title,
-      m.name,
-      b.cdt,
       b.vw_cnt,
       b.cateno
     from 
@@ -114,7 +100,6 @@
     delete from board_file 
     where bfno=#{value}
   </delete>
-
 
 </mapper>
 

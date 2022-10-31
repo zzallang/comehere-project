@@ -208,6 +208,18 @@ button {
      cursor: pointer;
 }
 
+.btnon {
+    height: 65px;
+    width: 490px;
+    margin-top: 1px;
+    border: none;
+    border-radius: 10px;
+    font-size: 25px;
+    font-weight: bold;
+    background-color: #000;
+    color: white;
+}
+
 .full {
      float: left;
      width: 100%;
@@ -217,7 +229,6 @@ button {
      padding-top: 90px;
      padding-bottom: 0px;
 }
-
 
 .padding_0{
      padding: 0px;
@@ -510,6 +521,7 @@ button {
   float: left;
   padding-bottom: 90px;
 }
+
 .our_text{
     width: 100%;
     float: left;
@@ -1035,8 +1047,8 @@ textarea#comment::placeholder {
     color: #fdbe28;
 }
 
-
-
-
-
+.col-md-6 {
+margin-left: 14vw;
+margin-right: 14vw;
+}
 
