@@ -4,45 +4,55 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import com.bitcamp.testproject.vo.Board;
 import com.bitcamp.testproject.vo.BoardAttachedFile;
-import com.bitcamp.testproject.vo.BoardCategory;
-import com.bitcamp.testproject.vo.BoardJd;
 
 @Mapper
 public interface BoardDao {
 
   //  제동 소스
 
-  int insertPost(BoardJd boardJd);
+  int insertBoard(Board board);
 
-  BoardCategory findCateNo(String category);
+  int insertBoardFiles(Board board);
 
-  BoardJd postFindByNo(int no);
+  Board findByBoardNo(int no);
+
+  List<Board> findAllBoard(int no);
+
+  int deleteBoardFiles(int boardNo);
+
+  int deleteBoard(int no);
+
+  int updateBoard(Board board);
+
+  BoardAttachedFile findBoardFileByNo(int no);
+
+  int deleteBoardFile(int fileNo);
 
   //
 
-  int insert(Board board);
-
-  Board findByNo(int no);
-
-  int update(Board board);
-
-  int delete(int no);
-
-  int deleteByMember(int memberNo);
-
-  List<Board> findAll();
-
-  int insertFiles(Board board);
-
-  BoardAttachedFile findFileByNo(int fileNo);
-
-  List<BoardAttachedFile> findFilesByBoard(int boardNo);
-
-  int deleteFile(int fileNo);
-
-  int deleteFiles(int boardNo);
-
-  int deleteFilesByMemberBoards(int memberNo);
+  //  int insert(Board board);
+  //
+  //  Board findByNo(int no);
+  //
+  //  int update(Board board);
+  //
+  //  int delete(int no);
+  //
+  //  int deleteByMember(int memberNo);
+  //
+  //  List<Board> findAll();
+  //
+  //  int insertFiles(Board board);
+  //
+  //  BoardAttachedFile findFileByNo(int fileNo);
+  //
+  //  List<BoardAttachedFile> findFilesByBoard(int boardNo);
+  //
+  //  int deleteFile(int fileNo);
+  //
+  //  int deleteFiles(int boardNo);
+  //
+  //  int deleteFilesByMemberBoards(int memberNo);
 
 
 }

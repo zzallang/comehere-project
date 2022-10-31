@@ -4,49 +4,118 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.bitcamp.testproject.dao.BoardDao">
 
-  <resultMap type="boardJd" id="boardJdMap">
+  <resultMap type="board" id="boardMap">
     <id column="bno" property="no"/>
     <result column="cateno" property="cateno"/>
     <result column="title" property="title"/>
+    <result column="act" property="active"/>
     <result column="cont" property="content"/>
     <result column="cdt" property="createdDate"/>
     <result column="vw_cnt" property="viewCount"/>
+    
+    <association property="writer" javaType="member">
+      <id column="mno" property="no"/>
+      <result column="name" property="name"/>
+      
+    </association>
+    
+    <collection property="boardAttachedFiles" ofType="boardAttachedFile">
+      <id column="bfno" property="no"/>
+      <result column="filepath" property="filepath"/>
+      <result column="bno" property="boardNo"/>
+    </collection>
   </resultMap>
   
-  <resultMap type="boardCategory" id="categoryMap">
-    <id column="cateno" property="cateno"/>
-    <result column="name" property="category"/>
+  <resultMap type="boardAttachedFile" id="boardAttachedFileMap">
+    <id column="bfno" property="no"/>
+    <result column="filepath" property="filepath"/>
+    <result column="bno" property="boardNo"/>
   </resultMap>
   
-  <select id="findCateNo" resultMap="categoryMap">
-    select 
-      cateno 
-    from 
-      board_category 
-    where 
-      name=#{value}
-  </select>
   
-  <insert id="insertPost" parameterType="boardJd"
+  
+  
+  <insert id="insertBoard" parameterType="board"
           useGeneratedKeys="true" keyColumn="bno" keyProperty="no">
     insert into board(cateno,mno,title,cont) 
     values(#{cateno},1,#{title},#{content})
   </insert>
   
-  <select id="postFindByNo" resultMap="boardJdMap">
+  <insert id="insertBoardFiles" parameterType="board">
+    insert into board_file(filepath,bno)
+    values
+    <foreach collection="boardAttachedFiles" item="boardFile" separator=",">
+      (#{boardFile.filepath},#{no})
+    </foreach>
+  </insert>
+  
+  <select id="findByBoardNo" resultMap="boardMap">
     select
-      bno,
-      cateno,
-      title,
-      cont,
-      cdt,
-      vw_cnt
+      b.bno,
+      b.cateno,
+      b.title,
+      b.cont,
+      b.cdt,
+      b.vw_cnt,
+      bf.bfno,
+      bf.filepath
     from 
-      board
-
+      board b
+      left outer join board_file bf on b.bno = bf.bno
     where 
-      bno=#{value}
+      b.bno=#{value}
   </select>
+  
+  <select id="findAllBoard" resultMap="boardMap">
+    select
+      b.bno,
+      b.title,
+      m.name,
+      b.cdt,
+      b.vw_cnt,
+      b.cateno
+    from 
+      board b
+      join member m on b.mno = m.mno
+      join board_category bc on b.cateno = bc.cateno
+    where
+      b.cateno = #{value}
+    order by 
+      bno desc
+  </select>
+  
+  <delete id="deleteBoardFiles">
+    delete from board_file
+    where bno=#{value}
+  </delete>
+  
+  <delete id="deleteBoard">
+    delete from board 
+    where bno=#{value}
+  </delete>
+  
+  <update id="updateBoard" parameterType="board">
+    update board set 
+      title=#{title}, 
+      cont=#{content} 
+    where bno=#{no}
+  </update>
+  
+  <select id="findBoardFileByNo" resultMap="boardAttachedFileMap">
+    select 
+      bfno, 
+      filepath, 
+      bno 
+    from 
+      board_file 
+    where 
+      bfno = #{value}
+  </select>
+  
+  <delete id="deleteBoardFile">
+    delete from board_file 
+    where bfno=#{value}
+  </delete>
 
 
 </mapper>
