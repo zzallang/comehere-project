@@ -16,11 +16,16 @@
                 <tr>
                     <th>게시판</th>
                     <td>
-                      <span value='게시판' th:if="${board.cateno == 1}">자유게시판</span>
-                      <span value='게시판' th:if="${board.cateno == 2}">식단게시판</span>
-                      <span value='게시판' th:if="${board.cateno == 3}">챌린지게시판</span>
-                      <span value='게시판' th:if="${board.cateno == 4}">질문게시판</span>
-                      <span value='게시판' th:if="${board.cateno == 5}">핫딜게시판</span>
+                      <span th:if="${board.cateno == 1}">자유게시판
+                        <input name="cateno" value=1 type="number" style="display: none"></span>
+                      <span th:if="${board.cateno == 2}">식단게시판
+                        <input name="cateno" value=2 type="number" style="display: none"></span>
+                      <span th:if="${board.cateno == 3}">챌린지게시판
+                        <input name="cateno" value=3 type="number" style="display: none"></span>
+                      <span th:if="${board.cateno == 4}">질문게시판
+                        <input name="cateno" value=4 type="number" style="display: none"></span>
+                      <span th:if="${board.cateno == 5}">핫딜게시판
+                        <input name="cateno" value=5 type="number" style="display: none"></span>
                     </td>
 
                 </tr>

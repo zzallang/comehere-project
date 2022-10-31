@@ -114,6 +114,12 @@
               <h1 class="our_text" value='게시판' th:if="${board.cateno == 5}">자유게시판</h1>
            </td>
                -->
+               
+<!--           <td data-th-switch=findCataNo()>
+            <h1 class="our_text" data-th-case=1>자유게시판</h1>
+            
+          </td> -->
+               
             <p class="ipsum_text">여기모여 회원들이 자유롭게 소통할 수 있는 자유게시판입니다. </p>
             <div class="furnitures_section2 layout_padding">
                       
@@ -128,24 +134,6 @@
                     <th>등록일</th>
                   </tr>
                   <tr data-th-each="board : ${boards}">
-                    <td data-th-text="${board.no}">100</td>
-                    <td><a href='detailBoard?no=1'
-                        data-th-href="@{detailBoard(no=${board.no})}"
-                        data-th-text="${board.title == ''} ? '(제목없음)' : ${board.title}">제목없음제목없음제목없음제목없음제목없음제목없음제목없음</a></td>
-                    <td data-th-text="${board.writer.name}">유길동</td>
-                    <td data-th-text="${board.viewCount}">17</td>
-                    <td data-th-text="${board.createdDate}">2022-1-1</td>
-                  </tr>
-                  <tr data-th-each="board : ${boards}">
-                    <td data-th-text="${board.no}">100</td>
-                    <td><a href='detailBoard?no=1'
-                        data-th-href="@{detailBoard(no=${board.no})}"
-                        data-th-text="${board.title == ''} ? '(제목없음)' : ${board.title}">제목없음</a></td>
-                    <td data-th-text="${board.writer.name}">유길동</td>
-                    <td data-th-text="${board.viewCount}">17</td>
-                    <td data-th-text="${board.createdDate}">2022-1-1</td>
-                  </tr>
-                                    <tr data-th-each="board : ${boards}">
                     <td data-th-text="${board.no}">100</td>
                     <td><a href='detailBoard?no=1'
                         data-th-href="@{detailBoard(no=${board.no})}"
@@ -177,6 +165,57 @@
                       </li>
                     </ul>
                   </nav>
+ <!--                  
+                  수진 페이징
+                  <nav aria-label="Page navigation"
+                       th:with="
+                          pageNumber = ${articles.pageable.pageNumber},
+                          pageSize = ${articles.pageable.pageSize},
+                          totalPages = ${articles.totalPages},
+                          startPage = ${T(java.lang.Math).floor(pageNumber / pageSize) * pageSize + 1},
+                          tempEndPage = ${startPage + pageSize - 1},
+                          endPage = (${tempEndPage > totalPages ? totalPages : tempEndPage})">
+                      <ul class="pagination justify-content-center">
+                          <li th:classappend="${pageNumber + 1 <= pageSize + 1} ? 'disabled'" class="page-item">
+                              <a class="page-link" th:href="@{/article/list(page=1)}">
+                                  <span>&laquo;</span>
+                              </a>
+                          </li>
+          
+                          <li th:classappend="${articles.first} ? 'disabled'" class="page-item">
+                              <a class="page-link"
+                                 th:href="${articles.first} ? '#' : @{/article/list(page=${#numbers.formatDecimal(startPage - pageSize, 0, -1)})}"
+                                 aria-label="Previous">
+                                  <span aria-hidden="true">&lt;</span>
+                              </a>
+                          </li>
+          
+                          <li th:each="page: ${#numbers.sequence(startPage, endPage)}"
+                              th:classappend="${page == pageNumber + 1} ? 'active'" class="page-item">
+                              <a th:text="${page}" class="page-link" th:href="@{/article/list(page=${page})}"></a>
+                          </li>
+          
+                          <li th:classappend="${articles.last} ? 'disabled'" class="page-item">
+                              <a class="page-link"
+                                 th:href="${articles.last} ? '#' : @{/article/list(page=${#numbers.formatDecimal(startPage + pageSize, 0, -1)})}"
+                                 aria-label="Next">
+                                  <span aria-hidden="true">&gt;</span>
+                                  <span class="sr-only"></span>
+                              </a>
+                          </li>
+          
+                          <li th:classappend=" ${T(java.lang.Math).floor(totalPages/10)*10 <= startPage} ? 'disabled'"
+                              class="page-item">
+                              <a class="page-link" th:href="@{/article/list(page=${totalPages})}">
+                                  <span>&raquo;</span>
+                                  <span class="sr-only"></span>
+                              </a>
+                          </li>
+                      </ul>
+                  </nav>
+
+ -->
+
                </div>
             </div>
          </div>
@@ -266,6 +305,17 @@
       
       <!-- 부트스트랩 js -->
       <script src="../js/bootstrap/bootstrap.js"></script>   
+      
+      <!-- 여기서부터 다음시간에 -->
+      <script>
+      "use strict"
+      function findCateNo() {
+        var para = document.location.href.split("?no=");
+        console.log(para[1]);
+        
+        
+      }
+      </script>
    </body>
     
  

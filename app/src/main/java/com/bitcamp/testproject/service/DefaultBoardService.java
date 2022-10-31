@@ -118,6 +118,7 @@ public class DefaultBoardService implements BoardService {
     if (board.getBoardAttachedFiles().size() > 0) {
       boardDao.insertBoardFiles(board);
     }
+
     return true;
   }
 

@@ -32,6 +32,23 @@
     <result column="bno" property="boardNo"/>
   </resultMap>
   
+  <select id="findAllBoard" resultMap="boardMap">
+    select
+      b.bno,
+      b.title,
+      m.name,
+      b.cdt,
+      b.vw_cnt,
+      b.cateno
+    from 
+      board b
+      join member m on b.mno = m.mno
+      join board_category bc on b.cateno = bc.cateno
+    where
+      b.cateno = #{value}
+    order by 
+      bno desc
+  </select>
   
   <insert id="insertBoard" parameterType="board"
           useGeneratedKeys="true" keyColumn="bno" keyProperty="no">
@@ -53,17 +70,17 @@
       b.cateno,
       b.title,
       b.cont,
+      m.name,
       b.cdt,
       b.vw_cnt,
       bf.bfno,
-      b.vw_cnt,
-      b.cateno
+      bf.filepath
     from 
       board b
       join member m on b.mno = m.mno
-      join board_category bc on b.cateno = bc.cateno
+      left join board_file bf on b.bno=bf.bno
     where
-      b.cateno = #{value}
+      b.bno = #{value}
     order by 
       bno desc
   </select>

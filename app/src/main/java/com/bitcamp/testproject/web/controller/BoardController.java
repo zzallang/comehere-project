@@ -240,6 +240,7 @@ public class BoardController {
 
   @PostMapping("updateBoard")
   public String updateBoard(
+      int cateno,
       Board board,
       Part[] files,
       HttpSession session) 
@@ -253,7 +254,7 @@ public class BoardController {
       throw new Exception("게시글을 변경할 수 없습니다!");
     }
 
-    return "redirect:listBoard";
+    return "redirect:listBoard?no=" + cateno;
   }
 
   // 여기부터 하자
