@@ -114,12 +114,13 @@
               <h1 class="our_text" value='게시판' th:if="${board.cateno == 5}">자유게시판</h1>
            </td>
                -->
-               
-<!--           <td data-th-switch=findCataNo()>
-            <h1 class="our_text" data-th-case=1>자유게시판</h1>
+<!--                
+          <td>
+            <h1 class="our_text"></h1>
+            <input value="findCateNo()">
             
-          </td> -->
-               
+          </td>
+                -->
             <p class="ipsum_text">여기모여 회원들이 자유롭게 소통할 수 있는 자유게시판입니다. </p>
             <div class="furnitures_section2 layout_padding">
                       
@@ -309,12 +310,27 @@
       <!-- 여기서부터 다음시간에 -->
       <script>
       "use strict"
-      function findCateNo() {
+      window.onload = 
+        function findCateNo() {
         var para = document.location.href.split("?no=");
         console.log(para[1]);
         
         
+        switch(para[1]) {
+          case '1' :
+            return "자유게시판"
+          case '2' :
+            return "식단게시판"
+          case '3' :
+            return "챌린지게시판"
+          case '4' :
+            return "질문게시판"
+          case '5' :
+            return "핫딜게시판" 
+        }
       }
+
+      findCateNo();
       </script>
    </body>
     
