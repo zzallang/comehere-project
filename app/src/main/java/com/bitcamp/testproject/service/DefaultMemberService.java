@@ -41,8 +41,8 @@ public class DefaultMemberService implements MemberService {
   @Transactional
   @Override
   public boolean delete(int no) throws Exception {
-    boardDao.deleteFilesByMemberBoards(no); // 회원이 작성한 게시글의 모든 첨부파일 삭제
-    boardDao.deleteByMember(no); // 회원이 작성한 게시글 삭제
+    //    boardDao.deleteFilesByMemberBoards(no); // 회원이 작성한 게시글의 모든 첨부파일 삭제
+    //    boardDao.deleteByMember(no); // 회원이 작성한 게시글 삭제
     return memberDao.delete(no) > 0; // 회원 삭제
   }
 

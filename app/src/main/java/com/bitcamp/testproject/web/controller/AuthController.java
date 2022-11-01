@@ -37,7 +37,7 @@ public class AuthController {
       String saveEmail, 
       HttpServletResponse response,
       HttpSession session) throws Exception {
-
+    System.out.println("확인용!!");
     Member member = memberService.get(email, password);
 
     if (member != null) {
@@ -62,6 +62,29 @@ public class AuthController {
     session.invalidate(); 
     return "redirect:../"; 
   }
+
+
+  // 은지
+  @GetMapping("join")
+  public String form(Model model) throws Exception {
+    model.addAttribute("data", "join page");
+
+    return "auth/join";
+  }
+  @PostMapping("add")
+  public String add(Member member) throws Exception {
+    memberService.add(member);
+    return "redirect:join";
+  }
+
+
+  @GetMapping("mypage-member")
+  public String myPageMember(Member member) {
+
+    return "myPageMember";
+  }
+
+
 }
 
 
