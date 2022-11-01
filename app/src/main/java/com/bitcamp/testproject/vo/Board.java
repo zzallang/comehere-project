@@ -6,7 +6,7 @@ import java.util.List;
 public class Board {
 
   private int no;
-  private int cateNo;
+  private int cateno;
   private Member writer;
   private String title;
   private boolean active;
@@ -15,17 +15,13 @@ public class Board {
   private int viewCount;
 
   // 첨부파일 정보를 저장할 필드
-  private List<BoardAttachedFile> boardAttachedFiles;
-
-  // 댓글을 저장할 필드
-  private List<BoardComment> boardComment;
+  private List<AttachedFile> attachedFiles;
 
   @Override
   public String toString() {
-    return "Board [no=" + no + ", cateNo=" + cateNo + ", writer=" + writer + ", title=" + title
+    return "Board [no=" + no + ", cateno=" + cateno + ", writer=" + writer + ", title=" + title
         + ", active=" + active + ", content=" + content + ", createdDate=" + createdDate
-        + ", viewCount=" + viewCount + ", boardAttachedFiles=" + boardAttachedFiles
-        + ", boardComment=" + boardComment + "]";
+        + ", viewCount=" + viewCount + ", attachedFiles=" + attachedFiles + "]";
   }
 
   public int getNo() {
@@ -36,12 +32,12 @@ public class Board {
     this.no = no;
   }
 
-  public int getCateNo() {
-    return cateNo;
+  public int getCateno() {
+    return cateno;
   }
 
-  public void setCateNo(int cateNo) {
-    this.cateNo = cateNo;
+  public void setCateno(int cateno) {
+    this.cateno = cateno;
   }
 
   public Member getWriter() {
@@ -92,20 +88,12 @@ public class Board {
     this.viewCount = viewCount;
   }
 
-  public List<BoardAttachedFile> getBoardAttachedFiles() {
-    return boardAttachedFiles;
+  public List<AttachedFile> getAttachedFiles() {
+    return attachedFiles;
   }
 
-  public void setBoardAttachedFiles(List<BoardAttachedFile> boardAttachedFiles) {
-    this.boardAttachedFiles = boardAttachedFiles;
-  }
-
-  public List<BoardComment> getBoardComment() {
-    return boardComment;
-  }
-
-  public void setBoardComment(List<BoardComment> boardComment) {
-    this.boardComment = boardComment;
+  public void setAttachedFiles(List<AttachedFile> attachedFiles) {
+    this.attachedFiles = attachedFiles;
   }
 
 
