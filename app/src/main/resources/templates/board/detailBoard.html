@@ -64,7 +64,7 @@
                   <th>첨부파일</th>
                   <td>
                     <ul>
-                      <li data-th-each="file : ${board.attachedFiles}">
+                      <li data-th-each="file : ${board.attachedFiles}">   
                         <a href="files/test.gif"
                            data-th-href="@{files/{path}(path=${file.filepath})}"
                            data-th-text="${file.filepath}">test.gif
