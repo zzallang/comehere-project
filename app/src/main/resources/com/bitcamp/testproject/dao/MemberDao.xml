@@ -40,16 +40,16 @@
       name
   </select>
 
-  <select id="findByEmailPassword" resultMap="memberMap">
+  <select id="findByIdPassword" resultMap="memberMap">
     select 
       mno,
       name,
-      email,
+      id,
       cdt 
     from 
       member 
     where 
-      email=#{email} and pwd=sha2(#{password},256)
+      id=#{id} and pwd=sha2(#{password},256)
   </select>
   
   <update id="update" parameterType="Member">

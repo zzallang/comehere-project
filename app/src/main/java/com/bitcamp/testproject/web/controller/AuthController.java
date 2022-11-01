@@ -25,27 +25,26 @@ public class AuthController {
   }
 
   @GetMapping("form") 
-  public String form(@CookieValue(name="email",defaultValue="") String email, Model model) throws Exception {
-    model.addAttribute("email", email);
+  public String form(@CookieValue(name="id",defaultValue="") String id, Model model) throws Exception {
+    model.addAttribute("id", id);
     return "auth/form";
   }
 
   @PostMapping("login") 
   public ModelAndView login(
-      String email, 
+      String id,
       String password, 
-      String saveEmail, 
       HttpServletResponse response,
       HttpSession session) throws Exception {
-    System.out.println("확인용!!");
-    Member member = memberService.get(email, password);
+
+    Member member = memberService.get(id, password);
 
     if (member != null) {
       session.setAttribute("loginMember", member); 
     }
 
-    Cookie cookie = new Cookie("email", email); 
-    if (saveEmail == null) {
+    Cookie cookie = new Cookie("id", id); 
+    if (id == null) {
       cookie.setMaxAge(0); 
     } else {
       cookie.setMaxAge(60 * 60 * 24 * 7); // 7일
@@ -56,6 +55,17 @@ public class AuthController {
     mv.addObject("member", member);
     return mv;
   }
+
+  @GetMapping("findId")
+  public String findId() {
+    return "auth/findId";
+  }
+
+  @GetMapping("findPassword")
+  public String findIdPassword() {
+    return "auth/findPassword";
+  }
+
 
   @GetMapping("logout") 
   public String logout(HttpSession session) throws Exception {
