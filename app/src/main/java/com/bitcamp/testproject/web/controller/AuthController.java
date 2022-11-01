@@ -77,7 +77,6 @@ public class AuthController {
     return "redirect:join";
   }
 
-
   @GetMapping("mypage-member")
   public String myPageMember(Member member) {
 
