@@ -113,7 +113,11 @@ a.meanmenu-reveal {
 }
 
 .mean-container .mean-nav ul li a:hover {
+<<<<<<< HEAD
      background: #252525;
+=======
+     ` background: #252525;
+>>>>>>> byeongmin
      background: rgba(255, 255, 255, 0.1);
 }
 
@@ -177,6 +181,7 @@ a.meanmenu-reveal {
 .mean-container .mean-nav ul li a:hover {
      color: #308409;
 }
+<<<<<<< HEAD
 /*--------------------------------------------------------------------- File Name: meanmenu.css ---------------------------------------------------------------------*/
 
 a.meanmenu-reveal {
@@ -356,3 +361,5 @@ a.meanmenu-reveal {
 .mean-container .mean-nav ul li a:hover {
      color: #308409;
 }
+=======
+>>>>>>> byeongmin

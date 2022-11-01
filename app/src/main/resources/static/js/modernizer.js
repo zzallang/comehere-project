@@ -1,4 +1,7 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> byeongmin
 				
 /*!
  * Modernizr v2.7.2
@@ -4551,6 +4554,7 @@ return hooks;
   
 
 
+<<<<<<< HEAD
 =======
 				
 /*!
@@ -9105,3 +9109,5 @@ return hooks;
 
 
 >>>>>>> 16e73abd21379b65b85e071eaae3e6f236ab1bec
+=======
+>>>>>>> byeongmin

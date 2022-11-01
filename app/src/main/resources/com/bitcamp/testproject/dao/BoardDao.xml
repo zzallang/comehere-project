@@ -19,21 +19,32 @@
       
     </association>
     
+<<<<<<< HEAD
     <!-- 조인 결과에서 같은 게시글에 대해 여러 개의 첨부 파일 데이터를 담을 경우 -->
     <collection property="boardAttachedFiles" ofType="boardAttachedFile">
       <id column="bfno" property="no"/>
       <result column="filepath" property="filepath"/>
       <result column="bno" property="boardNo"/>
+=======
+    <collection property="attachedFiles" ofType="attachedFile">
+      <id column="bfno" property="no"/>
+      <result column="filepath" property="filepath"/>
+      <result column="bno" property="objectNo"/>
+>>>>>>> byeongmin
     </collection>
-    
   </resultMap>
   
+<<<<<<< HEAD
   <resultMap type="BoardAttachedFile" id="attachedFileMap">
+=======
+  <resultMap type="attachedFile" id="boardAttachedFileMap">
+>>>>>>> byeongmin
     <id column="bfno" property="no"/>
     <result column="filepath" property="filepath"/>
-    <result column="bno" property="boardNo"/>
+    <result column="bno" property="objectNo"/>
   </resultMap>
   
+<<<<<<< HEAD
   
   <insert id="insertBoard" parameterType="board"
           useGeneratedKeys="true" keyColumn="bno" keyProperty="no">
@@ -49,14 +60,50 @@
     </foreach>
   </insert>
   
+=======
+  <select id="findAllBoard" resultMap="boardMap">
+    select
+      b.bno,
+      b.title,
+      m.name,
+      b.cdt,
+      b.vw_cnt,
+      b.cateno
+    from 
+      board b
+      join member m on b.mno = m.mno
+      join board_category bc on b.cateno = bc.cateno
+    where
+      b.cateno = #{value}
+    order by 
+      bno desc
+  </select>
+  
+  <insert id="insertBoard" parameterType="board"
+          useGeneratedKeys="true" keyColumn="bno" keyProperty="no">
+    insert into board(cateno,mno,title,cont) 
+    values(#{cateno},1,#{title},#{content})
+  </insert>
+  
+  <insert id="insertBoardFiles" parameterType="board">
+    insert into board_file(filepath,bno)
+    values
+    <foreach collection="attachedFiles" item="boardFile" separator=",">
+      (#{boardFile.filepath},#{no})
+    </foreach>
+  </insert>
+  
+>>>>>>> byeongmin
   <select id="findByBoardNo" resultMap="boardMap">
     select
       b.bno,
       b.cateno,
       b.title,
       b.cont,
+      m.name,
       b.cdt,
       b.vw_cnt,
+<<<<<<< HEAD
       bf.filepath
     from 
       board b
@@ -79,6 +126,54 @@
       bno desc
   </select>
  
+=======
+      bf.bfno,
+      bf.filepath
+    from 
+      board b
+      join member m on b.mno = m.mno
+      left join board_file bf on b.bno=bf.bno
+    where
+      b.bno = #{value}
+    order by 
+      bno desc
+  </select>
+  
+  <delete id="deleteBoardFiles">
+    delete from board_file
+    where bno=#{value}
+  </delete>
+  
+  <delete id="deleteBoard">
+    delete from board 
+    where bno=#{value}
+  </delete>
+  
+  <update id="updateBoard" parameterType="board">
+    update board set 
+      title=#{title}, 
+      cont=#{content} 
+    where bno=#{no}
+  </update>
+  
+  <select id="findBoardFileByNo" resultMap="boardAttachedFileMap">
+    select 
+      bfno, 
+      filepath, 
+      bno 
+    from 
+      board_file 
+    where 
+      bfno = #{value}
+  </select>
+  
+  <delete id="deleteBoardFile">
+    delete from board_file 
+    where bfno=#{value}
+  </delete>
+
+
+>>>>>>> byeongmin
 
 </mapper>
 

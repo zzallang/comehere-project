@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bitcamp.testproject.dao.PartyDao">
+
+  <resultMap type="party" id="partyMap">
+    <id column="pno" property="no"/>
+    <result column="title" property="title"/>
+    <result column="act" property="active"/>
+    <result column="cont" property="content"/>
+    <result column="cdt" property="createdDate"/>
+    <result column="headcnt" property="headCount"/>
+    <result column="ptime" property="partyTime"/>
+    <result column="pdate" property="partyDate"/>
+    <result column="pdate" property="partyDate"/>
+    <result column="star" property="star"/>
+
+    <!-- 조인 결과에서 같은 게시글에 대해 한 개의 회원 데이터를 담을 경우 -->
+    <association property="user" javaType="member">
+      <id column="mno" property="no"/>
+      <result column="nick" property="nickname"/>
+      <result column="bday" property="birthday"/>
+      <result column="sex" property="sex"/>
+      <result column="filepath" property="filepath"/>
+    </association>
+
+    <!-- 조인 결과에서 같은 게시글에 대해 한 개의 회원 데이터를 담을 경우 -->
+    <association property="region" javaType="region">
+      <id column="rno" property="no"/>
+      <result column="sido" property="sido"/>
+      <result column="sigu" property="sigu"/>
+    </association>
+
+    <!-- 조인 결과에서 같은 게시글에 대해 한 개의 회원 데이터를 담을 경우 -->
+    <association property="sport" javaType="sport">
+      <id column="sno" property="no"/>
+      <result column="name" property="name"/>
+    </association>
+
+  </resultMap>
+
+  <select id="findAll" resultMap="partyMap">
+    select
+      p.pno, 
+      r.sido,
+      r.sigu,
+      s.name,
+      p.title,
+      p.cdt,
+      p.headcnt,
+      p.ptime,
+      p.pdate,
+      (select truncate(avg(star), 1) from party_review where pno=p.pno) as star,
+      r.rno,
+      s.sno
+    from 
+      party p
+      join region r on p.rno = r.rno
+      join sports s on p.sno = s.sno
+    where
+      p.act = 1
+    order by 
+      p.pno desc
+  </select>
+  
+    <select id="findByNo" resultMap="partyMap">
+    select
+      p.pno,
+      r.sido,
+      r.sigu,
+      s.name,
+      p.title,
+      p.cont,
+      p.cdt,
+      p.headcnt,
+      p.ptime,
+      p.pdate,
+      m.mno,
+      m.nick,
+      m.bday,
+      m.sex,
+      m.filepath
+    from 
+      party p
+      join region r on p.rno = r.rno
+      join sports s on p.sno = s.sno
+      join party_members pm on p.pno = pm.pno
+      join member m on m.mno = pm.mno
+    where 
+      pm.auth=1
+    and
+      p.pno=#{value}
+  </select>
+  
+  <insert id="insert" parameterType="party"
+          useGeneratedKeys="true" keyColumn="pno" keyProperty="no">
+    insert into party(rno,sno,title,act,cont,cdt,headcnt,ptime,pdate) 
+    values(
+    #{regionNo},
+    #{sprotsNo},
+    #{title},
+    #{active},
+    #{content},
+    #{createdDate},
+    #{headCount},
+    #{partyTime},
+    #{partyDate})
+  </insert>
+  
+  <update id="update" parameterType="party">
+    update party set 
+      title=#{title}, 
+      cont=#{content},
+      headCount#{headCount},
+    partyTime=#{partyTime},
+    partyDate=#{partyDate}
+    where pno=#{no}
+  </update>
+  
+  <delete id="delete">
+    delete from party
+    where pno=#{value}
+  </delete>
+
+  <select id="checkOwner" resultMap="partyMap">
+    select 
+      pm.mno
+    from 
+      party_members pm
+    where 
+      pm.auth=1
+    and
+      pm.pno=#{value}
+  </select>
+
+  <select id="findStarByNo" resultType="double">
+    select
+      ifnull (truncate(avg(star), 1), 0)
+      as star    
+    from       
+      party_review     
+    where       
+      
+      pno=#{value}
+  </select>
+
+
+  
+</mapper>
+
+
+

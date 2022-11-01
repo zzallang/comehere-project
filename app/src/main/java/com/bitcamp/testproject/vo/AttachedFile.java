@@ -1,19 +1,19 @@
 package com.bitcamp.testproject.vo;
 
-public class BoardAttachedFile {
+public class AttachedFile {
   private int no;
   private String filepath;
-  private int boardNo;
+  private int objectNo;
 
-  public BoardAttachedFile() {}
+  public AttachedFile() {}
 
-  public BoardAttachedFile(String filepath) {
+  public AttachedFile(String filepath) {
     this.filepath = filepath;
   }
 
   @Override
   public String toString() {
-    return "BoardAttachedFile [no=" + no + ", filepath=" + filepath + ", boardNo=" + boardNo + "]";
+    return "AttachedFile [no=" + no + ", filepath=" + filepath + ", objectNo=" + objectNo + "]";
   }
 
   public int getNo() {
@@ -32,14 +32,12 @@ public class BoardAttachedFile {
     this.filepath = filepath;
   }
 
-  public int getBoardNo() {
-    return boardNo;
+  public int getObjectNo() {
+    return objectNo;
   }
 
-  public void setBoardNo(int boardNo) {
-    this.boardNo = boardNo;
+  public void setObjectNo(int objectNo) {
+    this.objectNo = objectNo;
   }
-
-
 
 }
