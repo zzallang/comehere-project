@@ -12,7 +12,7 @@ import com.bitcamp.testproject.service.MemberService;
 import com.bitcamp.testproject.vo.Member;
 
 @Controller
-@RequestMapping("/member/")
+@RequestMapping("/app/")
 public class MemberController {
 
   MemberService memberService;
@@ -22,14 +22,14 @@ public class MemberController {
     this.memberService = memberService;
   }
 
-  @GetMapping("form")
+  @GetMapping("join")
   public void form() throws Exception {
   }
 
   @PostMapping("add")
   public String add(Member member) throws Exception {
     memberService.add(member);
-    return "redirect:list";
+    return "redirect:../";
   }
 
   @GetMapping("list")

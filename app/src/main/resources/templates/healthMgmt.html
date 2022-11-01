@@ -34,6 +34,10 @@
           media="screen">
         
         <style type="text/css">
+        .main_logo {
+		      max-width: 30%;
+		    } 
+		    
         .email-bt2 {
           color: #989696;
           width: 44%; 
@@ -109,7 +113,7 @@
           <div class="header_section">
             <div class="container-fluid">
               <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <div class="logo"><a href="main"><img src="images/logo.png"></a></div>
+                <div class="logo"><a href="/app"><img class=main_logo src="images/comehere_logo.png"></a></div>
                 <button class="navbar-toggler" type="button" data-toggle="collapse"
                   data-target="#navbarSupportedContent"
                   aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -118,19 +122,15 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                   <ul class="navbar-nav mr-auto">
-                    <li class="nav-item"><a class="nav-link" href="main">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="services.html">services</a></li>
-                    <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
-                    <li class="nav-item"><a class="nav-link" href="shop.html">Shop</a></li>
-                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+			              <li class="nav-item"><a class="nav-link" href="/app">운동하기</a></li>
+			              <li class="nav-item"><a class="nav-link" href="board">커뮤니티</a></li>
+			              <li class="nav-item"><a class="nav-link" href="notice">공지사항</a></li>
                   </ul>
-                  <form class="form-inline my-2 my-lg-0">
-                    <h1 class="call_text">Call Us : +01 1234567890</h1>
-                  </form>
                   <div class="search_icon">
                     <ul>
-                      <li><a href="#"><img src="images/search-icon.png"></a></li>
-                      <li><a href="#">LOGIN</a></li>
+                      <li><img src="images/search-icon.png"></li>
+                      <li><a href="auth/form">LOGIN</a></li>
+                      <li><a href="viewer">마이페이지</a></li>
                     </ul>
                   </div>
                 </div>

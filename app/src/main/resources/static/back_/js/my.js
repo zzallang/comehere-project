@@ -1,6 +1,0 @@
- function hello() {
-  alert('Hi');
-}
- 
- 
- 
