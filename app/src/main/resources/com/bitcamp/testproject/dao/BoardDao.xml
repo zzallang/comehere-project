@@ -26,13 +26,13 @@
     </collection>
   </resultMap>
   
-  <resultMap type="attachedFile" id="boardAttachedFileMap">
+  <resultMap type="attachedFile" id="attachedFileMap">
     <id column="bfno" property="no"/>
     <result column="filepath" property="filepath"/>
     <result column="bno" property="objectNo"/>
   </resultMap>
   
-  <select id="findAllBoard" resultMap="boardMap">
+  <select id="findAll" resultMap="boardMap">
     select
       b.bno,
       b.title,
@@ -50,13 +50,13 @@
       bno desc
   </select>
   
-  <insert id="insertBoard" parameterType="board"
+  <insert id="insert" parameterType="board"
           useGeneratedKeys="true" keyColumn="bno" keyProperty="no">
     insert into board(cateno,mno,title,cont) 
     values(#{cateno},1,#{title},#{content})
   </insert>
   
-  <insert id="insertBoardFiles" parameterType="board">
+  <insert id="insertFiles" parameterType="board">
     insert into board_file(filepath,bno)
     values
     <foreach collection="attachedFiles" item="boardFile" separator=",">
@@ -64,7 +64,7 @@
     </foreach>
   </insert>
   
-  <select id="findByBoardNo" resultMap="boardMap">
+  <select id="findByNo" resultMap="boardMap">
     select
       b.bno,
       b.cateno,
@@ -85,24 +85,24 @@
       bno desc
   </select>
   
-  <delete id="deleteBoardFiles">
+  <delete id="deleteFiles">
     delete from board_file
     where bno=#{value}
   </delete>
   
-  <delete id="deleteBoard">
+  <delete id="delete">
     delete from board 
     where bno=#{value}
   </delete>
   
-  <update id="updateBoard" parameterType="board">
+  <update id="update" parameterType="board">
     update board set 
       title=#{title}, 
       cont=#{content} 
     where bno=#{no}
   </update>
   
-  <select id="findBoardFileByNo" resultMap="boardAttachedFileMap">
+  <select id="findFileByNo" resultMap="attachedFileMap">
     select 
       bfno, 
       filepath, 
@@ -113,7 +113,7 @@
       bfno = #{value}
   </select>
   
-  <delete id="deleteBoardFile">
+  <delete id="deleteFile">
     delete from board_file 
     where bfno=#{value}
   </delete>

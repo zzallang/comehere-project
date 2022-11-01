@@ -79,59 +79,59 @@ public class DefaultBoardService implements BoardService {
   //  제동 소스
   @Transactional
   @Override
-  public void addBoard(Board board) throws Exception {
+  public void add(Board board) throws Exception {
     //  1) 게시판 등록
-    if (boardDao.insertBoard(board) == 0) {
+    if (boardDao.insert(board) == 0) {
       throw new Exception("게시글 등록 실패!");
     }
     // 2) 첨부파일 등록
     if (board.getAttachedFiles().size() > 0) {
-      boardDao.insertBoardFiles(board);
+      boardDao.insertFiles(board);
     }
   }
 
   @Override
-  public Board getBoard(int no) throws Exception {
-    return boardDao.findByBoardNo(no); 
+  public Board get(int no) throws Exception {
+    return boardDao.findByNo(no); 
   }
 
   @Override
-  public List<Board> listBoard(int no) throws Exception {
-    return boardDao.findAllBoard(no);
+  public List<Board> list(int no) throws Exception {
+    return boardDao.findAll(no);
   }
 
   @Transactional
   @Override
-  public boolean deleteBoard(int no) throws Exception {
+  public boolean delete(int no) throws Exception {
     // 1) 첨부파일 삭제
-    boardDao.deleteBoardFiles(no);
+    boardDao.deleteFiles(no);
     // 2) 게시글 삭제
-    return boardDao.deleteBoard(no) > 0;
+    return boardDao.delete(no) > 0;
   }
 
   @Transactional
   @Override
-  public boolean updateBoard(Board board) throws Exception {
+  public boolean update(Board board) throws Exception {
     // 1) 게시글 변경
-    if (boardDao.updateBoard(board) == 0) {
+    if (boardDao.update(board) == 0) {
       return false;
     }
     // 2) 첨부파일 추가
     if (board.getAttachedFiles().size() > 0) {
-      boardDao.insertBoardFiles(board);
+      boardDao.insertFiles(board);
     }
 
     return true;
   }
 
   @Override
-  public AttachedFile getBoardAttachedFile(int no) throws Exception {
-    return boardDao.findBoardFileByNo(no);
+  public AttachedFile getAttachedFile(int no) throws Exception {
+    return boardDao.findFileByNo(no);
   }
 
   @Override
-  public boolean deleteBoardAttachedFile(int fileNo) throws Exception {
-    return boardDao.deleteBoardFile(fileNo) > 0;
+  public boolean deleteAttachedFile(int fileNo) throws Exception {
+    return boardDao.deleteFile(fileNo) > 0;
   }
 
   //////////

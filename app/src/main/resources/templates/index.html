@@ -47,15 +47,13 @@
 						<li class="nav-item"><a class="nav-link" href="#">건강관리</a></li>
 						<li class="nav-item"><a class="nav-link" href="board/listBoard?no=1">커뮤니티</a></li>
 						<li class="nav-item"><a class="nav-link" href="#">공지사항</a></li>
-						<li class="nav-item"><a class="nav-link" href="#">마이페이지</a></li>
 					</ul>
 					<div class="search_icon">
 						<ul>
 							<!-- <li><a href="auth/form"><img src="images/search-icon.png"></a></li> -->
 							<li data-th-if="${session.loginMember == null}"><a href="auth/form" >로그인</a></li>
 							<li data-th-if="${session.loginMember != null}"><a href="auth/logout" data-th-text="${session.loginMember.name} + '(로그아웃)'">동동(로그아웃)</a></li>
-              <li data-th-if="${session.loginMember == null}"><a href="join">회원가입</a></li>
-              <li data-th-if="${session.loginMember != null}"><a href="viewer">마이페이지</a></li>
+              <li data-th-if="${session.loginMember != null}"><a href="mypage/viewer">마이페이지</a></li>
 						</ul>
 					</div>
 				</div>

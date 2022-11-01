@@ -24,19 +24,19 @@ public interface BoardService {
 
   //  제동 소스 
 
-  void addBoard(Board board) throws Exception;
+  void add(Board board) throws Exception;
 
-  Board getBoard(int no) throws Exception;
+  Board get(int no) throws Exception;
 
-  List<Board> listBoard(int no) throws Exception;
+  List<Board> list(int no) throws Exception;
 
-  boolean deleteBoard(int no) throws Exception;
+  boolean delete(int no) throws Exception;
 
-  boolean updateBoard(Board board) throws Exception;
+  boolean update(Board board) throws Exception;
 
-  AttachedFile getBoardAttachedFile(int no) throws Exception;
+  AttachedFile getAttachedFile(int no) throws Exception;
 
-  boolean deleteBoardAttachedFile(int fileNo) throws Exception;
+  boolean deleteAttachedFile(int fileNo) throws Exception;
 
   ////////////
 }

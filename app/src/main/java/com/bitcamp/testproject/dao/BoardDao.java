@@ -10,23 +10,23 @@ public interface BoardDao {
 
   //  제동 소스
 
-  int insertBoard(Board board);
+  int insert(Board board);
 
-  int insertBoardFiles(Board board);
+  int insertFiles(Board board);
 
-  Board findByBoardNo(int no);
+  Board findByNo(int no);
 
-  List<Board> findAllBoard(int no);
+  List<Board> findAll(int no);
 
-  int deleteBoardFiles(int boardNo);
+  int deleteFiles(int boardNo);
 
-  int deleteBoard(int no);
+  int delete(int no);
 
-  int updateBoard(Board board);
+  int update(Board board);
 
-  AttachedFile findBoardFileByNo(int no);
+  AttachedFile findFileByNo(int no);
 
-  int deleteBoardFile(int fileNo);
+  int deleteFile(int fileNo);
 
   //
 

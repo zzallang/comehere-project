@@ -172,7 +172,7 @@ public class BoardController {
     board.setAttachedFiles(saveBoardAttachedFiles(files));
     //    board.setWriter((Member) session.getAttribute("loginMember"));
 
-    boardService.addBoard(board);
+    boardService.add(board);
     return "redirect:../";
   }
 
@@ -199,7 +199,7 @@ public class BoardController {
 
   @GetMapping("detailBoard")
   public Model detailBoard(int no, Model model) throws Exception {
-    Board board = boardService.getBoard(no);
+    Board board = boardService.get(no);
 
     if (board == null) {
       throw new Exception("해당 번호의 게시글이 없습니다!");
@@ -210,7 +210,7 @@ public class BoardController {
 
   @GetMapping("listBoard")
   public void listBoard(Model model, int no) throws Exception {
-    model.addAttribute("boards", boardService.listBoard(no));
+    model.addAttribute("boards", boardService.list(no));
   }
 
   @GetMapping("deleteBoard")
@@ -220,7 +220,7 @@ public class BoardController {
           throws Exception {
 
     //    checkOwner(no, session);
-    if (!boardService.deleteBoard(no)) {
+    if (!boardService.delete(no)) {
       throw new Exception("게시글을 삭제할 수 없습니다.");
     }
 
@@ -229,7 +229,7 @@ public class BoardController {
 
   @GetMapping("updateFormBoard")
   public Model updateFormBoard(int no, Model model) throws Exception {
-    Board board = boardService.getBoard(no);
+    Board board = boardService.get(no);
 
     if (board == null) {
       throw new Exception("해당 번호의 게시글이 없습니다!");
@@ -250,7 +250,7 @@ public class BoardController {
 
     //      checkOwner(board.getNo(), session);
 
-    if (!boardService.updateBoard(board)) {
+    if (!boardService.update(board)) {
       throw new Exception("게시글을 변경할 수 없습니다!");
     }
 
@@ -264,16 +264,16 @@ public class BoardController {
       HttpSession session) 
           throws Exception {
 
-    AttachedFile attachedFile = boardService.getBoardAttachedFile(no); 
+    AttachedFile attachedFile = boardService.getAttachedFile(no); 
 
     //    Member loginMember = (Member) session.getAttribute("loginMember");
-    Board board = boardService.getBoard(attachedFile.getObjectNo()); 
+    Board board = boardService.get(attachedFile.getObjectNo()); 
 
     //    if (board.getWriter().getNo() != loginMember.getNo()) {
     //      throw new Exception("게시글 작성자가 아닙니다.");
     //    }
 
-    if (!boardService.deleteBoardAttachedFile(no)) {
+    if (!boardService.deleteAttachedFile(no)) {
       throw new Exception("게시글 첨부파일을 삭제할 수 없습니다.");
     }
 

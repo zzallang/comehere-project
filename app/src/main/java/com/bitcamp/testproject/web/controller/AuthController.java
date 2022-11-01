@@ -37,7 +37,7 @@ public class AuthController {
       String saveEmail, 
       HttpServletResponse response,
       HttpSession session) throws Exception {
-
+    System.out.println("확인용!!");
     Member member = memberService.get(email, password);
 
     if (member != null) {
