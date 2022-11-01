@@ -173,7 +173,7 @@ public class BoardController {
     //    board.setWriter((Member) session.getAttribute("loginMember"));
 
     boardService.add(board);
-    return "redirect:listBoard?no=" + cateno;
+    return "redirect:list?no=" + cateno;
   }
 
   private List<AttachedFile> saveAttachedFiles(Part[] files)
@@ -219,12 +219,16 @@ public class BoardController {
       HttpSession session) 
           throws Exception {
 
+    // 돌아갈 게시판카테고리 넘버 찾기
+    int cateno = boardService.get(no).getCateno();
+
     //    checkOwner(no, session);
     if (!boardService.delete(no)) {
       throw new Exception("게시글을 삭제할 수 없습니다.");
     }
 
-    return "redirect:list?no=1";
+
+    return "redirect:list?no=" + cateno;
   }
 
   @GetMapping("updateForm")

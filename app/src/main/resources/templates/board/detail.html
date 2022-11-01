@@ -65,7 +65,8 @@
                   <td>
                     <ul>
                       <li data-th-each="file : ${board.attachedFiles}">
-                        <a href="files/test.gif"
+                        <a data-th-if="${not #strings.isEmpty(file)}"
+                           href="files/test.gif"
                            data-th-href="@{files/{path}(path=${file.filepath})}"
                            data-th-text="${file.filepath}">test.gif
                         </a>
@@ -80,11 +81,48 @@
                 <a data-th-href="@{list(no=${board.cateno})}">목록</a>
                 <a class="btn btn-primary" href="#" role="button">신고기능</a>
             </p>
+             <!-- 댓글 블록 시작 -->
+            <div> 
+          <th:block th:each="comment : ${comments}">
+            <div>
+            <div>
+              <p th:text="${comment.writer.filepath}"></p>
+            </div>
+            <div>
+              <p th:text="${comment.writer.nickname}"></p>
+              <p th:text="${comment.content}"></p>
+              <p th:text="${comment.createdDate}"></p>
+            </div>
+            </div>
+          </th:block>
+            <div>
+            <div>
+              <p>loginMember.filepath</p>
+            </div>
+            <div>
+              <p>loginMember.nickname</p>
+              
+              <form action='add' method="post">
+              <table border='1'>
+                <tr>
+                  <th>댓글 입력</th><td><textarea rows='4' cols='60'></textarea></td>
+                </tr>
+              </table>
+              <p>
+                <button type='submit'>등록</button>
+              </p>
+              </form>
+            </div>
+            </div>
+            </div> 
+            <!-- 댓글 블록 끝 -->
 
         <script>
             $(document).ready(function () {
             	  $('textarea[name=content]').html('[[${board.content}]]');
-                $('textarea[name=content]').summernote({toolbar:false});
+                $('textarea[name=content]').summernote({toolbar:false,
+                		minHeight : 1000,
+                		width : 1100});
                 $('textarea[name=content]').summernote('disable');
             });
         </script> 

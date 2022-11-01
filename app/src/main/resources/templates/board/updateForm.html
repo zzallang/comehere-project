@@ -69,13 +69,14 @@
                   <th>첨부파일</th>
                   <td>
                     <ul>
-                      <li data-th-each="file : ${board.attachedFiles}">
-                        <a href="files/test.gif"
-                           data-th-href="@{files/{path}(path=${file.filepath})}"
-                           data-th-text="${file.filepath}">test.gif
-                        </a>
-                        [<a href="fileDelete?no=1"
-                            data-th-href="@{fileDelete(no=${file.no})}">삭제</a>]
+                      <li data-th-each="file : ${board.attachedFiles}" >
+                          <a  
+                          href="files/test.gif"
+                             data-th-href="@{files/{path}(path=${file.filepath})}"
+                             data-th-text="${file.filepath}">test.gif
+                          </a>
+                          [<a href="fileDelete?no=1" data-th-if="${not #strings.isEmpty(file)}"
+                              data-th-href="@{fileDelete(no=${file.no})}">삭제</a>]
                       </li>
                       <input name='files' type="file" multiple>
                     </ul>
