@@ -159,8 +159,8 @@ public class BoardController {
 
 
   //  제동 메서드 추가 
-  @PostMapping("addBoard") 
-  public String addBoard(
+  @PostMapping("add") 
+  public String add(
       Board board,
       int cateno,
       Part[] files,
@@ -169,14 +169,14 @@ public class BoardController {
     // 카테고리 번호 넣기
     board.setCateno(cateno);
 
-    board.setAttachedFiles(saveBoardAttachedFiles(files));
+    board.setAttachedFiles(saveAttachedFiles(files));
     //    board.setWriter((Member) session.getAttribute("loginMember"));
 
     boardService.add(board);
-    return "redirect:../";
+    return "redirect:listBoard?no=" + cateno;
   }
 
-  private List<AttachedFile> saveBoardAttachedFiles(Part[] files)
+  private List<AttachedFile> saveAttachedFiles(Part[] files)
       throws IOException, ServletException {
     List<AttachedFile> attachedFiles = new ArrayList<>();
     String dirPath = sc.getRealPath("/board/files");
@@ -193,12 +193,12 @@ public class BoardController {
     return attachedFiles;
   }
 
-  @GetMapping("formBoard")
-  public void formBoard() throws Exception {
+  @GetMapping("form")
+  public void form() throws Exception {
   }
 
-  @GetMapping("detailBoard")
-  public Model detailBoard(int no, Model model) throws Exception {
+  @GetMapping("detail")
+  public Model detail(int no, Model model) throws Exception {
     Board board = boardService.get(no);
 
     if (board == null) {
@@ -208,13 +208,13 @@ public class BoardController {
     return model.addAttribute("board", board);
   }
 
-  @GetMapping("listBoard")
-  public void listBoard(Model model, int no) throws Exception {
+  @GetMapping("list")
+  public void list(Model model, int no) throws Exception {
     model.addAttribute("boards", boardService.list(no));
   }
 
-  @GetMapping("deleteBoard")
-  public String deleteBoard(
+  @GetMapping("delete")
+  public String delete(
       int no, 
       HttpSession session) 
           throws Exception {
@@ -224,11 +224,11 @@ public class BoardController {
       throw new Exception("게시글을 삭제할 수 없습니다.");
     }
 
-    return "redirect:listBoard";
+    return "redirect:list?no=1";
   }
 
-  @GetMapping("updateFormBoard")
-  public Model updateFormBoard(int no, Model model) throws Exception {
+  @GetMapping("updateForm")
+  public Model updateForm(int no, Model model) throws Exception {
     Board board = boardService.get(no);
 
     if (board == null) {
@@ -238,15 +238,15 @@ public class BoardController {
     return model.addAttribute("board", board);
   }
 
-  @PostMapping("updateBoard")
-  public String updateBoard(
+  @PostMapping("update")
+  public String update(
       int cateno,
       Board board,
       Part[] files,
       HttpSession session) 
           throws Exception {
 
-    board.setAttachedFiles(saveBoardAttachedFiles(files));
+    board.setAttachedFiles(saveAttachedFiles(files));
 
     //      checkOwner(board.getNo(), session);
 
@@ -254,11 +254,11 @@ public class BoardController {
       throw new Exception("게시글을 변경할 수 없습니다!");
     }
 
-    return "redirect:listBoard?no=" + cateno;
+    return "redirect:list?no=" + cateno;
   }
 
   // 여기부터 하자
-  @GetMapping("boardFileDelete")
+  @GetMapping("fileDelete")
   public String boardFileDelete(
       int no,
       HttpSession session) 
@@ -277,7 +277,7 @@ public class BoardController {
       throw new Exception("게시글 첨부파일을 삭제할 수 없습니다.");
     }
 
-    return "redirect:updateFormBoard?no=" + board.getNo();
+    return "redirect:updateForm?no=" + board.getNo();
   }
 
 

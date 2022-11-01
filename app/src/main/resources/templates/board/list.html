@@ -32,7 +32,7 @@
       <!-- <link rel="stylesheet" href="../css/owl.theme.default.min.css"> -->
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
       
-      <!-- 부트스트랩 css -->
+      <!-- 공식부트스트랩 CSS -->
       <link href="../css/bootstrap/bootstrap.css" rel="stylesheet">
       
       <style>
@@ -107,44 +107,28 @@
             </li>
              -->
             <li class="nav-item">
-              <a class="nav-link" href="listBoard?no=1">자유게시판</a>
+              <a class="nav-link" href="list?no=1">자유게시판</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="listBoard?no=2">식단게시판</a>
+              <a class="nav-link" href="list?no=2">식단게시판</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="listBoard?no=3">챌린지게시판</a>
+              <a class="nav-link" href="list?no=3">챌린지게시판</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="listBoard?no=4">질문게시판</a>
+              <a class="nav-link" href="list?no=4">질문게시판</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="listBoard?no=5">핫딜게시판</a>
+              <a class="nav-link" href="list?no=5">핫딜게시판</a>
             </li>
           </ul>
   
-  <h1 class="our_textJD">자유게시판</h1>
-<!--   
-           <td>
-              <h1 class="our_text" value='게시판' th:if="${board.cateno == 1}">자유게시판</h1>
-              <h1 class="our_text" value='게시판' th:if="${board.cateno == 2}">식단게시판</h1>
-              <h1 class="our_text" value='게시판' th:if="${board.cateno == 3}">챌린지게시판</h1>
-              <h1 class="our_text" value='게시판' th:if="${board.cateno == 4}">질문게시판</h1>
-              <h1 class="our_text" value='게시판' th:if="${board.cateno == 5}">자유게시판</h1>
-           </td>
-               -->
-<!--                
-          <td>
-            <h1 class="our_text"></h1>
-            <input value="findCateNo()">
-            
-          </td>
-                -->
-            <p class="ipsum_text">여기모여 회원들이 자유롭게 소통할 수 있는 자유게시판입니다. </p>
-            <div class="furnitures_section2 layout_padding">
-                      
-               <div class="row">
 
+            <h1 class="our_textJD" id="cateName">게시판 제목입니다.</h1>
+            <p class="ipsum_text" id="cateConment">게시판의 내용입니다.</p>
+            
+            <div class="furnitures_section2 layout_padding">
+               <div class="row">
                 <table class="table">
                   <tr>
                     <th>번호</th>
@@ -155,8 +139,8 @@
                   </tr>
                   <tr data-th-each="board : ${boards}">
                     <td data-th-text="${board.no}">100</td>
-                    <td><a href='detailBoard?no=1'
-                        data-th-href="@{detailBoard(no=${board.no})}"
+                    <td><a href='detail?no=1'
+                        data-th-href="@{detail(no=${board.no})}"
                         data-th-text="${board.title == ''} ? '(제목없음)' : ${board.title}">제목없음</a></td>
                     <td data-th-text="${board.writer.name}">유길동</td>
                     <td data-th-text="${board.viewCount}">17</td>
@@ -181,7 +165,7 @@
                         </a>
                       </li>
                       <li class="float-end float-end-margin">
-                        <a class="btn btn-primary" href="formBoard" role="button">글쓰기</a>
+                        <a class="btn btn-primary" href="form" role="button">글쓰기</a>
                       </li>
                     </ul>
                   </nav>
@@ -323,33 +307,41 @@
       <!-- <script src="../js/owl.carousel.js"></script> -->
       <!-- <script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>  -->
       
-      <!-- 부트스트랩 js -->
+      <!-- 공식부트스트랩 JS -->
       <script src="../js/bootstrap/bootstrap.js"></script>   
-      
-      <!-- 여기서부터 다음시간에 -->
+
       <script>
       "use strict"
       window.onload = 
-        function findCateNo() {
+    	  function findCategory() {
         var para = document.location.href.split("?no=");
         console.log(para[1]);
         
         
         switch(para[1]) {
           case '1' :
-            return "자유게시판"
+        	  document.getElementById( 'cateName' ).innerHTML = "자유게시판";
+            document.getElementById( 'cateConment' ).innerHTML = "여기모여 회원들이 자유롭게 소통할 수 있는 자유게시판입니다. ";
+            break;
           case '2' :
-            return "식단게시판"
+        	  document.getElementById( 'cateName' ).innerHTML = "식단게시판";
+            document.getElementById( 'cateConment' ).innerHTML = "다이어트, 벌크업 등 식이요법에 대한 다양한 정보를 나누는 식단게시판입니다.";
+            break;
           case '3' :
-            return "챌린지게시판"
+        	  document.getElementById( 'cateName' ).innerHTML = "챌린지게시판";
+            document.getElementById( 'cateConment' ).innerHTML = "하루하루 도전하는 회원분들의 인증샷을 올리는 챌린지게시판입니다.";
+            break;
           case '4' :
-            return "질문게시판"
+        	  document.getElementById( 'cateName' ).innerHTML = "질문게시판";
+            document.getElementById( 'cateConment' ).innerHTML = "궁금한 건 어디에서 물어볼 지 고민인 분들을 위한 질문게시판입니다.";
+            break;
           case '5' :
-            return "핫딜게시판" 
+        	  document.getElementById( 'cateName' ).innerHTML = "핫딜게시판";
+            document.getElementById( 'cateConment' ).innerHTML = "지금이 바로 득템 기회! 핫딜 제품들을 공유할 수 있는 핫딜게시판입니다.";
+            
         }
       }
 
-      findCateNo();
       </script>
    </body>
     
