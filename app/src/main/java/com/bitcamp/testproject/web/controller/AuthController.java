@@ -62,6 +62,29 @@ public class AuthController {
     session.invalidate(); 
     return "redirect:../"; 
   }
+
+
+  // 은지
+  @GetMapping("join")
+  public String form(Model model) throws Exception {
+    model.addAttribute("data", "join page");
+
+    return "auth/join";
+  }
+  @PostMapping("add")
+  public String add(Member member) throws Exception {
+    memberService.add(member);
+    return "redirect:join";
+  }
+
+
+  @GetMapping("mypage-member")
+  public String myPageMember(Member member) {
+
+    return "myPageMember";
+  }
+
+
 }
 
 
