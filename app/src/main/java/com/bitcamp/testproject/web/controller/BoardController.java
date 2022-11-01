@@ -173,7 +173,7 @@ public class BoardController {
     //    board.setWriter((Member) session.getAttribute("loginMember"));
 
     boardService.addBoard(board);
-    return "redirect:../";
+    return "redirect:listBoard?no=" + cateno;
   }
 
   private List<BoardAttachedFile> saveBoardAttachedFiles(Part[] files)

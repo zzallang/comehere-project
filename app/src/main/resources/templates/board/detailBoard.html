@@ -77,7 +77,7 @@
             <p>
                 <a class="btn btn-primary" href="updateFormBoard?no=1" data-th-href="@{updateFormBoard(no=${board.no})}" role="button">수정</a>
                 <a href='delete?no=1' data-th-href="@{deleteBoard(no=${board.no})}">삭제</a>
-                <a href='list'>목록</a>
+                <a data-th-href="@{listBoard(no=${board.cateno})}">목록</a>
                 <a class="btn btn-primary" href="#" role="button">신고기능</a>
             </p>
 
