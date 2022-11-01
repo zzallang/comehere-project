@@ -91,6 +91,7 @@ public class DefaultBoardService implements BoardService {
       throw new Exception("게시글 등록 실패!");
     }
     // 2) 첨부파일 등록
+<<<<<<< Updated upstream
 <<<<<<< HEAD
     if (board.getBoardAttachedFiles().size() > 0) {
       boardDao.insertFiles(board);
@@ -98,9 +99,19 @@ public class DefaultBoardService implements BoardService {
     if (board.getAttachedFiles().size() > 0) {
       boardDao.insertBoardFiles(board);
 >>>>>>> byeongmin
+=======
+    <<<<<<< HEAD
+    if (board.getBoardAttachedFiles().size() > 0) {
+      boardDao.insertFiles(board);
+      =======
+          if (board.getAttachedFiles().size() > 0) {
+            boardDao.insertBoardFiles(board);
+            >>>>>>> byeongmin
+          }
+>>>>>>> Stashed changes
     }
-  }
 
+<<<<<<< Updated upstream
   @Override
 <<<<<<< HEAD
   public boolean update(Board board) throws Exception {
@@ -108,12 +119,74 @@ public class DefaultBoardService implements BoardService {
     if (boardDao.update(board) == 0) {
       return false;
     }
+=======
+    @Override
+    <<<<<<< HEAD
+    @Override
+    public boolean update(Board board) throws Exception {
+      // 1) 게시글 변경
+      if (boardDao.update(board) == 0) {
+        return false;
+      }
 
-    // 2) 첨부파일 추가
-    if (board.getBoardAttachedFiles().size() > 0) {
-      boardDao.insertFiles(board);
+      // 2) 첨부파일 추가
+      if (board.getBoardAttachedFiles().size() > 0) {
+        boardDao.insertFiles(board);
+      }
+
+      return true;
+      =======
+          @Override
+          public Board getBoard(int no) throws Exception {
+        return boardDao.findByBoardNo(no); 
+        >>>>>>> byeongmin
+      }
+
+      @Override
+      public List<Board> listBoard(int no) throws Exception {
+        return boardDao.findAllBoard(no);
+      }
+
+      @Transactional
+      @Override
+      public boolean deleteBoard(int no) throws Exception {
+        // 1) 첨부파일 삭제
+        boardDao.deleteBoardFiles(no);
+        // 2) 게시글 삭제
+        return boardDao.deleteBoard(no) > 0;
+      }
+
+      @Transactional
+      @Override
+      public boolean updateBoard(Board board) throws Exception {
+        // 1) 게시글 변경
+        if (boardDao.updateBoard(board) == 0) {
+          return false;
+        }
+        // 2) 첨부파일 추가
+        if (board.getAttachedFiles().size() > 0) {
+          boardDao.insertBoardFiles(board);
+        }
+
+        return true;
+      }
+
+      @Override
+      public AttachedFile getBoardAttachedFile(int no) throws Exception {
+        return boardDao.findBoardFileByNo(no);
+      }
+
+      @Override
+      public boolean deleteBoardAttachedFile(int fileNo) throws Exception {
+        return boardDao.deleteBoardFile(fileNo) > 0;
+      }
+
+      //////////
+>>>>>>> Stashed changes
+
     }
 
+<<<<<<< Updated upstream
     return true;
 =======
   public Board getBoard(int no) throws Exception {
@@ -164,6 +237,8 @@ public class DefaultBoardService implements BoardService {
 
 }
 
+=======
+>>>>>>> Stashed changes
 
 
 

@@ -28,6 +28,11 @@ public interface BoardDao {
 
   int deleteBoardFile(int fileNo);
 
+<<<<<<< Updated upstream
+=======
+  void deleteFilesByMemberBoards(int no);
+
+>>>>>>> Stashed changes
   //
 
   //  int insert(Board board);

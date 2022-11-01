@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @SpringBootApplication
 public class App {
 
+<<<<<<< Updated upstream
 <<<<<<< HEAD
     public static void main(String[] args) {
         System.out.println("Comehere 프로젝트");
@@ -29,10 +30,17 @@ public class App {
   }
 
 >>>>>>> byeongmin
+=======
+  public static void main(String[] args) {
+    System.out.println("Comehere 프로젝트");
+    SpringApplication.run(App.class, args);
+  }
+>>>>>>> Stashed changes
 
-    @GetMapping("/")
-    public String welcome() {
+  @GetMapping("/")
+  public String welcome() {
 
-        return "index";
-    }
+    return "index";
+  }
+
 }
