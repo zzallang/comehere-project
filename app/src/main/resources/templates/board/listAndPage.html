@@ -147,18 +147,25 @@
                     <td th:text="${board.createdDate}">2022-1-1</td>
                   </tr>
                 </table>
+                
+                  <!-- 페이징 시작 -->
                   <nav aria-label="Page navigation">
                     <ul class="pagination">
+                    
                       <li class="page-item" th:if="${pageMaker.prev}">
-                        <a class="page-link" href="listAndPage?page=${pageMaker.starPage-1}&no=1" aria-label="Previous">
-                          <!-- <span aria-hidden="true">&laquo;</span> -->
+                        <a class="page-link" th:href="@{listAndPage(pageMaker.startPage-1, no=${catenoInBoard.cateno})}" aria-label="Previous">
+                          <span aria-hidden="true">&laquo;</span>
                         </a>
                       </li>
+
                       <th:block th:each="pageNum: ${#numbers.sequence(pageMaker.startPage, pageMaker.endPage)}">
-                        <li class="page-item"><a class="page-link" th:href="@{listAndPage(no=1, page=${pageNum})}">1</a></li>
+                        <li class="page-item">
+                          <a class="page-link" th:href="@{listAndPage(page=${pageNum}, no=${catenoInBoard.cateno})}"><i th:text="${pageNum}"></i></a>
+                        </li>
                       </th:block>
+                      
                       <li class="page-item" th:if="${pageMaker.next && pageMaker.endPage >0}">
-                        <a class="page-link" href="#" aria-label="Next">
+                        <a class="page-link" th:href="@{listAndPage(page=${pageMaker.endPage+1}, no=${catenoInBoard.cateno})}" aria-label="Next">
                           <span aria-hidden="true">&raquo;</span>
                         </a>
                       </li>
@@ -263,7 +270,7 @@
       "use strict"
       window.onload = 
     	  function findCategory() {
-        var para = document.location.href.split("?no=");
+        var para = document.location.href.split("no=");
         console.log(para[1]);
         
         
@@ -289,6 +296,7 @@
             document.getElementById( 'cateConment' ).innerHTML = "지금이 바로 득템 기회! 핫딜 제품들을 공유할 수 있는 핫딜게시판입니다.";
             
         }
+        
       }
 
       </script>

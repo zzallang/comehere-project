@@ -222,13 +222,22 @@ public class BoardController {
 
     ModelAndView mav = new ModelAndView("board/listAndPage");
 
+    // 특정 게시판을 페이징하기위한 설정 
+    cri.setCatenoToPage(no);
+
     PageMaker pageMaker = new PageMaker();
     pageMaker.setCri(cri);
     pageMaker.setTotalCount(30);
 
+
+    // 게시글 카테고리 번호 Board객체에 담아서 map객체에 담을 준비 
+    Board catenoInBoard = new Board();
+    catenoInBoard.setCateno(no);
+
     List<Map<String,Object>> list = boardService.listAndPage(cri);
     mav.addObject("list", list);
     mav.addObject("pageMaker", pageMaker);
+    mav.addObject("catenoInBoard", catenoInBoard);
 
     return mav;
   }

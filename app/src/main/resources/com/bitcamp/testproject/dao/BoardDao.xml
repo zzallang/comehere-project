@@ -50,7 +50,7 @@
       bno desc
   </select>
   
-  <select id="findAllAndPage" resultType="hashMap" parameterType="hashMap">
+  <select id="findAllAndPage" resultType="hashMap" parameterType="criteria">
      <![CDATA[
 		    select
  		      b.bno no,
@@ -64,7 +64,7 @@
 		      join member m on b.mno = m.mno
 		      join board_category bc on b.cateno = bc.cateno
 		    where
-		      b.cateno = 1
+		      b.cateno = #{catenoToPage}
 		    order by 
 		      bno desc
 		    limit #{pagesStart}, #{perPageNum}

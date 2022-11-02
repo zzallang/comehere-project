@@ -78,4 +78,5 @@ public class PageMaker {
   public void setDisplayPageNum(int displayPageNum) {
     this.displayPageNum = displayPageNum;
   }
+
 }
