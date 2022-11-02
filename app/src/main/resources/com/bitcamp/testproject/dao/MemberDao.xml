@@ -61,11 +61,29 @@
 		where
 		name=#{name} and email=#{email}
 	</select>
+	
+	
+	 <select id="findPassword" resultMap="memberMap">
+    select
+    id
+    from
+    member
+    where
+    id=#{id} and email=#{email}
+  </select>
+	
+	
+	 <update id="findByPassword" parameterType="Member">
+    update member set
+    name=#{name},
+    email=#{email},
+    pwd=sha2(#{password},256)
+    where
+    id=#{id} and email=#{email}
+  </update>
 
 	<update id="update" parameterType="Member">
-		update app_member set
-		name=#{name},
-		email=#{email},
+		update member set
 		pwd=sha2(#{password},256)
 		where
 		mno=#{no}

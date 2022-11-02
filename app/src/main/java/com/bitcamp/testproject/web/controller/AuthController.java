@@ -71,7 +71,7 @@ public class AuthController {
     Member member = memberService.getId(name, email);
 
     if (name != null) {
-      session.setAttribute("loginMember", name); 
+      session.setAttribute("findId", name); 
     }
 
     ModelAndView mv = new ModelAndView("auth/findIdResult");
@@ -83,6 +83,26 @@ public class AuthController {
   public String findIdPassword() {
     return "auth/findPassword";
   }
+
+  @GetMapping("findByPassword")
+  public ModelAndView findByPassword(     
+      String id,
+      String email,
+      String SecCode, 
+      HttpServletResponse response,
+      HttpSession session) throws Exception {
+
+    Member member = memberService.get(id, email);
+
+    if (id != null) {
+      session.setAttribute("findPassword", id); 
+    }
+
+    ModelAndView mv = new ModelAndView("auth/newPassword");
+    mv.addObject("member", member);
+    return mv;
+  }
+
 
   @GetMapping("logout") 
   public String logout(HttpSession session) throws Exception {
