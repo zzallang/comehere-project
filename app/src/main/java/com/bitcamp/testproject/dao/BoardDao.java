@@ -1,9 +1,11 @@
 package com.bitcamp.testproject.dao;
 
 import java.util.List;
+import java.util.Map;
 import org.apache.ibatis.annotations.Mapper;
 import com.bitcamp.testproject.vo.AttachedFile;
 import com.bitcamp.testproject.vo.Board;
+import com.bitcamp.testproject.vo.Criteria;
 
 @Mapper
 public interface BoardDao {
@@ -27,6 +29,8 @@ public interface BoardDao {
   AttachedFile findFileByNo(int no);
 
   int deleteFile(int fileNo);
+
+  List<Map<String, Object>> findAllAndPage(Criteria cri);
 
   //
 

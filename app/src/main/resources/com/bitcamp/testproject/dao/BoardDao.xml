@@ -50,6 +50,27 @@
       bno desc
   </select>
   
+  <select id="findAllAndPage" resultType="hashMap" parameterType="hashMap">
+     <![CDATA[
+		    select
+ 		      b.bno no,
+		      b.title,
+		      m.name,
+		      b.cdt createdDate,
+		      b.vw_cnt viewCount,
+		      b.cateno
+		    from 
+		      board b
+		      join member m on b.mno = m.mno
+		      join board_category bc on b.cateno = bc.cateno
+		    where
+		      b.cateno = 1
+		    order by 
+		      bno desc
+		    limit #{pagesStart}, #{perPageNum}
+		  ]]>
+  </select>
+  
   <insert id="insert" parameterType="board"
           useGeneratedKeys="true" keyColumn="bno" keyProperty="no">
     insert into board(cateno,mno,title,cont) 

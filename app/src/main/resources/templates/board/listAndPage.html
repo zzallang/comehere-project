@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
     <head>
         <title>bitcamp</title>
         
@@ -137,27 +137,27 @@
                     <th>조회수</th>
                     <th>등록일</th>
                   </tr>
-                  <tr data-th-each="board : ${boards}">
-                    <td data-th-text="${board.no}">100</td>
+                  <tr th:each="board : ${list}">
+                    <td th:text="${board.no}">100</td>
                     <td><a href='detail?no=1'
-                        data-th-href="@{detail(no=${board.no})}"
-                        data-th-text="${board.title == ''} ? '(제목없음)' : ${board.title}">제목없음</a></td>
-                    <td data-th-text="${board.writer.name}">유길동</td>
-                    <td data-th-text="${board.viewCount}">17</td>
-                    <td data-th-text="${board.createdDate}">2022-1-1</td>
+                        th:href="@{detail(no=${board.no})}"
+                        th:text="${board.title == ''} ? '(제목없음)' : ${board.title}">제목없음</a></td>
+                    <!-- <td th:text="${board.writer.name}">유길동</td> -->
+                    <td th:text="${board.viewCount}">17</td>
+                    <td th:text="${board.createdDate}">2022-1-1</td>
                   </tr>
                 </table>
                   <nav aria-label="Page navigation">
                     <ul class="pagination">
-                      <li class="page-item" date-th-if="${pageMaker.prev}">
+                      <li class="page-item" th:if="${pageMaker.prev}">
                         <a class="page-link" href="listAndPage?page=${pageMaker.starPage-1}&no=1" aria-label="Previous">
                           <!-- <span aria-hidden="true">&laquo;</span> -->
                         </a>
                       </li>
-                      <th:block th:each="i: ${#numbers.sequence(${pageMaker.startPage}, ${pageMaker.endPage})}">
-                        <li class="page-item"><a class="page-link" href="#">1</a></li>
+                      <th:block th:each="pageNum: ${#numbers.sequence(pageMaker.startPage, pageMaker.endPage)}">
+                        <li class="page-item"><a class="page-link" th:href="@{listAndPage(no=1, page=${pageNum})}">1</a></li>
                       </th:block>
-                      <li class="page-item" date-th-if="${pageMaker.next && pageMaker.endPage >0}">
+                      <li class="page-item" th:if="${pageMaker.next && pageMaker.endPage >0}">
                         <a class="page-link" href="#" aria-label="Next">
                           <span aria-hidden="true">&raquo;</span>
                         </a>

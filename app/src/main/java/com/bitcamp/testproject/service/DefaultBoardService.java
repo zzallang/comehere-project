@@ -1,12 +1,14 @@
 package com.bitcamp.testproject.service;
 
 import java.util.List;
+import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import com.bitcamp.testproject.dao.BoardDao;
 import com.bitcamp.testproject.vo.AttachedFile;
 import com.bitcamp.testproject.vo.Board;
+import com.bitcamp.testproject.vo.Criteria;
 
 @Service
 public class DefaultBoardService implements BoardService {
@@ -98,6 +100,11 @@ public class DefaultBoardService implements BoardService {
   @Override
   public List<Board> list(int no) throws Exception {
     return boardDao.findAll(no);
+  }
+
+  @Override
+  public List<Map<String, Object>> listAndPage(Criteria cri) throws Exception {
+    return boardDao.findAllAndPage(cri);
   }
 
   @Transactional

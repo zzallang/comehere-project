@@ -3,6 +3,7 @@ package com.bitcamp.testproject.web.controller;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -14,9 +15,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 import com.bitcamp.testproject.service.BoardService;
 import com.bitcamp.testproject.vo.AttachedFile;
 import com.bitcamp.testproject.vo.Board;
+import com.bitcamp.testproject.vo.Criteria;
+import com.bitcamp.testproject.vo.PageMaker;
 
 @Controller
 @RequestMapping("/board/")
@@ -211,6 +215,22 @@ public class BoardController {
   @GetMapping("list")
   public void list(Model model, int no) throws Exception {
     model.addAttribute("boards", boardService.list(no));
+  }
+
+  @GetMapping("listAndPage")
+  public ModelAndView listAndPage(Criteria cri, int no) throws Exception {
+
+    ModelAndView mav = new ModelAndView("board/listAndPage");
+
+    PageMaker pageMaker = new PageMaker();
+    pageMaker.setCri(cri);
+    pageMaker.setTotalCount(30);
+
+    List<Map<String,Object>> list = boardService.listAndPage(cri);
+    mav.addObject("list", list);
+    mav.addObject("pageMaker", pageMaker);
+
+    return mav;
   }
 
   @GetMapping("delete")
