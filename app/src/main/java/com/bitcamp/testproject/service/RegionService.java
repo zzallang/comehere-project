@@ -9,8 +9,6 @@ public interface RegionService {
 
   List<Region> list();
 
-  List<Region> sidoList();
-
 }
 
 

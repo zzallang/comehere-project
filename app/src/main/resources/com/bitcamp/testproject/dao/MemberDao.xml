@@ -10,6 +10,10 @@
     <result column="name" property="name"/>
     <result column="email" property="email"/>
     <result column="cdt" property="createdDate"/>
+      <result column="nick" property="nickname"/>
+      <result column="bday" property="birthday"/>
+      <result column="sex" property="sex"/>
+      <result column="filepath" property="filepath"/>
   </resultMap>
 
   <insert id="insert" parameterType="member">
@@ -22,7 +26,11 @@
       mno,
       name,
       email,
-      cdt
+      cdt,
+      nick,
+      bday,
+      sex,
+      filepath
     from 
       member 
     where 
@@ -45,7 +53,11 @@
       mno,
       name,
       email,
-      cdt 
+      cdt,
+      nick,
+      bday,
+      sex,
+      filepath
     from 
       member 
     where 

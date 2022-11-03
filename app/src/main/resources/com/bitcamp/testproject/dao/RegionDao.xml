@@ -17,21 +17,8 @@
       sigu
     from
       region
-    order by rno
   </select>
 
-  <select id="sidoFindAll" resultMap="regionMap">
-    select
-    distinct
-      sido
-    from
-      region
-    order by rno
-  </select>
-
-
-
-  
 </mapper>
 
 
