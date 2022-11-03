@@ -4,6 +4,7 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.bitcamp.testproject.dao.MemberDao">
 
+
   <!-- 자바 객체의 프로퍼티와 컬럼 이름을 연결한다. -->
   <resultMap type="member" id="memberMap">
     <id column="mno" property="no"/>
@@ -16,10 +17,12 @@
       <result column="filepath" property="filepath"/>
   </resultMap>
 
-  <insert id="insert" parameterType="member">
-    insert into member(name,email,pwd) 
-    values(#{name},#{email},sha2(#{password},256))
-  </insert>
+
+
+	<insert id="insert" parameterType="member">
+		insert into member(name,email,pwd)
+		values(#{name},#{email},sha2(#{password},256))
+	</insert>
 
   <select id="findByNo" resultMap="memberMap">
     select 
@@ -48,35 +51,56 @@
       name
   </select>
 
-  <select id="findByEmailPassword" resultMap="memberMap">
-    select 
-      mno,
-      name,
-      email,
-      cdt,
-      nick,
-      bday,
-      sex,
-      filepath
-    from 
-      member 
-    where 
-      email=#{email} and pwd=sha2(#{password},256)
+	<select id="findByIdPassword" resultMap="memberMap">
+		select
+		name,
+		id,
+		from
+		member
+		where
+		id=#{id} and email=#{email}
+	</select>
+
+
+	<select id="findById" resultMap="memberMap">
+		select
+		id
+		from
+		member
+		where
+		name=#{name} and email=#{email}
+	</select>
+	
+	
+	 <select id="findPassword" resultMap="memberMap">
+    select
+    id
+    from
+    member
+    where
+    id=#{id} and email=#{email}
   </select>
-  
-  <update id="update" parameterType="Member">
-    update app_member set 
-      name=#{name}, 
-      email=#{email}, 
-      pwd=sha2(#{password},256) 
-    where 
-      mno=#{no}
+	
+	
+	 <update id="findByPassword" parameterType="Member">
+    update member set
+    name=#{name},
+    email=#{email},
+    where
+    id=#{id} and email=#{email}
   </update>
-  
-  <delete id="delete">
-    delete from member 
-    where mno=#{value}
-  </delete>
+
+	<update id="update" parameterType="Member">
+		update member set
+		pwd=sha2(#{password},256)
+		where
+		mno=#{no}
+	</update>
+
+	<delete id="delete">
+		delete from member
+		where mno=#{value}
+	</delete>
 
 </mapper>
 

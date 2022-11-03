@@ -24,6 +24,10 @@ public class MemberController {
   public void form() throws Exception {
   }
 
+  @GetMapping("findId")
+  public void findId() throws Exception {
+  }
+
   @PostMapping("add")
   public String add(Member member) throws Exception {
     memberService.add(member);

@@ -25,37 +25,84 @@ public class AuthController {
   }
 
   @GetMapping("form") 
-  public String form(@CookieValue(name="email",defaultValue="") String email, Model model) throws Exception {
-    model.addAttribute("email", email);
+  public String form(@CookieValue(name="id",defaultValue="") String id, Model model) throws Exception {
+    model.addAttribute("id", id);
     return "auth/form";
   }
 
   @PostMapping("login") 
   public ModelAndView login(
-      String email, 
+      String id,
       String password, 
-      String saveEmail, 
       HttpServletResponse response,
       HttpSession session) throws Exception {
-    System.out.println("확인용!!");
-    Member member = memberService.get(email, password);
+
+    Member member = memberService.get(id, password);
 
     if (member != null) {
       session.setAttribute("loginMember", member); 
     }
 
-    Cookie cookie = new Cookie("email", email); 
-    if (saveEmail == null) {
+    Cookie cookie = new Cookie("id", id); 
+    if (id == null) {
       cookie.setMaxAge(0); 
     } else {
       cookie.setMaxAge(60 * 60 * 24 * 7); // 7일
     }
     response.addCookie(cookie); 
-
     ModelAndView mv = new ModelAndView("auth/loginResult");
     mv.addObject("member", member);
     return mv;
   }
+
+
+  @GetMapping("findId")
+  public String findId() {
+    return "auth/findId";
+  }
+
+  @GetMapping("findById")
+  public ModelAndView findById(     
+      String name,
+      String email, 
+      HttpServletResponse response,
+      HttpSession session) throws Exception {
+
+    Member member = memberService.getId(name, email);
+
+    if (name != null) {
+      session.setAttribute("findId", name); 
+    }
+
+    ModelAndView mv = new ModelAndView("auth/findIdResult");
+    mv.addObject("member", member);
+    return mv;
+  }
+
+  @GetMapping("findPassword")
+  public String findIdPassword() {
+    return "auth/findPassword";
+  }
+
+  @GetMapping("findByPassword")
+  public ModelAndView findByPassword(     
+      String id,
+      String email,
+      String SecCode, 
+      HttpServletResponse response,
+      HttpSession session) throws Exception {
+
+    Member member = memberService.get(id, email);
+
+    if (id != null) {
+      session.setAttribute("findPassword", id); 
+    }
+
+    ModelAndView mv = new ModelAndView("auth/newPassword");
+    mv.addObject("member", member);
+    return mv;
+  }
+
 
   @GetMapping("logout") 
   public String logout(HttpSession session) throws Exception {
@@ -71,12 +118,11 @@ public class AuthController {
 
     return "auth/join";
   }
-  @PostMapping("add")
+  @PostMapping("addjoin")
   public String add(Member member) throws Exception {
     memberService.add(member);
     return "redirect:join";
   }
-
 
   @GetMapping("mypage-member")
   public String myPageMember(Member member) {
