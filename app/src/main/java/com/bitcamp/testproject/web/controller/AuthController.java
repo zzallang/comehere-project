@@ -55,16 +55,12 @@ public class AuthController {
     return mv;
   }
 
-<<<<<<< HEAD
 
-=======
->>>>>>> main
   @GetMapping("findId")
   public String findId() {
     return "auth/findId";
   }
 
-<<<<<<< HEAD
   @GetMapping("findById")
   public ModelAndView findById(     
       String name,
@@ -83,14 +79,11 @@ public class AuthController {
     return mv;
   }
 
-=======
->>>>>>> main
   @GetMapping("findPassword")
   public String findIdPassword() {
     return "auth/findPassword";
   }
 
-<<<<<<< HEAD
   @GetMapping("findByPassword")
   public ModelAndView findByPassword(     
       String id,
@@ -110,8 +103,6 @@ public class AuthController {
     return mv;
   }
 
-=======
->>>>>>> main
 
   @GetMapping("logout") 
   public String logout(HttpSession session) throws Exception {

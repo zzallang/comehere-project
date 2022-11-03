@@ -42,17 +42,14 @@
 
 	<select id="findByIdPassword" resultMap="memberMap">
 		select
-		mno,
 		name,
 		id,
-		cdt
 		from
 		member
 		where
-		id=#{id} and pwd=sha2(#{password},256)
+		id=#{id} and email=#{email}
 	</select>
 
-<<<<<<< HEAD
 
 	<select id="findById" resultMap="memberMap">
 		select
@@ -71,18 +68,6 @@
     member
     where
     id=#{id} and email=#{email}
-=======
-  <select id="findByIdPassword" resultMap="memberMap">
-    select 
-      mno,
-      name,
-      id,
-      cdt 
-    from 
-      member 
-    where 
-      id=#{id} and pwd=sha2(#{password},256)
->>>>>>> main
   </select>
 	
 	
@@ -90,7 +75,6 @@
     update member set
     name=#{name},
     email=#{email},
-    pwd=sha2(#{password},256)
     where
     id=#{id} and email=#{email}
   </update>
