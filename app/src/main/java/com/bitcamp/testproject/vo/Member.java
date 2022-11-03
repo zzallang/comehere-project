@@ -10,7 +10,7 @@ public class Member {
   private String email;
   private String password;
   private String nickname;
-  private int tel;
+  private String tel;
   private Date birthday;
   private boolean sex;
   private String filepath;
@@ -77,11 +77,11 @@ public class Member {
     this.nickname = nickname;
   }
 
-  public int getTel() {
+  public String getTel() {
     return tel;
   }
 
-  public void setTel(int tel) {
+  public void setTel(String tel) {
     this.tel = tel;
   }
 

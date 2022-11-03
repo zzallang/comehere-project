@@ -84,7 +84,7 @@ public class AuthController {
   @PostMapping("addjoin")
   public String add(Member member) throws Exception {
     memberService.add(member);
-    return "redirect:join";
+    return "redirect:form";
   }
 
   @GetMapping("mypage-member")

@@ -88,7 +88,7 @@
                           </div>
                         </div> <br/>
                           <div class="join_menu">전화번호</div>
-                      <input type="text" class="phoneNumber" placeholder="(-) 제외 입력" name="tel" maxlength="13"><br/>
+                      <input type="text" class="phoneNumber" placeholder="(-) 제외 입력" name="tel" required pattern="[0-9]{2,3}-[0-9]{3,4}-[0-9]{4}" maxlength="13"><br/>
                         <div class="join_menu">이메일</div>
                       <input type="email" id= "join_menu_check" class="email-bt2" placeholder="이메일" name="email" > 
                           <span class=골뱅이>@</span>
@@ -193,7 +193,8 @@
                         <option value="러닝">러닝</option>
                         <option value="사이클">사이클</option>
                       </select><br />
-                      <div class="send_bt"> <button type="submit">회원가입</button></div>
+                      <!-- <div class="send_bt"> <button type="submit">회원가입</button></div> -->
+                      <div class="send_bt"><a href="../auth/form">회원가입</a></div>
                     </form>
                   </div>
                 </div>
@@ -230,7 +231,7 @@
             <script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
             <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
             <script>
-/*             $(document).on("keyup", ".phoneNumber", function () {
+             $(document).on("keyup", ".phoneNumber", function () {
               $(this).val(
                 $(this)
                   .val()
@@ -241,14 +242,8 @@
                   )
                   .replace("—", "-")
               );
-            }); */
+            });
             
-            
-              function joinInfoSubmit() {
-                console.log("???");
-                var form = document.getElementById("joinForm");
-                form.submit();
-              }
             </script>
         </body>
 
