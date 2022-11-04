@@ -39,7 +39,7 @@ public class DefaultMemberService implements MemberService {
   }
 
   @Override
-  public Member get(String id, String email, String SecCode) throws Exception {
+  public Member get(String id, String email, int SecCode) throws Exception {
     return memberDao.findByPassword(id, email, SecCode);
   }
 
