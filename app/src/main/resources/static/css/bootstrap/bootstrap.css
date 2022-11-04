@@ -2556,6 +2556,7 @@ textarea.form-control-lg {
   flex-wrap: wrap;
   align-items: stretch;
   width: 100%;
+  height: 30px;
 }
 .input-group > .form-control,
 .input-group > .form-select,
@@ -4591,8 +4592,7 @@ textarea.form-control-lg {
   --bs-pagination-disabled-bg: #fff;
   --bs-pagination-disabled-border-color: #dee2e6;
   display: flex;
-  padding-left: 40%;
-  padding-top: 30px;
+  padding-left: 0;
   list-style: none;
 
 }

@@ -18,7 +18,7 @@ public interface BoardDao {
 
   Board findByNo(int no);
 
-  List<Board> findAll(int no);
+  //  List<Board> findAll(int no);
 
   int deleteFiles(int boardNo);
 
@@ -30,7 +30,9 @@ public interface BoardDao {
 
   int deleteFile(int fileNo);
 
-  List<Map<String, Object>> findAllAndPage(Criteria cri);
+  List<Map<String, Object>> findAll(Criteria cri);
+
+  int findListTotalCount(int no);
 
   //
 

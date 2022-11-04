@@ -149,6 +149,7 @@
                       <th>작성자</th>
                       <th>조회수</th>
                       <th>등록일</th>
+                      <th>썸네일</th>
                     </tr>
                     <tr th:each="board : ${list}">
                       <td th:text="${board.no}">100</td>
@@ -157,7 +158,10 @@
                           th:text="${board.title == ''} ? '(제목없음)' : ${board.title}">제목없음</a></td>
                       <td th:text="${board.writer.name}">유길동</td>
                       <td th:text="${board.viewCount}">17</td>
-                      <td th:text="${board.createdDate}">2022-1-1</td>
+                      <td th:text="${board.createdDate}">0000-1-1</td>
+                      <td th:text="${board.path}">0000-1-1</td>
+                      <div th:if="${board.path != null}">
+                      <img th:src="@{'http://localhost:8888/app/board/files/' + ${board.path}}" alt="첨부이미지" /></div>                  
                     </tr>
                   </table>
                   <!-- 게시글 목록 끝 -->

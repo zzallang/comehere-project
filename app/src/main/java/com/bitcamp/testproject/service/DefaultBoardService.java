@@ -86,10 +86,12 @@ public class DefaultBoardService implements BoardService {
     if (boardDao.insert(board) == 0) {
       throw new Exception("게시글 등록 실패!");
     }
-    // 2) 첨부파일 등록
+
+    //  2) 첨부파일 등록
     if (board.getAttachedFiles().size() > 0) {
       boardDao.insertFiles(board);
     }
+
   }
 
   @Override
@@ -97,14 +99,19 @@ public class DefaultBoardService implements BoardService {
     return boardDao.findByNo(no); 
   }
 
+  //  @Override
+  //  public List<Board> list(int no) throws Exception {
+  //    return boardDao.findAll(no);
+  //  }
+
   @Override
-  public List<Board> list(int no) throws Exception {
-    return boardDao.findAll(no);
+  public List<Map<String, Object>> list(Criteria cri) throws Exception {
+    return boardDao.findAll(cri);
   }
 
   @Override
-  public List<Map<String, Object>> listAndPage(Criteria cri) throws Exception {
-    return boardDao.findAllAndPage(cri);
+  public int countBoardListTotal(int no) {
+    return boardDao.findListTotalCount(no);
   }
 
   @Transactional

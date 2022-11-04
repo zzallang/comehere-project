@@ -45,7 +45,7 @@
                 <tr>
                     <th>내용</th>
                      <td>
-                        <textarea name='content'>내용</textarea>
+                        <div name='content' data-th-utext="${board.content}">내용</div>
                     </td> 
                 </tr>
                 <tr>
@@ -117,14 +117,5 @@
             </div> 
             <!-- 댓글 블록 끝 -->
 
-        <script>
-            $(document).ready(function () {
-            	  $('textarea[name=content]').html('[[${board.content}]]');
-                $('textarea[name=content]').summernote({toolbar:false,
-                		minHeight : 1000,
-                		width : 1100});
-                $('textarea[name=content]').summernote('disable');
-            });
-        </script> 
     </body>
 </html>

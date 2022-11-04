@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<html lang="ko">
     <head>
         <title>bitcamp</title>
         
@@ -137,35 +137,28 @@
                     <th>조회수</th>
                     <th>등록일</th>
                   </tr>
-                  <tr th:each="board : ${list}">
-                    <td th:text="${board.no}">100</td>
+                  <tr data-th-each="board : ${boards}">
+                    <td data-th-text="${board.no}">100</td>
                     <td><a href='detail?no=1'
-                        th:href="@{detail(no=${board.no})}"
-                        th:text="${board.title == ''} ? '(제목없음)' : ${board.title}">제목없음</a></td>
-                    <!-- <td th:text="${board.writer.name}">유길동</td> -->
-                    <td th:text="${board.viewCount}">17</td>
-                    <td th:text="${board.createdDate}">2022-1-1</td>
+                        data-th-href="@{detail(no=${board.no})}"
+                        data-th-text="${board.title == ''} ? '(제목없음)' : ${board.title}">제목없음</a></td>
+                    <td data-th-text="${board.writer.name}">유길동</td>
+                    <td data-th-text="${board.viewCount}">17</td>
+                    <td data-th-text="${board.createdDate}">2022-1-1</td>
                   </tr>
                 </table>
-                
-                  <!-- 페이징 시작 -->
                   <nav aria-label="Page navigation">
                     <ul class="pagination">
-                    
-                      <li class="page-item" th:if="${pageMaker.prev}">
-                        <a class="page-link" th:href="@{listAndPage(pageMaker.startPage-1, no=${catenoInBoard.cateno})}" aria-label="Previous">
-                          <span aria-hidden="true">&laquo;</span>
+                      <li class="page-item" date-th-if="${pageMaker.prev}">
+                        <a class="page-link" href="listAndPage?page=${pageMaker.starPage-1}&no=1" aria-label="Previous">
+                          <!-- <span aria-hidden="true">&laquo;</span> -->
                         </a>
                       </li>
-
-                      <th:block th:each="pageNum: ${#numbers.sequence(pageMaker.startPage, pageMaker.endPage)}">
-                        <li class="page-item">
-                          <a class="page-link" th:href="@{listAndPage(page=${pageNum}, no=${catenoInBoard.cateno})}"><i th:text="${pageNum}"></i></a>
-                        </li>
+                      <th:block th:each="i: ${#numbers.sequence(${pageMaker.startPage}, ${pageMaker.endPage})}">
+                        <li class="page-item"><a class="page-link" href="#">1</a></li>
                       </th:block>
-                      
-                      <li class="page-item" th:if="${pageMaker.next && pageMaker.endPage >0}">
-                        <a class="page-link" th:href="@{listAndPage(page=${pageMaker.endPage+1}, no=${catenoInBoard.cateno})}" aria-label="Next">
+                      <li class="page-item" date-th-if="${pageMaker.next && pageMaker.endPage >0}">
+                        <a class="page-link" href="#" aria-label="Next">
                           <span aria-hidden="true">&raquo;</span>
                         </a>
                       </li>
@@ -270,7 +263,7 @@
       "use strict"
       window.onload = 
     	  function findCategory() {
-        var para = document.location.href.split("no=");
+        var para = document.location.href.split("?no=");
         console.log(para[1]);
         
         
@@ -296,7 +289,6 @@
             document.getElementById( 'cateConment' ).innerHTML = "지금이 바로 득템 기회! 핫딜 제품들을 공유할 수 있는 핫딜게시판입니다.";
             
         }
-        
       }
 
       </script>

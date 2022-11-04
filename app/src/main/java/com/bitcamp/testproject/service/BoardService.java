@@ -30,7 +30,7 @@ public interface BoardService {
 
   Board get(int no) throws Exception;
 
-  List<Board> list(int no) throws Exception;
+  //  List<Board> list(int no) throws Exception;
 
   boolean delete(int no) throws Exception;
 
@@ -40,7 +40,9 @@ public interface BoardService {
 
   boolean deleteAttachedFile(int fileNo) throws Exception;
 
-  List<Map<String, Object>> listAndPage(Criteria cri) throws Exception;
+  List<Map<String, Object>> list(Criteria cri) throws Exception;
+
+  int countBoardListTotal(int no);
 
 
 
