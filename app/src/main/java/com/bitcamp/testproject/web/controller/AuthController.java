@@ -3,6 +3,7 @@ package com.bitcamp.testproject.web.controller;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CookieValue;
@@ -10,6 +11,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+import com.bitcamp.testproject.dao.MailDao;
+import com.bitcamp.testproject.service.EmailService;
 import com.bitcamp.testproject.service.MemberService;
 import com.bitcamp.testproject.vo.Member;
 
@@ -17,7 +20,10 @@ import com.bitcamp.testproject.vo.Member;
 @RequestMapping("/auth/")
 public class AuthController {
 
+  @Autowired
   MemberService memberService;
+  @Autowired
+  EmailService emailService;
 
   public AuthController(MemberService memberService) {
     System.out.println("AuthController() 호출됨!");
@@ -84,21 +90,33 @@ public class AuthController {
     return "auth/findPassword";
   }
 
+  @GetMapping("sendMail")
+  public String sendMail() {
+    return "auth/sendMail";
+  }
+
+  @PostMapping("mail/send")
+  public String send(MailDao mailDao) {
+    emailService.sendSimpleMessage(mailDao);
+    return "auth/sendMail";
+  }
+
+
   @GetMapping("findByPassword")
   public ModelAndView findByPassword(     
       String id,
       String email,
-      String SecCode, 
+      String secCode, 
       HttpServletResponse response,
       HttpSession session) throws Exception {
 
-    Member member = memberService.get(id, email);
+    Member member = memberService.get(id, email, secCode);
 
     if (id != null) {
-      session.setAttribute("findPassword", id); 
+      session.setAttribute("findByPassword", id); 
     }
 
-    ModelAndView mv = new ModelAndView("auth/newPassword");
+    ModelAndView mv = new ModelAndView("auth/findPasswordResult");
     mv.addObject("member", member);
     return mv;
   }
