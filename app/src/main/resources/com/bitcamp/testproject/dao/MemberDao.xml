@@ -42,12 +42,11 @@
 
 	<select id="findByIdPassword" resultMap="memberMap">
 		select
-		name,
-		id,
+		name
 		from
 		member
 		where
-		id=#{id} and email=#{email}
+		id=#{id} and pwd=sha2(#{password},256)
 	</select>
 
 

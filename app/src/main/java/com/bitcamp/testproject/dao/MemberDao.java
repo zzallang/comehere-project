@@ -34,7 +34,7 @@ public interface MemberDao {
   Member findByPassword(
       @Param("id") String id, 
       @Param("email") String email,
-      @Param("SecCode") int SecCode);
+      @Param("SecCode") String SecCode);
 
 }
 
