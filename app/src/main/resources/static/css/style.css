@@ -236,11 +236,6 @@ button {
     width: 25%;
     float: left;
 }
-.main_logo {
-    max-width: 10%;
-    height: auto;
-    margin: 20px 50px 20px 30px;
-}
 .navbar-light .navbar-nav .nav-link {
     color: #111111;
     font-size: 18px;
@@ -257,24 +252,24 @@ button {
     padding-top: 10px;
 }
 
-.login-bt{
+.search_icon{
     width: 12%;
     float: left;
 }
-.login-bt ul{
-    display: table;
-    list-style: none;
-    text-align: center;
+.search_icon ul{
+    margin: 0px;
     padding: 0px;
 }
-.login-bt li {
-    float:left; 
-    font-size: 18px
-}
-.login-bt li a{
+.search_icon li {
+    float: left;
+    padding-left: 20px;
+    font-size: 18px;
     color: #000;
 }
-.login-bt li a:hover{
+.search_icon li a{
+    color: #000;
+}
+.search_icon li a:hover{
     color: #ffb607;
 }
 .navbar-expand-lg .navbar-nav .nav-link {
@@ -837,7 +832,7 @@ a:hover {
     float: left;
     background-image: url(../images/contact-bg.png);
     height: auto;
-    background-size: cover;
+    background-size: 100%;
     background-repeat: no-repeat;
     padding-bottom: 90px;
 }
@@ -1023,128 +1018,13 @@ textarea#comment::placeholder {
     color: #fdbe28;
 }
 
-/* 수정 css */
-.contact_section1 {
-  width: 100%;
-  float: left;
-  height: auto;
-  background-size: 100%;
-  background-repeat: no-repeat;
-  padding-bottom: 90px;
-}
-.contact_text {
-  width: 100%;
-  margin: 20px;
-  float: center;
-  font-size: 36px;
-  color: #313131;
-}
-/* .col-md-6 { */
-/*   margin-left: 20vw; */
-/*   margin-right: 20vw; */
-/* } */
-.send_bt {
-  margin-left: 30%;
-}
-.send_bt a {
-  border: 2px solid #000000;
-}
-.email-bt {
-  width: 500px;
-}
 
-.email-bt2 {
-  color: #989696;
-  width: 236px; 
-  height : 55px; 
-  font-size : 18px;
-  padding: 15px;
-  margin-top: 30px;
-  border: 0px;
-  border-radius: 5px;
-  height: 55px;
-  font-size: 18px;
-}
-.email-bt3 {
-  color: #989696;
-  width: 236px; 
-  height : 55px; 
-  font-size : 18px;
-  padding: 15px;
-  margin-top: 30px;
-  margin-left: 24px;
-  border: 0px;
-  border-radius: 5px;
-  height: 55px;
-  font-size: 18px;
-}
-  .phoneNumber {
-  color: #989696;
-  width: 500px; 
-  height : 55px; 
-  font-size : 18px;
-  padding: 15px;
-  margin-top: 30px;
-  border: 0px;
-  border-radius: 5px;
-  height: 55px;
-  font-size: 18px;
-}
-.골뱅이 {
-  color: white;
-  font-size: 20px;
-}
-.cross-check-bt {
-  width: 10%;
-  float: left;
-  font-size: 12px;
-  color: #989696;
-  text-align: center;
-  border: 2px solid #ffc107;
-}
-.infoMenu {
-display: table;
-list-style: none;
-text-align: center;
-font-size: 20px;
-margin-left: auto;
-margin-right: auto;
-}
-.infoMenuOn {
-  float:left;
-  margin-left: 30px;
-  margin-right: 10px;
-  margin-bottom: 50px;
-}
-.row {
-  justify-content: center;
-}
-.gender {
-  font-size:16px;
-}
-.gender-bt {
-  width: 30px;
-  height: 20px;
-  margin-top: 20px;
-}
-.join_menu {
-  font-size: 18px;
-  margin-top: 20px;
-  margin-bottom: -20px;
-}
-.join_gender {
-  margin-left: 15px;
-}
-.input-group {
-  width: 90%;
-  float: left;
-}
-.btn btn-outline-secondary {
-  margin-bottom: 5px;
-}
-#join_menu_check{
-  margin-bottom: 10px;
-}
+
+
+
+
+
+
 
 
 
