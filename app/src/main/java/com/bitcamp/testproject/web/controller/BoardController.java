@@ -161,6 +161,18 @@ public class BoardController {
   //    return "redirect:detail?no=" + board.getNo();
   //  }
 
+  @GetMapping("main")
+  public Model main(Model model) {
+
+    // 인기 게시글 가져오기
+    List<Map<String,Object>> list = boardService.bestList();
+
+    // 챌린지 게시글 가져오기
+
+    model.addAttribute("bestList", list);
+
+    return model;
+  }
 
   //  제동 메서드 추가 
   @PostMapping("add") 

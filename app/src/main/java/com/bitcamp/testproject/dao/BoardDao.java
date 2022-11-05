@@ -34,6 +34,8 @@ public interface BoardDao {
 
   int findListTotalCount(int no);
 
+  List<Map<String, Object>> findBestList();
+
   //
 
   //  int insert(Board board);

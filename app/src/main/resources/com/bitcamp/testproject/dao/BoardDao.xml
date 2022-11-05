@@ -73,6 +73,23 @@
       bno desc
   </select>
    -->
+   
+   <select id="findBestList" resultMap="boardMap">
+        select
+          b.bno,
+          b.title,
+          m.name,
+          b.cdt,
+          b.vw_cnt,
+          b.cateno
+        from 
+          board b
+          join member m on b.mno = m.mno
+          join board_category bc on b.cateno = bc.cateno
+        order by 
+          vw_cnt desc
+        limit 0, 10;
+  </select>
   
   <select id="findAll" resultMap="boardMap" parameterType="criteria">
      <![CDATA[

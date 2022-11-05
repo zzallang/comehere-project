@@ -44,6 +44,8 @@ public interface BoardService {
 
   int countBoardListTotal(int no);
 
+  List<Map<String, Object>> bestList();
+
 
 
   ////////////

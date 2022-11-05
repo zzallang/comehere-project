@@ -79,6 +79,12 @@ public class DefaultBoardService implements BoardService {
 
 
   //  제동 소스
+
+  @Override
+  public List<Map<String, Object>> bestList() {
+    return boardDao.findBestList();
+  }
+
   @Transactional
   @Override
   public void add(Board board) throws Exception {
