@@ -1,12 +1,14 @@
 package com.bitcamp.testproject.service;
 
 import java.util.List;
+import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import com.bitcamp.testproject.dao.BoardDao;
 import com.bitcamp.testproject.vo.AttachedFile;
 import com.bitcamp.testproject.vo.Board;
+import com.bitcamp.testproject.vo.Criteria;
 
 @Service
 public class DefaultBoardService implements BoardService {
@@ -77,6 +79,18 @@ public class DefaultBoardService implements BoardService {
 
 
   //  제동 소스
+
+  @Override
+  public List<Map<String, Object>> bestList() {
+    return boardDao.findBestList();
+  }
+
+  @Override
+  public List<Map<String, Object>> clgList() {
+    return boardDao.findClgList();
+  }
+
+
   @Transactional
   @Override
   public void add(Board board) throws Exception {
@@ -84,10 +98,12 @@ public class DefaultBoardService implements BoardService {
     if (boardDao.insert(board) == 0) {
       throw new Exception("게시글 등록 실패!");
     }
-    // 2) 첨부파일 등록
+
+    //  2) 첨부파일 등록
     if (board.getAttachedFiles().size() > 0) {
       boardDao.insertFiles(board);
     }
+
   }
 
   @Override
@@ -95,9 +111,19 @@ public class DefaultBoardService implements BoardService {
     return boardDao.findByNo(no); 
   }
 
+  //  @Override
+  //  public List<Board> list(int no) throws Exception {
+  //    return boardDao.findAll(no);
+  //  }
+
   @Override
-  public List<Board> list(int no) throws Exception {
-    return boardDao.findAll(no);
+  public List<Map<String, Object>> list(Criteria cri) throws Exception {
+    return boardDao.findAll(cri);
+  }
+
+  @Override
+  public int countBoardListTotal(int no) {
+    return boardDao.findListTotalCount(no);
   }
 
   @Transactional

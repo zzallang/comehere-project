@@ -13,7 +13,6 @@ import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -116,10 +115,10 @@ public class MypageController {
     return attachedFiles;
   }
 
-  @GetMapping("list")
-  public void list(Model model, int no) throws Exception {
-    model.addAttribute("boards", boardService.list(no));
-  }
+  //  @GetMapping("list")
+  //  public void list(Model model, int no) throws Exception {
+  //    model.addAttribute("boards", boardService.list(no));
+  //  }
 
   @GetMapping("detail")
   public Map detail(int no) throws Exception {

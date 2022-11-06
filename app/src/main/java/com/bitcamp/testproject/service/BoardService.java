@@ -1,8 +1,10 @@
 package com.bitcamp.testproject.service;
 
 import java.util.List;
+import java.util.Map;
 import com.bitcamp.testproject.vo.AttachedFile;
 import com.bitcamp.testproject.vo.Board;
+import com.bitcamp.testproject.vo.Criteria;
 
 // 비즈니스 로직을 수행하는 객체의 사용규칙(호출규칙)
 //
@@ -28,7 +30,7 @@ public interface BoardService {
 
   Board get(int no) throws Exception;
 
-  List<Board> list(int no) throws Exception;
+  //  List<Board> list(int no) throws Exception;
 
   boolean delete(int no) throws Exception;
 
@@ -37,6 +39,16 @@ public interface BoardService {
   AttachedFile getAttachedFile(int no) throws Exception;
 
   boolean deleteAttachedFile(int fileNo) throws Exception;
+
+  List<Map<String, Object>> list(Criteria cri) throws Exception;
+
+  int countBoardListTotal(int no);
+
+  List<Map<String, Object>> bestList();
+
+  List<Map<String, Object>> clgList();
+
+
 
   ////////////
 }

@@ -12,11 +12,12 @@
     <result column="cont" property="content"/>
     <result column="cdt" property="createdDate"/>
     <result column="vw_cnt" property="viewCount"/>
+    <result column="filepath" property="path"/>
     
     <association property="writer" javaType="member">
       <id column="mno" property="no"/>
       <result column="name" property="name"/>
-      
+       
     </association>
     
     <collection property="attachedFiles" ofType="attachedFile">
@@ -26,12 +27,34 @@
     </collection>
   </resultMap>
   
+  <!-- hashmap resultMap으로.. -->
+  <resultMap type="hashMap" id="hashBoardMap">
+    <id column="bno" property="no"/>
+    <result column="cateno" property="cateno"/>
+    <result column="title" property="title"/>
+    <result column="act" property="active"/>
+    <result column="cont" property="content"/>
+    <result column="cdt" property="createdDate"/>
+    <result column="vw_cnt" property="viewCount"/>
+    
+    <association property="writer" javaType="member">
+      <id column="mno" property="no"/>
+      <result column="name" property="name"/>
+      
+    </association>
+  
+    
+  </resultMap>
+  <!--  -->
+  
+  
   <resultMap type="attachedFile" id="attachedFileMap">
     <id column="bfno" property="no"/>
     <result column="filepath" property="filepath"/>
     <result column="bno" property="objectNo"/>
   </resultMap>
   
+<!--   
   <select id="findAll" resultMap="boardMap">
     select
       b.bno,
@@ -48,6 +71,78 @@
       b.cateno = #{value}
     order by 
       bno desc
+  </select>
+   -->
+   
+   <select id="findBestList" resultMap="boardMap">
+        select
+          b.bno,
+          b.title,
+          m.name,
+          b.vw_cnt,
+          b.cateno
+        from 
+          board b
+          join member m on b.mno = m.mno
+          join board_category bc on b.cateno = bc.cateno
+        order by 
+          vw_cnt desc
+        limit 0, 10;
+  </select>
+  
+   <select id="findClgList" resultMap="boardMap">
+      select
+        b.bno,
+        b.title,
+        m.name,
+        b.cdt,
+        bf.filepath
+      from 
+        board b
+        join member m on b.mno = m.mno
+        join board_category bc on b.cateno = bc.cateno
+        left join board_file bf on b.bno = bf.bno
+      where
+        b.cateno = 3
+      group by
+        b.bno
+      order by 
+        b.bno desc
+      limit 0, 6
+  </select>
+  
+  <select id="findAll" resultMap="boardMap" parameterType="criteria">
+     <![CDATA[
+		    select
+ 		      b.bno,
+		      b.title,
+		      m.name,
+		      b.cdt,
+		      b.vw_cnt,
+		      b.cateno,
+		      bf.filepath
+		    from 
+		      board b
+		      join member m on b.mno = m.mno
+		      join board_category bc on b.cateno = bc.cateno
+		      left join board_file bf on b.bno = bf.bno
+		    where
+		      b.cateno = #{catenoToPage}
+        group by
+          b.bno
+		    order by 
+		      bno desc
+		    limit #{pagesStart}, #{perPageNum}
+		  ]]>
+  </select>
+  
+  <select id="findListTotalCount" resultType="Integer">
+    select 
+      count(*) 
+    from 
+      board 
+    where 
+      cateno = #{value}
   </select>
   
   <insert id="insert" parameterType="board"
@@ -73,7 +168,6 @@
       m.name,
       b.cdt,
       b.vw_cnt,
-      bf.bfno,
       bf.filepath
     from 
       board b

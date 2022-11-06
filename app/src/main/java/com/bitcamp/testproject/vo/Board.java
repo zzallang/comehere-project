@@ -13,6 +13,7 @@ public class Board {
   private String content;
   private Date createdDate;
   private int viewCount;
+  private String path;
 
   // 첨부파일 정보를 저장할 필드
   private List<AttachedFile> attachedFiles;
@@ -96,6 +97,13 @@ public class Board {
     this.attachedFiles = attachedFiles;
   }
 
+  public String getPath() {
+    return path;
+  }
+
+  public void setPath(String path) {
+    this.path = path;
+  }
 
 
 }
