@@ -29,6 +29,20 @@ public interface MemberDao {
       @Param("id") String id, 
       @Param("password") String password);
 
+<<<<<<< HEAD
+=======
+
+  Member findById(
+      @Param("name") String name, 
+      @Param("email") String email);
+
+
+  Member findByPassword(
+      @Param("id") String id, 
+      @Param("email") String email,
+      @Param("SecCode") String SecCode);
+
+>>>>>>> main
 }
 
 

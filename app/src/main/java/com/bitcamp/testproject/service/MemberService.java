@@ -15,6 +15,10 @@ public interface MemberService {
 
   Member get(String id, String password) throws Exception;
 
+  Member get(String id, String email, String secCode) throws Exception;
+
+  Member getId(String name, String email) throws Exception;
+
   boolean delete(int no) throws Exception;
 
   List<Member> list() throws Exception;
