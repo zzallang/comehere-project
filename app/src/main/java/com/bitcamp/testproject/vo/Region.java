@@ -1,14 +1,22 @@
 package com.bitcamp.testproject.vo;
 
+import java.util.List;
+
 public class Region {
 
   private int no;
-  public String sido;
+  private String sido;
   private String sigu;
+  private List<FavoriteRegion> favoriteRegion;
+
+
   @Override
   public String toString() {
-    return "Region [no=" + no + ", sido=" + sido + ", sigu=" + sigu + "]";
+    return "Region [no=" + no + ", sido=" + sido + ", sigu=" + sigu + ", favoriteRegion="
+        + favoriteRegion + "]";
   }
+
+
   public int getNo() {
     return no;
   }
@@ -27,6 +35,13 @@ public class Region {
   public void setSigu(String sigu) {
     this.sigu = sigu;
   }
+  public List<FavoriteRegion> getFavoriteRegion() {
+    return favoriteRegion;
+  }
+  public void setFavoriteRegion(List<FavoriteRegion> favoriteRegion) {
+    this.favoriteRegion = favoriteRegion;
+  }
+
 
 
 

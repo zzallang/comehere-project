@@ -3,6 +3,7 @@ package com.bitcamp.testproject.web.controller;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CookieValue;
@@ -17,12 +18,8 @@ import com.bitcamp.testproject.vo.Member;
 @RequestMapping("/auth/")
 public class AuthController {
 
+  @Autowired
   MemberService memberService;
-
-  public AuthController(MemberService memberService) {
-    System.out.println("AuthController() 호출됨!");
-    this.memberService = memberService;
-  }
 
   @GetMapping("form") 
   public String form(@CookieValue(name="id",defaultValue="") String id, Model model) throws Exception {
@@ -74,24 +71,13 @@ public class AuthController {
   }
 
 
-  // 은지
-  @GetMapping("join")
-  public String form(Model model) throws Exception {
-    model.addAttribute("data", "join page");
+  //  // 아이디 중복 체크 확인
+  //  @PostMapping("id-check")
+  //  @ResponseBody
+  //  public String idCheck(Member member) throws Exception {
+  //    return memberService.checkId(member);
+  //  }
 
-    return "auth/join";
-  }
-  @PostMapping("addjoin")
-  public String add(Member member) throws Exception {
-    memberService.add(member);
-    return "redirect:form";
-  }
-
-  @GetMapping("mypage-member")
-  public String myPageMember(Member member) {
-
-    return "myPageMember";
-  }
 
 
 }

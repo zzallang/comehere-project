@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+   <head>
+      <!-- basic -->
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <!-- mobile metas -->
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+      <!-- site metas -->
+      <title>Contact</title>
+      <meta name="keywords" content="">
+      <meta name="description" content="">
+      <meta name="author" content="">
+      <!-- bootstrap css -->
+      <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
+      <!-- style css -->
+      <link rel="stylesheet" type="text/css" href="../css/style.css">
+      <!-- Responsive-->
+      <link rel="stylesheet" href="../css/responsive.css">
+      <!-- fevicon -->
+      <link rel="icon" href="../images/fevicon.png" type="image/gif" />
+      <!-- Scrollbar Custom CSS -->
+      <link rel="stylesheet" href="../css/jquery.mCustomScrollbar.min.css">
+      <!-- Tweaks for older IEs-->
+      <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+      <!-- owl stylesheets --> 
+      <link rel="stylesheet" href="../css/owl.carousel.min.css">
+      <link rel="stylesheet" href="../css/owl.theme.default.min.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
+      <style>
+        .row_party {
+          width: 1200px;
+        }
+        
+        .col-md-6_party_wrap {
+          flex: 0 0 25%;
+            padding: 5px;
+          overflow: hidden;
+        }
+        
+        .col-md-6_party {
+          padding: 5px;
+          border: 1px solid gray;
+        }
+        
+        .temper_text_party {
+            width: 100%;
+            float: left;
+            font-size: medium;
+            color: #fabb25;
+            text-transform: uppercase;
+            font-weight: bold;
+            padding-top: 20px;
+        }
+        
+        .container_main_party {
+          position: relative;
+          width: 100%;
+          max-width: 100%;
+          float: left;
+        }
+        
+        
+        .dololr_text_region {
+          float: left;
+          color: #121111;
+          margin-left: 0px;
+          margin-top: 0px;
+          margin-bottom: 5px;
+          margin-right: 5px;
+          
+          font-size: x-small;
+          
+          border: 1px solid #fabb25;
+          border-radius: 5px;
+          padding-left: 5px;
+          padding-right: 5px;
+        }
+        
+        .dololr_text_sports {  
+          float: left;
+          color: #121111;
+          margin-left: 0px;
+          margin-top: 0px;
+          margin-bottom: 5px;
+          margin-right: 5px;
+          
+            font-size: x-small;
+          
+          
+          border: 1px solid #fabb25;
+          border-radius: 5px;
+          padding-left: 5px;
+          padding-right: 5px;
+        }
+        
+        .dololr_text_datetime {
+          float: right;
+          color: #121111;
+          margin-left: 0px;
+          margin-top: 0px;
+        }
+        
+        .dololr_text_party {
+          width: 100%;
+          float: left;
+          color: #121111;
+          margin-left: 0px;
+          margin-top: 0px;
+          margin-bottom: 0px;
+        }
+        
+        .party_search {
+            width: 100%;
+            float: left;
+            margin-left: 0px;
+            margin-top: 10px;
+        }
+        
+        .party_search_condition {
+            min-width: 1200px;
+          
+            height: 100px;
+            float: left;
+            margin-left: 0px;
+            margin-top: 10px;
+        }
+        
+        .party_condition {
+          display: flex !important;
+          margin: 10px 10px 10px 0;
+          float: left;
+          width: 80px;
+        }
+        
+        .party_search_bar {
+          border: 1px solid black;
+          margin-top: 10px;
+          width: 40%;
+          float: left;
+          
+        }
+        
+        .button_box {
+            width: 100%;
+          
+          overflow: hidden;
+          
+        }
+        
+        .party_insert_button {
+            float: right;
+          margin-right: 30px;
+        }
+        
+        .condition_button {
+          float: left;
+        
+          margin: 10px 10px 10px 5px;
+          
+        }
+        
+        
+        .layout_padding_party {
+          min-width: 1200px;
+             padding-top: 30px;
+             padding-bottom: 20px;
+             
+        }
+        
+        .container_party {
+            padding-right: 15px;
+            padding-left: 15px;
+          margin: 0 auto;
+        }
+        .party_detil_view {
+          width: 825px;
+          margin: 0 auto;
+          
+        }
+        
+        .party_detail_button_l {
+          float: left;
+          color: #121111;
+          margin-left: 0px;
+          margin-top: 0px;
+          margin-bottom: 5px;
+          margin-right: 5px;
+          
+            font-size: x-small;
+          
+          
+          border: 1px solid #fabb25;
+          border-radius: 5px;
+          padding: 5px 10px 5px 10px;
+        }
+        
+        .party_detail_button_r {
+          float: right;
+          color: #121111;
+          margin-left: 0px;
+          margin-top: 0px;
+          margin-bottom: 5px;
+          margin-right: 5px;
+          
+            font-size: x-small;
+          
+          
+          border: 1px solid #fabb25;
+          border-radius: 5px;
+          padding: 5px 10px 5px 10px;
+        }
+        
+        .row_party_detail {
+          width: 100%;
+          margin: 0 auto;
+        }
+        
+        .layout_padding_party_detail {
+             padding-top: 30px;
+             padding-bottom: 0px;
+            overflow: hidden;
+        
+        }
+        
+        .dololr_text_tatlle {  
+          float: right;
+          color: #121111;
+          margin-left: 0px;
+          margin-top: 0px;
+          margin-bottom: 5px;
+          margin-right: 5px;
+          
+            font-size: x-small;
+          
+          
+          border: 1px solid #fabb25;
+          border-radius: 5px;
+          padding: 5px 10px 5px 10px;
+        }
+        
+        .party_detail_bar {
+          width: 100%;
+          height: 50px;
+          float: left;
+          margin: 0 auto;
+        }
+        
+        .party_detail_buttons {
+          width: 825px;
+          height: 40px;
+          margin: 0 auto;
+          padding: 10px 0;
+          
+        }
+        
+        .party_detail_bottom {
+          width: 825px;
+          margin: 0 auto;
+          padding: 10px 0;
+        
+          
+        }
+        
+        .party_detail_bottom_bar {
+          width: 100%;
+          float: left;
+          margin: 0 auto;
+          overflow: hidden;
+        }
+        
+        .party_detail_bottom_content {
+          min-height: 100px;
+          width: 825px;
+          margin: 10px auto;
+          float: left;
+          overflow: hidden;
+          border-bottom: 1px solid black;
+        }
+        
+        .party_detail_bottom_comment {
+          min-height: 100px;
+          width: 825px;
+          margin: 10px auto;
+          float: left;
+          overflow: hidden;
+          border-bottom: 1px solid black;
+        }
+        
+        .party_detail_comment_img {
+          min-height: 80px;
+          padding: 5px;
+          width: 10%;
+          margin: 5px;
+          float: left;
+          border: 1px solid black;
+        }
+        
+        .party_detail_comment_format {
+          min-height: 40px;
+          width: 80%;
+          margin: 5px;
+          float: left;
+          border: 1px solid black;
+        }
+        
+        .party_detail_bottom_review {
+          min-height: 100px;
+          width: 50%;
+          margin: 10px auto;
+          float: left;
+          overflow: hidden;
+          border-bottom: 1px solid black;
+        }
+        
+        .party_detail_review_img {
+          min-height: 80px;
+          padding: 5px;
+          width: 10%;
+          margin: 5px;
+          float: left;
+          border: 1px solid black;
+        }
+        
+        .party_detail_review_format {
+          min-height: 40px;
+          width: 80%;
+          margin: 5px;
+          float: left;
+          border: 1px solid black;
+        }
+      </style>
+
+
+
+   </head>
+   <body>
+      <!-- header section start -->
+      <div class="header_section">
+         <div class="container-fluid">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+               <div class="logo"><a href="../html/index.html"><img src="../images/logo.png"></a></div>
+               <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+               <span class="navbar-toggler-icon"></span>
+               </button>
+               <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                  <ul class="navbar-nav mr-auto">
+                     <li class="nav-item">
+                        <a class="nav-link" href="../index.html">Home</a>
+                     </li>
+                     <li class="nav-item">
+                        <a class="nav-link" href="../services.html">services</a>
+                     </li>
+                     <li class="nav-item">
+                        <a class="nav-link" href="../about.html">About</a>
+                     </li>
+                     <li class="nav-item">
+                        <a class="nav-link" href="../shop.html">Shop</a>
+                     </li>
+                     <li class="nav-item">
+                        <a class="nav-link" href="../contact.html">Contact</a>
+                     </li>
+                  </ul>
+                  <form class="form-inline my-2 my-lg-0">
+                     <h1 class="call_text">Call Us : +01 1234567890</h1>
+                  </form>
+                  <div class="search_icon">
+                     <ul>
+                        <li><a href="#"><img src="../images/search-icon.png"></a></li>
+                        <li><a href="#">LOGIN</a></li>
+                     </ul>
+                  </div>
+               </div>
+            </nav>
+         </div>
+      </div>
+      <!-- header section end -->
+      <!-- furnitures section start -->
+      <div class="furnitures_section layout_padding_party">
+         <div class="container">
+            <h1 class="our_text">운동 모임 찾기</h1>
+            <p class="ipsum_text">원하는 운동을 찾아보세요!</p>
+
+<h2>모임 찾기</h2>
+<div class="party_search">
+<h4>상세검색</h4>
+<div class="party_search_condition">
+<div class="party_search">
+  <select class="party_condition">
+    <th:block th:each="sido : ${sidos}">
+       <option th:text="${sido.sido}"></option>
+    </th:block>
+  </select>
+  <select class="party_condition">
+    <th:block th:each="region : ${regions}">
+       <option th:text="${region.sigu}"></option>
+    </th:block>
+  </select>
+  <select class="party_condition">
+    <th:block th:each="sport : ${sports}">
+       <option th:text="${sport.name}"></option>
+    </th:block>
+  </select>
+</div>
+<div class="party_search_bar">
+        <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
+          <input type="search" class="form-control form-control-dark text-bg-dark" placeholder="Search..." aria-label="Search">
+        </form>
+</div>
+
+  
+
+
+</div>
+
+
+</div>
+
+
+
+
+            <div class="furnitures_section2 layout_padding_party">
+            
+            <div class="button_box">
+                <button class="party_insert_button" type="button" onclick="location.href='#'">모임 개설</button>
+            </div>
+            
+            <div class="button_box">
+                <button class="condition_button" type="button" onclick="location.href='#'">평점순</button>
+                <button class="condition_button" type="button" onclick="location.href='#'">최신순</button>
+                <button class="condition_button" type="button" onclick="location.href='#'">기간임박순</button>
+            </div>
+            
+               <div class="row row_party">
+                <th:block th:each="party : ${partys}">
+                  <div class="col-md-6 col-md-6_party_wrap">
+                     <div class="container_main_party">
+                     <a th:href="@{detail(no=${party.no})}">
+                        <img src="../images/img-2.png" alt="Avatar" class="image">
+                        <div class="overlay">
+                           <a th:href="@{detail(no=${party.no})}" class="icon" title="User Profile">
+                           <i class="fa fa-search"></i>
+                           </a>
+                        </div>
+                        </a>
+                     </div>
+                      <a th:href="@{detail(no=${party.no})}">
+                     <h3 class="temper_text_party" th:text="${party.title == ''} ? '(제목없음)' : ${party.title}">
+                     </h3>
+                     </a>
+                     
+                     <div class="container_main_party">
+                       <p class="dololr_text_region" th:text="${party.region.sido}"></p>
+                       <p class="dololr_text_region" th:text="${party.region.sigu}"></p>
+                       <p class="dololr_text_sports" th:text="${party.sport.name}"></p>
+                     </div>
+                     <p class="dololr_text_party" th:text="${party.star}"></p>
+                     <div class="container_main_party">
+                       <p class="dololr_text_datetime" th:text="${party.partyTime}"></p>
+                       <p class="dololr_text_datetime" th:text="${party.partyDate}"></p>
+                     </div>
+
+
+                  </div>
+                </th:block>
+
+
+               </div>
+            </div> <!-- furnitures_section2 layout_padding_party -->
+         </div>
+      </div>
+      <!-- furnitures section end -->
+      <!-- footer section start -->
+      <div class="footer_section layout_padding">
+         <div class="container">
+            <div class="row">
+               <div class="col-lg-3 col-sm-6">
+                  <div class="fooer_logo"><img src="../images/footer-logo.png"></div>
+                  <p class="footer_lorem_text">There are many variat
+                     ions of passages of L
+                     orem Ipsum available
+                     , but the majority h
+                     ave suffered altera
+                     tion in some form, by 
+                  </p>
+               </div>
+               <div class="col-lg-3 col-sm-6">
+                  <h1 class="customer_text">LET US HELP YOU</h1>
+                  <p class="footer_lorem_text">There are many variat
+                     ions of passages of L
+                     orem Ipsum available
+                     , but the majority h
+                     ave suffered altera
+                     tion in some form, by 
+                  </p>
+               </div>
+               <div class="col-lg-3 col-sm-6">
+                  <h1 class="customer_text">INFORMATION</h1>
+                  <p class="footer_lorem_text1">About Us<br>
+                     Careers<br>
+                     Sell on shopee<br>
+                     Press & News<br>
+                     Competitions<br>
+                     Terms & Conditions
+                  </p>
+               </div>
+               <div class="col-lg-3 col-sm-6">
+                  <h1 class="customer_text">OUR Design</h1>
+                  <p class="footer_lorem_text">There are many variat
+                     ions of passages of L
+                     orem Ipsum available
+                     , but the majority h
+                     ave suffered altera
+                     tion in some form, by 
+                  </p>
+               </div>
+            </div>
+            <div class="input-group mb-3">
+               <input type="text" class="form-control" placeholder="Enter your email" aria-label="Enter your email" aria-describedby="basic-addon2">
+               <div class="input-group-append">
+                  <span class="input-group-text" id="basic-addon2"><a href="#">Subscribe</a></span>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!--  footer section end -->
+      <!-- copyright section start -->
+      <div class="copyright_section">
+      <div class="container">
+         <div class="social_icon">
+            <ul>
+               <li><a href="#"><img src="../images/fb-icon.png"></a></li>
+               <li><a href="#"><img src="../images/twitter-icon.png"></a></li>
+               <li><a href="#"><img src="../images/instagram-icon.png"></a></li>
+               <li><a href="#"><img src="../images/linkedin-icon.png"></a></li>
+            </ul>
+         </div>
+         <p class="copyright_text">2020 All Rights Reserved. Design by <a href="https://html.design">Free html  Templates</a></p>
+      </div>
+      <!-- copyright section end -->
+      <!-- Javascript files-->
+   <!--    <script src="../js/jquery.min.js"></script> -->
+      <script src="../js/popper.min.js"></script>
+      <script src="../js/bootstrap.bundle.min.js"></script>
+      <script src="../js/jquery-3.0.0.min.js"></script>
+      <script src="../js/plugin.js"></script>
+      <!-- sidebar -->
+      <script src="../js/jquery.mCustomScrollbar.concat.min.js"></script>
+      <script src="../js/custom.js"></script>
+      <!-- javascript --> 
+      <script src="../js/owl.carousel.js"></script>
+      <script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>    
+   </body>
+</html>

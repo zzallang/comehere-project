@@ -7,7 +7,7 @@ public class Party {
 
   private int no;
   private Region region;
-  private Sport sport;
+  private Sports sport;
   private String title;
   private String content;
   private Date createdDate;
@@ -43,11 +43,11 @@ public class Party {
     this.region = region;
   }
 
-  public Sport getSport() {
+  public Sports getSport() {
     return sport;
   }
 
-  public void setSport(Sport sport) {
+  public void setSport(Sports sport) {
     this.sport = sport;
   }
 

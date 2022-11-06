@@ -17,10 +17,17 @@ public class DefaultMemberService implements MemberService {
   @Autowired
   BoardDao boardDao;
 
-
+  @Transactional
   @Override
   public void add(Member member) throws Exception {
+    // 1) 회원등록
     memberDao.insert(member);
+
+    // 2) 관심지역 등록
+    memberDao.insertRegion(member);
+
+    // 3) 관심운동 등록
+    memberDao.insertSports(member);
   }
 
   @Override
@@ -50,6 +57,17 @@ public class DefaultMemberService implements MemberService {
   public List<Member> list() throws Exception {
     return memberDao.findAll();
   }
+
+  //  @Override
+  //  public String checkId(Member member) throws Exception {
+  //    List<Member> memberList = memberDao.findAll();
+  //    for(Member eachMember : memberList) {
+  //      if(eachMember.getId().equals(member.getId())) return "fail";
+  //    }
+  //    return "succ";
+  //  }
+
+
 }
 
 

@@ -3,18 +3,18 @@ package com.bitcamp.testproject.service;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.bitcamp.testproject.dao.SportDao;
-import com.bitcamp.testproject.vo.Sport;
+import com.bitcamp.testproject.dao.SportsDao;
+import com.bitcamp.testproject.vo.Sports;
 
 @Service
-public class DefaultSportService implements SportService {
+public class DefaultSportService implements SportsService {
 
   @Autowired 
-  SportDao sportDao;
+  SportsDao sportsDao;
 
   @Override
-  public List<Sport> list() {
-    return sportDao.findAll();
+  public List<Sports> list() {
+    return sportsDao.findAll();
   }
 
 
