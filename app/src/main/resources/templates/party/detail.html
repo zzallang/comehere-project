@@ -9,7 +9,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <meta name="viewport" content="initial-scale=1, maximum-scale=1">
       <!-- site metas -->
-      <title>Contact</title>
+      <title>여기모여</title>
       <meta name="keywords" content="">
       <meta name="description" content="">
       <meta name="author" content="">
@@ -209,10 +209,10 @@
             padding-left: 15px;
           margin: 0 auto;
         }
-        .party_detil_view {
+        .party_detail_view {
           width: 825px;
           margin: 0 auto;
-          
+          overflow: hidden;
         }
         
         .party_detail_button_l {
@@ -290,6 +290,22 @@
           
         }
         
+        
+        .party_detail_content_l {
+          width: 330px;
+          float: left;
+        }
+        
+        .party_detail_content_r {
+          width: 470px;
+          float: left;
+        }
+        
+        .party_detail_content_r span {
+          font-size: 1.2em;
+        }
+        
+        
         .party_detail_bottom {
           width: 825px;
           margin: 0 auto;
@@ -334,7 +350,7 @@
         
         .party_detail_comment_format {
           min-height: 40px;
-          width: 80%;
+          width: 75%;
           margin: 5px;
           float: left;
           border: 1px solid black;
@@ -365,49 +381,97 @@
           float: left;
           border: 1px solid black;
         }
+        .party_detail_review_null {
+          width: 100%;
+          height: 100px;
+          align-content: center;
+          font-size: xx-large;
+        }
+      
+      
+        .sldes li {list-style: none;}
+        .slide_wrapper {
+          position: relative;
+          width: 300px;
+          margin: 0 auto;
+          height: 300px;
+          overflow: hidden;
+          border: 1px solid #333;
+        }
+        .slides {
+          position: absolute;
+          left:0;
+          top: 0;
+          transition:left 0.5s ease-out;
+        }
+        .slides li:not(:last-child){
+          float: left;
+          margin-right: 30px;
+        }
+        .slides img {
+          width: 300px;
+        }
+        .controls {
+          text-align: center;
+          margin-top: 50px;
+        }
+        .controls span.prev {
+          position: absolute;
+          background: rgba(230, 230, 230, 0.4);
+          color: #333;
+          padding: 5px 2px;
+          margin: 0 10px;
+          cursor: pointer;
+          top: 50%;
+          transform: translateY(-50%);
+          left: 1%;
+          }
+        .controls span.next {
+          position: absolute;
+          background: rgba(230, 230, 230, 0.4);
+          color: #333;
+          padding: 5px 2px;
+          margin: 0 10px;
+          cursor: pointer;
+          top: 50%;
+          transform: translateY(-50%);
+          right: 1%;
+          }
+    
+    
   </style>
    </head>
    <body>
-      <!-- header section start -->
-      <div class="header_section">
-         <div class="container-fluid">
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
-               <div class="logo"><a href="../html/index.html"><img src="../images/logo.png"></a></div>
-               <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-               <span class="navbar-toggler-icon"></span>
-               </button>
-               <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                  <ul class="navbar-nav mr-auto">
-                     <li class="nav-item">
-                        <a class="nav-link" href="../index.html">Home</a>
-                     </li>
-                     <li class="nav-item">
-                        <a class="nav-link" href="../services.html">services</a>
-                     </li>
-                     <li class="nav-item">
-                        <a class="nav-link" href="../about.html">About</a>
-                     </li>
-                     <li class="nav-item">
-                        <a class="nav-link" href="../shop.html">Shop</a>
-                     </li>
-                     <li class="nav-item">
-                        <a class="nav-link" href="../contact.html">Contact</a>
-                     </li>
-                  </ul>
-                  <form class="form-inline my-2 my-lg-0">
-                     <h1 class="call_text">Call Us : +01 1234567890</h1>
-                  </form>
-                  <div class="search_icon">
-                     <ul>
-                        <li><a href="#"><img src="../images/search-icon.png"></a></li>
-                        <li><a href="#">LOGIN</a></li>
-                     </ul>
-                  </div>
-               </div>
-            </nav>
-         </div>
-      </div>
-      <!-- header section end -->
+  <!-- header section start -->
+  <div class="header_section">
+    <div class="container-fluid">
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="logo">
+          <a href="index.html"><img src="images/comehere_logo.png"></a>
+        </div>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item"><a class="nav-link" href="../party/list">운동하기</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">건강관리</a></li>
+            <li class="nav-item"><a class="nav-link" href="../board/listBoard?no=1">커뮤니티</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">공지사항</a></li>
+          </ul>
+          <div class="search_icon">
+            <ul>
+              <!-- <li><a href="auth/form"><img src="images/search-icon.png"></a></li> -->
+              <li data-th-if="${session.loginMember == null}"><a href="../auth/form" >로그인</a></li>
+              <li data-th-if="${session.loginMember != null}"><a href="../auth/logout" data-th-text="${session.loginMember.name} + '(로그아웃)'">동동(로그아웃)</a></li>
+              <li data-th-if="${session.loginMember != null}"><a href="../mypage/viewer">마이페이지</a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </div>
+  <!-- header section end -->
       <!-- furnitures section start -->
       <div class="furnitures_section layout_padding_party_detail">
          <div class="container_party">
@@ -417,8 +481,8 @@
                <div class="party_detail_bar">
 
             <div class="party_detail_buttons">
-                <button class="party_detail_button_r" type="button" onclick="location.href='#'">수정</button>
-                <button class="party_detail_button_r" type="button" onclick="location.href='#'">삭제</button>
+                <button th:if="${session.loginMember} != null and ${session.loginMember.no} == ${party.user.no}" class="party_detail_button_r" type="button" th:onclick="findPartyNoUpdate()">수정</button>
+                <button th:if="${session.loginMember} != null and ${session.loginMember.no} == ${party.user.no}" class="party_detail_button_r" type="button" th:onclick="findPartyNoDelete()">삭제</button>
             </div>
 
             </div>
@@ -432,8 +496,8 @@
                <div class="party_detail_buttons">
                 <p class="dololr_text_region" th:text="${party.region.sido}"></p>
                 <p class="dololr_text_region" th:text="${party.region.sigu}"></p>
-                <p class="dololr_text_sports" th:text="${party.sport.name}"></p>
-                <button class="dololr_text_tatlle" type="button" onclick="location.href='#'">신고</button>
+                <p class="dololr_text_sports" th:text="${party.sports.name}"></p>
+                <button th:if="${session.loginMember} != null and ${session.loginMember.no} != ${party.user.no}" class="dololr_text_tatlle" type="button" onclick="location.href='#'">신고</button>
                </div>
                </div>
 
@@ -441,54 +505,83 @@
 
 
 
-                <div class="party_detil_view">
+                <div class="party_detail_view">
                   <form >
-                  <table border='1'>
-  
-                    
-                    <tr>
-                      <th>제목</th><td><input name='title' type='text' 
+                  <div class="party_detail_content_l">
+                    <div>
+                      <div class="slide_wrapper">
+                        <div class="slide_wrapper">
+                          <ul class="slides">
+                          <th:block th:each="file : ${party.attachedFiles}">
+                            <li><img alt="" src="http://placeimg.com/400/350/any"></li>
+                            <li><img alt="" src="http://placeimg.com/400/350/any"></li>
+                            <li><img alt="" src="http://placeimg.com/400/350/any"></li>
+                            <li><img alt="모임 대표 이미지" th:if="${file.filepath != null}" th:src="'../webapp/party/files/' + @{file.filepath}"></li>
+                            <li><img alt="모임 기본 이미지" th:if="${file.filepath == null}" th:src="images/party/partySample.jpeg"></li>
+                            <!-- 
+                      
+                             -->
+                          </th:block>
+                          </ul>
+                        </div>
+                        <p class="controls">
+                          <span class="prev"><</span>
+                          <span class="next">></span>
+                        </p>
+                      </div>
+                    </div>
+                    <div>
+                      <p>주최자</p>
+                      <p data-th-text="${party.user.filepath == null} ? '없음' : ${party.user.filepath}">프사</p>
+                      <img src="http://placeimg.com/50/50/any">
+                      
+                      <p data-th-text='${party.user.nickname}'>홍길동</p>
+                      <p data-th-text='${party.user.birthday}'>1900-01-01</p>
+                      <p data-th-text="${party.user.sex} == true ? '남자' : '여자'">성별</p>
+                    </div>
+                  </div>
+                  <div class="party_detail_content_r">
+                    <div>
+                      <input name='title' type='text' 
                           value='제목'
                           data-th-text='${party.title}' 
-                          size='60'></td>
-                    </tr>
-                    <tr>
-                      <th>내용</th><td><textarea name='content'></textarea></td>
-                    </tr>
-                    <tr>
-                      <th>정원</th><td><input name='headCount' type='number' 
-                          value='00' 
-                          data-th-text='${party.headCount}'></td>
-                    </tr>
-                    <tr>
-                      <th>모임일자</th><td><input name='partyDate' type="date" 
-                          value='1' 
-                          data-th-text='${party.partyDate}'></td>
-                    </tr>
-                    <tr>
-                      <th>모임시간</th><td><input name='partyTime' type='text' 
-                          value='1' 
-                          data-th-text='${party.partyTime}'></td>
-                    </tr>
-                    <tr>
-                      <th>0.0점</th><td><input name='star' type='text' 
+                          size='60'>
+                    </div>
+                    <div>
+                      <span>별점</span>
+                      <input name='star' type='text' 
                           value='1.1' 
-                          data-th-text='${party.star}'></td>
-                    </tr>                
-                    <tr>
-                      <th>주최자</th><td data-th-text='${party.user.nickname}'>홍길동</td>
-                    </tr>
-                    <tr>
-                      <th>연령대</th><td data-th-text='${party.user.birthday}'>1900-01-01</td>
-                    </tr>
-                    <tr>
-                      <th>성별</th><td data-th-text="${party.user.sex == 1} ? '남자' : '여자'">성별</td>
-                    </tr>
-                    <tr>
-                      <th>첨부파</th><td data-th-text="${party.user.filepath == null} ? '없음' : ${party.user.filepath}">파</td>
-                    </tr>
-                  
-                  </table>
+                          data-th-text='${party.star}'>
+                    </div>
+                    <div>
+                      <textarea name='content'></textarea>
+                    </div>
+                    <div>
+                      <span>모임일자</span>
+                      <input name='partyDate' type="date" 
+                          value='1' 
+                          data-th-text='${party.partyDate}'>
+                    </div>
+                    <div>
+                      <span>모임시간</span>
+                          <input name='partyTime' type='text' 
+                          value='1' 
+                          data-th-text='${party.partyTime}'>
+                    </div>
+                    <div>
+                      <span>모집인원</span>
+                      <input name='headCount' type='number' 
+                          value='00' 
+                          data-th-text="${party.headCount} + '명'">
+                    </div>
+                    <form action="attend" method="get">
+                      <div class="button_box">
+                          <button th:if="${session.loginMember} != null and ${session.loginMember.no} != ${party.user.no}" 
+                          class="party_insert_button" type="button" th:onclick="findPartyNoAttend()">모임 신청</button>
+                          <button th:if="${session.loginMember} == null" class="party_insert_button" type="button" onclick="location.href='../auth/form'">모임 신청</button>
+                      </div>
+                    </form>
+                  </div>
                   </form>
                 </div>
 
@@ -502,7 +595,8 @@
          <input type="radio" name="tab" id="tab-1" checked="checked">
          <input type="radio" name="tab" id="tab-2" >
          <input type="radio" name="tab" id="tab-3" >
-         <button class="party_detail_button_r">top</button>
+         <button class="party_detail_button_r" onclick = "location.href = 'list' ">목록</button>
+         <button class="party_detail_button_r" onclick = "location.href = '#' ">top</button>
          <div class="tab-item party_detail_bottom_content">  <!-- 댓글 블록 시작 -->
           <th:block th:each="comment : ${comments}">
             <div class="party_detail_bottom_comment">
@@ -514,14 +608,19 @@
               <p th:text="${comment.content}"></p>
               <p th:text="${comment.createdDate}"></p>
             </div>
+            <div class="party_detail_buttons">
+                <button th:if="${session.loginMember} != null and ${session.loginMember.no} == ${comment.writer.no}" class="party_detail_button_r" type="button" onclick="location.href='#'">삭제</button>
+                <button th:if="${session.loginMember} != null and ${session.loginMember.no} == ${comment.writer.no}" class="party_detail_button_r" type="button" onclick="location.href='#'">수정</button>
+                <button th:if="${session.loginMember} != null and ${session.loginMember.no} != ${comment.writer.no}" class="dololr_text_tatlle" type="button" onclick="location.href='#'">신고</button>
+            </div>
             </div>
           </th:block>
             <div class="party_detail_bottom_comment">
             <div class="party_detail_comment_img">
-              <p>loginMember.filepath</p>
+              <p th:if="${session.loginMember} != null" th:text="${session.loginMember.filepath}">loginMember.filepath</p>
             </div>
             <div class="party_detail_comment_format">
-              <p>loginMember.nickname</p>
+              <p th:if="${session.loginMember} != null" th:text="${session.loginMember.nickname}">loginMember.nickname</p>
               
               <form action='add' method="post">
               <table border='1'>
@@ -530,7 +629,8 @@
                 </tr>
               </table>
               <p>
-                <button type='submit'>등록</button>
+                <button th:if="${session.loginMember} != null" type='submit' onclick="location.href='#'">등록</button>
+                <button th:if="${session.loginMember} == null" type='submit' onclick="location.href='../auth/form'">등록</button>
               </p>
               </form>
             </div>
@@ -541,12 +641,14 @@
             <div class="party_detail_bottom_review">
               <div class="party_detail_bottom_review">
                 <div class="party_detail_review_img">
-                    <p th:text="${review.writer.filepath}"></p>
+                   <a href="#">
+                     <p th:text="${review.writer.filepath}"></p>
+                   </a>
                 </div>
                 <div class="party_detail_review_format">
                     <p th:text="${review.star}"></p>
                     <p th:text="${review.writer.nickname}"></p>
-                    <p th:text="${review.writer.sex}"></p>
+                    <p th:text="${review.writer.sex} == true ? '남자' : '여자'"></p>
                     <p th:text="${review.writer.birthday}"></p>
                     <p th:text="${review.createdDate}"></p>
                 </div>
@@ -558,7 +660,9 @@
                     [<a href="fileDelete?no=1"
                         data-th-href="@{fileDelete(no=${file.no})}">삭제</a>]
                   </div>
-                  <p th:text="${review.title}"></p>
+                  <a href="#">
+                    <p th:text="${review.title}"></p>
+                  </a>
                   <p th:text="${review.content}"></p>
                 </div>
               </div>
@@ -601,10 +705,66 @@
       <script>
         $(document).ready(function() {
             $('textarea[name=content]').html('[[${party.content}]]');
-            $('textarea[name=content]').summernote({height: 300});
+            $('textarea[name=content]').summernote({toolbar:false, width:450, heigth: 1000});
+            $('textarea[name=content]').summernote('disable');
         });
       </script>
       <!-- 썸머노트 자바스크립트 끝 -->
+      <!-- 디테일 이미지 사진 자바 스크립트 시작 -->
+      <script>
+          var slides = document.querySelector('.slides'),
+              slide = document.querySelectorAll('.slides li'),
+              currentIdx = 0,
+              slideCount = slide.length,
+              slideWidth = 300,
+              slideMargin = 30,
+              prevBtn = document.querySelector('.prev'),
+              nextBtn = document.querySelector('.next');
+      
+          slides.style.width = (slideWidth + slideMargin) * slideCount - slideMargin + 'px';
+      
+          function moveSlide(num) {
+            slides.style.left = -num * (slideWidth + slideMargin) + 'px';
+            currentIdx = num;
+          }
+          nextBtn.addEventListener('click', function() {
+            if (currentIdx < (slideCount - 1)) {
+              moveSlide(currentIdx + 1);
+            } else {
+              moveSlide(0);
+            }
+          })
+      
+          prevBtn.addEventListener('click', function() {
+            if (currentIdx > 0) {
+              moveSlide(currentIdx - 1);
+            } else {
+              moveSlide(slideCount - 1);
+            }    })
+      </script>
+      <!-- 디테일 이미지 사진 자바 스크립트 끝 -->
+      <!-- 참가신청 버튼 자바 스크립트 시작 -->
+      <script th:inline="javascript">
+      /*<![CDATA[*/
+      function findPartyNoAttend() {
+        let partyNo = /*[[${party.no}]]*/
+        location.href=`attendForm?no=${partyNo}`;
+      }
+      /*]]>*/
+      /*<![CDATA[*/
+      function findPartyNoUpdate() {
+        let partyNo = /*[[${party.no}]]*/
+        location.href=`updateForm?no=${partyNo}`;
+      }
+      /*]]>*/
+      /*<![CDATA[*/
+      function findPartyNoDelete() {
+        let partyNo = /*[[${party.no}]]*/
+        location.href=`delete?no=${partyNo}`;
+      }
+      /*]]>*/
+      </script>
+      <!-- 참가신청 버튼 자바 스크립트 끝 -->
    <!--    <script src="../js/jquery.min.js"></script> -->
       <script src="../js/popper.min.js"></script>
       <script src="../js/bootstrap.bundle.min.js"></script>
@@ -612,7 +772,7 @@
       <script src="../js/plugin.js"></script>
       <!-- sidebar -->
       <script src="../js/jquery.mCustomScrollbar.concat.min.js"></script>
-      <script src="../js/custom.js"></script>
+      <script src="../js/custom.js"></script> 
       <!-- javascript --> 
       <script src="../js/owl.carousel.js"></script>
       <script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>    

@@ -13,7 +13,6 @@
     <result column="headcnt" property="headCount"/>
     <result column="ptime" property="partyTime"/>
     <result column="pdate" property="partyDate"/>
-    <result column="pdate" property="partyDate"/>
     <result column="star" property="star"/>
 
     <!-- 조인 결과에서 같은 게시글에 대해 한 개의 회원 데이터를 담을 경우 -->
@@ -38,8 +37,20 @@
       <result column="name" property="name"/>
     </association>
 
-  </resultMap>
+    <collection property="attachedFiles" ofType="attachedFile">
+      <id column="pfno" property="no"/>
+      <result column="filepath" property="filepath"/>
+      <result column="pno" property="objectNo"/>
+    </collection>
 
+  </resultMap>
+  
+  <resultMap type="attachedFile" id="attachedFileMap">
+    <id column="pfno" property="no"/>
+    <result column="filepath" property="filepath"/>
+    <result column="pno" property="objectNo"/>
+  </resultMap>
+  
   <select id="findAll" resultMap="partyMap">
     select
       p.pno, 
@@ -95,27 +106,41 @@
   
   <insert id="insert" parameterType="party"
           useGeneratedKeys="true" keyColumn="pno" keyProperty="no">
-    insert into party(rno,sno,title,act,cont,cdt,headcnt,ptime,pdate) 
+    insert into party(
+      rno,
+      sno,
+      title,
+      cont,
+      headcnt,
+      pdate,
+      ptime) 
     values(
     #{regionNo},
-    #{sprotsNo},
+    #{sportsNo},
     #{title},
-    #{active},
     #{content},
-    #{createdDate},
     #{headCount},
-    #{partyTime},
-    #{partyDate})
+    #{partyDate},
+    #{partyTime})
+  </insert>
+  
+  <insert id="insertFiles" parameterType="party">
+    insert into party_file(filepath, pno)
+    values
+    <foreach collection="attachedFiles" item="partyFile" separator=",">
+      (#{partyFile.filepath},#{no})
+    </foreach>
   </insert>
   
   <update id="update" parameterType="party">
     update party set 
       title=#{title}, 
       cont=#{content},
-      headCount#{headCount},
-    partyTime=#{partyTime},
-    partyDate=#{partyDate}
-    where pno=#{no}
+      headcnt=#{headCount},
+      pdate=#{partyDate},
+      ptime=#{partyTime}
+    where 
+      pno=#{no}
   </update>
   
   <delete id="delete">
@@ -123,7 +148,28 @@
     where pno=#{value}
   </delete>
 
-  <select id="checkOwner" resultMap="partyMap">
+  <delete id="deleteFiles">
+    delete from party_file
+    where pno=#{value}
+  </delete>
+
+  <delete id="deleteFile">
+    delete from party_file
+    where pfno=#{value}
+  </delete>
+
+  <select id="findFileByNo" resultMap="attachedFileMap">
+    select
+      pfno,
+      filepath,
+      pno
+    from
+      party_file
+    where
+      pfno=#{value}
+  </select>
+
+  <select id="checkOwner" resultType="int">
     select 
       pm.mno
     from 
@@ -145,6 +191,14 @@
       pno=#{value}
   </select>
 
+  <select id="findNowPartyNo" resultType="int">
+    SELECT 
+      (AUTO_INCREMENT-1) no 
+    FROM 
+      information_schema.tables 
+    WHERE 
+      table_name = 'party'
+  </select>
 
   
 </mapper>

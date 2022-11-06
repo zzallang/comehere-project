@@ -9,7 +9,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <meta name="viewport" content="initial-scale=1, maximum-scale=1">
       <!-- site metas -->
-      <title>Contact</title>
+      <title>여기모여</title>
       <meta name="keywords" content="">
       <meta name="description" content="">
       <meta name="author" content="">
@@ -153,12 +153,22 @@
         .party_insert_button {
             float: right;
           margin-right: 30px;
+          
+          border: 1px solid #fabb25;
+          border-radius: 5px;
+          padding: 5px 10px 5px 10px;
+                      font-size: x-small;
         }
         
         .condition_button {
           float: left;
         
           margin: 10px 10px 10px 5px;
+          
+          border: 1px solid #fabb25;
+          border-radius: 5px;
+          padding: 5px 10px 5px 10px;
+                      font-size: x-small;
           
         }
         
@@ -337,94 +347,76 @@
 
    </head>
    <body>
-      <!-- header section start -->
-      <div class="header_section">
-         <div class="container-fluid">
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
-               <div class="logo"><a href="../html/index.html"><img src="../images/logo.png"></a></div>
-               <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-               <span class="navbar-toggler-icon"></span>
-               </button>
-               <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                  <ul class="navbar-nav mr-auto">
-                     <li class="nav-item">
-                        <a class="nav-link" href="../index.html">Home</a>
-                     </li>
-                     <li class="nav-item">
-                        <a class="nav-link" href="../services.html">services</a>
-                     </li>
-                     <li class="nav-item">
-                        <a class="nav-link" href="../about.html">About</a>
-                     </li>
-                     <li class="nav-item">
-                        <a class="nav-link" href="../shop.html">Shop</a>
-                     </li>
-                     <li class="nav-item">
-                        <a class="nav-link" href="../contact.html">Contact</a>
-                     </li>
-                  </ul>
-                  <form class="form-inline my-2 my-lg-0">
-                     <h1 class="call_text">Call Us : +01 1234567890</h1>
-                  </form>
-                  <div class="search_icon">
-                     <ul>
-                        <li><a href="#"><img src="../images/search-icon.png"></a></li>
-                        <li><a href="#">LOGIN</a></li>
-                     </ul>
-                  </div>
-               </div>
-            </nav>
-         </div>
-      </div>
-      <!-- header section end -->
+  <!-- header section start -->
+  <div class="header_section">
+    <div class="container-fluid">
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="logo">
+          <a href="index.html"><img src="images/comehere_logo.png"></a>
+        </div>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item"><a class="nav-link" href="../party/list">운동하기</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">건강관리</a></li>
+            <li class="nav-item"><a class="nav-link" href="../board/listBoard?no=1">커뮤니티</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">공지사항</a></li>
+          </ul>
+          <div class="search_icon">
+            <ul>
+              <!-- <li><a href="auth/form"><img src="images/search-icon.png"></a></li> -->
+              <li data-th-if="${session.loginMember == null}"><a href="../auth/form" >로그인</a></li>
+              <li data-th-if="${session.loginMember != null}"><a href="../auth/logout" data-th-text="${session.loginMember.name} + '(로그아웃)'">동동(로그아웃)</a></li>
+              <li data-th-if="${session.loginMember != null}"><a href="../mypage/viewer">마이페이지</a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </div>
+  <!-- header section end -->
       <!-- furnitures section start -->
       <div class="furnitures_section layout_padding_party">
          <div class="container">
             <h1 class="our_text">운동 모임 찾기</h1>
             <p class="ipsum_text">원하는 운동을 찾아보세요!</p>
 
+
 <h2>모임 찾기</h2>
 <div class="party_search">
 <h4>상세검색</h4>
 <div class="party_search_condition">
 <div class="party_search">
-  <select class="party_condition">
-    <th:block th:each="sido : ${sidos}">
-       <option th:text="${sido.sido}"></option>
-    </th:block>
+  <select class="party_condition" id="region_sido" onchange="loadRegion();">
   </select>
-  <select class="party_condition">
-    <th:block th:each="region : ${regions}">
-       <option th:text="${region.sigu}"></option>
-    </th:block>
+  <select class="party_condition"  id="region_sigu">
   </select>
   <select class="party_condition">
     <th:block th:each="sport : ${sports}">
-       <option th:text="${sport.name}"></option>
+       <option th:text="${sport.name}"  th:value="${sport.no}"></option>
     </th:block>
   </select>
+  <input class="" name="partyDate" type="date">
+  <input class="" name="partyTime" type="time" step="1" value="00:00:00">
+
 </div>
 <div class="party_search_bar">
         <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
-          <input type="search" class="form-control form-control-dark text-bg-dark" placeholder="Search..." aria-label="Search">
+          <input type="search" class="form-control form-control-dark text-bg-dark" placeholder="검색어를 입력하세요..." aria-label="Search">
         </form>
 </div>
 
-  
-
-
 </div>
 
-
 </div>
-
-
-
 
             <div class="furnitures_section2 layout_padding_party">
             
             <div class="button_box">
-                <button class="party_insert_button" type="button" onclick="location.href='#'">모임 개설</button>
+                <button th:if="${session.loginMember} != null" class="party_insert_button" type="button" onclick="location.href='form'">모임 개설</button>
+                <button th:if="${session.loginMember} == null" class="party_insert_button" type="button" onclick="location.href='../auth/form'">모임 개설</button>
             </div>
             
             <div class="button_box">
@@ -454,7 +446,7 @@
                      <div class="container_main_party">
                        <p class="dololr_text_region" th:text="${party.region.sido}"></p>
                        <p class="dololr_text_region" th:text="${party.region.sigu}"></p>
-                       <p class="dololr_text_sports" th:text="${party.sport.name}"></p>
+                       <p class="dololr_text_sports" th:text="${party.sports.name}"></p>
                      </div>
                      <p class="dololr_text_party" th:text="${party.star}"></p>
                      <div class="container_main_party">
@@ -542,6 +534,47 @@
       <!-- copyright section end -->
       <!-- Javascript files-->
    <!--    <script src="../js/jquery.min.js"></script> -->
+
+
+      <script>
+      let sidos = [
+          {no:"",sido:""},
+          {no:"1",sido:"서울시"},
+          {no:"2",sido:"경기도"}
+      ];
+      
+      let regions = [
+          {v:"",t:""},
+          {v:"1",t:"강남구"},
+          {v:"2",t:"서초구"}
+      ];
+      
+      function loadSido(){
+    	  let h= [];
+    	  sidos.forEach(item => {
+    		  h.push('<option value="' + item.no + '">' + item.sido + '</option>');
+    	  });
+    	  document.getElementById("region_sido").innerHTML = h.join("");
+      }
+      
+      function loadRegion(){
+    	    let region_sido = document.getElementById("region_sido").value;
+    	    let h = [];
+    	    if (region_sido == "") {
+    	    	
+    	    } else {
+    	    	if (region_sido == "1") {
+    	    		regions.forEach(item => {
+	    	      h.push('<option value="' + item.v + '">' + item.t + '</option>');
+	            });
+    	    	}
+    	    }
+	            document.getElementById("region_sigu").innerHTML = h.join("");
+        }
+      
+      loadSido();
+      </script>
+
       <script src="../js/popper.min.js"></script>
       <script src="../js/bootstrap.bundle.min.js"></script>
       <script src="../js/jquery-3.0.0.min.js"></script>
@@ -552,5 +585,6 @@
       <!-- javascript --> 
       <script src="../js/owl.carousel.js"></script>
       <script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>    
+
    </body>
 </html>

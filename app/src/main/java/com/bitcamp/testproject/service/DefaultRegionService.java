@@ -16,13 +16,6 @@ public class DefaultRegionService implements RegionService {
   public List<Region> list() {
     return regionDao.findAll();
   }
-
-  @Override
-  public List<Region> sidoList() {
-    return regionDao.sidoFindAll();
-  }
-
-
 }
 
 

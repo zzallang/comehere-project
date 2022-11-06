@@ -9,10 +9,6 @@ public interface RegionDao {
 
   List<Region> findAll();
 
-  List<Region> sidoFindAll();
-
-
-
 }
 
 
