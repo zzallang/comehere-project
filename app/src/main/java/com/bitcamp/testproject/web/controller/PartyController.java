@@ -15,7 +15,7 @@ import com.bitcamp.testproject.service.PartyCommentService;
 import com.bitcamp.testproject.service.PartyService;
 import com.bitcamp.testproject.service.RegionService;
 import com.bitcamp.testproject.service.ReviewService;
-import com.bitcamp.testproject.service.SportService;
+import com.bitcamp.testproject.service.SportsService;
 import com.bitcamp.testproject.vo.Member;
 import com.bitcamp.testproject.vo.Party;
 
@@ -26,21 +26,21 @@ public class PartyController {
   ServletContext sc;
   PartyService partyService;
   RegionService regionService;
-  SportService sportService;
+  SportsService sportsService;
   PartyCommentService partyCommentService;
   ReviewService reviewService;
 
   public PartyController(
       PartyService partyService, 
       RegionService regionService, 
-      SportService sportService, 
+      SportsService sportService, 
       PartyCommentService partyCommentService,
       ReviewService reviewService,
       ServletContext sc) {
     System.out.println("PartyController() 호출됨!");
     this.partyService = partyService;
     this.regionService = regionService;
-    this.sportService = sportService;
+    this.sportsService = sportService;
     this.partyCommentService = partyCommentService;
     this.reviewService = reviewService;
     this.sc = sc;
@@ -76,7 +76,7 @@ public class PartyController {
     model.addAttribute("partys", partyService.list());
     model.addAttribute("sidos", regionService.sidoList());
     model.addAttribute("regions", regionService.list());
-    model.addAttribute("sports", sportService.list());
+    model.addAttribute("sports", sportsService.list());
   }
 
   @GetMapping("detail")

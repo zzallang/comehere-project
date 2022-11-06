@@ -33,7 +33,7 @@
     </association>
 
     <!-- 조인 결과에서 같은 게시글에 대해 한 개의 회원 데이터를 담을 경우 -->
-    <association property="sport" javaType="sport">
+    <association property="sports" javaType="sports">
       <id column="sno" property="no"/>
       <result column="name" property="name"/>
     </association>

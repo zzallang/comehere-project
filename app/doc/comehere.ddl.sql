@@ -87,7 +87,7 @@ CREATE TABLE member (
   email    VARCHAR(40)  NOT NULL COMMENT '이메일', -- 이메일
   pwd      VARCHAR(100) NOT NULL COMMENT '암호', -- 암호
   nick     VARCHAR(255) NOT NULL COMMENT '닉네임', -- 닉네임
-  tel      INTEGER      NOT NULL COMMENT '휴대전화', -- 휴대전화
+  tel      VARCHAR(13)  NOT NULL COMMENT '휴대전화', -- 휴대전화
   bday     DATE         NOT NULL COMMENT '생년월일', -- 생년월일
   sex      BOOLEAN      NOT NULL COMMENT '성별', -- 성별
   filepath VARCHAR(255) NULL     COMMENT '파일경로', -- 파일경로

@@ -17,14 +17,26 @@ public class DefaultMemberService implements MemberService {
   @Autowired
   BoardDao boardDao;
 
-
+  @Transactional
   @Override
   public void add(Member member) throws Exception {
+    // 1) 회원등록
     memberDao.insert(member);
+
+    // 2) 관심지역 등록
+    memberDao.insertRegion(member);
+
+    // 3) 관심운동 등록
+    memberDao.insertSports(member);
   }
 
   @Override
   public boolean update(Member member) throws Exception {
+    return memberDao.update(member) > 0;
+  }
+
+  @Override
+  public boolean updatePassWord(Member member) throws Exception {
     return memberDao.update(member) > 0;
   }
 
@@ -34,9 +46,21 @@ public class DefaultMemberService implements MemberService {
   }
 
   @Override
-  public Member get(String email, String password) throws Exception {
-    return memberDao.findByEmailPassword(email, password);
+  public Member get(String id, String password) throws Exception {
+    return memberDao.findByIdPassword(id, password);
   }
+
+
+  @Override
+  public Member getByPassword(String id, String email, String SecCode) throws Exception {
+    return memberDao.findByPassword(id, email, SecCode);
+  }
+
+  @Override
+  public Member getId(String name, String email) throws Exception {
+    return memberDao.findById(name, email);
+  }
+
 
   @Transactional
   @Override
@@ -50,6 +74,17 @@ public class DefaultMemberService implements MemberService {
   public List<Member> list() throws Exception {
     return memberDao.findAll();
   }
+
+  //  @Override
+  //  public String checkId(Member member) throws Exception {
+  //    List<Member> memberList = memberDao.findAll();
+  //    for(Member eachMember : memberList) {
+  //      if(eachMember.getId().equals(member.getId())) return "fail";
+  //    }
+  //    return "succ";
+  //  }
+
+
 }
 
 

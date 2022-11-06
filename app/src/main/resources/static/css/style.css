@@ -236,6 +236,11 @@ button {
     width: 25%;
     float: left;
 }
+.main_logo {
+    max-width: 10%;
+    height: auto;
+    margin: 20px 50px 20px 30px;
+}
 .navbar-light .navbar-nav .nav-link {
     color: #111111;
     font-size: 18px;
@@ -252,24 +257,25 @@ button {
     padding-top: 10px;
 }
 
-.search_icon{
+.login-bt{
     width: 12%;
     float: left;
 }
-.search_icon ul{
-    margin: 0px;
+.login-bt ul{
+    display: table;
+    list-style: none;
+    text-align: center;
     padding: 0px;
+    margin-left: 30px;
 }
-.search_icon li {
-    float: left;
-    padding-left: 20px;
-    font-size: 18px;
+.login-bt li {
+    float:left; 
+    font-size: 18px
+}
+.login-bt li a{
     color: #000;
 }
-.search_icon li a{
-    color: #000;
-}
-.search_icon li a:hover{
+.login-bt li a:hover{
     color: #ffb607;
 }
 .navbar-expand-lg .navbar-nav .nav-link {
@@ -832,7 +838,7 @@ a:hover {
     float: left;
     background-image: url(../images/contact-bg.png);
     height: auto;
-    background-size: 100%;
+    background-size: cover;
     background-repeat: no-repeat;
     padding-bottom: 90px;
 }
@@ -876,19 +882,34 @@ textarea#comment::placeholder {
 .send_bt {
     width: 100%;
     float: left;
-    margin-top: 50px;
+    margin-top: 50px;  
+}
+.send_bt2 {
+    border-radius: 5px;
+}
+.send_bt button{
+    width: 30%;
+    float: left;
+    font-size: 20px;
+    color: #ffffff;
+    text-align: center;
+    border: 2px solid #ffffff;
+    background-color: #f8b81f7a;
+    padding: 10px 0px;
+    font-weight: bold;
 }
 .send_bt a{
     width: 30%;
     float: left;
     font-size: 20px;
-    color: #989696;
+    color: #ffffff;
     text-align: center;
     border: 2px solid #ffffff;
+    background-color: #fff0;
     padding: 10px 0px;
     font-weight: bold;
 }
-.send_bt a:hover{
+.send_bt button:hover{
     color: #989696;
     background-color: #ffffff;
 }
@@ -1018,13 +1039,180 @@ textarea#comment::placeholder {
     color: #fdbe28;
 }
 
+/* 수정 css */
+.contact_section1 {
+  width: 100%;
+  float: left;
+  height: auto;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  padding-bottom: 90px;
+}
+.contact_text {
+  width: 100%;
+  margin: 20px;
+  float: center;
+  font-size: 36px;
+  color: #313131;
+}
+/* .col-md-6 { */
+/*   margin-left: 20vw; */
+/*   margin-right: 20vw; */
+/* } */
+.send_bt {
+  margin-left: 30%;
+}
+.send_bt a {
+  border: 2px solid #000000;
+}
+.email-bt {
+  width: 500px;
+}
 
+.pwd-checkbox {
+  width: 500px;
+  color: #989696;
+  width: 100%;
+  font-size: 18px;
+  padding: 20px;
+  margin-top: 25px;
+  border: 2px solid gray;
+  border-radius: 5px;
+}
+.email-bt2 {
+  color: #989696;
+  width: 236px; 
+  height : 55px; 
+  font-size : 18px;
+  padding: 15px;
+  margin-top: 30px;
+  border: 0px;
+  border-radius: 5px;
+  height: 55px;
+  font-size: 18px;
+}
+.email-bt3 {
+  color: #989696;
+  width: 236px; 
+  height : 55px; 
+  font-size : 18px;
+  padding: 15px;
+  margin-top: 30px;
+  margin-left: 24px;
+  border: 0px;
+  border-radius: 5px;
+  height: 55px;
+  font-size: 18px;
+}
+  .phoneNumber {
+  color: #989696;
+  width: 500px; 
+  height : 55px; 
+  font-size : 18px;
+  padding: 15px;
+  margin-top: 30px;
+  border: 0px;
+  border-radius: 5px;
+  height: 55px;
+  font-size: 18px;
+}
+.골뱅이 {
+  color: white;
+  font-size: 20px;
+}
+.cross-check-bt {
+  width: 10%;
+  float: left;
+  font-size: 12px;
+  color: #989696;
+  text-align: center;
+  border: 2px solid #ffc107;
+}
+.infoMenu {
+display: table;
+list-style: none;
+text-align: center;
+font-size: 20px;
+margin-left: auto;
+margin-right: auto;
+}
+.infoMenuOn {
+  float:left;
+  margin-left: 30px;
+  margin-right: 10px;
+  margin-bottom: 50px;
+}
+.row {
+  justify-content: center;
+}
+.gender {
+  font-size:16px;
+}
+.gender-bt {
+  width: 30px;
+  height: 20px;
+  margin-top: 20px;
+}
+.join_menu {
+  font-size: 18px;
+  margin-top: 20px;
+  margin-bottom: -20px;
+}
+.join_gender {
+  margin-left: 15px;
+}
+.input-group {
+  width: 90%;
+  float: left;
+}
+.btn btn-outline-secondary {
+  margin-bottom: 5px;
+}
+#join_menu_check{
+  margin-bottom: 10px;
+}
+.send_bt a {
+    border: 2px solid #5f5f5f70;
+    color: white;
+    border-radius: 7px;
+}
 
+.custom-email {
+  color: #989696;
+  width: 157px;
+  height: 55px;
+  font-size: 18px;
+  padding: 13px;
+  margin-top: 30px;
+  border: 0px;
+  border-radius: 5px;
+  height: 55px;
+  font-size: 18px;
+}
 
+.custom-email-bt {
+  color: #989696;
+  width: 100%;
+  height: 55px;
+  font-size: 18px;
+  padding: 20px;
+  margin-top: 25px;
+  border: 0px;
+  border-radius: 5px;
+}
 
-
-
-
-
+.custom-email-bt-check {
+  outline: none !important;
+  border-color: #719ECE;
+  box-shadow: 0 0 10px #719ECE;
+  color: #989696;
+  width: 100%;
+  height: 55px;
+  font-size: 18px;
+  padding: 20px;
+  margin-top: 25px;
+  border: 0px;
+  border-radius: 5px;
+}
 
 

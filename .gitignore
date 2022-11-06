@@ -208,4 +208,6 @@ temp/
 Debug/
 Release/
 html-exam/
-# package-lock.json
+package-lock.json
+/app/
+**/src/main/resources/application.properties

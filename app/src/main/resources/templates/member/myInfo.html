@@ -33,100 +33,13 @@
           href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css"
           media="screen">
         
-        <style type="text/css">
-        .main_logo {
-          max-width: 30%
-        }
-        .email-bt {
-          width: 500px;
-        }
-
-        .email-bt2 {
-          color: #989696;
-          width: 236px; 
-          height : 55px; 
-          font-size : 18px;
-          padding: 15px;
-          margin-top: 30px;
-          border: 0px;
-          border-radius: 5px;
-          height: 55px;
-          font-size: 18px;
-        }
-        
-        .email-bt3 {
-          color: #989696;
-          width: 236px; 
-          height : 55px; 
-          font-size : 18px;
-          padding: 15px;
-          margin-top: 30px;
-          margin-left: 24px;
-          border: 0px;
-          border-radius: 5px;
-          height: 55px;
-          font-size: 18px;
-        }
-        
-          .phoneNumber {
-          color: #989696;
-          width: 500px; 
-          height : 55px; 
-          font-size : 18px;
-          padding: 15px;
-          margin-top: 30px;
-          border: 0px;
-          border-radius: 5px;
-          height: 55px;
-          font-size: 18px;
-        }
-        
-        .골뱅이 {
-          color: white;
-          font-size: 20px;
-        }
-        
-        .contact_section {
-          background-size: cover;
-        }
-        
-        .cross-check-bt {
-          width: 10%;
-          float: left;
-          font-size: 12px;
-          color: #989696;
-          text-align: center;
-          border: 2px solid #ffc107;
-        }
-        
-        .col-md-6 {
-          margin-left: 20vw;
-          margin-right: 20vw;
-        }
-        
-        .infoMenu {
-        display: table;
-        list-style: none;
-        text-align: center;
-        font-size: 20px;
-        margin-left: auto;
-        margin-right: auto;
-        }
-        
-        .infoMenuOn {
-          float:left;
-          margin-left: 30px;
-          margin-right: 10px;
-          margin-bottom: 50px;
-        }
-        </style>
     </head>
         <body>
           <!-- header section start -->
           <div class="header_section">
             <div class="container-fluid">
               <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <div class="logo"><a href="/app"><img class=main_logo src="images/comehere_logo.png"></a></div>
+                <div class="main_logo"><a href="main"><img src="../images/logo.png"></a></div>
                 <button class="navbar-toggler" type="button" data-toggle="collapse"
                   data-target="#navbarSupportedContent"
                   aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -141,9 +54,9 @@
                   </ul>
                   <div class="search_icon">
                     <ul>
-                      <li><img src="images/search-icon.png"></li>
-                      <li><a href="#">LOGIN</a></li>
-                      <li><a href="viewer">마이페이지</a></li>
+                      <li data-th-if="${session.loginMember == null}"><a href="../auth/form" >로그인</a></li>
+                      <li data-th-if="${session.loginMember != null}"><a href="#">마이페이지</a></li>
+                      <li data-th-if="${session.loginMember != null}"><a href="auth/logout" data-th-text="${session.loginMember.name} + '(로그아웃)'">동동(로그아웃)</a></li>
                     </ul>
                   </div>
                 </div>
@@ -166,13 +79,34 @@
                 <div class="col-md-6">
                   <h1 class="contact_text">개인정보 수정</h1>
                   <div class="mail_sectin">
-                    <form method="post" id="joinForm">
-                      <input type="text" class="email-bt" placeholder="이름" name="name" readonly>
-                      <input type='date' class="email-bt" placeholder="생년월일" name="birthday" readonly>
-                      <input type="text" class="phoneNumber" placeholder="(-) 제외 입력" name="tel" required pattern="[0-9]{2,3}-[0-9]{3,4}-[0-9]{4}" maxlength="13"><br/> 
-                      <input type="email" class="email-bt2" placeholder="이메일" name="email"> 
-                          <span class=골뱅이>@</span>
-                        <select class="email-bt2" id="mail_domain" name="mail_domain">
+                    <table>
+                    <tr>
+                    <td width="65%" value="${member.id}"></td>
+                    </tr>
+                    </table>
+                    <form action="update" method="post" id="udateForm">
+                      <div class="join_menu">아이디</div> 
+                      <input type="text" class="email-bt" placeholder="아이디" name="id" id="userIdText">
+                        <!-- <button type="button" class="id_overlap_button" onclick="id_overlap_check()">중복확인</button> -->
+                        <div class="join_menu">이름</div>
+                      <input type="text" class="email-bt" placeholder="이름" name="name">
+                        <div class="join_menu">생년월일</div>
+                      <input type='date' class="email-bt" placeholder="생년월일" name="birthday">
+                        <div class="join_menu">성별<br/>
+                          <div class= "join_gender">
+                        <span class =gender>남성</span>
+                      <input type='radio' class="gender-bt" value="0"name="sex">
+                        <span class =gender>여성</span>
+                      <input type='radio' class="gender-bt" value="1"name="sex">
+                          </div>
+                        </div> <br/>
+                          <div class="join_menu">전화번호</div>
+                      <input type="text" class="phoneNumber" placeholder="(-) 제외 입력" name="tel" required pattern="[0-9]{2,3}-[0-9]{3,4}-[0-9]{4}" maxlength="13"><br/>
+                        <div class="join_menu">이메일</div>
+                      <input type="email" class="email-bt" placeholder="이메일" name="email" > 
+                      <!-- @
+                        <input type="text" class="custom-email" placeholder="도메인 입력" name="mail_domain" id="mail_domain">
+                        <select class="custom-email" id="mail_domain_select" onchange="selectChange()">
                           <option value="">직접 입력</option>
                           <option value="naver.com">naver.com</option>
                           <option value="daum.net">daum.net</option>
@@ -181,13 +115,20 @@
                           <option value="korea.com">korea.com</option>
                           <option value="gmail.com">gmail.com</option>
                           <option value="hanmir.com">hanmir.com</option>
-                        </select><br /> 
-                      <input type="text" class="email-bt" placeholder="닉네임" name="nickname">
-                        <div class="cross-check-bt"><a href="#">중복확인</a></div>
-                      <input type="password" class="email-bt" placeholder="새 비밀번호" name="password"> 
-                      <input type="password" class="email-bt" placeholder="새 비밀번호 확인" name="password"> 
-                        <select class="email-bt2" id="region" name="region_domain">
-                          <option value="---선택---">---선택---</option>
+                        </select><br />  -->
+                      <button class="btn btn-outline-secondary" type="button" id="button-addon2">중복확인</button>
+                          <div class="join_menu">닉네임</div>
+                      <input type="text" class="email-bt" id= "join_menu_check" placeholder="닉네임" name="nickname">
+                          <button class="btn btn-outline-secondary" type="button" id="button-addon2">중복확인</button>
+                          <div class="join_menu">비밀번호
+                            <input type="password" class="email-bt" id="password" placeholder="비밀번호" name="password"> 
+                            <div id="passwordError" class="error"></div>
+                            <input type="password" class="email-bt" id="passwordCheck" placeholder="비밀번호 확인" name="password_check"> 
+                            <div id="passwordCheckError" class="error"></div>
+                          </div>
+                        <div class="join_menu">관심지역</div>
+                        <select class="email-bt2" id="region" name="region_domain1">
+                          <option value="">---선택---</option>
                           <option value="종로구">종로구</option>
                           <option value="중구">중구</option>
                           <option value="용산구">용산구</option>
@@ -214,8 +155,8 @@
                           <option value="송파구">송파구</option>
                           <option value="강동구">강동구</option>
                       </select> 
-                      <select class="email-bt3" id="region" name="region_domain">
-                        <option value="---선택---">---선택---</option>
+                      <select class="email-bt3" id="region" name="region_domain2">
+                        <option value="">---선택---</option>
                         <option value="종로구">종로구</option>
                         <option value="중구">중구</option>
                         <option value="용산구">용산구</option>
@@ -242,8 +183,9 @@
                         <option value="송파구">송파구</option>
                         <option value="강동구">강동구</option>
                       </select><br /> 
-                      <select class="email-bt2" id="sports" name="sports_domain">
-                        <option value="---선택---">---선택---</option>
+                        <div class="join_menu">관심운동</div>
+                      <select class="email-bt2" id="sports" name="sports_domain1">
+                        <option value="">---선택---</option>
                         <option value="헬스">헬스</option>
                         <option value="클라이밍">클라이밍</option>
                         <option value="배드민턴">배드민턴</option>
@@ -255,8 +197,8 @@
                         <option value="러닝">러닝</option>
                         <option value="사이클">사이클</option>
                       </select> 
-                      <select class="email-bt3" id="sports" name="sports_domain">
-                        <option value="---선택---">---선택---</option>
+                      <select class="email-bt3" id="sports" name="sports_domain2">
+                        <option value="">---선택---</option>
                         <option value="헬스">헬스</option>
                         <option value="클라이밍">클라이밍</option>
                         <option value="배드민턴">배드민턴</option>
@@ -268,82 +210,14 @@
                         <option value="러닝">러닝</option>
                         <option value="사이클">사이클</option>
                       </select><br />
+                      <!-- <div class="send_bt"> <button type="submit">회원가입</button></div> -->
+                      <div class="send_bt"><button type="submit">변경</button></div>
                     </form>
-                    <div class="send_bt"><a href="my-Info" onclick="joinInfoSubmit();">확인</a></div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-          <!-- contact section end -->
-          <!--       footer section start
-              <div class="footer_section layout_padding">
-                 <div class="container">
-                    <div class="row">
-                       <div class="col-lg-3 col-sm-6">
-                          <div class="fooer_logo"><img src="images/footer-logo.png"></div>
-                          <p class="footer_lorem_text">There are many variat
-                             ions of passages of L
-                             orem Ipsum available
-                             , but the majority h
-                             ave suffered altera
-                             tion in some form, by 
-                          </p>
-                       </div>
-                       <div class="col-lg-3 col-sm-6">
-                          <h1 class="customer_text">LET US HELP YOU</h1>
-                          <p class="footer_lorem_text">There are many variat
-                             ions of passages of L
-                             orem Ipsum available
-                             , but the majority h
-                             ave suffered altera
-                             tion in some form, by 
-                          </p>
-                       </div>
-                       <div class="col-lg-3 col-sm-6">
-                          <h1 class="customer_text">INFORMATION</h1>
-                          <p class="footer_lorem_text1">About Us<br>
-                             Careers<br>
-                             Sell on shopee<br>
-                             Press & News<br>
-                             Competitions<br>
-                             Terms & Conditions
-                          </p>
-                       </div>
-                       <div class="col-lg-3 col-sm-6">
-                          <h1 class="customer_text">OUR Design</h1>
-                          <p class="footer_lorem_text">There are many variat
-                             ions of passages of L
-                             orem Ipsum available
-                             , but the majority h
-                             ave suffered altera
-                             tion in some form, by 
-                          </p>
-                       </div>
-                    </div>
-                    <div class="input-group mb-3">
-                       <input type="text" class="form-control" placeholder="Enter your email" aria-label="Enter your email" aria-describedby="basic-addon2">
-                       <div class="input-group-append">
-                          <span class="input-group-text" id="basic-addon2"><a href="#">Subscribe</a></span>
-                       </div>
-                    </div>
-                 </div>
-              </div>
-               footer section end -->
-          <!-- copyright section start -->
-          <div class="copyright_section">
-            <div class="container">
-              <div class="social_icon">
-                <ul>
-                  <li><a href="#"><img src="images/fb-icon.png"></a></li>
-                  <li><a href="#"><img src="images/twitter-icon.png"></a></li>
-                  <li><a href="#"><img src="images/instagram-icon.png"></a></li>
-                  <li><a href="#"><img src="images/linkedin-icon.png"></a></li>
-                </ul>
-              </div>
-               <p class="copyright_text"><a>2022 All Rights Reserved. Design by comehere</a></p>
-            </div>
-            </div>
             <!-- copyright section end -->
             <!-- Javascript files-->
             <!--       <script src="js/jquery.min.js"></script> -->
@@ -372,6 +246,7 @@
               );
             });
             </script>
+
 
         </body>
 

@@ -11,12 +11,14 @@ import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 import com.bitcamp.testproject.service.BoardService;
+import com.bitcamp.testproject.service.MemberService;
 import com.bitcamp.testproject.vo.AttachedFile;
 import com.bitcamp.testproject.vo.Board;
 import com.bitcamp.testproject.vo.Member;
@@ -25,33 +27,12 @@ import com.bitcamp.testproject.vo.Member;
 @RequestMapping("/mypage/")
 public class MypageController {
 
+  @Autowired
   ServletContext sc;
+  @Autowired
   BoardService boardService;
-
-  public MypageController(BoardService boardService, ServletContext sc) {
-    System.out.println("BoardController() 호출됨!");
-    this.boardService = boardService;
-    this.sc = sc;
-  }
-
-  @GetMapping("viewer")
-  public String passwordCheckViewer() {
-
-    return "mypage/pwCheckViewer";
-  }
-
-  @PostMapping("confirmation")
-  public String confirmation(HttpSession httpSession, Member member) {
-    System.out.println(member.getPassword() + " <-----");
-    return "redirect:/viewer";
-  }
-
-
-  @GetMapping("my-Info")
-  public String myPageMember(Member member) {
-    System.out.println("??????왔니");
-    return "mypage/myInfo";
-  }
+  @Autowired
+  MemberService memberService;
 
 
   @GetMapping("my-post")
