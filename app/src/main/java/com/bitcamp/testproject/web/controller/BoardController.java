@@ -289,6 +289,7 @@ public class BoardController {
     catenoInBoard.setCateno(no);
 
     List<Map<String,Object>> list = boardService.list(cri);
+    System.out.println("=====>>>>>" + list.size());
     mav.addObject("list", list);
     mav.addObject("pageMaker", pageMaker);
     mav.addObject("catenoInBoard", catenoInBoard);
