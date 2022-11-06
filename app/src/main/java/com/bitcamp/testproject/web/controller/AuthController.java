@@ -23,8 +23,6 @@ public class AuthController {
 
   @Autowired
   MemberService memberService;
-  @Autowired
-  EmailService emailService;
 
   public AuthController(MemberService memberService) {
     System.out.println("AuthController() 호출됨!");
@@ -57,39 +55,22 @@ public class AuthController {
       cookie.setMaxAge(60 * 60 * 24 * 7); // 7일
     }
     response.addCookie(cookie); 
+
     ModelAndView mv = new ModelAndView("auth/loginResult");
     mv.addObject("member", member);
     return mv;
   }
-
 
   @GetMapping("findId")
   public String findId() {
     return "auth/findId";
   }
 
-  @GetMapping("findById")
-  public ModelAndView findById(     
-      String name,
-      String email, 
-      HttpServletResponse response,
-      HttpSession session) throws Exception {
-
-    Member member = memberService.getId(name, email);
-
-    if (name != null) {
-      session.setAttribute("findId", name); 
-    }
-
-    ModelAndView mv = new ModelAndView("auth/findIdResult");
-    mv.addObject("member", member);
-    return mv;
-  }
-
   @GetMapping("findPassword")
   public String findIdPassword() {
     return "auth/findPassword";
   }
+
 
   @GetMapping("sendMail")
   public String sendMail() {
@@ -168,6 +149,7 @@ public class AuthController {
 
   }
 
+
   @GetMapping("logout") 
   public String logout(HttpSession session) throws Exception {
     session.invalidate(); 
@@ -181,6 +163,7 @@ public class AuthController {
   //  public String idCheck(Member member) throws Exception {
   //    return memberService.checkId(member);
   //  }
+
 
   // 헌식 끝
 
@@ -202,7 +185,6 @@ public class AuthController {
 
     return "myPageMember";
   }
->>>>>>> main
 
 
 

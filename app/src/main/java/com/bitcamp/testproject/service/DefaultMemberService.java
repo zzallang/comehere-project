@@ -45,6 +45,7 @@ public class DefaultMemberService implements MemberService {
     return memberDao.findByIdPassword(id, password);
   }
 
+
   @Override
   public Member get(String id, String email, String SecCode) throws Exception {
     return memberDao.findByPassword(id, email, SecCode);
@@ -60,6 +61,7 @@ public class DefaultMemberService implements MemberService {
   public Member getId(String name, String email) throws Exception {
     return memberDao.findById(name, email);
   }
+
 
   @Transactional
   @Override
