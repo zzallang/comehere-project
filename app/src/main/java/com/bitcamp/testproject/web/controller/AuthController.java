@@ -68,6 +68,26 @@ public class AuthController {
     return "auth/findId";
   }
 
+
+  @GetMapping("findById")
+  public ModelAndView findById(     
+      String name,
+      String email, 
+      HttpServletResponse response,
+      HttpSession session) throws Exception {
+
+    Member member = memberService.getId(name, email);
+
+    if (name != null) {
+      session.setAttribute("findId", name); 
+    }
+
+    ModelAndView mv = new ModelAndView("auth/findIdResult");
+    mv.addObject("member", member);
+    return mv;
+  }
+
+
   @GetMapping("findPassword")
   public String findIdPassword() {
     return "auth/findPassword";

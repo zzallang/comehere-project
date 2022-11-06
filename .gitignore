@@ -211,3 +211,4 @@ html-exam/
 package-lock.json
 /app/
 **/src/main/resources/application.properties
+**/src/main/resources/application-smtp.properties
