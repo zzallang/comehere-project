@@ -122,15 +122,16 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                   <ul class="navbar-nav mr-auto">
-                    <li class="nav-item"><a class="nav-link" href="/app">운동하기</a></li>
-                    <li class="nav-item"><a class="nav-link" href="board">커뮤니티</a></li>
-                    <li class="nav-item"><a class="nav-link" href="notice">공지사항</a></li>
-                  </ul>
+               <li class= "infoMenuOn"><a href="../member/myInfo">회원 정보 변경</a></li>
+                <li class= "infoMenuOn"><a href="../mypage/health-management">건강 관리</a></li>
+                <li class= "infoMenuOn"><a href="../mypage/party-management">모임 관리</a></li>
+                <li class= "infoMenuOn"><a href="../mypage/my-post">작성글/스크랩</a></li>
+              </ul>
                   <div class="search_icon">
                     <ul>
-                      <li><img src="images/search-icon.png"></li>
-                      <li><a href="#">LOGIN</a></li>
-                      <li><a href="viewer">마이페이지</a></li>
+			                <li data-th-if="${session.loginMember == null}"><a href="auth/form" >로그인</a></li>
+			                <li data-th-if="${session.loginMember != null}"><a href="member/viewer">마이페이지</a></li>
+			                <li data-th-if="${session.loginMember != null}"><a href="auth/logout" data-th-text="${session.loginMember.name} + '(로그아웃)'">동동(로그아웃)</a></li>
                     </ul>
                   </div>
                 </div>

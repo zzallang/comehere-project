@@ -39,7 +39,7 @@
           <div class="header_section">
             <div class="container-fluid">
               <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <div class="main_logo"><a href="main"><img src="../images/logo.png"></a></div>
+                <div class="main_logo"><a href="/app"><img src="../images/logo.png"></a></div>
                 <button class="navbar-toggler" type="button" data-toggle="collapse"
                   data-target="#navbarSupportedContent"
                   aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -48,14 +48,14 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                   <ul class="navbar-nav mr-auto">
-			              <li class="nav-item"><a class="nav-link" href="/app">운동하기</a></li>
-			              <li class="nav-item"><a class="nav-link" href="board">커뮤니티</a></li>
-			              <li class="nav-item"><a class="nav-link" href="notice">공지사항</a></li>
+			              <li class="nav-item"><a class="nav-link" href="#">운동하기</a></li>
+			              <li class="nav-item"><a class="nav-link" href="board/listBoard?no=1">커뮤니티</a></li>
+			              <li class="nav-item"><a class="nav-link" href="#">공지사항</a></li>
                   </ul>
                   <div class="search_icon">
                     <ul>
                       <li data-th-if="${session.loginMember == null}"><a href="../auth/form" >로그인</a></li>
-                      <li data-th-if="${session.loginMember != null}"><a href="#">마이페이지</a></li>
+                      <li data-th-if="${session.loginMember != null}"><a href="../member/viewer">마이페이지</a></li>
                       <li data-th-if="${session.loginMember != null}"><a href="auth/logout" data-th-text="${session.loginMember.name} + '(로그아웃)'">동동(로그아웃)</a></li>
                     </ul>
                   </div>
@@ -68,10 +68,10 @@
           <div class="contact_section layout_padding">
             <div class= info>
               <ul class="infoMenu">
-                <li class= "infoMenuOn"><a href="my-Info">회원 정보 변경</a></li>
-                <li class= "infoMenuOn"><a href="health-management">건강 관리</a></li>
-                <li class= "infoMenuOn"><a href="party-management">모임 관리</a></li>
-                <li class= "infoMenuOn"><a href="my-post">작성글/스크랩</a></li>
+                <li class= "infoMenuOn"><a href="../member/myInfo">회원 정보 변경</a></li>
+                <li class= "infoMenuOn"><a href="../mypage/health-management">건강 관리</a></li>
+                <li class= "infoMenuOn"><a href="../mypage/party-management">모임 관리</a></li>
+                <li class= "infoMenuOn"><a href="../mypage/my-post">작성글/스크랩</a></li>
               </ul>
             </div>
             <div class="container">
