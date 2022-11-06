@@ -13,15 +13,16 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+import com.bitcamp.testproject.service.EmailService;
 import com.bitcamp.testproject.service.MemberService;
 import com.bitcamp.testproject.vo.Member;
 
 @Controller 
 @RequestMapping("/auth/")
 public class AuthController {
-  /*
-   * @Autowired EmailService emailService;
-   */
+
+  @Autowired EmailService emailService;
+
   @Autowired
   MemberService memberService;
 
@@ -99,15 +100,15 @@ public class AuthController {
     return "auth/sendMail";
   }
 
-  /*
-   * @PostMapping("mail/send")
-   * 
-   * @ResponseBody public String send(String email) { System.out.println(email);
-   * 
-   * Random random = new Random(); int SecCode = random.nextInt(888888) + 111111;
-   * 
-   * emailService.sendSimpleMessage(email, SecCode); return Integer.toString(SecCode); }
-   */
+
+  @PostMapping("mail/send")
+
+  @ResponseBody public String send(String email) { System.out.println(email);
+
+  Random random = new Random(); int SecCode = random.nextInt(888888) + 111111;
+
+  emailService.sendSimpleMessage(email, SecCode); return Integer.toString(SecCode); }
+
 
 
   @GetMapping("findByPassword")

@@ -92,6 +92,14 @@
       id=#{id} and pwd=sha2(#{password},256)
   </select>
   
+  <select id="findById" resultMap="memberMap">
+    select
+    *
+    from
+    member
+    where
+    name=#{name} and email=#{email}
+  </select>
   
   <!-- 회원 정보 수정 -->
   <update id="update" parameterType="member">
