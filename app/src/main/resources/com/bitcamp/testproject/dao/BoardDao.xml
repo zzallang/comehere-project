@@ -79,7 +79,6 @@
           b.bno,
           b.title,
           m.name,
-          b.cdt,
           b.vw_cnt,
           b.cateno
         from 
@@ -89,6 +88,27 @@
         order by 
           vw_cnt desc
         limit 0, 10;
+  </select>
+  
+   <select id="findClgList" resultMap="boardMap">
+      select
+        b.bno,
+        b.title,
+        m.name,
+        b.cdt,
+        bf.filepath
+      from 
+        board b
+        join member m on b.mno = m.mno
+        join board_category bc on b.cateno = bc.cateno
+        left join board_file bf on b.bno = bf.bno
+      where
+        b.cateno = 3
+      group by
+        b.bno
+      order by 
+        b.bno desc
+      limit 0, 6
   </select>
   
   <select id="findAll" resultMap="boardMap" parameterType="criteria">

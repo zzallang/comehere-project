@@ -85,6 +85,12 @@ public class DefaultBoardService implements BoardService {
     return boardDao.findBestList();
   }
 
+  @Override
+  public List<Map<String, Object>> clgList() {
+    return boardDao.findClgList();
+  }
+
+
   @Transactional
   @Override
   public void add(Board board) throws Exception {

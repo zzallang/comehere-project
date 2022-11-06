@@ -64,8 +64,8 @@
           margin : auto;
           /* width: 42px; */
         }
-        .title-min-width {
-          min-width: 700px;
+        .title-min-width2 {
+          min-width: 300px;
         }
         
         .btn-outline-successJD {
@@ -89,10 +89,56 @@
           color: #ffb607;
         }
         
-         #best-list {
+         .mainList-title {
           margin: 0 66px 0 66px;
           font-weight: bold;
         }
+        
+        .row1 {
+          width: 50%;
+          border-right: 1px solid #dee2e6;
+          float: left;
+        }
+        
+        .clg-plus {
+          float: right;
+          font-size: 17px;
+          font-weight: normal;
+          padding-top: 12px;
+          
+        }
+        
+        .recent-clg-list {
+          /* border: 1px solid blue; */
+          width: 90%;
+          margin: auto;
+          min-height: 500px;
+        }
+        .recent-clg-wapper {
+          display: inline-block;
+          width: 48%;
+          padding: 2%;
+          margin: 4px;
+          background-color: #fcd780;
+        }
+        .recent-clg-img-wapper {
+          height: 256.031px;
+          width: 256.031px;
+        }
+        .imgJD {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          margin: auto;
+          display: block;
+        }
+        .recent-clg-content-wapper {
+          background-color: white;
+          margin-top: 10px;
+          padding: 5px;
+          height: 60px;
+        }
+        
 
       </style>
 
@@ -150,37 +196,48 @@
            </ul>
            <!-- 게시판 카테고리 이동 끝 -->
            
+           <h2 class="our_textJD" id="cateName">게시판 제목입니다.</h1>
+           
            <div class="furnitures_section2 layout_padding">
-               <div class="row">
+               <div class="row1">
                   <!-- 게시글 목록 시작 -->
-                  <h3 id="best-list">인기글</h3>
+                  <h3 class="mainList-title">인기글</h3>
                   <table class="table">
                     <tr>
                       <th>게시판 종류</th>
-                      <th>번호</th>
                       <th>제목</th>
                       <th>작성자</th>
                       <th>조회수</th>
-                      <th>등록일</th>
                     </tr>
                     <tr th:each="board : ${bestList}">
-                      <td th:text="${board.cateno}">100</td>
-                      <td th:text="${board.no}">100</td>
-                      <td class="title-min-width"><a href='detail?no=1'
+                      <td th:text="${board.cateno}">게시판</td>
+                      <td class="title-min-width2"><a href='detail?no=1'
                           th:href="@{detail(no=${board.no})}"
                           th:text="${board.title == ''} ? '(제목없음)' : ${board.title}">제목없음</a></td>
                       <td th:text="${board.writer.name}">유길동</td>
                       <td th:text="${board.viewCount}">17</td>
-                      <td th:text="${board.createdDate}">2022-1-1</td>
                     </tr>
-                  </table>
-                 <div style="margin: auto">
-                   <form class="form-inline">
-                     <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                     <button class="btn btn-outline-successJD my-2 my-sm-0"type="submit">Search</button>
-                   </form>
+                  </table> 
                 </div>
-            </div>
+                <div class="row1">
+                  <h3 class="mainList-title">최근 챌린지 인증<a class="clg-plus">더보기+</a></h3>
+                  <div class="recent-clg-list">
+                  <th:block th:each="board : ${clgList}">
+                    <span class="recent-clg-wapper">
+                      <div class="recent-clg-img-wapper">
+                        <a th:href="@{detail(no=${board.no})}"><img th:if="${board.path == null}" src="/app/board/files/nothumpnail.jpg" alt="Avatar" class="imgJD"/></a>
+                        <a th:href="@{detail(no=${board.no})}"><img  th:if="${board.path != null}" th:src="@{'http://localhost:8888/app/board/files/' + ${board.path}}" alt="Avatar" class="imgJD"/></a>
+                      </div>
+                      <div class="recent-clg-content-wapper">
+                        <b><a href='detail?no=1' th:href="@{detail(no=${board.no})}" th:text="${board.title == ''} ? '(제목없음)' : ${board.title}">제목없음</a></b><br>
+                        <span th:text="${board.writer.name}">유길동</span>
+                        <span class="float-end" th:text="${board.createdDate}">등록일</span>
+                      </div>
+                    </span>
+                  </th:block>
+                  </div>
+                </div>
+            
          </div>
         </div>
 
@@ -299,17 +356,15 @@
           case '5' :
         	  document.getElementById( 'cateName' ).innerHTML = "핫딜게시판";
             document.getElementById( 'cateConment' ).innerHTML = "지금이 바로 득템 기회! 핫딜 제품들을 공유할 수 있는 핫딜게시판입니다.";
+            break;
+          default :
+        	  document.getElementById( 'cateName' ).innerHTML = "커뮤니티 메인";
+        	  
         }
         
       }
 
       </script>
    </body>
-    
- 
-            <p>
-                <a href='../'>메인</a>
-            </p>
-        </body>
          
-    </html>
+</html>

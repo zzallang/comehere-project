@@ -36,6 +36,8 @@ public interface BoardDao {
 
   List<Map<String, Object>> findBestList();
 
+  List<Map<String, Object>> findClgList();
+
   //
 
   //  int insert(Board board);

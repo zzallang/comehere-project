@@ -165,11 +165,13 @@ public class BoardController {
   public Model main(Model model) {
 
     // 인기 게시글 가져오기
-    List<Map<String,Object>> list = boardService.bestList();
+    List<Map<String,Object>> bestList = boardService.bestList();
 
     // 챌린지 게시글 가져오기
+    List<Map<String,Object>> clgList = boardService.clgList();
 
-    model.addAttribute("bestList", list);
+    model.addAttribute("bestList", bestList);
+    model.addAttribute("clgList", clgList);
 
     return model;
   }

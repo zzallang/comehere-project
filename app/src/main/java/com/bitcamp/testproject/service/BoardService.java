@@ -46,6 +46,8 @@ public interface BoardService {
 
   List<Map<String, Object>> bestList();
 
+  List<Map<String, Object>> clgList();
+
 
 
   ////////////
