@@ -383,7 +383,7 @@
                <div class="party_detail_buttons">
                 <p class="dololr_text_region" th:text="${party.region.sido}"></p>
                 <p class="dololr_text_region" th:text="${party.region.sigu}"></p>
-                <p class="dololr_text_sports" th:text="${party.sport.name}"></p>
+                <p class="dololr_text_sports" th:text="${party.sports.name}"></p>
                 <button th:if="${session.loginMember} != null and ${session.loginMember.no} != ${party.user.no}" class="dololr_text_tatlle" type="button" onclick="location.href='#'">신고</button>
                </div>
                </div>

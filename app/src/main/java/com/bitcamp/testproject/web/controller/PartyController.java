@@ -19,7 +19,7 @@ import com.bitcamp.testproject.service.PartyCommentService;
 import com.bitcamp.testproject.service.PartyService;
 import com.bitcamp.testproject.service.RegionService;
 import com.bitcamp.testproject.service.ReviewService;
-import com.bitcamp.testproject.service.SportService;
+import com.bitcamp.testproject.service.SportsService;
 import com.bitcamp.testproject.vo.AttachedFile;
 import com.bitcamp.testproject.vo.Member;
 import com.bitcamp.testproject.vo.Party;
@@ -36,21 +36,21 @@ public class PartyController {
   ServletContext sc;
   PartyService partyService;
   RegionService regionService;
-  SportService sportService;
+  SportsService sportsService;
   PartyCommentService partyCommentService;
   ReviewService reviewService;
 
   public PartyController(
       PartyService partyService, 
       RegionService regionService, 
-      SportService sportService, 
+      SportsService sportsService, 
       PartyCommentService partyCommentService,
       ReviewService reviewService,
       ServletContext sc) {
     System.out.println("PartyController() 호출됨!");
     this.partyService = partyService;
     this.regionService = regionService;
-    this.sportService = sportService;
+    this.sportsService = sportsService;
     this.partyCommentService = partyCommentService;
     this.reviewService = reviewService;
     this.sc = sc;
@@ -67,7 +67,7 @@ public class PartyController {
   @GetMapping("form")
   public void form(Model model) throws Exception {
     model.addAttribute("regions", regionService.list());
-    model.addAttribute("sports", sportService.list());
+    model.addAttribute("sports", sportsService.list());
 
   }
 
@@ -130,7 +130,7 @@ public class PartyController {
   public void list(Model model) throws Exception {
     model.addAttribute("partys", partyService.list());
     model.addAttribute("regions", regionService.list());
-    model.addAttribute("sports", sportService.list());
+    model.addAttribute("sports", sportsService.list());
   }
 
   @SuppressWarnings({"rawtypes", "unchecked"})
@@ -155,7 +155,7 @@ public class PartyController {
     }
 
     model.addAttribute("regions", regionService.list());
-    model.addAttribute("sports", sportService.list());
+    model.addAttribute("sports", sportsService.list());
 
     return model.addAttribute("party", party);
   }

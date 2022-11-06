@@ -2,12 +2,12 @@ package com.bitcamp.testproject.dao;
 
 import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
-import com.bitcamp.testproject.vo.Sport;
+import com.bitcamp.testproject.vo.Sports;
 
 @Mapper
-public interface SportDao {
+public interface SportsDao {
 
-  List<Sport> findAll();
+  List<Sports> findAll();
 
 
 }

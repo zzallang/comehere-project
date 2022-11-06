@@ -8,7 +8,7 @@ public class Party {
 
   private int no;
   private Region region;
-  private Sport sport;
+  private Sports sports;
   private String title;
   private String content;
   private Date createdDate;
@@ -27,9 +27,10 @@ public class Party {
 
   private List<AttachedFile> attachedFiles;
 
+
   @Override
   public String toString() {
-    return "Party [no=" + no + ", region=" + region + ", sport=" + sport + ", title=" + title
+    return "Party [no=" + no + ", region=" + region + ", sports=" + sports + ", title=" + title
         + ", content=" + content + ", createdDate=" + createdDate + ", headCount=" + headCount
         + ", partyTime=" + partyTime + ", partyDate=" + partyDate + ", user=" + user + ", userNo="
         + userNo + ", star=" + star + ", regionNo=" + regionNo + ", sportsNo=" + sportsNo
@@ -57,13 +58,13 @@ public class Party {
   }
 
 
-  public Sport getSport() {
-    return sport;
+  public Sports getSports() {
+    return sports;
   }
 
 
-  public void setSport(Sport sport) {
-    this.sport = sport;
+  public void setSports(Sports sports) {
+    this.sports = sports;
   }
 
 
@@ -185,6 +186,5 @@ public class Party {
   public void setAttachedFiles(List<AttachedFile> attachedFiles) {
     this.attachedFiles = attachedFiles;
   }
-
 
 }

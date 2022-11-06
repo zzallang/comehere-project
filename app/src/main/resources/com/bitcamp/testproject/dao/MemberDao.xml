@@ -8,6 +8,7 @@
   <resultMap type="member" id="memberMap">
     <id column="mno" property="no"/>
     <result column="name" property="name"/>
+    <result column="id" property="id"/>
     <result column="email" property="email"/>
     <result column="cdt" property="createdDate"/>
       <result column="nick" property="nickname"/>
@@ -25,6 +26,7 @@
     select 
       mno,
       name,
+      id,
       email,
       cdt,
       nick,
@@ -52,6 +54,7 @@
     select 
       mno,
       name,
+      id,
       email,
       cdt,
       nick,
@@ -64,6 +67,7 @@
       email=#{email} and pwd=sha2(#{password},256)
   </select>
   
+
   <update id="update" parameterType="Member">
     update app_member set 
       name=#{name}, 

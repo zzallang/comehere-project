@@ -1,12 +1,12 @@
 package com.bitcamp.testproject.vo;
 
-public class Sport {
+public class Sports {
 
   private int no;
   private String name;
   @Override
   public String toString() {
-    return "Sport [no=" + no + ", name=" + name + "]";
+    return "Sports [no=" + no + ", name=" + name + "]";
   }
   public int getNo() {
     return no;

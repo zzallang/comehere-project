@@ -388,6 +388,57 @@
           font-size: xx-large;
         }
       
+      
+        .sldes li {list-style: none;}
+        .slide_wrapper {
+          position: relative;
+          width: 300px;
+          margin: 0 auto;
+          height: 300px;
+          overflow: hidden;
+          border: 1px solid #333;
+        }
+        .slides {
+          position: absolute;
+          left:0;
+          top: 0;
+          transition:left 0.5s ease-out;
+        }
+        .slides li:not(:last-child){
+          float: left;
+          margin-right: 30px;
+        }
+        .slides img {
+          width: 300px;
+        }
+        .controls {
+          text-align: center;
+          margin-top: 50px;
+        }
+        .controls span.prev {
+          position: absolute;
+          background: rgba(230, 230, 230, 0.4);
+          color: #333;
+          padding: 5px 2px;
+          margin: 0 10px;
+          cursor: pointer;
+          top: 50%;
+          transform: translateY(-50%);
+          left: 1%;
+          }
+        .controls span.next {
+          position: absolute;
+          background: rgba(230, 230, 230, 0.4);
+          color: #333;
+          padding: 5px 2px;
+          margin: 0 10px;
+          cursor: pointer;
+          top: 50%;
+          transform: translateY(-50%);
+          right: 1%;
+          }
+    
+    
   </style>
    </head>
    <body>
@@ -445,7 +496,7 @@
                <div class="party_detail_buttons">
                 <p class="dololr_text_region" th:text="${party.region.sido}"></p>
                 <p class="dololr_text_region" th:text="${party.region.sigu}"></p>
-                <p class="dololr_text_sports" th:text="${party.sport.name}"></p>
+                <p class="dololr_text_sports" th:text="${party.sports.name}"></p>
                 <button th:if="${session.loginMember} != null and ${session.loginMember.no} != ${party.user.no}" class="dololr_text_tatlle" type="button" onclick="location.href='#'">신고</button>
                </div>
                </div>
@@ -458,7 +509,26 @@
                   <form >
                   <div class="party_detail_content_l">
                     <div>
-                      <img src="http://placeimg.com/300/300/any">
+                      <div class="slide_wrapper">
+                        <div class="slide_wrapper">
+                          <ul class="slides">
+                          <th:block th:each="file : ${party.attachedFiles}">
+                            <li><img alt="" src="http://placeimg.com/400/350/any"></li>
+                            <li><img alt="" src="http://placeimg.com/400/350/any"></li>
+                            <li><img alt="" src="http://placeimg.com/400/350/any"></li>
+                            <li><img alt="모임 대표 이미지" th:if="${file.filepath != null}" th:src="'../webapp/party/files/' + @{file.filepath}"></li>
+                            <li><img alt="모임 기본 이미지" th:if="${file.filepath == null}" th:src="images/party/partySample.jpeg"></li>
+                            <!-- 
+                      
+                             -->
+                          </th:block>
+                          </ul>
+                        </div>
+                        <p class="controls">
+                          <span class="prev"><</span>
+                          <span class="next">></span>
+                        </p>
+                      </div>
                     </div>
                     <div>
                       <p>주최자</p>
@@ -640,6 +710,39 @@
         });
       </script>
       <!-- 썸머노트 자바스크립트 끝 -->
+      <!-- 디테일 이미지 사진 자바 스크립트 시작 -->
+      <script>
+          var slides = document.querySelector('.slides'),
+              slide = document.querySelectorAll('.slides li'),
+              currentIdx = 0,
+              slideCount = slide.length,
+              slideWidth = 300,
+              slideMargin = 30,
+              prevBtn = document.querySelector('.prev'),
+              nextBtn = document.querySelector('.next');
+      
+          slides.style.width = (slideWidth + slideMargin) * slideCount - slideMargin + 'px';
+      
+          function moveSlide(num) {
+            slides.style.left = -num * (slideWidth + slideMargin) + 'px';
+            currentIdx = num;
+          }
+          nextBtn.addEventListener('click', function() {
+            if (currentIdx < (slideCount - 1)) {
+              moveSlide(currentIdx + 1);
+            } else {
+              moveSlide(0);
+            }
+          })
+      
+          prevBtn.addEventListener('click', function() {
+            if (currentIdx > 0) {
+              moveSlide(currentIdx - 1);
+            } else {
+              moveSlide(slideCount - 1);
+            }    })
+      </script>
+      <!-- 디테일 이미지 사진 자바 스크립트 끝 -->
       <!-- 참가신청 버튼 자바 스크립트 시작 -->
       <script th:inline="javascript">
       /*<![CDATA[*/
