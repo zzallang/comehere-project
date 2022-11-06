@@ -11,15 +11,20 @@ public interface MemberService {
 
   boolean update(Member member) throws Exception;
 
+  boolean updatePassWord(Member member) throws Exception;
+
   Member get(int no) throws Exception;
 
   Member get(String id, String password) throws Exception;
+
+  Member getByPassword(String id, String email, String SecCode) throws Exception;
+
+  Member getId(String name, String email) throws Exception;
 
   boolean delete(int no) throws Exception;
 
   List<Member> list() throws Exception;
 
-  Member get(int password, int password1) throws Exception;
 
 }
 

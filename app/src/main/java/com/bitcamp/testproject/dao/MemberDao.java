@@ -14,6 +14,8 @@ public interface MemberDao {
 
   int update(Member member);
 
+  int updataPassWrod(Member member);
+
   int delete(int no);
 
   List<Member> findAll();

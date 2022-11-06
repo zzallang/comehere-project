@@ -210,3 +210,4 @@ Release/
 html-exam/
 package-lock.json
 /app/
+application.properties

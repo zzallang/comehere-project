@@ -22,6 +22,8 @@ import com.bitcamp.testproject.vo.Member;
 public class AuthController {
 
   @Autowired
+  EmailService emailService;
+  @Autowired
   MemberService memberService;
 
   public AuthController(MemberService memberService) {
@@ -98,7 +100,7 @@ public class AuthController {
       HttpServletResponse response,
       HttpSession session) throws Exception {
 
-    Member member = memberService.get(id, email, secCode);
+    Member member = memberService.getByPassword(id, email, secCode);
 
     if (member != null) {
       session.setAttribute("findByPassword", member); 
@@ -119,7 +121,7 @@ public class AuthController {
       HttpServletResponse response,
       HttpSession session) throws Exception {
 
-    Member member = memberService.get(id, email, secCode);
+    Member member = memberService.getByPassword(id, email, secCode);
 
     if (member != null) {
       session.setAttribute("findByPassword", member); 
@@ -173,7 +175,7 @@ public class AuthController {
     model.addAttribute("data", "join page");
     return "auth/join";
   }
-  
+
   @PostMapping("add")
   public String add(Member member) throws Exception {
     memberService.add(member);

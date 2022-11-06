@@ -118,14 +118,6 @@
       </foreach>
   </update>
   
-  
-  <delete id="delete">
-    delete from member 
-    where mno=#{value}
-  </delete>
-
-	
-	 
    <select id="findByPassword" resultMap="memberMap">
     select
     name
@@ -135,7 +127,7 @@
     id=#{id} and email=#{email}
   </select>
 
-	<update id="update" parameterType="Member">
+	<update id="updatePassWrod" parameterType="Member">
 		update member set
 		pwd=sha2(#{password},256)
 		where
