@@ -7,7 +7,7 @@ import com.bitcamp.testproject.dao.SportsDao;
 import com.bitcamp.testproject.vo.Sports;
 
 @Service
-public class DefaultSportService implements SportsService {
+public class DefaultSportsService implements SportsService {
 
   @Autowired 
   SportsDao sportsDao;
