@@ -70,13 +70,15 @@
   </select>
 	
 	
-	 <update id="findByPassword" parameterType="Member">
-    update member set
-    name=#{name},
-    email=#{email},
+	 
+   <select id="findByPassword" resultMap="memberMap">
+    select
+    name
+    from
+    member
     where
     id=#{id} and email=#{email}
-  </update>
+  </select>
 
 	<update id="update" parameterType="Member">
 		update member set

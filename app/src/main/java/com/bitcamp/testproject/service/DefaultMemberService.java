@@ -43,6 +43,11 @@ public class DefaultMemberService implements MemberService {
     return memberDao.findByPassword(id, email, SecCode);
   }
 
+  @Override
+  public Member get(int password, int password1) throws Exception {
+    return memberDao.Password(password, password1);
+  }
+
 
   @Override
   public Member getId(String name, String email) throws Exception {

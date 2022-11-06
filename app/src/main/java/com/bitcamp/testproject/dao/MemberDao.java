@@ -36,9 +36,12 @@ public interface MemberDao {
       @Param("email") String email,
       @Param("SecCode") String SecCode);
 
+
+  Member Password(
+      @Param("password") int password, 
+      @Param("password") int password1);
+
 }
-
-
 
 
 
