@@ -45,6 +45,24 @@ public class DefaultMemberService implements MemberService {
     return memberDao.findByIdPassword(id, password);
   }
 
+
+  @Override
+  public Member get(String id, String email, String SecCode) throws Exception {
+    return memberDao.findByPassword(id, email, SecCode);
+  }
+
+  @Override
+  public Member get(int password, int password1) throws Exception {
+    return memberDao.Password(password, password1);
+  }
+
+
+  @Override
+  public Member getId(String name, String email) throws Exception {
+    return memberDao.findById(name, email);
+  }
+
+
   @Transactional
   @Override
   public boolean delete(int no) throws Exception {

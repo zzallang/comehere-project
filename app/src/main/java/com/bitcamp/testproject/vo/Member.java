@@ -10,6 +10,7 @@ public class Member {
   private String id;
   private String email;
   private String password;
+  private String password1;
   private String nickname;
   private String tel;
   private Date birthday;
@@ -24,17 +25,21 @@ public class Member {
   // 모임참여 명단에서 주최자 여부
   private boolean auth;
 
-
-
-
   @Override
   public String toString() {
     return "Member [no=" + no + ", name=" + name + ", id=" + id + ", email=" + email + ", password="
-        + password + ", nickname=" + nickname + ", tel=" + tel + ", birthday=" + birthday + ", sex="
-        + sex + ", filepath=" + filepath + ", createdDate=" + createdDate + ", active=" + active
-        + ", black=" + black + ", auth=" + auth + "]";
+        + password + ", password1=" + password1 + ", nickname=" + nickname + ", tel=" + tel
+        + ", birthday=" + birthday + ", sex=" + sex + ", filepath=" + filepath + ", createdDate="
+        + createdDate + ", active=" + active + ", black=" + black + ", auth=" + auth + "]";
   }
 
+  public String getPassword1() {
+    return password1;
+  }
+
+  public void setPassword1(String password1) {
+    this.password1 = password1;
+  }
 
   public int getNo() {
     return no;

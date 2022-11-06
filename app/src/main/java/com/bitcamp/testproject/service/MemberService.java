@@ -19,7 +19,8 @@ public interface MemberService {
 
   List<Member> list() throws Exception;
 
-  //  String checkId(Member member) throws Exception;
+  Member get(int password, int password1) throws Exception;
+
 }
 
 

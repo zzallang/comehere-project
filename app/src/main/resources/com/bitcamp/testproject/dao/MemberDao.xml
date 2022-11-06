@@ -124,6 +124,29 @@
     where mno=#{value}
   </delete>
 
+	
+	 
+   <select id="findByPassword" resultMap="memberMap">
+    select
+    name
+    from
+    member
+    where
+    id=#{id} and email=#{email}
+  </select>
+
+	<update id="update" parameterType="Member">
+		update member set
+		pwd=sha2(#{password},256)
+		where
+		mno=#{no}
+	</update>
+
+	<delete id="delete">
+		delete from member
+		where mno=#{value}
+	</delete>
+
 </mapper>
 
 

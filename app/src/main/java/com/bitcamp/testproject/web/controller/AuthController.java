@@ -1,5 +1,6 @@
 package com.bitcamp.testproject.web.controller;
 
+import java.util.Random;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -10,7 +11,9 @@ import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+import com.bitcamp.testproject.service.EmailService;
 import com.bitcamp.testproject.service.MemberService;
 import com.bitcamp.testproject.vo.Member;
 
@@ -21,6 +24,11 @@ public class AuthController {
   @Autowired
   MemberService memberService;
 
+  public AuthController(MemberService memberService) {
+    System.out.println("AuthController() 호출됨!");
+    this.memberService = memberService;
+  }
+  // 헌식
   @GetMapping("form") 
   public String form(@CookieValue(name="id",defaultValue="") String id, Model model) throws Exception {
     model.addAttribute("id", id);
@@ -64,6 +72,84 @@ public class AuthController {
   }
 
 
+  @GetMapping("sendMail")
+  public String sendMail() {
+    return "auth/sendMail";
+  }
+
+  @PostMapping("mail/send")
+  @ResponseBody
+  public String send(String email) {
+    System.out.println(email);
+
+    Random random = new Random();
+    int SecCode = random.nextInt(888888) + 111111;
+
+    emailService.sendSimpleMessage(email, SecCode);
+    return Integer.toString(SecCode);
+  }
+
+
+  @GetMapping("findByPassword")
+  public ModelAndView findByPassword(     
+      String id,
+      String email,
+      String secCode, 
+      HttpServletResponse response,
+      HttpSession session) throws Exception {
+
+    Member member = memberService.get(id, email, secCode);
+
+    if (member != null) {
+      session.setAttribute("findByPassword", member); 
+    }
+
+    ModelAndView mv = new ModelAndView("auth/newPassword");
+    mv.addObject("member", member);
+    return mv;
+  }
+
+
+
+  @GetMapping("newPassword")
+  public ModelAndView newPassword(
+      String id,
+      String email,
+      String secCode, 
+      HttpServletResponse response,
+      HttpSession session) throws Exception {
+
+    Member member = memberService.get(id, email, secCode);
+
+    if (member != null) {
+      session.setAttribute("findByPassword", member); 
+    }
+
+    ModelAndView mv = new ModelAndView("auth/newPassword");
+    mv.addObject("member", member);
+    return mv;
+  }
+
+  @GetMapping("newPasswordResult")
+  public ModelAndView newPasswordResult(
+      String password,
+      String password1,
+      HttpServletResponse response,
+      HttpSession session) throws Exception {
+
+    Member member = memberService.get(password, password1);
+
+    if (member != null) {
+      session.setAttribute("newPasswordResult", member); 
+    }
+
+    ModelAndView mv = new ModelAndView("auth/newPasswordResult");
+    mv.addObject("member", member);
+    return mv;
+
+  }
+
+
   @GetMapping("logout") 
   public String logout(HttpSession session) throws Exception {
     session.invalidate(); 
@@ -79,8 +165,31 @@ public class AuthController {
   //  }
 
 
+  // 헌식 끝
+
+  // 은지
+  @GetMapping("join")
+  public String form(Model model) throws Exception {
+    model.addAttribute("data", "join page");
+    return "auth/join";
+  }
+  
+  @PostMapping("add")
+  public String add(Member member) throws Exception {
+    memberService.add(member);
+    return "redirect:join";
+  }
+
+  @GetMapping("mypage-member")
+  public String myPageMember(Member member) {
+
+    return "myPageMember";
+  }
+
+
 
 }
+
 
 
 
