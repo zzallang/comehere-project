@@ -4,7 +4,6 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.bitcamp.testproject.dao.MemberDao">
 
-<<<<<<< HEAD
   <!-- 자바 객체의 프로퍼티와 컬럼 이름을 연결한다. -->
   <resultMap type="member" id="memberMap">
     <id column="mno" property="no"/>
@@ -80,73 +79,18 @@
     order by 
       name
   </select>
-=======
-	<!-- 자바 객체의 프로퍼티와 컬럼 이름을 연결한다. -->
-	<resultMap type="member" id="memberMap">
-		<id column="mno" property="no" />
-		<result column="name" property="name" />
-		<result column="email" property="email" />
-		<result column="cdt" property="createdDate" />
-	</resultMap>
 
-	<insert id="insert" parameterType="member">
-		insert into member(name,email,pwd)
-		values(#{name},#{email},sha2(#{password},256))
-	</insert>
-
-	<select id="findByNo" resultMap="memberMap">
-		select
-		mno,
-		name,
-		email,
-		cdt
-		from
-		member
-		where
-		mno=#{value}
-	</select>
-
-	<select id="findAll" resultMap="memberMap">
-		select
-		mno,
-		name,
-		email
-		from
-		member
-		order by
-		name
-	</select>
-
-	<select id="findByIdPassword" resultMap="memberMap">
-		select
-		name
-		from
-		member
-		where
-		id=#{id} and pwd=sha2(#{password},256)
-	</select>
->>>>>>> main
-
-
-	<select id="findById" resultMap="memberMap">
-		select
-		id
-		from
-		member
-		where
-		name=#{name} and email=#{email}
-	</select>
-	
-	
-	 <select id="findPassword" resultMap="memberMap">
-    select
-    id
-    from
-    member
-    where
-    id=#{id} and email=#{email}
+  <select id="findByIdPassword" resultMap="memberMap">
+    select 
+      mno,
+      name,
+      id,
+      cdt 
+    from 
+      member 
+    where 
+      id=#{id} and pwd=sha2(#{password},256)
   </select>
-<<<<<<< HEAD
   
   
   <!-- 회원 정보 수정 -->
@@ -179,29 +123,6 @@
     delete from member 
     where mno=#{value}
   </delete>
-=======
-	
-	
-	 <update id="findByPassword" parameterType="Member">
-    update member set
-    name=#{name},
-    email=#{email},
-    where
-    id=#{id} and email=#{email}
-  </update>
-
-	<update id="update" parameterType="Member">
-		update member set
-		pwd=sha2(#{password},256)
-		where
-		mno=#{no}
-	</update>
-
-	<delete id="delete">
-		delete from member
-		where mno=#{value}
-	</delete>
->>>>>>> main
 
 </mapper>
 

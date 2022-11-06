@@ -236,6 +236,11 @@ button {
     width: 25%;
     float: left;
 }
+.main_logo {
+    max-width: 10%;
+    height: auto;
+    margin: 20px 50px 20px 30px;
+}
 .navbar-light .navbar-nav .nav-link {
     color: #111111;
     font-size: 18px;
@@ -252,25 +257,25 @@ button {
     padding-top: 10px;
 }
 
-.search_icon{
+.login-bt{
     width: 12%;
     float: left;
 }
-.search_icon ul{
-    margin: 0px;
+.login-bt ul{
+    display: table;
+    list-style: none;
+    text-align: center;
     padding: 0px;
     margin-left: 30px;
 }
-.search_icon li {
-    float: left;
-    padding-left: 20px;
-    font-size: 18px;
+.login-bt li {
+    float:left; 
+    font-size: 18px
+}
+.login-bt li a{
     color: #000;
 }
-.search_icon li a{
-    color: #000;
-}
-.search_icon li a:hover{
+.login-bt li a:hover{
     color: #ffb607;
 }
 .navbar-expand-lg .navbar-nav .nav-link {
@@ -833,7 +838,7 @@ a:hover {
     float: left;
     background-image: url(../images/contact-bg.png);
     height: auto;
-    background-size: 100%;
+    background-size: cover;
     background-repeat: no-repeat;
     padding-bottom: 90px;
 }
@@ -1034,7 +1039,6 @@ textarea#comment::placeholder {
     color: #fdbe28;
 }
 
-<<<<<<< HEAD
 /* 수정 css */
 .contact_section1 {
   width: 100%;
@@ -1185,15 +1189,6 @@ margin-right: auto;
   height: 55px;
   font-size: 18px;
 }
-=======
-
-
-
-
-
-
-
->>>>>>> main
 
 .custom-email-bt {
   color: #989696;
