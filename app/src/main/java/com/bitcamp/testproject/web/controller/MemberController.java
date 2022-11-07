@@ -45,7 +45,7 @@ public class MemberController {
     member.setFavoriteSports(saveSports(sports_domain));
 
     memberService.add(member);
-    ModelAndView mv = new ModelAndView("redirect:form");
+    ModelAndView mv = new ModelAndView("redirect:../auth/form");
     return mv;
   }
 
@@ -55,10 +55,12 @@ public class MemberController {
   }
 
   @PostMapping("myInfo")
-  public String confirmation(HttpSession session, String password) {
-    //    System.out.println(member.getPassword() + " <-----");
+  public String confirmation(HttpSession session, Model model) throws Exception {
     Member loginMember = (Member) session.getAttribute("loginMember");
-    System.out.println(loginMember);
+    Member member = memberService.get(loginMember.getNo());
+    model.addAttribute("member", member);
+    System.out.println("member :" + member);
+    System.out.println("loginMember :" + loginMember);
     return "member/myInfo";
   }
 

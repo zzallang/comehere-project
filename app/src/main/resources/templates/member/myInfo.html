@@ -79,9 +79,9 @@
                 <div class="col-md-6">
                   <h1 class="contact_text">개인정보 수정</h1>
                   <div class="mail_sectin">
-                    <form action="/app/member/myInfo" method="post" id="udateForm">
+                    <form action="/app/member/memberUpdate" method="post" id="updateForm">
                       <div class="join_menu">아이디</div> 
-                      <input type="text" class="email-bt" placeholder="아이디" name="id" id="userIdText">
+                      <input type="text" class="email-bt" placeholder="아이디" name="id" id="id">
                         <!-- <button type="button" class="id_overlap_button" onclick="id_overlap_check()">중복확인</button> -->
                         <div class="join_menu">이름</div>
                       <input type="text" class="email-bt" placeholder="이름" name="name">
@@ -121,90 +121,154 @@
                             <input type="password" class="email-bt" id="passwordCheck" placeholder="비밀번호 확인" name="password_check"> 
                             <div id="passwordCheckError" class="error"></div>
                           </div>
+<<<<<<< HEAD
                         <div class="join_menu">관심지역</div>
-                        <select class="email-bt2" id="region" name="region_domain1">
-                          <option value="">---선택---</option>
-                          <option value="종로구">종로구</option>
-                          <option value="중구">중구</option>
-                          <option value="용산구">용산구</option>
-                          <option value="성동구">성동구</option>
-                          <option value="광진구">광진구</option>
-                          <option value="동대문구">동대문구</option>
-                          <option value="중랑구">중랑구</option>
-                          <option value="성북구">성북구</option>
-                          <option value="강북구">강북구</option>
-                          <option value="도봉구">도봉구</option>
-                          <option value="노원구">노원구</option>
-                          <option value="은평구">은평구</option>
-                          <option value="서대문구">서대문구</option>
-                          <option value="마포구">마포구</option>
-                          <option value="양천구">양천구</option>
-                          <option value="강서구">강서구</option>
-                          <option value="구로구">구로구</option>
-                          <option value="금천구">금천구</option>
-                          <option value="영등포구">영등포구</option>
-                          <option value="동작구">동작구</option>
-                          <option value="관악구">관악구</option>
-                          <option value="서초구">서초구</option>
-                          <option value="강남구">강남구</option>
-                          <option value="송파구">송파구</option>
-                          <option value="강동구">강동구</option>
+                        <select class="email-bt2" id="region" name="region_domain">
+=======
+                          <div class="join_menu">관심지역</div>
+                          <select class="email-bt2" id="region" name="region_domain">
+                            <option value="0">---선택---</option>
+                            <option value="1">종로구</option>
+                            <option value="2">중구</option>
+                            <option value="3">용산구</option>
+                            <option value="4">성동구</option>
+                            <option value="5">광진구</option>
+                            <option value="6">동대문구</option>
+                            <option value="7">중랑구</option>
+                            <option value="8">성북구</option>
+                            <option value="9">강북구</option>
+                            <option value="10">도봉구</option>
+                            <option value="11">노원구</option>
+                            <option value="12">은평구</option>
+                            <option value="13">서대문구</option>
+                            <option value="14">마포구</option>
+                            <option value="15">양천구</option>
+                            <option value="16">강서구</option>
+                            <option value="17">구로구</option>
+                            <option value="18">금천구</option>
+                            <option value="19">영등포구</option>
+                            <option value="20">동작구</option>
+                            <option value="21">관악구</option>
+                            <option value="22">서초구</option>
+                            <option value="23">강남구</option>
+                            <option value="24">송파구</option>
+                            <option value="25">강동구</option>
+                        </select> 
+                        <select class="email-bt3" id="region" name="region_domain">
+>>>>>>> main
+                          <option value="0">---선택---</option>
+                          <option value="1">종로구</option>
+                          <option value="2">중구</option>
+                          <option value="3">용산구</option>
+                          <option value="4">성동구</option>
+                          <option value="5">광진구</option>
+                          <option value="6">동대문구</option>
+                          <option value="7">중랑구</option>
+                          <option value="8">성북구</option>
+                          <option value="9">강북구</option>
+                          <option value="10">도봉구</option>
+                          <option value="11">노원구</option>
+                          <option value="12">은평구</option>
+                          <option value="13">서대문구</option>
+                          <option value="14">마포구</option>
+                          <option value="15">양천구</option>
+                          <option value="16">강서구</option>
+                          <option value="17">구로구</option>
+                          <option value="18">금천구</option>
+                          <option value="19">영등포구</option>
+                          <option value="20">동작구</option>
+                          <option value="21">관악구</option>
+                          <option value="22">서초구</option>
+                          <option value="23">강남구</option>
+                          <option value="24">송파구</option>
+                          <option value="25">강동구</option>
+<<<<<<< HEAD
                       </select> 
-                      <select class="email-bt3" id="region" name="region_domain2">
-                        <option value="">---선택---</option>
-                        <option value="종로구">종로구</option>
-                        <option value="중구">중구</option>
-                        <option value="용산구">용산구</option>
-                        <option value="성동구">성동구</option>
-                        <option value="광진구">광진구</option>
-                        <option value="동대문구">동대문구</option>
-                        <option value="중랑구">중랑구</option>
-                        <option value="성북구">성북구</option>
-                        <option value="강북구">강북구</option>
-                        <option value="도봉구">도봉구</option>
-                        <option value="노원구">노원구</option>
-                        <option value="은평구">은평구</option>
-                        <option value="서대문구">서대문구</option>
-                        <option value="마포구">마포구</option>
-                        <option value="양천구">양천구</option>
-                        <option value="강서구">강서구</option>
-                        <option value="구로구">구로구</option>
-                        <option value="금천구">금천구</option>
-                        <option value="영등포구">영등포구</option>
-                        <option value="동작구">동작구</option>
-                        <option value="관악구">관악구</option>
-                        <option value="서초구">서초구</option>
-                        <option value="강남구">강남구</option>
-                        <option value="송파구">송파구</option>
-                        <option value="강동구">강동구</option>
+                      <select class="email-bt3" id="region" name="region_domain">
+                        <option value="0">---선택---</option>
+                        <option value="1">종로구</option>
+                        <option value="2">중구</option>
+                        <option value="3">용산구</option>
+                        <option value="4">성동구</option>
+                        <option value="5">광진구</option>
+                        <option value="6">동대문구</option>
+                        <option value="7">중랑구</option>
+                        <option value="8">성북구</option>
+                        <option value="9">강북구</option>
+                        <option value="10">도봉구</option>
+                        <option value="11">노원구</option>
+                        <option value="12">은평구</option>
+                        <option value="13">서대문구</option>
+                        <option value="14">마포구</option>
+                        <option value="15">양천구</option>
+                        <option value="16">강서구</option>
+                        <option value="17">구로구</option>
+                        <option value="18">금천구</option>
+                        <option value="19">영등포구</option>
+                        <option value="20">동작구</option>
+                        <option value="21">관악구</option>
+                        <option value="22">서초구</option>
+                        <option value="23">강남구</option>
+                        <option value="24">송파구</option>
+                        <option value="25">강동구</option>
                       </select><br /> 
                         <div class="join_menu">관심운동</div>
-                      <select class="email-bt2" id="sports" name="sports_domain1">
-                        <option value="">---선택---</option>
-                        <option value="헬스">헬스</option>
-                        <option value="클라이밍">클라이밍</option>
-                        <option value="배드민턴">배드민턴</option>
-                        <option value="축구">축구</option>
-                        <option value="농구">농구</option>
-                        <option value="골프">골프</option>
-                        <option value="탁구">탁구</option>
-                        <option value="야구">야구</option>
-                        <option value="러닝">러닝</option>
-                        <option value="사이클">사이클</option>
+                      <select class="email-bt2" id="sports" name="sports_domain">
+                        <option value="0">---선택---</option>
+                        <option value="1">헬스</option>
+                        <option value="2">클라이밍</option>
+                        <option value="3">배드민턴</option>
+                        <option value="4">축구</option>
+                        <option value="5">농구</option>
+                        <option value="6">골프</option>
+                        <option value="7">탁구</option>
+                        <option value="8">야구</option>
+                        <option value="9">러닝</option>
+                        <option value="10">사이클</option>
                       </select> 
-                      <select class="email-bt3" id="sports" name="sports_domain2">
-                        <option value="">---선택---</option>
-                        <option value="헬스">헬스</option>
-                        <option value="클라이밍">클라이밍</option>
-                        <option value="배드민턴">배드민턴</option>
-                        <option value="축구">축구</option>
-                        <option value="농구">농구</option>
-                        <option value="골프">골프</option>
-                        <option value="탁구">탁구</option>
-                        <option value="야구">야구</option>
-                        <option value="러닝">러닝</option>
-                        <option value="사이클">사이클</option>
+                      <select class="email-bt3" id="sports" name="sports_domain">
+                        <option value="0">---선택---</option>
+                        <option value="1">헬스</option>
+                        <option value="2">클라이밍</option>
+                        <option value="3">배드민턴</option>
+                        <option value="4">축구</option>
+                        <option value="5">농구</option>
+                        <option value="7">골프</option>
+                        <option value="8">탁구</option>
+                        <option value="9">야구</option>
+                        <option value="10">러닝</option>
+                        <option value="11">사이클</option>
                       </select><br />
+=======
+                        </select><br /> 
+                          <div class="join_menu">관심운동</div>
+                        <select class="email-bt2" id="sports" name="sports_domain">
+                          <option value="0">---선택---</option>
+                          <option value="1">헬스</option>
+                          <option value="2">클라이밍</option>
+                          <option value="3">배드민턴</option>
+                          <option value="4">축구</option>
+                          <option value="5">농구</option>
+                          <option value="6">골프</option>
+                          <option value="7">탁구</option>
+                          <option value="8">야구</option>
+                          <option value="9">러닝</option>
+                          <option value="10">사이클</option>
+                        </select> 
+                        <select class="email-bt3" id="sports" name="sports_domain">
+                          <option value="0">---선택---</option>
+                          <option value="1">헬스</option>
+                          <option value="2">클라이밍</option>
+                          <option value="3">배드민턴</option>
+                          <option value="4">축구</option>
+                          <option value="5">농구</option>
+                          <option value="7">골프</option>
+                          <option value="8">탁구</option>
+                          <option value="9">야구</option>
+                          <option value="10">러닝</option>
+                          <option value="11">사이클</option>
+                        </select><br />
+>>>>>>> main
                       <!-- <div class="send_bt"> <button type="submit">회원가입</button></div> -->
                       <div class="send_bt"><button type="submit">변경</button></div>
                     </form>
