@@ -17,30 +17,44 @@
       <id column="mno" property="no"/>
       <result column="filepath" property="filepath"/>
       <result column="nick" property="nickname"/>
+      <result column="sex" property="sex"/>
+      <result column="ageGroup" property="ageGroup"/>
     </association>
     
     <!-- 조인 결과에서 같은 게시글에 대해 여러 개의 첨부 파일 데이터를 담을 경우 -->
     <collection property="attachedFiles" ofType="attachedFile">
       <id column="prfno" property="no"/>
-      <result column="filepath" property="filepath"/>
+      <result column="reviewfilepath" property="filepath"/>
     </collection>
     
   </resultMap>
 
   <select id="findAll" resultMap="reviewMap">
+    <![CDATA[
     select
       m.filepath,
       m.nick,
+      m.sex,
+      CASE
+      WHEN age < 20 THEN '10대 이하'
+      WHEN age < 30 THEN '20대'
+      WHEN age < 40 THEN '30대'
+      WHEN age < 50 THEN '40대'
+      WHEN age < 60 THEN '50대'
+      WHEN age > 59 THEN '60대 이상'
+    END AS ageGroup,
       pr.star,
-      prf.filepath,
+      prf.filepath reviewfilepath,
       pr.title,
-      pr.cont
+      pr.cont,
+      pr.cdt
     from
       party_review pr
-      join party_review_file prf on pr.prno=prf.prno
       join member m on pr.mno=pr.mno
       join party p on pr.pno=p.pno
       join sports s on s.sno=p.sno
+      join (SELECT *, FLOOR(date_format(now(), '%Y')-substring(bday,1,4)) age FROM member) ag on ag.mno=m.mno
+      left join party_review_file prf on pr.prno=prf.prno
     where
       pr.act=1
       and pr.mno=m.mno
@@ -48,6 +62,7 @@
     order by
       pr.prno desc,
       pr.cdt desc
+    ]]>
   </select>
 
 

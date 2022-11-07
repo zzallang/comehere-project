@@ -185,43 +185,6 @@
             padding-left: 15px;
           margin: 0 auto;
         }
-        .party_detil_view {
-          width: 825px;
-          margin: 0 auto;
-          
-        }
-        
-        .party_detail_button_l {
-          float: left;
-          color: #121111;
-          margin-left: 0px;
-          margin-top: 0px;
-          margin-bottom: 5px;
-          margin-right: 5px;
-          
-            font-size: x-small;
-          
-          
-          border: 1px solid #fabb25;
-          border-radius: 5px;
-          padding: 5px 10px 5px 10px;
-        }
-        
-        .party_detail_button_r {
-          float: right;
-          color: #121111;
-          margin-left: 0px;
-          margin-top: 0px;
-          margin-bottom: 5px;
-          margin-right: 5px;
-          
-            font-size: x-small;
-          
-          
-          border: 1px solid #fabb25;
-          border-radius: 5px;
-          padding: 5px 10px 5px 10px;
-        }
         
         .row_party_detail {
           width: 100%;
@@ -251,96 +214,18 @@
           padding: 5px 10px 5px 10px;
         }
         
-        .party_detail_bar {
-          width: 100%;
-          height: 50px;
-          float: left;
+        
+        .list_image {
+          opacity: 1;
+          display: block;
           margin: 0 auto;
+          max-height: 200px;
+          transition: .5s ease;
+          backface-visibility: hidden;
         }
         
-        .party_detail_buttons {
-          width: 825px;
-          height: 40px;
-          margin: 0 auto;
-          padding: 10px 0;
-          
-        }
         
-        .party_detail_bottom {
-          width: 825px;
-          margin: 0 auto;
-          padding: 10px 0;
         
-          
-        }
-        
-        .party_detail_bottom_bar {
-          width: 100%;
-          float: left;
-          margin: 0 auto;
-          overflow: hidden;
-        }
-        
-        .party_detail_bottom_content {
-          min-height: 100px;
-          width: 825px;
-          margin: 10px auto;
-          float: left;
-          overflow: hidden;
-          border-bottom: 1px solid black;
-        }
-        
-        .party_detail_bottom_comment {
-          min-height: 100px;
-          width: 825px;
-          margin: 10px auto;
-          float: left;
-          overflow: hidden;
-          border-bottom: 1px solid black;
-        }
-        
-        .party_detail_comment_img {
-          min-height: 80px;
-          padding: 5px;
-          width: 10%;
-          margin: 5px;
-          float: left;
-          border: 1px solid black;
-        }
-        
-        .party_detail_comment_format {
-          min-height: 40px;
-          width: 80%;
-          margin: 5px;
-          float: left;
-          border: 1px solid black;
-        }
-        
-        .party_detail_bottom_review {
-          min-height: 100px;
-          width: 50%;
-          margin: 10px auto;
-          float: left;
-          overflow: hidden;
-          border-bottom: 1px solid black;
-        }
-        
-        .party_detail_review_img {
-          min-height: 80px;
-          padding: 5px;
-          width: 10%;
-          margin: 5px;
-          float: left;
-          border: 1px solid black;
-        }
-        
-        .party_detail_review_format {
-          min-height: 40px;
-          width: 80%;
-          margin: 5px;
-          float: left;
-          border: 1px solid black;
-        }
       </style>
 
 
@@ -430,7 +315,8 @@
                   <div class="col-md-6 col-md-6_party_wrap">
                      <div class="container_main_party">
                      <a th:href="@{detail(no=${party.no})}">
-                        <img src="../images/img-2.png" alt="Avatar" class="image">
+                     <img th:if="${party.thumbnail != null}"  th:src="@{'http://localhost:8888/app/party/files/' + ${party.thumbnail}}" alt="모임썸네일" class="list_image">
+                     <img th:if="${party.thumbnail == null}"  src="../images/img-2.png" alt="Avatar" class="list_image">
                         <div class="overlay">
                            <a th:href="@{detail(no=${party.no})}" class="icon" title="User Profile">
                            <i class="fa fa-search"></i>
@@ -448,7 +334,7 @@
                        <p class="dololr_text_region" th:text="${party.region.sigu}"></p>
                        <p class="dololr_text_sports" th:text="${party.sports.name}"></p>
                      </div>
-                     <p class="dololr_text_party" th:text="${party.star}"></p>
+                     <span class="dololr_text_party" th:text="${party.star}"></span>
                      <div class="container_main_party">
                        <p class="dololr_text_datetime" th:text="${party.partyTime}"></p>
                        <p class="dololr_text_datetime" th:text="${party.partyDate}"></p>

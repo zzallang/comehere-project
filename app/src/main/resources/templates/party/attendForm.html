@@ -277,6 +277,10 @@
           
         }
         
+        .party_detail_content {
+          width: 470px;
+          min-height: 150px;
+        }
         
         .party_detail_content_l {
           width: 330px;
@@ -299,87 +303,37 @@
         }
         
         
-        .party_detail_bottom {
-          width: 825px;
-          margin: 0 auto;
-          padding: 10px 0;
-        
-          
+        .profile {
+          opacity: 1;
+          display: block;
+          width: 50px;
+          height: auto;
+          transition: .5s ease;
+          backface-visibility: hidden;
         }
         
-        .party_detail_bottom_bar {
-          width: 100%;
-          float: left;
-          margin: 0 auto;
+        .profile_wrap {
+          width: 330px;
+          min-height: 70px;
           overflow: hidden;
         }
         
-        .party_detail_bottom_content {
-          min-height: 100px;
-          width: 825px;
-          margin: 10px auto;
+        .profile_img {
+          width: 50px;
           float: left;
-          overflow: hidden;
-          border-bottom: 1px solid black;
         }
         
-        .party_detail_bottom_comment {
-          min-height: 100px;
-          width: 825px;
-          margin: 10px auto;
+        
+        .profile_user {
+          width: 280px;
           float: left;
-          overflow: hidden;
-          border-bottom: 1px solid black;
+          margin-top: 25px;
+          transform: translateY(-50%);
         }
         
-        .party_detail_comment_img {
-          min-height: 80px;
-          padding: 5px;
-          width: 10%;
-          margin: 5px;
-          float: left;
-          border: 1px solid black;
-        }
         
-        .party_detail_comment_format {
-          min-height: 40px;
-          width: 75%;
-          margin: 5px;
-          float: left;
-          border: 1px solid black;
-        }
         
-        .party_detail_bottom_review {
-          min-height: 100px;
-          width: 50%;
-          margin: 10px auto;
-          float: left;
-          overflow: hidden;
-          border-bottom: 1px solid black;
-        }
         
-        .party_detail_review_img {
-          min-height: 80px;
-          padding: 5px;
-          width: 10%;
-          margin: 5px;
-          float: left;
-          border: 1px solid black;
-        }
-        
-        .party_detail_review_format {
-          min-height: 40px;
-          width: 80%;
-          margin: 5px;
-          float: left;
-          border: 1px solid black;
-        }
-        .party_detail_review_null {
-          width: 100%;
-          height: 100px;
-          align-content: center;
-          font-size: xx-large;
-        }
       
   </style>
    </head>
@@ -454,40 +408,52 @@
                 <input name='no' type="hidden" th:value="${party.no}">
                   <div class="party_detail_content_l">
                     <div>
-                      <img src="http://placeimg.com/300/300/any">
-                    </div>
                     <div>
-                      <p>주최자</p>
-                      <p data-th-text="${party.user.filepath == null} ? '없음' : ${party.user.filepath}">프사</p>
-                      <img src="http://placeimg.com/50/50/any">
-                      <p data-th-text='${party.user.nickname}'>홍길동</p>
-                      <p data-th-text='${party.user.birthday}'>1900-01-01</p>
-                      <p data-th-text="${party.user.sex} == true ? '남자' : '여자'">성별</p>
+                    <img th:if="${party.thumbnail != null}"  th:src="@{'http://localhost:8888/app/party/files/' + ${party.thumbnail}}" alt="Avatar" class="image">
+                     <img th:if="${party.thumbnail == null}"  src="../images/img-2.png" alt="Avatar" class="image">
                     </div>
+                    <div class="profile_wrap">
+                      <p>주최자</p>
+                      <div class="profile_img">
+                      <img th:if="${party.user.filepath != null}"  th:src="@{'http://localhost:8888/app/party/files/' + ${party.filepath}}" alt="Avatar" class="profile">
+                      <img th:if="${party.user.filepath == null}"  src="http://placeimg.com/50/50/any" alt="Avatar" class="profile">
+                      </div>
+                      <div class="profile_user">
+                      <span data-th-text='${party.user.nickname}'>홍길동</span>
+                      <span data-th-text='${party.user.ageGroup}'>90대</span>
+                      <span data-th-text="${party.user.sex} == true ? '남자' : '여자'">성별</span>
+                      </div>
+                    </div>
+                  </div>
                   </div>
                   <div class="party_detail_content_r">
                     <div>
-                      <span data-th-text='${party.title}' 
-                          size='60'></span>
+                      <h3
+                          data-th-text='${party.title}' 
+                          ></h3>
                     </div>
                     <div>
-                      <span>별점</span>
-                      <span data-th-text='${party.star}'></span>
+                      <span>별점 : </span>
+                      <span
+                          data-th-text='${party.star}'></span>
                     </div>
                     <div>
-                      <textarea name='content'></textarea>
+                      <textarea class="party_detail_content" name='content' data-th-utext="${party.content}"></textarea>
                     </div>
                     <div>
-                      <span>모임일자</span>
-                      <span data-th-text='${party.partyDate}'></span>
+                      <span>모임일자 : </span>
+                      <span
+                          data-th-text='${party.partyDate}'></span>
                     </div>
                     <div>
-                      <span>모임시간</span>
-                          <span data-th-text='${party.partyTime}'></span>
+                      <span>모임시간 : </span>
+                      <span
+                          data-th-text='${party.partyTime}'></span>
                     </div>
                     <div>
-                      <span>모집인원</span>
-                      <span data-th-text="${party.headCount} + '명'"></span>
+                      <span>모집인원 : </span>
+                      <span
+                          data-th-text="${party.headCount} + '명'"></span>
                     </div>
                   </div>
                     <div class="party_detail_content_center">
@@ -528,7 +494,15 @@
       <script>
         $(document).ready(function() {
             $('textarea[name=content]').html('[[${party.content}]]');
-            $('textarea[name=content]').summernote({toolbar:false, width:450, heigth: 1000});
+            $('textarea[name=content]').summernote({
+            	toolbar:false,
+            	  width: 470,
+                height: null,
+                minHeight : 150,
+                maxHeight : null,
+                disableDragAndDrop: true
+            	
+            });
             $('textarea[name=content]').summernote('disable');
         });
       </script>
