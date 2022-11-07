@@ -9,8 +9,6 @@ public class Member {
   private String name;
   private String id;
   private String email;
-  private String password;
-  private String password1;
   private String nickname;
   private String tel;
   private Date birthday;
@@ -25,6 +23,7 @@ public class Member {
   // 모임참여 명단에서 주최자 여부
   private boolean auth;
 
+<<<<<<< Updated upstream
   // 모임 참여 명단에서 나이대
   private String ageGroup;
 
@@ -36,6 +35,16 @@ public class Member {
         + createdDate + ", active=" + active + ", black=" + black + ", favoriteRegion="
         + favoriteRegion + ", favoriteSports=" + favoriteSports + ", auth=" + auth + ", ageGroup="
         + ageGroup + "]";
+=======
+
+  @Override
+  public String toString() {
+    return "Member [no=" + no + ", name=" + name + ", id=" + id + ", email=" + email + ", nickname="
+        + nickname + ", tel=" + tel + ", birthday=" + birthday + ", sex=" + sex + ", filepath="
+        + filepath + ", createdDate=" + createdDate + ", active=" + active + ", black=" + black
+        + ", favoriteRegion=" + favoriteRegion + ", favoriteSports=" + favoriteSports + ", auth="
+        + auth + "]";
+>>>>>>> Stashed changes
   }
 
   public int getNo() {
@@ -70,6 +79,7 @@ public class Member {
     this.email = email;
   }
 
+<<<<<<< Updated upstream
   public String getPassword() {
     return password;
   }
@@ -86,6 +96,8 @@ public class Member {
     this.password1 = password1;
   }
 
+=======
+>>>>>>> Stashed changes
   public String getNickname() {
     return nickname;
   }
@@ -169,6 +181,7 @@ public class Member {
   public boolean isAuth() {
     return auth;
   }
+<<<<<<< Updated upstream
 
   public void setAuth(boolean auth) {
     this.auth = auth;
@@ -181,7 +194,11 @@ public class Member {
   public void setAgeGroup(String ageGroup) {
     this.ageGroup = ageGroup;
   }
+=======
+>>>>>>> Stashed changes
 
-
+  public void setAuth(boolean auth) {
+    this.auth = auth;
+  }
 
 }
