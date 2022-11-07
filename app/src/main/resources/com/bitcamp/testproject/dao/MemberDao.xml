@@ -17,10 +17,6 @@
     <result column="sex" property="sex"/>
     <result column="filepath" property="filepath"/>
     <result column="cdt" property="createdDate"/>
-      <result column="nick" property="nickname"/>
-      <result column="bday" property="birthday"/>
-      <result column="sex" property="sex"/>
-      <result column="filepath" property="filepath"/>
   </resultMap>
 
   <!-- 회원 기본 정보 등록  -->
