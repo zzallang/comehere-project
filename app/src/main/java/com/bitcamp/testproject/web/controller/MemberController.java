@@ -51,7 +51,7 @@ public class MemberController {
 
   @GetMapping("viewer")
   public String passwordCheckViewer() {
-    return "/member/pwCheckViewer";
+    return "member/pwCheckViewer";
   }
 
   @PostMapping("myInfo")
@@ -59,7 +59,7 @@ public class MemberController {
     //    System.out.println(member.getPassword() + " <-----");
     Member loginMember = (Member) session.getAttribute("loginMember");
     System.out.println(loginMember);
-    return "/member/myInfo";
+    return "member/myInfo";
   }
 
 
@@ -70,7 +70,7 @@ public class MemberController {
     member.setFavoriteRegion(saveRegion(region_domain));
     member.setFavoriteSports(saveSports(sports_domain));
 
-    return "/member/myInfo";
+    return "redirect:member/myInfo";
   }
 
 

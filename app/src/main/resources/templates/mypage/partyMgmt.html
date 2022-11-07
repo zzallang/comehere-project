@@ -113,7 +113,7 @@
           <div class="header_section">
             <div class="container-fluid">
               <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <div class="logo"><a href="/app"><img class=main_logo src="images/comehere_logo.png"></a></div>
+                <div class="main_logo"><a href="/app"><img src="../images/logo.png"></a></div>
                 <button class="navbar-toggler" type="button" data-toggle="collapse"
                   data-target="#navbarSupportedContent"
                   aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -122,11 +122,11 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                   <ul class="navbar-nav mr-auto">
-               <li class= "infoMenuOn"><a href="../member/myInfo">회원 정보 변경</a></li>
-                <li class= "infoMenuOn"><a href="../mypage/health-management">건강 관리</a></li>
-                <li class= "infoMenuOn"><a href="../mypage/party-management">모임 관리</a></li>
-                <li class= "infoMenuOn"><a href="../mypage/my-post">작성글/스크랩</a></li>
-              </ul>
+		                <li class= "infoMenuOn"><a href="../member/myInfo">회원 정보 변경</a></li>
+		                <li class= "infoMenuOn"><a href="health-management">건강 관리</a></li>
+		                <li class= "infoMenuOn"><a href="party-management">모임 관리</a></li>
+		                <li class= "infoMenuOn"><a href="my-post">작성글/스크랩</a></li>
+                  </ul>
                   <div class="search_icon">
                     <ul>
 			                <li data-th-if="${session.loginMember == null}"><a href="auth/form" >로그인</a></li>
