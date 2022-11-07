@@ -212,6 +212,13 @@
     where bfno=#{value}
   </delete>
 
+  <update id="increaseViews">
+    update 
+      board 
+    set 
+      vw_cnt = vw_cnt + 1
+    where bno=#{value}
+  </update>
 
 
 </mapper>

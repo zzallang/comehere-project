@@ -7,6 +7,9 @@ import java.util.Map;
 import java.util.UUID;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -249,14 +252,52 @@ public class BoardController {
   }
 
   @GetMapping("detail")
-  public Model detail(int no, Model model) throws Exception {
+  public Model detail(int no, Model model, HttpServletRequest request, HttpServletResponse response) throws Exception {
+
+    // 조회수 증가     
+    viewCountUp(no, request, response);
+
+    // 게시글 꺼내기
     Board board = boardService.get(no);
+
 
     if (board == null) {
       throw new Exception("해당 번호의 게시글이 없습니다!");
     }
+    System.out.println(board.getViewCount());
 
+    System.out.println("몇번 실행되는거냐??");
     return model.addAttribute("board", board);
+  }
+
+  // 조회수 증가 
+  private void viewCountUp(int no, HttpServletRequest request, HttpServletResponse response) {
+
+    Cookie oldCookie = null;
+    Cookie[] cookies = request.getCookies();
+    if (cookies != null) {
+      for (Cookie cookie : cookies) {
+        if (cookie.getName().equals("postView")) {
+          oldCookie = cookie;
+        }
+      }
+    }
+
+    if (oldCookie != null) {
+      if (!oldCookie.getValue().contains("[" + no + "]")) {
+        boardService.increaseViews(no);
+        oldCookie.setValue(oldCookie.getValue() + "_[" + no + "]");
+        oldCookie.setPath("/");
+        oldCookie.setMaxAge(60 * 60 * 24);
+        response.addCookie(oldCookie);
+      }
+    } else {
+      boardService.increaseViews(no);
+      Cookie newCookie = new Cookie("postView","[" + no + "]");
+      newCookie.setPath("/");
+      newCookie.setMaxAge(60 * 60 * 24);
+      response.addCookie(newCookie);
+    }
   }
 
 
@@ -289,7 +330,6 @@ public class BoardController {
     catenoInBoard.setCateno(no);
 
     List<Map<String,Object>> list = boardService.list(cri);
-    System.out.println("=====>>>>>" + list.size());
     mav.addObject("list", list);
     mav.addObject("pageMaker", pageMaker);
     mav.addObject("catenoInBoard", catenoInBoard);

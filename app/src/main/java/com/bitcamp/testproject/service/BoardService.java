@@ -48,6 +48,8 @@ public interface BoardService {
 
   List<Map<String, Object>> clgList();
 
+  void increaseViews(int no);
+
 
 
   ////////////

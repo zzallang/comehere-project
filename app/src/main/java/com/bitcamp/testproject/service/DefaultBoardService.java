@@ -111,10 +111,11 @@ public class DefaultBoardService implements BoardService {
     return boardDao.findByNo(no); 
   }
 
-  //  @Override
-  //  public List<Board> list(int no) throws Exception {
-  //    return boardDao.findAll(no);
-  //  }
+  @Override
+  public void increaseViews(int no) {
+    // 조회수 증가시키기
+    boardDao.increaseViews(no);
+  }
 
   @Override
   public List<Map<String, Object>> list(Criteria cri) throws Exception {

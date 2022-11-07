@@ -90,7 +90,8 @@
       </style>
 
     </head>
-       <body>
+    
+    <body>
       <!-- header section start -->
       <div class="header_section">
          <div class="container-fluid">
@@ -185,7 +186,7 @@
                         <th:block th:each="pageNum: ${#numbers.sequence(pageMaker.startPage, pageMaker.endPage)}">
                           <li class="page-item">
                             <a class="page-link" th:href="@{list(page=${pageNum}, no=${catenoInBoard.cateno})}"><i th:text="${pageNum}"></i></a>
-                          </li>
+                        </li>
                         </th:block>
                         <li class="page-item" th:if="${pageMaker.next && pageMaker.endPage >0}">
                           <a class="page-link" th:href="@{list(page=${pageMaker.endPage+1}, no=${catenoInBoard.cateno})}" aria-label="Next">
@@ -285,9 +286,11 @@
       <script src="../js/bootstrap.bundle.min.js"></script>
       <script src="../js/jquery-3.0.0.min.js"></script>
       <script src="../js/plugin.js"></script>
+      
       <!-- sidebar -->
       <script src="../js/jquery.mCustomScrollbar.concat.min.js"></script>
       <script src="../js/custom.js"></script>
+      
       <!-- javascript --> 
       <!-- <script src="../js/owl.carousel.js"></script> -->
       <!-- <script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>  -->
@@ -328,11 +331,6 @@
 
       </script>
    </body>
-    
- 
-            <p>
-                <a href='../'>메인</a>
-            </p>
-        </body>
+
          
-    </html>
+</html>

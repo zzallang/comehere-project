@@ -38,6 +38,9 @@ public interface BoardDao {
 
   List<Map<String, Object>> findClgList();
 
+  void increaseViews(int no);
+
+
   //
 
   //  int insert(Board board);
