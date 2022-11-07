@@ -22,13 +22,13 @@
   <!-- 회원 기본 정보 등록  -->
   <insert id="insert" parameterType="member"
       useGeneratedKeys="true" keyColumn="mno" keyProperty="no"> 
-    update into member(name,id,email,pwd,nick,tel,bday,sex) 
+    insert into member(name,id,email,pwd,nick,tel,bday,sex) 
     values(#{name},#{id},#{email},sha2(#{password},256),#{nickname},#{tel},#{birthday},#{sex})
   </insert>
   
   <!-- 관심지역 등록  -->
   <insert id="insertRegion" parameterType="member">
-    update into favorite_region(rno,mno)
+    insert into favorite_region(rno,mno)
     values
       <foreach collection="favoriteRegion" item="region" separator=",">
         (#{region.rno},#{no})
@@ -113,13 +113,27 @@
   
 
   <update id="update" parameterType="Member">
-    update member set 
+    update app_member set 
+      name=#{name}, 
+      id=#{id},
       email=#{email}, 
-      pwd=sha2(#{password},256),
+      pwd=sha2(#{password},256)
       nick=#{nickname},
-      tel=#{tel}
+      tel=#{tel},
+      bday=#{birthday},
+      sex=#{sex}
     where 
       mno=#{no}
+  <!-- 관심지역 수정 -->
+    update favorite_region set
+      <foreach collection="favoriteRegion" item="region" separator=",">
+        (#{region.rno},#{no})
+      </foreach>
+  <!-- 관심운동 수정 -->
+      update favorite_sports set
+      <foreach collection="favoriteSports" item="sports" separator=",">
+        (#{sports.sno},#{no})
+      </foreach>
   </update>
   
    <select id="findByPassword" resultMap="memberMap">
