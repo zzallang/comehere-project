@@ -59,6 +59,17 @@
   </select>
 
  -->
+ <select id="findById" resultMap="memberMap">
+    select
+    id
+    from
+    member
+    where
+    name=#{name} and email=#{email}
+  </select>
+ 
+ 
+ 
   <select id="findByNo" resultMap="memberMap">
     select 
       mno,
