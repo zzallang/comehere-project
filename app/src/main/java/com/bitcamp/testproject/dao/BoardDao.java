@@ -5,6 +5,7 @@ import java.util.Map;
 import org.apache.ibatis.annotations.Mapper;
 import com.bitcamp.testproject.vo.AttachedFile;
 import com.bitcamp.testproject.vo.Board;
+import com.bitcamp.testproject.vo.BoardCategory;
 import com.bitcamp.testproject.vo.Criteria;
 
 @Mapper
@@ -37,6 +38,11 @@ public interface BoardDao {
   List<Map<String, Object>> findBestList();
 
   List<Map<String, Object>> findClgList();
+
+  void increaseViews(int no);
+
+  BoardCategory findCategoryByNo(int no);
+
 
   //
 
