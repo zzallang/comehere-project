@@ -4,6 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
+<<<<<<< Updated upstream
     <list default="true" id="cdeccf6d-bf24-497e-8cb8-d4bd6d84f35f" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
@@ -19,6 +20,19 @@
       <change beforePath="$PROJECT_DIR$/app/src/main/resources/templates/auth/join.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/resources/templates/auth/join.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/resources/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/resources/templates/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/resources/templates/member/myInfo.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/resources/templates/member/myInfo.html" afterDir="false" />
+=======
+    <list default="true" id="513e04df-48a5-4d7c-ba87-050fb0e05257" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/comehere.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/resources/templates/auth/findPassword.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/resources/templates/auth/findPassword.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/resources/templates/auth/loginResult.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/resources/templates/auth/loginResult.html" afterDir="false" />
+>>>>>>> Stashed changes
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,10 +40,11 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="ExternalProjectsData">
-    <projectState path="$PROJECT_DIR$">
+    <projectState path="$PROJECT_DIR$/app">
       <ProjectState />
     </projectState>
   </component>
+<<<<<<< Updated upstream
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -37,6 +52,24 @@
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="2HCpHH53Of1nywfYxTRJK0nypoz" />
+=======
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <projects_view>
+          <tree_state>
+            <expand />
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="2HCKRSxijFj1CaSKGG6zpS88QTc" />
+>>>>>>> Stashed changes
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -44,6 +77,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
+<<<<<<< Updated upstream
     "RunOnceActivity.ShowReadmeOnStart": "true"
   }
 }]]></component>
@@ -55,6 +89,35 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1667798834538</updated>
+=======
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "settings.editor.selected.configurable": "com.poratu.idea.plugins.tomcat.setting.TomcatServersConfigurable"
+  }
+}]]></component>
+  <component name="RunManager">
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="comehere" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="comehere" />
+      <option name="filePath" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="513e04df-48a5-4d7c-ba87-050fb0e05257" name="Changes" comment="" />
+      <created>1667783618704</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1667783618704</updated>
+>>>>>>> Stashed changes
     </task>
     <servers />
   </component>

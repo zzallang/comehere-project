@@ -58,6 +58,12 @@ public class AuthController {
     }
     response.addCookie(cookie);
 
+    if(member != null) {
+      ModelAndView mv = new ModelAndView("redirect:/");
+      mv.addObject("member", member);
+      return mv;
+    }
+
     ModelAndView mv = new ModelAndView("auth/loginResult");
     mv.addObject("member", member);
     return mv;
@@ -101,7 +107,6 @@ public class AuthController {
 
   @ResponseBody
   public String send(String email) {
-    System.out.println(email);
 
     Random random = new Random();
     int SecCode = random.nextInt(888888) + 111111;
@@ -128,21 +133,31 @@ public class AuthController {
   }
 
 
-
   @GetMapping("newPassword")
-  public ModelAndView newPassword(String id, String email, String secCode,
-      HttpServletResponse response, HttpSession session) throws Exception {
-
-    Member member = memberService.getByPassword(id, email, secCode);
-
-    if (member != null) {
-      session.setAttribute("findByPassword", member);
-    }
-
-    ModelAndView mv = new ModelAndView("auth/newPassword");
-    mv.addObject("member", member);
-    return mv;
+  public String newPassword() {
+    return "auth/newPassword";
   }
+
+  //  @GetMapping("newPassword")
+  //  public ModelAndView newPassword(String id, String email, String secCode,
+  //      HttpServletResponse response, HttpSession session) throws Exception {
+  //
+  //    Member member = memberService.getByPassword(id, email, secCode);
+  //
+  //    if (member != null) {
+  //      session.setAttribute("findByPassword", member);
+  //    }
+  //
+  //    if(member != null) {
+  //      ModelAndView mv = new ModelAndView("redirect:/");
+  //      mv.addObject("member", member);
+  //      return mv;
+  //    }
+  //
+  //    ModelAndView mv = new ModelAndView("auth/newPassword");
+  //    mv.addObject("member", member);
+  //    return mv;
+  //  }
 
   @GetMapping("newPasswordResult")
   public ModelAndView newPasswordResult(String password, String password1,

@@ -9,9 +9,8 @@ public class Member {
   private String name;
   private String id;
   private String email;
-  private String password;
-  private String password1;
   private String nickname;
+  private String password;
   private String tel;
   private Date birthday;
   private boolean sex;
@@ -28,14 +27,15 @@ public class Member {
   // 모임 참여 명단에서 나이대
   private String ageGroup;
 
+
+
   @Override
   public String toString() {
-    return "Member [no=" + no + ", name=" + name + ", id=" + id + ", email=" + email + ", password="
-        + password + ", password1=" + password1 + ", nickname=" + nickname + ", tel=" + tel
-        + ", birthday=" + birthday + ", sex=" + sex + ", filepath=" + filepath + ", createdDate="
-        + createdDate + ", active=" + active + ", black=" + black + ", favoriteRegion="
-        + favoriteRegion + ", favoriteSports=" + favoriteSports + ", auth=" + auth + ", ageGroup="
-        + ageGroup + "]";
+    return "Member [no=" + no + ", name=" + name + ", id=" + id + ", email=" + email + ", nickname="
+        + nickname + ", password=" + password + ", tel=" + tel + ", birthday=" + birthday + ", sex="
+        + sex + ", filepath=" + filepath + ", createdDate=" + createdDate + ", active=" + active
+        + ", black=" + black + ", favoriteRegion=" + favoriteRegion + ", favoriteSports="
+        + favoriteSports + ", auth=" + auth + ", ageGroup=" + ageGroup + "]";
   }
 
   public int getNo() {
@@ -68,22 +68,6 @@ public class Member {
 
   public void setEmail(String email) {
     this.email = email;
-  }
-
-  public String getPassword() {
-    return password;
-  }
-
-  public void setPassword(String password) {
-    this.password = password;
-  }
-
-  public String getPassword1() {
-    return password1;
-  }
-
-  public void setPassword1(String password1) {
-    this.password1 = password1;
   }
 
   public String getNickname() {
@@ -181,6 +165,15 @@ public class Member {
   public void setAgeGroup(String ageGroup) {
     this.ageGroup = ageGroup;
   }
+
+  public String getPassword() {
+    return password;
+  }
+
+  public void setPassword(String password) {
+    this.password = password;
+  }
+
 
 
 

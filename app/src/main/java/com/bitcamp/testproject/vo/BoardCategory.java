@@ -3,11 +3,11 @@ package com.bitcamp.testproject.vo;
 public class BoardCategory {
 
   private int cateno;
-  private String category;
+  private String name;
 
   @Override
   public String toString() {
-    return "BoardCategory [cateno=" + cateno + ", category=" + category + "]";
+    return "BoardCategory [cateno=" + cateno + ", category=" + name + "]";
   }
 
   public int getCateno() {
@@ -18,12 +18,12 @@ public class BoardCategory {
     this.cateno = cateno;
   }
 
-  public String getCategory() {
-    return category;
+  public String getName() {
+    return name;
   }
 
-  public void setCategory(String category) {
-    this.category = category;
+  public void setName(String name) {
+    this.name = name;
   }
 
 

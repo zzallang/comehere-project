@@ -90,42 +90,32 @@
       </style>
 
     </head>
-       <body>
+    
+    <body>
       <!-- header section start -->
       <div class="header_section">
-         <div class="container-fluid">
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
-               <div class="main_logo"><a href="/app"><img src="../images/logo.png"></a></div>
-               <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                  <ul class="navbar-nav mr-auto">
-                     <li class="nav-item">
-                        <a class="nav-link" href="index.html">Home</a>
-                     </li>
-                     <li class="nav-item">
-                        <a class="nav-link" href="services.html">services</a>
-                     </li>
-                     <li class="nav-item">
-                        <a class="nav-link" href="about.html">About</a>
-                     </li>
-                     <li class="nav-item">
-                        <a class="nav-link" href="shop.html">Shop</a>
-                     </li>
-                     <li class="nav-item">
-                        <a class="nav-link" href="contact.html">Contact</a>
-                     </li>
-                  </ul>
-                  <form class="form-inline my-2 my-lg-0">
-                     <h1 class="call_text">Call Us : +01 1234567890</h1>
-                  </form>
-                  <div class="search_icon">
-                     <ul>
-                        <li><a href="#"><img src="../images/search-icon.png"></a></li>
-                        <li><a href="#">LOGIN</a></li>
-                     </ul>
-                  </div>
-               </div>
-            </nav>
-         </div>
+        <div class="container-fluid">
+          <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="main_logo"><a href="/app"><img src="images/logo.png"></a></div>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav mr-auto">
+                <li class="nav-item"><a class="nav-link" href="#">운동찾기</a></li>
+                <li class="nav-item"><a class="nav-link" href="board/main">커뮤니티</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">공지사항</a></li>
+              </ul>
+              <div class="login-bt">
+                <ul>
+                  <li data-th-if="${session.loginMember == null}"><a href="auth/form" >로그인</a></li>
+                  <li data-th-if="${session.loginMember != null}"><a href="member/viewer">마이페이지</a></li>
+                  <li data-th-if="${session.loginMember != null}"><a href="auth/logout" data-th-text="${session.loginMember.name} + '(로그아웃)'">동동(로그아웃)</a></li>
+                </ul>
+              </div>
+            </div>
+          </nav>
+        </div>
       </div>
       <!-- header section end -->
       
@@ -170,7 +160,7 @@
                   </table>
                   <!-- 게시글 목록 끝 -->
                   <li class="write-box">
-                    <a class="btn btn-primary" href="form" role="button">글쓰기</a>
+                    <a class="btn btn-primary" th:href="@{form(cateno=${catenoInBoard.cateno})}" role="button">글쓰기</a>
                   </li>
                 
                   <!-- 페이징 버튼 시작 -->
@@ -185,7 +175,7 @@
                         <th:block th:each="pageNum: ${#numbers.sequence(pageMaker.startPage, pageMaker.endPage)}">
                           <li class="page-item">
                             <a class="page-link" th:href="@{list(page=${pageNum}, no=${catenoInBoard.cateno})}"><i th:text="${pageNum}"></i></a>
-                          </li>
+                        </li>
                         </th:block>
                         <li class="page-item" th:if="${pageMaker.next && pageMaker.endPage >0}">
                           <a class="page-link" th:href="@{list(page=${pageMaker.endPage+1}, no=${catenoInBoard.cateno})}" aria-label="Next">
@@ -285,9 +275,11 @@
       <script src="../js/bootstrap.bundle.min.js"></script>
       <script src="../js/jquery-3.0.0.min.js"></script>
       <script src="../js/plugin.js"></script>
+      
       <!-- sidebar -->
       <script src="../js/jquery.mCustomScrollbar.concat.min.js"></script>
       <script src="../js/custom.js"></script>
+      
       <!-- javascript --> 
       <!-- <script src="../js/owl.carousel.js"></script> -->
       <!-- <script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>  -->
@@ -328,11 +320,6 @@
 
       </script>
    </body>
-    
- 
-            <p>
-                <a href='../'>메인</a>
-            </p>
-        </body>
+
          
-    </html>
+</html>
