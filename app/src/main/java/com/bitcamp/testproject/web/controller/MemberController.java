@@ -45,7 +45,7 @@ public class MemberController {
     member.setFavoriteSports(saveSports(sports_domain));
 
     memberService.add(member);
-    ModelAndView mv = new ModelAndView("redirect:form");
+    ModelAndView mv = new ModelAndView("redirect:../auth/form");
     return mv;
   }
 
