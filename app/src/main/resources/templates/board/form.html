@@ -148,7 +148,7 @@
       
       <!-- furnitures section start -->
       <div class="furnitures_sectionJD layout_padding">
-         <a href="main"><h1 class="container" id="community-title" >커뮤니티</h1></a>
+         <a href="main"><h1 class="container" id="community-title">커뮤니티</h1></a>
          <div class="container cate-bottom-line">
            <!-- 게시판 카테고리 이동 시작 -->
            <ul class="nav nav-pills nav-justified">
@@ -193,7 +193,6 @@
                             </td>
                         </tr>
                         <tr>
-                            
                             <td><b>[썸네일]<b></b><input class="post_form1" name='file' type="file"></td>
                         </tr>
                         <tr>
@@ -299,38 +298,6 @@
       <!-- 공식부트스트랩 JS -->
       <script src="../js/bootstrap/bootstrap.js"></script>   
 
-      <script>
-      "use strict"
-      window.onload = 
-        function findCategory() {
-        var para = document.location.href.split("no=");
-        console.log("카테고리 번호 =>" + para[1]);
-        
-        switch(para[1]) {
-          case '1' :
-            document.getElementById( 'cateName' ).innerHTML = "자유게시판";
-            document.getElementById( 'cateConment' ).innerHTML = "여기모여 회원들이 자유롭게 소통할 수 있는 자유게시판입니다. ";
-            break;
-          case '2' :
-            document.getElementById( 'cateName' ).innerHTML = "식단게시판";
-            document.getElementById( 'cateConment' ).innerHTML = "다이어트, 벌크업 등 식이요법에 대한 다양한 정보를 나누는 식단게시판입니다.";
-            break;
-          case '3' :
-            document.getElementById( 'cateName' ).innerHTML = "챌린지게시판";
-            document.getElementById( 'cateConment' ).innerHTML = "하루하루 도전하는 회원분들의 인증샷을 올리는 챌린지게시판입니다.";
-            break;
-          case '4' :
-            document.getElementById( 'cateName' ).innerHTML = "질문게시판";
-            document.getElementById( 'cateConment' ).innerHTML = "궁금한 건 어디에서 물어볼 지 고민인 분들을 위한 질문게시판입니다.";
-            break;
-          case '5' :
-            document.getElementById( 'cateName' ).innerHTML = "핫딜게시판";
-            document.getElementById( 'cateConment' ).innerHTML = "지금이 바로 득템 기회! 핫딜 제품들을 공유할 수 있는 핫딜게시판입니다.";
-        }
-        
-      }
-
-      </script>
          
       <script>
       /*  summernote submit메서드 */ 

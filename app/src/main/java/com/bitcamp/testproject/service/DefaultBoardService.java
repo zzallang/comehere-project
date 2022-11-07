@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.bitcamp.testproject.dao.BoardDao;
 import com.bitcamp.testproject.vo.AttachedFile;
 import com.bitcamp.testproject.vo.Board;
+import com.bitcamp.testproject.vo.BoardCategory;
 import com.bitcamp.testproject.vo.Criteria;
 
 @Service
@@ -79,6 +80,10 @@ public class DefaultBoardService implements BoardService {
 
 
   //  제동 소스
+  @Override
+  public BoardCategory getCategory(int no) {
+    return boardDao.findCategoryByNo(no);
+  }
 
   @Override
   public List<Map<String, Object>> bestList() {

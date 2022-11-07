@@ -22,6 +22,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.bitcamp.testproject.service.BoardService;
 import com.bitcamp.testproject.vo.AttachedFile;
 import com.bitcamp.testproject.vo.Board;
+import com.bitcamp.testproject.vo.BoardCategory;
 import com.bitcamp.testproject.vo.Criteria;
 import com.bitcamp.testproject.vo.PageMaker;
 
@@ -248,7 +249,9 @@ public class BoardController {
   //  
 
   @GetMapping("form")
-  public void form() throws Exception {
+  public Model form(int cateno, Model model) throws Exception {
+    BoardCategory boardCategory = boardService.getCategory(cateno);
+    return model.addAttribute("category", boardCategory);
   }
 
   @GetMapping("detail")

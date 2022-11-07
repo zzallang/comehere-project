@@ -138,6 +138,11 @@
           padding: 5px;
           height: 60px;
         }
+        .write-wrapper {
+          width: 95%;
+          margin: auto;
+          height: 50px;
+        }
         
 
       </style>
@@ -146,39 +151,28 @@
        <body>
       <!-- header section start -->
       <div class="header_section">
-         <div class="container-fluid">
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
-               <div class="main_logo"><a href="/app"><img src="../images/logo.png"></a></div>
-               <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                  <ul class="navbar-nav mr-auto">
-                     <li class="nav-item">
-                        <a class="nav-link" href="index.html">Home</a>
-                     </li>
-                     <li class="nav-item">
-                        <a class="nav-link" href="services.html">services</a>
-                     </li>
-                     <li class="nav-item">
-                        <a class="nav-link" href="about.html">About</a>
-                     </li>
-                     <li class="nav-item">
-                        <a class="nav-link" href="shop.html">Shop</a>
-                     </li>
-                     <li class="nav-item">
-                        <a class="nav-link" href="contact.html">Contact</a>
-                     </li>
-                  </ul>
-                  <form class="form-inline my-2 my-lg-0">
-                     <h1 class="call_text">Call Us : +01 1234567890</h1>
-                  </form>
-                  <div class="search_icon">
-                     <ul>
-                        <li><a href="#"><img src="../images/search-icon.png"></a></li>
-                        <li><a href="#">LOGIN</a></li>
-                     </ul>
-                  </div>
-               </div>
-            </nav>
-         </div>
+        <div class="container-fluid">
+          <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="main_logo"><a href="/app"><img src="../images/logo.png"></a></div>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav mr-auto">
+                <li class="nav-item"><a class="nav-link" href="#">운동찾기</a></li>
+                <li class="nav-item"><a class="nav-link" href="main">커뮤니티</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">공지사항</a></li>
+              </ul>
+              <div class="login-bt">
+                <ul>
+                  <li data-th-if="${session.loginMember == null}"><a href="auth/form" >로그인</a></li>
+                  <li data-th-if="${session.loginMember != null}"><a href="member/viewer">마이페이지</a></li>
+                  <li data-th-if="${session.loginMember != null}"><a href="auth/logout" data-th-text="${session.loginMember.name} + '(로그아웃)'">동동(로그아웃)</a></li>
+                </ul>
+              </div>
+            </div>
+          </nav>
+        </div>
       </div>
       <!-- header section end -->
       
@@ -196,9 +190,12 @@
            </ul>
            <!-- 게시판 카테고리 이동 끝 -->
            
-           <h2 class="our_textJD" id="cateName">게시판 제목입니다.</h1>
+           <h2 class="our_textJD" id="cateName">게시판 제목입니다.</h2>
            
+            
            <div class="furnitures_section2 layout_padding">
+               <div class="write-wrapper">
+                  <a class="btn btn-primary float-end" href="form?cateno=1" role="button">글쓰기</a></div>
                <div class="row1">
                   <!-- 게시글 목록 시작 -->
                   <h3 class="mainList-title">인기글</h3>
@@ -220,7 +217,7 @@
                   </table> 
                 </div>
                 <div class="row1">
-                  <h3 class="mainList-title">최근 챌린지 인증<a class="clg-plus">더보기+</a></h3>
+                  <h3 class="mainList-title">최근 챌린지 인증<a href="list?no=3" class="clg-plus">더보기+</a></h3>
                   <div class="recent-clg-list">
                   <th:block th:each="board : ${clgList}">
                     <span class="recent-clg-wapper">

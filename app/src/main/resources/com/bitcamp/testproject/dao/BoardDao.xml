@@ -43,10 +43,13 @@
       
     </association>
   
-    
   </resultMap>
   <!--  -->
   
+  <resultMap type="boardCategory" id="boardCategoryMap">
+    <id column="cateno" property="cateno"/>
+    <result column="name" property="name"/>
+  </resultMap>
   
   <resultMap type="attachedFile" id="attachedFileMap">
     <id column="bfno" property="no"/>
@@ -219,6 +222,16 @@
       vw_cnt = vw_cnt + 1
     where bno=#{value}
   </update>
+  
+  <select id="findCategoryByNo" resultMap="boardCategoryMap">
+    select 
+      cateno, 
+      name
+    from 
+      board_category
+    where 
+      cateno = #{value}
+  </select>
 
 
 </mapper>
