@@ -487,9 +487,6 @@
 
             </div>
           </div>
-
-
-
             <div class="furnitures_section2 layout_padding_party">
             
                <div class="party_detail_bar">
@@ -500,11 +497,6 @@
                 <button th:if="${session.loginMember} != null and ${session.loginMember.no} != ${party.user.no}" class="dololr_text_tatlle" type="button" onclick="location.href='#'">신고</button>
                </div>
                </div>
-
-
-
-
-
                 <div class="party_detail_view">
                   <form >
                   <div class="party_detail_content_l">
@@ -517,7 +509,7 @@
                             <li><img alt="" src="http://placeimg.com/400/350/any"></li>
                             <li><img alt="" src="http://placeimg.com/400/350/any"></li>
                             <li><img alt="모임 대표 이미지" th:if="${file.filepath != null}" th:src="'../webapp/party/files/' + @{file.filepath}"></li>
-                            <li><img alt="모임 기본 이미지" th:if="${file.filepath == null}" th:src="images/party/partySample.jpeg"></li>
+                            <!-- <li><img alt="모임 기본 이미지" th:if="${file.filepath == null}" th:src="../static/images/party/partySample.jpeg"></li> -->
                             <!-- 
                       
                              -->
