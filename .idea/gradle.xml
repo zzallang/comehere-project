@@ -5,12 +5,9 @@
     <option name="linkedExternalProjectsSettings">
       <GradleProjectSettings>
         <option name="distributionType" value="DEFAULT_WRAPPED" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="gradleHome" value="$PROJECT_DIR$/../../../../tools/gradle-7.4.2-bin/gradle-7.4.2" />
-        <option name="gradleJvm" value="#JAVA_HOME" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/app" />
         <option name="modules">
           <set>
-            <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
           </set>
         </option>

@@ -12,7 +12,7 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class EmailService {
   @Autowired
-  private JavaMailSender emailSender;
+  JavaMailSender emailSender;
 
   public void sendSimpleMessage(String email, int SecCode) {
     SimpleMailMessage message = new SimpleMailMessage();

@@ -15,6 +15,7 @@
       <id column="mno" property="no"/>
       <result column="nick" property="nickname"/>
       <result column="filepath" property="filepath"/>
+      <result column="ageGroup" property="ageGroup"/>
     </association>
 
   </resultMap>
