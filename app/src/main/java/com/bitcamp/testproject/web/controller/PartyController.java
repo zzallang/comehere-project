@@ -15,6 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import com.bitcamp.testproject.service.PartyCommentService;
 import com.bitcamp.testproject.service.PartyService;
 import com.bitcamp.testproject.service.RegionService;
@@ -124,14 +125,20 @@ public class PartyController {
     return attachedFiles;
   }
 
-
-
   @GetMapping("list")
   public void list(Model model) throws Exception {
     model.addAttribute("partys", partyService.list());
     model.addAttribute("regions", regionService.list());
     model.addAttribute("sports", sportsService.list());
   }
+
+  @GetMapping("listparam")
+  @ResponseBody
+  public Object listparam(int si, int doo, Model model) throws Exception {
+    model.addAttribute("partys", partyService.list2(doo));
+    return model.getAttribute("partys");
+  }
+
 
   @SuppressWarnings({"rawtypes", "unchecked"})
   @GetMapping("detail")

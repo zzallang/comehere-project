@@ -6,7 +6,7 @@
 
   <resultMap type="Comment" id="commentMap">
     <id column="pcno" property="no"/>
-    <result column="pno" property="partyNo"/>
+    <result column="pno" property="objectNo"/>
     <result column="cont" property="content"/>
     <result column="cdt" property="createdDate"/>
     

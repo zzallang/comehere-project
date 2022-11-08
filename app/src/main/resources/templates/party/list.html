@@ -29,6 +29,11 @@
       <link rel="stylesheet" href="../css/owl.carousel.min.css">
       <link rel="stylesheet" href="../css/owl.theme.default.min.css">
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+<script src="/app/js/party/partylist.js"></script>
+      
       <style>
         .row_party {
           width: 1200px;
@@ -270,18 +275,38 @@
 <h4>상세검색</h4>
 <div class="party_search_condition">
 <div class="party_search">
+  <form action="">
   <select class="party_condition" id="region_sido" onchange="loadRegion();">
   </select>
-  <select class="party_condition"  id="region_sigu">
+  <select class="party_condition"  id="region_sigu" onchange="loadSigu();">
   </select>
-  <select class="party_condition">
+  <select class="party_condition"  id="sports_name" onchange="loadSelected();">
+      <option selected>-지역 선택-</option>
     <th:block th:each="sport : ${sports}">
-       <option th:text="${sport.name}"  th:value="${sport.no}"></option>
+       <option th:text="${sport.name}" id="sportsNo" th:value="${sport.no}"></option>
     </th:block>
   </select>
   <input class="" name="partyDate" type="date">
   <input class="" name="partyTime" type="time" step="1" value="00:00:00">
+  </form>
+  
+  <script type="text/javascript">
+    "use strict"
+    function loadSelected() {
+    	
+    	$.ajax({
+    	      url: "list",
+    	      method: "get",
+    	      data: {no: $("#sportsNo").val()}
+    	    }).fail(() => {
+    	      wondow.alert("서버 실행 오류!")
 
+    	    });
+    }
+    
+  </script>
+  
+  
 </div>
 <div class="party_search_bar">
         <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
@@ -418,7 +443,10 @@
    <!--    <script src="../js/jquery.min.js"></script> -->
 
 
-      <script>
+       <script>
+      let region_sido = "0";
+      let region_sigu = "0";
+      
       let sidos = [
           {no:"",sido:""},
           {no:"1",sido:"서울시"},
@@ -440,7 +468,7 @@
       }
       
       function loadRegion(){
-    	    let region_sido = document.getElementById("region_sido").value;
+    	    region_sido = document.getElementById("region_sido").value;
     	    let h = [];
     	    if (region_sido == "") {
     	    	
@@ -451,10 +479,25 @@
 	            });
     	    	}
     	    }
-	            document.getElementById("region_sigu").innerHTML = h.join("");
+	        document.getElementById("region_sigu").innerHTML = h.join("");
+	        
+	        $.ajax({
+	        	type: "GET",
+	        	url: "/app/party/listparam",
+	        	data: {si: region_sido, doo: region_sigu},
+	        	success: function(result) {
+	        		console.log(result);
+	        	}
+	        });
         }
       
       loadSido();
+/*       
+      function loadSigu() {
+    	  console.log(region_sido);
+    	  region_sigu;
+      } */
+      
       </script>
 
       <script src="../js/popper.min.js"></script>

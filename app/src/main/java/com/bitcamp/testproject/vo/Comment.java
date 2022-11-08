@@ -6,13 +6,12 @@ public class Comment {
 
   private int no;
   private Member writer;
-  private int partyNo;
+  private int objectNo;
   private String content;
   private Date createdDate;
-
   @Override
   public String toString() {
-    return "Comment [no=" + no + ", writer=" + writer + ", partyNo=" + partyNo + ", content="
+    return "Comment [no=" + no + ", writer=" + writer + ", objectNo=" + objectNo + ", content="
         + content + ", createdDate=" + createdDate + "]";
   }
   public int getNo() {
@@ -27,11 +26,11 @@ public class Comment {
   public void setWriter(Member writer) {
     this.writer = writer;
   }
-  public int getPartyNo() {
-    return partyNo;
+  public int getObjectNo() {
+    return objectNo;
   }
-  public void setPartyNo(int partyNo) {
-    this.partyNo = partyNo;
+  public void setObjectNo(int objectNo) {
+    this.objectNo = objectNo;
   }
   public String getContent() {
     return content;
@@ -45,7 +44,6 @@ public class Comment {
   public void setCreatedDate(Date createdDate) {
     this.createdDate = createdDate;
   }
-
 
 
 

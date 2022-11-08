@@ -97,6 +97,11 @@ public class DefaultPartyService implements PartyService {
   }
 
   @Override
+  public List<Party> list2(int doo) throws Exception {
+    return partyDao.findAll2(doo);
+  }
+
+  @Override
   public int checkOwner(int partyNo) {
     return partyDao.checkOwner(partyNo);
   }

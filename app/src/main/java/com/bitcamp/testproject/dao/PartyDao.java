@@ -14,6 +14,8 @@ public interface PartyDao {
   // - 한 페이지 만 프론트, 페이지 이동 시 
   List<Party> findAll();
 
+  List<Party> findAll2(int doo);
+
   Party findByNo(int no);
 
   int insert(Party party);

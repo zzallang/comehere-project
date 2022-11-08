@@ -79,6 +79,32 @@
       p.pno desc
   </select>
   
+  <select id="findAll2" resultMap="partyMap">
+    select
+      p.pno, 
+      r.sido,
+      r.sigu,
+      s.name,
+      p.title,
+      p.cdt,
+      p.headcnt,
+      p.ptime,
+      p.pdate,
+      (select truncate(avg(star), 1) from party_review where pno=p.pno) as star,
+      r.rno,
+      s.sno,
+      pf.filepath thumbnail
+    from 
+      party p
+      join region r on p.rno = r.rno
+      join sports s on p.sno = s.sno
+      left join party_file pf on p.pno=pf.pno
+    where
+      p.act = 1
+      and p.rno = #{value}
+    order by 
+      p.pno desc
+  </select>
     <select id="findByNo" resultMap="partyMap">
     <![CDATA[
     select

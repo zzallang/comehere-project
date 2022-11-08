@@ -21,6 +21,8 @@ public interface PartyService {
 
   List<Party> list() throws Exception;
 
+  List<Party> list2(int doo) throws Exception;
+
   int checkOwner(int partyNo) throws Exception;
 
   AttachedFile getAttachedFile(int fileNo) throws Exception;

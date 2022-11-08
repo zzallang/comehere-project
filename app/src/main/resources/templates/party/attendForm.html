@@ -224,7 +224,7 @@
         .party_detail_button_center {
           
           color: #121111;
-          margin: 10px;
+          margin: 30px 10px 10px 10px;
           
             font-size: medium;
           
@@ -292,6 +292,12 @@
           float: left;
         }
                 
+        .party_detail_content_center_wrap {
+          width: 825px;
+          height: 100px;
+          float: left;
+
+        }
         .party_detail_content_center {
           width: 145px;
           height: 100px;
@@ -452,10 +458,12 @@
                           data-th-text="${party.headCount} + '명'"></span>
                     </div>
                   </div>
+                    <div class="party_detail_content_center_wrap">
                     <div class="party_detail_content_center">
                         <button th:if="${session.loginMember} != null" class="party_detail_button_center" >신청</button>
                         <button th:if="${session.loginMember} == null" class="party_detail_button_center" type="button" onclick="location.href='../auth/form'">신청</button>
                         <button th:if="${session.loginMember} != null" class="party_detail_button_center" type="button" onclick="location.href='list'">취소</button>
+                    </div>
                     </div>
                   </form>
                 </div>
