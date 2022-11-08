@@ -81,24 +81,24 @@
                   <div class="mail_sectin">
                     <form action="memberUpdate" method="post" id="updateForm">
                       <div class="join_menu">아이디</div> 
-                      <input type="text" class="email-bt" placeholder="아이디" name="id" id="id">
-                        <!-- <button type="button" class="id_overlap_button" onclick="id_overlap_check()">중복확인</button> -->
+                      <input type="text" class="email-bt" data-th-value="${member.id}" name="id" id="id" readonly>
+                        <button type="button" class="id_overlap_button" onclick="id_overlap_check()">중복확인</button>
                         <div class="join_menu">이름</div>
-                      <input type="text" class="email-bt" placeholder="이름" name="name">
+                      <input type="text" class="email-bt" data-th-value="${member.name}" name="name" readonly>
                         <div class="join_menu">생년월일</div>
-                      <input type='date' class="email-bt" placeholder="생년월일">
-                        <div class="join_menu">성별<br/>
+                      <input type='date' class="email-bt" data-th-value="${member.birthday}" readonly>
+<!--                         <div class="join_menu">성별<br/>
                           <div class= "join_gender">
                         <span class =gender>남성</span>
-                      <input type='radio' class="gender-bt" value="0"name="sex">
+                      <input type='radio' class="gender-bt" value="false" name="sex" data-th-if="${member.sex == false} ? 'checked' : ''">[[${member.sex}]]
                         <span class =gender>여성</span>
-                      <input type='radio' class="gender-bt" value="1"name="sex">
+                      <input type='radio' class="gender-bt" value="true" name="sex" data-th-if="${member.sex == true} ? 'checked' : ''">
                           </div>
-                        </div> <br/>
+                        </div> <br/> -->
                           <div class="join_menu">전화번호</div>
                       <input type="text" class="phoneNumber" placeholder="(-) 제외 입력" name="tel" required pattern="[0-9]{2,3}-[0-9]{3,4}-[0-9]{4}" maxlength="13"><br/>
                         <div class="join_menu">이메일</div>
-                      <input type="email" class="email-bt" placeholder="이메일" name="email" > 
+                      <input type="text" class="email-bt" placeholder="이메일" name="email" > 
                       <!-- @
                         <input type="text" class="custom-email" placeholder="도메인 입력" name="mail_domain" id="mail_domain">
                         <select class="custom-email" id="mail_domain_select" onchange="selectChange()">
@@ -121,7 +121,7 @@
                             <input type="password" class="email-bt" id="passwordCheck" placeholder="비밀번호 확인" name="password_check"> 
                             <div id="passwordCheckError" class="error"></div>
                           </div>
-                          <!-- <div class="join_menu">관심지역</div>
+                          <div class="join_menu">관심지역</div>
                           <select class="email-bt2" id="region" name="region_domain">
                           <option value="0">---선택---</option>
                           <option value="1">종로구</option>
@@ -204,8 +204,7 @@
                         <option value="9">야구</option>
                         <option value="10">러닝</option>
                         <option value="11">사이클</option>
-                      </select><br /> -->
-                      <!-- <div class="send_bt"> <button type="submit">회원가입</button></div> -->
+                      </select><br />
                       <div class="send_bt"><button type="submit">변경</button></div>
                     </form>
                   </div>

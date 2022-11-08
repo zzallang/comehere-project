@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bitcamp.testproject.dao.FavoriteRegionDao">
+
+  <resultMap type="FavoriteRegion" id="favoriteRegionMap">
+    <result column="rno" property="rno"/>
+    <result column="mno" property="mno"/>
+  </resultMap>
+  
+  <!-- 관심지역 등록  -->
+  <insert id="insertRegion" parameterType="member">
+    insert into favorite_region(rno,mno)
+    values
+      <foreach collection="favoriteRegion" item="region" separator=",">
+        (#{region.rno},#{no})
+      </foreach>
+  </insert>
+  
+  <!-- 관심 운동 등록  -->
+  <insert id="insertSports" parameterType="member">
+    insert into favorite_sports(sno,mno)
+    values
+      <foreach collection="favoriteSports" item="sports" separator=",">
+        (#{sports.sno},#{no})
+      </foreach>
+  </insert>
+  
+  <!-- 관심지역 수정  -->
+  <select id="findAllRegionNosByMemberNo" parameterType="int" resultMap="favoriteRegionMap">
+    SELECT * 
+    FROM 
+      favorite_region 
+    WHERE 
+      mno=#{memberNo}
+  </select>
+
+  <!-- <update id="updateRegion" parameterType="member">
+    <foreach collection="preFavoriteRegion" item="preRegion" index="index" separator=",">
+      UPDATE
+        favorite_region
+      SET 
+        rno = #{favoriteRegion[0].rno}
+      WHERE 
+        mno=#{no} 
+      AND 
+        rno = #{preRegion.rno};
+      </foreach>
+  </update> -->
+  
+   <update id="updateRegion" >
+      UPDATE
+        favorite_region
+      SET 
+         rno = #{regionDomain}
+      WHERE 
+        mno=#{mno} 
+      AND 
+        rno=#{preRegionDomain}
+  </update>
+  
+  <delete id="deletePreFavoriteRegion" parameterType="int">
+    delete from favorite_region where mno=#{memberNo}
+  </delete>
+  
+  <!-- 관심 운동 수정
+  <update id="updateSports" parameterType="member">
+  
+    insert into favorite_sports(sno,mno)
+    values
+      <foreach collection="favoriteSports" item="sports" separator=",">
+        (#{sports.sno},#{no})
+      </foreach>
+  </update> -->
+  
+  
+
+</mapper>
+
+
+
