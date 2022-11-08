@@ -4,22 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cdeccf6d-bf24-497e-8cb8-d4bd6d84f35f" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/comehere.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bitcamp/testproject/listener/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/bitcamp/testproject/service/listener/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bitcamp/testproject/web/controller/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/bitcamp/testproject/web/controller/AuthController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bitcamp/testproject/web/controller/MemberController.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/bitcamp/testproject/web/controller/MemberController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/resources/com/bitcamp/testproject/dao/MemberDao.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/resources/com/bitcamp/testproject/dao/MemberDao.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/resources/templates/auth/join.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/resources/templates/auth/join.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/resources/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/resources/templates/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/resources/templates/member/myInfo.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/resources/templates/member/myInfo.html" afterDir="false" />
-    </list>
+    <list default="true" id="cdeccf6d-bf24-497e-8cb8-d4bd6d84f35f" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -41,12 +26,12 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
