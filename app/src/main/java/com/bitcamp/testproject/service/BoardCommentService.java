@@ -13,5 +13,7 @@ public interface BoardCommentService {
 
   Comment getRecentComment(int boardNo);
 
+  int delete(int boardNo);
+
 
 }

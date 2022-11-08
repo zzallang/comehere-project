@@ -15,4 +15,6 @@ public interface BoardCommentDao {
 
   Comment findRecentComment(int boardNo);
 
+  int deleteComment(int boardNo);
+
 }

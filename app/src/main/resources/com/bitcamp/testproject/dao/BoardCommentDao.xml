@@ -22,6 +22,7 @@
 
   <select id="findByBoardNo" resultMap="commentMap">
     select
+      bc.bcno,
       m.filepath,
       m.nick,
       bc.cont,
@@ -33,12 +34,11 @@
     where
       bc.act=1
       and b.bno=#{value}
-    order by
-      bc.bcno desc
   </select>
   
   <select id="findRecentComment" resultMap="commentMap">
     select
+      bc.bcno,
       m.filepath,
       m.nick,
       bc.cont,
@@ -62,6 +62,11 @@
     values(#{objectNo},#{writer.no},#{content})
   </insert>
 
+
+  <delete id="deleteComment">
+    delete from board_comment 
+    where bcno=#{value}
+  </delete>
 
 </mapper>
 

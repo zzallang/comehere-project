@@ -31,6 +31,11 @@ public class DefaultBoardCommentService implements BoardCommentService {
   public Comment getRecentComment(int boardNo) {
     return boardCommentDao.findRecentComment(boardNo);
   }
+
+  @Override
+  public int delete(int boardNo) {
+    return boardCommentDao.deleteComment(boardNo);
+  }
 }
 
 
