@@ -19,10 +19,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+import com.bitcamp.testproject.service.BoardCommentService;
 import com.bitcamp.testproject.service.BoardService;
 import com.bitcamp.testproject.vo.AttachedFile;
 import com.bitcamp.testproject.vo.Board;
 import com.bitcamp.testproject.vo.BoardCategory;
+import com.bitcamp.testproject.vo.Comment;
 import com.bitcamp.testproject.vo.Criteria;
 import com.bitcamp.testproject.vo.PageMaker;
 
@@ -32,8 +34,11 @@ public class BoardController {
 
   @Autowired
   ServletContext sc;
+
   @Autowired
   BoardService boardService;
+  @Autowired
+  BoardCommentService boardCommentService;
 
   // InternalResourceViewResolver 사용 후:
   //  @GetMapping("form")
@@ -262,15 +267,16 @@ public class BoardController {
 
     // 게시글 꺼내기
     Board board = boardService.get(no);
-
-
     if (board == null) {
       throw new Exception("해당 번호의 게시글이 없습니다!");
     }
-    System.out.println(board.getViewCount());
+    List<Comment> comments = boardCommentService.getComments(no);
+    System.out.println(comments);
 
-    System.out.println("몇번 실행되는거냐??");
-    return model.addAttribute("board", board);
+    model.addAttribute("board", board);
+    model.addAttribute("comments", comments);
+
+    return model;
   }
 
   // 조회수 증가 

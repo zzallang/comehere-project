@@ -152,7 +152,7 @@
   <!-- header section start -->
   <div class="header_section">
     <div class="container-fluid">
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <nav class="navbar navbar-expand-lg navbar-light">
         <div class="main_logo"><a href="/app"><img src="../images/logo.png"></a></div>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -189,7 +189,7 @@
            </ul>
            <!-- 게시판 카테고리 이동 끝 -->
 
-         
+            <h1>글조회</h1>
             <table border='1' style="margin: auto">
                 <tr>
                     <th>게시판</th>
@@ -205,6 +205,7 @@
                 <tr>
                     <th>번호</th>
                     <td><input
+                        id="boardNo"
                         name='no'
                         type='number'
                         value='0'
@@ -245,40 +246,74 @@
                 <a data-th-href="@{list(no=${board.cateno})}">목록</a>
                 <a class="btn btn-primary" href="#" role="button">신고기능</a>
             </p>
+            
+            
              <!-- 댓글 블록 시작 -->
-            <div> 
-          <th:block th:each="comment : ${comments}">
+             
+            
             <div>
-            <div>
-              <p th:text="${comment.writer.filepath}"></p>
-            </div>
-            <div>
-              <p th:text="${comment.writer.nickname}"></p>
-              <p th:text="${comment.content}"></p>
-              <p th:text="${comment.createdDate}"></p>
-            </div>
-            </div>
-          </th:block>
-            <div>
-            <div>
-              <p></p>
-            </div>
-            <div>
-              <p></p>
+              <h2>댓글 쓰기 부분</h2>
+              <div>
+                  <div>
+                      <p></p>
+                  </div>
+                  <div>
+                      <p></p>
+                      <form action='add' method="post">
+                          <table>
+                              <tr>
+                                  <th>댓글 입력</th>
+                                  <td>
+                                      <textarea rows='4' cols='60'></textarea>
+                                  </td>
+                              </tr>
+                          </table>
+                          <p>
+                              <button type='submit' >등록</button>
+                          </p>
+                      </form>
+                  </div>
+              </div>
               
-              <form action='add' method="post">
-              <table border='1'>
-                <tr>
-                  <th>댓글 입력</th><td><textarea rows='4' cols='60'></textarea></td>
-                </tr>
-              </table>
-              <p>
-                <button type='submit'>등록</button>
-              </p>
-              </form>
+              <td style="width: 80%;">
+                  <div class="form-group">
+                      <label for="comment"></label>
+                      <div th:if="${session.loginMember}">
+                      <input id="memberNo" th:value="${session.loginMember.no}">
+                      
+                      <input
+                          type="text"
+                          class="form-control"
+                          id="content"
+                          placeholder="댓글을 달아주세요! "
+                          style="height: 30px;"
+                          th:name="${session.loginMember.nickname}">
+                      </div>
+                  </div>
+                  </td>
+              <td>
+                  <button class="btn btn-sm btn-success" onclick="insertAndReplay();">등록</button>
+              </td>
+              
+              
+              
+            
+              <h2>달린 댓글 부분</h2>
+                <th:block th:each="comment : ${comments}">
+                    <div style="border: 1px black solid">
+                            <div th:if="${comment.writer.filepath}" >
+                            <p th:text="${comment.writer.filepath}"></p>
+                        </div> 
+                        <div>
+                            <p th:text="${comment.writer.nickname}"></p>
+                            <p th:text="${comment.content}"></p>
+                            <p th:text="${comment.createdDate}"></p>
+                        </div>
+                    </div>
+                    
+                </th:block>
+
             </div>
-            </div>
-            </div> 
             <!-- 댓글 블록 끝 -->
          
          </div>
@@ -290,59 +325,6 @@
     
     
 
-      <!-- footer section start -->
-      <div class="footer_section layout_padding">
-         <div class="container">
-            <div class="row">
-               <div class="col-lg-3 col-sm-6">
-                  <div class="fooer_logo"><img src="../images/footer-logo.png"></div>
-                  <p class="footer_lorem_text">There are many variat
-                     ions of passages of L
-                     orem Ipsum available
-                     , but the majority h
-                     ave suffered altera
-                     tion in some form, by 
-                  </p>
-               </div>
-               <div class="col-lg-3 col-sm-6">
-                  <h1 class="customer_text">LET US HELP YOU</h1>
-                  <p class="footer_lorem_text">There are many variat
-                     ions of passages of L
-                     orem Ipsum available
-                     , but the majority h
-                     ave suffered altera
-                     tion in some form, by 
-                  </p>
-               </div>
-               <div class="col-lg-3 col-sm-6">
-                  <h1 class="customer_text">INFORMATION</h1>
-                  <p class="footer_lorem_text1">About Us<br>
-                     Careers<br>
-                     Sell on shopee<br>
-                     Press & News<br>
-                     Competitions<br>
-                     Terms & Conditions
-                  </p>
-               </div>
-               <div class="col-lg-3 col-sm-6">
-                  <h1 class="customer_text">OUR Design</h1>
-                  <p class="footer_lorem_text">There are many variat
-                     ions of passages of L
-                     orem Ipsum available
-                     , but the majority h
-                     ave suffered altera
-                     tion in some form, by 
-                  </p>
-               </div>
-            </div>
-            <div class="input-group mb-3">
-               <input type="text" class="form-control" placeholder="Enter your email" aria-label="Enter your email" aria-describedby="basic-addon2">
-               <div class="input-group-append">
-                  <span class="input-group-text" id="basic-addon2"><a href="#">Subscribe</a></span>
-               </div>
-            </div>
-         </div>
-      </div>
       <!--  footer section end -->
       <!-- copyright section start -->
       <div class="copyright_section">
@@ -408,8 +390,34 @@
         }
         
       }
-
       </script>
+      
+      <script>
+      function insertAndReplay(){
+    	  var boardNo = document.getElementById( 'boardNo' ).value;
+    	  var memberNo = document.getElementById( 'memberNo' ).value;
+    	  var content = document.getElementById( 'content' ).value;
+
+        $.ajax({
+          url : "/app/boardComment/insertAndReplay",
+          data : {
+            content : $("#content").val(),
+            boardNo : $("#boardNo").val(),
+            memberNo : $("#memberNo").val()
+          },
+          type : "post",
+          success : function(result){
+            if(result != null){
+            	console.log(result);
+              /* selectReplyList(); */
+              $("#content").val("됐다!!!!");
+            }
+          }
+          })
+      }
+    
+      </script>
+
       
    </body>
          

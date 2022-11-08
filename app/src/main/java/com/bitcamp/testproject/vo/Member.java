@@ -27,7 +27,12 @@ public class Member {
   // 모임 참여 명단에서 나이대
   private String ageGroup;
 
+  public Member() {}
 
+  // 제동
+  public Member(int memberNo) {
+    this.no = memberNo;
+  }
 
   @Override
   public String toString() {
