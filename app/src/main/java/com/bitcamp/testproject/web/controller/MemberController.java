@@ -43,6 +43,7 @@ public class MemberController {
   public ModelAndView add(Member member, int[] region_domain, int[] sports_domain) throws Exception {
     member.setFavoriteRegion(saveRegion(region_domain));
     member.setFavoriteSports(saveSports(sports_domain));
+
     memberService.add(member);
     ModelAndView mv = new ModelAndView("redirect:../auth/form");
     return mv;
@@ -65,12 +66,13 @@ public class MemberController {
 
 
   @PostMapping("memberUpdate")
-  public ModelAndView myPageMember(Member member) throws Exception {
-    //    member.setFavoriteRegion(saveRegion(region_domain));
-    //    member.setFavoriteSports(saveSports(sports_domain));
+  public String myPageMember(Member member, int[] region_domain, int[] sports_domain) throws Exception {
+    System.out.println("??????왔니");
     memberService.update(member);
-    ModelAndView mv = new ModelAndView("redirect:myInfo");
-    return mv;
+    member.setFavoriteRegion(saveRegion(region_domain));
+    member.setFavoriteSports(saveSports(sports_domain));
+
+    return "redirect:member/myInfo";
   }
 
 

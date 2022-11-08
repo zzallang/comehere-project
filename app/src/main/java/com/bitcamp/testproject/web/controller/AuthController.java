@@ -189,7 +189,10 @@ public class AuthController {
   // public String idCheck(Member member) throws Exception {
   // return memberService.checkId(member);
   // }
-
+  @PostMapping("update")
+  public String update() throws Exception {
+    return "redirect:form";
+  }
 
   // 헌식 끝
 
