@@ -318,7 +318,6 @@ public class BoardController {
   @GetMapping("list")
   public ModelAndView list(Criteria cri, int no) throws Exception {
 
-
     // 페이징하기 위한 연산 
     PageMaker pageMaker = new PageMaker();
     cri.setCatenoToPage(no); // 특정 게시판을 목록을 출력하기위한 설정
@@ -359,7 +358,6 @@ public class BoardController {
     if (!boardService.delete(no)) {
       throw new Exception("게시글을 삭제할 수 없습니다.");
     }
-
 
     return "redirect:list?no=" + cateno;
   }

@@ -28,13 +28,18 @@ public class DefaultBoardCommentService implements BoardCommentService {
   }
 
   @Override
-  public Comment getRecentComment(int boardNo) {
-    return boardCommentDao.findRecentComment(boardNo);
+  public Comment getComment(int commentNo) {
+    return boardCommentDao.findCommentByNo(commentNo);
   }
 
   @Override
   public int delete(int boardNo) {
     return boardCommentDao.deleteComment(boardNo);
+  }
+
+  @Override
+  public int update(Comment comment) {
+    return boardCommentDao.updateComment(comment);
   }
 }
 

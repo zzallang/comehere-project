@@ -11,9 +11,11 @@ public interface BoardCommentService {
 
   List<Comment> getComments(int no);
 
-  Comment getRecentComment(int boardNo);
+  Comment getComment(int commentNo);
 
   int delete(int boardNo);
+
+  int update(Comment comment);
 
 
 }

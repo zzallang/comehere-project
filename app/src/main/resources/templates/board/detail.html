@@ -37,6 +37,11 @@
       <link href="../css/bootstrap/bootstrap.css" rel="stylesheet">
         
       <style>
+        .temp-line {
+          border: 1px solid black;
+        }
+      
+      
         .our_textJD {
         width: 100%;
         float: left;
@@ -252,72 +257,41 @@
              
             
             <div>
-              <h2>댓글 쓰기 부분</h2>
-              <div>
-                  <div>
-                      <p></p>
-                  </div>
-                  <div>
-                      <p></p>
-                      <form action='add' method="post">
-                          <table>
-                              <tr>
-                                  <th>댓글 입력</th>
-                                  <td>
-                                      <textarea rows='4' cols='60'></textarea>
-                                  </td>
-                              </tr>
-                          </table>
-                          <p>
-                              <button type='submit' >등록</button>
-                          </p>
-                      </form>
-                  </div>
+              <h2>달린 댓글 부분</h2>
+              <div class="container">
+                  <div class="commentList"></div>
               </div>
               
-              <td style="width: 80%;">
+              <h2>댓글 쓰기 부분</h2>
+              <div style="width: 80%;" class="temp-line">
                   <div class="form-group">
                       <label for="comment"></label>
                       <div th:if="${session.loginMember}">
-                      <input id="memberNo" th:value="${session.loginMember.no}">
-                      
-                      <input
-                          type="text"
-                          class="form-control"
-                          id="content"
-                          placeholder="댓글을 달아주세요! "
-                          style="height: 30px;"
-                          th:name="${session.loginMember.nickname}">
+                        <input type="hidden" id="memberNo"  th:value="${session.loginMember.no}" >
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="content"
+                            placeholder="댓글을 달아주세요!"
+                            style="height: 30px;"
+                            th:name="${session.loginMember.nickname}">
+                        </div>
+                      <div th:if="${session.loginMember == null}">
+                        <input type="hidden" id="memberNo"  value=0>
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="content"
+                            placeholder="로그인을 해주세요!"
+                            style="height: 60px;" readonly>
                       </div>
                   </div>
-                  </td>
-              <td>
-                  <button class="btn btn-sm btn-success" onclick="insertAndReplay();">등록</button>
-              </td>
+                  <div>
+                      <button class="btn btn-sm btn-success" onclick="insertAndReplay();">등록</button>
+                  </div>
+              </div>
               
-              
-              
-            
-              <h2>달린 댓글 부분</h2>
-                <div class="container">
-                    <div class="commentList"></div>
-                </div>
-              
-<!-- 
-                <th:block th:each="comment : ${comments}">
-                    <div style="border: 1px black solid">
-                            <div th:if="${comment.writer.filepath}" >
-                            <p th:text="${comment.writer.filepath}"></p>
-                        </div> 
-                        <div>
-                            <p th:text="${comment.writer.nickname}"></p>
-                            <p th:text="${comment.content}"></p>
-                            <p th:text="${comment.createdDate}"></p>
-                        </div>
-                    </div>
-                    
-                </th:block>
- -->
+
             </div>
             <!-- 댓글 블록 끝 -->
          
@@ -333,16 +307,17 @@
       <!--  footer section end -->
       <!-- copyright section start -->
       <div class="copyright_section">
-      <div class="container">
-         <div class="social_icon">
-            <ul>
-               <li><a href="#"><img src="../images/fb-icon.png"></a></li>
-               <li><a href="#"><img src="../images/twitter-icon.png"></a></li>
-               <li><a href="#"><img src="../images/instagram-icon.png"></a></li>
-               <li><a href="#"><img src="../images/linkedin-icon.png"></a></li>
-            </ul>
-         </div>
-         <p class="copyright_text">2020 All Rights Reserved. Design by <a href="https://html.design">Free html  Templates</a></p>
+        <div class="container">
+           <div class="social_icon">
+              <ul>
+                 <li><a href="#"><img src="../images/fb-icon.png"></a></li>
+                 <li><a href="#"><img src="../images/twitter-icon.png"></a></li>
+                 <li><a href="#"><img src="../images/instagram-icon.png"></a></li>
+                 <li><a href="#"><img src="../images/linkedin-icon.png"></a></li>
+              </ul>
+           </div>
+           <p class="copyright_text">2020 All Rights Reserved. Design by <a href="https://html.design">Free html  Templates</a></p>
+        </div>
       </div>
       <!-- copyright section end -->
       <!-- Javascript files-->
@@ -377,9 +352,9 @@
               success : function(result){
                   var a =''; 
                   $.each(result, function(key, value){ 
-                      a += '<div class="commentArea" style="border-bottom:1px solid darkgray; margin-bottom: 15px;">';
+                      a += '<div class="commentArea temp-line" style="border-bottom:1px solid darkgray; margin-bottom: 15px;">';
                       a += '<div class="commentInfo' + value.no + '">' + '댓글번호 : ' + value.no + ' / 작성자 : ' + value.writer.nickname;
-                      a += '<a onclick="commentUpdate(' + value.cno + ',\'' + value.content + '\');"> 수정 </a>';
+                      a += '<a onclick="commentUpdate(' + value.no + ',\'' + value.content + '\');"> 수정 </a>';
                       a += '<a onclick="commentDelete('+value.no+');"> 삭제 </a> </div>'; 
                       a += '<div class="commentContent'+value.no+'"> <p> 내용 : '+value.content +'</p>';
                       a += '</div></div>';
@@ -426,6 +401,33 @@
           });
       }
     
+      //댓글 수정 모드- 댓글 내용 출력을 input 폼으로 변경 
+      function commentUpdate(commentNo, content){
+          var a ='';
+          a += '<label for="form"></label>';
+          a += '<div class="input-group temp-line">';
+          a += '<input type="text" class="form-control" name="content_' + commentNo + '" value="' + content + '"/>';
+          a += '<span class="input-group-btn"><button class="btn btn-default" type="button" onclick="commentUpdateProc(' + commentNo + ');">수정</button></span>';
+          a += '</div>';
+          
+          $('.commentContent'+commentNo).html(a);
+      }
+      // 댓글 수정
+      function commentUpdateProc(commentNo){
+          var updateContent = $('[name=content_'+commentNo+']').val();
+          
+          $.ajax({
+              url : '/app/boardComment/update',
+              type : 'post',
+              data : { 
+            	  'content' : updateContent, 
+            	  'no' : commentNo},
+              success : function(result){
+                  if(result == 1) commentList(); //댓글 수정후 목록 출력 
+              }
+          });
+      }
+      
       /*]]>*/
       </script>
 

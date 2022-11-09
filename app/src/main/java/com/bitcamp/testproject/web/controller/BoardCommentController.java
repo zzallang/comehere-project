@@ -28,19 +28,12 @@ public class BoardCommentController {
 
   @PostMapping("insertAndReplay")
   @ResponseBody
-  public Object insertAndReplay(String content, int boardNo, int memberNo) {
+  public int insertAndReplay(String content, int boardNo, int memberNo) {
 
     // ajax가 보낸 데이터 댓글 vo에 넣기
     Comment comment = new Comment(content, boardNo, memberNo);
-    System.out.println(">>>>>>>" + comment);
-    // 댓글 추가
-    boardCommentService.insert(comment);
 
-    // 업데이트된 댓글 가져오기
-    //    List<Comment> list = boardCommentService.list(boardNo);
-    comment = boardCommentService.getRecentComment(boardNo);
-
-    return comment;
+    return boardCommentService.insert(comment);
   }
 
   @GetMapping("list")
@@ -55,6 +48,16 @@ public class BoardCommentController {
   @ResponseBody
   public int delete(@PathVariable int no) {
     return boardCommentService.delete(no);
+  }
+
+
+  @PostMapping("update")
+  @ResponseBody
+  public int update(Comment comment) {
+
+    int result = boardCommentService.update(comment);
+
+    return result;
   }
 
 }

@@ -175,7 +175,7 @@
                         <th:block th:each="pageNum: ${#numbers.sequence(pageMaker.startPage, pageMaker.endPage)}">
                           <li class="page-item">
                             <a class="page-link" th:href="@{list(page=${pageNum}, no=${catenoInBoard.cateno})}"><i th:text="${pageNum}"></i></a>
-                        </li>
+                          </li>
                         </th:block>
                         <li class="page-item" th:if="${pageMaker.next && pageMaker.endPage >0}">
                           <a class="page-link" th:href="@{list(page=${pageMaker.endPage+1}, no=${catenoInBoard.cateno})}" aria-label="Next">

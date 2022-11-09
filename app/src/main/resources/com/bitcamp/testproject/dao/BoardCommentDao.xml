@@ -34,9 +34,11 @@
     where
       bc.act=1
       and b.bno=#{value}
+    order by
+      bcno
   </select>
   
-  <select id="findRecentComment" resultMap="commentMap">
+  <select id="findCommentByNo" resultMap="commentMap">
     select
       bc.bcno,
       m.filepath,
@@ -55,7 +57,6 @@
     limit 1
   </select>
   
-  
   <insert id="insertComment" parameterType="comment"
     useGeneratedKeys="true" keyColumn="bcno" keyProperty="no"> 
     insert into board_comment(bno, mno, cont) 
@@ -67,6 +68,15 @@
     delete from board_comment 
     where bcno=#{value}
   </delete>
+  
+  <update id="updateComment" parameterType="comment">
+    update 
+      board_comment 
+    set 
+      cont=#{content} 
+    where 
+      bcno=#{no}
+  </update> 
 
 </mapper>
 

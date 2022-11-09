@@ -13,8 +13,10 @@ public interface BoardCommentDao {
 
   List<Comment> findByBoardNo(int boardNo);
 
-  Comment findRecentComment(int boardNo);
+  Comment findCommentByNo(int commentNo);
 
   int deleteComment(int boardNo);
+
+  int updateComment(Comment comment);
 
 }
