@@ -342,25 +342,21 @@
   <div class="header_section">
     <div class="container-fluid">
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="logo">
-          <a href="index.html"><img src="images/comehere_logo.png"></a>
-        </div>
+        <div class="main_logo"><a href="/app"><img src="../images/logo.png"></a></div>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
-            <li class="nav-item"><a class="nav-link" href="../party/list">운동하기</a></li>
-            <li class="nav-item"><a class="nav-link" href="#">건강관리</a></li>
-            <li class="nav-item"><a class="nav-link" href="../board/listBoard?no=1">커뮤니티</a></li>
+            <li class="nav-item"><a class="nav-link" href="list">운동찾기</a></li>
+            <li class="nav-item"><a class="nav-link" href="../board/main">커뮤니티</a></li>
             <li class="nav-item"><a class="nav-link" href="#">공지사항</a></li>
           </ul>
-          <div class="search_icon">
+          <div class="login-bt">
             <ul>
-              <!-- <li><a href="auth/form"><img src="images/search-icon.png"></a></li> -->
               <li data-th-if="${session.loginMember == null}"><a href="../auth/form" >로그인</a></li>
+              <li data-th-if="${session.loginMember != null}"><a href="../member/viewer">마이페이지</a></li>
               <li data-th-if="${session.loginMember != null}"><a href="../auth/logout" data-th-text="${session.loginMember.name} + '(로그아웃)'">동동(로그아웃)</a></li>
-              <li data-th-if="${session.loginMember != null}"><a href="../mypage/viewer">마이페이지</a></li>
             </ul>
           </div>
         </div>
@@ -409,13 +405,13 @@
                   <div class="party_detail_content_l">
                     <div>
                     <div>
-                    <img th:if="${party.thumbnail != null}"  th:src="@{'http://localhost:8888/app/party/files/' + ${party.thumbnail}}" alt="Avatar" class="image">
+                    <img th:if="${party.thumbnail != null}"  th:src="@{'/party/files/' + ${party.thumbnail}}" alt="Avatar" class="image">
                      <img th:if="${party.thumbnail == null}"  src="../images/img-2.png" alt="Avatar" class="image">
                     </div>
                     <div class="profile_wrap">
                       <p>주최자</p>
                       <div class="profile_img">
-                      <img th:if="${party.user.filepath != null}"  th:src="@{'http://localhost:8888/app/party/files/' + ${party.filepath}}" alt="Avatar" class="profile">
+                      <img th:if="${party.user.filepath != null}"  th:src="@{'/party/files/' + ${party.filepath}}" alt="Avatar" class="profile">
                       <img th:if="${party.user.filepath == null}"  src="http://placeimg.com/50/50/any" alt="Avatar" class="profile">
                       </div>
                       <div class="profile_user">

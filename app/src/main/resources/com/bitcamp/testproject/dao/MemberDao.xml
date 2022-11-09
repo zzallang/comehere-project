@@ -97,13 +97,27 @@
   
 
   <update id="update" parameterType="Member">
-    update member set 
+    update app_member set 
+      name=#{name}, 
+      id=#{id},
       email=#{email}, 
-      pwd=sha2(#{password},256),
+      pwd=sha2(#{password},256)
       nick=#{nickname},
-      tel=#{tel}
+      tel=#{tel},
+      bday=#{birthday},
+      sex=#{sex}
     where 
       mno=#{no}
+  <!-- 관심지역 수정 -->
+    update favorite_region set
+      <foreach collection="favoriteRegion" item="region" separator=",">
+        (#{region.rno},#{no})
+      </foreach>
+  <!-- 관심운동 수정 -->
+      update favorite_sports set
+      <foreach collection="favoriteSports" item="sports" separator=",">
+        (#{sports.sno},#{no})
+      </foreach>
   </update>
   
 
