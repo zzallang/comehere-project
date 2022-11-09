@@ -61,7 +61,11 @@
   </update>
   
   <delete id="deletePreFavoriteRegion" parameterType="int">
-    delete from favorite_region where mno=#{memberNo}
+    delete 
+    from 
+      favorite_region 
+    where 
+      mno=#{memberNo}
   </delete>
   
   <!-- 관심 운동 수정
