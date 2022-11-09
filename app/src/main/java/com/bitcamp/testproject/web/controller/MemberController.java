@@ -74,11 +74,9 @@ public class MemberController {
     member.setFavoriteRegion(saveRegion(region_domain));
     member.setFavoriteSports(saveSports(sports_domain));
     favoriteRegionService.addFavoriteRegion(member);
-
     //member update logic
     //...
     memberService.update(member);
-
     ModelAndView mv = new ModelAndView("redirect:myInfo");
     return mv;
   }
