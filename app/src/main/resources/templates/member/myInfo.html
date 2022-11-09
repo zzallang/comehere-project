@@ -82,7 +82,7 @@
                     <form action="memberUpdate" method="post" id="updateForm">
                       <div class="join_menu">아이디</div> 
                       <input type="text" class="email-bt" data-th-value="${member.id}" name="id" id="id" readonly>
-                        <button type="button" class="id_overlap_button" onclick="id_overlap_check()">중복확인</button>
+                        <button type="button" class="btn btn-outline-secondary" id="button-addon2">중복확인</button>
                         <div class="join_menu">이름</div>
                       <input type="text" class="email-bt" data-th-value="${member.name}" name="name" readonly>
                         <div class="join_menu">생년월일</div>
@@ -111,18 +111,18 @@
                           <option value="gmail.com">gmail.com</option>
                           <option value="hanmir.com">hanmir.com</option>
                         </select><br />  -->
-                      <button class="btn btn-outline-secondary" type="button" id="button-addon2">중복확인</button>
+                      <button type="button" class="btn btn-outline-secondary" id="button-addon2">중복확인</button>
                           <div class="join_menu">닉네임</div>
                       <input type="text" class="email-bt" id= "join_menu_check" data-th-value="${member.nickname}" name="nickname">
-                          <button class="btn btn-outline-secondary" type="button" id="button-addon2">중복확인</button>
+                          <button type="button" class="btn btn-outline-secondary"  id="button-addon2">중복확인</button>
                           <div class="join_menu">비밀번호
                             <input type="password" class="email-bt" id="password" placeholder="비밀번호" name="password"> 
                             <div id="passwordError" class="error"></div>
                             <input type="password" class="email-bt" id="passwordCheck" placeholder="비밀번호 확인" name="password_check"> 
                             <div id="passwordCheckError" class="error"></div>
                           </div>
-                          <div class="join_menu">관심지역</div>
-                          <select class="email-bt2" id="region" name="region_domain">
+                          <div class="join_menu">관심지역 <br>
+                          <select class="favorite-choice" id="region" data-th-value="${member.favoriteRegion[0].rno}" name="region_domain">
                           <option value="0">---선택---</option>
                           <option value="1">종로구</option>
                           <option value="2">중구</option>
@@ -150,7 +150,7 @@
                           <option value="24">송파구</option>
                           <option value="25">강동구</option>
                       </select> 
-                      <select class="email-bt3" id="region" name="region_domain">
+                      <select class="favorite-choice" id="region" name="region_domain">
                         <option value="0">---선택---</option>
                         <option value="1">종로구</option>
                         <option value="2">중구</option>
@@ -177,9 +177,9 @@
                         <option value="23">강남구</option>
                         <option value="24">송파구</option>
                         <option value="25">강동구</option>
-                      </select><br /> 
+                      </select><br /> </div>
                         <div class="join_menu">관심운동</div>
-                      <select class="email-bt2" id="sports" name="sports_domain">
+                      <select class="favorite-choice" id="sports" name="sports_domain">
                         <option value="0">---선택---</option>
                         <option value="1">헬스</option>
                         <option value="2">클라이밍</option>
@@ -192,7 +192,7 @@
                         <option value="9">러닝</option>
                         <option value="10">사이클</option>
                       </select> 
-                      <select class="email-bt3" id="sports" name="sports_domain">
+                      <select class="favorite-choice" id="sports" name="sports_domain">
                         <option value="0">---선택---</option>
                         <option value="1">헬스</option>
                         <option value="2">클라이밍</option>

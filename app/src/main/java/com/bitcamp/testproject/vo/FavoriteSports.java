@@ -5,7 +5,6 @@ public class FavoriteSports {
   private int sno;
   private int mno;
 
-
   public FavoriteSports(int sno) {
     this.sno = sno;
   }

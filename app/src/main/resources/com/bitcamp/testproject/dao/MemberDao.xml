@@ -17,6 +17,15 @@
     <result column="sex" property="sex"/>
     <result column="filepath" property="filepath"/>
     <result column="cdt" property="createdDate"/>
+    
+    <collection property="favoriteRegion" ofType="favoriteRegion">
+      <result column="rno" property="rno"/>
+    </collection>
+    
+    <collection property="favoriteSports" ofType="favoriteSports">
+      <result column="sno" property="sno"/>
+    </collection>
+    
   </resultMap>
 
   <!-- 회원 기본 정보 등록  -->
@@ -52,20 +61,26 @@
  
   <select id="findByNo" resultMap="memberMap">
     select 
-      mno,
-      name,
-      id,
-      email,
-      tel,
-      cdt,
-      nick,
-      bday,
-      sex,
-      filepath
+      m.mno,
+      m.name,
+      m.id,
+      m.email,
+      m.tel,
+      m.cdt,
+      m.nick,
+      m.bday,
+      m.sex,
+      m.filepath,
+      fr.rno,
+      fs.sno
     from 
-      member 
+      member m
+    left join 
+      favorite_region fr on fr.mno = m.mno
+    left join
+      favorite_sports fs on fs.mno = m.mno
     where 
-      mno=#{value}
+      m.mno=#{no};
   </select>
   
   <select id="findAll" resultMap="memberMap">

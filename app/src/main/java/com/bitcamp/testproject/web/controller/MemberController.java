@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import com.bitcamp.testproject.service.FavoriteRegionService;
+import com.bitcamp.testproject.service.FavoriteSportsService;
 import com.bitcamp.testproject.service.MemberService;
-import com.bitcamp.testproject.service.SportsService;
 import com.bitcamp.testproject.vo.FavoriteRegion;
 import com.bitcamp.testproject.vo.FavoriteSports;
 import com.bitcamp.testproject.vo.Member;
@@ -29,7 +29,7 @@ public class MemberController {
   @Autowired
   FavoriteRegionService favoriteRegionService;
   @Autowired
-  SportsService sportsService;
+  FavoriteSportsService favoriteSportsService;
 
   // 은지
   @GetMapping("join")
@@ -56,12 +56,16 @@ public class MemberController {
 
 
   @GetMapping("myInfo")
-  public String confirmation(HttpSession session, Model model) throws Exception {
+  public String confirmation(HttpSession session, Model model, int[] region_domain, int[] sports_domain) throws Exception {
     Member loginMember = (Member) session.getAttribute("loginMember");
     Member member = memberService.get(loginMember.getNo());
     model.addAttribute("member", member);
-    System.out.println("member :" + member);
+    //    model.addAttribute("sports_domain", sports_domain);
+    //    model.addAttribute("region_domain", region_domain);
+    System.out.println("member :" + member.toString());
     System.out.println("loginMember :" + loginMember);
+    //    System.out.println("sports_domain :" + sports_domain);
+    //    System.out.println("region_domain :" + region_domain);
     return "member/myInfo";
   }
 
@@ -70,10 +74,12 @@ public class MemberController {
   public ModelAndView myPageMember(HttpSession session, Member member, int[] region_domain, int[] sports_domain) throws Exception {
     Member loginMember = (Member) session.getAttribute("loginMember");
     favoriteRegionService.deletePreFavoriteRegion(loginMember.getNo());
+    favoriteSportsService.deletePreFavoriteSports(loginMember.getNo());
     member.setNo(loginMember.getNo());
     member.setFavoriteRegion(saveRegion(region_domain));
     member.setFavoriteSports(saveSports(sports_domain));
     favoriteRegionService.addFavoriteRegion(member);
+    favoriteSportsService.addFavoriteSports(member);
     //member update logic
     //...
     memberService.update(member);

@@ -19,8 +19,7 @@ public class Member {
   private boolean active;
   private boolean black;
   private List<FavoriteRegion> favoriteRegion;
-  private List<FavoriteRegion> preFavoriteRegion;
-  private List<FavoriteSports> favoriteSports;  
+  private List<FavoriteSports> favoriteSports;
 
   // 모임참여 명단에서 주최자 여부
   private boolean auth;
@@ -33,9 +32,9 @@ public class Member {
     return "Member [no=" + no + ", name=" + name + ", id=" + id + ", email=" + email + ", nickname="
         + nickname + ", password=" + password + ", tel=" + tel + ", birthday=" + birthday + ", sex="
         + sex + ", filepath=" + filepath + ", createdDate=" + createdDate + ", active=" + active
-        + ", black=" + black + ", favoriteRegion=" + favoriteRegion + ", preFavoriteRegion="
-        + preFavoriteRegion + ", favoriteSports=" + favoriteSports + ", auth=" + auth
-        + ", ageGroup=" + ageGroup + "]";
+        + ", black=" + black + ", favoriteRegion=" + favoriteRegion + ", favoriteSports="
+        + favoriteSports + ", auth=" + auth + ", ageGroup=" + ageGroup + ", getClass()="
+        + getClass() + ", hashCode()=" + hashCode() + ", toString()=" + super.toString() + "]";
   }
 
   public int getNo() {
@@ -148,14 +147,6 @@ public class Member {
 
   public void setFavoriteRegion(List<FavoriteRegion> favoriteRegion) {
     this.favoriteRegion = favoriteRegion;
-  }
-
-  public List<FavoriteRegion> getPreFavoriteRegion() {
-    return preFavoriteRegion;
-  }
-
-  public void setPreFavoriteRegion(List<FavoriteRegion> preFavoriteRegion) {
-    this.preFavoriteRegion = preFavoriteRegion;
   }
 
   public List<FavoriteSports> getFavoriteSports() {
