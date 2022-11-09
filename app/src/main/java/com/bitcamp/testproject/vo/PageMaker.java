@@ -11,6 +11,14 @@ public class PageMaker {
   private boolean next;
   private int displayPageNum = 5;
 
+
+
+  @Override
+  public String toString() {
+    return "PageMaker [cri=" + cri + ", totalCount=" + totalCount + ", startPage=" + startPage
+        + ", endPage=" + endPage + ", prev=" + prev + ", next=" + next + ", displayPageNum="
+        + displayPageNum + "]";
+  }
   public Criteria getCri() {
     return cri;
   }

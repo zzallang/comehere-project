@@ -7,6 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.bitcamp.testproject.dao.PartyDao;
 import com.bitcamp.testproject.dao.PartyMemberDao;
 import com.bitcamp.testproject.vo.AttachedFile;
+import com.bitcamp.testproject.vo.Criteria;
 import com.bitcamp.testproject.vo.Party;
 import com.bitcamp.testproject.vo.PartyMember;
 
@@ -92,13 +93,26 @@ public class DefaultPartyService implements PartyService {
   }
 
   @Override
-  public List<Party> list() throws Exception {
-    return partyDao.findAll();
+  public List<Party> list(Criteria cri) throws Exception {
+    return partyDao.findAll(cri);
   }
 
   @Override
-  public List<Party> list2(int doo) throws Exception {
-    return partyDao.findAll2(doo);
+  public int listCount() throws Exception {
+    return partyDao.findAllCount();
+  }
+  @Override
+  public List<Party> list2(
+      String gu, 
+      String sports, 
+      String partyDate, 
+      String partyTime,
+      String searchText,
+      String listStar,
+      String listCreate,
+      String listPartyDate) throws Exception {
+    return partyDao.findAll2(
+        gu, sports, partyTime, partyDate, searchText, listStar, listCreate, listPartyDate);
   }
 
   @Override

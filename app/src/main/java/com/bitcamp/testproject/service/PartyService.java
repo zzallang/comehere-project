@@ -2,6 +2,7 @@ package com.bitcamp.testproject.service;
 
 import java.util.List;
 import com.bitcamp.testproject.vo.AttachedFile;
+import com.bitcamp.testproject.vo.Criteria;
 import com.bitcamp.testproject.vo.Party;
 import com.bitcamp.testproject.vo.PartyMember;
 
@@ -19,9 +20,19 @@ public interface PartyService {
 
   boolean delete(int no) throws Exception;
 
-  List<Party> list() throws Exception;
+  List<Party> list(Criteria cri) throws Exception;
 
-  List<Party> list2(int doo) throws Exception;
+  int listCount() throws Exception;
+
+  List<Party> list2(
+      String gu, 
+      String sports, 
+      String partyDate, 
+      String partyTime,
+      String searchText,
+      String listStar,
+      String listCreate,
+      String listPartyDate) throws Exception;
 
   int checkOwner(int partyNo) throws Exception;
 

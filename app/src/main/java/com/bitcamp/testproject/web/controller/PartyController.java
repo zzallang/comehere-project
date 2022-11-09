@@ -15,14 +15,15 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import com.bitcamp.testproject.service.PartyCommentService;
 import com.bitcamp.testproject.service.PartyService;
 import com.bitcamp.testproject.service.RegionService;
 import com.bitcamp.testproject.service.ReviewService;
 import com.bitcamp.testproject.service.SportsService;
 import com.bitcamp.testproject.vo.AttachedFile;
+import com.bitcamp.testproject.vo.Criteria;
 import com.bitcamp.testproject.vo.Member;
+import com.bitcamp.testproject.vo.PageMaker;
 import com.bitcamp.testproject.vo.Party;
 import com.bitcamp.testproject.vo.PartyMember;
 
@@ -126,17 +127,38 @@ public class PartyController {
   }
 
   @GetMapping("list")
-  public void list(Model model) throws Exception {
-    model.addAttribute("partys", partyService.list());
+  public void list(Criteria cri, Model model) throws Exception {
+    System.out.println(cri);
+    PageMaker pageMaker = new PageMaker();
+    pageMaker.setCri(cri);
+    pageMaker.setDisplayPageNum(2);
+    pageMaker.setTotalCount(partyService.listCount());
+    System.out.println(pageMaker.getDisplayPageNum());
+
+    model.addAttribute("partys", partyService.list(cri));
     model.addAttribute("regions", regionService.list());
     model.addAttribute("sports", sportsService.list());
+    model.addAttribute("pageMaker", pageMaker);
   }
 
-  @GetMapping("listparam")
-  @ResponseBody
-  public Object listparam(int si, int doo, Model model) throws Exception {
-    model.addAttribute("partys", partyService.list2(doo));
-    return model.getAttribute("partys");
+
+  @GetMapping("list-ajax")
+  public void listparam(
+      String gu, 
+      String sports, 
+      String partyDate, 
+      String partyTime, 
+      String searchText,
+      String listStar,
+      String listCreate,
+      String listPartyDate,
+      Model model) throws Exception {
+    System.out.println(partyDate);
+    System.out.println(partyTime);
+    model.addAttribute(
+        "partys",
+        partyService.list2(gu, sports, partyDate, partyTime, searchText, listStar, listCreate, listPartyDate));
+    System.out.printf("%s, %s, %s, %s, %s, %s, %s, %s\n", gu, sports, partyDate, partyTime, searchText, listStar, listCreate, listPartyDate);
   }
 
 

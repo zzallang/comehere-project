@@ -77,7 +77,17 @@
       p.act = 1
     order by 
       p.pno desc
+    limit #{pagesStart}, #{perPageNum}
   </select>
+  
+  <select id="findAllCount" resultType="Integer">
+    select
+      count(*)
+    from 
+      party
+    where
+      act = 1
+  </select>  
   
   <select id="findAll2" resultMap="partyMap">
     select
@@ -101,10 +111,36 @@
       left join party_file pf on p.pno=pf.pno
     where
       p.act = 1
-      and p.rno = #{value}
+      <if test="gu != null">
+      and p.rno = #{gu}
+      </if>
+      <if test="sports != null">
+      and s.sno = #{sports}
+      </if>
+      <if test="partyDate != null">
+      and p.pdate = #{partyDate}
+      </if>
+      <if test="partyTime != null">
+      and p.ptime = #{partyTime}
+      </if>
+      <if test="searchText != null">
+      and p.title like concat("%", #{searchText}, "%")
+      </if>
     order by 
+      <if test="listStar == 1">
+      star desc
+      </if>
+      <if test="listCreate == 1">
+      p.cdt desc
+      </if>
+      <if test="listPartyDate == 1">
+      p.pdate desc
+      </if>
+      <if test="listStar == 0 and listCreate == 0 and listPartyDate == 0">
       p.pno desc
+      </if>
   </select>
+
     <select id="findByNo" resultMap="partyMap">
     <![CDATA[
     select
@@ -134,7 +170,7 @@
 			WHEN age > 59 THEN '60대 이상'
 		END AS ageGroup
 		from
-			party p
+			party p222222
 			join region r on p.rno = r.rno
 			join sports s on p.sno = s.sno
 			join party_members pm on p.pno = pm.pno
