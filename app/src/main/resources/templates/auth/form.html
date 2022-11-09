@@ -43,9 +43,23 @@
     color: white;
 }
 
+.contact_text1{
+    width: 100%;
+    float: left;
+    font-size: 36px;
+    color: #ffffff;
+    margin-left: 200px;
+
+}
+
 .col-md-7 {
 margin-left: 14vw;
 margin-right: 14vw;
+}
+
+.center{
+text-align:center;
+margin-right: 140px;
 }
 
 </style>
@@ -77,18 +91,10 @@ margin-right: 14vw;
 		<div class="container">
 		<div class="col-md-7">
 			<div class="col-md">
-				<!--   <center><h1 class="contact_text" >Login</h1></center>
-                  <div class="mail_sectin" >
-                     <input type="text" class="email-bt" placeholder="E-mail" name="email" size='30' data-th-value="${email}">
-                     <input type="password" class="email-bt" placeholder="Password" name="Password">
-                     <input type="checkbox" name="saveEmail">이메일 저장<br>
-                     <button class="get_bt" data-th-if="${session.loginMember == null}" ><a href="/app">로그인</a></button>
-                     <center><a href="#">아이디 찾기</a> | <a href="#">비밀번호 찾기</a> | <a href="#">회원가입</a></center>
-             -->
-			
+
 				<form action='login' method="post">
 					<table border='1'>
-						<center><h1 class="contact_text">Login</h1></center>
+						<h1 class="contact_text1">Login</h1>
 						<tr>
 							<input type="text" class="email-bt" placeholder="ID를 입력해주세요" size='30' name ="id" data-th-value="${id}">
 						</tr>
@@ -99,9 +105,9 @@ margin-right: 14vw;
 					<p>
 						<button type='submit'class="btnon1" >로그인</button>
 					</p>
-					<p>
-					<center><a href="findId">아이디 찾기</a> | <a href="findPassword">비밀번호 찾기</a> | <a href="join">회원가입</a>	</center>
-				</p>
+       <div class="center">
+					 <a href="findId">아이디 찾기</a> | <a href="findPassword">비밀번호 찾기</a> | <a href="join">회원가입</a>
+			</div>
 				</form>
 			</div>
 		</div>

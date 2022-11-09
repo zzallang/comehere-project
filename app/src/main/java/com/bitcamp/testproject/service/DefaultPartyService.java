@@ -31,7 +31,7 @@ public class DefaultPartyService implements PartyService {
     }
     // 3) 파티멤버 생성(주최자 등록)
     if (party.getUserNo() == partyMember.getMemberNo()) {
-      partyMember.setPartyNo(party.getNo());
+      partyMember.setPartyNo(partyDao.findNowPartyNo());
       if (partyMemberDao.insertUser(partyMember) == 0) {
         throw new Exception("모임 멤버 생성 실패!");
       }

@@ -19,7 +19,6 @@ public class Member {
   private boolean active;
   private boolean black;
   private List<FavoriteRegion> favoriteRegion;
-  private List<FavoriteRegion> preFavoriteRegion;
   private List<FavoriteSports> favoriteSports;  
 
   // 모임참여 명단에서 주최자 여부
@@ -28,14 +27,15 @@ public class Member {
   // 모임 참여 명단에서 나이대
   private String ageGroup;
 
+
+
   @Override
   public String toString() {
     return "Member [no=" + no + ", name=" + name + ", id=" + id + ", email=" + email + ", nickname="
         + nickname + ", password=" + password + ", tel=" + tel + ", birthday=" + birthday + ", sex="
         + sex + ", filepath=" + filepath + ", createdDate=" + createdDate + ", active=" + active
-        + ", black=" + black + ", favoriteRegion=" + favoriteRegion + ", preFavoriteRegion="
-        + preFavoriteRegion + ", favoriteSports=" + favoriteSports + ", auth=" + auth
-        + ", ageGroup=" + ageGroup + "]";
+        + ", black=" + black + ", favoriteRegion=" + favoriteRegion + ", favoriteSports="
+        + favoriteSports + ", auth=" + auth + ", ageGroup=" + ageGroup + "]";
   }
 
   public int getNo() {
@@ -76,14 +76,6 @@ public class Member {
 
   public void setNickname(String nickname) {
     this.nickname = nickname;
-  }
-
-  public String getPassword() {
-    return password;
-  }
-
-  public void setPassword(String password) {
-    this.password = password;
   }
 
   public String getTel() {
@@ -150,14 +142,6 @@ public class Member {
     this.favoriteRegion = favoriteRegion;
   }
 
-  public List<FavoriteRegion> getPreFavoriteRegion() {
-    return preFavoriteRegion;
-  }
-
-  public void setPreFavoriteRegion(List<FavoriteRegion> preFavoriteRegion) {
-    this.preFavoriteRegion = preFavoriteRegion;
-  }
-
   public List<FavoriteSports> getFavoriteSports() {
     return favoriteSports;
   }
@@ -182,9 +166,15 @@ public class Member {
     this.ageGroup = ageGroup;
   }
 
+  public String getPassword() {
+    return password;
+  }
+
+  public void setPassword(String password) {
+    this.password = password;
+  }
+
+
+
+
 }
-
-
-
-
-

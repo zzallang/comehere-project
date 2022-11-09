@@ -104,7 +104,6 @@ public class AuthController {
 
 
   @PostMapping("mail/send")
-
   @ResponseBody
   public String send(String email) {
 
@@ -114,7 +113,6 @@ public class AuthController {
     emailService.sendSimpleMessage(email, SecCode);
     return Integer.toString(SecCode);
   }
-
 
 
   @GetMapping("findByPassword")
@@ -132,49 +130,13 @@ public class AuthController {
     return mv;
   }
 
-
   @GetMapping("newPassword")
-  public String newPassword() {
+  public String newPassword(String email, String id, Model model) {
+    model.addAttribute("email", email);
+    model.addAttribute("id", id);
+
     return "auth/newPassword";
   }
-
-  //  @GetMapping("newPassword")
-  //  public ModelAndView newPassword(String id, String email, String secCode,
-  //      HttpServletResponse response, HttpSession session) throws Exception {
-  //
-  //    Member member = memberService.getByPassword(id, email, secCode);
-  //
-  //    if (member != null) {
-  //      session.setAttribute("findByPassword", member);
-  //    }
-  //
-  //    if(member != null) {
-  //      ModelAndView mv = new ModelAndView("redirect:/");
-  //      mv.addObject("member", member);
-  //      return mv;
-  //    }
-  //
-  //    ModelAndView mv = new ModelAndView("auth/newPassword");
-  //    mv.addObject("member", member);
-  //    return mv;
-  //  }
-
-  @GetMapping("newPasswordResult")
-  public ModelAndView newPasswordResult(String password, String password1,
-      HttpServletResponse response, HttpSession session) throws Exception {
-
-    Member member = memberService.get(password, password1);
-
-    if (member != null) {
-      session.setAttribute("newPasswordResult", member);
-    }
-
-    ModelAndView mv = new ModelAndView("auth/newPasswordResult");
-    mv.addObject("member", member);
-    return mv;
-
-  }
-
 
   @GetMapping("logout")
   public String logout(HttpSession session) throws Exception {
@@ -189,11 +151,17 @@ public class AuthController {
   // public String idCheck(Member member) throws Exception {
   // return memberService.checkId(member);
   // }
-  @PostMapping("update")
-  public String update() throws Exception {
+
+  @PostMapping("updatePW")
+  public String updatePW(String password, String email, String id, HttpSession session) throws Exception {
+    System.out.println(email + id);
+    boolean result = memberService.updatePW(password, email, id);
+
+    if (result == false) {
+      System.out.println("변경 실패 습니다.");
+    }
     return "redirect:form";
   }
-
   // 헌식 끝
 
   // 은지

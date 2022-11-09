@@ -243,7 +243,7 @@
                 <a class="btn btn-primary" href="updateForm?no=1" data-th-href="@{updateForm(no=${board.no})}" role="button">수정</a>
                 <a href='delete?no=1' data-th-href="@{delete(no=${board.no})}">삭제</a>
                 <a data-th-href="@{list(no=${board.cateno})}">목록</a>
-                <a class="btn btn-primary" href="#" role="button">신고기능</a>
+                <a class="btn-modal" data-toggle="modal" data-target="#myModal" href="modal" role="button">신고기능</a>
             </p>
              <!-- 댓글 블록 시작 -->
             <div> 
