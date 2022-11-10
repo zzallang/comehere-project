@@ -1,6 +1,7 @@
 package com.bitcamp.testproject.service;
 
 import java.util.List;
+import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.bitcamp.testproject.dao.BoardCommentDao;
@@ -12,10 +13,10 @@ public class DefaultBoardCommentService implements BoardCommentService {
   @Autowired 
   BoardCommentDao boardCommentDao;
 
-  @Override
-  public List<Comment> list(int boardNo) {
-    return boardCommentDao.findByBoardNo(boardNo);
-  }
+  //  @Override
+  //  public List<Comment> list(int boardNo, int pageNo) {
+  //    return boardCommentDao.findByBoardNo(boardNo, pageNo);
+  //  }
 
   @Override
   public int insert(Comment comment) {
@@ -23,8 +24,8 @@ public class DefaultBoardCommentService implements BoardCommentService {
   }
 
   @Override
-  public List<Comment> getComments(int boardNo) {
-    return boardCommentDao.findByBoardNo(boardNo);
+  public List<Comment> getComments(Map<String, Object> map) {
+    return boardCommentDao.findByBoardNo(map);
   }
 
   @Override
@@ -40,6 +41,11 @@ public class DefaultBoardCommentService implements BoardCommentService {
   @Override
   public int update(Comment comment) {
     return boardCommentDao.updateComment(comment);
+  }
+
+  @Override
+  public int countCommentListTotal(int boardNo) {
+    return boardCommentDao.findCommentsCount(boardNo);
   }
 }
 

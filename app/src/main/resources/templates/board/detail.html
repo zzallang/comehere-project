@@ -146,8 +146,15 @@
         }
         
         .form-content {
-          width: 800px;
           min-height: 700px;
+        }
+        
+        .profile_pic {
+          height: 50px;
+          width: 50px;
+        }
+        .board-wrapper {
+          padding: 30px;
         }
         
       </style>
@@ -170,9 +177,9 @@
           </ul>
           <div class="login-bt">
             <ul>
-              <li data-th-if="${session.loginMember == null}"><a href="../auth/form" >로그인</a></li>
-              <li data-th-if="${session.loginMember != null}"><a href="../member/viewer">마이페이지</a></li>
-              <li data-th-if="${session.loginMember != null}"><a href="../auth/logout" data-th-text="${session.loginMember.name} + '(로그아웃)'">동동(로그아웃)</a></li>
+              <li th:if="${session.loginMember == null}" ><a href="../auth/form" >로그인</a></li>
+              <li class="loginId" th:if="${session.loginMember != null}" th:id=${session.loginMember.no}><a href="../member/viewer">마이페이지</a></li>
+              <li th:if="${session.loginMember != null}"><a href="../auth/logout" th:text="${session.loginMember.name} + '(로그아웃)'">동동(로그아웃)</a></li>
             </ul>
           </div>
         </div>
@@ -195,72 +202,68 @@
            <!-- 게시판 카테고리 이동 끝 -->
 
             <h1>글조회</h1>
-            <table border='1' style="margin: auto">
-                <tr>
-                    <th>게시판</th>
-                    <td>
-                      <span value='게시판' th:if="${board.cateno == 1}">자유게시판</span>
-                      <span value='게시판' th:if="${board.cateno == 2}">식단게시판</span>
-                      <span value='게시판' th:if="${board.cateno == 3}">챌린지게시판</span>
-                      <span value='게시판' th:if="${board.cateno == 4}">질문게시판</span>
-                      <span value='게시판' th:if="${board.cateno == 5}">핫딜게시판</span>
-                    </td>
-
-                </tr>
-                <tr>
-                    <th>번호</th>
-                    <td><input
-                        id="boardNo"
-                        name='no'
-                        type='number'
-                        value='0'
-                        data-th-value="${board.no}"
-                        readonly="readonly"></td>
-                </tr>
-                <tr>
-                    <th>제목</th>
-                    <td><input
-                        name='title'
-                        type='text'
-                        value='제목'
-                        data-th-value='${board.title}'
-                        size='60'></td>
-                </tr>
-                <tr>
-                    <th>내용</th>
-                     <td>
-                        <div class="form-content" name='content' data-th-utext="${board.content}">내용</div>
-                    </td> 
-                </tr>
-                <tr>
-                    <th>조회수</th>
-                    <td data-th-text="${board.viewCount}">0</td>
-                </tr>
-                <tr>
-                    <th>작성자</th>
-                    <td data-th-text="${board.writer.name}">홍길동</td>
-                </tr>
-                <tr>
-                    <th>등록일</th>
-                    <td data-th-text="${board.createdDate}">0000-00-00</td>
-                </tr>  
-            </table>
-            <p>
-                <a class="btn btn-primary" href="updateForm?no=1" data-th-href="@{updateForm(no=${board.no})}" role="button">수정</a>
-                <a href='delete?no=1' data-th-href="@{delete(no=${board.no})}">삭제</a>
-                <a data-th-href="@{list(no=${board.cateno})}">목록</a>
-                <a class="btn btn-primary" href="#" role="button">신고기능</a>
-            </p>
+            <h2 th:if="${board.cateno == 1}" value='게시판'>자유게시판</h2>
+            <h2 th:if="${board.cateno == 2}" value='게시판'>식단게시판</h2>
+            <h2 th:if="${board.cateno == 3}" value='게시판'>챌린지게시판</h2>
+            <h2 th:if="${board.cateno == 4}" value='게시판'>질문게시판</h2>
+            <h2 th:if="${board.cateno == 5}" value='게시판'>핫딜게시판</h2>
             
+            <div>
+                <a th:if="${session.loginMember} != null and ${session.loginMember.no} == ${board.writer.no}" 
+                   th:href="@{updateForm(no=${board.no})}" 
+                   class="btn btn-primary" 
+                   role="button">수정</a>
+                <a th:if="${session.loginMember} != null and ${session.loginMember.no} == ${board.writer.no}" 
+                   th:href="@{delete(no=${board.no})}"
+                   href='delete?no=1'
+                   class="btn btn-primary">삭제</a>
+                <a class="btn btn-primary" href="#" role="button">신고</a>
+                <a th:href="@{list(no=${board.cateno})}"
+                   class="btn btn-primary">목록</a>
+            </div>
+            
+            <div class="temp-line board-wrapper">
+              <input th:value="${board.no}" value=게시글번호 id="boardNo" name='no' type="hidden">
+              <h3 th:text='${board.title}'></h3>
+              <div>
+                <img th:src="@{'/member/files/' + ${board.writer.filepath}}" class="profile_pic" alt="profile_picture" onerror="this.src='../images/profile-pic.png';" >
+                <span th:text="${board.writer.nickname}"></span>
+                <span th:text="${board.createdDate}"></span>
+                <br>조회수 : <span th:text="${board.viewCount}">0</span>
+              </div>
+              <div th:utext="${board.content}" class="form-content">내용</div>
+            </div>
             
              <!-- 댓글 블록 시작 -->
-             
-            
             <div>
               <h2>달린 댓글 부분</h2>
               <div class="container">
                   <div class="commentList"></div>
               </div>
+              
+            <!-- 댓글 페이징 -->
+            <nav aria-label="Page navigation">
+              <ul class="pagination">
+                <div class="page_center">
+                  <li class="page-item" th:if="${pageMaker.prev}">
+                    <a class="page-link" th:href="@{list(pageMaker.startPage-1}" aria-label="Previous">
+                      <span aria-hidden="true">&laquo;</span>
+                    </a>
+                  </li>
+                  <th:block th:each="pageNum: ${#numbers.sequence(pageMaker.startPage, pageMaker.endPage)}">
+                    <li class="page-item">
+                      <a th:id="'page' + ${pageNum}" class="page-link" th:href="@{list(page=${pageNum})}"><i th:text="${pageNum}"></i></a>
+                    </li>
+                  </th:block>
+                  <li class="page-item" th:if="${pageMaker.next && pageMaker.endPage >0}">
+                    <a class="page-link" th:href="@{list(page=${pageMaker.endPage+1}, no=${catenoInBoard.cateno})}" aria-label="Next">
+                      <span aria-hidden="true">&raquo;</span>
+                    </a>
+                  </li>
+                </div>
+              </ul>
+            </nav>
+            <!-- 댓글페이징 -->
               
               <h2>댓글 쓰기 부분</h2>
               <div style="width: 80%;" class="temp-line">
@@ -271,7 +274,7 @@
                         <input
                             type="text"
                             class="form-control"
-                            id="content"
+                            id="commentCont"
                             placeholder="댓글을 달아주세요!"
                             style="height: 30px;"
                             th:name="${session.loginMember.nickname}">
@@ -281,28 +284,21 @@
                         <input
                             type="text"
                             class="form-control"
-                            id="content"
-                            placeholder="로그인을 해주세요!"
-                            style="height: 60px;" readonly>
+                            id="commentCont"
+                            placeholder="댓글을 등록하려면 로그인 해주세요"
+                            style="height: 60px;" readonly
+                            onclick="alertToLogin();">
                       </div>
                   </div>
                   <div>
                       <button class="btn btn-sm btn-success" onclick="insertAndReplay();">등록</button>
                   </div>
               </div>
-              
-
             </div>
             <!-- 댓글 블록 끝 -->
-         
+
          </div>
-         
-         
-         
-         
       </div>
-    
-    
 
       <!--  footer section end -->
       <!-- copyright section start -->
@@ -326,6 +322,7 @@
       <script src="../js/bootstrap.bundle.min.js"></script>
       <script src="../js/jquery-3.0.0.min.js"></script>
       <script src="../js/plugin.js"></script>
+       <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> <!-- sweetalert -->
       <!-- sidebar -->
       <script src="../js/jquery.mCustomScrollbar.concat.min.js"></script>
       <script src="../js/custom.js"></script>
@@ -336,30 +333,40 @@
       <!-- 공식부트스트랩 JS -->
       <script src="../js/bootstrap/bootstrap.js"></script>   
 
-      <script th:inline="javascript">
-      /*<![CDATA[*/
+      <script>
       "use strict"
-    	  const boardNo = document.getElementById( 'boardNo' ).value;
+    	  const boardNo = document.getElementById( 'boardNo').value;
     	  const memberNo = document.getElementById( 'memberNo' ).value;
-      
+    	  const pageCount = document.getElementsByClassName('').length;
+    	  let pageNo = $('#pageNo').text(); 
+    	  let loginMemberNo = -1;
+    	  if($(".loginId").attr("id") != undefined) {
+    	   loginMemberNo = $(".loginId").attr("id");
+    	  };
+    		 console.log(loginMemberNo);
+
   	  // 댓글 목록 
   	  function commentList(){
         console.log("목록 호출됨!!");
           $.ajax({
               url : '/app/boardComment/list',
               type : 'get',
-              data : {boardNo: boardNo},
+              data : {boardNo: boardNo,
+            	        pageNo: pageNo
+            	        },
               success : function(result){
                   var a =''; 
                   $.each(result, function(key, value){ 
                       a += '<div class="commentArea temp-line" style="border-bottom:1px solid darkgray; margin-bottom: 15px;">';
                       a += '<div class="commentInfo' + value.no + '">' + '댓글번호 : ' + value.no + ' / 작성자 : ' + value.writer.nickname;
-                      a += '<a onclick="commentUpdate(' + value.no + ',\'' + value.content + '\');"> 수정 </a>';
-                      a += '<a onclick="commentDelete('+value.no+');"> 삭제 </a> </div>'; 
+                      if (loginMemberNo == value.writer.no) {
+                        a += '<a onclick="commentUpdate(' + value.no + ',\'' + value.content + '\');"> 수정 </a>';
+                        a += '<a onclick="commentDelete('+value.no+');"> 삭제 </a>';
+                      }
+                  	  a += '<a onclick="commentComplain('+value.no+');"> 신고 </a> </div>';
                       a += '<div class="commentContent'+value.no+'"> <p> 내용 : '+value.content +'</p>';
                       a += '</div></div>';
                   });
-                  
                   $(".commentList").html(a);
               }
           });
@@ -374,16 +381,15 @@
         $.ajax({
           url : "/app/boardComment/insertAndReplay",
           data : {
-            content : $("#content").val(),
+            content : $("#commentCont").val(),
             boardNo : boardNo,
             memberNo : memberNo
           },
           type : "post",
           success : function(result){
             if(result != null){
-
-            	commentList();
-              $("#content").val("");
+//             	commentList();
+              $("#commentCont").val("");
             }
           }
           })
@@ -415,7 +421,6 @@
       // 댓글 수정
       function commentUpdateProc(commentNo){
           var updateContent = $('[name=content_'+commentNo+']').val();
-          
           $.ajax({
               url : '/app/boardComment/update',
               type : 'post',
@@ -427,8 +432,13 @@
               }
           });
       }
-      
-      /*]]>*/
+      function alertToLogin(){
+    	  if (confirm("로그인하시겠습니까?") == true){    //확인
+    		  location.href = '../auth/form';
+    		 }else{   //취소
+  		     return false;
+    		 }
+      }
       </script>
 
       

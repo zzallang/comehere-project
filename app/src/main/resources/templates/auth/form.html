@@ -88,6 +88,7 @@ margin-right: 14vw;
 			
 				<form action='login' method="post">
 					<table border='1'>
+            <input type="hidden" name="beforePageURL" data-th-value="${session.redirectURI}">
 						<center><h1 class="contact_text">Login</h1></center>
 						<tr>
 							<input type="text" class="email-bt" placeholder="ID를 입력해주세요" size='30' name ="id" data-th-value="${id}">
@@ -137,5 +138,6 @@ margin-right: 14vw;
 		<script src="../js/owl.carousel.js"></script>
 		<script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
 	</div>
+  
 </body>
 </html>

@@ -170,7 +170,10 @@
       b.cateno,
       b.title,
       b.cont,
+      m.mno,
       m.name,
+      m.nick,
+      m.filepath,
       b.cdt,
       b.vw_cnt,
       bf.filepath

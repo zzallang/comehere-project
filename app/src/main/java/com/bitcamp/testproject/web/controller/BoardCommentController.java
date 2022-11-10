@@ -1,6 +1,8 @@
 package com.bitcamp.testproject.web.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import javax.servlet.ServletContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.bitcamp.testproject.service.BoardCommentService;
 import com.bitcamp.testproject.service.BoardService;
 import com.bitcamp.testproject.vo.Comment;
+import com.bitcamp.testproject.vo.Criteria;
 
 @Controller
 @RequestMapping("/boardComment/")
@@ -38,9 +41,19 @@ public class BoardCommentController {
 
   @GetMapping("list")
   @ResponseBody
-  public Object list(int boardNo) {
-    List<Comment> list = boardCommentService.list(boardNo);
-    System.out.println(list);
+  public Object list(int pageNo, int boardNo) {
+
+    // 몇번 페이지인지 기록하고 넘기기
+    Criteria cri = new Criteria();
+    cri.setPage(pageNo);
+    cri.setPerPageNum(5);
+
+    Map<String, Object> map = new HashMap<>();
+    map.put("boardNo", boardNo);
+    map.put("cri", cri);
+
+    List<Comment> list = boardCommentService.getComments(map);
+
     return list;
   }
 

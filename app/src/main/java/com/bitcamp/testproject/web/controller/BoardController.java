@@ -24,7 +24,6 @@ import com.bitcamp.testproject.service.BoardService;
 import com.bitcamp.testproject.vo.AttachedFile;
 import com.bitcamp.testproject.vo.Board;
 import com.bitcamp.testproject.vo.BoardCategory;
-import com.bitcamp.testproject.vo.Comment;
 import com.bitcamp.testproject.vo.Criteria;
 import com.bitcamp.testproject.vo.PageMaker;
 
@@ -39,136 +38,6 @@ public class BoardController {
   BoardService boardService;
   @Autowired
   BoardCommentService boardCommentService;
-
-  // InternalResourceViewResolver 사용 후:
-  //  @GetMapping("form")
-  //  public void form() throws Exception {
-  //  }
-
-  //  @PostMapping("add") 
-  //  public String add(
-  //      Board board,
-  //      MultipartFile[] files,
-  //      HttpSession session) throws Exception {
-  //
-  //    board.setAttachedFiles(saveAttachedFiles(files));
-  //    board.setWriter((Member) session.getAttribute("loginMember"));
-  //
-  //    boardService.add(board);
-  //    return "redirect:list";
-  //  }
-  //
-  //  private List<BoardAttachedFile> saveAttachedFiles(Part[] files)
-  //      throws IOException, ServletException {
-  //    List<BoardAttachedFile> attachedFiles = new ArrayList<>();
-  //    String dirPath = sc.getRealPath("/board/files");
-  //
-  //    for (Part part : files) {
-  //      if (part.getSize() == 0) {
-  //        continue;
-  //      }
-  //
-  //      String filename = UUID.randomUUID().toString();
-  //      part.write(dirPath + "/" + filename);
-  //      attachedFiles.add(new BoardAttachedFile(filename));
-  //    }
-  //    return attachedFiles;
-  //  }
-  //
-  //  private List<BoardAttachedFile> saveAttachedFiles(MultipartFile[] files)
-  //      throws IOException, ServletException {
-  //    List<BoardAttachedFile> attachedFiles = new ArrayList<>();
-  //    String dirPath = sc.getRealPath("/board/files");
-  //
-  //    for (MultipartFile part : files) {
-  //      if (part.isEmpty()) {
-  //        continue;
-  //      }
-  //
-  //      String filename = UUID.randomUUID().toString();
-  //      part.transferTo(new File(dirPath + "/" + filename));
-  //      attachedFiles.add(new BoardAttachedFile(filename));
-  //    }
-  //    return attachedFiles;
-  //  }
-  //
-  //  @GetMapping("list")
-  //  public void list(Model model) throws Exception {
-  //    model.addAttribute("boards", boardService.list());
-  //  }
-  //
-  //  @GetMapping("detail")
-  //  public Map detail(int no) throws Exception {
-  //    Board board = boardService.get(no);
-  //    if (board == null) {
-  //      throw new Exception("해당 번호의 게시글이 없습니다!");
-  //    }
-  //
-  //    Map map = new HashMap();
-  //    map.put("board", board);
-  //    return map;
-  //  }
-  //
-  //  @PostMapping("update")
-  //  public String update(
-  //      Board board,
-  //      Part[] files,
-  //      HttpSession session) 
-  //          throws Exception {
-  //
-  //    board.setAttachedFiles(saveAttachedFiles(files));
-  //
-  //    checkOwner(board.getNo(), session);
-  //
-  //    if (!boardService.update(board)) {
-  //      throw new Exception("게시글을 변경할 수 없습니다!");
-  //    }
-  //
-  //    return "redirect:list";
-  //  }
-  //
-  //  private void checkOwner(int boardNo, HttpSession session) throws Exception {
-  //    Member loginMember = (Member) session.getAttribute("loginMember");
-  //    if (boardService.get(boardNo).getWriter().getNo() != loginMember.getNo()) {
-  //      throw new Exception("게시글 작성자가 아닙니다.");
-  //    }
-  //  }
-  //
-  //  @GetMapping("delete")
-  //  public String delete(
-  //      int no, 
-  //      HttpSession session) 
-  //          throws Exception {
-  //
-  //    checkOwner(no, session);
-  //    if (!boardService.delete(no)) {
-  //      throw new Exception("게시글을 삭제할 수 없습니다.");
-  //    }
-  //
-  //    return "redirect:list";
-  //  }
-  //
-  //  @GetMapping("fileDelete")
-  //  public String fileDelete(
-  //      int no,
-  //      HttpSession session) 
-  //          throws Exception {
-  //
-  //    BoardAttachedFile attachedFile = boardService.getAttachedFile(no); 
-  //
-  //    Member loginMember = (Member) session.getAttribute("loginMember");
-  //    Board board = boardService.get(attachedFile.getBoardNo()); 
-  //
-  //    if (board.getWriter().getNo() != loginMember.getNo()) {
-  //      throw new Exception("게시글 작성자가 아닙니다.");
-  //    }
-  //
-  //    if (!boardService.deleteAttachedFile(no)) {
-  //      throw new Exception("게시글 첨부파일을 삭제할 수 없습니다.");
-  //    }
-  //
-  //    return "redirect:detail?no=" + board.getNo();
-  //  }
 
   @GetMapping("main")
   public Model main(Model model) {
@@ -219,8 +88,6 @@ public class BoardController {
     return attachedFiles;
   }
 
-
-
   //  private String saveThumbnailFile(Part file) throws Exception {
   //    if (file.getSize() == 0) {
   //      return null;
@@ -260,21 +127,27 @@ public class BoardController {
   }
 
   @GetMapping("detail")
-  public Model detail(int no, Model model, HttpServletRequest request, HttpServletResponse response) throws Exception {
+  public Model detail(int no, Model model, HttpServletRequest request, HttpServletResponse response, Criteria cri) throws Exception {
+
+    // 페이징하기 위한 연산 
+    PageMaker pageMaker = new PageMaker();
+    pageMaker.setCri(cri);
+    pageMaker.setTotalCount(boardCommentService.countCommentListTotal(no));
 
     // 조회수 증가     
     viewCountUp(no, request, response);
 
     // 게시글 꺼내기
     Board board = boardService.get(no);
+    System.out.println(board);
     if (board == null) {
       throw new Exception("해당 번호의 게시글이 없습니다!");
     }
-    List<Comment> comments = boardCommentService.getComments(no);
-    System.out.println(comments);
+    //    List<Comment> comments = boardCommentService.getComments(no, cri);
 
     model.addAttribute("board", board);
-    model.addAttribute("comments", comments);
+    //    model.addAttribute("comments", comments);
+    model.addAttribute("pageMaker", pageMaker);
 
     return model;
   }
@@ -308,12 +181,6 @@ public class BoardController {
       response.addCookie(newCookie);
     }
   }
-
-
-  //  @GetMapping("list")
-  //  public void list(Model model, int no) throws Exception {
-  //    model.addAttribute("boards", boardService.list(no));
-  //  }
 
   @GetMapping("list")
   public ModelAndView list(Criteria cri, int no) throws Exception {
@@ -392,7 +259,6 @@ public class BoardController {
     return "redirect:list?no=" + cateno;
   }
 
-  // 여기부터 하자
   @GetMapping("fileDelete")
   public String boardFileDelete(
       int no,

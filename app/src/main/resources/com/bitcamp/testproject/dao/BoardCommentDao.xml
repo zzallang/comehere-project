@@ -20,9 +20,10 @@
 
   </resultMap>
 
-  <select id="findByBoardNo" resultMap="commentMap">
+  <select id="findByBoardNo" resultMap="commentMap" parameterType="HashMap">
     select
       bc.bcno,
+      m.mno,
       m.filepath,
       m.nick,
       bc.cont,
@@ -33,9 +34,10 @@
       join board b on b.bno=bc.bno
     where
       bc.act=1
-      and b.bno=#{value}
+      and b.bno=#{boardNo}
     order by
       bcno
+    limit #{cri.pagesStart}, #{cri.perPageNum}
   </select>
   
   <select id="findCommentByNo" resultMap="commentMap">
@@ -77,6 +79,15 @@
     where 
       bcno=#{no}
   </update> 
+  
+  <select id="findCommentsCount" resultType="Integer">
+    select 
+      count(*) 
+    from 
+      board_comment 
+    where 
+      bno = #{value}
+  </select>
 
 </mapper>
 
