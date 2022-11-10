@@ -214,6 +214,10 @@ public class BoardController {
     return attachedFiles;
   }
 
+  @GetMapping("modal")
+  public String modal() throws Exception {
+    return "board/modal";
+  }
 
 
   //  private String saveThumbnailFile(Part file) throws Exception {
@@ -302,7 +306,6 @@ public class BoardController {
       response.addCookie(newCookie);
     }
   }
-
 
   //  @GetMapping("list")
   //  public void list(Model model, int no) throws Exception {

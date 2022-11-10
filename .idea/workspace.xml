@@ -5,30 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e53a733f-0d44-4eae-a53e-61aae41aff0b" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bitcamp/testproject/dao/MemberDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/bitcamp/testproject/dao/MemberDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bitcamp/testproject/dao/PartyDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/bitcamp/testproject/dao/PartyDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bitcamp/testproject/dao/RegionDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/bitcamp/testproject/dao/RegionDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bitcamp/testproject/service/DefaultMemberService.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/bitcamp/testproject/service/DefaultMemberService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bitcamp/testproject/service/DefaultPartyService.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/bitcamp/testproject/service/DefaultPartyService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bitcamp/testproject/service/MemberService.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/bitcamp/testproject/service/MemberService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bitcamp/testproject/vo/Member.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/bitcamp/testproject/vo/Member.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bitcamp/testproject/web/controller/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/bitcamp/testproject/web/controller/AuthController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bitcamp/testproject/web/controller/MemberController.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/bitcamp/testproject/web/controller/MemberController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/resources/com/bitcamp/testproject/dao/MemberDao.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/resources/com/bitcamp/testproject/dao/MemberDao.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/resources/com/bitcamp/testproject/dao/PartyDao.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/resources/com/bitcamp/testproject/dao/PartyDao.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/resources/com/bitcamp/testproject/dao/RegionDao.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/resources/com/bitcamp/testproject/dao/RegionDao.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/resources/templates/auth/findId.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/resources/templates/auth/findId.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/resources/templates/auth/findIdResult.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/resources/templates/auth/findIdResult.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/resources/templates/auth/findPassword.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/resources/templates/auth/findPassword.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/resources/templates/auth/form.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/resources/templates/auth/form.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/resources/templates/auth/loginResult.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/resources/templates/auth/loginResult.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/resources/templates/auth/newPassword.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/resources/templates/auth/newPassword.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/resources/templates/board/detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/resources/templates/board/detail.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/resources/templates/member/myInfo.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/resources/templates/member/myInfo.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/resources/templates/member/pwCheckViewer.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/resources/templates/member/pwCheckViewer.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bitcamp/testproject/web/controller/BoardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/bitcamp/testproject/web/controller/BoardController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/resources/templates/board/detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/resources/templates/board/detail_modal.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

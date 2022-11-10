@@ -138,6 +138,7 @@ public class AuthController {
     return "auth/newPassword";
   }
 
+
   @GetMapping("logout")
   public String logout(HttpSession session) throws Exception {
     session.invalidate();
@@ -157,11 +158,14 @@ public class AuthController {
     System.out.println(email + id);
     boolean result = memberService.updatePW(password, email, id);
 
-    if (result == false) {
-      System.out.println("변경 실패 습니다.");
+    if (result != false) {
+      System.out.println("Password변경 완료했습니다.");
+    } else{
+      System.out.println("Password변경 실패했습니다.");
     }
     return "redirect:form";
   }
+
   // 헌식 끝
 
   // 은지
