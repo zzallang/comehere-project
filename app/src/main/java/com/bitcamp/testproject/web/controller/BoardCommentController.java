@@ -46,7 +46,7 @@ public class BoardCommentController {
     // 몇번 페이지인지 기록하고 넘기기
     Criteria cri = new Criteria();
     cri.setPage(pageNo);
-    cri.setPerPageNum(5);
+    cri.setPerPageNum(15);
 
     Map<String, Object> map = new HashMap<>();
     map.put("boardNo", boardNo);

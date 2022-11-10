@@ -131,6 +131,7 @@ public class BoardController {
 
     // 페이징하기 위한 연산 
     PageMaker pageMaker = new PageMaker();
+    cri.setPerPageNum(15);
     pageMaker.setCri(cri);
     pageMaker.setTotalCount(boardCommentService.countCommentListTotal(no));
 
@@ -143,10 +144,8 @@ public class BoardController {
     if (board == null) {
       throw new Exception("해당 번호의 게시글이 없습니다!");
     }
-    //    List<Comment> comments = boardCommentService.getComments(no, cri);
 
     model.addAttribute("board", board);
-    //    model.addAttribute("comments", comments);
     model.addAttribute("pageMaker", pageMaker);
 
     return model;

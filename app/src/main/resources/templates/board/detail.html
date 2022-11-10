@@ -252,7 +252,7 @@
                   </li>
                   <th:block th:each="pageNum: ${#numbers.sequence(pageMaker.startPage, pageMaker.endPage)}">
                     <li class="page-item">
-                      <a th:id="'page' + ${pageNum}" class="page-link" th:href="@{list(page=${pageNum})}"><i th:text="${pageNum}"></i></a>
+                      <a th:id="'pageNo' + ${pageNum}" class="page-link" onclick="getId(this.id)"><i th:text="${pageNum}"></i></a>
                     </li>
                   </th:block>
                   <li class="page-item" th:if="${pageMaker.next && pageMaker.endPage >0}">
@@ -291,7 +291,7 @@
                       </div>
                   </div>
                   <div>
-                      <button class="btn btn-sm btn-success" onclick="insertAndReplay();">등록</button>
+                      <button id="commetButton" class="btn btn-sm btn-success">등록</button>
                   </div>
               </div>
             </div>
@@ -337,109 +337,121 @@
       "use strict"
     	  const boardNo = document.getElementById( 'boardNo').value;
     	  const memberNo = document.getElementById( 'memberNo' ).value;
-    	  const pageCount = document.getElementsByClassName('').length;
-    	  let pageNo = $('#pageNo').text(); 
+    	  const lastPageNo = document.getElementsByClassName('page-link').length;
     	  let loginMemberNo = -1;
     	  if($(".loginId").attr("id") != undefined) {
     	   loginMemberNo = $(".loginId").attr("id");
     	  };
-    		 console.log(loginMemberNo);
-
-  	  // 댓글 목록 
-  	  function commentList(){
-        console.log("목록 호출됨!!");
+    	  
+    	  let pageNo = lastPageNo;
+    	  function getId(pageId) {
+    		  pageNo = pageId.replace('pageNo', '')
+    		  commentList();
+    	  } 
+    	  
+    		document.getElementById('commetButton').addEventListener('click', insertAndReplay); 
+    		document.getElementById('commetButton').addEventListener('click', countComment); 
+    	  function countComment() {
+    		  var count = document.getElementsByClassName('commentArea').length;
+    		  if (count == 15) {
+    			  window.location.reload();
+    		  }
+    		};
+    		
+    	  // 댓글 목록 
+    	  function commentList(){
+            $.ajax({
+                url : '/app/boardComment/list',
+                type : 'get',
+                data : {boardNo: boardNo,
+              	        pageNo: pageNo
+              	        },
+                success : function(result){
+                    var a =''; 
+                    $.each(result, function(key, value){ 
+                        a += '<div class="commentArea temp-line" style="border-bottom:1px solid darkgray; margin-bottom: 15px;">';
+                        a += '<div class="commentInfo' + value.no + '">' + '댓글번호 : ' + value.no + ' / 작성자 : ' + value.writer.nickname;
+                        if (loginMemberNo == value.writer.no) {
+                          a += '<a onclick="commentUpdate(' + value.no + ',\'' + value.content + '\');"> 수정 </a>';
+                          a += '<a onclick="commentDelete('+value.no+');"> 삭제 </a>';
+                        }
+                    	  a += '<a onclick="commentComplain('+value.no+');"> 신고 </a> </div>';
+                        a += '<div class="commentContent'+value.no+'"> <p> 내용 : '+value.content +'</p>';
+                        a += '</div></div>';
+                    });
+                    $(".commentList").html(a);
+                }
+            });
+        }
+      	// 페이지 시작할 때 댓글 목록 출력 
+      	$(document).ready(function(){
+      		commentList(); //페이지 로딩시 댓글 목록 출력 
+      	});
+      	
+      	// 댓글 등록
+        function insertAndReplay(){
           $.ajax({
-              url : '/app/boardComment/list',
-              type : 'get',
-              data : {boardNo: boardNo,
-            	        pageNo: pageNo
-            	        },
-              success : function(result){
-                  var a =''; 
-                  $.each(result, function(key, value){ 
-                      a += '<div class="commentArea temp-line" style="border-bottom:1px solid darkgray; margin-bottom: 15px;">';
-                      a += '<div class="commentInfo' + value.no + '">' + '댓글번호 : ' + value.no + ' / 작성자 : ' + value.writer.nickname;
-                      if (loginMemberNo == value.writer.no) {
-                        a += '<a onclick="commentUpdate(' + value.no + ',\'' + value.content + '\');"> 수정 </a>';
-                        a += '<a onclick="commentDelete('+value.no+');"> 삭제 </a>';
-                      }
-                  	  a += '<a onclick="commentComplain('+value.no+');"> 신고 </a> </div>';
-                      a += '<div class="commentContent'+value.no+'"> <p> 내용 : '+value.content +'</p>';
-                      a += '</div></div>';
-                  });
-                  $(".commentList").html(a);
+            url : "/app/boardComment/insertAndReplay",
+            data : {
+              content : $("#commentCont").val(),
+              boardNo : boardNo,
+              memberNo : memberNo
+            },
+            type : "post",
+            success : function(result){
+              if(result != null){
+               	commentList();
+                $("#commentCont").val("");
               }
-          });
-      }
-    	// 페이지 시작할 때 댓글 목록 출력 
-    	$(document).ready(function(){
-    		commentList(); //페이지 로딩시 댓글 목록 출력 
-    	});
-    	
-    	// 댓글 등록
-      function insertAndReplay(){
-        $.ajax({
-          url : "/app/boardComment/insertAndReplay",
-          data : {
-            content : $("#commentCont").val(),
-            boardNo : boardNo,
-            memberNo : memberNo
-          },
-          type : "post",
-          success : function(result){
-            if(result != null){
-//             	commentList();
-              $("#commentCont").val("");
             }
-          }
-          })
-      }
-    	
-      //댓글 삭제 
-      function commentDelete(no){
-          console.log("댓글삭제 호출됨!!");
-          $.ajax({
-              url : '/app/boardComment/delete/'+no,
-              type : 'post',
-              success : function(result){
-                  if(result == 1) commentList(); //댓글 삭제후 목록 출력 
-              }
-          });
-      }
-    
-      //댓글 수정 모드- 댓글 내용 출력을 input 폼으로 변경 
-      function commentUpdate(commentNo, content){
-          var a ='';
-          a += '<label for="form"></label>';
-          a += '<div class="input-group temp-line">';
-          a += '<input type="text" class="form-control" name="content_' + commentNo + '" value="' + content + '"/>';
-          a += '<span class="input-group-btn"><button class="btn btn-default" type="button" onclick="commentUpdateProc(' + commentNo + ');">수정</button></span>';
-          a += '</div>';
-          
-          $('.commentContent'+commentNo).html(a);
-      }
-      // 댓글 수정
-      function commentUpdateProc(commentNo){
-          var updateContent = $('[name=content_'+commentNo+']').val();
-          $.ajax({
-              url : '/app/boardComment/update',
-              type : 'post',
-              data : { 
-            	  'content' : updateContent, 
-            	  'no' : commentNo},
-              success : function(result){
-                  if(result == 1) commentList(); //댓글 수정후 목록 출력 
-              }
-          });
-      }
-      function alertToLogin(){
-    	  if (confirm("로그인하시겠습니까?") == true){    //확인
-    		  location.href = '../auth/form';
-    		 }else{   //취소
-  		     return false;
-    		 }
-      }
-      </script>
+            })
+        }
+      	
+        //댓글 삭제 
+        function commentDelete(no){
+            console.log("댓글삭제 호출됨!!");
+            $.ajax({
+                url : '/app/boardComment/delete/'+no,
+                type : 'post',
+                success : function(result){
+                    if(result == 1) commentList(); //댓글 삭제후 목록 출력 
+                }
+            });
+        }
+      
+        //댓글 수정 모드- 댓글 내용 출력을 input 폼으로 변경 
+        function commentUpdate(commentNo, content){
+            var a ='';
+            a += '<label for="form"></label>';
+            a += '<div class="input-group temp-line">';
+            a += '<input type="text" class="form-control" name="content_' + commentNo + '" value="' + content + '"/>';
+            a += '<span class="input-group-btn"><button class="btn btn-default" type="button" onclick="commentUpdateProc(' + commentNo + ');">수정</button></span>';
+            a += '</div>';
+            
+            $('.commentContent'+commentNo).html(a);
+        }
+        // 댓글 수정
+        function commentUpdateProc(commentNo){
+            var updateContent = $('[name=content_'+commentNo+']').val();
+            $.ajax({
+                url : '/app/boardComment/update',
+                type : 'post',
+                data : { 
+              	  'content' : updateContent, 
+              	  'no' : commentNo},
+                success : function(result){
+                    if(result == 1) commentList(); //댓글 수정후 목록 출력 
+                }
+            });
+        }
+        function alertToLogin(){
+      	  if (confirm("로그인하시겠습니까?") == true){    //확인
+      		  location.href = '../auth/form';
+      		 }else{   //취소
+    		     return false;
+      		 }
+        }
+        </script>
 
       
    </body>
