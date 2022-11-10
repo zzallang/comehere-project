@@ -2,7 +2,9 @@ package com.bitcamp.testproject.vo;
 
 import java.sql.Date;
 import java.util.List;
+import lombok.Data;
 
+@Data
 public class Board {
 
   private int no;
@@ -14,15 +16,18 @@ public class Board {
   private Date createdDate;
   private int viewCount;
   private String path;
+  private List<String> report;
 
   // 첨부파일 정보를 저장할 필드
   private List<AttachedFile> attachedFiles;
+
 
   @Override
   public String toString() {
     return "Board [no=" + no + ", cateno=" + cateno + ", writer=" + writer + ", title=" + title
         + ", active=" + active + ", content=" + content + ", createdDate=" + createdDate
-        + ", viewCount=" + viewCount + ", attachedFiles=" + attachedFiles + "]";
+        + ", viewCount=" + viewCount + ", path=" + path + ", report=" + report + ", attachedFiles="
+        + attachedFiles + "]";
   }
 
   public int getNo() {
@@ -89,14 +94,6 @@ public class Board {
     this.viewCount = viewCount;
   }
 
-  public List<AttachedFile> getAttachedFiles() {
-    return attachedFiles;
-  }
-
-  public void setAttachedFiles(List<AttachedFile> attachedFiles) {
-    this.attachedFiles = attachedFiles;
-  }
-
   public String getPath() {
     return path;
   }
@@ -105,9 +102,22 @@ public class Board {
     this.path = path;
   }
 
+  public List<String> getReport() {
+    return report;
+  }
 
+  public void setReport(List<String> report) {
+    this.report = report;
+  }
+
+  public List<AttachedFile> getAttachedFiles() {
+    return attachedFiles;
+  }
+
+  public void setAttachedFiles(List<AttachedFile> attachedFiles) {
+    this.attachedFiles = attachedFiles;
+  }
 }
-
 
 
 

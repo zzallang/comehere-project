@@ -53,6 +53,8 @@ public interface BoardService {
 
   BoardCategory getCategory(int no);
 
+  void add(String no, String reason);
+
 
 
   ////////////

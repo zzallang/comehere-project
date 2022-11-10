@@ -74,6 +74,16 @@ public class AuthController {
     return "auth/findId";
   }
 
+  @GetMapping("findPassword")
+  public String findIdPassword() {
+    return "auth/findPassword";
+  }
+
+
+  @GetMapping("sendMail")
+  public String sendMail() {
+    return "auth/sendMail";
+  }
 
   @GetMapping("findById")
   public ModelAndView findById(String name, String email, HttpServletResponse response,
@@ -91,16 +101,6 @@ public class AuthController {
   }
 
 
-  @GetMapping("findPassword")
-  public String findIdPassword() {
-    return "auth/findPassword";
-  }
-
-
-  @GetMapping("sendMail")
-  public String sendMail() {
-    return "auth/sendMail";
-  }
 
 
   @PostMapping("mail/send")
@@ -146,27 +146,23 @@ public class AuthController {
   }
 
 
+  @PostMapping("updatePW")
+  public String updatePW(String password, String email, String id, HttpSession session) throws Exception {
+    boolean result = memberService.updatePW(password, email, id);
+
+    if (result != false) {
+    } 
+    return "redirect:form";
+  }
+
+  // 헌식 끝
+
   // // 아이디 중복 체크 확인
   // @PostMapping("id-check")
   // @ResponseBody
   // public String idCheck(Member member) throws Exception {
   // return memberService.checkId(member);
   // }
-
-  @PostMapping("updatePW")
-  public String updatePW(String password, String email, String id, HttpSession session) throws Exception {
-    System.out.println(email + id);
-    boolean result = memberService.updatePW(password, email, id);
-
-    if (result != false) {
-      System.out.println("Password변경 완료했습니다.");
-    } else{
-      System.out.println("Password변경 실패했습니다.");
-    }
-    return "redirect:form";
-  }
-
-  // 헌식 끝
 
   // 은지
   @GetMapping("join")

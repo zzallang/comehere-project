@@ -16,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -214,12 +215,6 @@ public class BoardController {
     return attachedFiles;
   }
 
-  @GetMapping("modal")
-  public String modal() throws Exception {
-    return "board/modal";
-  }
-
-
   //  private String saveThumbnailFile(Part file) throws Exception {
   //    if (file.getSize() == 0) {
   //      return null;
@@ -416,10 +411,17 @@ public class BoardController {
 
 
   /////// 제동 메서드 끝 
+
+  // 헌식
+
+  @ModelAttribute("report")
+  public String report(      
+      String no,
+      String reason,
+      HttpServletRequest request,
+      HttpSession session) throws Exception {
+
+    boardService.add(no,reason);
+    return "redirect:list?no=";
+  }
 }
-
-
-
-
-
-
