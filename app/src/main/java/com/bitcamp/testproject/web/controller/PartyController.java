@@ -246,6 +246,18 @@ public class PartyController {
     return "redirect:detail?no=" + party.getNo();
   }
 
+
+
+  @GetMapping("naver")
+  public void naver(Model model) throws Exception {
+
+  }
+
+  @GetMapping("kakao")
+  public void kakao(Model model) throws Exception {
+
+  }
+
 }
 
 

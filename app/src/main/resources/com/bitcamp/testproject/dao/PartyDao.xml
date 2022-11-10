@@ -130,8 +130,14 @@
       <if test="listStar == 1">
       star desc
       </if>
+      <if test="listStar == 1 and listCreate == 1 or listStar == 1 and listPartyDate == 1 or listStar == 1 and listCreate == 1 and listPartyDate == 1">
+      ,
+      </if>
       <if test="listCreate == 1">
       p.cdt desc
+      </if>
+      <if test="listCreate == 1 and listPartyDate == 1 or listStar == 1 and listCreate == 1 and listPartyDate == 1">
+      ,
       </if>
       <if test="listPartyDate == 1">
       p.pdate desc

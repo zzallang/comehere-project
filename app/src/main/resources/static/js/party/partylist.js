@@ -8,6 +8,8 @@ let listStar = "0";
 let listCreate = "0";
 let listPartyDate = "0";
 
+let btnValue = "";
+
 
 $("#region_sido").change(() => {
   loadList(getListConditions())
@@ -34,32 +36,50 @@ $("#searchBtn").click(() => {
 });
 
 $("#list_reset").click(() => {
-  listStar = "0";
-  listCreate = "0";
-  listPartyDate = "0";
+  $("#list_star").attr('value','0');
+  $("#list_create").attr('value','0');
+  $("#list_partyDate").attr('value','0');
+  console.log($("#list_star").val())
+  console.log($("#list_create").val())
+  console.log($("#list_partyDate").val())
+  console.log("구분")
   loadList(getListConditions())
 });
 
 $("#list_star").click(() => {
-  listStar = "1";
-  listCreate = "0";
-  listPartyDate = "0";
+  console.log($("#list_star").attr('id'))
+  changeBtnValue($("#list_star").attr('id'), $("#list_star").val())
   loadList(getListConditions())
 });
 
 $("#list_create").click(() => {
-  listStar = "0";
-  listCreate = "1";
-  listPartyDate = "0";
-    loadList(getListConditions())
+  changeBtnValue($("#list_create").attr('id'), $("#list_create").val())
+  loadList(getListConditions())
 });
 
 $("#list_partyDate").click(() => {
-  listStar = "0";
-  listCreate = "0";
-  listPartyDate = "1";
+  changeBtnValue($("#list_partyDate").attr('id'), $("#list_partyDate").val())
   loadList(getListConditions())
 });
+
+$("#test1").click(function test() {
+  function test(){
+  
+  }
+});
+
+
+
+function changeBtnValue(btnId, btnValue) {
+  if (btnValue == 0) {
+    $("#" + btnId).attr('value','1');
+    $("#" + btnId).css('background-color','gray');
+  }
+  if (btnValue == 1) {
+    $("#" + btnId).attr('value','0');
+    $("#" + btnId).css('background-color','white');
+  }
+}
 
 function getListConditions() {
   var params = {}
@@ -82,14 +102,32 @@ function getListConditions() {
     params.searchText = $("#list_search").val();
   }
   if ($("#list_star").val() != "") {
-    params.listStar = listStar;
+    params.listStar = $("#list_star").val();
   }
   if ($("#list_create").val() != "") {
-    params.listCreate = listCreate;
+    params.listCreate = $("#list_create").val();
   }
   if ($("#list_partyDate").val() != "") {
-     params.listPartyDate = listPartyDate;
+    params.listPartyDate = $("#list_partyDate").val();
  }
+  if ($("#list_star").val() != "" && $("#list_create").val() != "") {
+    params.listStar = $("#list_star").val();
+    params.listCreate = $("#list_create").val();
+  }
+  if ($("#list_star").val() != "" && $("#list_partyDate").val() != "") {
+    params.listStar = $("#list_star").val();
+    params.listPartyDate = $("#list_partyDate").val();
+  }
+  if ($("#list_create").val() != "" && $("#list_partyDate").val() != "") {
+    params.listCreate = $("#list_create").val();
+    params.listPartyDate = $("#list_partyDate").val();
+  }
+  if ($("#list_star").val() != "" && $("#list_create").val() != "" && $("#list_partyDate").val() == "1") {
+    params.listStar = $("#list_star").val();
+    params.listCreate = $("#list_create").val();
+    params.listPartyDate = $("#list_partyDate").val();
+
+  }
   return params;
 }
 
