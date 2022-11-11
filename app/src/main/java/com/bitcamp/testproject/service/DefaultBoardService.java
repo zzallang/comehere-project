@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import com.bitcamp.testproject.dao.BoardDao;
-import com.bitcamp.testproject.vo.AttachedFile;
 import com.bitcamp.testproject.vo.Board;
 import com.bitcamp.testproject.vo.BoardCategory;
 import com.bitcamp.testproject.vo.Criteria;
@@ -104,10 +103,6 @@ public class DefaultBoardService implements BoardService {
       throw new Exception("게시글 등록 실패!");
     }
 
-    //  2) 첨부파일 등록
-    if (board.getAttachedFiles().size() > 0) {
-      boardDao.insertFiles(board);
-    }
 
   }
 
@@ -148,22 +143,8 @@ public class DefaultBoardService implements BoardService {
     if (boardDao.update(board) == 0) {
       return false;
     }
-    // 2) 첨부파일 추가
-    if (board.getAttachedFiles().size() > 0) {
-      boardDao.insertFiles(board);
-    }
 
     return true;
-  }
-
-  @Override
-  public AttachedFile getAttachedFile(int no) throws Exception {
-    return boardDao.findFileByNo(no);
-  }
-
-  @Override
-  public boolean deleteAttachedFile(int fileNo) throws Exception {
-    return boardDao.deleteFile(fileNo) > 0;
   }
 
   //////////

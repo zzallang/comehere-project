@@ -1,15 +1,9 @@
 package com.bitcamp.testproject.web.controller;
 
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 import javax.servlet.ServletContext;
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpSession;
-import javax.servlet.http.Part;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,7 +14,6 @@ import com.bitcamp.testproject.service.PartyService;
 import com.bitcamp.testproject.service.RegionService;
 import com.bitcamp.testproject.service.ReviewService;
 import com.bitcamp.testproject.service.SportsService;
-import com.bitcamp.testproject.vo.AttachedFile;
 import com.bitcamp.testproject.vo.Criteria;
 import com.bitcamp.testproject.vo.Member;
 import com.bitcamp.testproject.vo.PageMaker;
@@ -88,11 +81,7 @@ public class PartyController {
   public String add(
       Party party,
       PartyMember partyMember,
-      Part[] files,
       HttpSession session) throws Exception {
-    if (files != null) {
-      party.setAttachedFiles(savePartyAttachedFiles(files));
-    }
     party.setUser((Member) session.getAttribute("loginMember"));
 
     partyService.add(party, partyMember);
@@ -109,22 +98,6 @@ public class PartyController {
     return "redirect:list";
   }
 
-  private List<AttachedFile> savePartyAttachedFiles(Part[] files)
-      throws IOException, ServletException {
-    List<AttachedFile> attachedFiles = new ArrayList<>();
-    String dirPath = sc.getRealPath("/party/files");
-
-    for (Part part : files) {
-      if (part.getSize() == 0) {
-        continue;
-      }
-
-      String filename = UUID.randomUUID().toString();
-      part.write(dirPath + "/" + filename);
-      attachedFiles.add(new AttachedFile(filename));
-    }
-    return attachedFiles;
-  }
 
   @GetMapping("list")
   public void list(Criteria cri, Model model) throws Exception {
@@ -164,15 +137,23 @@ public class PartyController {
 
   @SuppressWarnings({"rawtypes", "unchecked"})
   @GetMapping("detail")
-  public Map detail(int no, Model model) throws Exception {
+  public Map detail(int no, Model model, Criteria cri) throws Exception {
+
+    // 페이징하기 위한 연산 
+    PageMaker pageMaker = new PageMaker();
+    cri.setPerPageNum(15);
+    pageMaker.setCri(cri);
+    pageMaker.setTotalCount(partyCommentService.countCommentListTotal(no));
+
+
     Party party = partyService.get(no);
     if (party == null) {
       throw new Exception("해당 번호의 모임이 없습니다!");
     }
     Map map = new HashMap();
     map.put("party", party);
-    model.addAttribute("comments", partyCommentService.list(no));
     model.addAttribute("reviews", reviewService.list(no));
+    model.addAttribute("pageMaker", pageMaker);
     return map;
   }
 
@@ -192,12 +173,8 @@ public class PartyController {
   @PostMapping("update")
   public String update(
       Party party,
-      Part[] files,
       HttpSession session) 
           throws Exception {
-    if (files != null) {
-      party.setAttachedFiles(savePartyAttachedFiles(files));
-    }
     checkOwner(party.getNo(), session);
     if (!partyService.update(party)) {
       throw new Exception("모임을 변경할 수 없습니다!");
@@ -222,40 +199,6 @@ public class PartyController {
       throw new Exception("모임을 삭제할 수 없습니다.");
     }
     return "redirect:list";
-  }
-
-  @GetMapping("fileDelete")
-  public String fileDelete(
-      int no,
-      HttpSession session) 
-          throws Exception {
-
-    AttachedFile attachedFile = partyService.getAttachedFile(no); 
-
-    Member loginMember = (Member) session.getAttribute("loginMember");
-    Party party = partyService.get(attachedFile.getObjectNo()); 
-
-    if (party.getUser().getNo() != loginMember.getNo()) {
-      throw new Exception("모임 주최자가 아닙니다.");
-    }
-
-    if (!partyService.deleteAttachedFile(no)) {
-      throw new Exception("모임 첨부파일을 삭제할 수 없습니다.");
-    }
-
-    return "redirect:detail?no=" + party.getNo();
-  }
-
-
-
-  @GetMapping("naver")
-  public void naver(Model model) throws Exception {
-
-  }
-
-  @GetMapping("kakao")
-  public void kakao(Model model) throws Exception {
-
   }
 
 }

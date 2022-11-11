@@ -479,7 +479,7 @@
         <div class="login-bt">
           <ul>
             <li data-th-if="${session.loginMember == null}"><a href="../auth/form" >로그인</a></li>
-            <li class="loginId" th:id="${session.loginMember.no}" data-th-if="${session.loginMember != null}"><a href="../member/viewer">마이페이지</a></li>
+            <li data-th-if="${session.loginMember != null}"><a href="../member/viewer">마이페이지</a></li>
             <li data-th-if="${session.loginMember != null}"><a href="../auth/logout" data-th-text="${session.loginMember.name} + '(로그아웃)'">동동(로그아웃)</a></li>
           </ul>
         </div>
@@ -531,7 +531,6 @@
         </div>
         <div class="party_detail_content_r">
           <div>
-            <input type="hidden" data-th-value="${party.no}" id="partyNo">
             <h3 data-th-text='${party.title}'></h3>
           </div>
           <div>
@@ -573,7 +572,49 @@
             <input type="radio" name="tab" id="tab-3" >
             <button class="party_detail_button_r" onclick = "location.href = 'list' ">목록</button>
             <button class="party_detail_button_r" onclick = "location.href = '#' ">top</button>
-            
+            <!-- 댓글 블록 시작 -->
+            <div class="tab-item party_detail_bottom_content"> 
+              <th:block th:each="comment : ${comments}">
+                <div class="party_detail_bottom_comment">
+                  <div class="party_detail_comment_img">
+                    <p th:text="${comment.writer.filepath}"></p>
+                  </div>
+                  <div class="party_detail_comment_format">
+                    <p th:text="${comment.writer.nickname}"></p>
+                    <p th:text="${comment.content}"></p>
+                    <p th:text="${comment.createdDate}"></p>
+                  </div>
+                  <div class="party_detail_buttons">
+                    <button th:if="${session.loginMember} != null and ${session.loginMember.no} == ${comment.writer.no}" class="party_detail_button_r" type="button" onclick="location.href='#'">삭제</button>
+                    <button th:if="${session.loginMember} != null and ${session.loginMember.no} == ${comment.writer.no}" class="party_detail_button_r" type="button" onclick="location.href='#'">수정</button>
+                    <button th:if="${session.loginMember} != null and ${session.loginMember.no} != ${comment.writer.no}" class="dololr_text_tatlle" type="button" onclick="location.href='#'">신고</button>
+                  </div>
+                </div>
+              </th:block>
+              <div class="party_detail_bottom_comment">
+                <div class="party_detail_comment_img">
+                  <p th:if="${session.loginMember} != null" th:text="${session.loginMember.filepath}">loginMember.filepath</p>
+                </div>
+                <div class="party_detail_comment_format">
+                  <p th:if="${session.loginMember} != null" th:text="${session.loginMember.nickname}">loginMember.nickname</p>
+                  <form action='add' method="post">
+                  <table border='1'>
+                    <tr>
+                      <th>댓글 입력</th><td><textarea rows='10' cols='60'></textarea></td>
+                    </tr>
+                  </table>
+                  <p>
+                    <button th:if="${session.loginMember} != null" type='submit' onclick="location.href='#'">등록</button>
+                    <button th:if="${session.loginMember} == null" type='submit' onclick="location.href='../auth/form'">등록</button>
+                  </p>
+                  </form>
+                </div>
+              </div>
+            </div> 
+            <!-- 댓글 블록 끝 -->
+
+
+
              <!-- 댓글 블록 시작 -->
             <div>
               <h2>댓글</h2>
@@ -745,46 +786,16 @@
 <!-- 댓글 시작 -->
 <script>
 
-
-const partyNo = $("#partyNo").val();
-const memberNo = $('#memberNo').val();
-const lastPageNo = document.getElementsByClassName('page-link').length;
-
-let loginMemberNo = -1;
-if($(".loginId").attr("id") != undefined) {
- loginMemberNo = $(".loginId").attr("id");
-};
-
-// 처음 페이지 로드했을 때 마지막 댓글 페이지가 보이게 셋팅
-// 그 후 페이징 버튼 클릭 후 이벤트 제어를 위한 페이지 번호 셋팅
-let pageNo = lastPageNo;
-function getId(pageId) {
-  pageNo = pageId.replace('pageNo', '')
-  commentList();
-} 
-
-document.getElementById('commetButton').addEventListener('click', insertAndReplay);
-// 댓글을 등록했을 때 한 페이지에 보일수 있는 댓글수 초과 시(현재 15개) 페이지 reload()
-document.getElementById('commetButton').addEventListener('click', countComment); 
-function countComment() {
-  var count = document.getElementsByClassName('commentArea').length;
-  if (count == 15) {
-    window.location.reload();
-  }
-};
-
-
 $(document).ready(function(){
     commentList(); //페이지 로딩시 댓글 목록 출력 
 });
 
-
 // 댓글 목록 
 function commentList(){
   $.ajax({
-    url : '/app/partyComment/list',
+    url : '/app/boardComment/list',
     type : 'get',
-    data : {partyNo: partyNo,
+    data : {boardNo: boardNo,
             pageNo: pageNo
             },
     success : function(result){
@@ -796,12 +807,7 @@ function commentList(){
               a += '<a onclick="commentUpdate(' + value.no + ',\'' + value.content + '\');"> 수정 </a>';
               a += '<a onclick="commentDelete('+value.no+');"> 삭제 </a>';
             }
-            if (loginMemberNo != value.writer.no && loginMemberNo != -1) {
-                a += '<a onclick="commentComplain('+value.no+');"> 신고 </a> </div>';
-            }
-            if (loginMemberNo == -1) {
-                a += '<a onclick="commentComplain('+value.no+');"> 신고 </a> </div>';
-            }
+            a += '<a onclick="commentComplain('+value.no+');"> 신고 </a> </div>';
             a += '<div class="commentContent'+value.no+'"> <p> 내용 : '+value.content +'</p>';
             a += '</div></div>';
         });
@@ -814,10 +820,10 @@ function commentList(){
   // 댓글 등록
   function insertAndReplay(){
     $.ajax({
-      url : "/app/partyComment/insertAndReplay",
+      url : "/app/boardComment/insertAndReplay",
       data : {
         content : $("#commentCont").val(),
-        partyNo : partyNo,
+        boardNo : boardNo,
         memberNo : memberNo
       },
       type : "post",
@@ -834,7 +840,7 @@ function commentList(){
   function commentDelete(no){
       console.log("댓글삭제 호출됨!!");
       $.ajax({
-          url : '/app/partyComment/delete/'+no,
+          url : '/app/boardComment/delete/'+no,
           type : 'post',
           success : function(result){
               if(result == 1) commentList(); //댓글 삭제후 목록 출력 
@@ -857,7 +863,7 @@ function commentList(){
   function commentUpdateProc(commentNo){
       var updateContent = $('[name=content_'+commentNo+']').val();
       $.ajax({
-          url : '/app/partyComment/update',
+          url : '/app/boardComment/update',
           type : 'post',
           data : { 
             'content' : updateContent, 

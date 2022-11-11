@@ -4,9 +4,6 @@ DROP TABLE IF EXISTS member RESTRICT;
 -- 게시글
 DROP TABLE IF EXISTS board RESTRICT;
 
--- 첨부파일
-DROP TABLE IF EXISTS board_file RESTRICT;
-
 -- 운동 분류
 DROP TABLE IF EXISTS sports RESTRICT;
 
@@ -40,9 +37,6 @@ DROP TABLE IF EXISTS favorite_sport RESTRICT;
 -- 모임참여명단
 DROP TABLE IF EXISTS party_members RESTRICT;
 
--- 모임 첨부파일
-DROP TABLE IF EXISTS party_file RESTRICT;
-
 -- 모임후기 첨부파일
 DROP TABLE IF EXISTS party_review_file RESTRICT;
 
@@ -67,9 +61,6 @@ DROP TABLE IF EXISTS board_category RESTRICT;
 -- 게시글 댓글신고
 DROP TABLE IF EXISTS board_comment_tatlle RESTRICT;
 
--- 공지사항 첨부파일
-DROP TABLE IF EXISTS notice_file RESTRICT;
-
 -- 신고사유 카테고리
 DROP TABLE IF EXISTS tatlle_reason RESTRICT;
 
@@ -87,7 +78,7 @@ CREATE TABLE member (
   email    VARCHAR(40)  NOT NULL COMMENT '이메일', -- 이메일
   pwd      VARCHAR(100) NOT NULL COMMENT '암호', -- 암호
   nick     VARCHAR(255) NOT NULL COMMENT '닉네임', -- 닉네임
-  tel      VARCHAR(20)  NOT NULL COMMENT '휴대전화', -- 휴대전화
+  tel      INTEGER      NOT NULL COMMENT '휴대전화', -- 휴대전화
   bday     DATE         NOT NULL COMMENT '생년월일', -- 생년월일
   sex      BOOLEAN      NOT NULL COMMENT '성별', -- 성별
   filepath VARCHAR(255) NULL     COMMENT '파일경로', -- 파일경로
@@ -133,14 +124,15 @@ ALTER TABLE member
 
 -- 게시글
 CREATE TABLE board (
-  bno    INTEGER      NOT NULL COMMENT '게시글번호', -- 게시글번호
-  cateno INTEGER      NOT NULL COMMENT '게시글카테고리번호', -- 게시글카테고리번호
-  mno    INTEGER      NOT NULL COMMENT '회원번호', -- 회원번호
-  title  VARCHAR(255) NOT NULL COMMENT '제목', -- 제목
-  act    BOOLEAN      NOT NULL DEFAULT 1 COMMENT '활성화여부', -- 활성화여부
-  cont   MEDIUMTEXT   NOT NULL COMMENT '내용', -- 내용
-  cdt    DATETIME     NOT NULL DEFAULT now() COMMENT '등록일', -- 등록일
-  vw_cnt INTEGER      NOT NULL DEFAULT 0 COMMENT '조회수' -- 조회수
+  bno       INTEGER      NOT NULL COMMENT '게시글번호', -- 게시글번호
+  cateno    INTEGER      NOT NULL COMMENT '게시글카테고리번호', -- 게시글카테고리번호
+  mno       INTEGER      NOT NULL COMMENT '회원번호', -- 회원번호
+  title     VARCHAR(255) NOT NULL COMMENT '제목', -- 제목
+  act       BOOLEAN      NOT NULL DEFAULT 1 COMMENT '활성화여부', -- 활성화여부
+  cont      MEDIUMTEXT   NOT NULL COMMENT '내용', -- 내용
+  cdt       DATETIME     NOT NULL DEFAULT now() COMMENT '등록일', -- 등록일
+  vw_cnt    INTEGER      NOT NULL DEFAULT 0 COMMENT '조회수', -- 조회수
+  thumbnail VARCHAR(255) NULL     COMMENT '썸네일' -- 썸네일
 )
 COMMENT '게시글';
 
@@ -153,24 +145,6 @@ ALTER TABLE board
 
 ALTER TABLE board
   MODIFY COLUMN bno INTEGER NOT NULL AUTO_INCREMENT COMMENT '게시글번호';
-
--- 첨부파일
-CREATE TABLE board_file (
-  bfno     INTEGER      NOT NULL COMMENT '첨부파일번호', -- 첨부파일번호
-  filepath VARCHAR(255) NOT NULL COMMENT '파일경로', -- 파일경로
-  bno      INTEGER      NOT NULL COMMENT '게시글번호' -- 게시글번호
-)
-COMMENT '첨부파일';
-
--- 첨부파일
-ALTER TABLE board_file
-  ADD CONSTRAINT PK_board_file -- 첨부파일 기본키
-    PRIMARY KEY (
-      bfno -- 첨부파일번호
-    );
-
-ALTER TABLE board_file
-  MODIFY COLUMN bfno INTEGER NOT NULL AUTO_INCREMENT COMMENT '첨부파일번호';
 
 -- 운동 분류
 CREATE TABLE sports (
@@ -215,16 +189,21 @@ ALTER TABLE region
 
 -- 모임
 CREATE TABLE party (
-  pno     INTEGER      NOT NULL COMMENT '모임 일련번호', -- 모임 일련번호
-  rno     INTEGER      NOT NULL COMMENT '지역일련번호', -- 지역일련번호
-  sno     INTEGER      NOT NULL COMMENT '운동일련번호', -- 운동일련번호
-  title   VARCHAR(255) NOT NULL COMMENT '제목', -- 제목
-  act     BOOLEAN      NOT NULL DEFAULT 1 COMMENT '활성화여부', -- 활성화여부
-  cont    MEDIUMTEXT   NOT NULL COMMENT '내용', -- 내용
-  cdt     DATETIME     NOT NULL DEFAULT now() COMMENT '등록일', -- 등록일
-  headcnt INTEGER      NOT NULL COMMENT '정원', -- 정원
-  ptime   TIME         NOT NULL COMMENT '모임시간', -- 모임시간
-  pdate   DATE         NOT NULL COMMENT '모임일' -- 모임일
+  pno        INTEGER      NOT NULL COMMENT '모임 일련번호', -- 모임 일련번호
+  rno        INTEGER      NOT NULL COMMENT '지역일련번호', -- 지역일련번호
+  sno        INTEGER      NOT NULL COMMENT '운동일련번호', -- 운동일련번호
+  title      VARCHAR(255) NOT NULL COMMENT '제목', -- 제목
+  act        BOOLEAN      NOT NULL DEFAULT 1 COMMENT '활성화여부', -- 활성화여부
+  cont       MEDIUMTEXT   NOT NULL COMMENT '내용', -- 내용
+  cdt        DATETIME     NOT NULL DEFAULT now() COMMENT '등록일', -- 등록일
+  headcnt    INTEGER      NOT NULL COMMENT '정원', -- 정원
+  ptime      TIME         NOT NULL COMMENT '모임시간', -- 모임시간
+  pdate      DATE         NOT NULL COMMENT '모임일', -- 모임일
+  mapName    VARCHAR(255) NOT NULL COMMENT '장소명', -- 장소명
+  mapAddress VARCHAR(255) NOT NULL COMMENT '장소주소', -- 장소주소
+  lat        VARCHAR(255) NOT NULL COMMENT '위도', -- 위도
+  lng        VARCHAR(255) NOT NULL COMMENT '경도', -- 경도
+  thumbnail  VARCHAR(255) NULL     COMMENT '썸네일' -- 썸네일
 )
 COMMENT '모임';
 
@@ -411,24 +390,6 @@ ALTER TABLE party_members
       pno  -- 모임 일련번호
     );
 
--- 모임 첨부파일
-CREATE TABLE party_file (
-  pfno     INTEGER      NOT NULL COMMENT '모임첨부번호', -- 모임첨부번호
-  filepath VARCHAR(255) NOT NULL COMMENT '파일경로', -- 파일경로
-  pno      INTEGER      NOT NULL COMMENT '모임 일련번호' -- 모임 일련번호
-)
-COMMENT '모임 첨부파일';
-
--- 모임 첨부파일
-ALTER TABLE party_file
-  ADD CONSTRAINT PK_party_file -- 모임 첨부파일 기본키
-    PRIMARY KEY (
-      pfno -- 모임첨부번호
-    );
-
-ALTER TABLE party_file
-  MODIFY COLUMN pfno INTEGER NOT NULL AUTO_INCREMENT COMMENT '모임첨부번호';
-
 -- 모임후기 첨부파일
 CREATE TABLE party_review_file (
   prfno    INTEGER      NOT NULL COMMENT '모임후기첨부번호', -- 모임후기첨부번호
@@ -586,21 +547,6 @@ ALTER TABLE board_comment_tatlle
 ALTER TABLE board_comment_tatlle
   MODIFY COLUMN bctno INTEGER NOT NULL AUTO_INCREMENT COMMENT '신고번호';
 
--- 공지사항 첨부파일
-CREATE TABLE notice_file (
-  nfno     INTEGER      NOT NULL COMMENT '첨부파일번호', -- 첨부파일번호
-  filepath VARCHAR(255) NOT NULL COMMENT '파일경로', -- 파일경로
-  nno      INTEGER      NULL     COMMENT '게시글번호' -- 게시글번호
-)
-COMMENT '공지사항 첨부파일';
-
--- 공지사항 첨부파일
-ALTER TABLE notice_file
-  ADD CONSTRAINT PK_notice_file -- 공지사항 첨부파일 기본키
-    PRIMARY KEY (
-      nfno -- 첨부파일번호
-    );
-
 -- 신고사유 카테고리
 CREATE TABLE tatlle_reason (
   trno   INTEGER      NOT NULL COMMENT '신고사유번호', -- 신고사유번호
@@ -666,16 +612,6 @@ ALTER TABLE board
     )
     REFERENCES board_category ( -- 게시글카테고리
       cateno -- 게시글카테고리번호
-    );
-
--- 첨부파일
-ALTER TABLE board_file
-  ADD CONSTRAINT FK_board_TO_board_file -- 게시글 -> 첨부파일
-    FOREIGN KEY (
-      bno -- 게시글번호
-    )
-    REFERENCES board ( -- 게시글
-      bno -- 게시글번호
     );
 
 -- 모임
@@ -808,16 +744,6 @@ ALTER TABLE party_members
     )
     REFERENCES party_status ( -- 신청처리
       psno -- 신청처리번호
-    );
-
--- 모임 첨부파일
-ALTER TABLE party_file
-  ADD CONSTRAINT FK_party_TO_party_file -- 모임 -> 모임 첨부파일
-    FOREIGN KEY (
-      pno -- 모임 일련번호
-    )
-    REFERENCES party ( -- 모임
-      pno -- 모임 일련번호
     );
 
 -- 모임후기 첨부파일
@@ -970,16 +896,6 @@ ALTER TABLE board_comment_tatlle
       trno -- 신고사유번호
     );
 
--- 공지사항 첨부파일
-ALTER TABLE notice_file
-  ADD CONSTRAINT FK_notice_TO_notice_file -- 공지사항 -> 공지사항 첨부파일
-    FOREIGN KEY (
-      nno -- 게시글번호
-    )
-    REFERENCES notice ( -- 공지사항
-      nno -- 게시글번호
-    );
-
 -- 모임 댓글신고
 ALTER TABLE party_comment_tatlle
   ADD CONSTRAINT FK_party_comment_TO_party_comment_tatlle -- 모임 댓글 -> 모임 댓글신고
@@ -1009,3 +925,4 @@ ALTER TABLE party_comment_tatlle
     REFERENCES member ( -- 회원
       mno -- 회원번호
     );
+    

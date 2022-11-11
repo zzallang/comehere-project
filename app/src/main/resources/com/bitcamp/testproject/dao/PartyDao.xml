@@ -15,6 +15,10 @@
     <result column="pdate" property="partyDate"/>
     <result column="star" property="star"/>
     <result column="thumbnail" property="thumbnail"/>
+    <result column="mapName" property="mapName"/>
+    <result column="mapAddress" property="mapAddress"/>
+    <result column="lat" property="latResult"/>
+    <result column="lng" property="lngResult"/>
 
     <!-- 조인 결과에서 같은 게시글에 대해 한 개의 회원 데이터를 담을 경우 -->
     <association property="user" javaType="member">
@@ -39,19 +43,10 @@
       <result column="name" property="name"/>
     </association>
 
-    <collection property="attachedFiles" ofType="attachedFile">
-      <id column="pfno" property="no"/>
-      <result column="filepath" property="filepath"/>
-      <result column="pno" property="objectNo"/>
-    </collection>
-
   </resultMap>
   
-  <resultMap type="attachedFile" id="attachedFileMap">
-    <id column="pfno" property="no"/>
-    <result column="filepath" property="filepath"/>
-    <result column="pno" property="objectNo"/>
-  </resultMap>
+  
+  
   
   <select id="findAll" resultMap="partyMap">
     select
@@ -67,12 +62,11 @@
       (select truncate(avg(star), 1) from party_review where pno=p.pno) as star,
       r.rno,
       s.sno,
-      pf.filepath thumbnail
+      p.thumbnail
     from 
       party p
       join region r on p.rno = r.rno
       join sports s on p.sno = s.sno
-      left join party_file pf on p.pno=pf.pno
     where
       p.act = 1
     order by 
@@ -103,12 +97,11 @@
       (select truncate(avg(star), 1) from party_review where pno=p.pno) as star,
       r.rno,
       s.sno,
-      pf.filepath thumbnail
+      p.thumbnail
     from 
       party p
       join region r on p.rno = r.rno
       join sports s on p.sno = s.sno
-      left join party_file pf on p.pno=pf.pno
     where
       p.act = 1
       <if test="gu != null">
@@ -160,13 +153,16 @@
 			p.headcnt,
 			p.ptime,
 			p.pdate,
+			p.mapName,
+			p.mapAddress,
+			p.lat,
+			p.lng,
 			m.mno,
 			m.nick,
 			m.bday,
 			m.sex,
 			m.filepath,
-			pf.filepath thumbnail,
-			
+			p.thumbnail,
 		CASE
 			WHEN age < 20 THEN '10대 이하'
 			WHEN age < 30 THEN '20대'
@@ -176,13 +172,12 @@
 			WHEN age > 59 THEN '60대 이상'
 		END AS ageGroup
 		from
-			party p222222
+			party p
 			join region r on p.rno = r.rno
 			join sports s on p.sno = s.sno
 			join party_members pm on p.pno = pm.pno
 			join member m on m.mno = pm.mno
 			join (SELECT *, FLOOR(date_format(now(), '%Y')-substring(bday,1,4)) age FROM member) ag on ag.mno=m.mno
-			left join party_file pf on p.pno=pf.pno
 		where
 			pm.auth=1
 		and
@@ -199,7 +194,12 @@
       cont,
       headcnt,
       pdate,
-      ptime) 
+      ptime,
+      mapName,
+      mapAddress,
+      lat,
+      lng,
+      thumbnail) 
     values(
     #{regionNo},
     #{sportsNo},
@@ -207,15 +207,12 @@
     #{content},
     #{headCount},
     #{partyDate},
-    #{partyTime})
-  </insert>
-  
-  <insert id="insertFiles" parameterType="party">
-    insert into party_file(filepath, pno)
-    values
-    <foreach collection="attachedFiles" item="partyFile" separator=",">
-      (#{partyFile.filepath},#{no})
-    </foreach>
+    #{partyTime},
+    #{mapName},
+    #{mapAddress},
+    #{latResult},
+    #{lngResult},
+    #{thumbnail})
   </insert>
   
   <update id="update" parameterType="party">
@@ -233,27 +230,6 @@
     delete from party
     where pno=#{value}
   </delete>
-
-  <delete id="deleteFiles">
-    delete from party_file
-    where pno=#{value}
-  </delete>
-
-  <delete id="deleteFile">
-    delete from party_file
-    where pfno=#{value}
-  </delete>
-
-  <select id="findFileByNo" resultMap="attachedFileMap">
-    select
-      pfno,
-      filepath,
-      pno
-    from
-      party_file
-    where
-      pfno=#{value}
-  </select>
 
   <select id="checkOwner" resultType="int">
     select 

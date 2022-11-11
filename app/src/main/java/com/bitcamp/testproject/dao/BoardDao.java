@@ -3,7 +3,6 @@ package com.bitcamp.testproject.dao;
 import java.util.List;
 import java.util.Map;
 import org.apache.ibatis.annotations.Mapper;
-import com.bitcamp.testproject.vo.AttachedFile;
 import com.bitcamp.testproject.vo.Board;
 import com.bitcamp.testproject.vo.BoardCategory;
 import com.bitcamp.testproject.vo.Criteria;
@@ -27,7 +26,7 @@ public interface BoardDao {
 
   int update(Board board);
 
-  AttachedFile findFileByNo(int no);
+
 
   int deleteFile(int fileNo);
 

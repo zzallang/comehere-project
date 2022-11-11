@@ -1,14 +1,8 @@
 package com.bitcamp.testproject.web.controller;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 import javax.servlet.ServletContext;
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 import com.bitcamp.testproject.service.BoardService;
 import com.bitcamp.testproject.service.MemberService;
-import com.bitcamp.testproject.vo.AttachedFile;
 import com.bitcamp.testproject.vo.Board;
 import com.bitcamp.testproject.vo.Member;
 
@@ -74,46 +67,12 @@ public class MypageController {
       MultipartFile[] files,
       HttpSession session) throws Exception {
 
-    board.setAttachedFiles(saveAttachedFiles(files));
     board.setWriter((Member) session.getAttribute("loginMember"));
 
     boardService.add(board);
     return "redirect:list";
   }
 
-  private List<AttachedFile> saveAttachedFiles(Part[] files)
-      throws IOException, ServletException {
-    List<AttachedFile> attachedFiles = new ArrayList<>();
-    String dirPath = sc.getRealPath("/board/files");
-
-    for (Part part : files) {
-      if (part.getSize() == 0) {
-        continue;
-      }
-
-      String filename = UUID.randomUUID().toString();
-      part.write(dirPath + "/" + filename);
-      attachedFiles.add(new AttachedFile(filename));
-    }
-    return attachedFiles;
-  }
-
-  private List<AttachedFile> saveAttachedFiles(MultipartFile[] files)
-      throws IOException, ServletException {
-    List<AttachedFile> attachedFiles = new ArrayList<>();
-    String dirPath = sc.getRealPath("/board/files");
-
-    for (MultipartFile part : files) {
-      if (part.isEmpty()) {
-        continue;
-      }
-
-      String filename = UUID.randomUUID().toString();
-      part.transferTo(new File(dirPath + "/" + filename));
-      attachedFiles.add(new AttachedFile(filename));
-    }
-    return attachedFiles;
-  }
 
   //  @GetMapping("list")
   //  public void list(Model model, int no) throws Exception {
@@ -139,7 +98,6 @@ public class MypageController {
       HttpSession session) 
           throws Exception {
 
-    board.setAttachedFiles(saveAttachedFiles(files));
 
     checkOwner(board.getNo(), session);
 
@@ -170,31 +128,7 @@ public class MypageController {
 
     return "redirect:list";
   }
-
-  @GetMapping("fileDelete")
-  public String fileDelete(
-      int no,
-      HttpSession session) 
-          throws Exception {
-
-    AttachedFile attachedFile = boardService.getAttachedFile(no); 
-
-    Member loginMember = (Member) session.getAttribute("loginMember");
-    Board board = boardService.get(attachedFile.getObjectNo()); 
-
-    if (board.getWriter().getNo() != loginMember.getNo()) {
-      throw new Exception("게시글 작성자가 아닙니다.");
-    }
-
-    if (!boardService.deleteAttachedFile(no)) {
-      throw new Exception("게시글 첨부파일을 삭제할 수 없습니다.");
-    }
-
-    return "redirect:detail?no=" + board.getNo();
-  }
 }
-
-
 
 
 

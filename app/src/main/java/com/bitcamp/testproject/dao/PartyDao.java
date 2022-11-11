@@ -3,7 +3,6 @@ package com.bitcamp.testproject.dao;
 import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
-import com.bitcamp.testproject.vo.AttachedFile;
 import com.bitcamp.testproject.vo.Criteria;
 import com.bitcamp.testproject.vo.Party;
 
@@ -33,19 +32,9 @@ public interface PartyDao {
 
   int insert(Party party);
 
-  // 리스트 대표 사진 업로드 
-  int insertFiles(Party party);
-
   int update(Party party);
 
   int delete(int no);
-
-  // 리스트 대표사진 삭제
-  int deleteFiles(int partyNo);
-
-  int deleteFile(int fileNo);
-
-  AttachedFile findFileByNo(int fileNo);
 
   int checkOwner(int partyNo);
 

@@ -1,35 +1,34 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <body>
-                <th:block th:fragment="partyList" th:each="party : ${partys}">
-                  <div class="col-md-6 col-md-6_party_wrap">
-                     <div class="container_main_party">
-                     <a th:href="@{detail(no=${party.no})}">
-                     <img th:if="${party.thumbnail != null}"  th:src="@{'/party/files/' + ${party.thumbnail}}" alt="모임썸네일" class="list_image">
-                     <img th:if="${party.thumbnail == null}"  src="../images/img-2.png" alt="Avatar" class="list_image">
-                        <div class="overlay">
-                           <a th:href="@{detail(no=${party.no})}" class="icon" title="User Profile">
-                           <i class="fa fa-search"></i>
-                           </a>
-                        </div>
-                        </a>
-                     </div>
-                      <a th:href="@{detail(no=${party.no})}">
-                     <h3 class="temper_text_party" th:text="${party.title == ''} ? '(제목없음)' : ${party.title}">
-                     </h3>
-                     </a>
-                     
-                     <div class="container_main_party">
-                       <p class="dololr_text_region" th:text="${party.region.sido}"></p>
-                       <p class="dololr_text_region" th:text="${party.region.sigu}"></p>
-                       <p class="dololr_text_sports" th:text="${party.sports.name}"></p>
-                     </div>
-                     <span class="dololr_text_party" th:text="${party.star}"></span>
-                     <div class="container_main_party">
-                       <p class="dololr_text_datetime" th:text="${party.partyTime}"></p>
-                       <p class="dololr_text_datetime" th:text="${party.partyDate}"></p>
-                     </div>
-                  </div>
-                </th:block>
+  <th:block th:fragment="partyList" th:each="party : ${partys}">
+    <div class="col-md-6 col-md-6_party_wrap">
+      <div class="container_main_party">
+        <a th:href="@{detail(no=${party.no})}">
+        <img th:if="${party.thumbnail != null}"  th:src="@{'/party/files/' + ${party.thumbnail}}" alt="모임썸네일" class="list_image">
+        <img th:if="${party.thumbnail == null}"  src="../images/img-2.png" alt="Avatar" class="list_image">
+        <div class="overlay">
+          <a th:href="@{detail(no=${party.no})}" class="icon" title="User Profile">
+          <i class="fa fa-search"></i>
+          </a>
+        </div>
+        </a>
+      </div>
+      <a th:href="@{detail(no=${party.no})}">
+      <h3 class="temper_text_party" th:text="${party.title == ''} ? '(제목없음)' : ${party.title}">
+      </h3>
+      </a>
+      <div class="container_main_party">
+        <p class="dololr_text_region" th:text="${party.region.sido}"></p>
+        <p class="dololr_text_region" th:text="${party.region.sigu}"></p>
+        <p class="dololr_text_sports" th:text="${party.sports.name}"></p>
+      </div>
+      <span class="dololr_text_party" th:text="${party.star}"></span>
+      <div class="container_main_party">
+        <p class="dololr_text_datetime" th:text="${party.partyTime}"></p>
+        <p class="dololr_text_datetime" th:text="${party.partyDate}"></p>
+      </div>
+    </div>
+  </th:block>
 </body>
 </html>

@@ -9,11 +9,23 @@ public class Comment {
   private int objectNo;
   private String content;
   private Date createdDate;
+
+  public Comment() {}
+
+  public Comment(String content, int objectNo, int memberNo) {
+    this.content = content;
+    this.objectNo = objectNo;
+    this.writer = new Member(memberNo);
+  }
+
+
   @Override
   public String toString() {
     return "Comment [no=" + no + ", writer=" + writer + ", objectNo=" + objectNo + ", content="
         + content + ", createdDate=" + createdDate + "]";
   }
+
+
   public int getNo() {
     return no;
   }

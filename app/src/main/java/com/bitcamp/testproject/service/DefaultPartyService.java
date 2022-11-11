@@ -6,7 +6,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import com.bitcamp.testproject.dao.PartyDao;
 import com.bitcamp.testproject.dao.PartyMemberDao;
-import com.bitcamp.testproject.vo.AttachedFile;
 import com.bitcamp.testproject.vo.Criteria;
 import com.bitcamp.testproject.vo.Party;
 import com.bitcamp.testproject.vo.PartyMember;
@@ -24,11 +23,7 @@ public class DefaultPartyService implements PartyService {
   public void add(Party party, PartyMember partyMember) throws Exception {
     // 1) 모임 등록
     if (partyDao.insert(party) == 0) {
-      throw new Exception("모임 등록 실패!");
-    }
-    // 2) 첨부파일 등록
-    if (party.getAttachedFiles().size() > 0) {
-      partyDao.insertFiles(party);
+      throw new Exception("모임 등록 실!");
     }
     // 3) 파티멤버 생성(주최자 등록)
     if (party.getUserNo() == partyMember.getMemberNo()) {
@@ -58,16 +53,11 @@ public class DefaultPartyService implements PartyService {
     }
   }
 
-  @Transactional
   @Override
   public boolean update(Party party) throws Exception {
     // 1) 모임 변경
     if (partyDao.update(party) == 0) {
       return false;
-    }
-    // 2) 첨부파일 추가
-    if (party.getAttachedFiles() != null) {
-      partyDao.insertFiles(party);
     }
     return true;
   }
@@ -86,7 +76,6 @@ public class DefaultPartyService implements PartyService {
   @Override
   public boolean delete(int no) throws Exception {
     // 1) 첨부파일 삭제
-    partyDao.deleteFiles(no);
     partyMemberDao.delete(no);
     // 2) 모임 삭제
     return partyDao.delete(no) > 0;
@@ -120,15 +109,6 @@ public class DefaultPartyService implements PartyService {
     return partyDao.checkOwner(partyNo);
   }
 
-  @Override
-  public AttachedFile getAttachedFile(int fileNo) throws Exception {
-    return partyDao.findFileByNo(fileNo);
-  }
-
-  @Override
-  public boolean deleteAttachedFile(int fileNo) throws Exception {
-    return partyDao.deleteFile(fileNo) > 0;
-  }
 }
 
 

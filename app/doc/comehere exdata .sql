@@ -1,16 +1,16 @@
 -- 회원 (완료)
-INSERT INTO `member` (`mno`, `name`, `id`, `email`, `pwd`, `nick`, `tel`, `bday`, `sex`, `filepath`, `cdt`, `act`, `black`) VALUES (1, '이헌식', 'user1', 'user1@test.com', sha2('1111', 256), '혼시기', 1011111111, '1990-10-18', 1, NULL, '2022-10-18 18:25:26', 1, 0);
-INSERT INTO `member` (`mno`, `name`, `id`, `email`, `pwd`, `nick`, `tel`, `bday`, `sex`, `filepath`, `cdt`, `act`, `black`) VALUES (2, '박병민', 'user2', 'user2@test.com', sha2('1111', 256), '병민', 1022222222, '1994-08-14', 1, NULL, '2022-10-18 18:31:31', 1, 0);
-INSERT INTO `member` (`mno`, `name`, `id`, `email`, `pwd`, `nick`, `tel`, `bday`, `sex`, `filepath`, `cdt`, `act`, `black`) VALUES (3, '유제동', 'user3', 'user3@test.com', sha2('1111', 256), '제동', 103333333, '1995-05-18', 1, NULL, '2022-10-18 18:32:08', 1, 0);
-INSERT INTO `member` (`mno`, `name`, `id`, `email`, `pwd`, `nick`, `tel`, `bday`, `sex`, `filepath`, `cdt`, `act`, `black`) VALUES (4, '최종찬', 'user4', 'user4@test.com', sha2('1111', 256), '종찬', 104444444, '1991-12-01', 1, NULL, '2022-10-18 18:33:15', 1, 0);
-INSERT INTO `member` (`mno`, `name`, `id`, `email`, `pwd`, `nick`, `tel`, `bday`, `sex`, `filepath`, `cdt`, `act`, `black`) VALUES (5, '임은지', 'user5', 'user5@test.com', sha2('1111', 256), '은지', 1055555555, '1994-08-26', 0, NULL, '2022-10-18 18:35:21', 1, 0);
-INSERT INTO `member` (`mno`, `name`, `id`, `email`, `pwd`, `nick`, `tel`, `bday`, `sex`, `filepath`, `cdt`, `act`, `black`) VALUES (6, '장슬기', 'user6', 'user6@test.com', sha2('1111', 256), '슬기', 106666666, '1990-04-08', 0, NULL, '2022-10-18 18:35:48', 1, 0);
-INSERT INTO `member` (`mno`, `name`, `id`, `email`, `pwd`, `nick`, `tel`, `bday`, `sex`, `filepath`, `cdt`, `act`, `black`) VALUES (7, '장현경', 'user7', 'user7@test.com', sha2('1111', 256), '현경', 10777777, '1996-03-05', 0, NULL, '2022-10-18 18:36:16', 1, 0);
-INSERT INTO `member` (`mno`, `name`, `id`, `email`, `pwd`, `nick`, `tel`, `bday`, `sex`, `filepath`, `cdt`, `act`, `black`) VALUES (8, '황의찬', 'user8', 'user8@test.com', sha2('1111', 256), '의찬', 10888888, '1996-07-08', 1, NULL, '2022-10-18 18:37:03', 1, 0);
-INSERT INTO `member` (`mno`, `name`, `id`, `email`, `pwd`, `nick`, `tel`, `bday`, `sex`, `filepath`, `cdt`, `act`, `black`) VALUES (9, '임동현', 'user9', 'user9@test.com', sha2('1111', 256), '동현', 19898, '1990-06-19', 1, NULL, '2022-10-18 18:37:35', 1, 0);
-INSERT INTO `member` (`mno`, `name`, `id`, `email`, `pwd`, `nick`, `tel`, `bday`, `sex`, `filepath`, `cdt`, `act`, `black`) VALUES (10, '박지민', 'user10', 'user10@test.com', sha2('1111', 256), '지민', 10101010, '1999-12-31', 0, NULL, '2022-10-18 18:38:01', 1, 0);
-INSERT INTO `member` (`mno`, `name`, `id`, `email`, `pwd`, `nick`, `tel`, `bday`, `sex`, `filepath`, `cdt`, `act`, `black`) VALUES (11, '엄진영', 'user11', 'user11@test.com', sha2('1111', 256), '진영', 10101010, '1979-03-31', 1, NULL, '2022-10-18 18:38:01', 0, 1);
-INSERT INTO `member` (`mno`, `name`, `id`, `email`, `pwd`, `nick`, `tel`, `bday`, `sex`, `filepath`, `cdt`, `act`, `black`) VALUES (12, '윤인성', 'user12', 'user12@test.com', sha2('1111', 256), '인성', 10101010, '1980-10-11', 1, NULL, '2022-10-18 18:38:01', 0, 0);
+INSERT INTO `member` (`mno`, `name`, `id`, `email`, `pwd`, `nick`, `tel`, `bday`, `sex`, `filepath`, `cdt`, `act`, `black`) VALUES (1, '이헌식', 'user1', 'user1@test.com', sha2('1111', 256), '혼시기', 1011111111, '1990-10-18', 1, 'http://placeimg.com/50/50/any', '2022-10-18 18:25:26', 1, 0);
+INSERT INTO `member` (`mno`, `name`, `id`, `email`, `pwd`, `nick`, `tel`, `bday`, `sex`, `filepath`, `cdt`, `act`, `black`) VALUES (2, '박병민', 'user2', 'user2@test.com', sha2('1111', 256), '병민', 1022222222, '1994-08-14', 1, 'http://placeimg.com/50/50/any', '2022-10-18 18:31:31', 1, 0);
+INSERT INTO `member` (`mno`, `name`, `id`, `email`, `pwd`, `nick`, `tel`, `bday`, `sex`, `filepath`, `cdt`, `act`, `black`) VALUES (3, '유제동', 'user3', 'user3@test.com', sha2('1111', 256), '제동', 103333333, '1995-05-18', 1, 'http://placeimg.com/50/50/any', '2022-10-18 18:32:08', 1, 0);
+INSERT INTO `member` (`mno`, `name`, `id`, `email`, `pwd`, `nick`, `tel`, `bday`, `sex`, `filepath`, `cdt`, `act`, `black`) VALUES (4, '최종찬', 'user4', 'user4@test.com', sha2('1111', 256), '종찬', 104444444, '1991-12-01', 1, 'http://placeimg.com/50/50/any', '2022-10-18 18:33:15', 1, 0);
+INSERT INTO `member` (`mno`, `name`, `id`, `email`, `pwd`, `nick`, `tel`, `bday`, `sex`, `filepath`, `cdt`, `act`, `black`) VALUES (5, '임은지', 'user5', 'user5@test.com', sha2('1111', 256), '은지', 1055555555, '1994-08-26', 0, 'http://placeimg.com/50/50/any', '2022-10-18 18:35:21', 1, 0);
+INSERT INTO `member` (`mno`, `name`, `id`, `email`, `pwd`, `nick`, `tel`, `bday`, `sex`, `filepath`, `cdt`, `act`, `black`) VALUES (6, '장슬기', 'user6', 'user6@test.com', sha2('1111', 256), '슬기', 106666666, '1990-04-08', 0, 'http://placeimg.com/50/50/any', '2022-10-18 18:35:48', 1, 0);
+INSERT INTO `member` (`mno`, `name`, `id`, `email`, `pwd`, `nick`, `tel`, `bday`, `sex`, `filepath`, `cdt`, `act`, `black`) VALUES (7, '장현경', 'user7', 'user7@test.com', sha2('1111', 256), '현경', 10777777, '1996-03-05', 0, 'http://placeimg.com/50/50/any', '2022-10-18 18:36:16', 1, 0);
+INSERT INTO `member` (`mno`, `name`, `id`, `email`, `pwd`, `nick`, `tel`, `bday`, `sex`, `filepath`, `cdt`, `act`, `black`) VALUES (8, '황의찬', 'user8', 'user8@test.com', sha2('1111', 256), '의찬', 10888888, '1996-07-08', 1, 'http://placeimg.com/50/50/any', '2022-10-18 18:37:03', 1, 0);
+INSERT INTO `member` (`mno`, `name`, `id`, `email`, `pwd`, `nick`, `tel`, `bday`, `sex`, `filepath`, `cdt`, `act`, `black`) VALUES (9, '임동현', 'user9', 'user9@test.com', sha2('1111', 256), '동현', 19898, '1990-06-19', 1, 'http://placeimg.com/50/50/any', '2022-10-18 18:37:35', 1, 0);
+INSERT INTO `member` (`mno`, `name`, `id`, `email`, `pwd`, `nick`, `tel`, `bday`, `sex`, `filepath`, `cdt`, `act`, `black`) VALUES (10, '박지민', 'user10', 'user10@test.com', sha2('1111', 256), '지민', 10101010, '1999-12-31', 0, 'http://placeimg.com/50/50/any', '2022-10-18 18:38:01', 1, 0);
+INSERT INTO `member` (`mno`, `name`, `id`, `email`, `pwd`, `nick`, `tel`, `bday`, `sex`, `filepath`, `cdt`, `act`, `black`) VALUES (11, '엄진영', 'user11', 'user11@test.com', sha2('1111', 256), '진영', 10101010, '1979-03-31', 1, 'http://placeimg.com/50/50/any', '2022-10-18 18:38:01', 0, 1);
+INSERT INTO `member` (`mno`, `name`, `id`, `email`, `pwd`, `nick`, `tel`, `bday`, `sex`, `filepath`, `cdt`, `act`, `black`) VALUES (12, '윤인성', 'user12', 'user12@test.com', sha2('1111', 256), '인성', 10101010, '1980-10-11', 1, 'http://placeimg.com/50/50/any', '2022-10-18 18:38:01', 0, 0);
 
 -- 지역 (완료)
 INSERT INTO `region` (`rno`, `sido`, `sigu`) VALUES (1, '서울시', '종로구');
@@ -98,25 +98,25 @@ INSERT INTO `tatlle_reason` (`trno`, `reason`) VALUES (6, '기타 사이트 목�
 
 -- 병민 
 -- 모임 (완료)
-INSERT INTO `party` (`pno`, `rno`, `sno`, `title`, `act`, `cont`, `cdt`, `headcnt`, `ptime`, `pdate`) VALUES (1, 1, 1, '종로 3대 파티원모집함', 1, '3대측정할 파티원모집함', '2022-09-09 09:09:00', 5, '11:00:00', '2022-09-16');
-INSERT INTO `party` (`pno`, `rno`, `sno`, `title`, `act`, `cont`, `cdt`, `headcnt`, `ptime`, `pdate`) VALUES (2, 1, 2, '클라이밍가실분', 1, '종로 동동이클라이밍장 좋아요 커몬요!', '2022-09-11 11:21:00', 5, '18:00:00', '2022-09-20');
-INSERT INTO `party` (`pno`, `rno`, `sno`, `title`, `act`, `cont`, `cdt`, `headcnt`, `ptime`, `pdate`) VALUES (3, 1, 3, '배드민턴 치실분?', 1, '종로쪽 공원에서 쳐요!', '2022-09-11 12:40:00', 4, '16:00:00', '2022-11-22');
-INSERT INTO `party` (`pno`, `rno`, `sno`, `title`, `act`, `cont`, `cdt`, `headcnt`, `ptime`, `pdate`) VALUES (4, 2, 2, '중구서 축구하십시더! ', 1, '축구 할 사람(최소풋살 할 사람)만큼 인원 구해봐요!', '2022-09-13 04:34:00', 10, '20:00:00', '2022-11-06');
-INSERT INTO `party` (`pno`, `rno`, `sno`, `title`, `act`, `cont`, `cdt`, `headcnt`, `ptime`, `pdate`) VALUES (5, 3, 3, '러닝 고고', 1, '신나게 달려보시져 ', '2022-09-13 08:04:00', 6, '13:00:00', '2022-10-06');
-INSERT INTO `party` (`pno`, `rno`, `sno`, `title`, `act`, `cont`, `cdt`, `headcnt`, `ptime`, `pdate`) VALUES (6, 4, 4, '축구 멤버구해요(골키퍼x)', 1, '골키퍼는 제가 하고, 다른 포지션 구합니다.', '2022-09-14 09:00:00', 8, '15:00:00', '2022-11-23');
-INSERT INTO `party` (`pno`, `rno`, `sno`, `title`, `act`, `cont`, `cdt`, `headcnt`, `ptime`, `pdate`) VALUES (7, 5, 5, '농구 2:2 하실분', 1, '간단하게 2:2로 농구 하러 오시죠', '2022-09-15 23:30:00', 4, '16:00:00', '2022-11-06');
-INSERT INTO `party` (`pno`, `rno`, `sno`, `title`, `act`, `cont`, `cdt`, `headcnt`, `ptime`, `pdate`) VALUES (8, 6, 6, '스크린 골프 하러갈 분들!!', 1, '스크린 골프 재밌게 배워볼 또래분들 구해요. 저도 여자인데, 남자분들 보단 여자분들 많이 와주세용.', '2022-09-16 15:01:00', 4, '19:00:00', '2022-10-29');
-INSERT INTO `party` (`pno`, `rno`, `sno`, `title`, `act`, `cont`, `cdt`, `headcnt`, `ptime`, `pdate`) VALUES (9, 6, 2, '클라이밍 지구력 연습 모임', 1, '지구력 테스트 같이 해보고 싶은데, 고민이신분들! 다같이 모여서 연습해봐요.', '2022-10-06 11:11:00', 8, '10:00:00', '2022-12-06');
-INSERT INTO `party` (`pno`, `rno`, `sno`, `title`, `act`, `cont`, `cdt`, `headcnt`, `ptime`, `pdate`) VALUES (10, 6, 3, '배드민턴 간단하게 치실 분?', 1, '동대문구 근처 사시는 분 신청 주세요~', '2022-10-06 13:20:00', 2, '09:00:00', '2022-11-04');
-INSERT INTO `party` (`pno`, `rno`, `sno`, `title`, `act`, `cont`, `cdt`, `headcnt`, `ptime`, `pdate`) VALUES (11, 6, 1, '헬스 유산소 같이 해요.', 1, '동대문 쪽 새로 생긴 헬스장에서 유산소 하실 분들 모여요!! 헬린이도 가능!', '2022-10-06 21:03:20', 4, '14:00:00', '2022-10-30');
-INSERT INTO `party` (`pno`, `rno`, `sno`, `title`, `act`, `cont`, `cdt`, `headcnt`, `ptime`, `pdate`) VALUES (12, 7, 7, '탁구 혼성으로 쳐요.', 1, '중랑쪽에 같이 할 커플분 오세용 ㅎㅎ', '2022-10-08 06:55:00', 4, '14:00:00', '2022-10-25');
-INSERT INTO `party` (`pno`, `rno`, `sno`, `title`, `act`, `cont`, `cdt`, `headcnt`, `ptime`, `pdate`) VALUES (13, 8, 5, '농구 간단하게 할 분들 있나요?', 1, '저녁에 간단하게 할 분들 편하게 와주세요.', '2022-10-11 22:40:00', 8, '20:00:00', '2022-10-19');
-INSERT INTO `party` (`pno`, `rno`, `sno`, `title`, `act`, `cont`, `cdt`, `headcnt`, `ptime`, `pdate`) VALUES (14, 9, 9, '러닝팸 모아요!! 런린이도 컴온!', 1, '런린이 분들도 편하게 들어오세요! 자주 모임 만들고 있어요 ㅎㅎ', '2022-10-12 11:07:00', 15, '19:00:00', '2022-10-28');
-INSERT INTO `party` (`pno`, `rno`, `sno`, `title`, `act`, `cont`, `cdt`, `headcnt`, `ptime`, `pdate`) VALUES (15, 1, 6, '골프 치러 갈 사람 모여라~', 1, '골프 관심 있으신분들 신청 주세요, 종로 쪽에서 진행할 예정입니다!', '2022-10-16 17:30:00', 6, '16:00:00', '2022-10-18');
-INSERT INTO `party` (`pno`, `rno`, `sno`, `title`, `act`, `cont`, `cdt`, `headcnt`, `ptime`, `pdate`) VALUES (16, 9, 9, '러닝팸 모아요!! 런린이도 대환영!', 1, '런린이 분들도 편하게 들어오세요! 지난 모임도 신규 유입 많았습니당 ㅎㅎㅎㅎ', '2022-10-18 17:30:00', 6, '17:00:00', '2022-10-27');
-INSERT INTO `party` (`pno`, `rno`, `sno`, `title`, `act`, `cont`, `cdt`, `headcnt`, `ptime`, `pdate`) VALUES (17, 1, 2, '클라이밍가실분~~', 1, '종로 동동이클라이밍장 갈 사람 맘편히 신청하세요. 커몬요!', '2022-10-18 11:21:00', 5, '19:00:00', '2022-10-20');
-INSERT INTO `party` (`pno`, `rno`, `sno`, `title`, `act`, `cont`, `cdt`, `headcnt`, `ptime`, `pdate`) VALUES (18, 5, 5, '농구 배울 여성분 ㅎ', 0, '농구 배우고 싶은 여성 분  신청 주세요^^', '2022-10-18 11:21:00', 2, '19:00:00', '2022-10-20');
-INSERT INTO `party` (`pno`, `rno`, `sno`, `title`, `act`, `cont`, `cdt`, `headcnt`, `ptime`, `pdate`) VALUES (19, 3, 3, '배드민턴 짝궁 구해요~~', 0, '좀 치는 사람 와요,, 못하는 사람 은 좀 뒤로 꺼지시고.. ㅎ ', '2022-10-18 11:21:00', 2, '19:00:00', '2022-10-20');
+INSERT INTO `party` (`pno`, `rno`, `sno`, `title`, `act`, `cont`, `cdt`, `headcnt`, `ptime`, `pdate`, `mapName`, `mapAddress`, `lat`, `lng`) VALUES (1, 1, 1, '종로 3대 파티원모집함', 1, '3대측정할 파티원모집함', '2022-09-09 09:09:00', 5, '11:00:00', '2022-09-16', 'title3', '서울시 강남구 강남대로123길', '37.57363585428211', '127.000606756705');
+INSERT INTO `party` (`pno`, `rno`, `sno`, `title`, `act`, `cont`, `cdt`, `headcnt`, `ptime`, `pdate`, `mapName`, `mapAddress`, `lat`, `lng`) VALUES (2, 1, 2, '클라이밍가실분', 1, '종로 동동이클라이밍장 좋아요 커몬요!', '2022-09-11 11:21:00', 5, '18:00:00', '2022-09-20', 'title3', '서울시 강남구 강남대로123길', '37.57363585428211', '127.000606756705');
+INSERT INTO `party` (`pno`, `rno`, `sno`, `title`, `act`, `cont`, `cdt`, `headcnt`, `ptime`, `pdate`, `mapName`, `mapAddress`, `lat`, `lng`) VALUES (3, 1, 3, '배드민턴 치실분?', 1, '종로쪽 공원에서 쳐요!', '2022-09-11 12:40:00', 4, '16:00:00', '2022-11-22', 'title3', '서울시 강남구 강남대로123길', '37.57363585428211', '127.000606756705');
+INSERT INTO `party` (`pno`, `rno`, `sno`, `title`, `act`, `cont`, `cdt`, `headcnt`, `ptime`, `pdate`, `mapName`, `mapAddress`, `lat`, `lng`) VALUES (4, 2, 2, '중구서 축구하십시더! ', 1, '축구 할 사람(최소풋살 할 사람)만큼 인원 구해봐요!', '2022-09-13 04:34:00', 10, '20:00:00', '2022-11-06', 'title3', '서울시 강남구 강남대로123길', '37.57363585428211', '127.000606756705');
+INSERT INTO `party` (`pno`, `rno`, `sno`, `title`, `act`, `cont`, `cdt`, `headcnt`, `ptime`, `pdate`, `mapName`, `mapAddress`, `lat`, `lng`) VALUES (5, 3, 3, '러닝 고고', 1, '신나게 달려보시져 ', '2022-09-13 08:04:00', 6, '13:00:00', '2022-10-06', 'title3', '서울시 강남구 강남대로123길', '37.57363585428211', '127.000606756705');
+INSERT INTO `party` (`pno`, `rno`, `sno`, `title`, `act`, `cont`, `cdt`, `headcnt`, `ptime`, `pdate`, `mapName`, `mapAddress`, `lat`, `lng`) VALUES (6, 4, 4, '축구 멤버구해요(골키퍼x)', 1, '골키퍼는 제가 하고, 다른 포지션 구합니다.', '2022-09-14 09:00:00', 8, '15:00:00', '2022-11-23', 'title3', '서울시 강남구 강남대로123길', '37.57363585428211', '127.000606756705');
+INSERT INTO `party` (`pno`, `rno`, `sno`, `title`, `act`, `cont`, `cdt`, `headcnt`, `ptime`, `pdate`, `mapName`, `mapAddress`, `lat`, `lng`) VALUES (7, 5, 5, '농구 2:2 하실분', 1, '간단하게 2:2로 농구 하러 오시죠', '2022-09-15 23:30:00', 4, '16:00:00', '2022-11-06', 'title3', '서울시 강남구 강남대로123길', '37.57363585428211', '127.000606756705');
+INSERT INTO `party` (`pno`, `rno`, `sno`, `title`, `act`, `cont`, `cdt`, `headcnt`, `ptime`, `pdate`, `mapName`, `mapAddress`, `lat`, `lng`) VALUES (8, 6, 6, '스크린 골프 하러갈 분들!!', 1, '스크린 골프 재밌게 배워볼 또래분들 구해요. 저도 여자인데, 남자분들 보단 여자분들 많이 와주세용.', '2022-09-16 15:01:00', 4, '19:00:00', '2022-10-29', 'title3', '서울시 강남구 강남대로123길', '37.57363585428211', '127.000606756705');
+INSERT INTO `party` (`pno`, `rno`, `sno`, `title`, `act`, `cont`, `cdt`, `headcnt`, `ptime`, `pdate`, `mapName`, `mapAddress`, `lat`, `lng`) VALUES (9, 6, 2, '클라이밍 지구력 연습 모임', 1, '지구력 테스트 같이 해보고 싶은데, 고민이신분들! 다같이 모여서 연습해봐요.', '2022-10-06 11:11:00', 8, '10:00:00', '2022-12-06', 'title3', '서울시 강남구 강남대로123길', '37.57363585428211', '127.000606756705');
+INSERT INTO `party` (`pno`, `rno`, `sno`, `title`, `act`, `cont`, `cdt`, `headcnt`, `ptime`, `pdate`, `mapName`, `mapAddress`, `lat`, `lng`) VALUES (10, 6, 3, '배드민턴 간단하게 치실 분?', 1, '동대문구 근처 사시는 분 신청 주세요~', '2022-10-06 13:20:00', 2, '09:00:00', '2022-11-04', 'title3', '서울시 강남구 강남대로123길', '37.57363585428211', '127.000606756705');
+INSERT INTO `party` (`pno`, `rno`, `sno`, `title`, `act`, `cont`, `cdt`, `headcnt`, `ptime`, `pdate`, `mapName`, `mapAddress`, `lat`, `lng`) VALUES (11, 6, 1, '헬스 유산소 같이 해요.', 1, '동대문 쪽 새로 생긴 헬스장에서 유산소 하실 분들 모여요!! 헬린이도 가능!', '2022-10-06 21:03:20', 4, '14:00:00', '2022-10-30', 'title3', '서울시 강남구 강남대로123길', '37.57363585428211', '127.000606756705');
+INSERT INTO `party` (`pno`, `rno`, `sno`, `title`, `act`, `cont`, `cdt`, `headcnt`, `ptime`, `pdate`, `mapName`, `mapAddress`, `lat`, `lng`) VALUES (12, 7, 7, '탁구 혼성으로 쳐요.', 1, '중랑쪽에 같이 할 커플분 오세용 ㅎㅎ', '2022-10-08 06:55:00', 4, '14:00:00', '2022-10-25', 'title3', '서울시 강남구 강남대로123길', '37.57363585428211', '127.000606756705');
+INSERT INTO `party` (`pno`, `rno`, `sno`, `title`, `act`, `cont`, `cdt`, `headcnt`, `ptime`, `pdate`, `mapName`, `mapAddress`, `lat`, `lng`) VALUES (13, 8, 5, '농구 간단하게 할 분들 있나요?', 1, '저녁에 간단하게 할 분들 편하게 와주세요.', '2022-10-11 22:40:00', 8, '20:00:00', '2022-10-19', 'title3', '서울시 강남구 강남대로123길', '37.57363585428211', '127.000606756705');
+INSERT INTO `party` (`pno`, `rno`, `sno`, `title`, `act`, `cont`, `cdt`, `headcnt`, `ptime`, `pdate`, `mapName`, `mapAddress`, `lat`, `lng`) VALUES (14, 9, 9, '러닝팸 모아요!! 런린이도 컴온!', 1, '런린이 분들도 편하게 들어오세요! 자주 모임 만들고 있어요 ㅎㅎ', '2022-10-12 11:07:00', 15, '19:00:00', '2022-10-28', 'title3', '서울시 강남구 강남대로123길', '37.57363585428211', '127.000606756705');
+INSERT INTO `party` (`pno`, `rno`, `sno`, `title`, `act`, `cont`, `cdt`, `headcnt`, `ptime`, `pdate`, `mapName`, `mapAddress`, `lat`, `lng`) VALUES (15, 1, 6, '골프 치러 갈 사람 모여라~', 1, '골프 관심 있으신분들 신청 주세요, 종로 쪽에서 진행할 예정입니다!', '2022-10-16 17:30:00', 6, '16:00:00', '2022-10-18', 'title3', '서울시 강남구 강남대로123길', '37.57363585428211', '127.000606756705');
+INSERT INTO `party` (`pno`, `rno`, `sno`, `title`, `act`, `cont`, `cdt`, `headcnt`, `ptime`, `pdate`, `mapName`, `mapAddress`, `lat`, `lng`) VALUES (16, 9, 9, '러닝팸 모아요!! 런린이도 대환영!', 1, '런린이 분들도 편하게 들어오세요! 지난 모임도 신규 유입 많았습니당 ㅎㅎㅎㅎ', '2022-10-18 17:30:00', 6, '17:00:00', '2022-10-27', 'title3', '서울시 강남구 강남대로123길', '37.57363585428211', '127.000606756705');
+INSERT INTO `party` (`pno`, `rno`, `sno`, `title`, `act`, `cont`, `cdt`, `headcnt`, `ptime`, `pdate`, `mapName`, `mapAddress`, `lat`, `lng`) VALUES (17, 1, 2, '클라이밍가실분~~', 1, '종로 동동이클라이밍장 갈 사람 맘편히 신청하세요. 커몬요!', '2022-10-18 11:21:00', 5, '19:00:00', '2022-10-20', 'title3', '서울시 강남구 강남대로123길', '37.57363585428211', '127.000606756705');
+INSERT INTO `party` (`pno`, `rno`, `sno`, `title`, `act`, `cont`, `cdt`, `headcnt`, `ptime`, `pdate`, `mapName`, `mapAddress`, `lat`, `lng`) VALUES (18, 5, 5, '농구 배울 여성분 ㅎ', 0, '농구 배우고 싶은 여성 분  신청 주세요^^', '2022-10-18 11:21:00', 2, '19:00:00', '2022-10-20', 'title3', '서울시 강남구 강남대로123길', '37.57363585428211', '127.000606756705');
+INSERT INTO `party` (`pno`, `rno`, `sno`, `title`, `act`, `cont`, `cdt`, `headcnt`, `ptime`, `pdate`, `mapName`, `mapAddress`, `lat`, `lng`) VALUES (19, 3, 3, '배드민턴 짝궁 구해요~~', 0, '좀 치는 사람 와요,, 못하는 사람 은 좀 뒤로 꺼지시고.. ㅎ ', '2022-10-18 11:21:00', 2, '19:00:00', '2022-10-20', 'title3', '서울시 강남구 강남대로123길', '37.57363585428211', '127.000606756705');
 
 
 -- 모임 참여 명단 (제동 완료)
@@ -281,18 +281,18 @@ INSERT INTO `board` (`bno`, `cateno`, `mno`, `title`, `act`, `cont`, `cdt`, `vw_
 INSERT INTO `board` (`bno`, `cateno`, `mno`, `title`, `act`, `cont`, `cdt`, `vw_cnt`) VALUES (67, 5, 12, '[옥션] 운동 용품 최저가 모셔요 ', 0,'카톡 kdfjow3 문의 주세요 ^_^ ', '2022-10-16 14:11:39', 0);
 
 -- 모임 리뷰 종찬 완료
-INSERT INTO `party_review_file` (`prfno`, `filepath`, `prno`) VALUES (1, '/Users/parkbyeongmin/git/teamproject-comehere/comehere-app/comehere-server/doc/comehere_party_review_file 1.jpeg', 1);
-INSERT INTO `party_review_file` (`prfno`, `filepath`, `prno`) VALUES (2, '/Users/parkbyeongmin/git/teamproject-comehere/comehere-app/comehere-server/doc/comehere_party_review_file 2.jpeg', 3);
-INSERT INTO `party_review_file` (`prfno`, `filepath`, `prno`) VALUES (3, '/Users/parkbyeongmin/git/teamproject-comehere/comehere-app/comehere-server/doc/comehere_party_review_file 3.jpeg', 3);
-INSERT INTO `party_review_file` (`prfno`, `filepath`, `prno`) VALUES (4, '/Users/parkbyeongmin/git/teamproject-comehere/comehere-app/comehere-server/doc/comehere_party_review_file 4.jpeg', 4);
-INSERT INTO `party_review_file` (`prfno`, `filepath`, `prno`) VALUES (5, '/Users/parkbyeongmin/git/teamproject-comehere/comehere-app/comehere-server/doc/comehere_party_review_file 5.jpeg', 5);
-INSERT INTO `party_review_file` (`prfno`, `filepath`, `prno`) VALUES (6, '/Users/parkbyeongmin/git/teamproject-comehere/comehere-app/comehere-server/doc/comehere_party_review_file 6.jpeg', 6);
-INSERT INTO `party_review_file` (`prfno`, `filepath`, `prno`) VALUES (7, '/Users/parkbyeongmin/git/teamproject-comehere/comehere-app/comehere-server/doc/comehere_party_review_file 7.jpeg', 7);
-INSERT INTO `party_review_file` (`prfno`, `filepath`, `prno`) VALUES (8, '/Users/parkbyeongmin/git/teamproject-comehere/comehere-app/comehere-server/doc/comehere_party_review_file 8.jpeg', 8);
-INSERT INTO `party_review_file` (`prfno`, `filepath`, `prno`) VALUES (9, '/Users/parkbyeongmin/git/teamproject-comehere/comehere-app/comehere-server/doc/comehere_party_review_file 9.jpeg', 9);
-INSERT INTO `party_review_file` (`prfno`, `filepath`, `prno`) VALUES (10, '/Users/parkbyeongmin/git/teamproject-comehere/comehere-app/comehere-server/doc/comehere_party_review_file 10.jpeg', 10);
-INSERT INTO `party_review_file` (`prfno`, `filepath`, `prno`) VALUES (11, '/Users/parkbyeongmin/git/teamproject-comehere/comehere-app/comehere-server/doc/comehere_party_review_file 11.jpeg', 11);
-INSERT INTO `party_review_file` (`prfno`, `filepath`, `prno`) VALUES (12, '/Users/parkbyeongmin/git/teamproject-comehere/comehere-app/comehere-server/doc/comehere_party_review_file 12.jpeg', 12);
+INSERT INTO `party_review_file` (`prfno`, `filepath`, `prno`) VALUES (1, 'http://placeimg.com/300/300/any', 1);
+INSERT INTO `party_review_file` (`prfno`, `filepath`, `prno`) VALUES (2, 'http://placeimg.com/300/300/any', 3);
+INSERT INTO `party_review_file` (`prfno`, `filepath`, `prno`) VALUES (3, 'http://placeimg.com/300/300/any', 3);
+INSERT INTO `party_review_file` (`prfno`, `filepath`, `prno`) VALUES (4, 'http://placeimg.com/300/300/any', 4);
+INSERT INTO `party_review_file` (`prfno`, `filepath`, `prno`) VALUES (5, 'http://placeimg.com/300/300/any', 5);
+INSERT INTO `party_review_file` (`prfno`, `filepath`, `prno`) VALUES (6, 'http://placeimg.com/300/300/any', 6);
+INSERT INTO `party_review_file` (`prfno`, `filepath`, `prno`) VALUES (7, 'http://placeimg.com/300/300/any', 7);
+INSERT INTO `party_review_file` (`prfno`, `filepath`, `prno`) VALUES (8, 'http://placeimg.com/300/300/any', 8);
+INSERT INTO `party_review_file` (`prfno`, `filepath`, `prno`) VALUES (9, 'http://placeimg.com/300/300/any', 9);
+INSERT INTO `party_review_file` (`prfno`, `filepath`, `prno`) VALUES (10, 'http://placeimg.com/300/300/any', 10);
+INSERT INTO `party_review_file` (`prfno`, `filepath`, `prno`) VALUES (11, 'http://placeimg.com/300/300/any', 11);
+INSERT INTO `party_review_file` (`prfno`, `filepath`, `prno`) VALUES (12, 'http://placeimg.com/300/300/any', 12);
 
 
 -- 1:1 문의하기 종찬완료
@@ -372,33 +372,6 @@ INSERT INTO `board_comment` (`bcno`, `bno`, `mno`, `cont`, `act`, `cdt`) VALUES 
 INSERT INTO `board_comment` (`bcno`, `bno`, `mno`, `cont`, `act`, `cdt`) VALUES (43, 41, 11, '운동 용품 최저가 카톡 문의 주세요', 0, '2022-10-11 18:37:22');
 INSERT INTO `board_comment` (`bcno`, `bno`, `mno`, `cont`, `act`, `cdt`) VALUES (44, 30, 8, '유제동 운동 TV 추천할께요 ^_^ 관련 링크도 보내드려요?', 0, '2022-10-11 18:37:22');
 
--- 게시글 첨부파일 (제동 완료)
-INSERT INTO `board_file` (`bfno`, `filepath`, `bno`) VALUES (1, 'http://image.auction.co.kr/itemimage/1a/c2/ec/1ac2ec2fd6.jpg', 1);
-INSERT INTO `board_file` (`bfno`, `filepath`, `bno`) VALUES (2, 'https://source.unsplash.com/random', 2);
-INSERT INTO `board_file` (`bfno`, `filepath`, `bno`) VALUES (3, 'https://source.unsplash.com/random', 2);
-INSERT INTO `board_file` (`bfno`, `filepath`, `bno`) VALUES (4, 'https://source.unsplash.com/random', 3);
-INSERT INTO `board_file` (`bfno`, `filepath`, `bno`) VALUES (5, 'https://source.unsplash.com/random', 3);
-INSERT INTO `board_file` (`bfno`, `filepath`, `bno`) VALUES (6, 'https://source.unsplash.com/random', 3);
-INSERT INTO `board_file` (`bfno`, `filepath`, `bno`) VALUES (7, 'https://source.unsplash.com/random', 4);
-INSERT INTO `board_file` (`bfno`, `filepath`, `bno`) VALUES (8, 'https://source.unsplash.com/random', 4);
-INSERT INTO `board_file` (`bfno`, `filepath`, `bno`) VALUES (9, 'https://source.unsplash.com/random', 4);
-INSERT INTO `board_file` (`bfno`, `filepath`, `bno`) VALUES (10, 'https://source.unsplash.com/random', 4);
-INSERT INTO `board_file` (`bfno`, `filepath`, `bno`) VALUES (11, 'https://source.unsplash.com/random', 5);
-INSERT INTO `board_file` (`bfno`, `filepath`, `bno`) VALUES (12, 'https://source.unsplash.com/random', 5);
-INSERT INTO `board_file` (`bfno`, `filepath`, `bno`) VALUES (13, 'https://source.unsplash.com/random', 5);
-INSERT INTO `board_file` (`bfno`, `filepath`, `bno`) VALUES (14, 'https://source.unsplash.com/random', 5);
-INSERT INTO `board_file` (`bfno`, `filepath`, `bno`) VALUES (15, 'https://source.unsplash.com/random', 5);
-INSERT INTO `board_file` (`bfno`, `filepath`, `bno`) VALUES (16, 'https://source.unsplash.com/random', 10);
-INSERT INTO `board_file` (`bfno`, `filepath`, `bno`) VALUES (17, 'https://source.unsplash.com/random', 15);
-INSERT INTO `board_file` (`bfno`, `filepath`, `bno`) VALUES (18, 'https://source.unsplash.com/random', 20);
-INSERT INTO `board_file` (`bfno`, `filepath`, `bno`) VALUES (19, 'https://source.unsplash.com/random', 25);
-INSERT INTO `board_file` (`bfno`, `filepath`, `bno`) VALUES (20, 'https://source.unsplash.com/random', 30);
-INSERT INTO `board_file` (`bfno`, `filepath`, `bno`) VALUES (21, 'https://source.unsplash.com/random', 35);
-INSERT INTO `board_file` (`bfno`, `filepath`, `bno`) VALUES (22, 'https://source.unsplash.com/random', 40);
-INSERT INTO `board_file` (`bfno`, `filepath`, `bno`) VALUES (23, 'https://source.unsplash.com/random', 45);
-INSERT INTO `board_file` (`bfno`, `filepath`, `bno`) VALUES (24, 'https://source.unsplash.com/random', 50);
-INSERT INTO `board_file` (`bfno`, `filepath`, `bno`) VALUES (25, 'https://source.unsplash.com/random', 55);
-
 -- 게시글 신고 (제동완료)
 INSERT INTO `board_tatlle` (`btno`, `mno`, `decbno`, `trno`, `tdt`, `cont`, `comdt`) VALUES (1, 1, 1, 1, '2022-10-12 00:00:00', '승인되지 않았습니다.', '2022-10-13 19:09:04');
 INSERT INTO `board_tatlle` (`btno`, `mno`, `decbno`, `trno`, `tdt`, `cont`, `comdt`) VALUES (2, 1, 1, 2, '2022-10-14 00:00:00', '승인되지 않았습니다.', '2022-10-15 19:09:04');
@@ -436,20 +409,6 @@ INSERT INTO `member_tatlle` (`mtno`, `mnoee`, `mnoer`, `trno`, `tdt`, `cont`) VA
 INSERT INTO `member_tatlle` (`mtno`, `mnoee`, `mnoer`, `trno`, `tdt`, `cont`) VALUES (18, 4, 5, 1, '2022-10-06 00:00:00', '');
 INSERT INTO `member_tatlle` (`mtno`, `mnoee`, `mnoer`, `trno`, `tdt`, `cont`) VALUES (19, 9, 6, 1, '2022-10-06 00:00:00', '');
 
-
--- 공지사항 첨부파일 헌식
-
-INSERT INTO `notice_file` (`nfno`, `filepath`, `nno`) VALUES (1, 'http://image.auction.co.kr/itemimage/1a/c2/ec/1ac2ec2fd6.jpg', 1);
-INSERT INTO `notice_file` (`nfno`, `filepath`, `nno`) VALUES (2, 'http://image.auction.co.kr/itemimage/1a/c2/ec/1ac2ec2fd6.jpg', 2);
-INSERT INTO `notice_file` (`nfno`, `filepath`, `nno`) VALUES (3, 'http://image.auction.co.kr/itemimage/1a/c2/ec/1ac2ec2fd6.jpg', 3);
-INSERT INTO `notice_file` (`nfno`, `filepath`, `nno`) VALUES (4, 'http://image.auction.co.kr/itemimage/1a/c2/ec/1ac2ec2fd6.jpg', 4);
-INSERT INTO `notice_file` (`nfno`, `filepath`, `nno`) VALUES (5, 'http://image.auction.co.kr/itemimage/1a/c2/ec/1ac2ec2fd6.jpg', 5);
-INSERT INTO `notice_file` (`nfno`, `filepath`, `nno`) VALUES (6, 'http://image.auction.co.kr/itemimage/1a/c2/ec/1ac2ec2fd6.jpg', 1);
-INSERT INTO `notice_file` (`nfno`, `filepath`, `nno`) VALUES (7, 'http://image.auction.co.kr/itemimage/1a/c2/ec/1ac2ec2fd6.jpg', 1);
-INSERT INTO `notice_file` (`nfno`, `filepath`, `nno`) VALUES (8, 'http://image.auction.co.kr/itemimage/1a/c2/ec/1ac2ec2fd6.jpg', 3);
-INSERT INTO `notice_file` (`nfno`, `filepath`, `nno`) VALUES (9, 'http://image.auction.co.kr/itemimage/1a/c2/ec/1ac2ec2fd6.jpg', 3);
-INSERT INTO `notice_file` (`nfno`, `filepath`, `nno`) VALUES (10, 'http://image.auction.co.kr/itemimage/1a/c2/ec/1ac2ec2fd6.jpg', 4);
-
 -- 모임 댓글 (헌식 완료)
 
 INSERT INTO `party_comment` (`pcno`, `mno`, `pno`, `cont`, `act`, `cdt`) VALUES (1, 1, 2, '종로 클라이밍 참여하고싶어요!', 1, '2022-10-06 00:00:00');
@@ -462,20 +421,6 @@ INSERT INTO `party_comment` (`pcno`, `mno`, `pno`, `cont`, `act`, `cdt`) VALUES 
 INSERT INTO `party_comment` (`pcno`, `mno`, `pno`, `cont`, `act`, `cdt`) VALUES (8, 8, 9, '시간이 안맞네요 ㅜㅜ 시간 맞을때 신청할게요', 1, '2022-10-06 00:00:00');
 INSERT INTO `party_comment` (`pcno`, `mno`, `pno`, `cont`, `act`, `cdt`) VALUES (9, 9, 10, '초보도 가능한가요?', 1, '2022-10-06 00:00:00');
 INSERT INTO `party_comment` (`pcno`, `mno`, `pno`, `cont`, `act`, `cdt`) VALUES (10, 10, 11, '처음해보는데 신청가능한가요?', 0, '2022-10-06 00:00:00');
-
--- 모임 첨부파일 헌식
-
-INSERT INTO `party_file` (`pfno`, `filepath`, `pno`) VALUES (1, 'http://image.auction.co.kr/itemimage/1a/c2/ec/1ac2ec2fd6.jpg', 1);
-INSERT INTO `party_file` (`pfno`, `filepath`, `pno`) VALUES (2, 'http://image.auction.co.kr/itemimage/1a/c2/ec/1ac2ec2fd6.jpg', 1);
-INSERT INTO `party_file` (`pfno`, `filepath`, `pno`) VALUES (3, 'http://image.auction.co.kr/itemimage/1a/c2/ec/1ac2ec2fd6.jpg', 3);
-INSERT INTO `party_file` (`pfno`, `filepath`, `pno`) VALUES (4, 'http://image.auction.co.kr/itemimage/1a/c2/ec/1ac2ec2fd6.jpg', 4);
-INSERT INTO `party_file` (`pfno`, `filepath`, `pno`) VALUES (5, 'http://image.auction.co.kr/itemimage/1a/c2/ec/1ac2ec2fd6.jpg', 5);
-INSERT INTO `party_file` (`pfno`, `filepath`, `pno`) VALUES (6, 'http://image.auction.co.kr/itemimage/1a/c2/ec/1ac2ec2fd6.jpg', 1);
-INSERT INTO `party_file` (`pfno`, `filepath`, `pno`) VALUES (7, 'http://image.auction.co.kr/itemimage/1a/c2/ec/1ac2ec2fd6.jpg', 4);
-INSERT INTO `party_file` (`pfno`, `filepath`, `pno`) VALUES (8, 'http://image.auction.co.kr/itemimage/1a/c2/ec/1ac2ec2fd6.jpg', 3);
-INSERT INTO `party_file` (`pfno`, `filepath`, `pno`) VALUES (9, 'http://image.auction.co.kr/itemimage/1a/c2/ec/1ac2ec2fd6.jpg', 5);
-INSERT INTO `party_file` (`pfno`, `filepath`, `pno`) VALUES (10, 'http://image.auction.co.kr/itemimage/1a/c2/ec/1ac2ec2fd6.jpg', 5);
-
 
 -- 댓글 신고
 -- 은지 완료

@@ -20,11 +20,6 @@
        
     </association>
     
-    <collection property="attachedFiles" ofType="attachedFile">
-      <id column="bfno" property="no"/>
-      <result column="filepath" property="filepath"/>
-      <result column="bno" property="objectNo"/>
-    </collection>
   </resultMap>
   
   <!-- hashmap resultMap으로.. -->
@@ -51,11 +46,6 @@
     <result column="name" property="name"/>
   </resultMap>
   
-  <resultMap type="attachedFile" id="attachedFileMap">
-    <id column="bfno" property="no"/>
-    <result column="filepath" property="filepath"/>
-    <result column="bno" property="objectNo"/>
-  </resultMap>
   
 <!--   
   <select id="findAll" resultMap="boardMap">
@@ -98,13 +88,11 @@
         b.bno,
         b.title,
         m.name,
-        b.cdt,
-        bf.filepath
+        b.cdt
       from 
         board b
         join member m on b.mno = m.mno
         join board_category bc on b.cateno = bc.cateno
-        left join board_file bf on b.bno = bf.bno
       where
         b.cateno = 3
       group by
@@ -122,13 +110,11 @@
 		      m.name,
 		      b.cdt,
 		      b.vw_cnt,
-		      b.cateno,
-		      bf.filepath
+		      b.cateno
 		    from 
 		      board b
 		      join member m on b.mno = m.mno
 		      join board_category bc on b.cateno = bc.cateno
-		      left join board_file bf on b.bno = bf.bno
 		    where
 		      b.cateno = #{catenoToPage}
         group by
@@ -154,13 +140,6 @@
     values(#{cateno},1,#{title},#{content})
   </insert>
   
-  <insert id="insertFiles" parameterType="board">
-    insert into board_file(filepath,bno)
-    values
-    <foreach collection="attachedFiles" item="boardFile" separator=",">
-      (#{boardFile.filepath},#{no})
-    </foreach>
-  </insert>
   
   <select id="findByNo" resultMap="boardMap">
     select
@@ -170,22 +149,16 @@
       b.cont,
       m.name,
       b.cdt,
-      b.vw_cnt,
-      bf.filepath
+      b.vw_cnt
     from 
       board b
       join member m on b.mno = m.mno
-      left join board_file bf on b.bno=bf.bno
     where
       b.bno = #{value}
     order by 
       bno desc
   </select>
-  
-  <delete id="deleteFiles">
-    delete from board_file
-    where bno=#{value}
-  </delete>
+
   
   <delete id="delete">
     delete from board 
@@ -198,22 +171,8 @@
       cont=#{content} 
     where bno=#{no}
   </update>
-  
-  <select id="findFileByNo" resultMap="attachedFileMap">
-    select 
-      bfno, 
-      filepath, 
-      bno 
-    from 
-      board_file 
-    where 
-      bfno = #{value}
-  </select>
-  
-  <delete id="deleteFile">
-    delete from board_file 
-    where bfno=#{value}
-  </delete>
+
+
 
   <update id="increaseViews">
     update 

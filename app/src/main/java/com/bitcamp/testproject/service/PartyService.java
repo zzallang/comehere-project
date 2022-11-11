@@ -1,7 +1,6 @@
 package com.bitcamp.testproject.service;
 
 import java.util.List;
-import com.bitcamp.testproject.vo.AttachedFile;
 import com.bitcamp.testproject.vo.Criteria;
 import com.bitcamp.testproject.vo.Party;
 import com.bitcamp.testproject.vo.PartyMember;
@@ -35,10 +34,6 @@ public interface PartyService {
       String listPartyDate) throws Exception;
 
   int checkOwner(int partyNo) throws Exception;
-
-  AttachedFile getAttachedFile(int fileNo) throws Exception;
-
-  boolean deleteAttachedFile(int fileNo) throws Exception;
 
 }
 
