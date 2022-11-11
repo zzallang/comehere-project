@@ -10,7 +10,7 @@
     <result column="name" property="name"/>
     <result column="id" property="id"/>
     <result column="email" property="email"/>
-    <result column="password" property="password"/>
+    <result column="pwd" property="password"/>
     <result column="nick" property="nickname"/>
     <result column="tel" property="tel"/>
     <result column="bday" property="birthday"/>
@@ -22,27 +22,11 @@
   <!-- 회원 기본 정보 등록  -->
   <insert id="insert" parameterType="member"
       useGeneratedKeys="true" keyColumn="mno" keyProperty="no"> 
-    insert into member(name,id,email,pwd,nick,tel,bday,sex) 
-    values(#{name},#{id},#{email},sha2(#{password},256),#{nickname},#{tel},#{birthday},#{sex})
+    insert into member(name,id,email,pwd,nick,tel,bday,sex,filepath) 
+    values(#{name},#{id},#{email},sha2(#{password},256),#{nickname},#{tel},#{birthday},#{sex},#{filepath})
   </insert>
   
-  <!-- 관심지역 등록  -->
-  <insert id="insertRegion" parameterType="member">
-    insert into favorite_region(rno,mno)
-    values
-      <foreach collection="favoriteRegion" item="region" separator=",">
-        (#{region.rno},#{no})
-      </foreach>
-  </insert>
-  
-  <!-- 관심 운동 등록  -->
-  <insert id="insertSports" parameterType="member">
-    insert into favorite_sports(sno,mno)
-    values
-      <foreach collection="favoriteSports" item="sports" separator=",">
-        (#{sports.sno},#{no})
-      </foreach>
-  </insert>
+
   
   <!-- 아이디 중복체크 -->
 <!--   <select id="idCheck" parameterType="String" resultType="Integer">
@@ -72,6 +56,7 @@
       name,
       id,
       email,
+      tel,
       cdt,
       nick,
       bday,
@@ -99,6 +84,7 @@
       mno,
       name,
       id,
+      tel,
       email,
       cdt,
       nick,
@@ -113,29 +99,16 @@
   
 
   <update id="update" parameterType="Member">
-    update app_member set 
-      name=#{name}, 
-      id=#{id},
+    update member set 
       email=#{email}, 
-      pwd=sha2(#{password},256)
+      pwd=sha2(#{password},256),
       nick=#{nickname},
-      tel=#{tel},
-      bday=#{birthday},
-      sex=#{sex}
+      tel=#{tel}
     where 
       mno=#{no}
-  <!-- 관심지역 수정 -->
-    update favorite_region set
-      <foreach collection="favoriteRegion" item="region" separator=",">
-        (#{region.rno},#{no})
-      </foreach>
-  <!-- 관심운동 수정 -->
-      update favorite_sports set
-      <foreach collection="favoriteSports" item="sports" separator=",">
-        (#{sports.sno},#{no})
-      </foreach>
   </update>
   
+
    <select id="findByPassword" resultMap="memberMap">
     select
     name

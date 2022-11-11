@@ -8,19 +8,5 @@ import com.bitcamp.testproject.vo.Region;
 public interface RegionDao {
 
   List<Region> findAll();
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
