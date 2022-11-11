@@ -170,12 +170,12 @@
       b.cont,
       m.name,
       b.cdt,
-      b.vw_cnt,
-      bf.filepath
+      b.vw_cnt
+      
     from 
       board b
       join member m on b.mno = m.mno
-      left join board_file bf on b.bno=bf.bno
+
     where
       b.bno = #{value}
     order by 
@@ -232,6 +232,9 @@
     where 
       cateno = #{value}
   </select>
+
+
+
 
 
 </mapper>

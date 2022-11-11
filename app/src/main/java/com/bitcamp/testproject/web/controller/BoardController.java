@@ -16,10 +16,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+import com.bitcamp.testproject.service.BoardReportService;
 import com.bitcamp.testproject.service.BoardService;
 import com.bitcamp.testproject.vo.AttachedFile;
 import com.bitcamp.testproject.vo.Board;
@@ -35,6 +35,8 @@ public class BoardController {
   ServletContext sc;
   @Autowired
   BoardService boardService;
+  @Autowired
+  BoardReportService boardReportService;
 
   // InternalResourceViewResolver 사용 후:
   //  @GetMapping("form")
@@ -412,16 +414,7 @@ public class BoardController {
 
   /////// 제동 메서드 끝 
 
-  // 헌식
 
-  @ModelAttribute("report")
-  public String report(      
-      String no,
-      String reason,
-      HttpServletRequest request,
-      HttpSession session) throws Exception {
 
-    boardService.add(no,reason);
-    return "redirect:list?no=";
-  }
+
 }

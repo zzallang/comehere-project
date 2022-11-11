@@ -289,7 +289,7 @@
 					<div class="login-bt">
 						<ul>
 							<li data-th-if="${session.loginMember == null}"><a href="../auth/form">로그인</a></li>
-							<li data-th-if="${session.loginMember != null}"><a href="../member/viewer">마이페이지</a></li>
+							<li class="loginId" data-th-if="${session.loginMember != null}" data-th-id=${session.loginMember.no}><a href="../member/viewer">마이페이지</a></li>
 							<li data-th-if="${session.loginMember != null}"><a href="../auth/logout" data-th-text="${session.loginMember.name} + '(로그아웃)'">동동(로그아웃)</a></li>
 						</ul>
 					</div>
@@ -321,7 +321,7 @@
 				</tr>
 				<tr>
 					<th>번호</th>
-					<td><input name='no' type='number' value='0' data-th-value="${board.no}" readonly="readonly"></td>
+					<td><input name='no' type='number' value='0' data-th-value="${board.no}" readonly="readonly" id = "boardNo"></td>
 				</tr>
 				<tr>
 					<th>제목</th>
@@ -522,25 +522,25 @@
 						<div>
 							<div class="report_menu">신고사유</div>
 							<div class="form-check form-check-inline">
-								<input type="checkbox" value="Contents" class="form-check-input" id="reports1" name="reports"> <input type="hidden" name="_reports" value="on" /> <label for="reports1" class="form-check-label">불건전한 내용</label>
+								<input type="checkbox" value="Contents" class="form-check-input" id="1" name="reports" onclick='checkOnlyOne(this)'> <input type="hidden" name="_reports" value="on" /> <label for="reports1" class="form-check-label">불건전한 내용</label>
 							</div>
 							<div class="form-check form-check-inline">
-								<input type="checkbox" value="promotion" class="form-check-input" id="reports2" name="reports"> <input type="hidden" name="_reports" value="on" /> <label for="reports2" class="form-check-label">스팸 및 부적절한 홍보</label>
+								<input type="checkbox" value="promotion" class="form-check-input" id="2" name="reports" onclick='checkOnlyOne(this)'> <input type="hidden" name="_reports" value="on" /> <label for="reports2" class="form-check-label">스팸 및 부적절한 홍보</label>
 							</div>
 							<div class="form-check form-check-inline">
-								<input type="checkbox" value="calumny" class="form-check-input" id="reports3" name="reports"> <input type="hidden" name="_reports" value="on" /> <label for="reports3" class="form-check-label">명예훼손 및 비방</label>
+								<input type="checkbox" value="calumny" class="form-check-input" id="3" name="reports" onclick='checkOnlyOne(this)'> <input type="hidden" name="_reports" value="on" /> <label for="reports3" class="form-check-label">명예훼손 및 비방</label>
 							</div>
 							<div class="form-check form-check-inline">
-								<input type="checkbox" value="prejudice" class="form-check-input" id="reports4" name="reports"> <input type="hidden" name="_reports" value="on" /> <label for="reports4" class="form-check-label">초상권 및 저작권 침해</label>
+								<input type="checkbox" value="prejudice" class="form-check-input" id="4" name="reports" onclick='checkOnlyOne(this)'> <input type="hidden" name="_reports" value="on" /> <label for="reports4" class="form-check-label">초상권 및 저작권 침해</label>
 							</div>
 							<div class="form-check form-check-inline">
-								<input type="checkbox" value="embezzlement" class="form-check-input" id="reports5" name="reports"> <input type="hidden" name="_reports" value="on" /> <label for="reports5" class="form-check-label">개인정보 도용</label>
+								<input type="checkbox" value="embezzlement" class="form-check-input" id="5" name="reports" onclick='checkOnlyOne(this)'> <input type="hidden" name="_reports" value="on" /> <label for="reports5" class="form-check-label">개인정보 도용</label>
 							</div>
 							<div class="form-check form-check-inline">
-								<input type="checkbox" value="act" class="form-check-input" id="reports6" name="reports"> <input type="hidden" name="_reports" value="on" /> <label for="reports6" class="form-check-label">기타 사이트 목적에 맞지 않는 행위</label>
+								<input type="checkbox" value="act" class="form-check-input" id="6" name="reports" onclick='checkOnlyOne(this)'> <input type="hidden" name="_reports" value="on" /> <label for="reports6" class="form-check-label">기타 사이트 목적에 맞지 않는 행위</label>
 							</div>
 							<div class="form-check form-check-inline">
-								<input type="checkbox" value="Etc" class="form-check-input" id="reports7" name="reports"> <input type="hidden" name="_reports" value="on" /> <label for="reports7" class="form-check-label">기타</label>
+								<input type="checkbox" value="Etc" class="form-check-input" id="7" name="reports" onclick='checkOnlyOne(this)'> <input type="hidden" name="_reports" value="on" /> <label for="reports7" class="form-check-label">기타</label>
 							</div>
 						</div>
 						<div class="send_bt3" id="singo">신고</div>
@@ -550,18 +550,60 @@
 		</table>
 	</form>
 	<script>
-var send_array = Array();
-var send_cnt = 0;
-var chkbox = $(".checkSelect");
+	
+	function checkOnlyOne(element) {
+		  
+		  const checkboxes 
+		      = document.getElementsByName("reports");
+		  
+		  checkboxes.forEach((cb) => {
+		    cb.checked = false;
+		  })
+		  
+		  element.checked = true;
+		}
 
-for(i=0;i<chkbox.length;i++) {
-    if (chkbox[i].checked == true){
-        send_array[send_cnt] = chkbox[i].value;
-        send_cnt++;
-    }
-}
+const boardNo = document.getElementById( 'boardNo').value;
+let loginMemberNo = -1;
+let id = -1;
+if($(".loginId").attr("id") != undefined) {
+ loginMemberNo = $(".loginId").attr("id");
+};
 
-$("#report").val(send_array);
+
+$("#singo").click(function() {
+    swal("신고 하였습니다.");
+
+    let data = "";
+
+    $('input:checkbox[name=reports]').each(function (index) {
+      if($(this).is(":checked")==true){
+        console.log($(this).attr("id"));
+        id = $(this).attr("id");
+      }
+    });
+
+
+    $.ajax({
+        type: "GET",
+        url: "/app/report/insertReport",
+        async:false,
+        data: { id: id, 
+        	      loginMemberNo : loginMemberNo,
+        	      boardNo : boardNo},
+        success: function (data) {
+        	
+          swal("신고 하였습니다.");
+          report_auth_cd = data;
+          console.log(report_auth_cd);
+         check = true;
+        },
+        error: function (data) {
+          swal("신고가 안되었습니다.");
+        },
+      });
+});
+
 </script>
 
 

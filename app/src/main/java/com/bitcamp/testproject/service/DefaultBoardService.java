@@ -166,13 +166,6 @@ public class DefaultBoardService implements BoardService {
     return boardDao.deleteFile(fileNo) > 0;
   }
 
-  @Override
-  public void add(String no, String reason) {
-    // TODO Auto-generated method stub
-
-  }
-
-  //////////
 
 }
 
