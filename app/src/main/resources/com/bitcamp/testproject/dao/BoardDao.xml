@@ -47,6 +47,12 @@
     <result column="name" property="name"/>
   </resultMap>
   
+  <resultMap type="attachedFile" id="attachedFileMap">
+    <id column="bfno" property="no"/>
+    <result column="filepath" property="filepath"/>
+    <result column="bno" property="objectNo"/>
+  </resultMap>
+  
 <!--   
   <select id="findAll" resultMap="boardMap">
     select
@@ -142,6 +148,14 @@
     values(#{cateno},1,#{title},#{content},#{thumbnail})
   </insert>
   
+  <insert id="insertFiles" parameterType="board">
+    insert into board_file(filepath,bno)
+    values
+    <foreach collection="attachedFiles" item="boardFile" separator=",">
+      (#{boardFile.filepath},#{no})
+    </foreach>
+  </insert>
+  
   <select id="findByNo" resultMap="boardMap">
     select
       b.bno,
@@ -158,11 +172,13 @@
     from 
       board b
       join member m on b.mno = m.mno
+      left join board_file bf on b.bno=bf.bno
     where
       b.bno = #{value}
     order by
       bno desc
   </select>
+
   
   <select id="findByThumbnail" resultMap="boardMap">
     select
@@ -201,6 +217,8 @@
     where bno=#{no}
   </update>
 
+
+
   <update id="increaseViews">
     update 
       board 
@@ -227,6 +245,9 @@
     where 
       bno=#{value}
   </update>
+
+
+
 
 
 </mapper>

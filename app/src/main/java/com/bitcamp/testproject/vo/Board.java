@@ -2,6 +2,7 @@ package com.bitcamp.testproject.vo;
 
 import java.sql.Date;
 
+@Data
 public class Board {
 
   private int no;
@@ -12,15 +13,15 @@ public class Board {
   private String content;
   private Date createdDate;
   private int viewCount;
+  private List<String> report;
   private String thumbnail;
-
   @Override
   public String toString() {
     return "Board [no=" + no + ", cateno=" + cateno + ", writer=" + writer + ", title=" + title
         + ", active=" + active + ", content=" + content + ", createdDate=" + createdDate
-        + ", viewCount=" + viewCount + ", thumbnail=" + thumbnail + "]";
+        + ", viewCount=" + viewCount + ", path=" + path + ", report=" + report + ", attachedFiles="
+        + attachedFiles + "]";
   }
-
   public int getNo() {
     return no;
   }
@@ -76,10 +77,22 @@ public class Board {
     this.thumbnail = thumbnail;
   }
 
+  public String getPath() {
+    return path;
+  }
 
+  public void setPath(String path) {
+    this.path = path;
+  }
 
+  public List<String> getReport() {
+    return report;
+  }
+
+  public void setReport(List<String> report) {
+    this.report = report;
+  }
 }
-
 
 
 

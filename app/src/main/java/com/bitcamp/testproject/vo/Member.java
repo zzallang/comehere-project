@@ -29,10 +29,10 @@ public class Member {
 
   public Member() {}
 
-  // 제동
-  public Member(int memberNo) {
-    this.no = memberNo;
+  public Member(int no) {
+    this.no = no;
   }
+
 
   @Override
   public String toString() {

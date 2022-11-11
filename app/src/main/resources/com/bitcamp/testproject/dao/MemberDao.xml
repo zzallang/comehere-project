@@ -4,154 +4,151 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.bitcamp.testproject.dao.MemberDao">
 
-  <!-- 자바 객체의 프로퍼티와 컬럼 이름을 연결한다. -->
-  <resultMap type="member" id="memberMap">
-    <id column="mno" property="no"/>
-    <result column="name" property="name"/>
-    <result column="id" property="id"/>
-    <result column="email" property="email"/>
-    <result column="password" property="password"/>
-    <result column="nick" property="nickname"/>
-    <result column="tel" property="tel"/>
-    <result column="bday" property="birthday"/>
-    <result column="sex" property="sex"/>
-    <result column="filepath" property="filepath"/>
-    <result column="cdt" property="createdDate"/>
-  </resultMap>
+	<!-- 자바 객체의 프로퍼티와 컬럼 이름을 연결한다. -->
+	<resultMap type="member" id="memberMap">
+		<id column="mno" property="no" />
+		<result column="name" property="name" />
+		<result column="id" property="id" />
+		<result column="email" property="email" />
+		<result column="password" property="password" />
+		<result column="nick" property="nickname" />
+		<result column="tel" property="tel" />
+		<result column="bday" property="birthday" />
+		<result column="sex" property="sex" />
+		<result column="filepath" property="filepath" />
+		<result column="cdt" property="createdDate" />
+	</resultMap>
 
-  <!-- 회원 기본 정보 등록  -->
-  <insert id="insert" parameterType="member"
-      useGeneratedKeys="true" keyColumn="mno" keyProperty="no"> 
-    insert into member(name,id,email,pwd,nick,tel,bday,sex) 
-    values(#{name},#{id},#{email},sha2(#{password},256),#{nickname},#{tel},#{birthday},#{sex})
-  </insert>
-  
-  <!-- 관심지역 등록  -->
-  <insert id="insertRegion" parameterType="member">
-    insert into favorite_region(rno,mno)
-    values
-      <foreach collection="favoriteRegion" item="region" separator=",">
-        (#{region.rno},#{no})
-      </foreach>
-  </insert>
-  
-  <!-- 관심 운동 등록  -->
-  <insert id="insertSports" parameterType="member">
-    insert into favorite_sports(sno,mno)
-    values
-      <foreach collection="favoriteSports" item="sports" separator=",">
-        (#{sports.sno},#{no})
-      </foreach>
-  </insert>
-  
-  <!-- 아이디 중복체크 -->
-<!--   <select id="idCheck" parameterType="String" resultType="Integer">
-    select 
-      count(*) 
-    from 
-      member
-    where
-      id = #{id}
-  </select>
+	<!-- 회원 기본 정보 등록 -->
+	<insert id="insert" parameterType="member"
+		useGeneratedKeys="true" keyColumn="mno" keyProperty="no">
+		insert into member(name,id,email,pwd,nick,tel,bday,sex)
+		values(#{name},#{id},#{email},sha2(#{password},256),#{nickname},#{tel},#{birthday},#{sex})
+	</insert>
 
- -->
- <select id="findById" resultMap="memberMap">
-    select
-    id
-    from
-    member
-    where
-    name=#{name} and email=#{email}
-  </select>
- 
- 
- 
-  <select id="findByNo" resultMap="memberMap">
-    select 
-      mno,
-      name,
-      id,
-      email,
-      cdt,
-      nick,
-      bday,
-      sex,
-      filepath
-    from 
-      member 
-    where 
-      mno=#{value}
-  </select>
-  
-  <select id="findAll" resultMap="memberMap">
-    select 
-      mno,
-      name,
-      email 
-    from 
-      member 
-    order by 
-      name
-  </select>
+	<!-- 관심지역 등록 -->
+	<insert id="insertRegion" parameterType="member">
+		insert into favorite_region(rno,mno)
+		values
+		<foreach collection="favoriteRegion" item="region"
+			separator=",">
+			(#{region.rno},#{no})
+		</foreach>
+	</insert>
 
-  <select id="findByIdPassword" resultMap="memberMap">
-    select 
-      mno,
-      name,
-      id,
-      email,
-      cdt,
-      nick,
-      bday,
-      sex,
-      filepath
-    from 
-      member 
-    where 
-      id=#{id} and pwd=sha2(#{password},256)
-  </select>
-  
+	<!-- 관심 운동 등록 -->
+	<insert id="insertSports" parameterType="member">
+		insert into favorite_sports(sno,mno)
+		values
+		<foreach collection="favoriteSports" item="sports"
+			separator=",">
+			(#{sports.sno},#{no})
+		</foreach>
+	</insert>
 
-  <update id="update" parameterType="Member">
-    update app_member set 
-      name=#{name}, 
-      id=#{id},
-      email=#{email}, 
-      pwd=sha2(#{password},256)
-      nick=#{nickname},
-      tel=#{tel},
-      bday=#{birthday},
-      sex=#{sex}
-    where 
-      mno=#{no}
-  <!-- 관심지역 수정 -->
-    update favorite_region set
-      <foreach collection="favoriteRegion" item="region" separator=",">
-        (#{region.rno},#{no})
-      </foreach>
-  <!-- 관심운동 수정 -->
-      update favorite_sports set
-      <foreach collection="favoriteSports" item="sports" separator=",">
-        (#{sports.sno},#{no})
-      </foreach>
-  </update>
-  
-   <select id="findByPassword" resultMap="memberMap">
-    select
-    name
-    from
-    member
-    where
-    id=#{id} and email=#{email}
-  </select>
+	<!-- 아이디 중복체크 -->
+	<!-- <select id="idCheck" parameterType="String" resultType="Integer"> select 
+		count(*) from member where id = #{id} </select> -->
+	<select id="findById" resultMap="memberMap">
+		select
+		id
+		from
+		member
+		where
+		name=#{name} and email=#{email}
+	</select>
 
-	<update id="updatePassWrod" parameterType="Member">
-		update member set
+
+
+	<select id="findByNo" resultMap="memberMap">
+		select
+		mno,
+		name,
+		id,
+		email,
+		cdt,
+		nick,
+		bday,
+		sex,
+		filepath
+		from
+		member
+		where
+		mno=#{value}
+	</select>
+
+	<select id="findAll" resultMap="memberMap">
+		select
+		mno,
+		name,
+		email
+		from
+		member
+		order by
+		name
+	</select>
+
+	<select id="findByIdPassword" resultMap="memberMap">
+		select
+		mno,
+		name,
+		id,
+		email,
+		cdt,
+		nick,
+		bday,
+		sex,
+		filepath
+		from
+		member
+		where
+		id=#{id} and pwd=sha2(#{password},256)
+	</select>
+
+
+	<update id="update" parameterType="Member">
+		update app_member set
+		name=#{name},
+		id=#{id},
+		email=#{email},
 		pwd=sha2(#{password},256)
+		nick=#{nickname},
+		tel=#{tel},
+		bday=#{birthday},
+		sex=#{sex}
 		where
 		mno=#{no}
+		<!-- 관심지역 수정 -->
+		update favorite_region set
+		<foreach collection="favoriteRegion" item="region"
+			separator=",">
+			(#{region.rno},#{no})
+		</foreach>
+		<!-- 관심운동 수정 -->
+		update favorite_sports set
+		<foreach collection="favoriteSports" item="sports"
+			separator=",">
+			(#{sports.sno},#{no})
+		</foreach>
 	</update>
 
+	<select id="findByPassword" resultMap="memberMap">
+		select
+		name
+		from
+		member
+		where
+		id=#{id} and email=#{email}
+	</select>
+	
+  <update id="updatePW" parameterType="String">
+    update member set
+    pwd=sha2(#{password},256)
+    where
+    email=#{email}
+    and id=#{id}
+  </update>
+  
 	<delete id="delete">
 		delete from member
 		where mno=#{value}

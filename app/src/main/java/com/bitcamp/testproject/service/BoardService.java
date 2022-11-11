@@ -2,7 +2,6 @@ package com.bitcamp.testproject.service;
 
 import java.util.List;
 import java.util.Map;
-import com.bitcamp.testproject.vo.AttachedFile;
 import com.bitcamp.testproject.vo.Board;
 import com.bitcamp.testproject.vo.BoardCategory;
 import com.bitcamp.testproject.vo.Criteria;
@@ -37,8 +36,6 @@ public interface BoardService {
 
   boolean update(Board board) throws Exception;
 
-  AttachedFile getAttachedFile(int no) throws Exception;
-
   List<Map<String, Object>> list(Criteria cri) throws Exception;
 
   int countBoardListTotal(int no);
@@ -52,6 +49,7 @@ public interface BoardService {
   BoardCategory getCategory(int no);
 
   int deleteThumbnail(int no);
+
 
 
   ////////////

@@ -18,11 +18,13 @@ public class Comment {
     this.writer = new Member(memberNo);
   }
 
+
   @Override
   public String toString() {
     return "Comment [no=" + no + ", writer=" + writer + ", objectNo=" + objectNo + ", content="
         + content + ", createdDate=" + createdDate + "]";
   }
+
 
   public int getNo() {
     return no;
@@ -39,11 +41,9 @@ public class Comment {
   public void setWriter(Member writer) {
     this.writer = writer;
   }
-
   public int getObjectNo() {
     return objectNo;
   }
-
   public void setObjectNo(int objectNo) {
     this.objectNo = objectNo;
   }
@@ -63,6 +63,8 @@ public class Comment {
   public void setCreatedDate(Date createdDate) {
     this.createdDate = createdDate;
   }
+
+
 
 
 }

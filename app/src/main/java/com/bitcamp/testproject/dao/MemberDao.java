@@ -5,6 +5,8 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import com.bitcamp.testproject.vo.Member;
 
+
+
 @Mapper
 public interface MemberDao {
 
@@ -13,8 +15,6 @@ public interface MemberDao {
   Member findByNo(int no);
 
   int update(Member member);
-
-  int updataPassWrod(Member member);
 
   int delete(int no);
 
@@ -43,13 +43,11 @@ public interface MemberDao {
       @Param("SecCode") String SecCode);
 
 
-  Member Password(
-      @Param("password") int password, 
-      @Param("password") int password1);
-
+  int updatePW(
+      @Param("password") String password,
+      @Param("email") String email,
+      @Param("id") String id);
 }
-
-
 
 
 
