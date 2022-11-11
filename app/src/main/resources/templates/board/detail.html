@@ -37,6 +37,10 @@
       <link href="../css/bootstrap/bootstrap.css" rel="stylesheet">
         
       <style>
+        .temp-line {
+          border: 1px solid black;
+        }
+      
         .our_textJD {
         width: 100%;
         float: left;
@@ -141,284 +145,18 @@
         }
         
         .form-content {
-          width: 800px;
           min-height: 700px;
         }
         
-      </style>
-
-    </head>
-    <body>
-  <!-- header section start -->
-  <div class="header_section">
-    <div class="container-fluid">
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="main_logo"><a href="/app"><img src="../images/logo.png"></a></div>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item"><a class="nav-link" href="../party/list">운동찾기</a></li>
-            <li class="nav-item"><a class="nav-link" href="main">커뮤니티</a></li>
-            <li class="nav-item"><a class="nav-link" href="#">공지사항</a></li>
-          </ul>
-          <div class="login-bt">
-            <ul>
-              <li data-th-if="${session.loginMember == null}"><a href="../auth/form" >로그인</a></li>
-              <li data-th-if="${session.loginMember != null}"><a href="../member/viewer">마이페이지</a></li>
-              <li data-th-if="${session.loginMember != null}"><a href="../auth/logout" data-th-text="${session.loginMember.name} + '(로그아웃)'">동동(로그아웃)</a></li>
-            </ul>
-          </div>
-        </div>
-      </nav>
-    </div>
-  </div>
-  <!-- header section end -->
-      <!-- furnitures section start -->
-      <div class="furnitures_sectionJD layout_padding">
-         <a href="main"><h1 class="container" id="community-title">커뮤니티</h1></a>
-         <div class="container cate-bottom-line">
-           <!-- 게시판 카테고리 이동 시작 -->
-           <ul class="nav nav-pills nav-justified">
-             <li class="nav-item"><a class="nav-link" href="list?no=1">자유게시판</a></li>
-             <li class="nav-item"><a class="nav-link" href="list?no=2">식단게시판</a></li>
-             <li class="nav-item"><a class="nav-link" href="list?no=3">챌린지게시판</a></li>
-             <li class="nav-item"><a class="nav-link" href="list?no=4">질문게시판</a></li>
-             <li class="nav-item"><a class="nav-link" href="list?no=5">핫딜게시판</a></li>
-           </ul>
-           <!-- 게시판 카테고리 이동 끝 -->
-
-         
-            <table border='1' style="margin: auto">
-                <tr>
-                    <th>게시판</th>
-                    <td>
-                      <span value='게시판' th:if="${board.cateno == 1}">자유게시판</span>
-                      <span value='게시판' th:if="${board.cateno == 2}">식단게시판</span>
-                      <span value='게시판' th:if="${board.cateno == 3}">챌린지게시판</span>
-                      <span value='게시판' th:if="${board.cateno == 4}">질문게시판</span>
-                      <span value='게시판' th:if="${board.cateno == 5}">핫딜게시판</span>
-                    </td>
-
-                </tr>
-                <tr>
-                    <th>번호</th>
-                    <td><input
-                        name='no'
-                        type='number'
-                        value='0'
-                        data-th-value="${board.no}"
-                        readonly="readonly"></td>
-                </tr>
-                <tr>
-                    <th>제목</th>
-                    <td><input
-                        name='title'
-                        type='text'
-                        value='제목'
-                        data-th-value='${board.title}'
-                        size='60'></td>
-                </tr>
-                <tr>
-                    <th>내용</th>
-                     <td>
-                        <div class="form-content" name='content' data-th-utext="${board.content}">내용</div>
-                    </td> 
-                </tr>
-                <tr>
-                    <th>조회수</th>
-                    <td data-th-text="${board.viewCount}">0</td>
-                </tr>
-                <tr>
-                    <th>작성자</th>
-                    <td data-th-text="${board.writer.name}">홍길동</td>
-                </tr>
-                <tr>
-                    <th>등록일</th>
-                    <td data-th-text="${board.createdDate}">0000-00-00</td>
-                </tr>  
-            </table>
-            <p>
-                <a class="btn btn-primary" href="updateForm?no=1" data-th-href="@{updateForm(no=${board.no})}" role="button">수정</a>
-                <a href='delete?no=1' data-th-href="@{delete(no=${board.no})}">삭제</a>
-                <a data-th-href="@{list(no=${board.cateno})}">목록</a>
-                <a class="btn btn-primary" href="#" role="button">신고기능</a>
-            </p>
-             <!-- 댓글 블록 시작 -->
-            <div> 
-          <th:block th:each="comment : ${comments}">
-            <div>
-            <div>
-              <p th:text="${comment.writer.filepath}"></p>
-            </div>
-            <div>
-              <p th:text="${comment.writer.nickname}"></p>
-              <p th:text="${comment.content}"></p>
-              <p th:text="${comment.createdDate}"></p>
-            </div>
-            </div>
-          </th:block>
-            <div>
-            <div>
-              <p></p>
-            </div>
-            <div>
-              <p></p>
-              
-              <form action='add' method="post">
-              <table border='1'>
-                <tr>
-                  <th>댓글 입력</th><td><textarea rows='4' cols='60'></textarea></td>
-                </tr>
-              </table>
-              <p>
-                <button type='submit'>등록</button>
-              </p>
-              </form>
-            </div>
-            </div>
-            </div> 
-            <!-- 댓글 블록 끝 -->
-         
-         </div>
-         
-         
-         
-         
-      </div>
-    
-    
-
-      <!--  footer section end -->
-      <!-- copyright section start -->
-      <div class="copyright_section">
-        <div class="container">
-           <div class="social_icon">
-              <ul>
-                 <li><a href="#"><img src="../images/fb-icon.png"></a></li>
-                 <li><a href="#"><img src="../images/twitter-icon.png"></a></li>
-                 <li><a href="#"><img src="../images/instagram-icon.png"></a></li>
-                 <li><a href="#"><img src="../images/linkedin-icon.png"></a></li>
-              </ul>
-           </div>
-           <p class="copyright_text">2020 All Rights Reserved. Design by <a href="https://html.design">Free html  Templates</a></p>
-        </div>
-      </div>
-      <!-- copyright section end -->
-      <!-- Javascript files-->
-      <script src="../js/jquery.min.js"></script>
-      <script src="../js/popper.min.js"></script>
-      <script src="../js/bootstrap.bundle.min.js"></script>
-      <script src="../js/jquery-3.0.0.min.js"></script>
-      <script src="../js/plugin.js"></script>
-       <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> <!-- sweetalert -->
-      <!-- sidebar -->
-      <script src="../js/jquery.mCustomScrollbar.concat.min.js"></script>
-      <script src="../js/custom.js"></script>
-      <!-- javascript --> 
-      <!-- <script src="../js/owl.carousel.js"></script> -->
-      <!-- <script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>  -->
-      
-      <!-- 공식부트스트랩 JS -->
-      <script src="../js/bootstrap/bootstrap.js"></script>   
-
-.write-box {
-  border: 2px, black;
-  padding-top: 30px;
-  padding-left: 87%;
-}
-
-.page_center {
-  display: flex;
-  margin: auto;
-  /* width: 42px; */
-}
-
-.title-min-width2 {
-  min-width: 300px;
-}
-
-.btn-outline-successJD {
-  color: #0d6efd;
-  background-color: transparent;
-  background-image: none;
-  border-color: #0d6efd;
-}
-
-.btn-outline-successJD:hover {
-  color: #fff;
-  background-color: #0d6efd;
-  border-color: #0d6efd;
-}
-
-.cate-bottom-line {
-  border-bottom: 1px solid black;
-  border-top: 1px solid black;
-}
-
-#community-title {
-  color: #ffb607;
-}
-
-.mainList-title {
-  margin: 0 66px 0 66px;
-  font-weight: bold;
-}
-
-.row1 {
-  width: 50%;
-  border-right: 1px solid #dee2e6;
-  float: left;
-}
-
-.clg-plus {
-  float: right;
-  font-size: 17px;
-  font-weight: normal;
-  padding-top: 12px;
-}
-
-.recent-clg-list {
-  /* border: 1px solid blue; */
-  width: 90%;
-  margin: auto;
-  min-height: 500px;
-}
-
-.recent-clg-wapper {
-  display: inline-block;
-  width: 48%;
-  padding: 2%;
-  margin: 4px;
-  background-color: #fcd780;
-}
-
-.recent-clg-img-wapper {
-  height: 256.031px;
-  width: 256.031px;
-}
-
-.imgJD {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  margin: auto;
-  display: block;
-}
-
-.recent-clg-content-wapper {
-  background-color: white;
-  margin-top: 10px;
-  padding: 5px;
-  height: 60px;
-}
-
-.form-content {
-  width: 800px;
-  min-height: 700px;
-}
-/* Modal */
+        .profile_pic {
+          height: 50px;
+          width: 50px;
+        }
+        .board-wrapper {
+          padding: 30px;
+        }
+        
+        /* Modal */
 #modal.modal-overlay {
   width: 100%;
   height: 100%;
@@ -531,214 +269,184 @@
   color: white;
   /* f8b81f7a */
 }
-</style>
+        
+      </style>
 
-</head>
-<body>
+    </head>
+    <body>
+  <!-- header section start -->
+  <div class="header_section">
+    <div class="container-fluid">
+      <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="main_logo"><a href="/app"><img src="../images/logo.png"></a></div>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item"><a class="nav-link" href="../party/list">운동찾기</a></li>
+            <li class="nav-item"><a class="nav-link" href="main">커뮤니티</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">공지사항</a></li>
+          </ul>
+          <div class="login-bt">
+            <ul>
+              <li th:if="${session.loginMember == null}" ><a href="../auth/form" >로그인</a></li>
+              <li class="loginId" th:if="${session.loginMember != null}" th:id=${session.loginMember.no}><a href="../member/viewer">마이페이지</a></li>
+              <li th:if="${session.loginMember != null}"><a href="../auth/logout" th:text="${session.loginMember.name} + '(로그아웃)'">동동(로그아웃)</a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </div>
+  <!-- header section end -->
+      <!-- furnitures section start -->
+      <div class="furnitures_sectionJD layout_padding">
+         <a href="main"><h1 class="container" id="community-title">커뮤니티</h1></a>
+         <div class="container cate-bottom-line">
+           <!-- 게시판 카테고리 이동 시작 -->
+           <ul class="nav nav-pills nav-justified">
+             <li class="nav-item"><a class="nav-link" href="list?no=1">자유게시판</a></li>
+             <li class="nav-item"><a class="nav-link" href="list?no=2">식단게시판</a></li>
+             <li class="nav-item"><a class="nav-link" href="list?no=3">챌린지게시판</a></li>
+             <li class="nav-item"><a class="nav-link" href="list?no=4">질문게시판</a></li>
+             <li class="nav-item"><a class="nav-link" href="list?no=5">핫딜게시판</a></li>
+           </ul>
+           <!-- 게시판 카테고리 이동 끝 -->
 
+            <h1>글조회</h1>
+            <h2 th:if="${board.cateno == 1}" value='게시판'>자유게시판</h2>
+            <h2 th:if="${board.cateno == 2}" value='게시판'>식단게시판</h2>
+            <h2 th:if="${board.cateno == 3}" value='게시판'>챌린지게시판</h2>
+            <h2 th:if="${board.cateno == 4}" value='게시판'>질문게시판</h2>
+            <h2 th:if="${board.cateno == 5}" value='게시판'>핫딜게시판</h2>
+            
+            <div>
+                <a th:if="${session.loginMember} != null and ${session.loginMember.no} == ${board.writer.no}" 
+                   th:href="@{updateForm(no=${board.no})}" 
+                   class="btn btn-primary" 
+                   role="button">수정</a>
+                <a th:if="${session.loginMember} != null and ${session.loginMember.no} == ${board.writer.no}" 
+                   th:href="@{delete(no=${board.no})}"
+                   href='delete?no=1'
+                   class="btn btn-primary">삭제</a>
+                <a class="btn btn-primary" href="#" role="button" id="btn-modal">신고기능</a>
+                <a th:href="@{list(no=${board.cateno})}"
+                   class="btn btn-primary">목록</a>
+            </div>
+            
+            <div class="temp-line board-wrapper">
+              <input th:value="${board.no}" value=게시글번호 id="boardNo" name='no' type="hidden">
+              <h3 th:text='${board.title}'></h3>
+              <div>
+                <img th:src="@{'/member/files/' + ${board.writer.filepath}}" class="profile_pic" alt="profile_picture" onerror="this.src='../images/profile-pic.png';" >
+                <span th:text="${board.writer.nickname}"></span>
+                <span th:text="${board.createdDate}"></span>
+                <br>조회수 : <span th:text="${board.viewCount}">0</span>
+              </div>
+              <div th:utext="${board.content}" class="form-content">내용</div>
+            </div>
+            
+             <!-- 댓글 블록 시작 -->
+            <div>
+              <h2>달린 댓글 부분</h2>
+              <div class="container">
+                  <div class="commentList"></div>
+              </div>
+              
+            <!-- 댓글 페이징 -->
+            <nav aria-label="Page navigation">
+              <ul class="pagination">
+                <div class="page_center">
+                  <li class="page-item" th:if="${pageMaker.prev}">
+                    <a class="page-link" th:href="@{list(pageMaker.startPage-1}" aria-label="Previous">
+                      <span aria-hidden="true">&laquo;</span>
+                    </a>
+                  </li>
+                  <th:block th:if="${pageMaker.endPage != 0}" th:each="pageNum: ${#numbers.sequence(pageMaker.startPage, pageMaker.endPage)}">
+                    <li class="page-item">
+                      <a th:id="'pageNo' + ${pageNum}" class="page-link" onclick="getId(this.id)"><i th:text="${pageNum}"></i></a>
+                    </li>
+                  </th:block>
+                  <li class="page-item" th:if="${pageMaker.next && pageMaker.endPage >0}">
+                    <a class="page-link" th:href="@{list(page=${pageMaker.endPage+1}, no=${catenoInBoard.cateno})}" aria-label="Next">
+                      <span aria-hidden="true">&raquo;</span>
+                    </a>
+                  </li>
+                </div>
+              </ul>
+            </nav>
+            <!-- 댓글페이징 -->
+              
+              <h2>댓글 쓰기 부분</h2>
+              <div style="width: 80%;" class="temp-line">
+                  <div class="form-group">
+                      <label for="comment"></label>
+                      <div th:if="${session.loginMember}">
+                        <input type="hidden" id="memberNo"  th:value="${session.loginMember.no}" >
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="commentCont"
+                            placeholder="댓글을 달아주세요!"
+                            style="height: 30px;"
+                            th:name="${session.loginMember.nickname}">
+                        </div>
+                      <div th:if="${session.loginMember == null}">
+                        <input type="hidden" id="memberNo"  value=0>
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="commentCont"
+                            placeholder="댓글을 등록하려면 로그인 해주세요"
+                            style="height: 60px;" readonly
+                            onclick="alertToLogin();">
+                      </div>
+                  </div>
+                  <div>
+                      <button id="commetButton" class="btn btn-sm btn-success">등록</button>
+                  </div>
+              </div>
+            </div>
+            <!-- 댓글 블록 끝 -->
 
+         </div>
+      </div>
 
-	<!-- header section start -->
-	<div class="header_section">
-		<div class="container-fluid">
-			<nav class="navbar navbar-expand-lg navbar-light bg-light">
-				<div class="main_logo">
-					<a href="/app"><img src="../images/logo.png"></a>
-				</div>
-				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-					<span class="navbar-toggler-icon"></span>
-				</button>
-				<div class="collapse navbar-collapse" id="navbarSupportedContent">
-					<ul class="navbar-nav mr-auto">
-						<li class="nav-item"><a class="nav-link" href="../party/list">운동찾기</a></li>
-						<li class="nav-item"><a class="nav-link" href="main">커뮤니티</a></li>
-						<li class="nav-item"><a class="nav-link" href="#">공지사항</a></li>
-					</ul>
-					<div class="login-bt">
-						<ul>
-							<li data-th-if="${session.loginMember == null}"><a href="../auth/form">로그인</a></li>
-							<li class="loginId" data-th-if="${session.loginMember != null}" data-th-id=${session.loginMember.no}><a href="../member/viewer">마이페이지</a></li>
-							<li data-th-if="${session.loginMember != null}"><a href="../auth/logout" data-th-text="${session.loginMember.name} + '(로그아웃)'">동동(로그아웃)</a></li>
-						</ul>
-					</div>
-				</div>
-			</nav>
-		</div>
-	</div>
-	<!-- header section end -->
-	<!-- furnitures section start -->
-	<div class="furnitures_sectionJD layout_padding">
-		<a href="main"><h1 class="container" id="community-title">커뮤니티</h1></a>
-		<div class="container cate-bottom-line">
-			<!-- 게시판 카테고리 이동 시작 -->
-			<ul class="nav nav-pills nav-justified">
-				<li class="nav-item"><a class="nav-link" href="list?no=1">자유게시판</a></li>
-				<li class="nav-item"><a class="nav-link" href="list?no=2">식단게시판</a></li>
-				<li class="nav-item"><a class="nav-link" href="list?no=3">챌린지게시판</a></li>
-				<li class="nav-item"><a class="nav-link" href="list?no=4">질문게시판</a></li>
-				<li class="nav-item"><a class="nav-link" href="list?no=5">핫딜게시판</a></li>
-			</ul>
-			<!-- 게시판 카테고리 이동 끝 -->
+      <!--  footer section end -->
+      <!-- copyright section start -->
+      <div class="copyright_section">
+        <div class="container">
+           <div class="social_icon">
+              <ul>
+                 <li><a href="#"><img src="../images/fb-icon.png"></a></li>
+                 <li><a href="#"><img src="../images/twitter-icon.png"></a></li>
+                 <li><a href="#"><img src="../images/instagram-icon.png"></a></li>
+                 <li><a href="#"><img src="../images/linkedin-icon.png"></a></li>
+              </ul>
+           </div>
+           <p class="copyright_text">2020 All Rights Reserved. Design by <a href="https://html.design">Free html  Templates</a></p>
+        </div>
+      </div>
+      <!-- copyright section end -->
+      <!-- Javascript files-->
+      <script src="../js/jquery.min.js"></script>
+      <script src="../js/popper.min.js"></script>
+      <script src="../js/bootstrap.bundle.min.js"></script>
+      <script src="../js/jquery-3.0.0.min.js"></script>
+      <script src="../js/plugin.js"></script>
+       <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> <!-- sweetalert -->
+      <!-- sidebar -->
+      <script src="../js/jquery.mCustomScrollbar.concat.min.js"></script>
+      <script src="../js/custom.js"></script>
+      <!-- javascript --> 
+      <!-- <script src="../js/owl.carousel.js"></script> -->
+      <!-- <script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>  -->
+      
+      <!-- 공식부트스트랩 JS -->
+      <script src="../js/bootstrap/bootstrap.js"></script>   
 
-
-			<table border='1' style="margin: auto">
-				<tr>
-					<th>게시판</th>
-					<td><span value='게시판' th:if="${board.cateno == 1}">자유게시판</span> <span value='게시판' th:if="${board.cateno == 2}">식단게시판</span> <span value='게시판' th:if="${board.cateno == 3}">챌린지게시판</span> <span value='게시판' th:if="${board.cateno == 4}">질문게시판</span> <span value='게시판' th:if="${board.cateno == 5}">핫딜게시판</span></td>
-
-				</tr>
-				<tr>
-					<th>번호</th>
-					<td><input name='no' type='number' value='0' data-th-value="${board.no}" readonly="readonly" id = "boardNo"></td>
-				</tr>
-				<tr>
-					<th>제목</th>
-					<td><input name='title' type='text' value='제목' data-th-value='${board.title}' size='60'></td>
-				</tr>
-				<tr>
-					<th>내용</th>
-					<td>
-						<div class="form-content" name='content' data-th-utext="${board.content}">내용</div>
-					</td>
-				</tr>
-				<tr>
-					<th>조회수</th>
-					<td data-th-text="${board.viewCount}">0</td>
-				</tr>
-				<tr>
-					<th>작성자</th>
-					<td data-th-text="${board.writer.name}">홍길동</td>
-				</tr>
-				<tr>
-					<th>등록일</th>
-					<td data-th-text="${board.createdDate}">0000-00-00</td>
-				</tr>
-			</table>
-			<p>
-				<a class="btn btn-primary" href="updateForm?no=1" data-th-href="@{updateForm(no=${board.no})}" role="button">수정</a> <a href='delete?no=1' data-th-href="@{delete(no=${board.no})}">삭제</a> <a data-th-href="@{list(no=${board.cateno})}">목록</a> <a class="btn btn-primary" href="#" role="button" id="btn-modal">신고기능</a>
-			</p>
-
-
-
-
-			<!-- 댓글 블록 시작 -->
-			<div>
-				<th:block th:each="comment : ${comments}">
-					<div>
-						<div>
-							<p th:text="${comment.writer.filepath}"></p>
-						</div>
-						<div>
-							<p th:text="${comment.writer.nickname}"></p>
-							<p th:text="${comment.content}"></p>
-							<p th:text="${comment.createdDate}"></p>
-						</div>
-					</div>
-				</th:block>
-				<div>
-					<div>
-						<p></p>
-					</div>
-					<div>
-						<p></p>
-
-						<form action='add' method="post">
-							<table border='1'>
-								<tr>
-									<th>댓글 입력</th>
-									<td><textarea rows='4' cols='60'></textarea></td>
-								</tr>
-							</table>
-							<p>
-								<button type='submit'>등록</button>
-							</p>
-						</form>
-					</div>
-				</div>
-			</div>
-			<!-- 댓글 블록 끝 -->
-
-		</div>
-
-
-
-
-	</div>
-
-
-
-	<!-- footer section start -->
-	<div class="footer_section layout_padding">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-3 col-sm-6">
-					<div class="fooer_logo">
-						<img src="../images/footer-logo.png">
-					</div>
-					<p class="footer_lorem_text">There are many variat ions of passages of L orem Ipsum available , but the majority h ave suffered altera tion in some form, by</p>
-				</div>
-				<div class="col-lg-3 col-sm-6">
-					<h1 class="customer_text">LET US HELP YOU</h1>
-					<p class="footer_lorem_text">There are many variat ions of passages of L orem Ipsum available , but the majority h ave suffered altera tion in some form, by</p>
-				</div>
-				<div class="col-lg-3 col-sm-6">
-					<h1 class="customer_text">INFORMATION</h1>
-					<p class="footer_lorem_text1">
-						About Us<br> Careers<br> Sell on shopee<br> Press & News<br> Competitions<br> Terms & Conditions
-					</p>
-				</div>
-				<div class="col-lg-3 col-sm-6">
-					<h1 class="customer_text">OUR Design</h1>
-					<p class="footer_lorem_text">There are many variat ions of passages of L orem Ipsum available , but the majority h ave suffered altera tion in some form, by</p>
-				</div>
-			</div>
-			<div class="input-group mb-3">
-				<input type="text" class="form-control" placeholder="Enter your email" aria-label="Enter your email" aria-describedby="basic-addon2">
-				<div class="input-group-append">
-					<span class="input-group-text" id="basic-addon2"><a href="#">Subscribe</a></span>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!--  footer section end -->
-	<!-- copyright section start -->
-	<div class="copyright_section">
-		<div class="container">
-			<div class="social_icon">
-				<ul>
-					<li><a href="#"><img src="../images/fb-icon.png"></a></li>
-					<li><a href="#"><img src="../images/twitter-icon.png"></a></li>
-					<li><a href="#"><img src="../images/instagram-icon.png"></a></li>
-					<li><a href="#"><img src="../images/linkedin-icon.png"></a></li>
-				</ul>
-			</div>
-		</div>
-		<p class="copyright_text">
-			2020 All Rights Reserved. Design by <a href="https://html.design">Free html Templates</a>
-		</p>
-	</div>
-	<!-- copyright section end -->
-	<!-- Javascript files-->
-	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-	<script src="../js/jquery.min.js"></script>
-	<script src="../js/popper.min.js"></script>
-	<script src="../js/bootstrap.bundle.min.js"></script>
-	<script src="../js/jquery-3.0.0.min.js"></script>
-	<script src="../js/plugin.js"></script>
-	<!-- sidebar -->
-	<script src="../js/jquery.mCustomScrollbar.concat.min.js"></script>
-
-	<!--  커스텀.js 사용하면 email-bt2 적용안됨-->
-	<script src="../js/custom.js"></script>
-
-	<!-- javascript -->
-	<!-- <script src="../js/owl.carousel.js"></script> -->
-	<!-- <script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>  -->
-
-	<!-- 공식부트스트랩 JS -->
-	<script src="../js/bootstrap/bootstrap.js"></script>
-
-	<script>
+      <script>
       "use strict"
     	  const boardNo = document.getElementById( 'boardNo').value;
     	  const memberNo = document.getElementById( 'memberNo' ).value;
@@ -787,7 +495,7 @@
                         a += '<div class="commentInfo' + value.no + '">' + '댓글번호 : ' + value.no + ' / 작성자 : ' + value.writer.nickname;
                         if (loginMemberNo == value.writer.no) {
                           a += '<a onclick="commentUpdate(' + value.no + ',\'' + value.content + '\');"> 수정 </a>';
-                          a += '<a onclick="commentDelete('+value.no+');"> 삭제 </a>';
+                          a += '<a onclick="commentDelete('+value.no+');"> 삭제 </a> </div>';
                         }
                         if (loginMemberNo != value.writer.no && loginMemberNo != -1) {
                             a += '<a onclick="commentComplain('+value.no+');"> 신고 </a> </div>';
@@ -868,71 +576,59 @@
       		 }
         }
         </script>
-
-
-
-
-	<!-- Modal Start -->
-	<form action='report' method="post">
-		<table border='1'>
-			<div id="container">
-				<div id="lorem-ipsum"></div>
-			</div>
-			<div id="modal" class="modal-overlay">
-				<div class="modal-window">
-					<div class="close-area">X</div>
-					<div class="content">
-						<div>
-							<div class="report_menu">신고사유</div>
-							<div class="form-check form-check-inline">
-								<input type="checkbox" value="Contents" class="form-check-input" id="1" name="reports" onclick='checkOnlyOne(this)'> <input type="hidden" name="_reports" value="on" /> <label for="reports1" class="form-check-label">불건전한 내용</label>
-							</div>
-							<div class="form-check form-check-inline">
-								<input type="checkbox" value="promotion" class="form-check-input" id="2" name="reports" onclick='checkOnlyOne(this)'> <input type="hidden" name="_reports" value="on" /> <label for="reports2" class="form-check-label">스팸 및 부적절한 홍보</label>
-							</div>
-							<div class="form-check form-check-inline">
-								<input type="checkbox" value="calumny" class="form-check-input" id="3" name="reports" onclick='checkOnlyOne(this)'> <input type="hidden" name="_reports" value="on" /> <label for="reports3" class="form-check-label">명예훼손 및 비방</label>
-							</div>
-							<div class="form-check form-check-inline">
-								<input type="checkbox" value="prejudice" class="form-check-input" id="4" name="reports" onclick='checkOnlyOne(this)'> <input type="hidden" name="_reports" value="on" /> <label for="reports4" class="form-check-label">초상권 및 저작권 침해</label>
-							</div>
-							<div class="form-check form-check-inline">
-								<input type="checkbox" value="embezzlement" class="form-check-input" id="5" name="reports" onclick='checkOnlyOne(this)'> <input type="hidden" name="_reports" value="on" /> <label for="reports5" class="form-check-label">개인정보 도용</label>
-							</div>
-							<div class="form-check form-check-inline">
-								<input type="checkbox" value="act" class="form-check-input" id="6" name="reports" onclick='checkOnlyOne(this)'> <input type="hidden" name="_reports" value="on" /> <label for="reports6" class="form-check-label">기타 사이트 목적에 맞지 않는 행위</label>
-							</div>
-							<div class="form-check form-check-inline">
-								<input type="checkbox" value="Etc" class="form-check-input" id="7" name="reports" onclick='checkOnlyOne(this)'> <input type="hidden" name="_reports" value="on" /> <label for="reports7" class="form-check-label">기타</label>
-							</div>
-						</div>
-						<div class="send_bt3" id="singo">신고</div>
-					</div>
-				</div>
-			</div>
-		</table>
-	</form>
-	<script>
-	
-	function checkOnlyOne(element) {
-		  
-		  const checkboxes 
-		      = document.getElementsByName("reports");
-		  
-		  checkboxes.forEach((cb) => {
-		    cb.checked = false;
-		  })
-		  
-		  element.checked = true;
-		}
-
-const boardNo = document.getElementById( 'boardNo').value;
-let loginMemberNo = -1;
-let id = -1;
-if($(".loginId").attr("id") != undefined) {
- loginMemberNo = $(".loginId").attr("id");
-};
-
+<!-- Modal Start -->
+  <form action='report' method="post">
+    <table border='1'>
+      <div id="container">
+        <div id="lorem-ipsum"></div>
+      </div>
+      <div id="modal" class="modal-overlay">
+        <div class="modal-window">
+          <div class="close-area">X</div>
+          <div class="content">
+            <div>
+              <div class="report_menu">신고사유</div>
+              <div class="form-check form-check-inline">
+                <input type="checkbox" value="Contents" class="form-check-input" id="1" name="reports" onclick='checkOnlyOne(this)'> <input type="hidden" name="_reports" value="on" /> <label for="reports1" class="form-check-label">불건전한 내용</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input type="checkbox" value="promotion" class="form-check-input" id="2" name="reports" onclick='checkOnlyOne(this)'> <input type="hidden" name="_reports" value="on" /> <label for="reports2" class="form-check-label">스팸 및 부적절한 홍보</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input type="checkbox" value="calumny" class="form-check-input" id="3" name="reports" onclick='checkOnlyOne(this)'> <input type="hidden" name="_reports" value="on" /> <label for="reports3" class="form-check-label">명예훼손 및 비방</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input type="checkbox" value="prejudice" class="form-check-input" id="4" name="reports" onclick='checkOnlyOne(this)'> <input type="hidden" name="_reports" value="on" /> <label for="reports4" class="form-check-label">초상권 및 저작권 침해</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input type="checkbox" value="embezzlement" class="form-check-input" id="5" name="reports" onclick='checkOnlyOne(this)'> <input type="hidden" name="_reports" value="on" /> <label for="reports5" class="form-check-label">개인정보 도용</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input type="checkbox" value="act" class="form-check-input" id="6" name="reports" onclick='checkOnlyOne(this)'> <input type="hidden" name="_reports" value="on" /> <label for="reports6" class="form-check-label">기타 사이트 목적에 맞지 않는 행위</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input type="checkbox" value="Etc" class="form-check-input" id="7" name="reports" onclick='checkOnlyOne(this)'> <input type="hidden" name="_reports" value="on" /> <label for="reports7" class="form-check-label">기타</label>
+              </div>
+            </div>
+            <div class="send_bt3" id="singo">신고</div>
+          </div>
+        </div>
+      </div>
+    </table>
+  </form>
+  <script>
+  
+  function checkOnlyOne(element) {
+      
+      const checkboxes 
+          = document.getElementsByName("reports");
+      
+      checkboxes.forEach((cb) => {
+        cb.checked = false;
+      })
+      
+      element.checked = true;
+    }
 
 $("#singo").click(function() {
     swal("신고 하였습니다.");
@@ -946,22 +642,21 @@ $("#singo").click(function() {
       }
     });
 
-
     $.ajax({
         type: "GET",
         url: "/app/report/insertReport",
         async:false,
         data: { id: id, 
-        	      loginMemberNo : loginMemberNo,
-        	      boardNo : boardNo},
-        success: function (data) {
-        	
+                loginMemberNo : loginMemberNo,
+                boardNo : boardNo},
+        success: function () {
+          
           swal("신고 하였습니다.");
-          report_auth_cd = data;
-          console.log(report_auth_cd);
+          /* report_auth_cd = data; */
+          /* console.log(report_auth_cd); */
          check = true;
         },
-        error: function (data) {
+        error: function () {
           swal("신고가 안되었습니다.");
         },
       });
@@ -970,7 +665,7 @@ $("#singo").click(function() {
 </script>
 
 
-	<script>
+  <script>
         const loremIpsum = document.getElementById("lorem-ipsum")
          //fetch를 통해 받아온 데이터를 loremIpsum DOM에 넣어주기 때문에 모달창 내부에 내용이 채워져서 뜨는것. 
         //fetch("https://baconipsum.com/api/?type=all-meat&paras=200&format=html")
@@ -1004,6 +699,8 @@ $("#singo").click(function() {
     </script>
 
 
-	<!-- Modal End-->
-</body>
+  <!-- Modal End-->
+      
+   </body>
+         
 </html>

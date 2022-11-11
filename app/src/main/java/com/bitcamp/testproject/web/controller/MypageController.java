@@ -4,12 +4,10 @@ import java.util.HashMap;
 import java.util.Map;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
-import javax.servlet.http.Part;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.multipart.MultipartFile;
 import com.bitcamp.testproject.service.BoardService;
 import com.bitcamp.testproject.service.MemberService;
 import com.bitcamp.testproject.vo.Board;
@@ -73,10 +71,10 @@ public class MypageController {
   //    return "redirect:list";
   //  }
 
-  private List<AttachedFile> saveAttachedFiles(Part[] files)
-      throws IOException, ServletException {
-    List<AttachedFile> attachedFiles = new ArrayList<>();
-    String dirPath = sc.getRealPath("/board/files");
+  //  private List<AttachedFile> saveAttachedFiles(Part[] files)
+  //      throws IOException, ServletException {
+  //    List<AttachedFile> attachedFiles = new ArrayList<>();
+  //    String dirPath = sc.getRealPath("/board/files");
 
   //  @GetMapping("list")
   //  public void list(Model model, int no) throws Exception {
