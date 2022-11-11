@@ -14,7 +14,6 @@ import javax.servlet.http.Part;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 import com.bitcamp.testproject.service.BoardService;
@@ -68,18 +67,18 @@ public class MypageController {
   public void form() throws Exception {
   }
 
-  @PostMapping("add") 
-  public String add(
-      Board board,
-      MultipartFile[] files,
-      HttpSession session) throws Exception {
-
-    board.setAttachedFiles(saveAttachedFiles(files));
-    board.setWriter((Member) session.getAttribute("loginMember"));
-
-    boardService.add(board);
-    return "redirect:list";
-  }
+  //  @PostMapping("add") 
+  //  public String add(
+  //      Board board,
+  //      MultipartFile[] files,
+  //      HttpSession session) throws Exception {
+  //
+  //    board.setAttachedFiles(saveAttachedFiles(files));
+  //    board.setWriter((Member) session.getAttribute("loginMember"));
+  //
+  //    boardService.add(board);
+  //    return "redirect:list";
+  //  }
 
   private List<AttachedFile> saveAttachedFiles(Part[] files)
       throws IOException, ServletException {
@@ -132,23 +131,23 @@ public class MypageController {
     return map;
   }
 
-  @PostMapping("update")
-  public String update(
-      Board board,
-      Part[] files,
-      HttpSession session) 
-          throws Exception {
-
-    board.setAttachedFiles(saveAttachedFiles(files));
-
-    checkOwner(board.getNo(), session);
-
-    if (!boardService.update(board)) {
-      throw new Exception("게시글을 변경할 수 없습니다!");
-    }
-
-    return "redirect:list";
-  }
+  //  @PostMapping("update")
+  //  public String update(
+  //      Board board,
+  //      Part[] files,
+  //      HttpSession session) 
+  //          throws Exception {
+  //
+  //    board.setAttachedFiles(saveAttachedFiles(files));
+  //
+  //    checkOwner(board.getNo(), session);
+  //
+  //    if (!boardService.update(board)) {
+  //      throw new Exception("게시글을 변경할 수 없습니다!");
+  //    }
+  //
+  //    return "redirect:list";
+  //  }
 
   private void checkOwner(int boardNo, HttpSession session) throws Exception {
     Member loginMember = (Member) session.getAttribute("loginMember");
@@ -171,27 +170,27 @@ public class MypageController {
     return "redirect:list";
   }
 
-  @GetMapping("fileDelete")
-  public String fileDelete(
-      int no,
-      HttpSession session) 
-          throws Exception {
-
-    AttachedFile attachedFile = boardService.getAttachedFile(no); 
-
-    Member loginMember = (Member) session.getAttribute("loginMember");
-    Board board = boardService.get(attachedFile.getObjectNo()); 
-
-    if (board.getWriter().getNo() != loginMember.getNo()) {
-      throw new Exception("게시글 작성자가 아닙니다.");
-    }
-
-    if (!boardService.deleteAttachedFile(no)) {
-      throw new Exception("게시글 첨부파일을 삭제할 수 없습니다.");
-    }
-
-    return "redirect:detail?no=" + board.getNo();
-  }
+  //  @GetMapping("fileDelete")
+  //  public String fileDelete(
+  //      int no,
+  //      HttpSession session) 
+  //          throws Exception {
+  //
+  //    AttachedFile attachedFile = boardService.getAttachedFile(no); 
+  //
+  //    Member loginMember = (Member) session.getAttribute("loginMember");
+  //    Board board = boardService.get(attachedFile.getObjectNo()); 
+  //
+  //    if (board.getWriter().getNo() != loginMember.getNo()) {
+  //      throw new Exception("게시글 작성자가 아닙니다.");
+  //    }
+  //
+  //    if (!boardService.deleteAttachedFile(no)) {
+  //      throw new Exception("게시글 첨부파일을 삭제할 수 없습니다.");
+  //    }
+  //
+  //    return "redirect:detail?no=" + board.getNo();
+  //  }
 }
 
 

@@ -39,6 +39,7 @@ public interface BoardDao {
 
   BoardCategory findCategoryByNo(int no);
 
+  int daleteThumbnailByNo(int no);
 
   //
 

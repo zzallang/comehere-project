@@ -39,8 +39,6 @@ public interface BoardService {
 
   AttachedFile getAttachedFile(int no) throws Exception;
 
-  boolean deleteAttachedFile(int fileNo) throws Exception;
-
   List<Map<String, Object>> list(Criteria cri) throws Exception;
 
   int countBoardListTotal(int no);
@@ -53,6 +51,7 @@ public interface BoardService {
 
   BoardCategory getCategory(int no);
 
+  int deleteThumbnail(int no);
 
 
   ////////////

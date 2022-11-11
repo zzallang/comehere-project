@@ -103,12 +103,6 @@ public class DefaultBoardService implements BoardService {
     if (boardDao.insert(board) == 0) {
       throw new Exception("게시글 등록 실패!");
     }
-
-    //  2) 첨부파일 등록
-    if (board.getAttachedFiles().size() > 0) {
-      boardDao.insertFiles(board);
-    }
-
   }
 
   @Override
@@ -149,9 +143,9 @@ public class DefaultBoardService implements BoardService {
       return false;
     }
     // 2) 첨부파일 추가
-    if (board.getAttachedFiles().size() > 0) {
-      boardDao.insertFiles(board);
-    }
+    //    if (board.getAttachedFiles().size() > 0) {
+    //      boardDao.insertFiles(board);
+    //    }
 
     return true;
   }
@@ -162,9 +156,10 @@ public class DefaultBoardService implements BoardService {
   }
 
   @Override
-  public boolean deleteAttachedFile(int fileNo) throws Exception {
-    return boardDao.deleteFile(fileNo) > 0;
+  public int deleteThumbnail(int no) {
+    return boardDao.daleteThumbnailByNo(no);
   }
+
 
   //////////
 

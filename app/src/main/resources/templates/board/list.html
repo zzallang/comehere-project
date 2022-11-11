@@ -109,7 +109,7 @@
           <div class="login-bt">
             <ul>
               <li data-th-if="${session.loginMember == null}"><a href="../auth/form" >로그인</a></li>
-              <li data-th-if="${session.loginMember != null}"><a href="../member/viewer">마이페이지</a></li>
+              <li class="loginId" data-th-if="${session.loginMember != null}" th:id=${session.loginMember.no}><a href="../member/viewer">마이페이지</a></li>
               <li data-th-if="${session.loginMember != null}"><a href="../auth/logout" data-th-text="${session.loginMember.name} + '(로그아웃)'">동동(로그아웃)</a></li>
             </ul>
           </div>
@@ -160,9 +160,8 @@
                   </table>
                   <!-- 게시글 목록 끝 -->
                   <li class="write-box">
-                    <a class="btn btn-primary" th:href="@{form(cateno=${catenoInBoard.cateno})}" role="button">글쓰기</a>
+                    <div id="postButton" class="btn btn-primary" th:value="@{form(cateno=${catenoInBoard.cateno})}" role="button">글쓰기</div>
                   </li>
-                
                   <!-- 페이징 버튼 시작 -->
                   <nav aria-label="Page navigation">
                     <ul class="pagination">
@@ -289,6 +288,26 @@
 
       <script>
       "use strict"
+      document.getElementById('postButton').addEventListener('click', checkLogin);
+      
+      let loginMemberNo = -1;
+      if($(".loginId").attr("id") != -1) {
+       loginMemberNo = $(".loginId").attr("id");
+      };
+      function checkLogin() {
+    	  console.log("a뭐야????" + loginMemberNo);
+    	  if (loginMemberNo == undefined || loginMemberNo == -1) {
+    		  if (confirm("로그인하시겠습니까?") == true){    //확인
+              location.href = '../auth/form';
+          } else {
+        	  return false;
+          }
+    	  } else {
+      	  console.log("경로어디야??" + $("#postButton").attr("value"));
+      	  location.href = $("#postButton").attr("value");
+    	  }
+      }
+      
       
       window.onload = 
     	  function findCategory() {

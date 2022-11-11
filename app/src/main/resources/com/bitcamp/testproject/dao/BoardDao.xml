@@ -12,21 +12,15 @@
     <result column="cont" property="content"/>
     <result column="cdt" property="createdDate"/>
     <result column="vw_cnt" property="viewCount"/>
-    <result column="filepath" property="path"/>
+    <result column="thumbnail" property="thumbnail"/>
     
     <association property="writer" javaType="member">
       <id column="mno" property="no"/>
       <result column="name" property="name"/>
       <result column="nick" property="nickname"/>
       <result column="filepath" property="filepath"/>
-       
     </association>
-    
-    <collection property="attachedFiles" ofType="attachedFile">
-      <id column="bfno" property="no"/>
-      <result column="filepath" property="filepath"/>
-      <result column="bno" property="objectNo"/>
-    </collection>
+
   </resultMap>
   
   <!-- hashmap resultMap으로.. -->
@@ -51,12 +45,6 @@
   <resultMap type="boardCategory" id="boardCategoryMap">
     <id column="cateno" property="cateno"/>
     <result column="name" property="name"/>
-  </resultMap>
-  
-  <resultMap type="attachedFile" id="attachedFileMap">
-    <id column="bfno" property="no"/>
-    <result column="filepath" property="filepath"/>
-    <result column="bno" property="objectNo"/>
   </resultMap>
   
 <!--   
@@ -101,12 +89,11 @@
         b.title,
         m.name,
         b.cdt,
-        bf.filepath
+        b.thumbnail
       from 
         board b
         join member m on b.mno = m.mno
         join board_category bc on b.cateno = bc.cateno
-        left join board_file bf on b.bno = bf.bno
       where
         b.cateno = 3
       group by
@@ -125,12 +112,11 @@
 		      b.cdt,
 		      b.vw_cnt,
 		      b.cateno,
-		      bf.filepath
+		      b.thumbnail
 		    from 
 		      board b
 		      join member m on b.mno = m.mno
 		      join board_category bc on b.cateno = bc.cateno
-		      left join board_file bf on b.bno = bf.bno
 		    where
 		      b.cateno = #{catenoToPage}
         group by
@@ -152,16 +138,8 @@
   
   <insert id="insert" parameterType="board"
           useGeneratedKeys="true" keyColumn="bno" keyProperty="no">
-    insert into board(cateno,mno,title,cont) 
-    values(#{cateno},1,#{title},#{content})
-  </insert>
-  
-  <insert id="insertFiles" parameterType="board">
-    insert into board_file(filepath,bno)
-    values
-    <foreach collection="attachedFiles" item="boardFile" separator=",">
-      (#{boardFile.filepath},#{no})
-    </foreach>
+    insert into board(cateno, mno, title, cont, thumbnail) 
+    values(#{cateno},1,#{title},#{content},#{thumbnail})
   </insert>
   
   <select id="findByNo" resultMap="boardMap">
@@ -176,21 +154,37 @@
       m.filepath,
       b.cdt,
       b.vw_cnt,
-      bf.filepath
+      b.thumbnail
     from 
       board b
       join member m on b.mno = m.mno
-      left join board_file bf on b.bno=bf.bno
     where
       b.bno = #{value}
-    order by 
+    order by
       bno desc
   </select>
   
-  <delete id="deleteFiles">
-    delete from board_file
-    where bno=#{value}
-  </delete>
+  <select id="findByThumbnail" resultMap="boardMap">
+    select
+      b.bno,
+      b.cateno,
+      b.title,
+      b.cont,
+      m.mno,
+      m.name,
+      m.nick,
+      m.filepath,
+      b.cdt,
+      b.vw_cnt,
+      b.thumbnail
+    from 
+      board b
+      join member m on b.mno = m.mno
+    where
+      b.thumbnail = #{thumbnail}
+    order by
+      bno desc
+  </select>
   
   <delete id="delete">
     delete from board 
@@ -198,27 +192,14 @@
   </delete>
   
   <update id="update" parameterType="board">
-    update board set 
+    update 
+      board 
+    set 
       title=#{title}, 
-      cont=#{content} 
+      cont=#{content},
+      thumbnail=#{thumbnail}
     where bno=#{no}
   </update>
-  
-  <select id="findFileByNo" resultMap="attachedFileMap">
-    select 
-      bfno, 
-      filepath, 
-      bno 
-    from 
-      board_file 
-    where 
-      bfno = #{value}
-  </select>
-  
-  <delete id="deleteFile">
-    delete from board_file 
-    where bfno=#{value}
-  </delete>
 
   <update id="increaseViews">
     update 
@@ -237,6 +218,15 @@
     where 
       cateno = #{value}
   </select>
+  
+  <update id="daleteThumbnailByNo">
+    update
+      board
+    set
+      thumbnail= null
+    where 
+      bno=#{value}
+  </update>
 
 
 </mapper>

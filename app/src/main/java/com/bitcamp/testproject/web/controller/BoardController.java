@@ -1,7 +1,6 @@
 package com.bitcamp.testproject.web.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -21,10 +20,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import com.bitcamp.testproject.service.BoardCommentService;
 import com.bitcamp.testproject.service.BoardService;
-import com.bitcamp.testproject.vo.AttachedFile;
 import com.bitcamp.testproject.vo.Board;
 import com.bitcamp.testproject.vo.BoardCategory;
 import com.bitcamp.testproject.vo.Criteria;
+import com.bitcamp.testproject.vo.Member;
 import com.bitcamp.testproject.vo.PageMaker;
 
 @Controller
@@ -56,36 +55,29 @@ public class BoardController {
 
   //  제동 메서드 추가 
   @PostMapping("add") 
-  public String add(
-      Board board,
-      int cateno,
-      Part file,
-      HttpSession session) throws Exception {
+  public String add(Board board, int cateno, Part file, HttpSession session) throws Exception {
 
-    // 카테고리 번호 넣기
+    // 카테고리 번호, 파일경로넣기
     board.setCateno(cateno);
+    board.setThumbnail(saveAttachedFile(file));
 
-    board.setAttachedFiles(saveAttachedFile(file));
     //    board.setWriter((Member) session.getAttribute("loginMember"));
 
     boardService.add(board);
     return "redirect:list?no=" + cateno;
   }
 
-
-  private List<AttachedFile> saveAttachedFile(Part file)
-      throws IOException, ServletException {
-    List<AttachedFile> attachedFiles = new ArrayList<>();
+  private String saveAttachedFile(Part file) throws IOException, ServletException {
+    //    List<AttachedFile> attachedFiles = new ArrayList<>();
     String dirPath = sc.getRealPath("/board/files");
 
     // 첨부파일이 있다면 실행
     if (file.getSize() != 0) {
       String filename = UUID.randomUUID().toString();
       file.write(dirPath + "/" + filename);
-      attachedFiles.add(new AttachedFile(filename));
+      return filename;
     }
-
-    return attachedFiles;
+    return null;
   }
 
   //  private String saveThumbnailFile(Part file) throws Exception {
@@ -140,11 +132,9 @@ public class BoardController {
 
     // 게시글 꺼내기
     Board board = boardService.get(no);
-    System.out.println(board);
     if (board == null) {
       throw new Exception("해당 번호의 게시글이 없습니다!");
     }
-
     model.addAttribute("board", board);
     model.addAttribute("pageMaker", pageMaker);
 
@@ -153,7 +143,6 @@ public class BoardController {
 
   // 조회수 증가 
   private void viewCountUp(int no, HttpServletRequest request, HttpServletResponse response) {
-
     Cookie oldCookie = null;
     Cookie[] cookies = request.getCookies();
     if (cookies != null) {
@@ -163,7 +152,6 @@ public class BoardController {
         }
       }
     }
-
     if (oldCookie != null) {
       if (!oldCookie.getValue().contains("[" + no + "]")) {
         boardService.increaseViews(no);
@@ -183,13 +171,11 @@ public class BoardController {
 
   @GetMapping("list")
   public ModelAndView list(Criteria cri, int no) throws Exception {
-
     // 페이징하기 위한 연산 
     PageMaker pageMaker = new PageMaker();
     cri.setCatenoToPage(no); // 특정 게시판을 목록을 출력하기위한 설정
     pageMaker.setCri(cri);
     pageMaker.setTotalCount(boardService.countBoardListTotal(no));
-
 
     ModelAndView mav;
     if (no == 3) {
@@ -247,7 +233,7 @@ public class BoardController {
       HttpSession session) 
           throws Exception {
 
-    board.setAttachedFiles(saveAttachedFile(file));
+    board.setThumbnail(saveAttachedFile(file));
 
     //      checkOwner(board.getNo(), session);
 
@@ -264,16 +250,17 @@ public class BoardController {
       HttpSession session) 
           throws Exception {
 
-    AttachedFile attachedFile = boardService.getAttachedFile(no); 
+    //    AttachedFile attachedFile = boardService.getAttachedFile(no); 
 
-    //    Member loginMember = (Member) session.getAttribute("loginMember");
-    Board board = boardService.get(attachedFile.getObjectNo()); 
+    Member loginMember = (Member) session.getAttribute("loginMember");
+    Board board = boardService.get(no);
+    System.out.println(board);
 
-    //    if (board.getWriter().getNo() != loginMember.getNo()) {
-    //      throw new Exception("게시글 작성자가 아닙니다.");
-    //    }
+    if (board.getWriter().getNo() != loginMember.getNo()) {
+      throw new Exception("게시글 작성자가 아닙니다.");
+    }
 
-    if (!boardService.deleteAttachedFile(no)) {
+    if (boardService.deleteThumbnail(no) == 0) {
       throw new Exception("게시글 첨부파일을 삭제할 수 없습니다.");
     }
 
