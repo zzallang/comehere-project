@@ -253,6 +253,15 @@
       pno=#{value}
   </select>
 
+  <select id="findNowPartyNo" resultType="int">
+    SELECT 
+      (AUTO_INCREMENT-1) no 
+    FROM 
+      information_schema.tables 
+    WHERE 
+      table_name = 'party'
+  </select>
+
   
 </mapper>
 

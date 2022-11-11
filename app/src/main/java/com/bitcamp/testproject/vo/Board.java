@@ -1,7 +1,9 @@
 package com.bitcamp.testproject.vo;
 
 import java.sql.Date;
+import java.util.List;
 
+@Data
 public class Board {
 
   private int no;
@@ -13,11 +15,13 @@ public class Board {
   private Date createdDate;
   private int viewCount;
   private String path;
+  private List<String> report;
   @Override
   public String toString() {
     return "Board [no=" + no + ", cateno=" + cateno + ", writer=" + writer + ", title=" + title
         + ", active=" + active + ", content=" + content + ", createdDate=" + createdDate
-        + ", viewCount=" + viewCount + ", path=" + path + "]";
+        + ", viewCount=" + viewCount + ", path=" + path + ", report=" + report + ", attachedFiles="
+        + attachedFiles + "]";
   }
   public int getNo() {
     return no;
@@ -67,6 +71,15 @@ public class Board {
   public void setViewCount(int viewCount) {
     this.viewCount = viewCount;
   }
+
+  public List<AttachedFile> getAttachedFiles() {
+    return attachedFiles;
+  }
+
+  public void setAttachedFiles(List<AttachedFile> attachedFiles) {
+    this.attachedFiles = attachedFiles;
+  }
+
   public String getPath() {
     return path;
   }
@@ -74,10 +87,14 @@ public class Board {
     this.path = path;
   }
 
+  public List<String> getReport() {
+    return report;
+  }
 
-
+  public void setReport(List<String> report) {
+    this.report = report;
+  }
 }
-
 
 
 

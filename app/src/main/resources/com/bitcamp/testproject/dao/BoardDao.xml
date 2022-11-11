@@ -150,9 +150,11 @@
       m.name,
       b.cdt,
       b.vw_cnt
+      
     from 
       board b
       join member m on b.mno = m.mno
+
     where
       b.bno = #{value}
     order by 
@@ -191,6 +193,9 @@
     where 
       cateno = #{value}
   </select>
+
+
+
 
 
 </mapper>

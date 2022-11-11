@@ -43,6 +43,7 @@ public interface BoardDao {
   BoardCategory findCategoryByNo(int no);
 
 
+
   //
 
   //  int insert(Board board);

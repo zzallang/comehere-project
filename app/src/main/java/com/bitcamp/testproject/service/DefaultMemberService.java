@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import com.bitcamp.testproject.dao.BoardDao;
-import com.bitcamp.testproject.dao.FavoriteRegionDao;
 import com.bitcamp.testproject.dao.MemberDao;
 import com.bitcamp.testproject.vo.Member;
 
@@ -18,20 +17,12 @@ public class DefaultMemberService implements MemberService {
   @Autowired
   BoardDao boardDao;
 
-  @Autowired
-  FavoriteRegionDao favoriteRegionDao;
-
   @Transactional
   @Override
   public void add(Member member) throws Exception {
-    // 1) 회원등록
     memberDao.insert(member);
-    //
-    //    // 2) 관심지역 등록
-    //    favoriteRegionDao.insertRegion(member);
-    //
-    //    // 3) 관심운동 등록
-    //    favoriteRegionDao.insertSports(member);
+    memberDao.insertRegion(member);
+    memberDao.insertSports(member);
   }
 
   @Override
@@ -40,10 +31,12 @@ public class DefaultMemberService implements MemberService {
   }
 
   @Override
-  public boolean updatePassWord(Member member) throws Exception {
-    return memberDao.update(member) > 0;
+  public boolean updatePW(String password, String email, String id) throws Exception {
+    if (memberDao.updatePW(password, email, id) == 0) {
+      return false;
+    }
+    return true;
   }
-
   @Override
   public Member get(int no) throws Exception {
     return memberDao.findByNo(no);
@@ -78,6 +71,7 @@ public class DefaultMemberService implements MemberService {
   public List<Member> list() throws Exception {
     return memberDao.findAll();
   }
+
 
   //  @Override
   //  public String checkId(Member member) throws Exception {

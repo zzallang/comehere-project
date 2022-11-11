@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>comehere-커뮤니티 게시글 조회</title>
+        
+      <!-- basic -->
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <!-- mobile metas -->
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+      <!-- site metas -->
+      <title>Contact</title>
+      <meta name="keywords" content="">
+      <meta name="description" content="">
+      <meta name="author" content="">
+      <!-- bootstrap css -->
+      <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
+      <!-- style css -->
+      <link rel="stylesheet" type="text/css" href="../css/style.css">
+      <!-- Responsive-->
+      <link rel="stylesheet" href="../css/responsive.css">
+      <!-- fevicon -->
+      <link rel="icon" href="../images/fevicon.png" type="image/gif" />
+      <!-- Scrollbar Custom CSS -->
+      <link rel="stylesheet" href="../css/jquery.mCustomScrollbar.min.css">
+      <!-- Tweaks for older IEs-->
+      <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+      <!-- owl stylesheets --> 
+      <link rel="stylesheet" href="../css/owl.carousel.min.css">
+      <!-- <link rel="stylesheet" href="../css/owl.theme.default.min.css"> -->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
+      
+      <!-- 공식부트스트랩 CSS -->
+      <link href="../css/bootstrap/bootstrap.css" rel="stylesheet">
+        
+      <style>
+        .temp-line {
+          border: 1px solid black;
+        }
+      
+      
+        .our_textJD {
+        width: 100%;
+        float: left;
+        font-size: 36px;
+        color: #121111;
+        text-transform: uppercase;
+        text-align: center;
+        border-top: solid gray 1px;
+        padding-top: 90px;
+        }
+        
+        .furnitures_sectionJD {
+            width: 100%;
+            min-height: 1300px;
+            float: left;
+            padding-bottom: 90px;
+        }
+        
+        .write-box {
+          border: 2px, black;
+          padding-top: 30px;
+          padding-left: 87%;
+        }
+        .page_center {
+          display : flex;
+          margin : auto;
+          /* width: 42px; */
+        }
+        .title-min-width2 {
+          min-width: 300px;
+        }
+        
+        .btn-outline-successJD {
+          color: #0d6efd;
+          background-color: transparent;
+          background-image: none;
+          border-color: #0d6efd;
+        }
+        .btn-outline-successJD:hover {
+          color: #fff;
+          background-color: #0d6efd;
+          border-color: #0d6efd;
+        }
+        
+        .cate-bottom-line {
+          border-bottom: 1px solid black;
+          border-top: 1px solid black;
+        }
+        
+        #community-title {
+          color: #ffb607;
+        }
+        
+         .mainList-title {
+          margin: 0 66px 0 66px;
+          font-weight: bold;
+        }
+        
+        .row1 {
+          width: 50%;
+          border-right: 1px solid #dee2e6;
+          float: left;
+        }
+        
+        .clg-plus {
+          float: right;
+          font-size: 17px;
+          font-weight: normal;
+          padding-top: 12px;
+          
+        }
+        
+        .recent-clg-list {
+          /* border: 1px solid blue; */
+          width: 90%;
+          margin: auto;
+          min-height: 500px;
+        }
+        .recent-clg-wapper {
+          display: inline-block;
+          width: 48%;
+          padding: 2%;
+          margin: 4px;
+          background-color: #fcd780;
+        }
+        .recent-clg-img-wapper {
+          height: 256.031px;
+          width: 256.031px;
+        }
+        .imgJD {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          margin: auto;
+          display: block;
+        }
+        .recent-clg-content-wapper {
+          background-color: white;
+          margin-top: 10px;
+          padding: 5px;
+          height: 60px;
+        }
+        
+        .form-content {
+          width: 800px;
+          min-height: 700px;
+        }
+        
+      </style>
+
+    </head>
+    <body>
+  <!-- header section start -->
+  <div class="header_section">
+    <div class="container-fluid">
+      <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="main_logo"><a href="/app"><img src="../images/logo.png"></a></div>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item"><a class="nav-link" href="../party/list">운동찾기</a></li>
+            <li class="nav-item"><a class="nav-link" href="main">커뮤니티</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">공지사항</a></li>
+          </ul>
+          <div class="login-bt">
+            <ul>
+              <li data-th-if="${session.loginMember == null}"><a href="../auth/form" >로그인</a></li>
+              <li data-th-if="${session.loginMember != null}"><a href="../member/viewer">마이페이지</a></li>
+              <li data-th-if="${session.loginMember != null}"><a href="../auth/logout" data-th-text="${session.loginMember.name} + '(로그아웃)'">동동(로그아웃)</a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </div>
+  <!-- header section end -->
+      <!-- furnitures section start -->
+      <div class="furnitures_sectionJD layout_padding">
+         <a href="main"><h1 class="container" id="community-title">커뮤니티</h1></a>
+         <div class="container cate-bottom-line">
+           <!-- 게시판 카테고리 이동 시작 -->
+           <ul class="nav nav-pills nav-justified">
+             <li class="nav-item"><a class="nav-link" href="list?no=1">자유게시판</a></li>
+             <li class="nav-item"><a class="nav-link" href="list?no=2">식단게시판</a></li>
+             <li class="nav-item"><a class="nav-link" href="list?no=3">챌린지게시판</a></li>
+             <li class="nav-item"><a class="nav-link" href="list?no=4">질문게시판</a></li>
+             <li class="nav-item"><a class="nav-link" href="list?no=5">핫딜게시판</a></li>
+           </ul>
+           <!-- 게시판 카테고리 이동 끝 -->
+
+            <h1>글조회</h1>
+            <table border='1' style="margin: auto">
+                <tr>
+                    <th>게시판</th>
+                    <td>
+                      <span value='게시판' th:if="${board.cateno == 1}">자유게시판</span>
+                      <span value='게시판' th:if="${board.cateno == 2}">식단게시판</span>
+                      <span value='게시판' th:if="${board.cateno == 3}">챌린지게시판</span>
+                      <span value='게시판' th:if="${board.cateno == 4}">질문게시판</span>
+                      <span value='게시판' th:if="${board.cateno == 5}">핫딜게시판</span>
+                    </td>
+
+                </tr>
+                <tr>
+                    <th>번호</th>
+                    <td><input
+                        id="boardNo"
+                        name='no'
+                        type='number'
+                        value='0'
+                        data-th-value="${board.no}"
+                        readonly="readonly"></td>
+                </tr>
+                <tr>
+                    <th>제목</th>
+                    <td><input
+                        name='title'
+                        type='text'
+                        value='제목'
+                        data-th-value='${board.title}'
+                        size='60'></td>
+                </tr>
+                <tr>
+                    <th>내용</th>
+                     <td>
+                        <div class="form-content" name='content' data-th-utext="${board.content}">내용</div>
+                    </td> 
+                </tr>
+                <tr>
+                    <th>조회수</th>
+                    <td data-th-text="${board.viewCount}">0</td>
+                </tr>
+                <tr>
+                    <th>작성자</th>
+                    <td data-th-text="${board.writer.name}">홍길동</td>
+                </tr>
+                <tr>
+                    <th>등록일</th>
+                    <td data-th-text="${board.createdDate}">0000-00-00</td>
+                </tr>  
+            </table>
+            <p>
+                <a class="btn btn-primary" href="updateForm?no=1" data-th-href="@{updateForm(no=${board.no})}" role="button">수정</a>
+                <a href='delete?no=1' data-th-href="@{delete(no=${board.no})}">삭제</a>
+                <a data-th-href="@{list(no=${board.cateno})}">목록</a>
+                <a class="btn btn-primary" href="#" role="button">신고기능</a>
+            </p>
+            
+            
+             <!-- 댓글 블록 시작 -->
+             
+            
+            <div>
+              <h2>달린 댓글 부분</h2>
+              <div class="container">
+                  <div class="commentList"></div>
+              </div>
+              
+              <h2>댓글 쓰기 부분</h2>
+              <div style="width: 80%;" class="temp-line">
+                  <div class="form-group">
+                      <label for="comment"></label>
+                      <div th:if="${session.loginMember}">
+                        <input type="hidden" id="memberNo"  th:value="${session.loginMember.no}" >
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="content"
+                            placeholder="댓글을 달아주세요!"
+                            style="height: 30px;"
+                            th:name="${session.loginMember.nickname}">
+                        </div>
+                      <div th:if="${session.loginMember == null}">
+                        <input type="hidden" id="memberNo"  value=0>
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="content"
+                            placeholder="로그인을 해주세요!"
+                            style="height: 60px;" readonly>
+                      </div>
+                  </div>
+                  <div>
+                      <button class="btn btn-sm btn-success" onclick="insertAndReplay();">등록</button>
+                  </div>
+              </div>
+              
+
+            </div>
+            <!-- 댓글 블록 끝 -->
+         
+         </div>
+         
+         
+         
+         
+      </div>
+    
+    
+
+      <!--  footer section end -->
+      <!-- copyright section start -->
+      <div class="copyright_section">
+        <div class="container">
+           <div class="social_icon">
+              <ul>
+                 <li><a href="#"><img src="../images/fb-icon.png"></a></li>
+                 <li><a href="#"><img src="../images/twitter-icon.png"></a></li>
+                 <li><a href="#"><img src="../images/instagram-icon.png"></a></li>
+                 <li><a href="#"><img src="../images/linkedin-icon.png"></a></li>
+              </ul>
+           </div>
+           <p class="copyright_text">2020 All Rights Reserved. Design by <a href="https://html.design">Free html  Templates</a></p>
+        </div>
+      </div>
+      <!-- copyright section end -->
+      <!-- Javascript files-->
+      <script src="../js/jquery.min.js"></script>
+      <script src="../js/popper.min.js"></script>
+      <script src="../js/bootstrap.bundle.min.js"></script>
+      <script src="../js/jquery-3.0.0.min.js"></script>
+      <script src="../js/plugin.js"></script>
+      <!-- sidebar -->
+      <script src="../js/jquery.mCustomScrollbar.concat.min.js"></script>
+      <script src="../js/custom.js"></script>
+      <!-- javascript --> 
+      <!-- <script src="../js/owl.carousel.js"></script> -->
+      <!-- <script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>  -->
+      
+      <!-- 공식부트스트랩 JS -->
+      <script src="../js/bootstrap/bootstrap.js"></script>   
+
+      <script th:inline="javascript">
+      /*<![CDATA[*/
+      "use strict"
+    	  const boardNo = document.getElementById( 'boardNo' ).value;
+    	  const memberNo = document.getElementById( 'memberNo' ).value;
+      
+  	  // 댓글 목록 
+  	  function commentList(){
+        console.log("목록 호출됨!!");
+          $.ajax({
+              url : '/app/boardComment/list',
+              type : 'get',
+              data : {boardNo: boardNo},
+              success : function(result){
+                  var a =''; 
+                  $.each(result, function(key, value){ 
+                      a += '<div class="commentArea temp-line" style="border-bottom:1px solid darkgray; margin-bottom: 15px;">';
+                      a += '<div class="commentInfo' + value.no + '">' + '댓글번호 : ' + value.no + ' / 작성자 : ' + value.writer.nickname;
+                      a += '<a onclick="commentUpdate(' + value.no + ',\'' + value.content + '\');"> 수정 </a>';
+                      a += '<a onclick="commentDelete('+value.no+');"> 삭제 </a> </div>'; 
+                      a += '<div class="commentContent'+value.no+'"> <p> 내용 : '+value.content +'</p>';
+                      a += '</div></div>';
+                  });
+                  
+                  $(".commentList").html(a);
+              }
+          });
+      }
+    	// 페이지 시작할 때 댓글 목록 출력 
+    	$(document).ready(function(){
+    		commentList(); //페이지 로딩시 댓글 목록 출력 
+    	});
+    	
+    	// 댓글 등록
+      function insertAndReplay(){
+        $.ajax({
+          url : "/app/boardComment/insertAndReplay",
+          data : {
+            content : $("#content").val(),
+            boardNo : boardNo,
+            memberNo : memberNo
+          },
+          type : "post",
+          success : function(result){
+            if(result != null){
+
+            	commentList();
+              $("#content").val("");
+            }
+          }
+          })
+      }
+    	
+      //댓글 삭제 
+      function commentDelete(no){
+          console.log("댓글삭제 호출됨!!");
+          $.ajax({
+              url : '/app/boardComment/delete/'+no,
+              type : 'post',
+              success : function(result){
+                  if(result == 1) commentList(); //댓글 삭제후 목록 출력 
+              }
+          });
+      }
+    
+      //댓글 수정 모드- 댓글 내용 출력을 input 폼으로 변경 
+      function commentUpdate(commentNo, content){
+          var a ='';
+          a += '<label for="form"></label>';
+          a += '<div class="input-group temp-line">';
+          a += '<input type="text" class="form-control" name="content_' + commentNo + '" value="' + content + '"/>';
+          a += '<span class="input-group-btn"><button class="btn btn-default" type="button" onclick="commentUpdateProc(' + commentNo + ');">수정</button></span>';
+          a += '</div>';
+          
+          $('.commentContent'+commentNo).html(a);
+      }
+      // 댓글 수정
+      function commentUpdateProc(commentNo){
+          var updateContent = $('[name=content_'+commentNo+']').val();
+          
+          $.ajax({
+              url : '/app/boardComment/update',
+              type : 'post',
+              data : { 
+            	  'content' : updateContent, 
+            	  'no' : commentNo},
+              success : function(result){
+                  if(result == 1) commentList(); //댓글 수정후 목록 출력 
+              }
+          });
+      }
+      
+      /*]]>*/
+      </script>
+
+      
+   </body>
+         
+</html>

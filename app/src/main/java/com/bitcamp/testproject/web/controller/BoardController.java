@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+import com.bitcamp.testproject.service.BoardReportService;
 import com.bitcamp.testproject.service.BoardService;
 import com.bitcamp.testproject.vo.Board;
 import com.bitcamp.testproject.vo.BoardCategory;
@@ -30,6 +31,8 @@ public class BoardController {
   ServletContext sc;
   @Autowired
   BoardService boardService;
+  @Autowired
+  BoardReportService boardReportService;
 
   // InternalResourceViewResolver 사용 후:
   //  @GetMapping("form")
@@ -282,7 +285,6 @@ public class BoardController {
     }
   }
 
-
   //  @GetMapping("list")
   //  public void list(Model model, int no) throws Exception {
   //    model.addAttribute("boards", boardService.list(no));
@@ -388,10 +390,8 @@ public class BoardController {
 
 
   /////// 제동 메서드 끝 
+
+
+
+
 }
-
-
-
-
-
-
