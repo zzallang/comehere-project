@@ -52,6 +52,8 @@ public interface MemberDao {
       @Param("email") String email,
       @Param("SecCode") String SecCode);
 
+  int updatePW(String password, String email, String id);
+
 }
 
 

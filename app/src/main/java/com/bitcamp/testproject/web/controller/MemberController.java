@@ -30,7 +30,7 @@ public class MemberController {
   @Autowired
   MemberService memberService;
   @Autowired
-  RegionService regionService;
+  FavoriteRegionService favoriteRegionService;
   @Autowired
   FavoriteSportsService favoriteSportsService;
   @Autowired
@@ -142,7 +142,6 @@ public class MemberController {
     return favoriteSports;
   }
 }
-
 
 
 

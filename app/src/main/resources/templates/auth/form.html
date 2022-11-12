@@ -32,15 +32,15 @@
 
 <style>
 .btnon1 {
-    height: 65px;
-    width: 460px;
-    margin-top: 1px;
-    border: none;
-    border-radius: 10px;
-    font-size: 25px;
-    font-weight: bold;
-    background-color: #000;
-    color: white;
+  height: 65px;
+  width: 460px;
+  margin-top: 1px;
+  border: none;
+  border-radius: 10px;
+  font-size: 25px;
+  font-weight: bold;
+  background-color: #000;
+  color: white;
 }
 
 .contact_text1{
@@ -52,16 +52,16 @@
 
 }
 
+
 .col-md-7 {
-margin-left: 14vw;
-margin-right: 14vw;
+  margin-left: 14vw;
+  margin-right: 14vw;
 }
 
-.center{
-text-align:center;
-margin-right: 140px;
+.center {
+  text-align: center;
+  margin-right: 140px;
 }
-
 </style>
 
 
@@ -71,7 +71,9 @@ margin-right: 140px;
 	<div class="header_section">
 		<div class="container-fluid">
 			<nav class="navbar navbar-expand-lg navbar-light bg-light">
-					<div class="main_logo"><a href="../"><img src="../images/logo.png"></a></div>
+				<div class="main_logo">
+					<a href="../"><img src="../images/logo.png"></a>
+				</div>
 				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon"></span>
 				</button>
@@ -81,7 +83,7 @@ margin-right: 140px;
 						<li class="nav-item"><a class="nav-link" href="about.html">커뮤니티</a></li>
 						<li class="nav-item"><a class="nav-link" href="shop.html">공지사항</a></li>
 					</ul>
-					</div>
+				</div>
 			</nav>
 		</div>
 	</div>
@@ -89,30 +91,63 @@ margin-right: 140px;
 	<!-- contact section start -->
 	<div class="contact_section layout_padding">
 		<div class="container">
-		<div class="col-md-7">
-			<div class="col-md">
+			<div class="col-md-7">
+				<div class="col-md">
+					<!--   <center><h1 class="contact_text" >Login</h1></center>
+                  <div class="mail_sectin" >
+                     <input type="text" class="email-bt" placeholder="E-mail" name="email" size='30' data-th-value="${email}">
+                     <input type="password" class="email-bt" placeholder="Password" name="Password">
+                     <input type="checkbox" name="saveEmail">이메일 저장<br>
+                     <button class="get_bt" data-th-if="${session.loginMember == null}" ><a href="/app">로그인</a></button>
+                     <center><a href="#">아이디 찾기</a> | <a href="#">비밀번호 찾기</a> | <a href="#">회원가입</a></center>
+             -->
 
-				<form action='login' method="post">
-					<table border='1'>
-            <input type="hidden" name="beforePageURL" data-th-value="${session.redirectURI}">
-						<center><h1 class="contact_text">Login</h1></center>
-						<tr>
-							<input type="text" class="email-bt" placeholder="ID를 입력해주세요" size='30' name ="id" data-th-value="${id}">
-						</tr>
-						<tr>
-							<input type="password" class="email-bt" placeholder="Password를 입력해주세요" name="password">
-						</tr>
-					</table>
-					<p>
-						<button type='submit'class="btnon1" >로그인</button>
-					</p>
-       <div class="center">
-					 <a href="findId">아이디 찾기</a> | <a href="findPassword">비밀번호 찾기</a> | <a href="join">회원가입</a>
-			</div>
-				</form>
+					<form action='login' method="post">
+						<table border='1'>
+						
+								<h1 class="contact_text1">Login</h1>
+							<tr>
+								<input type="text" class="email-bt" placeholder="ID를 입력해주세요" size='30' name="id" data-th-value="${id}" id="checkId">
+							</tr>
+							<tr>
+								<input type="password" class="email-bt" placeholder="Password를 입력해주세요" name="password" id="password">
+							</tr>
+						</table>
+						<p>
+							<button type="button" class="btnon1" id="pwch" onclick="bt(this.form);">로그인</button>
+						</p>
+						<p>
+						<div class="center">
+							<a href="findId">아이디 찾기</a> | <a href="findPassword">비밀번호 찾기</a> | <a href="../member/join">회원가입</a>
+						</div>
+						<script>
+							function bt(frm) {
+								var checkId = frm.checkId.value;
+								var password = frm.password.value;
+
+								if (password.trim() == '') {
+									swal("암호를 입력해주세요");
+									return false;
+								}
+								if (checkId.trim() == '') {
+									swal("i를 입력해주세요");
+									return false;
+								}
+
+								if (checkId.trim() == '') {
+									swal("암호가 일치하지 않습니다.");
+									return false;
+								}
+
+								swal("사용자 ID/PW 틀렸습니다");
+								frm.submit();
+							}
+						</script>
+
+					</form>
+				</div>
 			</div>
 		</div>
-	</div>
 	</div>
 	<!-- contact section end -->
 	<!-- copyright section start -->
@@ -126,9 +161,7 @@ margin-right: 140px;
 					<li><a href="#"><img src="../images/linkedin-icon.png"></a></li>
 				</ul>
 			</div>
-			<p class="copyright_text">
-				2022 All Rights Reserved. by Comehere
-			</p>
+			<p class="copyright_text">2022 All Rights Reserved. by Comehere</p>
 		</div>
 		<!-- copyright section end -->
 		<!-- Javascript files-->
@@ -144,6 +177,5 @@ margin-right: 140px;
 		<script src="../js/owl.carousel.js"></script>
 		<script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
 	</div>
-  
 </body>
 </html>

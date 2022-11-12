@@ -12,7 +12,7 @@ INSERT INTO `member` (`mno`, `name`, `id`, `email`, `pwd`, `nick`, `tel`, `bday`
 INSERT INTO `member` (`mno`, `name`, `id`, `email`, `pwd`, `nick`, `tel`, `bday`, `sex`, `filepath`, `cdt`, `act`, `black`) VALUES (10, '박지민', 'user10', 'user10@test.com', sha2('1111', 256), '지민', 10101010, '1999-12-31', 0, 'http://placeimg.com/50/50/any', '2022-10-18 18:38:01', 1, 0);
 INSERT INTO `member` (`mno`, `name`, `id`, `email`, `pwd`, `nick`, `tel`, `bday`, `sex`, `filepath`, `cdt`, `act`, `black`) VALUES (11, '엄진영', 'user11', 'user11@test.com', sha2('1111', 256), '진영', 10101010, '1979-03-31', 1, 'http://placeimg.com/50/50/any', '2022-10-18 18:38:01', 0, 1);
 INSERT INTO `member` (`mno`, `name`, `id`, `email`, `pwd`, `nick`, `tel`, `bday`, `sex`, `filepath`, `cdt`, `act`, `black`) VALUES (12, '윤인성', 'user12', 'user12@test.com', sha2('1111', 256), '인성', 10101010, '1980-10-11', 1, 'http://placeimg.com/50/50/any', '2022-10-18 18:38:01', 0, 0);
-
+INSERT INTO `member` (`mno`, `name`, `id`, `email`, `pwd`, `nick`, `tel`, `bday`, `sex`, `filepath`, `cdt`, `act`, `black`) VALUES (13, '흔시기', 'user99', 'nunshik90@naver.com', sha2('1111', 256), '시깅', 10101010, '1980-10-11', 1, 'http://placeimg.com/50/50/any', '2022-10-18 18:38:01', 0, 0);
 -- 지역 (완료)
 INSERT INTO `region` (`rno`, `sido`, `sigu`) VALUES (1, '서울시', '종로구');
 INSERT INTO `region` (`rno`, `sido`, `sigu`) VALUES (2, '서울시', '중구');

@@ -100,12 +100,31 @@ margin-right: 14vw;
           <p>
             <button type='submit'class="btnon1" >ID찾기</button>
           </p>
-        </form>
+          
+          
+          
+   <script>
+       function bt(frm) {
+           var password = frm.password.value;
+           var checkpw = frm.checkpw.value;
+           
+           if (password.trim() == '') {
+               swal("암호를 입력해주세요");
+               return false;
+           } 
+           
+           if (password.trim() != checkpw.trim()) {
+             swal("암호가 일치하지 않습니다.");
+             return false;
+           } 
+           
+           alert("암호가 변경되었습니다");
+             frm.submit();
+           }
+      </script>
+      </form>
       </div>
     </div>
-  </div>
-  </div>
-  </div>
   </div>
   </div>
   <div class="copyright_section">

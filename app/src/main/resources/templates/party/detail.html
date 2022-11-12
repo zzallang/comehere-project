@@ -458,6 +458,119 @@
       width: 100px;
     }
 
+
+/* Modal */
+#modal.modal-overlay {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(1.5px);
+  -webkit-backdrop-filter: blur(1.5px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+#modal .modal-window {
+  background: rgba(255, 212, 0, 0.70);
+  /* background: rgba( 69, 139, 197, 0.70 ); */
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(13.5px);
+  -webkit-backdrop-filter: blur(13.5px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  width: 500px;
+  height: 260px;
+  position: absolute;
+  top: 200px;
+  padding: 10px;
+  z-index: 10;
+}
+
+#modal .title {
+  padding-left: 10px;
+  display: inline;
+  text-shadow: 1px 1px 2px gray;
+  color: white;
+}
+
+#modal .title h2 {
+  display: inline;
+}
+
+#modal .close-area {
+  display: inline;
+  float: right;
+  padding-right: 10px;
+  cursor: pointer;
+  text-shadow: 1px 1px 2px gray;
+  color: white;
+}
+
+#modal .content {
+  margin-top: 20px;
+  padding: 0px 10px;
+  text-shadow: 1px 1px 2px gray;
+  color: white;
+}
+
+.email-bt3 {
+  color: #989696;
+  width: 300px;
+  height: 55px;
+  font-size: 18px;
+  padding: 15px;
+  margin-top: 30px;
+  margin-left: 80px;
+  margin-bottom: -20px;
+  border: 0px;
+  border-radius: 5px;
+  height: 55px;
+  font-size: 18px;
+}
+
+.report_menu {
+  text-align: center;
+  font-size: 40px;
+  margin-top: 20px;
+}
+
+.massage-bt1 {
+  color: #989696;
+  width: 100%;
+  height: 300px;
+  font-size: 18px;
+  padding: 50px 20px 10px 20px;
+  margin-top: 50px;
+  border: 0px;
+  border-radius: 5px;
+}
+
+.send_bt3 {
+  width: 30%;
+  float: left;
+  font-size: 20px;
+  color: #f8b81f7a;
+  text-align: center;
+  border: 2px solid #ffffff;
+  border-radius: 5px;
+  padding: 10px 0px;
+  font-weight: bold;
+  margin-top: 18px;
+  margin-left: 160px;
+  display: inline;
+  padding-right: 10px;
+  cursor: pointer;
+  text-shadow: 1px 1px 2px gray;
+  color: white;
+  /* f8b81f7a */
   </style>
 
 </head>
@@ -875,6 +988,132 @@ function commentList(){
      }
   }
 </script>
+
+
+<!-- Modal Start -->
+  <form action='report' method="post">
+    <table border='1'>
+      <div id="container">
+        <div id="lorem-ipsum"></div>
+      </div>
+      <div id="modal" class="modal-overlay">
+        <div class="modal-window">
+          <div class="close-area">X</div>
+          <div class="content">
+            <div>
+              <div class="report_menu">신고사유</div>
+              <div class="form-check form-check-inline">
+                <input type="checkbox" value="Contents" class="form-check-input" id="1" name="reports" onclick='checkOnlyOne(this)'> <input type="hidden" name="_reports" value="on" /> <label for="reports1" class="form-check-label">불건전한 내용</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input type="checkbox" value="promotion" class="form-check-input" id="2" name="reports" onclick='checkOnlyOne(this)'> <input type="hidden" name="_reports" value="on" /> <label for="reports2" class="form-check-label">스팸 및 부적절한 홍보</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input type="checkbox" value="calumny" class="form-check-input" id="3" name="reports" onclick='checkOnlyOne(this)'> <input type="hidden" name="_reports" value="on" /> <label for="reports3" class="form-check-label">명예훼손 및 비방</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input type="checkbox" value="prejudice" class="form-check-input" id="4" name="reports" onclick='checkOnlyOne(this)'> <input type="hidden" name="_reports" value="on" /> <label for="reports4" class="form-check-label">초상권 및 저작권 침해</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input type="checkbox" value="embezzlement" class="form-check-input" id="5" name="reports" onclick='checkOnlyOne(this)'> <input type="hidden" name="_reports" value="on" /> <label for="reports5" class="form-check-label">개인정보 도용</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input type="checkbox" value="act" class="form-check-input" id="6" name="reports" onclick='checkOnlyOne(this)'> <input type="hidden" name="_reports" value="on" /> <label for="reports6" class="form-check-label">기타 사이트 목적에 맞지 않는 행위</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input type="checkbox" value="Etc" class="form-check-input" id="7" name="reports" onclick='checkOnlyOne(this)'> <input type="hidden" name="_reports" value="on" /> <label for="reports7" class="form-check-label">기타</label>
+              </div>
+            </div>
+            <div class="send_bt3" id="singo">신고</div>
+          </div>
+        </div>
+      </div>
+    </table>
+  </form>
+  <script>
+  
+  function checkOnlyOne(element) {
+      
+      const checkboxes 
+          = document.getElementsByName("reports");
+      
+      checkboxes.forEach((cb) => {
+        cb.checked = false;
+      })
+      
+      element.checked = true;
+    }
+
+$("#singo").click(function() {
+    swal("신고 하였습니다.");
+
+    let data = "";
+
+    $('input:checkbox[name=reports]').each(function (index) {
+      if($(this).is(":checked")==true){
+        console.log($(this).attr("id"));
+        id = $(this).attr("id");
+      }
+    });
+
+    $.ajax({
+        type: "GET",
+        url: "/app/report/insertReport",
+        async:false,
+        data: { id: id, 
+                loginMemberNo : loginMemberNo,
+                boardNo : boardNo},
+        success: function () {
+          
+          swal("신고 하였습니다.");
+          /* report_auth_cd = data; */
+          /* console.log(report_auth_cd); */
+         check = true;
+        },
+        error: function () {
+          swal("신고가 안되었습니다.");
+        },
+      });
+});
+
+</script>
+
+
+  <script>
+        const loremIpsum = document.getElementById("lorem-ipsum")
+         //fetch를 통해 받아온 데이터를 loremIpsum DOM에 넣어주기 때문에 모달창 내부에 내용이 채워져서 뜨는것. 
+        //fetch("https://baconipsum.com/api/?type=all-meat&paras=200&format=html")
+          loremIpsum.innerHTML = `모달창에 넣을 내용`
+              /* .then(response => response.text())
+              .then(result => loremIpsum.innerHTML = result) */
+              
+          //디스플레이 non 버튼클릭하면 flex로 변환  
+        const modal = document.getElementById("modal")
+        const btnModal = document.getElementById("btn-modal")
+        btnModal.addEventListener("click", e => {
+        modal.style.display = "flex"
+           // x버튼 누르면 종료
+          const closeBtn = modal.querySelector(".close-area")
+          closeBtn.addEventListener("click", e => {
+              modal.style.display = "none"
+          })
+          // 신고 누르면 종료
+           const closeBtn1 = modal.querySelector(".send_bt3")
+          closeBtn1.addEventListener("click", e => {
+              modal.style.display = "none"
+          })
+          // esc누르면 종료
+          window.addEventListener("keyup", e => {
+    if(modal.style.display === "flex" && e.key === "Escape") {
+        modal.style.display = "none"
+    }
+})
+          
+})
+    </script>
+
+
+  <!-- Modal End-->
 <!-- 댓글  -->
 <!-- 카카오 지도 시작 -->
 <script src="../js/party/kakaoMapDetail.js"></script>

@@ -179,38 +179,20 @@
      email=#{email}
   </select>
 
-	<update id="updatePassWrod" parameterType="Member">
-		UPDATE member SET
-		  pwd=sha2(#{password},256)
-		WHERE
-		  mno=#{no}
-	</update>
+   <update id="updatePassWrod" parameterType="Member">
+      UPDATE member SET
+        pwd=sha2(#{password},256)
+      WHERE
+        mno=#{no}
+   </update>
 
-	<select id="findByPassword" resultMap="memberMap">
-		select
-		name
-		from
-		member
-		where
-		id=#{id} and email=#{email}
-	</select>
-	
-  <update id="updatePW" parameterType="String">
-    update member set
-    pwd=sha2(#{password},256)
-    where
-    email=#{email}
-    and id=#{id}
-  </update>
-  
-	<delete id="delete">
-		DELETE 
+   <delete id="delete">
+      DELETE 
     FROM 
       member
-		WHERE 
+      WHERE 
       mno=#{value}
-	</delete>
+   </delete>
 
 </mapper>
-
 
