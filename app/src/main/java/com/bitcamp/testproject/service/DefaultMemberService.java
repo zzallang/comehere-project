@@ -29,8 +29,12 @@ public class DefaultMemberService implements MemberService {
   @Override
   public void add(Member member) throws Exception {
     memberDao.insert(member);
-    memberDao.insertRegion(member);
-    memberDao.insertSports(member);
+
+    // 2) 관심지역 등록
+    favoriteRegionDao.insertRegion(member);
+
+    //  3) 관심운동 등록
+    favoriteSprotsDao.insertSports(member);
   }
 
   @Override
@@ -80,17 +84,25 @@ public class DefaultMemberService implements MemberService {
     return memberDao.findAll();
   }
 
+  @Override
+  public int idCheck(String id) throws Exception {
+    return memberDao.idCheck(id);
+  }
 
-  //  @Override
-  //  public String checkId(Member member) throws Exception {
-  //    List<Member> memberList = memberDao.findAll();
-  //    for(Member eachMember : memberList) {
-  //      if(eachMember.getId().equals(member.getId())) return "fail";
-  //    }
-  //    return "succ";
-  //  }
+  @Override
+  public int verificationPw(String password, int no) throws Exception {
+    return memberDao.verificationPw(password, no);
+  }
 
+  @Override
+  public int nickCheck(String nickname) throws Exception {
+    return memberDao.nickCheck(nickname);
+  }
 
+  @Override
+  public int emailCheck(String email) throws Exception {
+    return memberDao.emailCheck(email);
+  }
 }
 
 

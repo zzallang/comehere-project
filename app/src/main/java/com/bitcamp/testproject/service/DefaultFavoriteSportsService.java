@@ -11,32 +11,32 @@ import com.bitcamp.testproject.vo.Member;
 public class DefaultFavoriteSportsService implements FavoriteSportsService {
 
   @Autowired 
-  FavoriteSportsDao favoritesportsDao;
+  FavoriteSportsDao favoriteSportsDao;
 
   @Override
   public List<FavoriteSports> getSportsNos(int memberNo) {
-    return favoritesportsDao.findAllSportsNosByMemberNo(memberNo);
+    return favoriteSportsDao.findAllSportsNosByMemberNo(memberNo);
   }
 
   @Override
   public boolean updateSportsDomain(Member member) {
-    return favoritesportsDao.updateSports(member);
+    return favoriteSportsDao.updateSports(member);
   }
 
   @Override
-  public boolean updateSportsDomain(int mno, int preSportsDomain, int sportsDomain) {
-    return favoritesportsDao.updateSports(mno, preSportsDomain, sportsDomain);
+  public boolean updateSportsDomain(int mno, int sportsDomain) {
+    return favoriteSportsDao.updateSports(mno, sportsDomain);
   }
 
   @Override
   public boolean deleteFavoriteSports(int memberNo) {
-    return favoritesportsDao.deletePreFavoriteSports(memberNo);
+    return favoriteSportsDao.deleteFavoriteSports(memberNo);
   }
 
   @Override
   public void addFavoriteSports(Member member) {
     //    3) 관심운동 등록
-    favoritesportsDao.insertSports(member);
+    favoriteSportsDao.insertSports(member);
   }
 }
 

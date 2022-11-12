@@ -12,7 +12,7 @@ public interface FavoriteSportsService {
 
   boolean updateSportsDomain(Member member);
 
-  boolean updateSportsDomain(int mno, int preSportsDomain, int sportsDomain);
+  boolean updateSportsDomain(int mno, int sportsDomain);
 
   boolean deleteFavoriteSports(int memeberNo);
 

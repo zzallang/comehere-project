@@ -11,8 +11,9 @@
   
   <!-- 관심지역 등록  -->
   <insert id="insertRegion" parameterType="member">
-    insert into favorite_region(rno,mno)
-    values
+    INSERT INTO 
+      favorite_region(rno,mno)
+    VALUES
       <foreach collection="favoriteRegion" item="region" separator=",">
         (#{region.rno},#{no})
       </foreach>
@@ -27,20 +28,6 @@
       mno=#{memberNo}
   </select>
   
-
-  <!-- <update id="updateRegion" parameterType="member">
-    <foreach collection="preFavoriteRegion" item="preRegion" index="index" separator=",">
-      UPDATE
-        favorite_region
-      SET 
-        rno = #{favoriteRegion[0].rno}
-      WHERE 
-        mno=#{no} 
-      AND 
-        rno = #{preRegion.rno};
-      </foreach>
-  </update> -->
-  
    <update id="updateRegion" >
       UPDATE
         favorite_region
@@ -49,10 +36,10 @@
       WHERE 
         mno=#{mno} 
       AND 
-        rno=#{preRegionDomain}
+        rno=#{regionDomain}
   </update>
   
-  <delete id="deletePreFavoriteRegion" parameterType="int">
+  <delete id="deleteFavoriteRegion" parameterType="int">
     delete 
     from 
       favorite_region 

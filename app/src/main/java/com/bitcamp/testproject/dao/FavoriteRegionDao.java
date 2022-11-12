@@ -14,10 +14,9 @@ public interface FavoriteRegionDao {
 
   public boolean updateRegion(Member member);
 
-  public boolean updateRegion(int mno, int preRegionDomain, int regionDomain);
+  public boolean updateRegion(int mno, int regionDomain);
 
-
-  public boolean deletePreFavoriteRegion(int memberNo);
+  public boolean deleteFavoriteRegion(int memberNo);
 
 }
 

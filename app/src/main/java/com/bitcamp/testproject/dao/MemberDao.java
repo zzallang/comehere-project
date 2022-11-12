@@ -18,6 +18,16 @@ public interface MemberDao {
 
   int delete(int no);
 
+  int idCheck(String id);
+
+  int verificationPw(
+      @Param("password") String password, 
+      @Param("mno") int mno);
+
+  int nickCheck(String nickname);
+
+  int emailCheck(String email);
+
   List<Member> findAll();
 
   void insertRegion(Member member);
@@ -42,11 +52,6 @@ public interface MemberDao {
       @Param("email") String email,
       @Param("SecCode") String SecCode);
 
-
-  int updatePW(
-      @Param("password") String password,
-      @Param("email") String email,
-      @Param("id") String id);
 }
 
 
