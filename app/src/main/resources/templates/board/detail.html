@@ -156,6 +156,11 @@
           padding: 30px;
         }
         
+        .thumbnail-temp {
+          width: 30%;
+          height: 30%;
+        }
+        
         /* Modal */
 #modal.modal-overlay {
   width: 100%;
@@ -315,11 +320,11 @@
            <!-- 게시판 카테고리 이동 끝 -->
 
             <h1>글조회</h1>
-            <h2 th:if="${board.cateno == 1}" value='게시판'>자유게시판</h2>
-            <h2 th:if="${board.cateno == 2}" value='게시판'>식단게시판</h2>
-            <h2 th:if="${board.cateno == 3}" value='게시판'>챌린지게시판</h2>
-            <h2 th:if="${board.cateno == 4}" value='게시판'>질문게시판</h2>
-            <h2 th:if="${board.cateno == 5}" value='게시판'>핫딜게시판</h2>
+            <h2 th:if="${board.cateno == 1}">자유게시판</h2>
+            <h2 th:if="${board.cateno == 2}">식단게시판</h2>
+            <h2 th:if="${board.cateno == 3}">챌린지게시판</h2>
+            <h2 th:if="${board.cateno == 4}">질문게시판</h2>
+            <h2 th:if="${board.cateno == 5}">핫딜게시판</h2>
             
             <div>
                 <a th:if="${session.loginMember} != null and ${session.loginMember.no} == ${board.writer.no}" 
@@ -330,9 +335,13 @@
                    th:href="@{delete(no=${board.no})}"
                    href='delete?no=1'
                    class="btn btn-primary">삭제</a>
-                <a class="btn btn-primary" href="#" role="button" id="btn-modal">신고기능</a>
+                <a th:if="${session.loginMember} == null or ${session.loginMember.no} != ${board.writer.no}" 
+                   class="btn btn-primary" href="#" role="button" id="btn-modal">신고</a>
                 <a th:href="@{list(no=${board.cateno})}"
                    class="btn btn-primary">목록</a>
+                <a th:if="${session.loginMember} == null or ${session.loginMember.no} != ${board.writer.no}" 
+                   class="btn btn-primary" href="#" role="button" id="btn-modal">스크랩</a>
+                
             </div>
             
             <div class="temp-line board-wrapper">
@@ -344,6 +353,10 @@
                 <span th:text="${board.createdDate}"></span>
                 <br>조회수 : <span th:text="${board.viewCount}">0</span>
               </div>
+              <div class="temp-line" th:if="${board.cateno == 3}">
+                <img th:if="${board.thumbnail == null}" src="/app/board/files/nothumpnail.jpg" alt="thumpnail" class="thumbnail-temp"/>
+                <img th:if="${board.thumbnail != null}" th:src="@{'/board/files/' + ${board.thumbnail}}" alt="Avatar" class="thumbnail-temp"/>
+              </div>
               <div th:utext="${board.content}" class="form-content">내용</div>
             </div>
             
@@ -354,7 +367,7 @@
                   <div class="commentList"></div>
               </div>
               
-            <!-- 댓글 페이징 -->
+            <!-- 댓글페이징 -->
             <nav aria-label="Page navigation">
               <ul class="pagination">
                 <div class="page_center">
@@ -364,7 +377,7 @@
                     </a>
                   </li>
                   <th:block th:if="${pageMaker.endPage != 0}" th:each="pageNum: ${#numbers.sequence(pageMaker.startPage, pageMaker.endPage)}">
-                    <li class="page-item">
+                    <li data-th-id="${'pageButton' + pageNum}"  class="page-item">
                       <a th:id="'pageNo' + ${pageNum}" class="page-link" onclick="getId(this.id)"><i th:text="${pageNum}"></i></a>
                     </li>
                   </th:block>
@@ -435,7 +448,7 @@
       <script src="../js/bootstrap.bundle.min.js"></script>
       <script src="../js/jquery-3.0.0.min.js"></script>
       <script src="../js/plugin.js"></script>
-       <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> <!-- sweetalert -->
+      <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> <!-- sweetalert -->
       <!-- sidebar -->
       <script src="../js/jquery.mCustomScrollbar.concat.min.js"></script>
       <script src="../js/custom.js"></script>
@@ -465,6 +478,11 @@
     		  pageNo = pageId.replace('pageNo', '')
     		  commentList();
     	  } 
+    	  
+        // 페이지 버튼 active 시키기
+        /* window.addEventListener('DOMContentLoaded', function(){
+            $('#pageButton' + pageNo).addClass('active');
+        }); */
     	  
     		document.getElementById('commetButton').addEventListener('click', insertAndReplay);
     		// 댓글을 등록했을 때 한 페이지에 보일수 있는 댓글수 초과 시(현재 15개) 페이지 reload()
@@ -576,6 +594,7 @@
       		 }
         }
         </script>
+        
 <!-- Modal Start -->
   <form action='report' method="post">
     <table border='1'>

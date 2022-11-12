@@ -204,7 +204,14 @@
     where bno=#{no}
   </update>
 
-
+  <select id="getThumbnailByBoardNo" resultType="String">
+    select 
+      thumbnail
+    from 
+      board
+    where 
+      bno = #{value}
+  </select>
 
   <update id="increaseViews">
     update 
