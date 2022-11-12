@@ -4,20 +4,37 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.bitcamp.testproject.dao.MemberDao">
 
-	<!-- 자바 객체의 프로퍼티와 컬럼 이름을 연결한다. -->
-	<resultMap type="member" id="memberMap">
-		<id column="mno" property="no" />
-		<result column="name" property="name" />
-		<result column="id" property="id" />
-		<result column="email" property="email" />
-		<result column="password" property="password" />
-		<result column="nick" property="nickname" />
-		<result column="tel" property="tel" />
-		<result column="bday" property="birthday" />
-		<result column="sex" property="sex" />
-		<result column="filepath" property="filepath" />
-		<result column="cdt" property="createdDate" />
-	</resultMap>
+  <!-- 자바 객체의 프로퍼티와 컬럼 이름을 연결한다. -->
+  <resultMap type="member" id="memberMap">
+    <id column="mno" property="no"/>
+    <result column="name" property="name"/>
+    <result column="id" property="id"/>
+    <result column="email" property="email"/>
+    <result column="pwd" property="password"/>
+    <result column="nick" property="nickname"/>
+    <result column="tel" property="tel"/>
+    <result column="bday" property="birthday"/>
+    <result column="sex" property="sex"/>
+    <result column="filepath" property="filepath"/>
+    <result column="cdt" property="createdDate"/>
+    
+    <collection property="favoriteRegion" ofType="favoriteRegion">
+      <result column="rno" property="rno"/>
+        <association property="region" javaType="Region">
+          <id column="rno" property="no"/>
+          <result column="sigu" property="sigu"/>
+        </association>
+    </collection>
+    
+    <collection property="favoriteSports" ofType="favoriteSports">
+      <result column="sno" property="sno"/>
+        <association property="sports" javaType="Sports">
+          <id column="sno" property="no"/>
+          <result column="sname" property="name"/>
+        </association>
+    </collection>
+    
+  </resultMap>
 
 	<!-- 회원 기본 정보 등록 -->
 	<insert id="insert" parameterType="member"
@@ -36,15 +53,58 @@
 		</foreach>
 	</insert>
 
-	<!-- 관심 운동 등록 -->
-	<insert id="insertSports" parameterType="member">
-		insert into favorite_sports(sno,mno)
-		values
-		<foreach collection="favoriteSports" item="sports"
-			separator=",">
-			(#{sports.sno},#{no})
-		</foreach>
-	</insert>
+ -->
+ <select id="findById" resultMap="memberMap">
+    select
+    id
+    from
+    member
+    where
+    name=#{name} and email=#{email}
+  </select>
+ 
+ 
+ 
+  <select id="findByNo" resultMap="memberMap">
+    SELECT 
+      m.mno,
+      m.name,
+      m.id,
+      m.email,
+      m.tel,
+      m.cdt,
+      m.nick,
+      m.bday,
+      m.sex,
+      m.filepath,
+      fr.rno,
+      r.sigu,
+      fs.sno,
+      s.name sname
+    FROM 
+      member m
+    LEFT join 
+      favorite_region fr on fr.mno = m.mno
+    LEFT join
+    region r ON r.rno = fr.rno
+    LEFT join
+    favorite_sports fs ON fs.mno = m.mno
+    LEFT join
+    sports s ON s.sno = fs.sno
+    WHERE 
+      m.mno=#{no};
+  </select>
+  
+  <select id="findAll" resultMap="memberMap">
+    select 
+      mno,
+      name,
+      email 
+    from 
+      member 
+    order by 
+      name
+  </select>
 
 	<!-- 아이디 중복체크 -->
 	<!-- <select id="idCheck" parameterType="String" resultType="Integer"> select 

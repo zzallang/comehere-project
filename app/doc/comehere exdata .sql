@@ -1,3 +1,4 @@
+INSERT INTO `favorite_sport` (`sno`, `mno`) VALUES (3, 3);
 -- 회원 (완료)
 INSERT INTO `member` (`mno`, `name`, `id`, `email`, `pwd`, `nick`, `tel`, `bday`, `sex`, `filepath`, `cdt`, `act`, `black`) VALUES (1, '이헌식', 'user1', 'user1@test.com', sha2('1111', 256), '혼시기', 1011111111, '1990-10-18', 1, 'http://placeimg.com/50/50/any', '2022-10-18 18:25:26', 1, 0);
 INSERT INTO `member` (`mno`, `name`, `id`, `email`, `pwd`, `nick`, `tel`, `bday`, `sex`, `filepath`, `cdt`, `act`, `black`) VALUES (2, '박병민', 'user2', 'user2@test.com', sha2('1111', 256), '병민', 1022222222, '1994-08-14', 1, 'http://placeimg.com/50/50/any', '2022-10-18 18:31:31', 1, 0);

@@ -113,88 +113,23 @@
 			                      <div id="passwordCheckError" class="error"></div>
                           </div>
                         <div class="join_menu">관심지역</div>
-                        <select class="email-bt2" id="region" name="region_domain">
-                          <option value="0">---선택---</option>
-                          <option value="1">종로구</option>
-                          <option value="2">중구</option>
-                          <option value="3">용산구</option>
-                          <option value="4">성동구</option>
-                          <option value="5">광진구</option>
-                          <option value="6">동대문구</option>
-                          <option value="7">중랑구</option>
-                          <option value="8">성북구</option>
-                          <option value="9">강북구</option>
-                          <option value="10">도봉구</option>
-                          <option value="11">노원구</option>
-                          <option value="12">은평구</option>
-                          <option value="13">서대문구</option>
-                          <option value="14">마포구</option>
-                          <option value="15">양천구</option>
-                          <option value="16">강서구</option>
-                          <option value="17">구로구</option>
-                          <option value="18">금천구</option>
-                          <option value="19">영등포구</option>
-                          <option value="20">동작구</option>
-                          <option value="21">관악구</option>
-                          <option value="22">서초구</option>
-                          <option value="23">강남구</option>
-                          <option value="24">송파구</option>
-                          <option value="25">강동구</option>
+                        <select class="favorite-choice" id="region" name="regionDomain">
+                          <option value="0">선택안함</option>
+	                        <option data-th-each="region : ${regionList}" data-th-value="${region.no}" data-th-text="${region.sigu}"></option>
                       </select> 
-                      <select class="email-bt3" id="region" name="region_domain">
-                        <option value="0">---선택---</option>
-                        <option value="1">종로구</option>
-                        <option value="2">중구</option>
-                        <option value="3">용산구</option>
-                        <option value="4">성동구</option>
-                        <option value="5">광진구</option>
-                        <option value="6">동대문구</option>
-                        <option value="7">중랑구</option>
-                        <option value="8">성북구</option>
-                        <option value="9">강북구</option>
-                        <option value="10">도봉구</option>
-                        <option value="11">노원구</option>
-                        <option value="12">은평구</option>
-                        <option value="13">서대문구</option>
-                        <option value="14">마포구</option>
-                        <option value="15">양천구</option>
-                        <option value="16">강서구</option>
-                        <option value="17">구로구</option>
-                        <option value="18">금천구</option>
-                        <option value="19">영등포구</option>
-                        <option value="20">동작구</option>
-                        <option value="21">관악구</option>
-                        <option value="22">서초구</option>
-                        <option value="23">강남구</option>
-                        <option value="24">송파구</option>
-                        <option value="25">강동구</option>
+                      <select class="favorite-choice" id="region" name="regionDomain">
+                        <option value="0">선택안함</option>
+                        <option data-th-each="region : ${regionList}" data-th-value="${region.no}" data-th-text="${region.sigu}"></option>
                       </select><br /> 
+                      <!--  -->
                         <div class="join_menu">관심운동</div>
-                      <select class="email-bt2" id="sports" name="sports_domain">
-                        <option value="0">---선택---</option>
-                        <option value="1">헬스</option>
-                        <option value="2">클라이밍</option>
-                        <option value="3">배드민턴</option>
-                        <option value="4">축구</option>
-                        <option value="5">농구</option>
-                        <option value="6">골프</option>
-                        <option value="7">탁구</option>
-                        <option value="8">야구</option>
-                        <option value="9">러닝</option>
-                        <option value="10">사이클</option>
+                      <select class="favorite-choice" id="sports" name="sportsDomain">
+                        <option value="0">선택안함</option>
+                        <option data-th-each="sports : ${sportsList}" data-th-value="${sports.no}" data-th-text="${sports.name}"></option>
                       </select> 
-                      <select class="email-bt3" id="sports" name="sports_domain">
-                        <option value="0">---선택---</option>
-                        <option value="1">헬스</option>
-                        <option value="2">클라이밍</option>
-                        <option value="3">배드민턴</option>
-                        <option value="4">축구</option>
-                        <option value="5">농구</option>
-                        <option value="7">골프</option>
-                        <option value="8">탁구</option>
-                        <option value="9">야구</option>
-                        <option value="10">러닝</option>
-                        <option value="11">사이클</option>
+                      <select class="favorite-choice" id="sports" name="sportsDomain">
+                        <option value="0">선택안함</option>
+                        <option data-th-each="sports : ${sportsList}" data-th-value="${sports.no}" data-th-text="${sports.name}"></option>
                       </select><br />
                       <div class="send_bt"><button type="submit" class="send_bt2">회원가입</button></div>
                     </form>

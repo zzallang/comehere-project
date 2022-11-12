@@ -29,7 +29,7 @@ public class DefaultFavoriteRegionService implements FavoriteRegionService {
   }
 
   @Override
-  public boolean deletePreFavoriteRegion(int memberNo) {
+  public boolean deleteFavoriteRegion(int memberNo) {
     return favoriteregionDao.deletePreFavoriteRegion(memberNo);
   }
 
@@ -37,9 +37,6 @@ public class DefaultFavoriteRegionService implements FavoriteRegionService {
   public void addFavoriteRegion(Member member) {
     // 2) 관심지역 등록
     favoriteregionDao.insertRegion(member);
-
-    // 3) 관심운동 등록
-    //    favoriteregionDao.insertSports(member);
   }
 }
 

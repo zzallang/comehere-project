@@ -5,6 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import com.bitcamp.testproject.dao.BoardDao;
+import com.bitcamp.testproject.dao.FavoriteRegionDao;
+import com.bitcamp.testproject.dao.FavoriteSportsDao;
 import com.bitcamp.testproject.dao.MemberDao;
 import com.bitcamp.testproject.vo.Member;
 
@@ -16,6 +18,12 @@ public class DefaultMemberService implements MemberService {
 
   @Autowired
   BoardDao boardDao;
+
+  @Autowired
+  FavoriteRegionDao favoriteRegionDao;
+
+  @Autowired
+  FavoriteSportsDao favoriteSprotsDao;
 
   @Transactional
   @Override

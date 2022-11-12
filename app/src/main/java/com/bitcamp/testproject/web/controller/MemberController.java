@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+import com.bitcamp.testproject.service.FavoriteRegionService;
+import com.bitcamp.testproject.service.FavoriteSportsService;
 import com.bitcamp.testproject.service.MemberService;
 import com.bitcamp.testproject.service.RegionService;
 import com.bitcamp.testproject.service.SportsService;
@@ -29,21 +31,26 @@ public class MemberController {
   @Autowired
   RegionService regionService;
   @Autowired
+  FavoriteSportsService favoriteSportsService;
+  @Autowired
+  RegionService regionService;
+  @Autowired
   SportsService sportsService;
 
   // 은지
   @GetMapping("join")
   public String form(Model model) throws Exception {
-    model.addAttribute("data", "join page");
-
+    model.addAttribute("regionList", regionService.list());
+    model.addAttribute("sportsList", sportsService.list());
     return "auth/join";
   }
 
   @PostMapping("addjoin")
-  public ModelAndView add(Member member, int[] region_domain, int[] sports_domain) throws Exception {
-    member.setFavoriteRegion(saveRegion(region_domain));
-    member.setFavoriteSports(saveSports(sports_domain));
-
+  public ModelAndView add(Member member) throws Exception {
+    member.setFavoriteRegion(saveRegion(member));
+    member.setFavoriteSports(saveSports(member));
+    favoriteRegionService.addFavoriteRegion(member);
+    favoriteSportsService.addFavoriteSports(member);
     memberService.add(member);
     ModelAndView mv = new ModelAndView("redirect:../auth/form");
     return mv;
@@ -58,36 +65,46 @@ public class MemberController {
   public String confirmation(HttpSession session, Model model) throws Exception {
     Member loginMember = (Member) session.getAttribute("loginMember");
     Member member = memberService.get(loginMember.getNo());
+    member.setNo(loginMember.getNo());
     model.addAttribute("member", member);
-    System.out.println("member :" + member);
+    model.addAttribute("regionList", regionService.list());
+    model.addAttribute("sportsList", sportsService.list());
     System.out.println("loginMember :" + loginMember);
+    System.out.println("member :" + member.toString());
     return "member/myInfo";
   }
 
 
   @PostMapping("memberUpdate")
-  public String myPageMember(Member member, int[] region_domain, int[] sports_domain) throws Exception {
-    System.out.println("??????왔니");
+  public ModelAndView myPageMember(HttpSession session, Member member) throws Exception {
+    Member loginMember = (Member) session.getAttribute("loginMember");
+    favoriteRegionService.deleteFavoriteRegion(loginMember.getNo());
+    favoriteSportsService.deleteFavoriteSports(loginMember.getNo());
+    member.setNo(loginMember.getNo());
+    member.setFavoriteRegion(saveRegion(member));
+    member.setFavoriteSports(saveSports(member));
+    favoriteRegionService.addFavoriteRegion(member);
+    favoriteSportsService.addFavoriteSports(member);
+    //member update logic
+    //...
     memberService.update(member);
-    member.setFavoriteRegion(saveRegion(region_domain));
-    member.setFavoriteSports(saveSports(sports_domain));
-
-    return "redirect:member/myInfo";
+    ModelAndView mv = new ModelAndView("redirect:myInfo");
+    return mv;
   }
 
 
-  public List<FavoriteRegion> saveRegion(int[] region_domain) {
+  public List<FavoriteRegion> saveRegion(Member member) {
     List<FavoriteRegion> favoriteRegion = new ArrayList<>();
-    for (int no : region_domain) {
+    for (int no : member.getRegionDomain()) {
       favoriteRegion.add(new FavoriteRegion(no));
     }
 
     return favoriteRegion;
   }
 
-  public List<FavoriteSports> saveSports(int[] region_domain) {
+  public List<FavoriteSports> saveSports(Member member) {
     List<FavoriteSports> favoriteSports = new ArrayList<>();
-    for (int no : region_domain) {
+    for (int no : member.getSportsDomain()) {
       favoriteSports.add(new FavoriteSports(no));
     }
 
