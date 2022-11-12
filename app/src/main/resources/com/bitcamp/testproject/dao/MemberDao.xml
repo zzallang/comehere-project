@@ -56,7 +56,7 @@
   </select>
   
   <!-- 비밀번호 재확인 -->
-   <select id="verificationPw" parameterType="String" resultType="Integer">
+   <select id="verificationPw" resultType="Integer">
     SELECT 
       count(*)
     FROM 

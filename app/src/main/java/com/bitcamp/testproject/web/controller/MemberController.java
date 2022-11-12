@@ -61,8 +61,6 @@ public class MemberController {
     return "member/pwCheckViewer";
   }
 
-  @PostMapping("pwCheckViwer")
-
   @GetMapping("myInfo")
   public String confirmation(HttpSession session, Model model) throws Exception {
     Member loginMember = (Member) session.getAttribute("loginMember");
