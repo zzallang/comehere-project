@@ -10,13 +10,13 @@
   </resultMap>
 
   <select id="findAll" resultMap="sportsMap">
-    select
+    SELECT
       sno,
       name
-    from
+    FROM
       sports
-    order by 
-      sno
+    ORDER BY 
+      name
   </select>
 
 </mapper>

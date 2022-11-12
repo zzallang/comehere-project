@@ -20,18 +20,18 @@
         <!-- Responsive-->
         <link rel="stylesheet" href="../css/responsive.css">
         <!-- fevicon -->
-        <link rel="icon" href="../images/fevicon.png" type="image/gif" />
+        <!-- <link rel="icon" href="../images/fevicon.png" type="image/gif" /> -->
         <!-- Scrollbar Custom CSS -->
-        <link rel="stylesheet" href="../css/jquery.mCustomScrollbar.min.css">
+        <!-- <link rel="stylesheet" href="../css/jquery.mCustomScrollbar.min.css"> -->
         <!-- Tweaks for older IEs-->
         <link rel="stylesheet"
           href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
         <!-- owl stylesheets -->
-        <link rel="stylesheet" href="../css/owl.carousel.min.css">
+        <!-- <link rel="stylesheet" href="../css/owl.carousel.min.css">
         <link rel="stylesheet" href="../css/owl.theme.default.min.css">
         <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css"
-          media="screen">
+          media="screen"> -->
         
     </head>
         <body>
@@ -114,20 +114,21 @@
                           </div>
                           <div class="join_menu">관심지역 <br>
                           <select class="favorite-choice" id="favoriteRegion1" name="regionDomain" >
-                          <option value="0">---선택---</option>
-                          <option data-th-each="region : ${regionList}" data-th-text="${region.sigu}" ></option>
+                          <option value="0">선택안함</option>
+                          <option data-th-each="region : ${regionList}"  data-th-value="${region.no}" data-th-text="${region.sigu}"></option>
                       </select> 
-                      <select class="favorite-choice" id="favoriteRegion1" name="regionDomain">
-                        <option value="0">---선택---</option>
-                        <option data-th-each="region : ${regionList}"  data-th-text="${region.sigu}"></option>
-                      </select><br /> </div>
+                      <select class="favorite-choice" id="favoriteRegion2" name="regionDomain">
+                        <option value="0">선택안함</option>
+                        <option data-th-each="region : ${regionList}"  data-th-value="${region.no}" data-th-text="${region.sigu}"></option>
+                      </select><br />
+                      </div>
                         <div class="join_menu">관심운동</div>
                       <select class="favorite-choice" id="favoriteSports1" name="sportsDomain">
-                        <option value="0">---선택---</option>
+                        <option value="0">선택안함</option>
                         <option data-th-each="sports : ${sportsList}" data-th-value="${sports.no}" data-th-text="${sports.name}"></option>
                       </select> 
                       <select class="favorite-choice" id="favoriteSports2" name="sportsDomain">
-                        <option value="0">---선택---</option>
+                        <option value="0">선택안함</option>
                         <option data-th-each="sports : ${sportsList}" data-th-value="${sports.no}" data-th-text="${sports.name}"></option>
                       </select><br />
                       <div class="send_bt"><button type="submit">변경</button></div>
@@ -139,17 +140,17 @@
           </div>
             <!-- copyright section end -->
             <!-- Javascript files-->
-            <!--       <script src="js/jquery.min.js"></script> -->
-            <script src="js/popper.min.js"></script>
-            <script src="js/bootstrap.bundle.min.js"></script>
-            <script src="js/jquery-3.0.0.min.js"></script>
-            <script src="js/plugin.js"></script>
+            <!-- <script src="js/jquery.min.js"></script> -->
+            <!-- <script src="js/popper.min.js"></script> -->
+            <!-- <script src="js/bootstrap.bundle.min.js"></script> -->
+            <!-- <script src="js/jquery-3.0.0.min.js"></script> -->
+            <!-- <script src="js/plugin.js"></script> -->
             <!-- sidebar -->
-            <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
-            <script src="js/custom.js"></script>
+            <!-- <script src="js/jquery.mCustomScrollbar.concat.min.js"></script> -->
+            <!-- <script src="js/custom.js"></script> -->
             <!-- javascript -->
-            <script src="js/owl.carousel.js"></script>
-            <script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+            <!-- <script src="js/owl.carousel.js"></script> -->
+            <!-- <script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script> -->
             <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
             <script>
             $(document).on("keyup", ".phoneNumber", function () {
@@ -165,11 +166,57 @@
               );
             });
             
-/*             function selectNum() {
-                let numSelect = document.getElementById("favoriteRegion1");
-                let value =  numSelect.options[document.getElementById("favoriteRegion1").selectedIndex].value;
-                console.log(value);
-              } */
+            /* 관심지역 선택한 값 불러오기 시작*/
+					  let memberRestion1 = [[${member.FavoriteRegion[0].Region.no}]]; // 예) 금천구의 번호
+					  console.log(memberRestion1);
+					
+					  let regionOptionLength1 = $("#favoriteRegion1").find("option").length; // select box 안에 option 개수 조회
+					
+					  for (let i=0; i<regionOptionLength1; i++) {
+					    let optionValue = $("#favoriteRegion1").find('option').eq(i).attr("value");
+					    if(memberRestion1 == optionValue) { //
+					      $("#favoriteRegion1").find('option').eq(i).attr('selected', true);
+					    }
+					  }
+            
+            let memberRestion2 = [[${member.FavoriteRegion[1].Region.no}]]; // 예) 금천구의 번호
+            console.log(memberRestion2);
+
+            let regionOptionLength2 = $("#favoriteRegion2").find("option").length; // select box 안에 option 개수 조회
+
+            for (let i=0; i<regionOptionLength2; i++) {
+              let optionValue = $("#favoriteRegion2").find('option').eq(i).attr("value");
+              if(memberRestion2 == optionValue) { //
+                $("#favoriteRegion2").find('option').eq(i).attr('selected', true);
+              }
+            }
+            /* 관심지역 선택한 값 불러오기 끝*/
+            
+            /* 관심운동 선택한 값 불러오기 시작*/
+            let memberRestion3 = [[${member.FavoriteSports[0].Sports.no}]]; // 예) 금천구의 번호
+            console.log(memberRestion3);
+
+            let sportsOptionLength1 = $("#favoriteSports1").find("option").length; // select box 안에 option 개수 조회
+
+            for (let i=0; i<sportsOptionLength1; i++) {
+              let optionValue = $("#favoriteSports1").find('option').eq(i).attr("value");
+              if(memberRestion3 == optionValue) { //
+                $("#favoriteSports1").find('option').eq(i).attr('selected', true);
+              }
+            }
+            
+            let memberRestion4 = [[${member.FavoriteSports[1].Sports.no}]]; // 예) 금천구의 번호
+            console.log(memberRestion4);
+
+            let sportsOptionLength2 = $("#favoriteSports2").find("option").length; // select box 안에 option 개수 조회
+
+            for (let i=0; i<sportsOptionLength2; i++) {
+              let optionValue = $("#favoriteSports2").find('option').eq(i).attr("value");
+              if(memberRestion4 == optionValue) { //
+                $("#favoriteSports2").find('option').eq(i).attr('selected', true);
+              }
+            }
+            
             </script>
 
 

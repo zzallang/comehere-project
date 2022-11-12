@@ -11,13 +11,13 @@
   </resultMap>
 
   <select id="findAll" resultMap="regionMap">
-    select
+    SELECT
       rno,
       sido,
       sigu
-    from
+    FROM
       region
-    order by
+    ORDER BY
       sigu
   </select>
   

@@ -114,20 +114,21 @@
                           </div>
                         <div class="join_menu">관심지역</div>
                         <select class="favorite-choice" id="region" name="regionDomain">
-                          <option value="0">---선택---</option>
+                          <option value="0">선택안함</option>
 	                        <option data-th-each="region : ${regionList}" data-th-value="${region.no}" data-th-text="${region.sigu}"></option>
                       </select> 
                       <select class="favorite-choice" id="region" name="regionDomain">
-                        <option value="0">---선택---</option>
+                        <option value="0">선택안함</option>
                         <option data-th-each="region : ${regionList}" data-th-value="${region.no}" data-th-text="${region.sigu}"></option>
                       </select><br /> 
+                      <!--  -->
                         <div class="join_menu">관심운동</div>
                       <select class="favorite-choice" id="sports" name="sportsDomain">
-                        <option value="0">---선택---</option>
+                        <option value="0">선택안함</option>
                         <option data-th-each="sports : ${sportsList}" data-th-value="${sports.no}" data-th-text="${sports.name}"></option>
                       </select> 
                       <select class="favorite-choice" id="sports" name="sportsDomain">
-                        <option value="0">---선택---</option>
+                        <option value="0">선택안함</option>
                         <option data-th-each="sports : ${sportsList}" data-th-value="${sports.no}" data-th-text="${sports.name}"></option>
                       </select><br />
                       <div class="send_bt"><button type="submit" class="send_bt2">회원가입</button></div>

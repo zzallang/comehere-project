@@ -20,10 +20,18 @@
     
     <collection property="favoriteRegion" ofType="favoriteRegion">
       <result column="rno" property="rno"/>
+        <association property="region" javaType="Region">
+          <id column="rno" property="no"/>
+          <result column="sigu" property="sigu"/>
+        </association>
     </collection>
     
     <collection property="favoriteSports" ofType="favoriteSports">
       <result column="sno" property="sno"/>
+        <association property="sports" javaType="Sports">
+          <id column="sno" property="no"/>
+          <result column="sname" property="name"/>
+        </association>
     </collection>
     
   </resultMap>
@@ -60,7 +68,7 @@
  
  
   <select id="findByNo" resultMap="memberMap">
-    select 
+    SELECT 
       m.mno,
       m.name,
       m.id,
@@ -72,14 +80,20 @@
       m.sex,
       m.filepath,
       fr.rno,
-      fs.sno
-    from 
+      r.sigu,
+      fs.sno,
+      s.name sname
+    FROM 
       member m
-    left join 
+    LEFT join 
       favorite_region fr on fr.mno = m.mno
-    left join
-      favorite_sports fs on fs.mno = m.mno
-    where 
+    LEFT join
+    region r ON r.rno = fr.rno
+    LEFT join
+    favorite_sports fs ON fs.mno = m.mno
+    LEFT join
+    sports s ON s.sno = fs.sno
+    WHERE 
       m.mno=#{no};
   </select>
   
