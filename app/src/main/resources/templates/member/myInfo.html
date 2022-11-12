@@ -32,7 +32,6 @@
         <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css"
           media="screen"> -->
-        
     </head>
         <body>
           <!-- header section start -->
@@ -81,7 +80,6 @@
                     <form action="memberUpdate" method="post" id="updateForm">
                       <div class="join_menu">아이디</div> 
                       <input type="text" class="email-bt" data-th-value="${member.id}" name="id" id="id" readonly>
-                        <button type="button" class="btn btn-outline-secondary" id="button-addon2">중복확인</button>
                         <div class="join_menu">이름</div>
                       <input type="text" class="email-bt" data-th-value="${member.name}" name="name" readonly>
                         <div class="join_menu">생년월일</div>
@@ -102,15 +100,17 @@
                           <option value="gmail.com">gmail.com</option>
                           <option value="hanmir.com">hanmir.com</option>
                         </select><br />  -->
-                      <button type="button" class="btn btn-outline-secondary" id="button-addon2">중복확인</button>
+                      <button class="btn btn-outline-secondary" type="button" id="button-addon2">중복확인</button>
+                      <div><font id="email-feedback" size="3"></font></div>
                           <div class="join_menu">닉네임</div>
-                      <input type="text" class="email-bt" id= "join_menu_check" data-th-value="${member.nickname}" name="nickname">
-                          <button type="button" class="btn btn-outline-secondary"  id="button-addon2">중복확인</button>
+                      <input type="text" class="email-bt" id= "nick" data-th-value="${member.nickname}" name="nickname">
+                      <div><font id="nick-feedback" size="3"></font></div>
+                          <button class="btn btn-outline-secondary" type="button" id="button-addon3">중복확인</button>
                           <div class="join_menu">비밀번호
-                            <input type="password" class="email-bt" id="password" placeholder="비밀번호" name="password"> 
+                            <input type="password" class="email-bt" id="password" onchange="check_pw()" placeholder="비밀번호" name="password"> 
                             <div id="passwordError" class="error"></div>
-                            <input type="password" class="email-bt" id="passwordCheck" placeholder="비밀번호 확인" name="password_check"> 
-                            <div id="passwordCheckError" class="error"></div>
+                            <input type="password" class="email-bt" id="passwordCheck" onchange="check_pw()" placeholder="비밀번호 확인" name="password_check" >&nbsp;
+                            <div><font id="check" size="3"></font> </div>
                           </div>
                           <div class="join_menu">관심지역 <br>
                           <select class="favorite-choice" id="favoriteRegion1" name="regionDomain" >
@@ -152,6 +152,7 @@
             <!-- <script src="js/owl.carousel.js"></script> -->
             <!-- <script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script> -->
             <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+            <script src="/app/node_modules/sweetalert/dist/sweetalert.min.js"></script>
             <script>
             $(document).on("keyup", ".phoneNumber", function () {
               $(this).val(
@@ -216,10 +217,81 @@
                 $("#favoriteSports2").find('option').eq(i).attr('selected', true);
               }
             }
+            /* 관심운동 선택한 값 불러오기 끝*/
             
+            /* 이메일 중복체크 */
+            $('#button-addon2').click(function(){
+              let email = $('#email').val();
+              
+              $.ajax({
+                url : '/app/member/duplicationEmailCheck',
+                type : "post",
+                data : {email : email},
+                dataType : 'json',
+                success : function(result) { 
+                  if(result == 1) {
+                    $("#email-feedback").html('이미 사용 중인 이메일입니다.');
+                    $("#email-feedback").attr('color', 'red');
+                  } else {
+                    $("#email-feedback").html('사용할 수 있는 이메일입니다.');
+                    $("#email-feedback").attr('color', 'green');
+                  }
+                }
+              })
+            })
+             
+            /* 닉네임 중복체크 */
+            $('#button-addon3').click(function(){
+              let nick = $('#nick').val();
+              
+              $.ajax({
+                url : '/app/member/duplicationNickCheck',
+                type : "post",
+                data : {nickname : nick},
+                dataType : 'json',
+                success : function(result) { 
+                  if(result == 1) {
+                    $("#nick-feedback").html('이미 사용 중인 닉네임입니다.');
+                    $("#nick-feedback").attr('color', 'red');
+                  } else {
+                    $("#nick-feedback").html('사용할 수 있는 닉네임입니다.');
+                    $("#nick-feedback").attr('color', 'green');
+                  }
+                }
+              })
+            })
+            
+            /* 비밀번호 체크 */
+            function check_pw(){
+              var pw = document.getElementById('password').value;
+              /* var SC = ["!","@","#","$","%"];
+              var check_SC = 0; */
+   
+              if(pw.length < 4 || pw.length>16){
+                  window.alert('비밀번호는 4글자 이상, 16글자 이하만 이용 가능합니다.');
+                  document.getElementById('password').value='';
+              }
+              /* for(var i=0;i<SC.length;i++){
+                  if(pw.indexOf(SC[i]) != -1){
+                      check_SC = 1;
+                  }
+              }
+              if(check_SC == 0){
+                  window.alert('!,@,#,$,% 의 특수문자가 들어가 있지 않습니다.')
+                  document.getElementById('password').value='';
+              } */
+              if(document.getElementById('password').value !='' && document.getElementById('passwordCheck').value!=''){
+                  if(document.getElementById('password').value==document.getElementById('passwordCheck').value){
+                      document.getElementById('check').innerHTML='비밀번호가 일치합니다.'
+                      document.getElementById('check').style.color='green';
+                  }
+                  else{
+                      document.getElementById('check').innerHTML='비밀번호가 일치하지 않습니다.';
+                      document.getElementById('check').style.color='red';
+                  }
+              }
+          }
             </script>
-
-
         </body>
 
 </html>

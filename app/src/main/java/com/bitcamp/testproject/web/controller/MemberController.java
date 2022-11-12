@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import com.bitcamp.testproject.service.FavoriteRegionService;
 import com.bitcamp.testproject.service.FavoriteSportsService;
@@ -47,10 +48,9 @@ public class MemberController {
 
   @PostMapping("addjoin")
   public ModelAndView add(Member member) throws Exception {
+    System.out.println(member);
     member.setFavoriteRegion(saveRegion(member));
     member.setFavoriteSports(saveSports(member));
-    favoriteRegionService.addFavoriteRegion(member);
-    favoriteSportsService.addFavoriteSports(member);
     memberService.add(member);
     ModelAndView mv = new ModelAndView("redirect:../auth/form");
     return mv;
@@ -61,6 +61,7 @@ public class MemberController {
     return "member/pwCheckViewer";
   }
 
+  @PostMapping("pwCheckViwer")
 
   @GetMapping("myInfo")
   public String confirmation(HttpSession session, Model model) throws Exception {
@@ -93,6 +94,37 @@ public class MemberController {
     return mv;
   }
 
+
+  @PostMapping("duplicationIdCheck")
+  @ResponseBody
+  public int idCheck(String id) throws Exception{
+    int result = memberService.idCheck(id); 
+    return result;
+  }
+
+  @PostMapping("duplicationEmailCheck")
+  @ResponseBody
+  public int emailCheck(String email) throws Exception{
+    int result = memberService.emailCheck(email); 
+    return result;
+  }
+
+  @PostMapping("verificationPWCheck")
+  @ResponseBody
+  public int pWCheck(HttpSession session, String password) throws Exception{
+    Member loginMember = (Member) session.getAttribute("loginMember");
+    System.out.println(password);
+    System.out.println(loginMember);
+    int result = memberService.verificationPw(password, loginMember.getNo());
+    return result;
+  }
+
+  @PostMapping("duplicationNickCheck")
+  @ResponseBody
+  public int nickCheck(String nickname) throws Exception{
+    int result = memberService.nickCheck(nickname);
+    return result;
+  }
 
   public List<FavoriteRegion> saveRegion(Member member) {
     List<FavoriteRegion> favoriteRegion = new ArrayList<>();

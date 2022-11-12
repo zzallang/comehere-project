@@ -12,7 +12,7 @@ public interface FavoriteRegionService {
 
   boolean updateRegionDomain(Member member);
 
-  boolean updateRegionDomain(int mno, int preRegionDomain, int regionDomain);
+  boolean updateRegionDomain(int mno, int regionDomain);
 
   boolean deleteFavoriteRegion(int memeberNo);
 

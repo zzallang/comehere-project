@@ -14,9 +14,9 @@ public interface FavoriteSportsDao {
 
   public boolean updateSports(Member member);
 
-  public boolean updateSports(int mno, int preSportsDomain, int sportsDomain);
+  public boolean updateSports(int mno, int sportsDomain);
 
-  public boolean deletePreFavoriteSports(int memberNo);
+  public boolean deleteFavoriteSports(int memberNo);
 
 }
 

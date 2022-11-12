@@ -11,8 +11,9 @@
   
   <!-- 관심 운동 등록  -->
   <insert id="insertSports" parameterType="member">
-    insert into favorite_sports(sno,mno)
-    values
+    INSERT INTO 
+      favorite_sports(sno,mno)
+    VALUES
       <foreach collection="favoriteSports" item="sports" separator=",">
         (#{sports.sno},#{no})
       </foreach>
@@ -35,14 +36,14 @@
       WHERE 
         mno=#{mno} 
       AND 
-        sno=#{preSportsDomain}
+        sno=#{sportsDomain}
   </update>
   
-  <delete id="deletePreFavoriteSports" parameterType="int">
-    delete 
-    from 
+  <delete id="deleteFavoriteSports" parameterType="int">
+    DELETE 
+    FROM 
       favorite_sports
-    where 
+    WHERE 
       mno=#{memberNo}
   </delete>
   
