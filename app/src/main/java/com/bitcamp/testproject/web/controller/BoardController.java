@@ -60,11 +60,10 @@ public class BoardController {
   @PostMapping("add") 
   public String add(Board board, int cateno, Part file, HttpSession session) throws Exception {
 
-    // 카테고리 번호, 파일경로넣기
+    // 카테고리 번호, 파일경로넣기, 등록회원 정보 넣기
     board.setCateno(cateno);
     board.setThumbnail(saveAttachedFile(file));
-
-    //    board.setWriter((Member) session.getAttribute("loginMember"));
+    board.setWriter((Member) session.getAttribute("loginMember"));
 
     boardService.add(board);
     return "redirect:list?no=" + cateno;

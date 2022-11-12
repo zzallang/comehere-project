@@ -140,7 +140,7 @@
   <insert id="insert" parameterType="board"
           useGeneratedKeys="true" keyColumn="bno" keyProperty="no">
     insert into board(cateno, mno, title, cont, thumbnail) 
-    values(#{cateno},1,#{title},#{content},#{thumbnail})
+    values(#{cateno},#{writer.no},#{title},#{content},#{thumbnail})
   </insert>
   
   

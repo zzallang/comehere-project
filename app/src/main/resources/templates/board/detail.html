@@ -327,20 +327,21 @@
             <h2 th:if="${board.cateno == 5}">핫딜게시판</h2>
             
             <div>
-                <a th:if="${session.loginMember} != null and ${session.loginMember.no} == ${board.writer.no}" 
-                   th:href="@{updateForm(no=${board.no})}" 
+                <a data-th-if="${session.loginMember} != null and ${session.loginMember.no} == ${board.writer.no}" 
+                   data-th-href="@{updateForm(no=${board.no})}" 
                    class="btn btn-primary" 
                    role="button">수정</a>
                 <a th:if="${session.loginMember} != null and ${session.loginMember.no} == ${board.writer.no}" 
-                   th:href="@{delete(no=${board.no})}"
+                   data-th-href="@{delete(no=${board.no})}"
                    href='delete?no=1'
                    class="btn btn-primary">삭제</a>
-                <a th:if="${session.loginMember} == null or ${session.loginMember.no} != ${board.writer.no}" 
+                <a data-th-if="${session.loginMember} == null or ${session.loginMember.no} != ${board.writer.no}" 
                    class="btn btn-primary" href="#" role="button" id="btn-modal">신고</a>
-                <a th:href="@{list(no=${board.cateno})}"
+                <a data-th-href="@{list(no=${board.cateno})}"
                    class="btn btn-primary">목록</a>
-                <a th:if="${session.loginMember} == null or ${session.loginMember.no} != ${board.writer.no}" 
-                   class="btn btn-primary" href="#" role="button" id="btn-modal">스크랩</a>
+                <a data-th-if="${session.loginMember} == null or ${session.loginMember.no} != ${board.writer.no}" 
+                   data-th-href="@{addScrap(no=${board.no})}" 
+                   class="btn btn-primary"  role="button" id="btn-modal">스크랩</a>
                 
             </div>
             
