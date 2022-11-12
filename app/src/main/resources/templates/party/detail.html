@@ -40,7 +40,7 @@
   <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=329b989eb923746c672a8d662638bae0&libraries=services"></script>
 
   <style>
-    input {display: none;}
+     input {display: none;}
     
     input:nth-of-type(1) ~ div:nth-last-of-type(3){
       display: none;
@@ -61,7 +61,7 @@
     input:nth-of-type(3):checked ~ div:nth-last-of-type(1){
       display: block;
     }
-
+ 
 
     .row_party {
       width: 1200px;
@@ -568,9 +568,9 @@
             <label class="party_detail_button_l" for="tab-1">댓글</label>
             <label class="party_detail_button_l" for="tab-2">모임 후기</label>
             <label class="party_detail_button_l" for="tab-3">모임 장소 보기</label>
-            <input type="radio" name="tab" id="tab-1" checked="checked">
+            <input type="radio" name="tab" id="tab-1">
             <input type="radio" name="tab" id="tab-2" >
-            <input type="radio" name="tab" id="tab-3" >
+            <input type="radio" name="tab" id="tab-3" checked="checked">
             <button class="party_detail_button_r" onclick = "location.href = 'list' ">목록</button>
             <button class="party_detail_button_r" onclick = "location.href = '#' ">top</button>
             
@@ -644,35 +644,31 @@
               <th:block th:each="review : ${reviews}">
                 <div class="party_detail_bottom_review_wrap">
                   <div class="party_detail_bottom_review">
-                    <div class="party_detail_review_img">
-                      <a href="#">
-                        <div class="slide_wrapper">
-                          <ul class="slides">
-                            <th:block th:if="${review.attachedFiles != null}" th:each="file : ${review.attachedFiles}">
-                              <li><img alt="후기사진" th:src="@{'/review/files/' + ${file.filepath}}"></li>
-                            </th:block>
-                            <th:block th:if="${review.attachedFiles == null}">
-                              <li><img alt="" src="http://placeimg.com/400/350/any"></li>
-                              <li><img alt="" src="http://placeimg.com/400/350/any"></li>
-                              <li><img alt="" src="http://placeimg.com/400/350/any"></li>
-                            </th:block>
-                          </ul>
-                        </div>
-                      </a>
+                    <div class="party_detail_review_img reviewDetailBtn">
+                      <div class="slide_wrapper">
+                        <ul class="slides">
+                          <th:block th:if="${review.attachedFiles != null}" th:each="file : ${review.attachedFiles}">
+                            <li><img alt="후기사진" th:src="@{'/review/files/' + ${file.filepath}}"></li>
+                          </th:block>
+                          <th:block th:if="${review.attachedFiles == null}">
+                            <li><img alt="" src="http://placeimg.com/400/350/any"></li>
+                            <li><img alt="" src="http://placeimg.com/400/350/any"></li>
+                            <li><img alt="" src="http://placeimg.com/400/350/any"></li>
+                          </th:block>
+                        </ul>
+                      </div>
                     </div>
-                    <div class="party_detail_review_format">
+                    <div class="party_detail_review_format reviewDetailBtn">
                       <span th:text="${review.star}"></span>
                     </div>
-                    <div class="party_detail_review_format">
+                    <div class="party_detail_review_format reviewDetailBtn">
                       <span th:text="${review.writer.nickname}"></span>
                       <span th:text="${review.writer.sex} == true ? '남자' : '여자'"></span>
                       <span th:text="${review.writer.ageGroup}"></span>
                       <span th:text="${review.createdDate}"></span>
                     </div>
-                    <div class="party_detail_review_content">
-                      <a href="#">
-                        <p th:text="${review.title}"></p>
-                      </a>
+                    <div class="party_detail_review_content reviewDetailBtn">
+                      <p th:text="${review.title}"></p>
                       <p th:text="${review.content}"></p>
                     </div>
                   </div>
@@ -742,6 +738,30 @@
   /*]]>*/
 </script>
 <!-- 참가신청 버튼 자바 스크립트 끝 -->
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script type="text/javascript">
+
+$(".reviewDetailBtn").click(
+	function () {
+		Swal.fire({
+			  title: '<strong>HTML <u>example</u></strong>',
+			  icon: 'info',
+			  html:
+			    'You can use <b>bold text</b>, ' +
+			    '<a href="//sweetalert2.github.io">links</a> ' +
+			    'and other HTML tags',
+			  showCloseButton: true,
+			  focusConfirm: false,
+			  confirmButton: false
+			})
+	}
+);
+
+
+
+</script>
+
 <!-- 댓글 시작 -->
 <script>
 
