@@ -197,30 +197,6 @@
                </div>
           </div>
                
-         <!--       
-                  <th:block th:each="board : ${list}">
-                    <div style="background-color: gray;">
-                         <img th:src="@{'http://localhost:8888/app/board/files/' + ${board.path}}" alt="Avatar"/>
-                         <div class="container_main">
-                          <div class="overlay">
-                             <a href="#" class="icon" title="User Profile">
-                             <i class="fa fa-search"></i>
-                             </a>
-                          </div>     
-                          <h3 class="temper_text" th:text="${board.title}">게시글 제목</h3>
-                          <p class="dololr_text"> 
-                            <td th:text="${board.no}">100</td>
-                            <td class="title-min-width"><a href='detail?no=1'
-                              th:href="@{detail(no=${board.no})}"
-                              th:text="${board.title == ''} ? '(제목없음)' : ${board.title}">제목없음</a></td>
-                            <td th:text="${board.writer.name}">유길동</td>
-                            <td th:text="${board.viewCount}">17</td>
-                            <td th:text="${board.createdDate}">0000-1-1</td>
-                          </p>
-                         </div>
-                    </div>
-                  </th:block>
-             -->
 
                   <!-- 게시글 목록 끝 -->
                   <li class="write-box">
@@ -237,7 +213,7 @@
                           </a>
                         </li>
                         <th:block th:each="pageNum: ${#numbers.sequence(pageMaker.startPage, pageMaker.endPage)}">
-                          <li class="page-item">
+                          <li data-th-id="${'pageButton' + pageNum}"  class="page-item">
                             <a class="page-link" th:href="@{list(page=${pageNum}, no=${catenoInBoard.cateno})}"><i th:text="${pageNum}"></i></a>
                           </li>
                         </th:block>
@@ -316,34 +292,39 @@
         }
       }
       
-      window.onload = 
-    	  function findCategory() {
-        var para = document.location.href.split("no=");
-        console.log("카테고리 번호 =>" + para[1]);
-        
-        switch(para[1]) {
-          case '1' :
-        	  document.getElementById( 'cateName' ).innerHTML = "자유게시판";
-            document.getElementById( 'cateConment' ).innerHTML = "여기모여 회원들이 자유롭게 소통할 수 있는 자유게시판입니다. ";
-            break;
-          case '2' :
-        	  document.getElementById( 'cateName' ).innerHTML = "식단게시판";
-            document.getElementById( 'cateConment' ).innerHTML = "다이어트, 벌크업 등 식이요법에 대한 다양한 정보를 나누는 식단게시판입니다.";
-            break;
-          case '3' :
-        	  document.getElementById( 'cateName' ).innerHTML = "챌린지게시판";
-            document.getElementById( 'cateConment' ).innerHTML = "하루하루 도전하는 회원분들의 인증샷을 올리는 챌린지게시판입니다.";
-            break;
-          case '4' :
-        	  document.getElementById( 'cateName' ).innerHTML = "질문게시판";
-            document.getElementById( 'cateConment' ).innerHTML = "궁금한 건 어디에서 물어볼 지 고민인 분들을 위한 질문게시판입니다.";
-            break;
-          case '5' :
-        	  document.getElementById( 'cateName' ).innerHTML = "핫딜게시판";
-            document.getElementById( 'cateConment' ).innerHTML = "지금이 바로 득템 기회! 핫딜 제품들을 공유할 수 있는 핫딜게시판입니다.";
+      window.addEventListener('DOMContentLoaded', function findCategory() {
+    	  var param = window.location.search.match(/no=([^&]*)/)[1];
+          switch(param) {
+            case '1' :
+              document.getElementById( 'cateName' ).innerHTML = "자유게시판";
+              document.getElementById( 'cateConment' ).innerHTML = "여기모여 회원들이 자유롭게 소통할 수 있는 자유게시판입니다. ";
+              break;
+            case '2' :
+              document.getElementById( 'cateName' ).innerHTML = "식단게시판";
+              document.getElementById( 'cateConment' ).innerHTML = "다이어트, 벌크업 등 식이요법에 대한 다양한 정보를 나누는 식단게시판입니다.";
+              break;
+            case '3' :
+              document.getElementById( 'cateName' ).innerHTML = "챌린지게시판";
+              document.getElementById( 'cateConment' ).innerHTML = "하루하루 도전하는 회원분들의 인증샷을 올리는 챌린지게시판입니다.";
+              break;
+            case '4' :
+              document.getElementById( 'cateName' ).innerHTML = "질문게시판";
+              document.getElementById( 'cateConment' ).innerHTML = "궁금한 건 어디에서 물어볼 지 고민인 분들을 위한 질문게시판입니다.";
+              break;
+            case '5' :
+              document.getElementById( 'cateName' ).innerHTML = "핫딜게시판";
+              document.getElementById( 'cateConment' ).innerHTML = "지금이 바로 득템 기회! 핫딜 제품들을 공유할 수 있는 핫딜게시판입니다.";
         }
-        
-      }
+      });
+      
+      window.addEventListener('DOMContentLoaded', function(){
+    	  var param = 1; 
+    	  if (window.location.search.match(/page=([^&]*)/) != null) {
+    		  param = window.location.search.match(/page=([^&]*)/)[1];
+    	  } 
+    	  $('#pageButton' + param).addClass('active');
+    	});
+      
 
       </script>
    </body> 

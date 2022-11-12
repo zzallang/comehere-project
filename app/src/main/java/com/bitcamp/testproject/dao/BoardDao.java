@@ -40,6 +40,8 @@ public interface BoardDao {
 
   int daleteThumbnailByNo(int no);
 
+  String getThumbnailByBoardNo(int no);
+
 
   //
 

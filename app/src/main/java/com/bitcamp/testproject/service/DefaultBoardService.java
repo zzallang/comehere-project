@@ -137,6 +137,13 @@ public class DefaultBoardService implements BoardService {
   @Transactional
   @Override
   public boolean update(Board board) throws Exception {
+
+    // 썸네일을 변경하지 않았을 때 원래 파일이름을 넣어준다.
+    if (board.getThumbnail() == null) {
+      String originThumb = boardDao.getThumbnailByBoardNo(board.getNo());
+      board.setThumbnail(originThumb);
+    }
+
     // 1) 게시글 변경
     if (boardDao.update(board) == 0) {
       return false;

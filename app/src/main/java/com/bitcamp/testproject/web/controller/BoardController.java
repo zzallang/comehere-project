@@ -73,7 +73,6 @@ public class BoardController {
   private String saveAttachedFile(Part file) throws IOException, ServletException {
     //    List<AttachedFile> attachedFiles = new ArrayList<>();
     String dirPath = sc.getRealPath("/board/files");
-
     // 첨부파일이 있다면 실행
     if (file.getSize() != 0) {
       String filename = UUID.randomUUID().toString();
@@ -174,19 +173,22 @@ public class BoardController {
 
   @GetMapping("list")
   public ModelAndView list(Criteria cri, int no) throws Exception {
-    // 페이징하기 위한 연산 
-    PageMaker pageMaker = new PageMaker();
-    cri.setCatenoToPage(no); // 특정 게시판을 목록을 출력하기위한 설정
-    pageMaker.setCri(cri);
-    pageMaker.setTotalCount(boardService.countBoardListTotal(no));
 
     ModelAndView mav;
     if (no == 3) {
-      // 챌린지 게시판일 경우 
+      // 챌린지 게시판일 경우 (listOfClg.html을 실행하고 게시글 9개만 출력)
       mav = new ModelAndView("board/listOfClg");
+      cri.setPerPageNum(9);
     } else {
       mav = new ModelAndView("board/list");
+      cri.setPerPageNum(10);
     }
+    // 페이징하기 위한 연산 
+    cri.setCatenoToPage(no); // 특정 게시판을 목록을 출력하기위한 설정
+    PageMaker pageMaker = new PageMaker();
+    pageMaker.setCri(cri);
+    pageMaker.setTotalCount(boardService.countBoardListTotal(no));
+
 
     // 게시글 카테고리 번호 Board객체에 담아서 map객체에 담을 준비 
     Board catenoInBoard = new Board();
