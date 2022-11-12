@@ -1,6 +1,7 @@
 package com.bitcamp.testproject.vo;
 
 import java.sql.Date;
+import java.util.Arrays;
 import java.util.List;
 
 public class Member {
@@ -20,6 +21,8 @@ public class Member {
   private boolean black;
   private List<FavoriteRegion> favoriteRegion;
   private List<FavoriteSports> favoriteSports;
+  private int[] regionDomain;
+  private int[] sportsDomain;
 
   // 모임참여 명단에서 주최자 여부
   private boolean auth;
@@ -33,8 +36,8 @@ public class Member {
         + nickname + ", password=" + password + ", tel=" + tel + ", birthday=" + birthday + ", sex="
         + sex + ", filepath=" + filepath + ", createdDate=" + createdDate + ", active=" + active
         + ", black=" + black + ", favoriteRegion=" + favoriteRegion + ", favoriteSports="
-        + favoriteSports + ", auth=" + auth + ", ageGroup=" + ageGroup + ", getClass()="
-        + getClass() + ", hashCode()=" + hashCode() + ", toString()=" + super.toString() + "]";
+        + favoriteSports + ", regionDomain=" + Arrays.toString(regionDomain) + ", sportsDomain="
+        + Arrays.toString(sportsDomain) + ", auth=" + auth + ", ageGroup=" + ageGroup + "]";
   }
 
   public int getNo() {
@@ -157,6 +160,22 @@ public class Member {
     this.favoriteSports = favoriteSports;
   }
 
+  public int[] getRegionDomain() {
+    return regionDomain;
+  }
+
+  public void setRegionDomain(int[] regionDomain) {
+    this.regionDomain = regionDomain;
+  }
+
+  public int[] getSportsDomain() {
+    return sportsDomain;
+  }
+
+  public void setSportsDomain(int[] sportsDomain) {
+    this.sportsDomain = sportsDomain;
+  }
+
   public boolean isAuth() {
     return auth;
   }
@@ -172,6 +191,7 @@ public class Member {
   public void setAgeGroup(String ageGroup) {
     this.ageGroup = ageGroup;
   }
+
 
 }
 

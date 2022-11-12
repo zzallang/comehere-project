@@ -14,7 +14,7 @@ public interface FavoriteSportsService {
 
   boolean updateSportsDomain(int mno, int preSportsDomain, int sportsDomain);
 
-  boolean deletePreFavoriteSports(int memeberNo);
+  boolean deleteFavoriteSports(int memeberNo);
 
   void addFavoriteSports(Member member);
 

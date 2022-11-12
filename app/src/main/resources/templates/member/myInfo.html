@@ -69,7 +69,6 @@
             <div class= info>
               <ul class="infoMenu">
                 <li class= "infoMenuOn"><a href="refresh:">회원 정보 변경</a></li>
-                <li class= "infoMenuOn"><a href="../mypage/health-management">건강 관리</a></li>
                 <li class= "infoMenuOn"><a href="../mypage/party-management">모임 관리</a></li>
                 <li class= "infoMenuOn"><a href="../mypage/my-post">작성글/스크랩</a></li>
               </ul>
@@ -87,14 +86,6 @@
                       <input type="text" class="email-bt" data-th-value="${member.name}" name="name" readonly>
                         <div class="join_menu">생년월일</div>
                       <input type='date' class="email-bt" data-th-value="${member.birthday}" readonly>
-<!--                         <div class="join_menu">성별<br/>
-                          <div class= "join_gender">
-                        <span class =gender>남성</span>
-                      <input type='radio' class="gender-bt" value="false" name="sex" data-th-if="${member.sex == false} ? 'checked' : ''">[[${member.sex}]]
-                        <span class =gender>여성</span>
-                      <input type='radio' class="gender-bt" value="true" name="sex" data-th-if="${member.sex == true} ? 'checked' : ''">
-                          </div>
-                        </div> <br/> -->
                           <div class="join_menu">전화번호</div>
                       <input type="text" class="phoneNumber" data-th-value="${member.tel}" name="tel" required pattern="[0-9]{2,3}-[0-9]{3,4}-[0-9]{4}" maxlength="13"><br/>
                         <div class="join_menu">이메일</div>
@@ -122,88 +113,22 @@
                             <div id="passwordCheckError" class="error"></div>
                           </div>
                           <div class="join_menu">관심지역 <br>
-                          <select class="favorite-choice" id="region" data-th-value="${member.favoriteRegion[0].rno}" name="region_domain">
+                          <select class="favorite-choice" id="favoriteRegion1" name="regionDomain" >
                           <option value="0">---선택---</option>
-                          <option value="1">종로구</option>
-                          <option value="2">중구</option>
-                          <option value="3">용산구</option>
-                          <option value="4">성동구</option>
-                          <option value="5">광진구</option>
-                          <option value="6">동대문구</option>
-                          <option value="7">중랑구</option>
-                          <option value="8">성북구</option>
-                          <option value="9">강북구</option>
-                          <option value="10">도봉구</option>
-                          <option value="11">노원구</option>
-                          <option value="12">은평구</option>
-                          <option value="13">서대문구</option>
-                          <option value="14">마포구</option>
-                          <option value="15">양천구</option>
-                          <option value="16">강서구</option>
-                          <option value="17">구로구</option>
-                          <option value="18">금천구</option>
-                          <option value="19">영등포구</option>
-                          <option value="20">동작구</option>
-                          <option value="21">관악구</option>
-                          <option value="22">서초구</option>
-                          <option value="23">강남구</option>
-                          <option value="24">송파구</option>
-                          <option value="25">강동구</option>
+                          <option data-th-each="region : ${regionList}" data-th-text="${region.sigu}" ></option>
                       </select> 
-                      <select class="favorite-choice" id="region" name="region_domain">
+                      <select class="favorite-choice" id="favoriteRegion1" name="regionDomain">
                         <option value="0">---선택---</option>
-                        <option value="1">종로구</option>
-                        <option value="2">중구</option>
-                        <option value="3">용산구</option>
-                        <option value="4">성동구</option>
-                        <option value="5">광진구</option>
-                        <option value="6">동대문구</option>
-                        <option value="7">중랑구</option>
-                        <option value="8">성북구</option>
-                        <option value="9">강북구</option>
-                        <option value="10">도봉구</option>
-                        <option value="11">노원구</option>
-                        <option value="12">은평구</option>
-                        <option value="13">서대문구</option>
-                        <option value="14">마포구</option>
-                        <option value="15">양천구</option>
-                        <option value="16">강서구</option>
-                        <option value="17">구로구</option>
-                        <option value="18">금천구</option>
-                        <option value="19">영등포구</option>
-                        <option value="20">동작구</option>
-                        <option value="21">관악구</option>
-                        <option value="22">서초구</option>
-                        <option value="23">강남구</option>
-                        <option value="24">송파구</option>
-                        <option value="25">강동구</option>
+                        <option data-th-each="region : ${regionList}"  data-th-text="${region.sigu}"></option>
                       </select><br /> </div>
                         <div class="join_menu">관심운동</div>
-                      <select class="favorite-choice" id="sports" name="sports_domain">
+                      <select class="favorite-choice" id="favoriteSports1" name="sportsDomain">
                         <option value="0">---선택---</option>
-                        <option value="1">헬스</option>
-                        <option value="2">클라이밍</option>
-                        <option value="3">배드민턴</option>
-                        <option value="4">축구</option>
-                        <option value="5">농구</option>
-                        <option value="6">골프</option>
-                        <option value="7">탁구</option>
-                        <option value="8">야구</option>
-                        <option value="9">러닝</option>
-                        <option value="10">사이클</option>
+                        <option data-th-each="sports : ${sportsList}" data-th-value="${sports.no}" data-th-text="${sports.name}"></option>
                       </select> 
-                      <select class="favorite-choice" id="sports" name="sports_domain">
+                      <select class="favorite-choice" id="favoriteSports2" name="sportsDomain">
                         <option value="0">---선택---</option>
-                        <option value="1">헬스</option>
-                        <option value="2">클라이밍</option>
-                        <option value="3">배드민턴</option>
-                        <option value="4">축구</option>
-                        <option value="5">농구</option>
-                        <option value="7">골프</option>
-                        <option value="8">탁구</option>
-                        <option value="9">야구</option>
-                        <option value="10">러닝</option>
-                        <option value="11">사이클</option>
+                        <option data-th-each="sports : ${sportsList}" data-th-value="${sports.no}" data-th-text="${sports.name}"></option>
                       </select><br />
                       <div class="send_bt"><button type="submit">변경</button></div>
                     </form>
@@ -239,6 +164,12 @@
                   .replace("—", "-")
               );
             });
+            
+/*             function selectNum() {
+                let numSelect = document.getElementById("favoriteRegion1");
+                let value =  numSelect.options[document.getElementById("favoriteRegion1").selectedIndex].value;
+                console.log(value);
+              } */
             </script>
 
 

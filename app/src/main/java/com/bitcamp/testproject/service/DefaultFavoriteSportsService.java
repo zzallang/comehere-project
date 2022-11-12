@@ -29,7 +29,7 @@ public class DefaultFavoriteSportsService implements FavoriteSportsService {
   }
 
   @Override
-  public boolean deletePreFavoriteSports(int memberNo) {
+  public boolean deleteFavoriteSports(int memberNo) {
     return favoritesportsDao.deletePreFavoriteSports(memberNo);
   }
 

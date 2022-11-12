@@ -4,6 +4,7 @@ public class Sports {
 
   private int no;
   private String name;
+
   @Override
   public String toString() {
     return "Sports [no=" + no + ", name=" + name + "]";
