@@ -88,14 +88,15 @@
   </select>
 
 
- <select id="findById" resultMap="memberMap">
-    SELECT
-      id
-    FROM
-      member
-    WHERE
-      name=#{name} and email=#{email}
+<select id="findById" resultMap="memberMap">
+    select
+    id
+    from
+    member
+    where
+    name=#{name} and email=#{email}
   </select>
+
  
   <select id="findByNo" resultMap="memberMap">
     SELECT 
@@ -179,12 +180,16 @@
      email=#{email}
   </select>
 
-   <update id="updatePassWrod" parameterType="Member">
-      UPDATE member SET
-        pwd=sha2(#{password},256)
-      WHERE
-        mno=#{no}
-   </update>
+
+   
+   <update id="updatePW" parameterType="String">
+    update member set
+    pwd=sha2(#{password},256)
+    where
+    email=#{email}
+    and id=#{id}
+  </update>
+  
 
    <delete id="delete">
       DELETE 

@@ -73,8 +73,8 @@ margin-right: 14vw;
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
-            <li class="nav-item"><a class="nav-link" href="index.html">운동하기</a></li>
-            <li class="nav-item"><a class="nav-link" href="about.html">커뮤니티</a></li>
+                   <li class="nav-item"><a class="nav-link" href="party/list">운동찾기</a></li>
+                  <li class="nav-item"><a class="nav-link" href="board/main">커뮤니티</a></li>
             <li class="nav-item"><a class="nav-link" href="shop.html">공지사항</a></li>
           </ul>
           </div>
@@ -100,29 +100,7 @@ margin-right: 14vw;
           <p>
             <button type='submit'class="btnon1" >ID찾기</button>
           </p>
-          
-          
-          
-   <script>
-       function bt(frm) {
-           var password = frm.password.value;
-           var checkpw = frm.checkpw.value;
-           
-           if (password.trim() == '') {
-               swal("암호를 입력해주세요");
-               return false;
-           } 
-           
-           if (password.trim() != checkpw.trim()) {
-             swal("암호가 일치하지 않습니다.");
-             return false;
-           } 
-           
-           alert("암호가 변경되었습니다");
-             frm.submit();
-           }
-      </script>
-      </form>
+        </form>
       </div>
     </div>
   </div>

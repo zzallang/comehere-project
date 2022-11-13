@@ -5,8 +5,6 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import com.bitcamp.testproject.vo.Member;
 
-
-
 @Mapper
 public interface MemberDao {
 
@@ -15,6 +13,8 @@ public interface MemberDao {
   Member findByNo(int no);
 
   int update(Member member);
+
+  int updataPassWrod(Member member);
 
   int delete(int no);
 
@@ -29,10 +29,6 @@ public interface MemberDao {
   int emailCheck(String email);
 
   List<Member> findAll();
-
-  void insertRegion(Member member);
-
-  void insertSports(Member member);
 
   // 메서드의 파라미터가 여러 개일 때:
   // - SQL에서 참조할 파라미터라고 애노테이션으로 표시해야 한다.
@@ -52,9 +48,13 @@ public interface MemberDao {
       @Param("email") String email,
       @Param("SecCode") String SecCode);
 
-  int updatePW(String password, String email, String id);
 
+  int updatePW(
+      @Param("password") String password,
+      @Param("email") String email,
+      @Param("id") String id);
 }
+
 
 
 

@@ -162,6 +162,7 @@ public class AuthController {
     boolean result = memberService.updatePW(password, email, id);
 
     if (result != false) {
+      System.out.println("변경 실패");
     } 
     return "redirect:form";
   }
