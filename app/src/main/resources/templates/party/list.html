@@ -326,30 +326,9 @@
           <div th:replace="party/list-ajax :: partyList">list-ajax.html</div>
         </div>
       </div>
-      
-      <!-- 페이징 버튼 시작 -->
-      <nav aria-label="Page navigation">
-        <ul class="pagination">
-          <div class="page_center">
-            <li class="page-item" th:if="${pageMaker.prev}">
-              <a class="page-link" th:href="@{list(pageMaker.startPage-1)}" aria-label="Previous">
-                <span aria-hidden="true">&laquo;</span>
-              </a>
-            </li>
-            <th:block th:each="pageNum: ${#numbers.sequence(pageMaker.startPage, pageMaker.endPage)}">
-              <li class="page-item">
-                <a class="page-link" th:href="@{list(page=${pageNum})}"><i th:text="${pageNum}"></i></a>
-              </li>
-            </th:block>
-            <li class="page-item" th:if="${pageMaker.next && pageMaker.endPage >0}">
-              <a class="page-link" th:href="@{list(page=${pageMaker.endPage+1})}" aria-label="Next">
-                <span aria-hidden="true">&raquo;</span>
-              </a>
-            </li>
-          </div>
-        </ul>
-      </nav>
-      <!-- 페이징 버튼 끝 -->
+      <div id="partyPage">
+        <div th:replace="party/list-ajax-page :: partyPage">list-ajax-page.html</div>
+      </div>
 
     </div> <!-- furnitures_section2 layout_padding_party -->
   </div>

@@ -10,15 +10,11 @@ import com.bitcamp.testproject.vo.Criteria;
 @Mapper
 public interface BoardDao {
 
-  //  제동 소스
-
   int insert(Board board);
 
   int insertFiles(Board board);
 
   Board findByNo(int no);
-
-  //  List<Board> findAll(int no);
 
   int deleteFiles(int boardNo);
 
@@ -41,6 +37,8 @@ public interface BoardDao {
   void increaseViews(int no);
 
   BoardCategory findCategoryByNo(int no);
+
+  int daleteThumbnailByNo(int no);
 
 
   //

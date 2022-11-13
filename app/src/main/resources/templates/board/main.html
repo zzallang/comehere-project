@@ -152,7 +152,7 @@
   <!-- header section start -->
   <div class="header_section">
     <div class="container-fluid">
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <nav class="navbar navbar-expand-lg navbar-light">
         <div class="main_logo"><a href="/app"><img src="../images/logo.png"></a></div>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -190,12 +190,12 @@
            </ul>
            <!-- 게시판 카테고리 이동 끝 -->
            
-           <h2 class="our_textJD" id="cateName">게시판 제목입니다.</h2>
+           <h2 class="our_textJD" id="cateName"></h2>
            
             
            <div class="furnitures_section2 layout_padding">
                <div class="write-wrapper">
-                  <a class="btn btn-primary float-end" href="form?cateno=1" role="button">글쓰기</a></div>
+                  <!-- <a class="btn btn-primary float-end" href="form?cateno=1" role="button">글쓰기</a></div> -->
                <div class="row1">
                   <!-- 게시글 목록 시작 -->
                   <h3 class="mainList-title">인기글</h3>
@@ -222,8 +222,8 @@
                   <th:block th:each="board : ${clgList}">
                     <span class="recent-clg-wapper">
                       <div class="recent-clg-img-wapper">
-                        <a th:href="@{detail(no=${board.no})}"><img th:if="${board.path == null}" src="/app/board/files/nothumpnail.jpg" alt="Avatar" class="imgJD"/></a>
-                        <a th:href="@{detail(no=${board.no})}"><img  th:if="${board.path != null}" th:src="@{'http://localhost:8888/app/board/files/' + ${board.path}}" alt="Avatar" class="imgJD"/></a>
+                        <a th:href="@{detail(no=${board.no})}"><img th:if="${board.thumbnail == null}" src="/app/board/files/nothumpnail.jpg" alt="Avatar" class="imgJD"/></a>
+                        <a th:href="@{detail(no=${board.no})}"><img  th:if="${board.thumbnail != null}" th:src="@{'http://localhost:8888/app/board/files/' + ${board.thumbnail}}" alt="Avatar" class="imgJD"/></a>
                       </div>
                       <div class="recent-clg-content-wapper">
                         <b><a href='detail?no=1' th:href="@{detail(no=${board.no})}" th:text="${board.title == ''} ? '(제목없음)' : ${board.title}">제목없음</a></b><br>

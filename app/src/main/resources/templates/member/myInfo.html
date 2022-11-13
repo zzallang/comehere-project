@@ -20,19 +20,18 @@
         <!-- Responsive-->
         <link rel="stylesheet" href="../css/responsive.css">
         <!-- fevicon -->
-        <link rel="icon" href="../images/fevicon.png" type="image/gif" />
+        <!-- <link rel="icon" href="../images/fevicon.png" type="image/gif" /> -->
         <!-- Scrollbar Custom CSS -->
-        <link rel="stylesheet" href="../css/jquery.mCustomScrollbar.min.css">
+        <!-- <link rel="stylesheet" href="../css/jquery.mCustomScrollbar.min.css"> -->
         <!-- Tweaks for older IEs-->
         <link rel="stylesheet"
           href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
         <!-- owl stylesheets -->
-        <link rel="stylesheet" href="../css/owl.carousel.min.css">
+        <!-- <link rel="stylesheet" href="../css/owl.carousel.min.css">
         <link rel="stylesheet" href="../css/owl.theme.default.min.css">
         <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css"
-          media="screen">
-        
+          media="screen"> -->
     </head>
         <body>
           <!-- header section start -->
@@ -69,7 +68,6 @@
             <div class= info>
               <ul class="infoMenu">
                 <li class= "infoMenuOn"><a href="refresh:">회원 정보 변경</a></li>
-                <li class= "infoMenuOn"><a href="../mypage/health-management">건강 관리</a></li>
                 <li class= "infoMenuOn"><a href="../mypage/party-management">모임 관리</a></li>
                 <li class= "infoMenuOn"><a href="../mypage/my-post">작성글/스크랩</a></li>
               </ul>
@@ -82,23 +80,14 @@
                     <form action="/app/member/memberUpdate" method="post" id="updateForm">
                       <div class="join_menu">아이디</div> 
                       <input type="text" class="email-bt" data-th-value="${member.id}" name="id" id="id" readonly>
-                        <button type="button" class="id_overlap_button" onclick="id_overlap_check()">중복확인</button>
                         <div class="join_menu">이름</div>
-                      <input type="text" class="email-bt" data-th-value="${member.name}" name="name" readonly>
+                      <input type="text" class="email-bt" placeholder="이름" name="name">
                         <div class="join_menu">생년월일</div>
                       <input type='date' class="email-bt" data-th-value="${member.birthday}" readonly>
-<!--                         <div class="join_menu">성별<br/>
-                          <div class= "join_gender">
-                        <span class =gender>남성</span>
-                      <input type='radio' class="gender-bt" value="false" name="sex" data-th-if="${member.sex == false} ? 'checked' : ''">[[${member.sex}]]
-                        <span class =gender>여성</span>
-                      <input type='radio' class="gender-bt" value="true" name="sex" data-th-if="${member.sex == true} ? 'checked' : ''">
-                          </div>
-                        </div> <br/> -->
                           <div class="join_menu">전화번호</div>
-                      <input type="text" class="phoneNumber" data-th-value="${member.tel}" name="tel" required pattern="[0-9]{2,3}-[0-9]{3,4}-[0-9]{4}" maxlength="13"><br/>
+                      <input type="text" class="phoneNumber" placeholder="(-) 제외 입력" name="tel" required pattern="[0-9]{2,3}-[0-9]{3,4}-[0-9]{4}" maxlength="13"><br/>
                         <div class="join_menu">이메일</div>
-                      <input type="text" class="email-bt" data-th-value="${member.email}" name="email" > 
+                      <input type="email" class="email-bt" placeholder="이메일" name="email" > 
                       <!-- @
                         <input type="text" class="custom-email" placeholder="도메인 입력" name="mail_domain" id="mail_domain">
                         <select class="custom-email" id="mail_domain_select" onchange="selectChange()">
@@ -112,99 +101,67 @@
                           <option value="hanmir.com">hanmir.com</option>
                         </select><br />  -->
                       <button class="btn btn-outline-secondary" type="button" id="button-addon2">중복확인</button>
+                      <div><font id="email-feedback" size="3"></font></div>
                           <div class="join_menu">닉네임</div>
-                      <input type="text" class="email-bt" id= "join_menu_check" data-th-value="${member.nickname}" name="nickname">
-                          <button class="btn btn-outline-secondary" type="button" id="button-addon2">중복확인</button>
+                      <input type="text" class="email-bt" id= "nick" data-th-value="${member.nickname}" name="nickname">
+                      <div><font id="nick-feedback" size="3"></font></div>
+                          <button class="btn btn-outline-secondary" type="button" id="button-addon3">중복확인</button>
                           <div class="join_menu">비밀번호
-                            <input type="password" class="email-bt" id="password" placeholder="비밀번호" name="password"> 
+                            <input type="password" class="email-bt" id="password" onchange="check_pw()" placeholder="비밀번호" name="password"> 
                             <div id="passwordError" class="error"></div>
-                            <input type="password" class="email-bt" id="passwordCheck" placeholder="비밀번호 확인" name="password_check"> 
-                            <div id="passwordCheckError" class="error"></div>
+                            <input type="password" class="email-bt" id="passwordCheck" onchange="check_pw()" placeholder="비밀번호 확인" name="password_check" >&nbsp;
+                            <div><font id="check" size="3"></font> </div>
                           </div>
-                          <div class="join_menu">관심지역</div>
-                          <select class="email-bt2" id="region" name="region_domain">
-                            <option value="0">---선택---</option>
-                            <option value="1">종로구</option>
-                            <option value="2">중구</option>
-                            <option value="3">용산구</option>
-                            <option value="4">성동구</option>
-                            <option value="5">광진구</option>
-                            <option value="6">동대문구</option>
-                            <option value="7">중랑구</option>
-                            <option value="8">성북구</option>
-                            <option value="9">강북구</option>
-                            <option value="10">도봉구</option>
-                            <option value="11">노원구</option>
-                            <option value="12">은평구</option>
-                            <option value="13">서대문구</option>
-                            <option value="14">마포구</option>
-                            <option value="15">양천구</option>
-                            <option value="16">강서구</option>
-                            <option value="17">구로구</option>
-                            <option value="18">금천구</option>
-                            <option value="19">영등포구</option>
-                            <option value="20">동작구</option>
-                            <option value="21">관악구</option>
-                            <option value="22">서초구</option>
-                            <option value="23">강남구</option>
-                            <option value="24">송파구</option>
-                            <option value="25">강동구</option>
-                        </select> 
-                        <select class="email-bt3" id="region" name="region_domain">
-                        <option value="0">---선택---</option>
-                        <option value="1">종로구</option>
-                        <option value="2">중구</option>
-                        <option value="3">용산구</option>
-                        <option value="4">성동구</option>
-                        <option value="5">광진구</option>
-                        <option value="6">동대문구</option>
-                        <option value="7">중랑구</option>
-                        <option value="8">성북구</option>
-                        <option value="9">강북구</option>
-                        <option value="10">도봉구</option>
-                        <option value="11">노원구</option>
-                        <option value="12">은평구</option>
-                        <option value="13">서대문구</option>
-                        <option value="14">마포구</option>
-                        <option value="15">양천구</option>
-                        <option value="16">강서구</option>
-                        <option value="17">구로구</option>
-                        <option value="18">금천구</option>
-                        <option value="19">영등포구</option>
-                        <option value="20">동작구</option>
-                        <option value="21">관악구</option>
-                        <option value="22">서초구</option>
-                        <option value="23">강남구</option>
-                        <option value="24">송파구</option>
-                        <option value="25">강동구</option>
-                      </select><br /> 
-                        <div class="join_menu">관심운동</div>
-                      <select class="email-bt2" id="sports" name="sports_domain">
-                        <option value="0">---선택---</option>
-                        <option value="1">헬스</option>
-                        <option value="2">클라이밍</option>
-                        <option value="3">배드민턴</option>
-                        <option value="4">축구</option>
-                        <option value="5">농구</option>
-                        <option value="6">골프</option>
-                        <option value="7">탁구</option>
-                        <option value="8">야구</option>
-                        <option value="9">러닝</option>
-                        <option value="10">사이클</option>
+                          <div class="join_menu">관심지역 <br>
+                          <select class="favorite-choice" id="favoriteRegion1" name="regionDomain" >
+                          <option value="0">선택안함</option>
+                          <option data-th-each="region : ${regionList}"  data-th-value="${region.no}" data-th-text="${region.sigu}"></option>
                       </select> 
-                      <select class="email-bt3" id="sports" name="sports_domain">
-                        <option value="0">---선택---</option>
-                        <option value="1">헬스</option>
-                        <option value="2">클라이밍</option>
-                        <option value="3">배드민턴</option>
-                        <option value="4">축구</option>
-                        <option value="5">농구</option>
-                        <option value="7">골프</option>
-                        <option value="8">탁구</option>
-                        <option value="9">야구</option>
-                        <option value="10">러닝</option>
-                        <option value="11">사이클</option>
+                      <select class="favorite-choice" id="favoriteRegion2" name="regionDomain">
+                        <option value="0">선택안함</option>
+                        <option data-th-each="region : ${regionList}"  data-th-value="${region.no}" data-th-text="${region.sigu}"></option>
                       </select><br />
+                      </div>
+                        <div class="join_menu">관심운동</div>
+                      <select class="favorite-choice" id="favoriteSports1" name="sportsDomain">
+                        <option value="0">선택안함</option>
+                        <option data-th-each="sports : ${sportsList}" data-th-value="${sports.no}" data-th-text="${sports.name}"></option>
+                      </select> 
+                      <select class="favorite-choice" id="favoriteSports2" name="sportsDomain">
+                        <option value="0">선택안함</option>
+                        <option data-th-each="sports : ${sportsList}" data-th-value="${sports.no}" data-th-text="${sports.name}"></option>
+                      </select><br />
+=======
+                        </select><br /> 
+                          <div class="join_menu">관심운동</div>
+                        <select class="email-bt2" id="sports" name="sports_domain">
+                          <option value="0">---선택---</option>
+                          <option value="1">헬스</option>
+                          <option value="2">클라이밍</option>
+                          <option value="3">배드민턴</option>
+                          <option value="4">축구</option>
+                          <option value="5">농구</option>
+                          <option value="6">골프</option>
+                          <option value="7">탁구</option>
+                          <option value="8">야구</option>
+                          <option value="9">러닝</option>
+                          <option value="10">사이클</option>
+                        </select> 
+                        <select class="email-bt3" id="sports" name="sports_domain">
+                          <option value="0">---선택---</option>
+                          <option value="1">헬스</option>
+                          <option value="2">클라이밍</option>
+                          <option value="3">배드민턴</option>
+                          <option value="4">축구</option>
+                          <option value="5">농구</option>
+                          <option value="7">골프</option>
+                          <option value="8">탁구</option>
+                          <option value="9">야구</option>
+                          <option value="10">러닝</option>
+                          <option value="11">사이클</option>
+                        </select><br />
+>>>>>>> main
+                      <!-- <div class="send_bt"> <button type="submit">회원가입</button></div> -->
                       <div class="send_bt"><button type="submit">변경</button></div>
                     </form>
                   </div>
@@ -214,18 +171,19 @@
           </div>
             <!-- copyright section end -->
             <!-- Javascript files-->
-            <!--       <script src="js/jquery.min.js"></script> -->
-            <script src="js/popper.min.js"></script>
-            <script src="js/bootstrap.bundle.min.js"></script>
-            <script src="js/jquery-3.0.0.min.js"></script>
-            <script src="js/plugin.js"></script>
+            <!-- <script src="js/jquery.min.js"></script> -->
+            <!-- <script src="js/popper.min.js"></script> -->
+            <!-- <script src="js/bootstrap.bundle.min.js"></script> -->
+            <!-- <script src="js/jquery-3.0.0.min.js"></script> -->
+            <!-- <script src="js/plugin.js"></script> -->
             <!-- sidebar -->
-            <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
-            <script src="js/custom.js"></script>
+            <!-- <script src="js/jquery.mCustomScrollbar.concat.min.js"></script> -->
+            <!-- <script src="js/custom.js"></script> -->
             <!-- javascript -->
-            <script src="js/owl.carousel.js"></script>
-            <script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+            <!-- <script src="js/owl.carousel.js"></script> -->
+            <!-- <script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script> -->
             <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+            <script src="/app/node_modules/sweetalert/dist/sweetalert.min.js"></script>
             <script>
             $(document).on("keyup", ".phoneNumber", function () {
               $(this).val(
@@ -239,9 +197,132 @@
                   .replace("—", "-")
               );
             });
+            
+            /* 관심지역 선택한 값 불러오기 시작*/
+					  let memberRestion1 = [[${member.FavoriteRegion[0].Region.no}]]; // 예) 금천구의 번호
+					  console.log(memberRestion1);
+					
+					  let regionOptionLength1 = $("#favoriteRegion1").find("option").length; // select box 안에 option 개수 조회
+					
+					  for (let i=0; i<regionOptionLength1; i++) {
+					    let optionValue = $("#favoriteRegion1").find('option').eq(i).attr("value");
+					    if(memberRestion1 == optionValue) { //
+					      $("#favoriteRegion1").find('option').eq(i).attr('selected', true);
+					    }
+					  }
+            
+            let memberRestion2 = [[${member.FavoriteRegion[1].Region.no}]]; // 예) 금천구의 번호
+            console.log(memberRestion2);
+
+            let regionOptionLength2 = $("#favoriteRegion2").find("option").length; // select box 안에 option 개수 조회
+
+            for (let i=0; i<regionOptionLength2; i++) {
+              let optionValue = $("#favoriteRegion2").find('option').eq(i).attr("value");
+              if(memberRestion2 == optionValue) { //
+                $("#favoriteRegion2").find('option').eq(i).attr('selected', true);
+              }
+            }
+            /* 관심지역 선택한 값 불러오기 끝*/
+            
+            /* 관심운동 선택한 값 불러오기 시작*/
+            let memberRestion3 = [[${member.FavoriteSports[0].Sports.no}]]; // 예) 금천구의 번호
+            console.log(memberRestion3);
+
+            let sportsOptionLength1 = $("#favoriteSports1").find("option").length; // select box 안에 option 개수 조회
+
+            for (let i=0; i<sportsOptionLength1; i++) {
+              let optionValue = $("#favoriteSports1").find('option').eq(i).attr("value");
+              if(memberRestion3 == optionValue) { //
+                $("#favoriteSports1").find('option').eq(i).attr('selected', true);
+              }
+            }
+            
+            let memberRestion4 = [[${member.FavoriteSports[1].Sports.no}]]; // 예) 금천구의 번호
+            console.log(memberRestion4);
+
+            let sportsOptionLength2 = $("#favoriteSports2").find("option").length; // select box 안에 option 개수 조회
+
+            for (let i=0; i<sportsOptionLength2; i++) {
+              let optionValue = $("#favoriteSports2").find('option').eq(i).attr("value");
+              if(memberRestion4 == optionValue) { //
+                $("#favoriteSports2").find('option').eq(i).attr('selected', true);
+              }
+            }
+            /* 관심운동 선택한 값 불러오기 끝*/
+            
+            /* 이메일 중복체크 */
+            $('#button-addon2').click(function(){
+              let email = $('#email').val();
+              
+              $.ajax({
+                url : '/app/member/duplicationEmailCheck',
+                type : "post",
+                data : {email : email},
+                dataType : 'json',
+                success : function(result) { 
+                  if(result == 1) {
+                    $("#email-feedback").html('이미 사용 중인 이메일입니다.');
+                    $("#email-feedback").attr('color', 'red');
+                  } else {
+                    $("#email-feedback").html('사용할 수 있는 이메일입니다.');
+                    $("#email-feedback").attr('color', 'green');
+                  }
+                }
+              })
+            })
+             
+            /* 닉네임 중복체크 */
+            $('#button-addon3').click(function(){
+              let nick = $('#nick').val();
+              
+              $.ajax({
+                url : '/app/member/duplicationNickCheck',
+                type : "post",
+                data : {nickname : nick},
+                dataType : 'json',
+                success : function(result) { 
+                  if(result == 1) {
+                    $("#nick-feedback").html('이미 사용 중인 닉네임입니다.');
+                    $("#nick-feedback").attr('color', 'red');
+                  } else {
+                    $("#nick-feedback").html('사용할 수 있는 닉네임입니다.');
+                    $("#nick-feedback").attr('color', 'green');
+                  }
+                }
+              })
+            })
+            
+            /* 비밀번호 체크 */
+            function check_pw(){
+              var pw = document.getElementById('password').value;
+              /* var SC = ["!","@","#","$","%"];
+              var check_SC = 0; */
+   
+              if(pw.length < 4 || pw.length>16){
+                  window.alert('비밀번호는 4글자 이상, 16글자 이하만 이용 가능합니다.');
+                  document.getElementById('password').value='';
+              }
+              /* for(var i=0;i<SC.length;i++){
+                  if(pw.indexOf(SC[i]) != -1){
+                      check_SC = 1;
+                  }
+              }
+              if(check_SC == 0){
+                  window.alert('!,@,#,$,% 의 특수문자가 들어가 있지 않습니다.')
+                  document.getElementById('password').value='';
+              } */
+              if(document.getElementById('password').value !='' && document.getElementById('passwordCheck').value!=''){
+                  if(document.getElementById('password').value==document.getElementById('passwordCheck').value){
+                      document.getElementById('check').innerHTML='비밀번호가 일치합니다.'
+                      document.getElementById('check').style.color='green';
+                  }
+                  else{
+                      document.getElementById('check').innerHTML='비밀번호가 일치하지 않습니다.';
+                      document.getElementById('check').style.color='red';
+                  }
+              }
+          }
             </script>
-
-
         </body>
 
 </html>

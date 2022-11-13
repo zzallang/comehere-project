@@ -48,6 +48,8 @@ public interface BoardService {
 
   BoardCategory getCategory(int no);
 
+  int deleteThumbnail(int no);
+
 
 
   ////////////

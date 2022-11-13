@@ -1,9 +1,13 @@
 package com.bitcamp.testproject.web.controller;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpSession;
+import javax.servlet.http.Part;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -81,10 +85,11 @@ public class PartyController {
   public String add(
       Party party,
       PartyMember partyMember,
+      Part file,
       HttpSession session) throws Exception {
     party.setUser((Member) session.getAttribute("loginMember"));
-
-    partyService.add(party, partyMember);
+    party.setThumbnail(saveAttachedFile(file));
+    partyService.add(party, partyMember, file);
     return "redirect:list";
   }
 
@@ -96,6 +101,19 @@ public class PartyController {
     party.setUser((Member) session.getAttribute("loginMember"));
     partyService.attend(party, partyMember);
     return "redirect:list";
+  }
+
+  private String saveAttachedFile(Part file) throws IOException, ServletException {
+    //    List<AttachedFile> attachedFiles = new ArrayList<>();
+    String dirPath = sc.getRealPath("/party/files");
+
+    // 첨부파일이 있다면 실행
+    if (file.getSize() != 0) {
+      String filename = UUID.randomUUID().toString();
+      file.write(dirPath + "/" + filename);
+      return filename;
+    }
+    return null;
   }
 
 
@@ -125,15 +143,65 @@ public class PartyController {
       String listStar,
       String listCreate,
       String listPartyDate,
+      Criteria cri, 
       Model model) throws Exception {
-    System.out.println(partyDate);
-    System.out.println(partyTime);
+    System.out.println(cri);
+    System.out.println("1단계");
+    PageMaker pageMaker = new PageMaker();
+    System.out.println("2단계");
+    pageMaker.setCri(cri);
+    System.out.println("3단계");
+    pageMaker.setDisplayPageNum(2);
+    System.out.println("4단계");
+    pageMaker.setTotalCount(partyService.listCount2(gu, sports, partyDate, partyTime, searchText));
+    System.out.println("5단계");
+    System.out.println(cri.getPagesStart());
+    System.out.println(cri.getPerPageNum());
+
     model.addAttribute(
         "partys",
-        partyService.list2(gu, sports, partyDate, partyTime, searchText, listStar, listCreate, listPartyDate));
+        partyService.list2(gu, sports, partyDate, partyTime, searchText, listStar, listCreate, listPartyDate, cri));
+    System.out.println("6단계");
+    model.addAttribute("pageMaker", pageMaker);
+    System.out.println("7단계");
+    System.out.println(pageMaker);
     System.out.printf("%s, %s, %s, %s, %s, %s, %s, %s\n", gu, sports, partyDate, partyTime, searchText, listStar, listCreate, listPartyDate);
   }
 
+  @GetMapping("list-ajax-page")
+  public void listparam2(
+      String gu, 
+      String sports, 
+      String partyDate, 
+      String partyTime, 
+      String searchText,
+      String listStar,
+      String listCreate,
+      String listPartyDate,
+      Criteria cri, 
+      Model model) throws Exception {
+    System.out.println(cri);
+    System.out.println("1단계");
+    PageMaker pageMaker = new PageMaker();
+    System.out.println("2단계");
+    pageMaker.setCri(cri);
+    System.out.println("3단계");
+    pageMaker.setDisplayPageNum(2);
+    System.out.println("4단계");
+    pageMaker.setTotalCount(partyService.listCount2(gu, sports, partyDate, partyTime, searchText));
+    System.out.println("5단계");
+    System.out.println(cri.getPagesStart());
+    System.out.println(cri.getPerPageNum());
+
+    model.addAttribute(
+        "partys",
+        partyService.list2(gu, sports, partyDate, partyTime, searchText, listStar, listCreate, listPartyDate, cri));
+    System.out.println("6단계");
+    model.addAttribute("pageMaker", pageMaker);
+    System.out.println("7단계");
+    System.out.println(pageMaker);
+    System.out.printf("%s, %s, %s, %s, %s, %s, %s, %s\n", gu, sports, partyDate, partyTime, searchText, listStar, listCreate, listPartyDate);
+  }
 
   @SuppressWarnings({"rawtypes", "unchecked"})
   @GetMapping("detail")
@@ -147,12 +215,16 @@ public class PartyController {
 
 
     Party party = partyService.get(no);
+    System.out.println(party);
+    int sportNo = party.getSports().getNo();
+    int userNo = party.getUser().getNo();
+
     if (party == null) {
       throw new Exception("해당 번호의 모임이 없습니다!");
     }
     Map map = new HashMap();
     map.put("party", party);
-    model.addAttribute("reviews", reviewService.list(no));
+    model.addAttribute("reviews", reviewService.list(userNo, sportNo));
     model.addAttribute("pageMaker", pageMaker);
     return map;
   }
@@ -173,10 +245,12 @@ public class PartyController {
   @PostMapping("update")
   public String update(
       Party party,
+      Part file,
       HttpSession session) 
           throws Exception {
+    party.setThumbnail(saveAttachedFile(file));
     checkOwner(party.getNo(), session);
-    if (!partyService.update(party)) {
+    if (!partyService.update(party, file)) {
       throw new Exception("모임을 변경할 수 없습니다!");
     }
     return "redirect:list";
@@ -195,6 +269,7 @@ public class PartyController {
       HttpSession session) 
           throws Exception {
     checkOwner(no, session);
+
     if (!partyService.delete(no)) {
       throw new Exception("모임을 삭제할 수 없습니다.");
     }

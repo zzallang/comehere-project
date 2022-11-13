@@ -61,18 +61,17 @@
                 <tr>
                   <th>썸네일</th>
                   <td>
-                    <ul>
-                      <li data-th-each="file : ${board.attachedFiles}" >
-                          <a  
-                          href="files/test.gif"
-                             data-th-href="@{files/{path}(path=${file.filepath})}"
-                             data-th-text="${file.filepath}">test.gif
-                          </a>
-                          [<a href="fileDelete?no=1" data-th-if="${not #strings.isEmpty(file)}"
-                              data-th-href="@{fileDelete(no=${file.no})}">삭제</a>]
-                      </li>
+                    
+                      <div>
+                        <a href="/app/board/files/nothumpnail.jpg"
+                           data-th-href="@{files/{path}(path=${board.thumbnail})}"
+                           data-th-text="${board.thumbnail}">test.gif
+                        </a>
+                        <a data-th-if="${board.thumbnail != null}"
+                           data-th-href="@{fileDelete(no=${board.no})}">삭제</a>
+                      </div>
                       <input name='file' type="file">
-                    </ul>
+                   
                   </td>        
                 </tr> 
                 <tr>

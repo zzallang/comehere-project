@@ -18,6 +18,16 @@ public interface MemberDao {
 
   int delete(int no);
 
+  int idCheck(String id);
+
+  int verificationPw(
+      @Param("password") String password, 
+      @Param("mno") int mno);
+
+  int nickCheck(String nickname);
+
+  int emailCheck(String email);
+
   List<Member> findAll();
 
   // 메서드의 파라미터가 여러 개일 때:
@@ -39,12 +49,11 @@ public interface MemberDao {
       @Param("SecCode") String SecCode);
 
 
-  Member Password(
-      @Param("password") int password, 
-      @Param("password") int password1);
-
+  int updatePW(
+      @Param("password") String password,
+      @Param("email") String email,
+      @Param("id") String id);
 }
-
 
 
 

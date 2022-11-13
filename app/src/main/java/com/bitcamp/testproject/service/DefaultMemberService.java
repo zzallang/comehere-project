@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import com.bitcamp.testproject.dao.BoardDao;
 import com.bitcamp.testproject.dao.FavoriteRegionDao;
+import com.bitcamp.testproject.dao.FavoriteSportsDao;
 import com.bitcamp.testproject.dao.MemberDao;
 import com.bitcamp.testproject.vo.Member;
 
@@ -21,17 +22,19 @@ public class DefaultMemberService implements MemberService {
   @Autowired
   FavoriteRegionDao favoriteRegionDao;
 
+  @Autowired
+  FavoriteSportsDao favoriteSprotsDao;
+
   @Transactional
   @Override
   public void add(Member member) throws Exception {
-    // 1) 회원등록
     memberDao.insert(member);
-    //
-    //    // 2) 관심지역 등록
-    //    favoriteRegionDao.insertRegion(member);
-    //
-    //    // 3) 관심운동 등록
-    //    favoriteRegionDao.insertSports(member);
+
+    // 2) 관심지역 등록
+    favoriteRegionDao.insertRegion(member);
+
+    //  3) 관심운동 등록
+    favoriteSprotsDao.insertSports(member);
   }
 
   @Override
@@ -40,10 +43,12 @@ public class DefaultMemberService implements MemberService {
   }
 
   @Override
-  public boolean updatePassWord(Member member) throws Exception {
-    return memberDao.update(member) > 0;
+  public boolean updatePW(String password, String email, String id) throws Exception {
+    if (memberDao.updatePW(password, email, id) == 0) {
+      return false;
+    }
+    return true;
   }
-
   @Override
   public Member get(int no) throws Exception {
     return memberDao.findByNo(no);
@@ -79,16 +84,25 @@ public class DefaultMemberService implements MemberService {
     return memberDao.findAll();
   }
 
-  //  @Override
-  //  public String checkId(Member member) throws Exception {
-  //    List<Member> memberList = memberDao.findAll();
-  //    for(Member eachMember : memberList) {
-  //      if(eachMember.getId().equals(member.getId())) return "fail";
-  //    }
-  //    return "succ";
-  //  }
+  @Override
+  public int idCheck(String id) throws Exception {
+    return memberDao.idCheck(id);
+  }
 
+  @Override
+  public int verificationPw(String password, int no) throws Exception {
+    return memberDao.verificationPw(password, no);
+  }
 
+  @Override
+  public int nickCheck(String nickname) throws Exception {
+    return memberDao.nickCheck(nickname);
+  }
+
+  @Override
+  public int emailCheck(String email) throws Exception {
+    return memberDao.emailCheck(email);
+  }
 }
 
 

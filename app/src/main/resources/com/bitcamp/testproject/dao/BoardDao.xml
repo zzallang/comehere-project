@@ -12,14 +12,15 @@
     <result column="cont" property="content"/>
     <result column="cdt" property="createdDate"/>
     <result column="vw_cnt" property="viewCount"/>
-    <result column="filepath" property="path"/>
+    <result column="thumbnail" property="thumbnail"/>
     
     <association property="writer" javaType="member">
       <id column="mno" property="no"/>
       <result column="name" property="name"/>
-       
+      <result column="nick" property="nickname"/>
+      <result column="filepath" property="filepath"/>
     </association>
-    
+
   </resultMap>
   
   <!-- hashmap resultMap으로.. -->
@@ -46,7 +47,7 @@
     <result column="name" property="name"/>
   </resultMap>
   
-  
+
 <!--   
   <select id="findAll" resultMap="boardMap">
     select
@@ -88,7 +89,8 @@
         b.bno,
         b.title,
         m.name,
-        b.cdt
+        b.cdt,
+        b.thumbnail
       from 
         board b
         join member m on b.mno = m.mno
@@ -110,7 +112,8 @@
 		      m.name,
 		      b.cdt,
 		      b.vw_cnt,
-		      b.cateno
+		      b.cateno,
+		      b.thumbnail
 		    from 
 		      board b
 		      join member m on b.mno = m.mno
@@ -136,8 +139,8 @@
   
   <insert id="insert" parameterType="board"
           useGeneratedKeys="true" keyColumn="bno" keyProperty="no">
-    insert into board(cateno,mno,title,cont) 
-    values(#{cateno},1,#{title},#{content})
+    insert into board(cateno, mno, title, cont, thumbnail) 
+    values(#{cateno},1,#{title},#{content},#{thumbnail})
   </insert>
   
   
@@ -147,18 +150,44 @@
       b.cateno,
       b.title,
       b.cont,
+      m.mno,
       m.name,
+      m.nick,
+      m.filepath,
       b.cdt,
-      b.vw_cnt
+      b.vw_cnt,
+      b.thumbnail
     from 
       board b
       join member m on b.mno = m.mno
     where
       b.bno = #{value}
-    order by 
+    order by
       bno desc
   </select>
 
+  
+  <select id="findByThumbnail" resultMap="boardMap">
+    select
+      b.bno,
+      b.cateno,
+      b.title,
+      b.cont,
+      m.mno,
+      m.name,
+      m.nick,
+      m.filepath,
+      b.cdt,
+      b.vw_cnt,
+      b.thumbnail
+    from 
+      board b
+      join member m on b.mno = m.mno
+    where
+      b.thumbnail = #{thumbnail}
+    order by
+      bno desc
+  </select>
   
   <delete id="delete">
     delete from board 
@@ -166,9 +195,12 @@
   </delete>
   
   <update id="update" parameterType="board">
-    update board set 
+    update 
+      board 
+    set 
       title=#{title}, 
-      cont=#{content} 
+      cont=#{content},
+      thumbnail=#{thumbnail}
     where bno=#{no}
   </update>
 
@@ -191,6 +223,18 @@
     where 
       cateno = #{value}
   </select>
+  
+  <update id="daleteThumbnailByNo">
+    update
+      board
+    set
+      thumbnail= null
+    where 
+      bno=#{value}
+  </update>
+
+
+
 
 
 </mapper>

@@ -10,16 +10,13 @@ public interface FavoriteRegionDao {
 
   void insertRegion(Member member);
 
-  void insertSports(Member member);
-
   List<FavoriteRegion> findAllRegionNosByMemberNo(int memberNo);
 
   public boolean updateRegion(Member member);
 
-  public boolean updateRegion(int mno, int preRegionDomain, int regionDomain);
+  public boolean updateRegion(int mno, int regionDomain);
 
-
-  public boolean deletePreFavoriteRegion(int memberNo);
+  public boolean deleteFavoriteRegion(int memberNo);
 
 }
 

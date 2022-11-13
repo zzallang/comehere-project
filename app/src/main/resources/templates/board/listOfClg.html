@@ -121,7 +121,7 @@
   <!-- header section start -->
   <div class="header_section">
     <div class="container-fluid">
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <nav class="navbar navbar-expand-lg navbar-light">
         <div class="main_logo"><a href="/app"><img src="../images/logo.png"></a></div>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -135,7 +135,7 @@
           <div class="login-bt">
             <ul>
               <li data-th-if="${session.loginMember == null}"><a href="../auth/form" >로그인</a></li>
-              <li data-th-if="${session.loginMember != null}"><a href="../member/viewer">마이페이지</a></li>
+              <li class="loginId" th:if="${session.loginMember != null}" th:id=${session.loginMember.no}><a href="../member/viewer">마이페이지</a></li>
               <li data-th-if="${session.loginMember != null}"><a href="../auth/logout" data-th-text="${session.loginMember.name} + '(로그아웃)'">동동(로그아웃)</a></li>
             </ul>
           </div>
@@ -160,8 +160,8 @@
            <!-- 게시판 카테고리 이동 끝 -->
   
             <!-- 게시판 제목과 내용 -->
-            <h1 class="our_textJD" id="cateName">게시판 제목입니다.</h1>
-            <p class="ipsum_text" id="cateConment">게시판의 내용입니다.</p>
+            <h1 class="our_textJD" id="cateName"></h1>
+            <p class="ipsum_text" id="cateConment"></p>
             
             
             <div class="furnitures_section2 layout_padding">
@@ -174,8 +174,8 @@
                       <div class="card shadow-sm">
                         <div class="bd-placeholder-img card-img-top"> 
                           <div class="jd1">
-                            <a th:href="@{detail(no=${board.no})}"><img th:if="${board.path == null}" src="/app/board/files/nothumpnail.jpg" alt="Avatar" class="imgJD"/></a>
-                            <a th:href="@{detail(no=${board.no})}"><img  th:if="${board.path != null}" th:src="@{'/board/files/' + ${board.path}}" alt="Avatar" class="imgJD"/></a>
+                            <a th:href="@{detail(no=${board.no})}"><img th:if="${board.thumbnail == null}" src="/app/board/files/nothumpnail.jpg" alt="Avatar" class="imgJD"/></a>
+                            <a th:href="@{detail(no=${board.no})}"><img th:if="${board.thumbnail != null}" th:src="@{'/board/files/' + ${board.thumbnail}}" alt="Avatar" class="imgJD"/></a>
                           </div>
                         </div>
                         <div class="card-body">
@@ -222,12 +222,9 @@
                   </th:block>
              -->
 
-            
-            
-            
                   <!-- 게시글 목록 끝 -->
                   <li class="write-box">
-                    <a class="btn btn-primary" href="form?cateno=3" role="button">글쓰기</a>
+                    <div id="postButton" class="btn btn-primary" th:value="@{form(cateno=${catenoInBoard.cateno})}" role="button">글쓰기</div>
                   </li>
                 
                   <!-- 페이징 버튼 시작 -->
@@ -268,60 +265,6 @@
       </div>
       <!-- furnitures section end -->
       
-      <!-- footer section start -->
-      <div class="footer_section layout_padding">
-         <div class="container">
-            <div class="row">
-               <div class="col-lg-3 col-sm-6">
-                  <div class="fooer_logo"><img src="../images/footer-logo.png"></div>
-                  <p class="footer_lorem_text">There are many variat
-                     ions of passages of L
-                     orem Ipsum available
-                     , but the majority h
-                     ave suffered altera
-                     tion in some form, by 
-                  </p>
-               </div>
-               <div class="col-lg-3 col-sm-6">
-                  <h1 class="customer_text">LET US HELP YOU</h1>
-                  <p class="footer_lorem_text">There are many variat
-                     ions of passages of L
-                     orem Ipsum available
-                     , but the majority h
-                     ave suffered altera
-                     tion in some form, by 
-                  </p>
-               </div>
-               <div class="col-lg-3 col-sm-6">
-                  <h1 class="customer_text">INFORMATION</h1>
-                  <p class="footer_lorem_text1">About Us<br>
-                     Careers<br>
-                     Sell on shopee<br>
-                     Press & News<br>
-                     Competitions<br>
-                     Terms & Conditions
-                  </p>
-               </div>
-               <div class="col-lg-3 col-sm-6">
-                  <h1 class="customer_text">OUR Design</h1>
-                  <p class="footer_lorem_text">There are many variat
-                     ions of passages of L
-                     orem Ipsum available
-                     , but the majority h
-                     ave suffered altera
-                     tion in some form, by 
-                  </p>
-               </div>
-            </div>
-            <div class="input-group mb-3">
-               <input type="text" class="form-control" placeholder="Enter your email" aria-label="Enter your email" aria-describedby="basic-addon2">
-               <div class="input-group-append">
-                  <span class="input-group-text" id="basic-addon2"><a href="#">Subscribe</a></span>
-               </div>
-            </div>
-         </div>
-      </div>
-      <!--  footer section end -->
       <!-- copyright section start -->
       <div class="copyright_section">
       <div class="container">
@@ -354,6 +297,25 @@
 
       <script>
       "use strict"
+      document.getElementById('postButton').addEventListener('click', checkLogin);
+      
+      let loginMemberNo = -1;
+      if($(".loginId").attr("id") != -1) {
+       loginMemberNo = $(".loginId").attr("id");
+      };
+      function checkLogin() {
+        if (loginMemberNo == undefined || loginMemberNo == -1) {
+          if (confirm("로그인하시겠습니까?") == true){    //확인
+              location.href = '../auth/form';
+          } else {
+            return false;
+          }
+        } else {
+          console.log("경로어디야??" + $("#postButton").attr("value"));
+          location.href = $("#postButton").attr("value");
+        }
+      }
+      
       window.onload = 
     	  function findCategory() {
         var para = document.location.href.split("no=");
@@ -379,18 +341,10 @@
           case '5' :
         	  document.getElementById( 'cateName' ).innerHTML = "핫딜게시판";
             document.getElementById( 'cateConment' ).innerHTML = "지금이 바로 득템 기회! 핫딜 제품들을 공유할 수 있는 핫딜게시판입니다.";
-            
         }
         
       }
 
       </script>
-   </body>
-    
- 
-            <p>
-                <a href='../'>메인</a>
-            </p>
-        </body>
-         
-    </html>
+   </body> 
+</html>

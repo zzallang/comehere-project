@@ -51,14 +51,14 @@
     from
       party_review pr
       join member m on pr.mno=pr.mno
-      join party p on pr.pno=p.pno
+      join (select p2.pno pno2, p2.sno from party p2 join party_members pm on p2.pno=pm.pno where pm.auth=1 and pm.mno=#{userNo}) p on pr.pno=p.pno2
       join sports s on s.sno=p.sno
       join (SELECT *, FLOOR(date_format(now(), '%Y')-substring(bday,1,4)) age FROM member) ag on ag.mno=m.mno
       left join party_review_file prf on pr.prno=prf.prno
     where
       pr.act=1
       and pr.mno=m.mno
-      and s.sno=#{value}
+      and s.sno=#{sportNo}
     order by
       pr.prno desc,
       pr.cdt desc

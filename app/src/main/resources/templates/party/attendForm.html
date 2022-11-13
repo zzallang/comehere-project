@@ -273,8 +273,9 @@
   }
   
   .party_detail_content {
+    overflow-y:scroll;
     width: 470px;
-    min-height: 150px;
+    height: 200px;
   }
   
   .party_detail_content_l {
@@ -418,7 +419,7 @@
               <span data-th-text='${party.star}'></span>
             </div>
             <div>
-              <textarea class="party_detail_content" name='content' data-th-utext="${party.content}"></textarea>
+              <div class="party_detail_content" name='content' th:utext="${party.content}"></div>
             </div>
             <div>
               <span>모임일자 : </span>

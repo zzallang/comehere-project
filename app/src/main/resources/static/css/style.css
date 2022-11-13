@@ -859,7 +859,7 @@ a:hover {
     height: 55px;
     font-size: 18px;
     padding: 20px;
-    margin-top: 25px;
+    margin-top: 10px;
     border: 0px;
     border-radius: 5px;
 }
@@ -1091,18 +1091,16 @@ textarea#comment::placeholder {
   height: 55px;
   font-size: 18px;
 }
-.email-bt3 {
+.favorite-choice {
   color: #989696;
   width: 236px; 
   height : 55px; 
   font-size : 18px;
   padding: 15px;
-  margin-top: 30px;
-  margin-left: 24px;
+  margin-top: 10px;
+  margin-right: 24px;
   border: 0px;
   border-radius: 5px;
-  height: 55px;
-  font-size: 18px;
 }
   .phoneNumber {
   color: #989696;
@@ -1156,7 +1154,6 @@ margin-right: auto;
 .join_menu {
   font-size: 18px;
   margin-top: 20px;
-  margin-bottom: -20px;
 }
 .join_gender {
   margin-left: 15px;
@@ -1165,12 +1162,7 @@ margin-right: auto;
   width: 90%;
   float: left;
 }
-.btn btn-outline-secondary {
-  margin-bottom: 5px;
-}
-#join_menu_check{
-  margin-bottom: 10px;
-}
+
 .send_bt a {
     border: 2px solid #5f5f5f70;
     color: white;
@@ -1215,4 +1207,7 @@ margin-right: auto;
   border-radius: 5px;
 }
 
+.btn-outline-secondary {
+    margin-top: 10px;
+}
 

@@ -2,6 +2,7 @@ package com.bitcamp.testproject.web.controller;
 
 import java.util.Random;
 import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,15 +35,19 @@ public class AuthController {
 
   // 헌식
   @GetMapping("form")
-  public String form(@CookieValue(name = "id", defaultValue = "") String id, Model model)
+  public String form(@CookieValue(name = "id", defaultValue = "") String id, Model model, HttpServletRequest request)
       throws Exception {
+
+    String referer = request.getHeader("Referer");
+    request.getSession().setAttribute("redirectURI", referer);
+
     model.addAttribute("id", id);
     return "auth/form";
   }
 
   @PostMapping("login")
-  public ModelAndView login(String id, String password, HttpServletResponse response,
-      HttpSession session) throws Exception {
+  public ModelAndView login(String id, String password, HttpServletRequest request , HttpServletResponse response,
+      HttpSession session, String beforePageURL) throws Exception {
 
     Member member = memberService.get(id, password);
 
@@ -59,7 +64,8 @@ public class AuthController {
     response.addCookie(cookie);
 
     if(member != null) {
-      ModelAndView mv = new ModelAndView("redirect:/");
+      //      ModelAndView mv = new ModelAndView("redirect:/");
+      ModelAndView mv = new ModelAndView("redirect:" + beforePageURL);
       mv.addObject("member", member);
       return mv;
     }
@@ -74,6 +80,16 @@ public class AuthController {
     return "auth/findId";
   }
 
+  @GetMapping("findPassword")
+  public String findIdPassword() {
+    return "auth/findPassword";
+  }
+
+
+  @GetMapping("sendMail")
+  public String sendMail() {
+    return "auth/sendMail";
+  }
 
   @GetMapping("findById")
   public ModelAndView findById(String name, String email, HttpServletResponse response,
@@ -91,20 +107,9 @@ public class AuthController {
   }
 
 
-  @GetMapping("findPassword")
-  public String findIdPassword() {
-    return "auth/findPassword";
-  }
-
-
-  @GetMapping("sendMail")
-  public String sendMail() {
-    return "auth/sendMail";
-  }
 
 
   @PostMapping("mail/send")
-
   @ResponseBody
   public String send(String email) {
 
@@ -114,7 +119,6 @@ public class AuthController {
     emailService.sendSimpleMessage(email, SecCode);
     return Integer.toString(SecCode);
   }
-
 
 
   @GetMapping("findByPassword")
@@ -132,90 +136,38 @@ public class AuthController {
     return mv;
   }
 
-
   @GetMapping("newPassword")
-  public String newPassword() {
+  public String newPassword(String email, String id, Model model) {
+    model.addAttribute("email", email);
+    model.addAttribute("id", id);
+
     return "auth/newPassword";
-  }
-
-  //  @GetMapping("newPassword")
-  //  public ModelAndView newPassword(String id, String email, String secCode,
-  //      HttpServletResponse response, HttpSession session) throws Exception {
-  //
-  //    Member member = memberService.getByPassword(id, email, secCode);
-  //
-  //    if (member != null) {
-  //      session.setAttribute("findByPassword", member);
-  //    }
-  //
-  //    if(member != null) {
-  //      ModelAndView mv = new ModelAndView("redirect:/");
-  //      mv.addObject("member", member);
-  //      return mv;
-  //    }
-  //
-  //    ModelAndView mv = new ModelAndView("auth/newPassword");
-  //    mv.addObject("member", member);
-  //    return mv;
-  //  }
-
-  @GetMapping("newPasswordResult")
-  public ModelAndView newPasswordResult(String password, String password1,
-      HttpServletResponse response, HttpSession session) throws Exception {
-
-    Member member = memberService.get(password, password1);
-
-    if (member != null) {
-      session.setAttribute("newPasswordResult", member);
-    }
-
-    ModelAndView mv = new ModelAndView("auth/newPasswordResult");
-    mv.addObject("member", member);
-    return mv;
-
   }
 
 
   @GetMapping("logout")
-  public String logout(HttpSession session) throws Exception {
+  public String logout(HttpSession session, HttpServletRequest request) throws Exception {
+
+    String beforePageURL = request.getHeader("Referer");
+    request.getSession().setAttribute("redirectURI", beforePageURL);
+
+
     session.invalidate();
-    return "redirect:../";
+    //    return "redirect:../";
+    return "redirect:" + beforePageURL;
   }
 
 
-  // // 아이디 중복 체크 확인
-  // @PostMapping("id-check")
-  // @ResponseBody
-  // public String idCheck(Member member) throws Exception {
-  // return memberService.checkId(member);
-  // }
-  @PostMapping("update")
-  public String update() throws Exception {
+  @PostMapping("updatePW")
+  public String updatePW(String password, String email, String id, HttpSession session) throws Exception {
+    boolean result = memberService.updatePW(password, email, id);
+
+    if (result != false) {
+    } 
     return "redirect:form";
   }
 
   // 헌식 끝
-
-  // 은지
-  @GetMapping("join")
-  public String form(Model model) throws Exception {
-    model.addAttribute("data", "join page");
-    return "auth/join";
-  }
-
-  @PostMapping("add")
-  public String add(Member member) throws Exception {
-    memberService.add(member);
-    return "redirect:join";
-  }
-
-  @GetMapping("mypage-member")
-  public String myPageMember(Member member) {
-
-    return "myPageMember";
-  }
-
-
 
 }
 
