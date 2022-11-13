@@ -47,6 +47,11 @@ public class DefaultBoardCommentService implements BoardCommentService {
   public int countCommentListTotal(int boardNo) {
     return boardCommentDao.findCommentsCount(boardNo);
   }
+
+  @Override
+  public int deleteAll(int boardNo) {
+    return boardCommentDao.deleteAll(boardNo);
+  }
 }
 
 

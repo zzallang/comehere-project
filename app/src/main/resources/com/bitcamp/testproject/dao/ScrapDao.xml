@@ -26,6 +26,11 @@
     where mno=#{memberNo} and bno = #{boardNo}
   </delete>
 
+  <delete id="deleteAll">
+    delete from scrap
+    where bno = #{value}
+  </delete>
+
 </mapper>
 
 

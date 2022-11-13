@@ -5,7 +5,9 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import com.bitcamp.testproject.dao.BoardCommentDao;
 import com.bitcamp.testproject.dao.BoardDao;
+import com.bitcamp.testproject.dao.ScrapDao;
 import com.bitcamp.testproject.vo.Board;
 import com.bitcamp.testproject.vo.BoardCategory;
 import com.bitcamp.testproject.vo.Criteria;
@@ -15,6 +17,10 @@ public class DefaultBoardService implements BoardService {
 
   @Autowired 
   BoardDao boardDao;
+  @Autowired
+  BoardCommentDao boardCommentDao;
+  @Autowired
+  ScrapDao scrapDao;
   //
   //  @Transactional
   //  @Override
@@ -125,12 +131,14 @@ public class DefaultBoardService implements BoardService {
     return boardDao.findListTotalCount(no);
   }
 
-  @Transactional
   @Override
+  @Transactional
   public boolean delete(int no) throws Exception {
-    // 1) 첨부파일 삭제
-    boardDao.deleteFiles(no);
-    // 2) 게시글 삭제
+    // 게시글에 댓글 삭제하기 
+    boardCommentDao.deleteAll(no);
+    // 스크랩 삭제
+    scrapDao.deleteAll(no);
+
     return boardDao.delete(no) > 0;
   }
 

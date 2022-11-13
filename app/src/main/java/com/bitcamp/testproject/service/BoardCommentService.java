@@ -20,5 +20,7 @@ public interface BoardCommentService {
 
   List<Comment> getComments(Map<String, Object> map);
 
+  int deleteAll(int no);
+
 
 }

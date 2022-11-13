@@ -10,4 +10,6 @@ public interface ScrapDao {
 
   int delete(Scrap scrap);
 
+  int deleteAll(int no);
+
 }

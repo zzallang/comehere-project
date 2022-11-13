@@ -167,7 +167,7 @@
                     <ul class="pagination">
                       <div class="page_center">
                         <li class="page-item" th:if="${pageMaker.prev}">
-                          <a class="page-link" th:href="@{list(pageMaker.startPage-1, no=${catenoInBoard.cateno})}" aria-label="Previous">
+                          <a class="page-link" th:href="@{list(page=${pageMaker.startPage-1}, no=${catenoInBoard.cateno})}" aria-label="Previous">
                             <span aria-hidden="true">&laquo;</span>
                           </a>
                         </li>
@@ -187,9 +187,9 @@
                   <!-- 페이징 버튼 끝 -->
                  <nav class="navbar navbar-light">
                  <div style="margin: auto">
-                   <form class="form-inline"  >
-                     <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                     <button class="btn btn-outline-successJD my-2 my-sm-0"type="submit">Search</button>
+                   <form class="form-inline" action='search' method="get">
+                     <input class="form-control mr-sm-2" type="search" name="q" placeholder="Search" aria-label="Search">
+                     <button class="btn btn-outline-successJD my-2 my-sm-0" type="submit" id="searchButton">Search</button>
                    </form>
                 </div>
                  </nav>
