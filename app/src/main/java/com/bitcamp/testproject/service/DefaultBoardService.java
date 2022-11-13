@@ -1,5 +1,6 @@
 package com.bitcamp.testproject.service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import com.bitcamp.testproject.dao.ScrapDao;
 import com.bitcamp.testproject.vo.Board;
 import com.bitcamp.testproject.vo.BoardCategory;
 import com.bitcamp.testproject.vo.Criteria;
+import com.bitcamp.testproject.vo.Search;
 
 @Service
 public class DefaultBoardService implements BoardService {
@@ -127,8 +129,17 @@ public class DefaultBoardService implements BoardService {
   }
 
   @Override
-  public int countBoardListTotal(int no) {
+  public int countTotalBoard(int no) throws Exception {
     return boardDao.findListTotalCount(no);
+  }
+  @Override
+  public int countTotalBoardWithSearch(int no, Search search) {
+    // 값들을 Map에 담아서 보내기
+    Map<String, Object> countObj = new HashMap<>(); 
+    countObj.put("search", search);
+    countObj.put("cateno", no);
+
+    return boardDao.findListTotalCountWithSearch(countObj);
   }
 
   @Override
@@ -167,6 +178,16 @@ public class DefaultBoardService implements BoardService {
   @Override
   public int deleteThumbnail(int no) {
     return boardDao.daleteThumbnailByNo(no);
+  }
+
+  @Override
+  public List<Map<String, Object>> listWithKeyword(Criteria cri, Search search) {
+    // 값들을 Map에 담아서 보내기
+    Map<String, Object> searchObj = new HashMap<>(); 
+    searchObj.put("search", search);
+    searchObj.put("cri", cri);
+
+    return boardDao.findByKeyword(searchObj);
   }
 
   //////////

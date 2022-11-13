@@ -25,6 +25,7 @@ import com.bitcamp.testproject.vo.BoardCategory;
 import com.bitcamp.testproject.vo.Criteria;
 import com.bitcamp.testproject.vo.Member;
 import com.bitcamp.testproject.vo.PageMaker;
+import com.bitcamp.testproject.vo.Search;
 
 @Controller
 @RequestMapping("/board/")
@@ -135,7 +136,8 @@ public class BoardController {
   }
 
   @GetMapping("list")
-  public ModelAndView list(Criteria cri, int no) throws Exception {
+  public ModelAndView list(Criteria cri, int no, Search search) throws Exception {
+    System.out.println(">>>>>>>>>>>" + search);
 
     ModelAndView mav;
     if (no == 3) {
@@ -146,20 +148,34 @@ public class BoardController {
       mav = new ModelAndView("board/list");
       cri.setPerPageNum(10);
     }
-    // 페이징하기 위한 연산 
+
     cri.setCatenoToPage(no); // 특정 게시판을 목록을 출력하기위한 설정
+
+    // 검색 기능인지 단지 목록 출력인지에 따라 다른 메서드 호출 
+    List<Map<String,Object>> list;
+    int boardTotalCount;
+    if (search.getKeyword() == null) {
+      list = boardService.list(cri);
+      boardTotalCount = boardService.countTotalBoard(no);
+    } else {
+      list = boardService.listWithKeyword(cri, search);
+      boardTotalCount = boardService.countTotalBoardWithSearch(no, search);
+    }
+    System.out.println("출력한 리스트 사이즈>>>" + list.size());
+
+    // 페이징하기 위한 연산 
     PageMaker pageMaker = new PageMaker();
     pageMaker.setCri(cri);
-    pageMaker.setTotalCount(boardService.countBoardListTotal(no));
+    pageMaker.setTotalCount(boardTotalCount);
 
     // 게시글 카테고리 번호 Board객체에 담아서 map객체에 담을 준비 
     Board catenoInBoard = new Board();
     catenoInBoard.setCateno(no);
 
-    List<Map<String,Object>> list = boardService.list(cri);
     mav.addObject("list", list);
     mav.addObject("pageMaker", pageMaker);
     mav.addObject("catenoInBoard", catenoInBoard);
+    mav.addObject("search", search);
 
     return mav;
   }

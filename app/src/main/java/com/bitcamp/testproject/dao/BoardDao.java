@@ -22,8 +22,6 @@ public interface BoardDao {
 
   int update(Board board);
 
-
-
   int deleteFile(int fileNo);
 
   List<Map<String, Object>> findAll(Criteria cri);
@@ -42,6 +40,9 @@ public interface BoardDao {
 
   String getThumbnailByBoardNo(int no);
 
+  List<Map<String, Object>> findByKeyword(Map<String,Object> searchObj);
+
+  int findListTotalCountWithSearch(Map<String, Object> countObj);
 
   //
 

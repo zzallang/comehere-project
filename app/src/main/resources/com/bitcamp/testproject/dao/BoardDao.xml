@@ -128,13 +128,40 @@
 		  ]]>
   </select>
   
-  <select id="findListTotalCount" resultType="Integer">
+  <select id="findListTotalCount" resultType="integer">
     select 
       count(*) 
     from 
       board 
     where 
       cateno = #{value}
+  </select>
+  
+  <select id="findListTotalCountWithSearch" resultType="integer" parameterType="hashMap">
+    select 
+      count(*) 
+    from 
+      board b
+      join member m on b.mno = m.mno
+    where 
+      cateno = #{cateno}
+      <trim prefix="and (" suffix=")" prefixOverrides="OR">
+          <foreach collection="search.typeArr" item="type">
+              <trim prefix="OR">
+                  <choose>
+                      <when test="type == 'T'.toString()">
+                          b.title like concat('%',#{search.keyword},'%') 
+                      </when>
+                      <when test="type == 'C'.toString()">
+                          b.cont like concat('%',#{search.keyword},'%') 
+                      </when>
+                      <when test="type == 'W'.toString()">
+                          m.name like concat('%',#{search.keyword},'%' )
+                      </when>
+                  </choose>
+              </trim>
+          </foreach>
+      </trim>
   </select>
   
   <insert id="insert" parameterType="board"
@@ -240,9 +267,67 @@
       bno=#{value}
   </update>
 
-
-
-
+  <select id="findByKeyword" resultMap="boardMap" parameterType="hashMap">
+        select
+          b.bno,
+          b.title,
+          m.name,
+          b.cdt,
+          b.vw_cnt,
+          b.cateno,
+          b.thumbnail
+        from 
+          board b
+          join member m on b.mno = m.mno
+          join board_category bc on b.cateno = bc.cateno
+        where
+          b.cateno = #{cri.catenoToPage}
+					<trim prefix="and (" suffix=")" prefixOverrides="OR">
+					    <foreach collection="search.typeArr" item="type">
+					        <trim prefix="OR">
+					            <choose>
+					                <when test="type == 'T'.toString()">
+					                    b.title like concat('%',#{search.keyword},'%') 
+					                </when>
+					                <when test="type == 'C'.toString()">
+					                    b.cont like concat('%',#{search.keyword},'%') 
+					                </when>
+					                <when test="type == 'W'.toString()">
+					                    m.name like concat('%',#{search.keyword},'%' )
+					                </when>
+					            </choose>
+					        </trim>
+					    </foreach>
+					</trim>
+        order by 
+          bno desc
+        limit #{cri.pagesStart}, #{cri.perPageNum}
+  </select>
+  
+	<!-- 검색 조건문 -->
+	
+	<select id="findByKeyword00" resultMap="boardMap" parameterType="hashMap">
+     <![CDATA[
+        select
+          b.bno,
+          b.title,
+          m.name,
+          b.cdt,
+          b.vw_cnt,
+          b.cateno,
+          b.thumbnail
+        from 
+          board b
+          join member m on b.mno = m.mno
+          join board_category bc on b.cateno = bc.cateno
+        where
+          b.cateno = #{cri.catenoToPage} and
+          b.title like concat('%',#{keyword},'%')
+        order by 
+          bno desc
+        limit #{cri.pagesStart}, #{cri.perPageNum}
+      ]]>
+  </select>
 
 </mapper>
 
