@@ -482,8 +482,8 @@
     }
     /* 리뷰디테일사진 */
     
-    /* Modal */
-    #modal.modal-overlay {
+    /* Modal Review*/
+    #modalReview.modal-overlay {
       width: 100%;
       height: 100%;
       position: absolute;
@@ -501,7 +501,7 @@
       border: 1px solid rgba(255, 255, 255, 0.18);
     }
     
-    #modal .modal-window {
+    #modalReview .modal-window {
       background: rgba(255, 212, 0, 0.70);
       /* background: rgba( 69, 139, 197, 0.70 ); */
       box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
@@ -518,18 +518,18 @@
       overflow: scroll;
     }
     
-    #modal .title {
+    #modalReview .title {
       padding-left: 10px;
       display: inline;
       text-shadow: 1px 1px 2px gray;
       color: white;
     }
     
-    #modal .title h2 {
+    #modalReview .title h2 {
       display: inline;
     }
     
-    #modal .close-area {
+    #modalReview .close-area {
       display: inline;
       float: right;
       padding-right: 10px;
@@ -538,456 +538,15 @@
       color: white;
     }
     
-    #modal .content {
+    #modalReview .content {
       margin-top: 20px;
       padding: 0px 10px;
       text-shadow: 1px 1px 2px gray;
       color: white;
     }
-    
-    .email-bt3 {
-      color: #989696;
-      width: 300px;
-      height: 55px;
-      font-size: 18px;
-      padding: 15px;
-      margin-top: 30px;
-      margin-left: 80px;
-      margin-bottom: -20px;
-      border: 0px;
-      border-radius: 5px;
-      height: 55px;
-      font-size: 18px;
-    }
-    
-    .report_menu {
-      text-align: center;
-      font-size: 40px;
-      margin-top: 20px;
-    }
-    
-    .massage-bt1 {
-      color: #989696;
-      width: 100%;
-      height: 300px;
-      font-size: 18px;
-      padding: 50px 20px 10px 20px;
-      margin-top: 50px;
-      border: 0px;
-      border-radius: 5px;
-    }
-    
-    .send_bt3 {
-      width: 30%;
-      float: left;
-      font-size: 20px;
-      color: #f8b81f7a;
-      text-align: center;
-      border: 2px solid #ffffff;
-      border-radius: 5px;
-      padding: 10px 0px;
-      font-weight: bold;
-      margin-top: 18px;
-      margin-left: 160px;
-      display: inline;
-      padding-right: 10px;
-      cursor: pointer;
-      text-shadow: 1px 1px 2px gray;
-      color: white;
-      /* f8b81f7a */
-    }
-    /* Modal*/
+    /* Modal Review*/
 
-
-  </style>
-
-input:nth-of-type(2):checked ~ div:nth-last-of-type(2) {
-  display: block;
-}
-
-input:nth-of-type(3):checked ~ div:nth-last-of-type(1) {
-  display: block;
-}
-
-.row_party {
-  width: 1200px;
-}
-
-.col-md-6_party_wrap {
-  flex: 0 0 25%;
-  padding: 5px;
-  overflow: hidden;
-}
-
-.col-md-6_party {
-  padding: 5px;
-  border: 1px solid gray;
-}
-
-.temper_text_party {
-  width: 100%;
-  float: left;
-  font-size: medium;
-  color: #fabb25;
-  text-transform: uppercase;
-  font-weight: bold;
-  padding-top: 20px;
-}
-
-.container_main_party {
-  position: relative;
-  width: 100%;
-  max-width: 100%;
-  float: left;
-}
-
-.dololr_text_region {
-  float: left;
-  color: #121111;
-  margin-left: 0px;
-  margin-top: 0px;
-  margin-bottom: 5px;
-  margin-right: 5px;
-  font-size: x-small;
-  border: 1px solid #fabb25;
-  border-radius: 5px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-.dololr_text_sports {
-  float: left;
-  color: #121111;
-  margin-left: 0px;
-  margin-top: 0px;
-  margin-bottom: 5px;
-  margin-right: 5px;
-  font-size: x-small;
-  border: 1px solid #fabb25;
-  border-radius: 5px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-.dololr_text_datetime {
-  float: right;
-  color: #121111;
-  margin-left: 0px;
-  margin-top: 0px;
-}
-
-.dololr_text_party {
-  width: 100%;
-  float: left;
-  color: #121111;
-  margin-left: 0px;
-  margin-top: 0px;
-  margin-bottom: 0px;
-}
-
-.party_search {
-  width: 100%;
-  float: left;
-  margin-left: 0px;
-  margin-top: 10px;
-}
-
-.party_search_condition {
-  min-width: 1200px;
-  height: 100px;
-  float: left;
-  margin-left: 0px;
-  margin-top: 10px;
-}
-
-.party_condition {
-  display: flex !important;
-  margin: 10px 10px 10px 0;
-  float: left;
-  width: 80px;
-}
-
-.party_search_bar {
-  border: 1px solid black;
-  margin-top: 10px;
-  width: 40%;
-  float: left;
-}
-
-.button_box {
-  width: 100%;
-  overflow: hidden;
-}
-
-.party_insert_button {
-  float: right;
-  margin-right: 30px;
-}
-
-.condition_button {
-  float: left;
-  margin: 10px 10px 10px 5px;
-}
-
-.layout_padding_party {
-  min-width: 1200px;
-  padding-top: 30px;
-  padding-bottom: 20px;
-}
-
-.container_party {
-  padding-right: 15px;
-  padding-left: 15px;
-  margin: 0 auto;
-}
-
-.party_detail_view {
-  width: 825px;
-  margin: 0 auto;
-  overflow: hidden;
-}
-
-.party_detail_button_l {
-  float: left;
-  color: #121111;
-  margin-left: 0px;
-  margin-top: 0px;
-  margin-bottom: 5px;
-  margin-right: 5px;
-  font-size: x-small;
-  border: 1px solid #fabb25;
-  border-radius: 5px;
-  padding: 5px 10px 5px 10px;
-}
-
-.party_detail_button_r {
-  float: right;
-  color: #121111;
-  margin-left: 0px;
-  margin-top: 0px;
-  margin-bottom: 5px;
-  margin-right: 5px;
-  font-size: x-small;
-  border: 1px solid #fabb25;
-  border-radius: 5px;
-  padding: 5px 10px 5px 10px;
-}
-
-.row_party_detail {
-  width: 100%;
-  margin: 0 auto;
-}
-
-.layout_padding_party_detail {
-  padding-top: 30px;
-  padding-bottom: 0px;
-  overflow: hidden;
-}
-
-.dololr_text_tatlle {
-  float: right;
-  color: #121111;
-  margin-left: 0px;
-  margin-top: 0px;
-  margin-bottom: 5px;
-  margin-right: 5px;
-  font-size: x-small;
-  border: 1px solid #fabb25;
-  border-radius: 5px;
-  padding: 5px 10px 5px 10px;
-}
-
-.party_detail_bar {
-  width: 100%;
-  height: 50px;
-  float: left;
-  margin: 0 auto;
-}
-
-.party_detail_buttons {
-  width: 825px;
-  height: 40px;
-  margin: 0 auto;
-  padding: 10px 0;
-}
-
-.party_detail_content {
-  width: 470px;
-  min-height: 150px;
-}
-
-.party_detail_content_l {
-  width: 330px;
-  float: left;
-}
-
-.party_detail_content_r {
-  width: 470px;
-  float: left;
-}
-
-.party_detail_content_r span {
-  font-size: 1.2em;
-}
-
-.profile {
-  opacity: 1;
-  display: block;
-  width: 50px;
-  height: auto;
-  transition: .5s ease;
-  backface-visibility: hidden;
-}
-
-.profile_wrap {
-  width: 330px;
-  min-height: 70px;
-  overflow: hidden;
-}
-
-.profile_img {
-  width: 50px;
-  float: left;
-}
-
-.profile_user {
-  width: 280px;
-  float: left;
-  margin-top: 25px;
-  transform: translateY(-50%);
-}
-
-.party_detail_bottom {
-  width: 825px;
-  margin: 0 auto;
-  padding: 10px 0;
-}
-
-.party_detail_bottom_bar {
-  width: 100%;
-  float: left;
-  margin: 0 auto;
-  overflow: hidden;
-}
-
-.party_detail_bottom_content {
-  min-height: 100px;
-  width: 825px;
-  margin: 10px auto;
-  float: left;
-  overflow: hidden;
-  border-bottom: 1px solid black;
-}
-
-.map_wrap {
-  position: relative;
-  width: 825px;
-  height: 500px;
-}
-
-.party_detail_bottom_comment {
-  min-height: 100px;
-  width: 825px;
-  margin: 10px auto;
-  float: left;
-  overflow: hidden;
-  border-bottom: 1px solid black;
-}
-
-.party_detail_comment_img {
-  min-height: 80px;
-  padding: 5px;
-  width: 10%;
-  margin: 5px;
-  float: left;
-  border: 1px solid black;
-}
-
-.party_detail_comment_format {
-  min-height: 40px;
-  width: 75%;
-  margin: 5px;
-  float: left;
-  border: 1px solid black;
-}
-
-.party_detail_bottom_review_wrap {
-  height: 450px;
-  width: 50%;
-  float: left;
-  overflow: hidden;
-}
-
-.party_detail_bottom_review {
-  min-height: 100px;
-  width: 330px;
-  margin: 10px auto;
-  float: left;
-  border-bottom: 1px solid black;
-}
-
-.party_detail_review_img {
-  min-height: 80px;
-  padding: 5px;
-  width: 330px;
-  margin: 5px;
-  float: left;
-  border: 1px solid black;
-}
-
-.party_detail_review_format {
-  min-height: 40px;
-  width: 330px;
-  margin: 5px;
-  float: left;
-  border: 1px solid black;
-}
-
-.party_detail_review_content {
-  min-height: 40px;
-  width: 330px;
-  margin: 5px;
-  float: left;
-  border: 1px solid black;
-}
-
-.party_detail_review_null {
-  width: 100%;
-  height: 100px;
-  align-content: center;
-  font-size: xx-large;
-}
-
-.sldes li {
-  list-style: none;
-}
-
-.slide_wrapper {
-  position: relative;
-  width: 310px;
-  margin: 0 auto;
-  height: 80px;
-  overflow: hidden;
-  border: 1px solid #333;
-}
-
-.slides {
-  position: absolute;
-  left: 0;
-  top: 0;
-  transition: left 0.5s ease-out;
-}
-
-.slides li:not(:last-child) {
-  float: left;
-  margin-right: 5px;
-}
-
-.slides img {
-  width: 100px;
-}
-
-/* Modal */
+ /* Modal */
 #modal.modal-overlay {
   width: 100%;
   height: 100%;
@@ -1098,9 +657,11 @@ input:nth-of-type(3):checked ~ div:nth-last-of-type(1) {
   cursor: pointer;
   text-shadow: 1px 1px 2px gray;
   color: white;
+  /* f8b81f7a */
 }
-/* f8b81f7a */
-</style>
+
+  </style>
+
 
 </head>
 <body>
@@ -1228,65 +789,63 @@ input:nth-of-type(3):checked ~ div:nth-last-of-type(1) {
               <input id="mapAdress" type="hidden" th:value="${party.mapAddress}">
             </div> 
             <!-- 장소 블록 끝 -->
-             <!-- 댓글 블록 시작 -->
+            <!-- 댓글 블록 시작 -->
             <div>
               <h2>댓글</h2>
               <div class="container">
-                  <div class="commentList"></div>
+                <div class="commentList"></div>
               </div>
-              
-            <!-- 댓글 페이징 -->
-            <nav aria-label="Page navigation">
-              <ul class="pagination">
-                <div class="page_center">
-                  <li class="page-item" th:if="${pageMaker.prev}">
-                    <a class="page-link" th:href="@{list(pageMaker.startPage-1}" aria-label="Previous">
-                      <span aria-hidden="true">&laquo;</span>
-                    </a>
-                  </li>
-                  <th:block th:if="${pageMaker.endPage != 0}" th:each="pageNum: ${#numbers.sequence(pageMaker.startPage, pageMaker.endPage)}">
-                    <li class="page-item">
-                      <a th:id="'pageNo' + ${pageNum}" class="page-link" onclick="getId(this.id)"><i th:text="${pageNum}"></i></a>
+              <!-- 댓글 페이징 -->
+              <nav aria-label="Page navigation">
+                <ul class="pagination">
+                  <div class="page_center">
+                    <li class="page-item" th:if="${pageMaker.prev}">
+                      <a class="page-link" th:href="@{list(pageMaker.startPage-1}" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                      </a>
                     </li>
-                  </th:block>
-                  <li class="page-item" th:if="${pageMaker.next && pageMaker.endPage >0}">
-                    <a class="page-link" th:href="@{list(page=${pageMaker.endPage+1}" aria-label="Next">
-                      <span aria-hidden="true">&raquo;</span>
-                    </a>
-                  </li>
-                </div>
-              </ul>
-            </nav>
-            <!-- 댓글페이징 -->
-              
+                    <th:block th:if="${pageMaker.endPage != 0}" th:each="pageNum: ${#numbers.sequence(pageMaker.startPage, pageMaker.endPage)}">
+                      <li class="page-item">
+                        <a th:id="'pageNo' + ${pageNum}" class="page-link" onclick="getId(this.id)"><i th:text="${pageNum}"></i></a>
+                      </li>
+                    </th:block>
+                    <li class="page-item" th:if="${pageMaker.next && pageMaker.endPage >0}">
+                      <a class="page-link" th:href="@{list(page=${pageMaker.endPage+1}" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                      </a>
+                    </li>
+                  </div>
+                </ul>
+              </nav>
+              <!-- 댓글페이징 -->
               <h2>댓글 쓰기</h2>
               <div style="width: 80%;" class="temp-line">
-                  <div class="form-group">
-                      <label for="comment"></label>
-                      <div th:if="${session.loginMember}">
-                        <input type="hidden" id="memberNo"  th:value="${session.loginMember.no}" >
-                        <input
-                            type="text"
-                            class="form-control"
-                            id="commentCont"
-                            placeholder="댓글을 달아주세요!"
-                            style="height: 30px;"
-                            th:name="${session.loginMember.nickname}">
-                        </div>
-                      <div th:if="${session.loginMember == null}">
-                        <input type="hidden" id="memberNo"  value=0>
-                        <input
-                            type="text"
-                            class="form-control"
-                            id="commentCont"
-                            placeholder="댓글을 등록하려면 로그인 해주세요"
-                            style="height: 60px;" readonly
-                            onclick="alertToLogin();">
-                      </div>
+                <div class="form-group">
+                  <label for="comment"></label>
+                  <div th:if="${session.loginMember}">
+                    <input type="hidden" id="memberNo"  th:value="${session.loginMember.no}" >
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="commentCont"
+                      placeholder="댓글을 달아주세요!"
+                      style="height: 30px;"
+                      th:name="${session.loginMember.nickname}">
                   </div>
-                  <div>
-                      <button id="commetButton" class="btn btn-sm btn-success">등록</button>
+                  <div th:if="${session.loginMember == null}">
+                    <input type="hidden" id="memberNo"  value=0>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="commentCont"
+                      placeholder="댓글을 등록하려면 로그인 해주세요"
+                      style="height: 60px;" readonly
+                      onclick="alertToLogin();">
                   </div>
+                </div>
+                <div>
+                    <button id="commetButton" class="btn btn-sm btn-success">등록</button>
+                </div>
               </div>
             </div>
             <!-- 댓글 블록 끝 -->
@@ -1312,7 +871,6 @@ input:nth-of-type(3):checked ~ div:nth-last-of-type(1) {
               </th:block>
             </div> 
             <!-- 후기 블록 끝 -->
-
           </div>
         </div>
       </div>
@@ -1322,23 +880,7 @@ input:nth-of-type(3):checked ~ div:nth-last-of-type(1) {
 </div>
 <!-- furnitures section end -->
 
-								<h2>댓글 쓰기</h2>
-								<div style="width: 80%;" class="temp-line">
-									<div class="form-group">
-										<label for="comment"></label>
-										<div th:if="${session.loginMember}">
-											<input type="hidden" id="memberNo" th:value="${session.loginMember.no}"> <input type="text" class="form-control" id="commentCont" placeholder="댓글을 달아주세요!" style="height: 30px;" th:name="${session.loginMember.nickname}">
-										</div>
-										<div th:if="${session.loginMember == null}">
-											<input type="hidden" id="memberNo" value=0> <input type="text" class="form-control" id="commentCont" placeholder="댓글을 등록하려면 로그인 해주세요" style="height: 60px;" readonly onclick="alertToLogin();">
-										</div>
-									</div>
-									<div>
-										<button id="commetButton" class="btn btn-sm btn-success">등록</button>
-									</div>
-								</div>
-							</div>
-							<!-- 댓글 블록 끝 -->
+
 
 <!-- copyright section start -->
 <div class="copyright_section">
@@ -1361,7 +903,7 @@ input:nth-of-type(3):checked ~ div:nth-last-of-type(1) {
     <div id="container">
       <div id="lorem-ipsum"></div>
     </div>
-    <div id="modal" class="modal-overlay">
+    <div id="modalReview" class="modal-overlay">
       <div class="modal-window">
         <div class="close-area">X</div>
         <div class="content">
@@ -1440,96 +982,81 @@ function imgList() {
      }    })
 	
 }
- 
 </script>
 <!-- 리뷰 디테일 사진 -->
-
+<!-- 리뷰 디테일 모달 -->
 <script>
 let reviewNo = "";
 let partyNoVal = "";
-let attArray = [];
-const loremIpsum = document.getElementById("lorem-ipsum")
+
+const loremIpsum = document.getElementById("lorem-ipsum");
 //fetch를 통해 받아온 데이터를 loremIpsum DOM에 넣어주기 때문에 모달창 내부에 내용이 채워져서 뜨는것. 
 //fetch("https://baconipsum.com/api/?type=all-meat&paras=200&format=html")
 loremIpsum.innerHTML = `모달창에 넣을 내용`
 /*  .then(response => response.text())
     .then(result => loremIpsum.innerHTML = result) */
 //디스플레이 non 버튼클릭하면 flex로 변환  
-const modal = document.getElementById("modal")
-const btnModal = $('.reviewDetailBtn')
-btnModal.click((e) => {
-	console.log("j클릭")
+
+const modalReview = document.getElementById("modalReview");
+const btnModalReview = $('.reviewDetailBtn');
+
+btnModalReview.click((e) => {
 	let [a, resultValue] = e.currentTarget.id.split("l");
 	partyNoVal = $('#partyNo').val();
-	console.log(partyNoVal);
-  console.log(resultValue);
-    $.ajax({
-        type: "GET",
-        url: "/app/party/detail-ajax",
-        data: {
-        	no: partyNoVal,
-          reviewNo: resultValue
-          },
-        success: function(result) {
-        	 console.log("성공");
-        	 console.log(result);
-        	 window.scrollTo(0,0);
-        	 var z =''; 
-        	 let i = 0;
-             $.each(result, function(key, value){ 
+	
+  $.ajax({
+          type: "GET",
+          url: "/app/party/detail-ajax",
+          data: { no: partyNoVal,
+                  reviewNo: resultValue },
+          success: function(result) {
+            window.scrollTo(0,0);
 
-             if (key == 'attachedFiles'){
-            	  console.log(value.length);
-            	  while (i < value.length) {
-            	 console.log(value[i].filepath);
-             console.log(i);
-                 console.log("check");
-                 z += '<li><img src="/app/review/files/' + value[i].filepath + '"></li>';
-                 $('.slides').html(z);
-                 i += 1;
-                 console.log(i);
-            	  }
-             }
+            var z =''; 
+            let i = 0;
+            $.each(result, function(key, value){ 
+              if (key == 'attachedFiles'){
+                while (i < value.length) {
+                  z += '<li><img src="/app/review/files/' + value[i].filepath + '"></li>';
+                  $('.slides').html(z);
+                  i += 1;
+                  console.log(i);
+                }
+              }
+            })
 
-             })
-        	 
-             imgList();
-             
-             $('#reviewDetailStar').text(result.star);
-             $('#reviewDetailWriterNickname').text(result.writer.nickname);
-             $('#reviewDetailWriterSex').text(result.writer.sex);
-             $('#reviewDetailWriterAgeGroup').text(result.writer.ageGroup);
-             $('#reviewDetailCreatedDate').text(result.createdDate);
-             $('#reviewDetailTitle').text(result.title);
-             $('#reviewDetailContent').text(result.content);
-             modal.style.display = "flex"
-             modal.style.position = "fixed"
-          // x버튼 누르면 종료
-          const closeBtn = modal.querySelector(".close-area")
-          closeBtn.addEventListener("click", e => {
-            modal.style.display = "none"
-                modal.style.position = "static"
+            imgList();
 
-          })
+            $('#reviewDetailStar').text(result.star);
+            $('#reviewDetailWriterNickname').text(result.writer.nickname);
+            $('#reviewDetailWriterSex').text(result.writer.sex);
+            $('#reviewDetailWriterAgeGroup').text(result.writer.ageGroup);
+            $('#reviewDetailCreatedDate').text(result.createdDate);
+            $('#reviewDetailTitle').text(result.title);
+            $('#reviewDetailContent').text(result.content);
+            
+            modalReview.style.display = "flex"
+            modalReview.style.position = "fixed"
+            
+            // x버튼 누르면 종료
+            const closeBtn = modalReview.querySelector(".close-area");
+            closeBtn.addEventListener("click", e => {
+              modalReview.style.display = "none"
+              modalReview.style.position = "static"
+            });
+
           // esc누르면 종료
           window.addEventListener("keyup", e => {
-          if(modal.style.display === "flex" && e.key === "Escape") {
-            modal.style.display = "none"
-            	   modal.style.position = "static"
-
-          }
+            if(modalReview.style.display === "flex" && e.key === "Escape") {
+              modalReview.style.display = "none"
+              modalReview.style.position = "static"
+            }
           })
-          
-          console.log("종료")
-        }
-        
-      })
-  
-  
+        } // success 끝
+      }) // ajax 끝
 	});
-
 </script>
-<!-- Modal End-->
+<!-- 리뷰 디테일 모달 -->
 
 <!-- Javascript files-->
 <!-- 참가신청 버튼 자바 스크립트 시작 -->
@@ -1693,133 +1220,123 @@ function commentList(){
      }
   }
 </script>
+ <!-- 신고 종류 설정 input hidden type-->
+                            <div class="form-check form-check-inline">
+                              <input type="hidden" id="reportForm">
+                            </div>
+                          </div>
+                          <div class="send_bt3" id="singo">신고</div>
+                        </div>
+                      </div>
+                    </div>
+                  </table>
+                </form>
+                <script>
+                
+                function checkOnlyOne(element) {
+                    
+                    const checkboxes 
+                        = document.getElementsByName("reports");
+                    
+                    checkboxes.forEach((cb) => {
+                      cb.checked = false;
+                    })
+                    
+                    element.checked = true;
+                  }
 
 
-	<!-- Modal Start -->
-	<form action='partreport' method="post">
-		<table border='1'>
-			<div id="container">
-				<div id="lorem-ipsum"></div>
-			</div>
-			<div id="modal" class="modal-overlay">
-				<div class="modal-window">
-					<div class="close-area">X</div>
-					<div class="content">
-						<div>
-							<div class="report_menu">신고사유</div>
-							<div class="form-check form-check-inline">
-								<input type="checkbox" value="Contents" class="form-check-input" id="1" name="reports" onclick='checkOnlyOne(this)' style="display: block"> <input type="hidden" name="_reports" value="on" /> <label for="reports1" class="form-check-label">불건전한 내용</label>
-							</div>
-							<div class="form-check form-check-inline">
-								<input type="checkbox" value="promotion" class="form-check-input" id="2" name="reports" onclick='checkOnlyOne(this)' style="display: block"> <input type="hidden" name="_reports" value="on" /> <label for="reports2" class="form-check-label">스팸 및 부적절한 홍보</label>
-							</div>
-							<div class="form-check form-check-inline">
-								<input type="checkbox" value="calumny" class="form-check-input" id="3" name="reports" onclick='checkOnlyOne(this)' style="display: block"> <input type="hidden" name="_reports" value="on" /> <label for="reports3" class="form-check-label">명예훼손 및 비방</label>
-							</div>
-							<div class="form-check form-check-inline">
-								<input type="checkbox" value="prejudice" class="form-check-input" id="4" name="reports" onclick='checkOnlyOne(this)' style="display: block"> <input type="hidden" name="_reports" value="on" /> <label for="reports4" class="form-check-label">초상권 및 저작권 침해</label>
-							</div>
-							<div class="form-check form-check-inline">
-								<input type="checkbox" value="embezzlement" class="form-check-input" id="5" name="reports" onclick='checkOnlyOne(this)' style="display: block"> <input type="hidden" name="_reports" value="on" /> <label for="reports5" class="form-check-label">개인정보 도용</label>
-							</div>
-							<div class="form-check form-check-inline">
-								<input type="checkbox" value="act" class="form-check-input" id="6" name="reports" onclick='checkOnlyOne(this)' style="display: block"> <input type="hidden" name="_reports" value="on" /> <label for="reports6" class="form-check-label">기타 사이트 목적에 맞지 않는 행위</label>
-							</div>
-							<div class="form-check form-check-inline">
-								<input type="checkbox" value="Etc" class="form-check-input" id="7" name="reports" onclick='checkOnlyOne(this)' style="display: block"> <input type="hidden" name="_reports" value="on" /> <label for="reports7" class="form-check-label">기타</label>
-							</div>
-						</div>
-						<div class="send_bt3" id="singo">신고</div>
-					</div>
-				</div>
-			</div>
-		</table>
-	</form>
-	<script>
-  
-  function checkOnlyOne(element) {
-      
-      const checkboxes 
-          = document.getElementsByName("reports");
-      
-      checkboxes.forEach((cb) => {
-        cb.checked = false;
-      })
-      
-      element.checked = true;
-    }
+                $("#singo").click(function() {
+                  swal("신고 완료 했습니다.");
 
-$("#singo").click(function() {
-    swal("신고 하였습니다.");
+                  $('input:checkbox[name=reports]').each(function (index) {
+                    if($(this).is(":checked")==true){
+                      id = $(this).attr("id");
+                    }
+                  });
+                  console.log($("#reportForm").val());
+                  console.log($("#reportForm").attr("name"));
 
-    let data = "";
+                  let value = $("#reportForm").val();
+                  let name = $("#reportForm").attr("name");
 
-    $('input:checkbox[name=reports]').each(function (index) {
-      if($(this).is(":checked")==true){
-        console.log($(this).attr("id"));
-        id = $(this).attr("id");
-      }
-    });
-
-    $.ajax({
-        type: "GET",
-        url: "/app/report/insertReport",
-        async:false,
-        data: { id: id, 
-                loginMemberNo : loginMemberNo,
-                partyNo : partyNo},
-        success: function () {
-          
-          swal("신고 하였습니다.");
-          /* report_auth_cd = data; */
-          /* console.log(report_auth_cd); */
-         check = true;
-        },
-        error: function () {
-          swal("신고가 안되었습니다.");
-        },
-      });
-});
-
-</script>
+                  $.ajax({
+                    type: "POST",
+                    url: "/app/report/partyReport",
+                    data:{value: value, name: name},
+                    success: function (result) {
+                      console.log(result);
+                    },
+                  });
+                });
+              </script>
 
 
-	<script>
-        const loremIpsum = document.getElementById("lorem-ipsum")
-         //fetch를 통해 받아온 데이터를 loremIpsum DOM에 넣어주기 때문에 모달창 내부에 내용이 채워져서 뜨는것. 
-        //fetch("https://baconipsum.com/api/?type=all-meat&paras=200&format=html")
-          loremIpsum.innerHTML = ``
-              /* .then(response => response.text())
-              .then(result => loremIpsum.innerHTML = result) */
-              
-          //디스플레이 non 버튼클릭하면 flex로 변환  
-        const modal = document.getElementById("modal")
-        const btnModal = document.querySelectorAll(".btn-modal")
-                console.log(btnModal);
-            btnModal.forEach((btn) => {
-            btn.addEventListener('click', (e) => {
-            modal.style.display = 'flex';
-      // x버튼 누르면 종료
-        const closeBtn = modal.querySelector('.close-area');
-            closeBtn.addEventListener('click', (e) => {
-            modal.style.display = 'none';
-    });
-    // 신고 누르면 종료
-        const closeBtn1 = modal.querySelector('.send_bt3');
-             closeBtn1.addEventListener('click', (e) => {
-             modal.style.display = 'none';
-    });
-    // esc누르면 종료
-            window.addEventListener('keyup', (e) => {
-      if (modal.style.display === 'flex' && e.key === 'Escape') {
-          modal.style.display = 'none';
-      }
-    });
-  });
-});
-    </script>
+                <script>
+              function commentComplain(number) {
+                console.log(number);
+                $("#reportForm").attr("value", number);
+                $("#reportForm").attr("name", "댓글");
 
-	<!-- Modal End-->
+                modal.style.display = 'flex';
+                window.scrollTo(0,0);
+                // x버튼 누르면 종료
+                $(".closeBtn1").click(function () {
+                  modal.style.display = 'none';
+                });
+                // 신고 누르면 종료
+                $(".closeBtn").click(function () {
+                  modal.style.display = 'none';
+                });
+                // esc누르면 종료
+                window.addEventListener('keyup', (e) => {
+                  if (modal.style.display === 'flex' && e.key === 'Escape') {
+                    modal.style.display = 'none';
+                  }
+                });
+              }
+
+                      const loremIpsum = document.getElementById("lorem-ipsum")
+                       //fetch를 통해 받아온 데이터를 loremIpsum DOM에 넣어주기 때문에 모달창 내부에 내용이 채워져서 뜨는것. 
+                      //fetch("https://baconipsum.com/api/?type=all-meat&paras=200&format=html")
+                        loremIpsum.innerHTML = ``
+                            /* .then(response => response.text())
+                            .then(result => loremIpsum.innerHTML = result) */
+                            
+                        //디스플레이 non 버튼클릭하면 flex로 변환  
+                      const modal = document.getElementById("modal")
+                      const btnModal = document.querySelectorAll(".btn-modal")
+                      let partyNumber = (window.location.search).substring(4,window.location.lengh);
+                      $("#reportForm").attr("value", partyNumber);
+                      $("#reportForm").attr("name", "파티");
+                         console.log(btnModal);
+                          btnModal.forEach((btn) => {
+                          btn.addEventListener('click', (e) => {
+                          modal.style.display = 'flex';
+                    // x버튼 누르면 종료
+                      const closeBtn = modal.querySelector('.close-area');
+                          closeBtn.addEventListener('click', (e) => {
+                          modal.style.display = 'none';
+                  });
+                  // 신고 누르면 종료
+                      const closeBtn1 = modal.querySelector('.send_bt3');
+                           closeBtn1.addEventListener('click', (e) => {
+                           modal.style.display = 'none';
+                  });
+                  // esc누르면 종료
+                          window.addEventListener('keyup', (e) => {
+                    if (modal.style.display === 'flex' && e.key === 'Escape') {
+                        modal.style.display = 'none';
+                    }
+                  });
+                });
+              });
+                          
+                          
+                  </script>
+
+                <!— Modal End—>
+
 
 	<!-- 댓글  -->
 	<!-- 카카오 지도 시작 -->
