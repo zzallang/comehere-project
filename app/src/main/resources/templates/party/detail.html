@@ -710,7 +710,7 @@
           <p class="dololr_text_region" th:text="${party.region.sido}"></p>
           <p class="dololr_text_region" th:text="${party.region.sigu}"></p>
           <p class="dololr_text_sports" th:text="${party.sports.name}"></p>
-          <button th:if="${session.loginMember} != null and ${session.loginMember.no} != ${party.user.no}" class="dololr_text_tatlle" type="button" id="btn-modal-review">신고</button>
+          <button th:if="${session.loginMember} != null and ${session.loginMember.no} != ${party.user.no}" class="dololr_text_tatlle btn-modal" type="button" role="button">신고</button>
         </div>
       </div>
       <div class="party_detail_view">
@@ -900,7 +900,7 @@
 
 <!-- Modal Start -->
 <table border='1'>
-    <div id="container">
+    <div id="container2">
       <div id="lorem-ipsum2"></div>
     </div>
     <div id="modalReview" class="modal-overlay">
@@ -1139,9 +1139,7 @@ function commentList(){
               a += '<a onclick="commentDelete('+value.no+');"> 삭제 </a>';
             }
             if (loginMemberNo != value.writer.no && loginMemberNo != -1) {
-                 a += '<button class="btn btn-primary btn-modal" role="button"> 신고 </button> </div>';
-                 /* a += '<button class="btn btn-primary" role="button" id="btn-modal"  onclick="commentComplain('+value.no+');" > 신고 </button> </div>'; */
-                /* a += '<a class="btn btn-primary" role="button" id="btn-modal" > 신고 </a> </div>'; */
+            	a += '<a onclick="commentComplain('+value.no+');"> 신고 </a> </div>';
             }
             if (loginMemberNo == -1) {
                 a += '<a onclick="commentComplain('+value.no+');"> 신고 </a> </div>';
@@ -1220,6 +1218,39 @@ function commentList(){
      }
   }
 </script>
+<!-- Modal Start -->
+  <form action='partreport' method="post">
+    <table border='1'>
+      <div id="container">
+        <div id="lorem-ipsum"></div>
+      </div>
+      <div id="modal" class="modal-overlay">
+        <div class="modal-window">
+          <div class="close-area">X</div>
+          <div class="content">
+            <div>
+              <div class="report_menu">신고사유</div>
+              <div class="form-check form-check-inline">
+                <input type="checkbox" value="Contents" class="form-check-input" id="1" name="reports" onclick='checkOnlyOne(this)' style="display: block"> <input type="hidden" name="_reports" value="on" /> <label for="reports1" class="form-check-label">불건전한 내용</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input type="checkbox" value="promotion" class="form-check-input" id="2" name="reports" onclick='checkOnlyOne(this)' style="display: block"> <input type="hidden" name="_reports" value="on" /> <label for="reports2" class="form-check-label">스팸 및 부적절한 홍보</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input type="checkbox" value="calumny" class="form-check-input" id="3" name="reports" onclick='checkOnlyOne(this)' style="display: block"> <input type="hidden" name="_reports" value="on" /> <label for="reports3" class="form-check-label">명예훼손 및 비방</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input type="checkbox" value="prejudice" class="form-check-input" id="4" name="reports" onclick='checkOnlyOne(this)' style="display: block"> <input type="hidden" name="_reports" value="on" /> <label for="reports4" class="form-check-label">초상권 및 저작권 침해</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input type="checkbox" value="embezzlement" class="form-check-input" id="5" name="reports" onclick='checkOnlyOne(this)' style="display: block"> <input type="hidden" name="_reports" value="on" /> <label for="reports5" class="form-check-label">개인정보 도용</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input type="checkbox" value="act" class="form-check-input" id="6" name="reports" onclick='checkOnlyOne(this)' style="display: block"> <input type="hidden" name="_reports" value="on" /> <label for="reports6" class="form-check-label">기타 사이트 목적에 맞지 않는 행위</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input type="checkbox" value="Etc" class="form-check-input" id="7" name="reports" onclick='checkOnlyOne(this)' style="display: block"> <input type="hidden" name="_reports" value="on" /> <label for="reports7" class="form-check-label">기타</label>
+              </div>
  <!-- 신고 종류 설정 input hidden type-->
                             <div class="form-check form-check-inline">
                               <input type="hidden" id="reportForm">
@@ -1335,7 +1366,6 @@ function commentList(){
                           
                   </script>
 
-                <!— Modal End—>
 
 
 	<!-- 댓글  -->
