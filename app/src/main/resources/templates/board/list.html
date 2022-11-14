@@ -163,7 +163,8 @@
             <div class="furnitures_section2 layout_padding">
                <div class="row">
                   <!-- 게시글 목록 시작 -->
-               <div style="width:90%;font-weight: lighter;" data-th-if="${search.keyword != null}" data-th-text=" '&lsquo;' + ${search.keyword} + '&rsquo;' +' 의 검색결과 입니다.'"></div>
+               <div style="width:90%;font-weight: lighter;" data-th-if="${search.keyword != null}" 
+                    data-th-text="'&lsquo;' + ${search.type} + '&rsquo;' + '에 '   + '&lsquo;' + ${search.keyword} + '&rsquo;' +' 을(를) 포함한 검색결과 입니다.'"></div>
                   <table class="table">
                     <tr>
                       <th>번호</th>
@@ -195,14 +196,17 @@
                             <span aria-hidden="true">&laquo;</span>
                           </a>
                         </li>
-                        <th:block th:each="pageNum: ${#numbers.sequence(pageMaker.startPage, pageMaker.endPage)}">
+                        <th:block th:if="${pageMaker.endPage != 0}" th:each="pageNum: ${#numbers.sequence(pageMaker.startPage, pageMaker.endPage)}">
                           <li data-th-id="${'pageButton' + pageNum}"  class="page-item">
                             <a data-th-if="${search.keyword == null}" class="page-link" th:href="@{list(page=${pageNum}, no=${catenoInBoard.cateno})}"><i th:text="${pageNum}"></i></a>
-                            <a data-th-if="${search.keyword != null}" class="page-link" th:href="@{list(page=${pageNum}, no=${catenoInBoard.cateno}, keyword=${search.keyword})}"><i th:text="${pageNum}"></i></a>
+                            <a data-th-if="${search.keyword != null}" class="page-link" th:href="@{list(page=${pageNum}, no=${catenoInBoard.cateno}, keyword=${search.keyword}, type=${search.type})}"><i th:text="${pageNum}"></i></a>
                           </li>
                         </th:block>
                         <li class="page-item" th:if="${pageMaker.next && pageMaker.endPage > 0}">
-                          <a class="page-link" th:href="@{list(page=${pageMaker.endPage+1}, no=${catenoInBoard.cateno})}" aria-label="Next">
+                          <a data-th-if="${search.keyword == null}" class="page-link" th:href="@{list(page=${pageMaker.endPage+1}, no=${catenoInBoard.cateno})}" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                          </a>
+                          <a data-th-if="${search.keyword != null}" class="page-link" th:href="@{list(page=${pageMaker.endPage+1}, no=${catenoInBoard.cateno}, keyword=${search.keyword}, type=${search.type})}" aria-label="Next">
                             <span aria-hidden="true">&raquo;</span>
                           </a>
                         </li>
@@ -215,7 +219,7 @@
                   <!-- 검색 버튼 시작 -->
                   <form class="form-inline" action='list' method="get">
                     <input data-th-value="${catenoInBoard.cateno}" type="hidden" name="no" aria-label="category">
-                    <select class="form-selectJd" name="type">
+                    <select id="searchId" class="form-selectJd" name="type">
                         <option value="T">제목</option>
                         <option value="C">내용</option>
                         <option value="W">작성자</option>
@@ -235,61 +239,6 @@
         </div>
       </div>
       <!-- furnitures section end -->
-      
-      <!-- footer section start -->
-      <div class="footer_section layout_padding">
-         <div class="container">
-            <div class="row">
-               <div class="col-lg-3 col-sm-6">
-                  <div class="fooer_logo"><img src="../images/footer-logo.png"></div>
-                  <p class="footer_lorem_text">There are many variat
-                     ions of passages of L
-                     orem Ipsum available
-                     , but the majority h
-                     ave suffered altera
-                     tion in some form, by 
-                  </p>
-               </div>
-               <div class="col-lg-3 col-sm-6">
-                  <h1 class="customer_text">LET US HELP YOU</h1>
-                  <p class="footer_lorem_text">There are many variat
-                     ions of passages of L
-                     orem Ipsum available
-                     , but the majority h
-                     ave suffered altera
-                     tion in some form, by 
-                  </p>
-               </div>
-               <div class="col-lg-3 col-sm-6">
-                  <h1 class="customer_text">INFORMATION</h1>
-                  <p class="footer_lorem_text1">About Us<br>
-                     Careers<br>
-                     Sell on shopee<br>
-                     Press & News<br>
-                     Competitions<br>
-                     Terms & Conditions
-                  </p>
-               </div>
-               <div class="col-lg-3 col-sm-6">
-                  <h1 class="customer_text">OUR Design</h1>
-                  <p class="footer_lorem_text">There are many variat
-                     ions of passages of L
-                     orem Ipsum available
-                     , but the majority h
-                     ave suffered altera
-                     tion in some form, by 
-                  </p>
-               </div>
-            </div>
-            <div class="input-group mb-3">
-               <input type="text" class="form-control" placeholder="Enter your email" aria-label="Enter your email" aria-describedby="basic-addon2">
-               <div class="input-group-append">
-                  <span class="input-group-text" id="basic-addon2"><a href="#">Subscribe</a></span>
-               </div>
-            </div>
-         </div>
-      </div>
-      <!--  footer section end -->
       <!-- copyright section start -->
       <div class="copyright_section">
       <div class="container">
@@ -326,6 +275,14 @@
       "use strict"
       document.getElementById('postButton').addEventListener('click', checkLogin);
       
+      // 검색기능 목록일 때 검색조건의 type을 selected하기 위한 메서드 
+      const searchOption = $("select").children();
+      for (let i = 0; i < searchOption.length; i++) {
+    	  if (searchOption.eq(i).val() == "[[${search.type}]]") {
+    		  $('#searchId').find("option").eq(i).attr("selected", true)
+    	  }
+      } 
+            
       let loginMemberNo = -1;
       if($(".loginId").attr("id") != -1) {
        loginMemberNo = $(".loginId").attr("id");

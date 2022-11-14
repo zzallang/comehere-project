@@ -130,7 +130,7 @@
   
   <select id="findListTotalCount" resultType="integer">
     select 
-      count(*) 
+      count(*)
     from 
       board 
     where 
