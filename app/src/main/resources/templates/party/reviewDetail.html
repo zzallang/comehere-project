@@ -432,14 +432,14 @@
       align-content: center;
       font-size: xx-large;
     }
-
-    /* 리뷰디테일사진 */
+    
     .sldes li {list-style: none;}
+    
     .slide_wrapper {
       position: relative;
-      width: 300px;
+      width: 310px;
       margin: 0 auto;
-      height: 300px;
+      height: 80px;
       overflow: hidden;
       border: 1px solid #333;
     }
@@ -449,38 +449,15 @@
       top: 0;
       transition:left 0.5s ease-out;
     }
+    
     .slides li:not(:last-child){
       float: left;
-      margin-right: 30px;
+      margin-right: 5px;
     }
+    
     .slides img {
-      width: 300px;
+      width: 100px;
     }
-    .controls {
-      text-align: center;
-      margin-top: 50px;
-    }
-    .controls span.prev {
-      position: absolute;
-      background: rgba(230, 230, 230, 0.4);
-      color: #333;
-      padding: 5px 2px;
-      margin: 0 10px;
-      top: 50%;
-      transform: translateY(-50%);
-      left: 1%;
-      }
-    .controls span.next {
-      position: absolute;
-      background: rgba(230, 230, 230, 0.4);
-      color: #333;
-      padding: 5px 2px;
-      margin: 0 10px;
-      top: 50%;
-      transform: translateY(-50%);
-      right: 1%;
-    }
-    /* 리뷰디테일사진 */
     
     /* Modal */
     #modal.modal-overlay {
@@ -841,7 +818,7 @@
 <!-- copyright section end -->
 
 <!-- Modal Start -->
-<table border='1'>
+  <table border='1'>
     <div id="container">
       <div id="lorem-ipsum"></div>
     </div>
@@ -854,34 +831,28 @@
               <div class="party_detail_bottom_review">
                 <div class="party_detail_review_img">
                   <div class="slide_wrapper">
-                    <div class="slide_wrapper">
-                      <ul class="slides">
+                    <ul class="slides">
+                      <th:block th:if="${reviewDetail.attachedFiles != null}" th:each="file : ${reviewDetail.attachedFiles}">
+                        <li><img alt="후기사진" th:src="@{'/review/files/' + ${file.filepath}}"></li>
+                      </th:block>
+                      <th:block th:if="${reviewDetail.attachedFiles == null}">
                         <li><img alt="" src="http://placeimg.com/400/350/any"></li>
-                        <li><img alt="" src="http://placeimg.com/400/350/any"></li>
-                        <li><img alt="" src="http://placeimg.com/400/350/any"></li>
-                        <li><img alt="" src="http://placeimg.com/400/350/any"></li>
-                        <li><img alt="" src="http://placeimg.com/400/350/any"></li>
-                      </ul>
-                    </div>
-                    <p class="controls">
-                      <span class="prev"><</span>
-                      <span class="next">></span>
-                    </p>
-                      <p id="reviewDetailAttachedFiles"></p>
+                      </th:block>
+                    </ul>
                   </div>
                 </div>
                 <div class="party_detail_review_format">
-                  <span id="reviewDetailStar"></span>
+                  <span th:text="${reviewDetail.star}"></span>
                 </div>
                 <div class="party_detail_review_format">
-                  <span id="reviewDetailWriterNickname"></span>
-                  <span id="reviewDetailWriterSex"></span>
-                  <span id="reviewDetailWriterAgeGroup"></span>
-                  <span id="reviewDetailCreatedDate"></span>
+                  <span th:text="${reviewDetail.writer.nickname}"></span>
+                  <span th:text="${reviewDetail.writer.sex} == true ? '남자' : '여자'"></span>
+                  <span th:text="${reviewDetail.writer.ageGroup}"></span>
+                  <span th:text="${reviewDetail.createdDate}"></span>
                 </div>
                 <div class="party_detail_review_content">
-                  <p id="reviewDetailTitle"></p>
-                  <p id="reviewDetailContent"></p>
+                  <p th:text="${reviewDetail.title}"></p>
+                  <p th:text="${reviewDetail.content}"></p>
                 </div>
             </div>
           </div>
@@ -890,48 +861,9 @@
     </div>
   </table>
 
-<!-- 리뷰 디테일 사진 -->
-<script>
-function imgList() {
-	   var slides = document.querySelector('.slides'),
-       slide = document.querySelectorAll('.slides li'),
-       currentIdx = 0,
-       slideCount = slide.length,
-       slideWidth = 300,
-       slideMargin = 30,
-       prevBtn = document.querySelector('.prev'),
-       nextBtn = document.querySelector('.next');
-
-   slides.style.width = (slideWidth + slideMargin) * slideCount - slideMargin + 'px';
-
-   function moveSlide(num) {
-     slides.style.left = -num * (slideWidth + slideMargin) + 'px';
-     currentIdx = num;
-   }
-   nextBtn.addEventListener('click', function() {
-     if (currentIdx < (slideCount - 1)) {
-       moveSlide(currentIdx + 1);
-     } else {
-       moveSlide(0);
-     }
-   })
-
-   prevBtn.addEventListener('click', function() {
-     if (currentIdx > 0) {
-       moveSlide(currentIdx - 1);
-     } else {
-       moveSlide(slideCount - 1);
-     }    })
-	
-}
- 
-</script>
-<!-- 리뷰 디테일 사진 -->
-
 <script>
 let reviewNo = "";
 let partyNoVal = "";
-let attArray = [];
 const loremIpsum = document.getElementById("lorem-ipsum")
 //fetch를 통해 받아온 데이터를 loremIpsum DOM에 넣어주기 때문에 모달창 내부에 내용이 채워져서 뜨는것. 
 //fetch("https://baconipsum.com/api/?type=all-meat&paras=200&format=html")
@@ -942,75 +874,41 @@ loremIpsum.innerHTML = `모달창에 넣을 내용`
 const modal = document.getElementById("modal")
 const btnModal = $('.reviewDetailBtn')
 btnModal.click((e) => {
-	console.log("j클릭")
-	let [a, resultValue] = e.currentTarget.id.split("l");
-	partyNoVal = $('#partyNo').val();
-	console.log(partyNoVal);
+  console.log("j클릭")
+  let [a, resultValue] = e.currentTarget.id.split("l");
+  partyNoVal = $('#partyNo').val();
+  console.log(partyNoVal);
   console.log(resultValue);
     $.ajax({
         type: "GET",
-        url: "/app/party/detail-ajax",
+        url: "/app/party/reviewDetail",
         data: {
-        	no: partyNoVal,
+          no: partyNoVal,
           reviewNo: resultValue
           },
         success: function(result) {
-        	 console.log("성공");
-        	 console.log(result);
-        	 window.scrollTo(0,0);
-        	 var z =''; 
-        	 let i = 0;
-             $.each(result, function(key, value){ 
+           console.log("성공");
+           window.scrollTo(0,0);
 
-             if (key == 'attachedFiles'){
-            	  console.log(value.length);
-            	  while (i < value.length) {
-            	 console.log(value[i].filepath);
-             console.log(i);
-                 console.log("check");
-                 z += '<li><img src="/app/review/files/' + value[i].filepath + '"></li>';
-                 $('.slides').html(z);
-                 i += 1;
-                 console.log(i);
-            	  }
-             }
-
-             })
-        	 
-             imgList();
-             
-             $('#reviewDetailStar').text(result.star);
-             $('#reviewDetailWriterNickname').text(result.writer.nickname);
-             $('#reviewDetailWriterSex').text(result.writer.sex);
-             $('#reviewDetailWriterAgeGroup').text(result.writer.ageGroup);
-             $('#reviewDetailCreatedDate').text(result.createdDate);
-             $('#reviewDetailTitle').text(result.title);
-             $('#reviewDetailContent').text(result.content);
-             modal.style.display = "flex"
-             modal.style.position = "fixed"
+          modal.style.display = "flex"
           // x버튼 누르면 종료
           const closeBtn = modal.querySelector(".close-area")
           closeBtn.addEventListener("click", e => {
             modal.style.display = "none"
-                modal.style.position = "static"
-
           })
           // esc누르면 종료
           window.addEventListener("keyup", e => {
           if(modal.style.display === "flex" && e.key === "Escape") {
             modal.style.display = "none"
-            	   modal.style.position = "static"
-
           }
           })
-          
           console.log("종료")
         }
         
       })
   
   
-	});
+  });
 
 </script>
 <!-- Modal End-->

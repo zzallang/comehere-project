@@ -21,6 +21,11 @@ public class DefaultReviewService implements ReviewService {
     return reviewDao.findAll(userNo, sportNo);
   }
 
+  @Override
+  public Review get(int reviewNo) {
+    return reviewDao.findByNo(reviewNo);
+  }
+
 }
 
 

@@ -12,6 +12,8 @@ public interface ReviewDao {
       @Param("userNo")int userNo, 
       @Param("sportNo")int sportNo);
 
+  Review findByNo(int reviewNo);
+
 }
 
 

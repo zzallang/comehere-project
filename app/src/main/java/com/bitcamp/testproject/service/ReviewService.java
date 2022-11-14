@@ -9,6 +9,7 @@ public interface ReviewService {
 
   List<Review> list(int userNo, int sportNo);
 
+  Review get(int reviewNo);
 
 }
 

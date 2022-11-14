@@ -2,6 +2,7 @@ package com.bitcamp.testproject.web.controller;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 import javax.servlet.ServletContext;
@@ -13,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import com.bitcamp.testproject.service.PartyCommentService;
 import com.bitcamp.testproject.service.PartyService;
 import com.bitcamp.testproject.service.RegionService;
@@ -23,6 +25,7 @@ import com.bitcamp.testproject.vo.Member;
 import com.bitcamp.testproject.vo.PageMaker;
 import com.bitcamp.testproject.vo.Party;
 import com.bitcamp.testproject.vo.PartyMember;
+import com.bitcamp.testproject.vo.Review;
 
 @Controller
 @RequestMapping("/party/")
@@ -219,15 +222,33 @@ public class PartyController {
     int sportNo = party.getSports().getNo();
     int userNo = party.getUser().getNo();
 
+    List<Review> reviewList = reviewService.list(userNo, sportNo);
+
     if (party == null) {
       throw new Exception("해당 번호의 모임이 없습니다!");
     }
     Map map = new HashMap();
     map.put("party", party);
-    model.addAttribute("reviews", reviewService.list(userNo, sportNo));
+    model.addAttribute("reviews", reviewList);
+    model.addAttribute("reviewDetail", reviewService.get(1));
     model.addAttribute("pageMaker", pageMaker);
     return map;
   }
+
+
+  @GetMapping("detail-ajax")
+  @ResponseBody
+  public Object reviewDetail(int no, int reviewNo, Model model, Criteria cri) throws Exception {
+    System.out.println(reviewNo);
+    Review review = reviewService.get(reviewNo);
+    System.out.println(review);
+
+
+    return review;
+
+  }
+
+
 
   @GetMapping("updateForm")
   public Model updateForm(int no, Model model) throws Exception {
