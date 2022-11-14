@@ -142,8 +142,8 @@ public class DefaultBoardService implements BoardService {
     return boardDao.findListTotalCountWithSearch(countObj);
   }
 
-  @Override
   @Transactional
+  @Override
   public boolean delete(int no) throws Exception {
     // 게시글에 댓글 삭제하기 
     boardCommentDao.deleteAll(no);

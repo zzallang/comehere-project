@@ -64,7 +64,6 @@ public class AuthController {
     response.addCookie(cookie);
 
     if(member != null) {
-      //      ModelAndView mv = new ModelAndView("redirect:/");
       ModelAndView mv = new ModelAndView("redirect:" + beforePageURL);
       mv.addObject("member", member);
       return mv;
@@ -140,10 +139,8 @@ public class AuthController {
   public String newPassword(String email, String id, Model model) {
     model.addAttribute("email", email);
     model.addAttribute("id", id);
-
     return "auth/newPassword";
   }
-
 
   @GetMapping("logout")
   public String logout(HttpSession session, HttpServletRequest request) throws Exception {
