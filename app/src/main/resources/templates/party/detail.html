@@ -901,7 +901,7 @@
 <!-- Modal Start -->
 <table border='1'>
     <div id="container">
-      <div id="lorem-ipsum"></div>
+      <div id="lorem-ipsum2"></div>
     </div>
     <div id="modalReview" class="modal-overlay">
       <div class="modal-window">
@@ -989,7 +989,7 @@ function imgList() {
 let reviewNo = "";
 let partyNoVal = "";
 
-const loremIpsum = document.getElementById("lorem-ipsum");
+const loremIpsum = document.getElementById("lorem-ipsum2");
 //fetch를 통해 받아온 데이터를 loremIpsum DOM에 넣어주기 때문에 모달창 내부에 내용이 채워져서 뜨는것. 
 //fetch("https://baconipsum.com/api/?type=all-meat&paras=200&format=html")
 loremIpsum.innerHTML = `모달창에 넣을 내용`
@@ -1077,7 +1077,7 @@ btnModalReview.click((e) => {
   function findPartyNoDelete() {
     let partyNo = /*[[${party.no}]]*/
     location.href=`delete?no=${partyNo}`;
-  }btn-modal
+  }
   /*]]>*/
 </script>
 <!-- 참가신청 버튼 자바 스크립트 끝 -->
