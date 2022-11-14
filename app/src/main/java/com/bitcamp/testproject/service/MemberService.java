@@ -33,7 +33,6 @@ public interface MemberService {
 
   boolean updatePW(String password, String email, String id) throws Exception;
 
-
 }
 
 
