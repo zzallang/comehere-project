@@ -34,6 +34,10 @@ public class MemberController {
   @Autowired
   FavoriteSportsService favoriteSportsService;
   @Autowired
+  FavoriteRegionService favoriteRegionService;
+  @Autowired
+  FavoriteSportsService favoriteSportsService;
+  @Autowired
   RegionService regionService;
   @Autowired
   SportsService sportsService;

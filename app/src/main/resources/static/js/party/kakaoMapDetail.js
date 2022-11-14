@@ -95,7 +95,6 @@ $(document).ready(() => {
       detailPick(marker, mapNameVal, mapAdressVal);
     }   
   });
-  setTimeout(function() {$('#tab-1').click()}, 500);
 });
 
 

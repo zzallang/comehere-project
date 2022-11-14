@@ -31,6 +31,9 @@ public interface MemberService {
 
   int emailCheck(String email) throws Exception;
 
+  boolean updatePW(String password, String email, String id) throws Exception;
+
+
 }
 
 

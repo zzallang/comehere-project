@@ -167,13 +167,13 @@
     </div>
     <div class="furnitures_section2 layout_padding_party">
       <div>
-        <form action='add' method="post">
+        <form action='add' method="post" enctype="multipart/form-data">
           <input name='userNo' type="hidden" th:value="${session.loginMember.no}">
           <input name='memberNo' type="hidden" th:value="${session.loginMember.no}">
           <div class="party_form_wrap">
             <div class="party_form_img">
               <img src="http://placeimg.com/300/300/any">
-              <input name='files' type="file" multiple>
+              <input name='file' type="file">
             </div>
             <div class="party_form_header">
               <div class="party_form_title">
@@ -298,8 +298,8 @@
 <script src="../js/plugin.js"></script>
 <!-- sidebar -->
 <script src="../js/jquery.mCustomScrollbar.concat.min.js"></script>
-<script src="../js/custom.js"></script>
-<!-- javascript --> 
+<!-- <script src="../js/custom.js"></script>
+ --><!-- javascript --> 
 <script src="../js/owl.carousel.js"></script>
 <script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>    
 </body>

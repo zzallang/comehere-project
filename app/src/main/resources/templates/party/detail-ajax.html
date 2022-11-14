@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<th:block th:fragment="partyDetail" >
+  <table border='1'>
+    <div id="container">
+      <div id="lorem-ipsum"></div>
+    </div>
+    <div id="modal" class="modal-overlay">
+      <div class="modal-window">
+        <div class="close-area">X</div>
+        <div class="content">
+          <div>
+            <div class="report_menu">리뷰 상세보기</div>
+              <div class="party_detail_bottom_review">
+                <div class="party_detail_review_img">
+                  <div class="slide_wrapper">
+                    <ul class="slides">
+                      <th:block th:if="${reviewDetail.attachedFiles != null}" th:each="file : ${reviewDetail.attachedFiles}">
+                        <li><img alt="후기사진" th:src="@{'/review/files/' + ${file.filepath}}"></li>
+                      </th:block>
+                      <th:block th:if="${reviewDetail.attachedFiles == null}">
+                        <li><img alt="" src="http://placeimg.com/400/350/any"></li>
+                      </th:block>
+                    </ul>
+                  </div>
+                </div>
+                <div class="party_detail_review_format">
+                  <span th:text="${reviewDetail.star}"></span>
+                </div>
+                <div class="party_detail_review_format">
+                  <span th:text="${reviewDetail.writer.nickname}"></span>
+                  <span th:text="${reviewDetail.writer.sex} == true ? '남자' : '여자'"></span>
+                  <span th:text="${reviewDetail.writer.ageGroup}"></span>
+                  <span th:text="${reviewDetail.createdDate}"></span>
+                </div>
+                <div class="party_detail_review_content">
+                  <p th:text="${reviewDetail.title}"></p>
+                  <p th:text="${reviewDetail.content}"></p>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </table>
+</th:block>
+
+</body>
+</html>
