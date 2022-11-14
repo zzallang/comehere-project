@@ -89,7 +89,7 @@ public class BoardController {
 
     // 페이징하기 위한 연산 
     PageMaker pageMaker = new PageMaker();
-    cri.setPerPageNum(15);
+    cri.setPerPageNum(5);
     pageMaker.setCri(cri);
     pageMaker.setTotalCount(boardCommentService.countCommentListTotal(no));
 
@@ -137,16 +137,14 @@ public class BoardController {
 
   @GetMapping("list")
   public ModelAndView list(Criteria cri, int no, Search search) throws Exception {
-    System.out.println(">>>>>>>>>>>" + search);
-
     ModelAndView mav;
     if (no == 3) {
       // 챌린지 게시판일 경우 (listOfClg.html을 실행하고 게시글 9개만 출력)
       mav = new ModelAndView("board/listOfClg");
-      cri.setPerPageNum(9);
+      cri.setPerPageNum(6);
     } else {
       mav = new ModelAndView("board/list");
-      cri.setPerPageNum(10);
+      cri.setPerPageNum(5);
     }
 
     cri.setCatenoToPage(no); // 특정 게시판을 목록을 출력하기위한 설정
