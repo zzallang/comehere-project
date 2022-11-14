@@ -47,25 +47,56 @@
       prf.filepath reviewfilepath,
       pr.title,
       pr.cont,
-      pr.cdt
+      pr.cdt,
+      pr.prno
     from
       party_review pr
       join member m on pr.mno=pr.mno
-      join party p on pr.pno=p.pno
+      join (select p2.pno pno2, p2.sno from party p2 join party_members pm on p2.pno=pm.pno where pm.auth=1 and pm.mno=#{userNo}) p on pr.pno=p.pno2
       join sports s on s.sno=p.sno
       join (SELECT *, FLOOR(date_format(now(), '%Y')-substring(bday,1,4)) age FROM member) ag on ag.mno=m.mno
       left join party_review_file prf on pr.prno=prf.prno
     where
       pr.act=1
       and pr.mno=m.mno
-      and s.sno=#{value}
+      and s.sno=#{sportNo}
     order by
       pr.prno desc,
       pr.cdt desc
     ]]>
   </select>
 
-
+  <select id="findByNo" resultMap="reviewMap">
+    <![CDATA[
+    select
+      m.filepath,
+      m.nick,
+      m.sex,
+      CASE
+      WHEN age < 20 THEN '10대 이하'
+      WHEN age < 30 THEN '20대'
+      WHEN age < 40 THEN '30대'
+      WHEN age < 50 THEN '40대'
+      WHEN age < 60 THEN '50대'
+      WHEN age > 59 THEN '60대 이상'
+    END AS ageGroup,
+      pr.star,
+      prf.filepath reviewfilepath,
+      pr.title,
+      pr.cont,
+      pr.cdt,
+      pr.prno
+    from
+      party_review pr
+      join member m on pr.mno=pr.mno
+      join (SELECT *, FLOOR(date_format(now(), '%Y')-substring(bday,1,4)) age FROM member) ag on ag.mno=m.mno
+      left join party_review_file prf on pr.prno=prf.prno
+    where
+      pr.act=1
+      and pr.mno=m.mno
+      and pr.prno=#{value}
+    ]]>
+  </select>
 
 
 

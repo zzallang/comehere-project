@@ -59,89 +59,50 @@
 	</select>
 
 
+ 
+  <select id="findByNo" resultMap="memberMap">
+    SELECT 
+      m.mno,
+      m.name,
+      m.id,
+      m.email,
+      m.tel,
+      m.cdt,
+      m.nick,
+      m.bday,
+      m.sex,
+      m.filepath,
+      fr.rno,
+      r.sigu,
+      fs.sno,
+      s.name sname
+    FROM 
+      member m
+    LEFT join 
+      favorite_region fr on fr.mno = m.mno
+    LEFT join
+    region r ON r.rno = fr.rno
+    LEFT join
+    favorite_sports fs ON fs.mno = m.mno
+    LEFT join
+    sports s ON s.sno = fs.sno
+    WHERE 
+      m.mno=#{no};
+  </select>
+  
+  <select id="findAll" resultMap="memberMap">
+    SELECT 
+      mno,
+      name,
+      email 
+    FROM 
+      member 
+    ORDER BY 
+      name
+  </select>
 
-	<select id="findByNo" resultMap="memberMap">
-		select
-		mno,
-		name,
-		id,
-		email,
-		cdt,
-		nick,
-		bday,
-		sex,
-		filepath
-		from
-		member
-		where
-		mno=#{value}
-	</select>
-
-	<select id="findAll" resultMap="memberMap">
-		select
-		mno,
-		name,
-		email
-		from
-		member
-		order by
-		name
-	</select>
-
-	<select id="findByIdPassword" resultMap="memberMap">
-		select
-		mno,
-		name,
-		id,
-		email,
-		cdt,
-		nick,
-		bday,
-		sex,
-		filepath
-		from
-		member
-		where
-		id=#{id} and pwd=sha2(#{password},256)
-	</select>
-
-
-	<update id="update" parameterType="Member">
-		update app_member set
-		name=#{name},
-		id=#{id},
-		email=#{email},
-		pwd=sha2(#{password},256)
-		nick=#{nickname},
-		tel=#{tel},
-		bday=#{birthday},
-		sex=#{sex}
-		where
-		mno=#{no}
-		<!-- 관심지역 수정 -->
-		update favorite_region set
-		<foreach collection="favoriteRegion" item="region"
-			separator=",">
-			(#{region.rno},#{no})
-		</foreach>
-		<!-- 관심운동 수정 -->
-		update favorite_sports set
-		<foreach collection="favoriteSports" item="sports"
-			separator=",">
-			(#{sports.sno},#{no})
-		</foreach>
-	</update>
-
-	<select id="findByPassword" resultMap="memberMap">
-		select
-		name
-		from
-		member
-		where
-		id=#{id} and email=#{email}
-	</select>
-	
-  <update id="updatePW" parameterType="String">
+   
+   <update id="updatePW" parameterType="String">
     update member set
     pwd=sha2(#{password},256)
     where
@@ -149,11 +110,32 @@
     and id=#{id}
   </update>
   
-	<delete id="delete">
-		delete from member
-		where mno=#{value}
-	</delete>
+
+   <delete id="delete">
+      DELETE 
+    FROM 
+      member
+      WHERE 
+      mno=#{value}
+   </delete>
+
+<select id="findByIdPassword" resultMap="memberMap">
+    SELECT 
+      mno,
+      name,
+      id,
+      tel,
+      email,
+      cdt,
+      nick,
+      bday,
+      sex,
+      filepath
+    FROM 
+      member 
+    WHERE 
+      id=#{id} and pwd=sha2(#{password},256)
+  </select>
 
 </mapper>
-
 

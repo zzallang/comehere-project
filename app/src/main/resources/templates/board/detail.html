@@ -519,7 +519,8 @@
                           a += '<a onclick="commentDelete('+value.no+');"> 삭제 </a> </div>';
                         }
                         if (loginMemberNo != value.writer.no && loginMemberNo != -1) {
-                            a += '<a onclick="commentComplain('+value.no+');"> 신고 </a> </div>';
+                        	a += '<button class="btn btn-primary btn-modal" role="button" > 신고 </button> </div>';
+                            /* a += '<a onclick="commentComplain('+value.no+');"> 신고 </a> </div>'; */
                         }
                         if (loginMemberNo == -1) {
                             a += '<a onclick="commentComplain('+value.no+');"> 신고 </a> </div>';
@@ -758,7 +759,7 @@ $("#singo").click(function() {
               
           //디스플레이 non 버튼클릭하면 flex로 변환  
         const modal = document.getElementById("modal")
-        const btnModal = document.getElementById("btn-modal")
+        const btnModal = document.querySelector('.btn-modal');
         btnModal.addEventListener("click", e => {
         modal.style.display = "flex"
            // x버튼 누르면 종료

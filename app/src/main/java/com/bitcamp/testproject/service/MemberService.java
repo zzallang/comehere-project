@@ -23,6 +23,14 @@ public interface MemberService {
 
   List<Member> list() throws Exception;
 
+  int idCheck(String id) throws Exception;
+
+  int verificationPw(String password, int no) throws Exception;
+
+  int nickCheck(String nickname) throws Exception;
+
+  int emailCheck(String email) throws Exception;
+
   boolean updatePW(String password, String email, String id) throws Exception;
 
 }

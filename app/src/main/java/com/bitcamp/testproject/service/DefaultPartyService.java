@@ -1,9 +1,11 @@
 package com.bitcamp.testproject.service;
 
 import java.util.List;
+import javax.servlet.http.Part;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import com.bitcamp.testproject.dao.PartyCommentDao;
 import com.bitcamp.testproject.dao.PartyDao;
 import com.bitcamp.testproject.dao.PartyMemberDao;
 import com.bitcamp.testproject.vo.Criteria;
@@ -17,13 +19,15 @@ public class DefaultPartyService implements PartyService {
   PartyDao partyDao;
   @Autowired 
   PartyMemberDao partyMemberDao;
+  @Autowired
+  PartyCommentDao partyCommentDao;
 
   @Transactional
   @Override
-  public void add(Party party, PartyMember partyMember) throws Exception {
+  public void add(Party party, PartyMember partyMember, Part file) throws Exception {
     // 1) 모임 등록
     if (partyDao.insert(party) == 0) {
-      throw new Exception("모임 등록 실!");
+      throw new Exception("모임 등록 실패!");
     }
     // 3) 파티멤버 생성(주최자 등록)
     if (party.getUserNo() == partyMember.getMemberNo()) {
@@ -54,7 +58,7 @@ public class DefaultPartyService implements PartyService {
   }
 
   @Override
-  public boolean update(Party party) throws Exception {
+  public boolean update(Party party, Part file) throws Exception {
     // 1) 모임 변경
     if (partyDao.update(party) == 0) {
       return false;
@@ -76,7 +80,10 @@ public class DefaultPartyService implements PartyService {
   @Override
   public boolean delete(int no) throws Exception {
     // 1) 첨부파일 삭제
+    partyCommentDao.deleteCommentAll(no);
+
     partyMemberDao.delete(no);
+
     // 2) 모임 삭제
     return partyDao.delete(no) > 0;
   }
@@ -90,6 +97,19 @@ public class DefaultPartyService implements PartyService {
   public int listCount() throws Exception {
     return partyDao.findAllCount();
   }
+
+  @Override
+  public int listCount2(
+      String gu, 
+      String sports, 
+      String partyDate, 
+      String partyTime,
+      String searchText
+      ) throws Exception {
+    return partyDao.findAllCount2(gu, sports, partyTime, partyDate, searchText
+        );
+  }
+
   @Override
   public List<Party> list2(
       String gu, 
@@ -99,9 +119,13 @@ public class DefaultPartyService implements PartyService {
       String searchText,
       String listStar,
       String listCreate,
-      String listPartyDate) throws Exception {
-    return partyDao.findAll2(
-        gu, sports, partyTime, partyDate, searchText, listStar, listCreate, listPartyDate);
+      String listPartyDate,
+      Criteria cri) throws Exception {
+    int pagesStart = cri.getPagesStart();
+    int perPageNum = cri.getPerPageNum();
+    List<Party> result = partyDao.findAll2(
+        gu, sports, partyTime, partyDate, searchText, listStar, listCreate, listPartyDate, pagesStart, perPageNum);
+    return result;
   }
 
   @Override

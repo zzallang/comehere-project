@@ -83,6 +83,32 @@
       act = 1
   </select>  
   
+  <select id="findAllCount2" resultType="Integer">
+    select
+      count(*)
+    from 
+      party p
+      join region r on p.rno = r.rno
+      join sports s on p.sno = s.sno
+    where
+      act = 1
+      <if test="gu != null">
+      and p.rno = #{gu}
+      </if>
+      <if test="sports != null">
+      and s.sno = #{sports}
+      </if>
+      <if test="partyDate != null">
+      and p.pdate = #{partyDate}
+      </if>
+      <if test="partyTime != null">
+      and p.ptime = #{partyTime}
+      </if>
+      <if test="searchText != null">
+      and p.title like concat("%", #{searchText}, "%")
+      </if>
+  </select>  
+
   <select id="findAll2" resultMap="partyMap">
     select
       p.pno, 
@@ -138,6 +164,7 @@
       <if test="listStar == 0 and listCreate == 0 and listPartyDate == 0">
       p.pno desc
       </if>
+      limit #{pagesStart}, #{perPageNum}
   </select>
 
     <select id="findByNo" resultMap="partyMap">
@@ -146,6 +173,7 @@
 			p.pno,
 			r.sido,
 			r.sigu,
+			s.sno,
 			s.name,
 			p.title,
 			p.cont,
@@ -221,7 +249,8 @@
       cont=#{content},
       headcnt=#{headCount},
       pdate=#{partyDate},
-      ptime=#{partyTime}
+      ptime=#{partyTime},
+      thumbnail=#{thumbnail}
     where 
       pno=#{no}
   </update>

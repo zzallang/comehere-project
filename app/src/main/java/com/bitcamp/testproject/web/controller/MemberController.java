@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import com.bitcamp.testproject.service.MemberService;
 import com.bitcamp.testproject.service.RegionService;
@@ -34,16 +35,16 @@ public class MemberController {
   // 은지
   @GetMapping("join")
   public String form(Model model) throws Exception {
-    model.addAttribute("data", "join page");
-
+    model.addAttribute("regionList", regionService.list());
+    model.addAttribute("sportsList", sportsService.list());
     return "auth/join";
   }
 
   @PostMapping("addjoin")
-  public ModelAndView add(Member member, int[] region_domain, int[] sports_domain) throws Exception {
-    member.setFavoriteRegion(saveRegion(region_domain));
-    member.setFavoriteSports(saveSports(sports_domain));
-
+  public ModelAndView add(Member member) throws Exception {
+    System.out.println(member);
+    member.setFavoriteRegion(saveRegion(member));
+    member.setFavoriteSports(saveSports(member));
     memberService.add(member);
     ModelAndView mv = new ModelAndView("redirect:../auth/form");
     return mv;
@@ -54,47 +55,83 @@ public class MemberController {
     return "member/pwCheckViewer";
   }
 
-  @PostMapping("myInfo")
+  @GetMapping("myInfo")
   public String confirmation(HttpSession session, Model model) throws Exception {
     Member loginMember = (Member) session.getAttribute("loginMember");
     Member member = memberService.get(loginMember.getNo());
+    member.setNo(loginMember.getNo());
     model.addAttribute("member", member);
-    System.out.println("member :" + member);
+    model.addAttribute("regionList", regionService.list());
+    model.addAttribute("sportsList", sportsService.list());
     System.out.println("loginMember :" + loginMember);
+    System.out.println("member :" + member.toString());
     return "member/myInfo";
   }
 
 
   @PostMapping("memberUpdate")
-  public String myPageMember(Member member, int[] region_domain, int[] sports_domain) throws Exception {
-    System.out.println("??????왔니");
+  public ModelAndView myPageMember(HttpSession session, Member member) throws Exception {
+    Member loginMember = (Member) session.getAttribute("loginMember");
+    member.setNo(loginMember.getNo());
+    member.setFavoriteRegion(saveRegion(member));
+    member.setFavoriteSports(saveSports(member));
+    //member update logic
+    //...
     memberService.update(member);
-    member.setFavoriteRegion(saveRegion(region_domain));
-    member.setFavoriteSports(saveSports(sports_domain));
-
-    return "redirect:member/myInfo";
+    ModelAndView mv = new ModelAndView("redirect:myInfo");
+    return mv;
   }
 
 
-  public List<FavoriteRegion> saveRegion(int[] region_domain) {
+  @PostMapping("duplicationIdCheck")
+  @ResponseBody
+  public int idCheck(String id) throws Exception{
+    int result = memberService.idCheck(id); 
+    return result;
+  }
+
+  @PostMapping("duplicationEmailCheck")
+  @ResponseBody
+  public int emailCheck(String email) throws Exception{
+    int result = memberService.emailCheck(email); 
+    return result;
+  }
+
+  @PostMapping("verificationPWCheck")
+  @ResponseBody
+  public int pWCheck(HttpSession session, String password) throws Exception{
+    Member loginMember = (Member) session.getAttribute("loginMember");
+    System.out.println(password);
+    System.out.println(loginMember);
+    int result = memberService.verificationPw(password, loginMember.getNo());
+    return result;
+  }
+
+  @PostMapping("duplicationNickCheck")
+  @ResponseBody
+  public int nickCheck(String nickname) throws Exception{
+    int result = memberService.nickCheck(nickname);
+    return result;
+  }
+
+  public List<FavoriteRegion> saveRegion(Member member) {
     List<FavoriteRegion> favoriteRegion = new ArrayList<>();
-    for (int no : region_domain) {
+    for (int no : member.getRegionDomain()) {
       favoriteRegion.add(new FavoriteRegion(no));
     }
 
     return favoriteRegion;
   }
 
-  public List<FavoriteSports> saveSports(int[] region_domain) {
+  public List<FavoriteSports> saveSports(Member member) {
     List<FavoriteSports> favoriteSports = new ArrayList<>();
-    for (int no : region_domain) {
+    for (int no : member.getSportsDomain()) {
       favoriteSports.add(new FavoriteSports(no));
     }
 
     return favoriteSports;
   }
 }
-
 
 
 

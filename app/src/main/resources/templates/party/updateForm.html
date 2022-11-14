@@ -365,12 +365,13 @@
         </div>
       </div>
       <div class="party_update_view">
-        <form action="update" method="post">
+        <form action="update" method="post" enctype="multipart/form-data">
           <input name='no' type="hidden" th:value="${party.no}">
           <div class="party_form_wrap">
             <div class="party_form_img">
-              <img src="http://placeimg.com/300/300/any">
-              <input name='files' type="file" multiple>
+              <img th:if="${party.thumbnail != null}"  th:src="@{'/party/files/' + ${party.thumbnail}}" alt="Avatar" class="image">
+              <img th:if="${party.thumbnail == null}"  src="../images/img-2.png" alt="Avatar" class="image">
+              <input name='file' type="file">
             </div>
             <div class="party_form_header">
               <div class="party_form_title">
@@ -379,11 +380,11 @@
               </div>
               <div class="party_form_title">
                 <div class="party_header_filepath">
-                  <p th:text="${session.loginMember.filepath}">filepath</p>
-                  <img src="http://placeimg.com/50/50/any">
+                  <img th:if="${party.user.filepath != null}"  th:src="@{'/member/files/' + ${party.user.filepath}}" alt="Avatar" class="profile">
+                  <img th:if="${party.user.filepath == null}"  src="../images/img-2.png" alt="Avatar" class="profile">
                 </div>
                 <div class="party_header_nickname">
-                  <p th:text="${session.loginMember.nickname}">닉네임</p>
+                  <p th:text="${party.user.nickname}">닉네임</p>
                 </div>
               </div>
             </div>
@@ -398,30 +399,6 @@
               <span>일자 시간</span>
               <input class="" name="partyDate" type="date"  th:value='${party.partyDate}'>
               <input class="" name="partyTime" type="time" step="1" value="00:00:00"  th:value='${party.partyTime}'>
-            </div>
-            <div class="party_form_content">
-              <span>운동종류</span>
-              <select class="party_condition" name="sportsNo">
-                <th:block th:each="sport : ${sports}">
-                  <option th:value="${sport.no}" th:text="${sport.name}"></option>
-                </th:block>
-              </select>
-            </div>
-            <div class="party_form_content">
-              <span>시도/ 시/군/구</span>
-              <select class="party_condition" >
-                <th:block th:each="region : ${regions}">
-                  <option th:value="${region.sido}" th:text="${region.sido}"></option>
-                </th:block>
-              </select>
-              <select class="party_condition" name="regionNo">
-                <th:block th:each="region : ${regions}">
-                  <option th:value="${region.no}" th:text="${region.sigu}"></option>
-                </th:block>
-              </select>
-            </div>
-            <div class="party_form_content">
-              <span>지도설정</span>
             </div>
             <div class="party_form_content">
               <button class="party_form_button_r" type="button" onclick="location.href='list'">취소</button>

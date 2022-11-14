@@ -20,51 +20,35 @@
 				<!-- Responsive-->
 				<link rel="stylesheet" href="../css/responsive.css">
 				<!-- fevicon -->
-				<link rel="icon" href="../images/fevicon.png" type="image/gif" />
-				<!-- Scrollbar Custom CSS -->
-				<link rel="stylesheet" href="../css/jquery.mCustomScrollbar.min.css">
-				<!-- Tweaks for older IEs-->
-				<link rel="stylesheet"
-					href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
-				<!-- owl stylesheets -->
-				<link rel="stylesheet" href="../css/owl.carousel.min.css">
-				<link rel="stylesheet" href="../css/owl.theme.default.min.css">
-				<link rel="stylesheet"
-					href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css"
-					media="screen">
+        <!-- <link rel="icon" href="../images/fevicon.png" type="image/gif" /> -->
+        <!-- Scrollbar Custom CSS -->
+        <!-- <link rel="stylesheet" href="../css/jquery.mCustomScrollbar.min.css"> -->
+        <!-- Tweaks for older IEs-->
+        <link rel="stylesheet"
+          href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+        <!-- owl stylesheets -->
+        <!-- <link rel="stylesheet" href="../css/owl.carousel.min.css">
+        <link rel="stylesheet" href="../css/owl.theme.default.min.css">
+        <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css"
+          media="screen"> -->
 
-				<style type="text/css">
+      <style>
+			.swal-button:not([disabled]):hover {
+			    background-color: #78cbf200;
+			    border: 1px solid #989696;
+			    color: #989696;
+			}
+			.swal-button {
+		    padding: 7px 19px;
+		    border-radius: 2px;
+		    background-color: #ffb607;
+		    font-size: 12px;
+		    border: 1px solid #989696;
+		    text-shadow: 0px -1px 0px rgb(0 0 0 / 0%);
+		  }
 
-				.contact_section1 {
-				  width: 100%;
-				  float: left;
-				  height: auto;
-				  background-size: 100%;
-				  background-repeat: no-repeat;
-				  padding-bottom: 90px;
-				}
-
-				.contact_text {
-				  width: 100%;
-				  margin: 20px;
-				  float: center;
-				  font-size: 36px;
-				  color: #313131;
-				}
-
-				.col-md-6 {
-				  margin: auto;
-				}
-
-				.send_bt {
-				  margin-left: 30%;
-				}
-
-				.send_bt a {
-				  border: 2px solid #000000;
-				  color: darkgray;
-				}
-				</style>
+      </style>
 		</head>
 				<body>
 					<!-- header section start -->
@@ -91,7 +75,7 @@
 									<div class="mail_sectin">
 										<form action="/app/member/myInfo" method="post">
 											<input type="password" class="pwd-checkbox" placeholder="Password" name="password">
-										<div class="send_bt"><button type="submit" onclick="pwChedckSubmitBtn();">확인</button></div>
+										<div class="send_bt"><button type="button" id="PWCheck" >확인</button></div>
 										</form>
 									</div>
 								</div>
@@ -111,26 +95,51 @@
 					</div>
 					<!-- copyright section end -->
 					<!-- Javascript files-->
-					<script src="js/jquery.min.js"></script>
-					<script src="js/popper.min.js"></script>
-					<script src="js/bootstrap.bundle.min.js"></script>
-					<script src="js/jquery-3.0.0.min.js"></script>
-					<script src="js/plugin.js"></script>
-					<!-- sidebar -->
-					<script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
-					<script src="js/custom.js"></script>
-					<!-- javascript -->
-					<script src="js/owl.carousel.js"></script>
-					<script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
-					<script type="text/javascript">
-						function pwChedckSubmitBtn() {
-							var form = document.getElementById("pwCheckForm");
-							const formData = new FormData(form);
-							const request = new XMLHttpRequest();
-							request.open("POST", "/app/confirmation");
-							request.send(formData);
-							console.log(formData);
-						}
-					</script>
+            <!-- copyright section end -->
+            <!-- Javascript files-->
+            <!-- <script src="js/jquery.min.js"></script> -->
+            <!-- <script src="js/popper.min.js"></script> -->
+            <!-- <script src="js/bootstrap.bundle.min.js"></script> -->
+            <!-- <script src="js/jquery-3.0.0.min.js"></script> -->
+            <!-- <script src="js/plugin.js"></script> -->
+            <!-- sidebar -->
+            <!-- <script src="js/jquery.mCustomScrollbar.concat.min.js"></script> -->
+            <!-- <script src="js/custom.js"></script> -->
+            <!-- javascript -->
+            <!-- <script src="js/owl.carousel.js"></script> -->
+            <!-- <script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script> -->
+            <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+            <script src="/app/node_modules/sweetalert/dist/sweetalert.min.js"></script>
+            <script>
+             $('#PWCheck').click(function(){
+              let pw = $('.pwd-checkbox').val();
+              
+              $.ajax({
+                url : '/app/member/verificationPWCheck',
+                type : "post",
+                data : {password : pw},
+                dataType : 'json',
+                success : function(result) { console.log(result);
+                  if(result == 1) {
+                	  swal({
+                      title: "본인인증 확인",
+                      text: "마이페이지로 이동합니다.",
+                      icon: "success",
+                      button: "확인",
+                      closeOnClickOutside : false}).then(() =>{
+                      window.location.href = "/app/member/myInfo";
+                    });
+                  } else {
+                      swal({
+                          title: "비밀번호 불일치",
+                          text: "비밀번호가 일치하지 않습니다.",
+                          icon: "error",
+                          button: "확인",
+                        });
+                  }
+                }
+              })
+            })
+            </script>
 				</body>
 </html>

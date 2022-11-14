@@ -17,6 +17,14 @@ public interface PartyDao {
 
   int findAllCount();
 
+  int findAllCount2(
+      @Param("gu") String gu, 
+      @Param("sports") String sports,
+      @Param("partyTime") String partyTime,
+      @Param("partyDate") String partyDate,
+      @Param("searchText") String searchText
+      );
+
   List<Party> findAll2(
       @Param("gu") String gu, 
       @Param("sports") String sports,
@@ -25,7 +33,9 @@ public interface PartyDao {
       @Param("searchText") String searchText,
       @Param("listStar")String listStar,
       @Param("listCreate")String listCreate,
-      @Param("listPartyDate")String listPartyDate
+      @Param("listPartyDate")String listPartyDate,
+      @Param("pagesStart")int pagesStart,
+      @Param("perPageNum")int perPageNum
       );
 
   Party findByNo(int no);

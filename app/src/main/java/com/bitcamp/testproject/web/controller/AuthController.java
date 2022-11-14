@@ -1,7 +1,6 @@
 package com.bitcamp.testproject.web.controller;
 
 import java.util.Random;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -46,8 +45,8 @@ public class AuthController {
   }
 
   @PostMapping("login")
-  public ModelAndView login(String id, String password, HttpServletRequest request , HttpServletResponse response,
-      HttpSession session, String beforePageURL) throws Exception {
+  public ModelAndView login(String id, String password, HttpServletResponse response,
+      HttpSession session) throws Exception {
 
     Member member = memberService.get(id, password);
 
@@ -55,15 +54,16 @@ public class AuthController {
       session.setAttribute("loginMember", member);
     }
 
-    Cookie cookie = new Cookie("id", id);
-    if (id == null) {
-      cookie.setMaxAge(0);
-    } else {
-      cookie.setMaxAge(60 * 60 * 24 * 7); // 7일
-    }
-    response.addCookie(cookie);
+    //    Cookie cookie = new Cookie("id", id);
+    //    if (id == null) {
+    //      cookie.setMaxAge(0);
+    //    } else {
+    //      cookie.setMaxAge(60 * 60 * 24 * 7); // 7일
+    //    }
+    //    response.addCookie(cookie);
 
     if(member != null) {
+      //      ModelAndView mv = new ModelAndView("redirect:/");
       ModelAndView mv = new ModelAndView("redirect:" + beforePageURL);
       mv.addObject("member", member);
       return mv;
@@ -73,6 +73,7 @@ public class AuthController {
     mv.addObject("member", member);
     return mv;
   }
+
 
   @GetMapping("findId")
   public String findId() {
@@ -160,39 +161,12 @@ public class AuthController {
     boolean result = memberService.updatePW(password, email, id);
 
     if (result != false) {
+      System.out.println("변경 실패");
     } 
     return "redirect:form";
   }
 
   // 헌식 끝
-
-  // // 아이디 중복 체크 확인
-  // @PostMapping("id-check")
-  // @ResponseBody
-  // public String idCheck(Member member) throws Exception {
-  // return memberService.checkId(member);
-  // }
-
-  // 은지
-  @GetMapping("join")
-  public String form(Model model) throws Exception {
-    model.addAttribute("data", "join page");
-    return "auth/join";
-  }
-
-  @PostMapping("add")
-  public String add(Member member) throws Exception {
-    memberService.add(member);
-    return "redirect:join";
-  }
-
-  @GetMapping("mypage-member")
-  public String myPageMember(Member member) {
-
-    return "myPageMember";
-  }
-
-
 
 }
 
