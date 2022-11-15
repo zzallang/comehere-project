@@ -1,6 +1,7 @@
 package com.bitcamp.testproject.web.controller;
 
 import java.util.Random;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -46,7 +47,7 @@ public class AuthController {
 
   @PostMapping("login")
   public ModelAndView login(String id, String password, HttpServletResponse response,
-      HttpSession session) throws Exception {
+      HttpSession session, String beforePageURL) throws Exception {
 
     Member member = memberService.get(id, password);
 
@@ -54,13 +55,13 @@ public class AuthController {
       session.setAttribute("loginMember", member);
     }
 
-    //    Cookie cookie = new Cookie("id", id);
-    //    if (id == null) {
-    //      cookie.setMaxAge(0);
-    //    } else {
-    //      cookie.setMaxAge(60 * 60 * 24 * 7); // 7일
-    //    }
-    //    response.addCookie(cookie);
+    Cookie cookie = new Cookie("id", id);
+    if (id == null) {
+      cookie.setMaxAge(0);
+    } else {
+      cookie.setMaxAge(60 * 60 * 24 * 7); // 7일
+    }
+    response.addCookie(cookie);
 
     if(member != null) {
       //      ModelAndView mv = new ModelAndView("redirect:/");
