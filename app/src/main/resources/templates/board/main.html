@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
     <head>
-        <title>bitcamp</title>
+      <title>커뮤니티 메인</title>
         
       <!-- basic -->
       <meta charset="utf-8">
@@ -148,26 +148,26 @@
       </style>
 
     </head>
-       <body>
+    <body>
       <!-- header section start -->
       <div class="header_section">
         <div class="container-fluid">
-          <nav class="navbar navbar-expand-lg navbar-light bg-light">
+          <nav class="navbar navbar-expand-lg navbar-light">
             <div class="main_logo"><a href="/app"><img src="../images/logo.png"></a></div>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
               <ul class="navbar-nav mr-auto">
-                <li class="nav-item"><a class="nav-link" href="#">운동찾기</a></li>
+                <li class="nav-item"><a class="nav-link" href="../party/list">운동찾기</a></li>
                 <li class="nav-item"><a class="nav-link" href="main">커뮤니티</a></li>
                 <li class="nav-item"><a class="nav-link" href="#">공지사항</a></li>
               </ul>
               <div class="login-bt">
                 <ul>
-                  <li data-th-if="${session.loginMember == null}"><a href="auth/form" >로그인</a></li>
-                  <li data-th-if="${session.loginMember != null}"><a href="member/viewer">마이페이지</a></li>
-                  <li data-th-if="${session.loginMember != null}"><a href="auth/logout" data-th-text="${session.loginMember.name} + '(로그아웃)'">동동(로그아웃)</a></li>
+                  <li data-th-if="${session.loginMember == null}"><a href="../auth/form" >로그인</a></li>
+                  <li data-th-if="${session.loginMember != null}"><a href="../member/viewer">마이페이지</a></li>
+                  <li data-th-if="${session.loginMember != null}"><a href="../auth/logout" data-th-text="${session.loginMember.name} + '(로그아웃)'">동동(로그아웃)</a></li>
                 </ul>
               </div>
             </div>
@@ -175,7 +175,7 @@
         </div>
       </div>
       <!-- header section end -->
-      
+              
       <!-- furnitures section start -->
       <div class="furnitures_sectionJD layout_padding">
          <a href="main"><h1 class="container" id="community-title">커뮤니티</h1></a>
@@ -190,24 +190,25 @@
            </ul>
            <!-- 게시판 카테고리 이동 끝 -->
            
-           <h2 class="our_textJD" id="cateName">게시판 제목입니다.</h2>
+           <h2 class="our_textJD" id="cateName"></h2>
            
-            
            <div class="furnitures_section2 layout_padding">
                <div class="write-wrapper">
-                  <a class="btn btn-primary float-end" href="form?cateno=1" role="button">글쓰기</a></div>
+                  <!-- <a class="btn btn-primary float-end" href="form?cateno=1" role="button">글쓰기</a></div> -->
                <div class="row1">
                   <!-- 게시글 목록 시작 -->
+                  
+                  <!-- 인기글 파트 시작 -->
                   <h3 class="mainList-title">인기글</h3>
                   <table class="table">
                     <tr>
-                      <th>게시판 종류</th>
+                      <th>게시판</th>
                       <th>제목</th>
                       <th>작성자</th>
                       <th>조회수</th>
                     </tr>
                     <tr th:each="board : ${bestList}">
-                      <td th:text="${board.cateno}">게시판</td>
+                      <td><a data-th-classappend="'boardCateNo' + ${board.cateno}" class="nav-link" th:href="@{list(no=${board.cateno})}">게시판</a></td>
                       <td class="title-min-width2"><a href='detail?no=1'
                           th:href="@{detail(no=${board.no})}"
                           th:text="${board.title == ''} ? '(제목없음)' : ${board.title}">제목없음</a></td>
@@ -215,6 +216,7 @@
                       <td th:text="${board.viewCount}">17</td>
                     </tr>
                   </table> 
+                  <!-- 인기글 파트 끝 -->
                 </div>
                 <div class="row1">
                   <h3 class="mainList-title">최근 챌린지 인증<a href="list?no=3" class="clg-plus">더보기+</a></h3>
@@ -222,8 +224,8 @@
                   <th:block th:each="board : ${clgList}">
                     <span class="recent-clg-wapper">
                       <div class="recent-clg-img-wapper">
-                        <a th:href="@{detail(no=${board.no})}"><img th:if="${board.path == null}" src="/app/board/files/nothumpnail.jpg" alt="Avatar" class="imgJD"/></a>
-                        <a th:href="@{detail(no=${board.no})}"><img  th:if="${board.path != null}" th:src="@{'http://localhost:8888/app/board/files/' + ${board.path}}" alt="Avatar" class="imgJD"/></a>
+                        <a th:href="@{detail(no=${board.no})}"><img th:if="${board.thumbnail == null}" src="/app/board/files/nothumpnail.jpg" alt="Avatar" class="imgJD"/></a>
+                        <a th:href="@{detail(no=${board.no})}"><img  th:if="${board.thumbnail != null}" th:src="@{'http://localhost:8888/app/board/files/' + ${board.thumbnail}}" alt="Avatar" class="imgJD"/></a>
                       </div>
                       <div class="recent-clg-content-wapper">
                         <b><a href='detail?no=1' th:href="@{detail(no=${board.no})}" th:text="${board.title == ''} ? '(제목없음)' : ${board.title}">제목없음</a></b><br>
@@ -242,74 +244,22 @@
      </div>
       <!-- furnitures section end -->
       
-      <!-- footer section start -->
-      <div class="footer_section layout_padding">
-         <div class="container">
-            <div class="row">
-               <div class="col-lg-3 col-sm-6">
-                  <div class="fooer_logo"><img src="../images/footer-logo.png"></div>
-                  <p class="footer_lorem_text">There are many variat
-                     ions of passages of L
-                     orem Ipsum available
-                     , but the majority h
-                     ave suffered altera
-                     tion in some form, by 
-                  </p>
-               </div>
-               <div class="col-lg-3 col-sm-6">
-                  <h1 class="customer_text">LET US HELP YOU</h1>
-                  <p class="footer_lorem_text">There are many variat
-                     ions of passages of L
-                     orem Ipsum available
-                     , but the majority h
-                     ave suffered altera
-                     tion in some form, by 
-                  </p>
-               </div>
-               <div class="col-lg-3 col-sm-6">
-                  <h1 class="customer_text">INFORMATION</h1>
-                  <p class="footer_lorem_text1">About Us<br>
-                     Careers<br>
-                     Sell on shopee<br>
-                     Press & News<br>
-                     Competitions<br>
-                     Terms & Conditions
-                  </p>
-               </div>
-               <div class="col-lg-3 col-sm-6">
-                  <h1 class="customer_text">OUR Design</h1>
-                  <p class="footer_lorem_text">There are many variat
-                     ions of passages of L
-                     orem Ipsum available
-                     , but the majority h
-                     ave suffered altera
-                     tion in some form, by 
-                  </p>
-               </div>
-            </div>
-            <div class="input-group mb-3">
-               <input type="text" class="form-control" placeholder="Enter your email" aria-label="Enter your email" aria-describedby="basic-addon2">
-               <div class="input-group-append">
-                  <span class="input-group-text" id="basic-addon2"><a href="#">Subscribe</a></span>
-               </div>
-            </div>
-         </div>
-      </div>
-      <!--  footer section end -->
       <!-- copyright section start -->
       <div class="copyright_section">
-      <div class="container">
-         <div class="social_icon">
-            <ul>
-               <li><a href="#"><img src="../images/fb-icon.png"></a></li>
-               <li><a href="#"><img src="../images/twitter-icon.png"></a></li>
-               <li><a href="#"><img src="../images/instagram-icon.png"></a></li>
-               <li><a href="#"><img src="../images/linkedin-icon.png"></a></li>
-            </ul>
-         </div>
-         <p class="copyright_text">2020 All Rights Reserved. Design by <a href="https://html.design">Free html  Templates</a></p>
+        <div class="container">
+           <div class="social_icon">
+              <ul>
+                 <li><a href="#"><img src="../images/fb-icon.png"></a></li>
+                 <li><a href="#"><img src="../images/twitter-icon.png"></a></li>
+                 <li><a href="#"><img src="../images/instagram-icon.png"></a></li>
+                 <li><a href="#"><img src="../images/linkedin-icon.png"></a></li>
+              </ul>
+           </div>
+           <p class="copyright_text">2020 All Rights Reserved. Design by <a href="https://html.design">Free html  Templates</a></p>
+        </div>
       </div>
       <!-- copyright section end -->
+      
       <!-- Javascript files-->
       <script src="../js/jquery.min.js"></script>
       <script src="../js/popper.min.js"></script>
@@ -331,7 +281,6 @@
       window.onload = 
     	  function findCategory() {
         var para = document.location.href.split("no=");
-        console.log("카테고리 번호 =>" + para[1]);
         
         switch(para[1]) {
           case '1' :
@@ -356,7 +305,28 @@
             break;
           default :
         	  document.getElementById( 'cateName' ).innerHTML = "커뮤니티 메인";
-        	  
+        }
+        
+        
+        let category1 = document.getElementsByClassName( 'boardCateNo1' ),
+            category2 = document.getElementsByClassName( 'boardCateNo2' ),
+            category3 = document.getElementsByClassName( 'boardCateNo3' ),
+            category4 = document.getElementsByClassName( 'boardCateNo4' ),
+            category5 = document.getElementsByClassName( 'boardCateNo5' );
+        for (var i = 0; i < category1.length; i++) {
+        	category1[i].innerHTML = "자유"
+        }
+        for (var i = 0; i < category2.length; i++) {
+        	category2[i].innerHTML = "식단"
+        }
+        for (var i = 0; i < category3.length; i++) {
+        	category3[i].innerHTML = "챌린지"
+        }
+        for (var i = 0; i < category4.length; i++) {
+        	category4[i].innerHTML = "질문"
+        }
+        for (var i = 0; i < category5.length; i++) {
+        	category5[i].innerHTML = "핫딜"
         }
         
       }

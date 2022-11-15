@@ -113,48 +113,61 @@
         #community-title {
           color: #ffb607;
         }
+        .temp-height {
+          min-height: 500px;
+        }
+        .form-selectJd {
+          display: block;
+          width: 20%;
+          padding: 0.375rem 2.25rem 0.375rem 0.75rem;
+          -moz-padding-start: calc(0.75rem - 3px);
+          font-size: 1rem;
+          font-weight: 400;
+          line-height: 1.5;
+          color: #212529;
+          background-color: #fff;
+          background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e");
+          background-repeat: no-repeat;
+          background-position: right 0.75rem center;
+          background-size: 16px 12px;
+          border: 1px solid #ced4da;
+          border-radius: 0.375rem;
+          transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+          -webkit-appearance: none;
+          -moz-appearance: none;
+          appearance: none;
+        }
 
       </style>
 
     </head>
        <body>
-      <!-- header section start -->
-      <div class="header_section">
-         <div class="container-fluid">
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
-               <div class="main_logo"><a href="/app"><img src="../images/logo.png"></a></div>
-               <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                  <ul class="navbar-nav mr-auto">
-                     <li class="nav-item">
-                        <a class="nav-link" href="index.html">Home</a>
-                     </li>
-                     <li class="nav-item">
-                        <a class="nav-link" href="services.html">services</a>
-                     </li>
-                     <li class="nav-item">
-                        <a class="nav-link" href="about.html">About</a>
-                     </li>
-                     <li class="nav-item">
-                        <a class="nav-link" href="shop.html">Shop</a>
-                     </li>
-                     <li class="nav-item">
-                        <a class="nav-link" href="contact.html">Contact</a>
-                     </li>
-                  </ul>
-                  <form class="form-inline my-2 my-lg-0">
-                     <h1 class="call_text">Call Us : +01 1234567890</h1>
-                  </form>
-                  <div class="search_icon">
-                     <ul>
-                        <li><a href="#"><img src="../images/search-icon.png"></a></li>
-                        <li><a href="#">LOGIN</a></li>
-                     </ul>
-                  </div>
-               </div>
-            </nav>
-         </div>
-      </div>
-      <!-- header section end -->
+  <!-- header section start -->
+  <div class="header_section">
+    <div class="container-fluid">
+      <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="main_logo"><a href="/app"><img src="../images/logo.png"></a></div>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item"><a class="nav-link" href="../party/list">운동찾기</a></li>
+            <li class="nav-item"><a class="nav-link" href="main">커뮤니티</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">공지사항</a></li>
+          </ul>
+          <div class="login-bt">
+            <ul>
+              <li data-th-if="${session.loginMember == null}"><a href="../auth/form" >로그인</a></li>
+              <li class="loginId" th:if="${session.loginMember != null}" th:id=${session.loginMember.no}><a href="../member/viewer">마이페이지</a></li>
+              <li data-th-if="${session.loginMember != null}"><a href="../auth/logout" data-th-text="${session.loginMember.name} + '(로그아웃)'">동동(로그아웃)</a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </div>
+  <!-- header section end -->
       
       <!-- furnitures section start -->
       <div class="furnitures_sectionJD layout_padding">
@@ -171,22 +184,22 @@
            <!-- 게시판 카테고리 이동 끝 -->
   
             <!-- 게시판 제목과 내용 -->
-            <h1 class="our_textJD" id="cateName">게시판 제목입니다.</h1>
-            <p class="ipsum_text" id="cateConment">게시판의 내용입니다.</p>
-            
+            <h1 class="our_textJD" id="cateName"></h1>
+            <p class="ipsum_text" id="cateConment"></p>
             
             <div class="furnitures_section2 layout_padding">
               <div class="album py-5 bg-light">
+              <div style="width:90%;font-weight: lighter;" data-th-if="${search.keyword != null}" 
+                    data-th-text="'&lsquo;' + ${search.type} + '&rsquo;' + '에 '   + '&lsquo;' + ${search.keyword} + '&rsquo;' +' 을(를) 포함한 검색결과 입니다.'"></div>
                 <div class="container">
                   <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-                  
                   <th:block th:each="board : ${list}">
                     <div class="col">
                       <div class="card shadow-sm">
                         <div class="bd-placeholder-img card-img-top"> 
                           <div class="jd1">
-                            <a th:href="@{detail(no=${board.no})}"><img th:if="${board.path == null}" src="/app/board/files/nothumpnail.jpg" alt="Avatar" class="imgJD"/></a>
-                            <a th:href="@{detail(no=${board.no})}"><img  th:if="${board.path != null}" th:src="@{'http://localhost:8888/app/board/files/' + ${board.path}}" alt="Avatar" class="imgJD"/></a>
+                            <a th:href="@{detail(no=${board.no})}"><img th:if="${board.thumbnail == null}" src="/app/board/files/nothumpnail.jpg" alt="Avatar" class="imgJD"/></a>
+                            <a th:href="@{detail(no=${board.no})}"><img th:if="${board.thumbnail != null}" th:src="@{'/board/files/' + ${board.thumbnail}}" alt="Avatar" class="imgJD"/></a>
                           </div>
                         </div>
                         <div class="card-body">
@@ -208,37 +221,10 @@
                </div>
           </div>
                
-         <!--       
-                  <th:block th:each="board : ${list}">
-                    <div style="background-color: gray;">
-                         <img th:src="@{'http://localhost:8888/app/board/files/' + ${board.path}}" alt="Avatar"/>
-                         <div class="container_main">
-                          <div class="overlay">
-                             <a href="#" class="icon" title="User Profile">
-                             <i class="fa fa-search"></i>
-                             </a>
-                          </div>     
-                          <h3 class="temper_text" th:text="${board.title}">게시글 제목</h3>
-                          <p class="dololr_text"> 
-                            <td th:text="${board.no}">100</td>
-                            <td class="title-min-width"><a href='detail?no=1'
-                              th:href="@{detail(no=${board.no})}"
-                              th:text="${board.title == ''} ? '(제목없음)' : ${board.title}">제목없음</a></td>
-                            <td th:text="${board.writer.name}">유길동</td>
-                            <td th:text="${board.viewCount}">17</td>
-                            <td th:text="${board.createdDate}">0000-1-1</td>
-                          </p>
-                         </div>
-                    </div>
-                  </th:block>
-             -->
 
-            
-            
-            
                   <!-- 게시글 목록 끝 -->
                   <li class="write-box">
-                    <a class="btn btn-primary" href="form?cateno=3" role="button">글쓰기</a>
+                    <div id="postButton" class="btn btn-primary" th:value="@{form(cateno=${catenoInBoard.cateno})}" role="button">글쓰기</div>
                   </li>
                 
                   <!-- 페이징 버튼 시작 -->
@@ -250,13 +236,17 @@
                             <span aria-hidden="true">&laquo;</span>
                           </a>
                         </li>
-                        <th:block th:each="pageNum: ${#numbers.sequence(pageMaker.startPage, pageMaker.endPage)}">
-                          <li class="page-item">
-                            <a class="page-link" th:href="@{list(page=${pageNum}, no=${catenoInBoard.cateno})}"><i th:text="${pageNum}"></i></a>
+                        <th:block th:if="${pageMaker.endPage != 0}" th:each="pageNum: ${#numbers.sequence(pageMaker.startPage, pageMaker.endPage)}">
+                          <li data-th-id="${'pageButton' + pageNum}"  class="page-item">
+                            <a data-th-if="${search.keyword == null}" class="page-link" th:href="@{list(page=${pageNum}, no=${catenoInBoard.cateno})}"><i th:text="${pageNum}"></i></a>
+                            <a data-th-if="${search.keyword != null}" class="page-link" th:href="@{list(page=${pageNum}, no=${catenoInBoard.cateno}, keyword=${search.keyword}, type=${search.type})}"><i th:text="${pageNum}"></i></a>
                           </li>
                         </th:block>
                         <li class="page-item" th:if="${pageMaker.next && pageMaker.endPage >0}">
-                          <a class="page-link" th:href="@{list(page=${pageMaker.endPage+1}, no=${catenoInBoard.cateno})}" aria-label="Next">
+                          <a data-th-if="${search.keyword == null}" class="page-link" th:href="@{list(page=${pageMaker.endPage+1}, no=${catenoInBoard.cateno})}" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                          </a>
+                          <a data-th-if="${search.keyword != null}" class="page-link" th:href="@{list(page=${pageMaker.endPage+1}, no=${catenoInBoard.cateno}, keyword=${search.keyword}, type=${search.type})}" aria-label="Next">
                             <span aria-hidden="true">&raquo;</span>
                           </a>
                         </li>
@@ -266,10 +256,21 @@
                   <!-- 페이징 버튼 끝 -->
                  <nav class="navbar navbar-light">
                  <div style="margin: auto">
-                   <form class="form-inline"  >
-                     <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                     <button class="btn btn-outline-successJD my-2 my-sm-0"type="submit">Search</button>
+                   <!-- 검색 버튼 시작 -->
+                   <form class="form-inline" action='list' method="get">
+                    <input data-th-value="${catenoInBoard.cateno}" type="hidden" name="no" aria-label="category">
+                    <select id="searchId" class="form-selectJd" name="type">
+                        <option value="T">제목</option>
+                        <option value="C">내용</option>
+                        <option value="W">작성자</option>
+                        <option value="TC">제목 + 내용</option>
+                        <option value="TW">제목 + 작성자</option>
+                        <option value="TCW">제목 + 내용 + 작성자</option>
+                    </select>  
+                     <input class="form-control mr-sm-2" type="search" name="keyword" placeholder="Search" aria-label="Search">
+                     <button class="btn btn-outline-successJD my-2 my-sm-0" type="submit" id="searchButton">Search</button>
                    </form>
+                   <!-- 검색 버튼 끝 -->
                 </div>
                  </nav>
             </div>
@@ -279,60 +280,6 @@
       </div>
       <!-- furnitures section end -->
       
-      <!-- footer section start -->
-      <div class="footer_section layout_padding">
-         <div class="container">
-            <div class="row">
-               <div class="col-lg-3 col-sm-6">
-                  <div class="fooer_logo"><img src="../images/footer-logo.png"></div>
-                  <p class="footer_lorem_text">There are many variat
-                     ions of passages of L
-                     orem Ipsum available
-                     , but the majority h
-                     ave suffered altera
-                     tion in some form, by 
-                  </p>
-               </div>
-               <div class="col-lg-3 col-sm-6">
-                  <h1 class="customer_text">LET US HELP YOU</h1>
-                  <p class="footer_lorem_text">There are many variat
-                     ions of passages of L
-                     orem Ipsum available
-                     , but the majority h
-                     ave suffered altera
-                     tion in some form, by 
-                  </p>
-               </div>
-               <div class="col-lg-3 col-sm-6">
-                  <h1 class="customer_text">INFORMATION</h1>
-                  <p class="footer_lorem_text1">About Us<br>
-                     Careers<br>
-                     Sell on shopee<br>
-                     Press & News<br>
-                     Competitions<br>
-                     Terms & Conditions
-                  </p>
-               </div>
-               <div class="col-lg-3 col-sm-6">
-                  <h1 class="customer_text">OUR Design</h1>
-                  <p class="footer_lorem_text">There are many variat
-                     ions of passages of L
-                     orem Ipsum available
-                     , but the majority h
-                     ave suffered altera
-                     tion in some form, by 
-                  </p>
-               </div>
-            </div>
-            <div class="input-group mb-3">
-               <input type="text" class="form-control" placeholder="Enter your email" aria-label="Enter your email" aria-describedby="basic-addon2">
-               <div class="input-group-append">
-                  <span class="input-group-text" id="basic-addon2"><a href="#">Subscribe</a></span>
-               </div>
-            </div>
-         </div>
-      </div>
-      <!--  footer section end -->
       <!-- copyright section start -->
       <div class="copyright_section">
       <div class="container">
@@ -355,7 +302,7 @@
       <script src="../js/plugin.js"></script>
       <!-- sidebar -->
       <script src="../js/jquery.mCustomScrollbar.concat.min.js"></script>
-      <script src="../js/custom.js"></script>
+      <!-- <script src="../js/custom.js"></script> --><!-- 검색때매 우선 막자 --> 
       <!-- javascript --> 
       <!-- <script src="../js/owl.carousel.js"></script> -->
       <!-- <script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>  -->
@@ -363,45 +310,69 @@
       <!-- 공식부트스트랩 JS -->
       <script src="../js/bootstrap/bootstrap.js"></script>   
 
+
       <script>
       "use strict"
-      window.onload = 
-    	  function findCategory() {
-        var para = document.location.href.split("no=");
-        console.log("카테고리 번호 =>" + para[1]);
-        
-        switch(para[1]) {
-          case '1' :
-        	  document.getElementById( 'cateName' ).innerHTML = "자유게시판";
-            document.getElementById( 'cateConment' ).innerHTML = "여기모여 회원들이 자유롭게 소통할 수 있는 자유게시판입니다. ";
-            break;
-          case '2' :
-        	  document.getElementById( 'cateName' ).innerHTML = "식단게시판";
-            document.getElementById( 'cateConment' ).innerHTML = "다이어트, 벌크업 등 식이요법에 대한 다양한 정보를 나누는 식단게시판입니다.";
-            break;
-          case '3' :
-        	  document.getElementById( 'cateName' ).innerHTML = "챌린지게시판";
-            document.getElementById( 'cateConment' ).innerHTML = "하루하루 도전하는 회원분들의 인증샷을 올리는 챌린지게시판입니다.";
-            break;
-          case '4' :
-        	  document.getElementById( 'cateName' ).innerHTML = "질문게시판";
-            document.getElementById( 'cateConment' ).innerHTML = "궁금한 건 어디에서 물어볼 지 고민인 분들을 위한 질문게시판입니다.";
-            break;
-          case '5' :
-        	  document.getElementById( 'cateName' ).innerHTML = "핫딜게시판";
-            document.getElementById( 'cateConment' ).innerHTML = "지금이 바로 득템 기회! 핫딜 제품들을 공유할 수 있는 핫딜게시판입니다.";
-            
+      document.getElementById('postButton').addEventListener('click', checkLogin);
+      
+      // 검색기능 목록일 때 검색조건의 type을 selected하기 위한 메서드 
+      const searchOption = $("select").children();
+      for (let i = 0; i < searchOption.length; i++) {
+        if (searchOption.eq(i).val() == "[[${search.type}]]") {
+          $('#searchId').find("option").eq(i).attr("selected", true)
         }
-        
       }
+      
+      let loginMemberNo = -1;
+      if($(".loginId").attr("id") != -1) {
+       loginMemberNo = $(".loginId").attr("id");
+      };
+      function checkLogin() {
+        if (loginMemberNo == undefined || loginMemberNo == -1) {
+          if (confirm("로그인하시겠습니까?") == true){    //확인
+              location.href = '../auth/form';
+          } else {
+            return false;
+          }
+        } else {
+          location.href = $("#postButton").attr("value");
+        }
+      }
+      
+      window.addEventListener('DOMContentLoaded', function findCategory() {
+    	  var param = window.location.search.match(/no=([^&]*)/)[1];
+          switch(param) {
+            case '1' :
+              document.getElementById( 'cateName' ).innerHTML = "자유게시판";
+              document.getElementById( 'cateConment' ).innerHTML = "여기모여 회원들이 자유롭게 소통할 수 있는 자유게시판입니다. ";
+              break;
+            case '2' :
+              document.getElementById( 'cateName' ).innerHTML = "식단게시판";
+              document.getElementById( 'cateConment' ).innerHTML = "다이어트, 벌크업 등 식이요법에 대한 다양한 정보를 나누는 식단게시판입니다.";
+              break;
+            case '3' :
+              document.getElementById( 'cateName' ).innerHTML = "챌린지게시판";
+              document.getElementById( 'cateConment' ).innerHTML = "하루하루 도전하는 회원분들의 인증샷을 올리는 챌린지게시판입니다.";
+              break;
+            case '4' :
+              document.getElementById( 'cateName' ).innerHTML = "질문게시판";
+              document.getElementById( 'cateConment' ).innerHTML = "궁금한 건 어디에서 물어볼 지 고민인 분들을 위한 질문게시판입니다.";
+              break;
+            case '5' :
+              document.getElementById( 'cateName' ).innerHTML = "핫딜게시판";
+              document.getElementById( 'cateConment' ).innerHTML = "지금이 바로 득템 기회! 핫딜 제품들을 공유할 수 있는 핫딜게시판입니다.";
+        }
+      });
+      
+      window.addEventListener('DOMContentLoaded', function(){
+    	  var param = 1; 
+    	  if (window.location.search.match(/page=([^&]*)/) != null) {
+    		  param = window.location.search.match(/page=([^&]*)/)[1];
+    	  } 
+    	  $('#pageButton' + param).addClass('active');
+    	});
+      
 
       </script>
-   </body>
-    
- 
-            <p>
-                <a href='../'>메인</a>
-            </p>
-        </body>
-         
-    </html>
+   </body> 
+</html>

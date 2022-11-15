@@ -318,9 +318,12 @@
     width: 100%;
     float: left;
   }
-  .party_detail_img {
-    max-height: 300px;
-  }
+
+.party_detail_img {
+  margin: 0 auto;
+  width: auto;
+  max-height: 300px;
+}
 </style>
 </head>
 <body>
@@ -344,26 +347,37 @@
             <li data-th-if="${session.loginMember != null}"><a href="../member/viewer">마이페이지</a></li>
             <li data-th-if="${session.loginMember != null}"><a href="../auth/logout" data-th-text="${session.loginMember.name} + '(로그아웃)'">동동(로그아웃)</a></li>
           </ul>
-          <div class="search_icon">
-            <ul>
-              <!-- <li><a href="auth/form"><img src="images/search-icon.png"></a></li> -->
-              <li data-th-if="${session.loginMember == null}"><a href="../auth/form" >로그인</a></li>
-              <li data-th-if="${session.loginMember != null}"><a href="../auth/logout" data-th-text="${session.loginMember.name} + '(로그아웃)'">동동(로그아웃)</a></li>
-              <li data-th-if="${session.loginMember != null}"><a href="../mypage/viewer">마이페이지</a></li>
-            </ul>
-          </div>
         </div>
-      </nav>
-    </div>
+      </div>
+    </nav>
   </div>
-  <!-- header section end -->
-      <!-- furnitures section start -->
-      <div class="furnitures_section layout_padding_party_detail">
-         <div class="container_party">
-          <div class="furnitures_section2 layout_padding_party">
-            <h1 class="our_text">모임 수정하기</h1>
-            <p class="ipsum_text">운동 모임을 만들어 보세요!</p>
-               <div class="party_detail_bar">
+</div>
+<!-- header section end -->
+<!-- furnitures section start -->
+<div class="furnitures_section layout_padding_party_detail">
+  <div class="container_party">
+    <div class="furnitures_section2 layout_padding_party">
+      <h1 class="our_text">모임 수정하기</h1>
+      <p class="ipsum_text">운동 모임을 만들어 보세요!</p>
+      <div class="party_detail_bar"></div>
+    </div>
+    <div class="furnitures_section2 layout_padding_party">
+      <div class="party_detail_bar">
+        <div class="party_detail_buttons">
+          <p class="dololr_text_region" th:text="${party.region.sido}"></p>
+          <p class="dololr_text_region" th:text="${party.region.sigu}"></p>
+          <p class="dololr_text_sports" th:text="${party.sports.name}"></p>
+          <button th:if="${session.loginMember} != null and ${session.loginMember.no} != ${party.user.no}" class="dololr_text_tatlle" type="button" onclick="location.href='#'">신고</button>
+        </div>
+      </div>
+      <div class="party_update_view">
+        <form action="update" method="post" enctype="multipart/form-data">
+          <input name='no' type="hidden" th:value="${party.no}">
+          <div class="party_form_wrap">
+            <div class="party_form_img">
+              <img th:if="${party.thumbnail != null}"  th:src="@{'/party/files/' + ${party.thumbnail}}" alt="Avatar" class="image party_detail_img">
+              <img th:if="${party.thumbnail == null}"  src="../images/img-2.png" alt="Avatar" class="image">
+              <input name='file' type="file">
             </div>
             <div class="party_form_header">
               <div class="party_form_title">
@@ -375,66 +389,90 @@
                   <img th:if="${party.user.filepath != null}"  th:src="@{'/member/files/' + ${party.user.filepath}}" alt="Avatar" class="profile party_detail_img">
                   <img th:if="${party.user.filepath == null}"  src="../images/img-2.png" alt="Avatar" class="profile">
                 </div>
-                  </form>
+                <div class="party_header_nickname">
+                  <p th:text="${party.user.nickname}">닉네임</p>
                 </div>
-
-
-               </div>
-            </div> <!-- furnitures_section2 layout_padding_party -->
-         </div>
-      <!-- furnitures section end -->
-      <!-- footer section start -->
-      
-      <!--  footer section end -->
-      <!-- copyright section start -->
-      <div class="copyright_section">
-      <div class="container">
-         <div class="social_icon">
-            <ul>
-               <li><a href="#"><img src="../images/fb-icon.png"></a></li>
-               <li><a href="#"><img src="../images/twitter-icon.png"></a></li>
-               <li><a href="#"><img src="../images/instagram-icon.png"></a></li>
-               <li><a href="#"><img src="../images/linkedin-icon.png"></a></li>
-            </ul>
-         </div>
-         <p class="copyright_text">2020 All Rights Reserved. Design by <a href="https://html.design">Free html  Templates</a></p>
+              </div>
+            </div>
+            <div class="party_form_content">
+              <p>내용</p><textarea name='content' th:text="${party.content}"></textarea>
+            </div>
+            <div class="party_form_content">
+              <span>정원</span>
+              <input class="" name="headCount" type="number" th:value="${party.headCount}">
+            </div>
+            <div class="party_form_content">
+              <span>일자 시간</span>
+              <input class="" name="partyDate" type="date"  th:value='${party.partyDate}'>
+              <input class="" name="partyTime" type="time" step="1" value="00:00:00"  th:value='${party.partyTime}'>
+            </div>
+            <div class="party_form_content">
+              <button class="party_form_button_r" type="button" onclick="location.href='list'">취소</button>
+              <input class="party_form_button_r" id="subBtn" type="button" value="등록" onclick="goWrite(this.form)"/>
+              <button class="party_form_button_r" type="button" onclick="location.href='#'">임시저장</button>
+            </div>
+          </div>
+        </form>
       </div>
-      </div>
-      <!-- copyright section end -->
-      <!-- Javascript files-->
-      <!-- 썸머노트 자바스크립트 시작 -->
-      <script>
-        $(document).ready(function() {
-            $('textarea[name=content]').summernote({maxWidth: 1000, height: 700});
-        });
-      </script>
-      <!-- 썸머노트 자바스크립트 끝 -->
+    </div>
+  </div> 
+  <!-- furnitures_section2 layout_padding_party -->
+</div>
+<!-- furnitures section end -->
+
+<!-- footer section start -->
+<!--  footer section end -->
+
+<!-- copyright section start -->
+<div class="copyright_section">
+<div class="container">
+   <div class="social_icon">
+      <ul>
+         <li><a href="#"><img src="../images/fb-icon.png"></a></li>
+         <li><a href="#"><img src="../images/twitter-icon.png"></a></li>
+         <li><a href="#"><img src="../images/instagram-icon.png"></a></li>
+         <li><a href="#"><img src="../images/linkedin-icon.png"></a></li>
+      </ul>
+   </div>
+   <p class="copyright_text">2020 All Rights Reserved. Design by <a href="https://html.design">Free html  Templates</a></p>
+</div>
+</div>
+<!-- copyright section end -->
+
+<!-- Javascript files-->
+<!-- 썸머노트 자바스크립트 시작 -->
+<script>
+  $(document).ready(function() {
+    $('textarea[name=content]').summernote({maxWidth: 1000, height: 700});
+  });
+</script>
+<!-- 썸머노트 자바스크립트 끝 -->
 <!-- summernote submit메서드 -->
-       <script>
-            function goWrite(frm) {
-                var title = frm.title.value;
-                var content = frm.content.value;
-                if (title.trim() == '') {
-                    alert("제목을 입력해주세요");
-                    return false;
-                }
-                if (content.trim() == '') {
-                    alert("내용을 입력해주세요");
-                    return false;
-                }
-                frm.submit();
-            }
-        </script>
-   <!--    <script src="../js/jquery.min.js"></script> -->
-      <script src="../js/popper.min.js"></script>
-      <script src="../js/bootstrap.bundle.min.js"></script>
-      <script src="../js/jquery-3.0.0.min.js"></script>
-      <script src="../js/plugin.js"></script>
-      <!-- sidebar -->
-      <script src="../js/jquery.mCustomScrollbar.concat.min.js"></script>
-      <script src="../js/custom.js"></script> 
-      <!-- javascript --> 
-      <script src="../js/owl.carousel.js"></script>
-      <script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>    
-   </body>
+<script>
+  function goWrite(frm) {
+    var title = frm.title.value;
+    var content = frm.content.value;
+    if (title.trim() == '') {
+      alert("제목을 입력해주세요");
+      return false;
+    }
+    if (content.trim() == '') {
+      alert("내용을 입력해주세요");
+      return false;
+    }
+    frm.submit();
+  }
+</script>
+<!--    <script src="../js/jquery.min.js"></script> -->
+<script src="../js/popper.min.js"></script>
+<script src="../js/bootstrap.bundle.min.js"></script>
+<script src="../js/jquery-3.0.0.min.js"></script>
+<script src="../js/plugin.js"></script>
+<!-- sidebar -->
+<script src="../js/jquery.mCustomScrollbar.concat.min.js"></script>
+<script src="../js/custom.js"></script> 
+<!-- javascript --> 
+<script src="../js/owl.carousel.js"></script>
+<script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>    
+</body>
 </html>

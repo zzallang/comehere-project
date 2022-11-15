@@ -34,7 +34,38 @@
           media="screen">
     </head>
     <style>
-	    /*
+	    list-style {
+        padding: 29px 0 18px;
+			}
+			
+			.list-style {
+        padding: 6px 0 10px;
+			}
+			
+			div {
+        display: block;
+			}
+			
+			.sort_area {
+		    float: left;
+		    width: 100%;
+		    padding-top: 0;
+        margin-bottom: 60px;
+	    }
+	    .link_sort.on {
+		    position: relative;
+		    padding-bottom: 5px;
+		    color: #03c75a;
+		    font-weight: 700;
+		    margin: 0px 100px 0px;
+			}
+			.link_sort {
+		    font-size: 15px;
+			}
+			.contact_text {
+		    margin: 20px 20px 50px 20%;
+		    color: #313131;
+		}
 		th {
 	    height: 40px;
 	    padding: 2px;
@@ -43,67 +74,7 @@
 	    text-align: center;
 	    font-size: 13px;
 	    color: var(--boardArticleListTh);
-   	} */
-   	tr {
-   	  text-align:center;
-      padding: 5px;
    	}
-   	tr .title-td {
-   	  text-align:left;
-   	} 
-   	th {
-	   	border-top:1px solid rgb(0 0 0 / 20%);;
-	   	border-bottom:2px solid rgb(0 0 0 / 20%);; 
-	    padding: 10px;
-   	}
-   	
-   	list-style {
-       padding: 29px 0 18px;
-		}
-		
-		.list-style {
-       padding: 6px 0 10px;
-		}
-		
-		div {
-       display: block;
-		}
-		
-		.sort_area {
-	    float: left;
-	    width: 100%;
-	    padding-top: 0;
-      margin-bottom: 60px;
-    }
-    .link_sort.on {
-	    position: relative;
-	    padding-bottom: 5px;
-	    color: #03c75a;
-	    font-weight: 700;
-	    margin: 0px 100px 0px;
-		}
-		.link_sort {
-	    font-size: 15px;
-	    margin: 0px 100px 0px;
-		}
-		.contact_text {
-	    margin: 20px 20px 50px 20%;
-	    color: #313131;
-		}
-		.page_center {
-       display : flex;
-       margin : auto;
-       /* width: 42px; */
-     }
-    .pagination {
-			margin: 20px;
-    }
-     
-/*     a.article :hover {
-      text-decoration: underline; 
-      text-underline-position:under;
-      color: black;
-    } */
     </style>
         <body>
           <!-- header section start -->
@@ -126,8 +97,8 @@
                   <div class="search_icon">
                     <ul>
                       <li data-th-if="${session.loginMember == null}"><a href="../auth/form" >로그인</a></li>
-                      <li data-th-if="${session.loginMember != null}"><a href="../member/viewer">마이페이지</a></li>
-                      <li data-th-if="${session.loginMember != null}"><a href="../auth/logout" data-th-text="${session.loginMember.name} + '(로그아웃)'">동동(로그아웃)</a></li>
+                      <li data-th-if="${session.loginMember != null}"><a href="member/viewer">마이페이지</a></li>
+                      <li data-th-if="${session.loginMember != null}"><a href="auth/logout" data-th-text="${session.loginMember.name} + '(로그아웃)'">동동(로그아웃)</a></li>
                     </ul>
                   </div>
                 </div>
@@ -141,23 +112,22 @@
               <ul class="infoMenu">
                 <li class= "infoMenuOn"><a href="../member/myInfo">회원 정보 변경</a></li>
                 <li class= "infoMenuOn"><a href="../mypage/party-management">모임 관리</a></li>
-                <li class= "infoMenuOn"><a href="../mypage/my-post">나의활동</a></li>
+                <li class= "infoMenuOn"><a href="../mypage/my-post">작성글/스크랩</a></li>
               </ul>
             </div>
             <div class="container">
               <div class="row">
                 <div class="col-md-10">
-                  <h1 class="contact_text">나의활동</h1>
+                  <h1 class="contact_text">작성글/스크랩</h1>
                   <div class="mail_sectin">
 										<div class="sort_area">
 											<a href="#" class="link_sort on">작성글</a>
-											<a href="#" class="link_sort">작성댓글</a>
 											<a href="#" class="link_sort">스크랩</a>
 									</div>
-									<table style="width:100%; background-color: white;">
-<!-- 										<caption>
-											<span class="blind">게시글 목록</span>
-										</caption> -->
+									<table>
+										<caption>
+											<span class="blind">게시물 목록</span>
+										</caption>
 										<colgroup>
 											<col>
 											<col style="width: 120px;">
@@ -165,66 +135,129 @@
 										</colgroup>
 										<thead>
 											<tr>
-												<!-- <th scope="col" width="5"></th> -->
-												<th scope="col" width="10%">번호</th>
-												<th scope="col" width="50%">제목</th>
-												<th scope="col" width="20%">작성일</th>
-												<th scope="col" width="5%">조회</th>
+												<th scope="col">제목</th>
+												<th scope="col">작성일</th>
+												<th scope="col">조회</th>
 											</tr>
 										</thead>
 										<tbody>
-										  <tr>
-												<td class="td_article">
-												  <div class="check_box only_box">
-													</div>
-                        </td>
-                      </tr>
-											<tr data-th-each="myPost , i : ${myPostList}" >
-											   <td>
+											<tr>
+												<td class="td_article"><div class="check_box only_box">
 														<div class="FormInputCheck">
-															<input data-th-id="'check_article_' + ${myPost.no}" type="checkbox" class="input_check">
-															<label data-th-for="'check_article_'  +${myPost.no}" class="label">
-															 <span class="blind">[[${i.count}]]</span>
-															</label>
+															<input id="check_article_7232439" type="checkbox"
+																class="input_check"><label
+																for="check_article_7232439" class="label"><span
+																class="blind">선택</span></label>
 														</div>
-												</td>
-                        <td class="title-td">
+													</div>
+													<div class="board-number">
+														<div class="inner_number">7232439</div>
+													</div>
 													<div class="board-list">
 														<div class="inner_list">
-															<a href="" target="_blank" class="article" >[[${myPost.title}]]</a>
+															<a href="/ArticleRead.nhn?clubid=10209062&amp;articleid=7232439" target="_blank" class="article">6/7 뮌헨 알리안츠아레나 직관 동행 구해요!</a>
 															<span data-v-8ce69c06=""></span>
-                              <a href="" target="_blank" class="cmt">[<em></em>]</a>
+                              <a href="/ArticleRead.nhn?clubid=10209062&amp;articleid=7232439&amp;commentFocus=true" target="_blank" class="cmt">[<em>2</em>]</a>
 														</div>
 													</div>
-												</td>
-												<td class="td_date">[[${myPost.createdDate}]]</td>
-												<td class="td_view">[[${myPost.viewCount}]]</td>
+                        </td>
+												<td class="td_date">2022.05.25.</td>
+												<td class="td_view">97</td>
 											</tr>
+                      <tr>
+                        <td class="td_article"><div class="check_box only_box">
+                            <div class="FormInputCheck">
+                              <input id="check_article_7232439" type="checkbox"
+                                class="input_check"><label
+                                for="check_article_7232439" class="label"><span
+                                class="blind">선택</span></label>
+                            </div>
+                          </div>
+                          <div class="board-number">
+                            <div class="inner_number">7232439</div>
+                          </div>
+                          <div class="board-list">
+                            <div class="inner_list">
+                              <a href="/ArticleRead.nhn?clubid=10209062&amp;articleid=7232439" target="_blank" class="article">6/7 뮌헨 알리안츠아레나 직관 동행 구해요!</a>
+                              <span data-v-8ce69c06=""></span>
+                              <a href="/ArticleRead.nhn?clubid=10209062&amp;articleid=7232439&amp;commentFocus=true" target="_blank" class="cmt">[<em>2</em>]</a>
+                            </div>
+                          </div>
+                        </td>
+                        <td class="td_date">2022.05.25.</td>
+                        <td class="td_view">97</td>
+                      </tr>
+                                            <tr>
+                        <td class="td_article"><div class="check_box only_box">
+                            <div class="FormInputCheck">
+                              <input id="check_article_7232439" type="checkbox"
+                                class="input_check"><label
+                                for="check_article_7232439" class="label"><span
+                                class="blind">선택</span></label>
+                            </div>
+                          </div>
+                          <div class="board-number">
+                            <div class="inner_number">7232439</div>
+                          </div>
+                          <div class="board-list">
+                            <div class="inner_list">
+                              <a href="/ArticleRead.nhn?clubid=10209062&amp;articleid=7232439" target="_blank" class="article">6/7 뮌헨 알리안츠아레나 직관 동행 구해요!</a>
+                              <span data-v-8ce69c06=""></span>
+                              <a href="/ArticleRead.nhn?clubid=10209062&amp;articleid=7232439&amp;commentFocus=true" target="_blank" class="cmt">[<em>2</em>]</a>
+                            </div>
+                          </div>
+                        </td>
+                        <td class="td_date">2022.05.25.</td>
+                        <td class="td_view">97</td>
+                      </tr>
+                                            <tr>
+                        <td class="td_article"><div class="check_box only_box">
+                            <div class="FormInputCheck">
+                              <input id="check_article_7232439" type="checkbox"
+                                class="input_check"><label
+                                for="check_article_7232439" class="label"><span
+                                class="blind">선택</span></label>
+                            </div>
+                          </div>
+                          <div class="board-number">
+                            <div class="inner_number">7232439</div>
+                          </div>
+                          <div class="board-list">
+                            <div class="inner_list">
+                              <a href="/ArticleRead.nhn?clubid=10209062&amp;articleid=7232439" target="_blank" class="article">6/7 뮌헨 알리안츠아레나 직관 동행 구해요!</a>
+                              <span data-v-8ce69c06=""></span>
+                              <a href="/ArticleRead.nhn?clubid=10209062&amp;articleid=7232439&amp;commentFocus=true" target="_blank" class="cmt">[<em>2</em>]</a>
+                            </div>
+                          </div>
+                        </td>
+                        <td class="td_date">2022.05.25.</td>
+                        <td class="td_view">97</td>
+                      </tr>
+                                            <tr>
+                        <td class="td_article"><div class="check_box only_box">
+                            <div class="FormInputCheck">
+                              <input id="check_article_7232439" type="checkbox"
+                                class="input_check"><label
+                                for="check_article_7232439" class="label"><span
+                                class="blind">선택</span></label>
+                            </div>
+                          </div>
+                          <div class="board-number">
+                            <div class="inner_number">7232439</div>
+                          </div>
+                          <div class="board-list">
+                            <div class="inner_list">
+                              <a href="/ArticleRead.nhn?clubid=10209062&amp;articleid=7232439" target="_blank" class="article">6/7 뮌헨 알리안츠아레나 직관 동행 구해요!</a>
+                              <span data-v-8ce69c06=""></span>
+                              <a href="/ArticleRead.nhn?clubid=10209062&amp;articleid=7232439&amp;commentFocus=true" target="_blank" class="cmt">[<em>2</em>]</a>
+                            </div>
+                          </div>
+                        </td>
+                        <td class="td_date">2022.05.25.</td>
+                        <td class="td_view">97</td>
+                      </tr>
 										</tbody>
 									</table>
-                  <!-- 페이징 버튼 시작 -->
-                  <nav aria-label="Page navigation">
-                    <ul class="pagination">
-                      <div class="page_center">
-                        <li class="page-item" th:if="${pageMaker.prev}">
-                          <a class="page-link" th:href="@{my-post(page=${pageMaker.startPage-1})}" aria-label="Previous">
-                            <span aria-hidden="true">&laquo;</span>
-                          </a>
-                        </li>
-                        <th:block th:each="pageNum: ${#numbers.sequence(pageMaker.startPage, pageMaker.endPage)}">
-                          <li class="page-item">
-                            <a class="page-link" th:href="@{my-post(page=${pageNum})}"><i th:text="${pageNum}"></i></a>
-                        </li>
-                        </th:block>
-                        <li class="page-item" th:if="${pageMaker.next && pageMaker.endPage >0}">
-                          <a class="page-link" th:href="@{my-post(page=${pageMaker.endPage+1})}" aria-label="Next">
-                            <span aria-hidden="true">&raquo;</span>
-                          </a>
-                        </li>
-                      </div>
-                    </ul>
-                  </nav>
-                  <!-- 페이징 버튼 끝 -->
 								</div>
               </div>
             </div>
@@ -259,6 +292,7 @@
             <script src="js/owl.carousel.js"></script>
             <script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
             <script>
+            
             
             </script>
         </body>

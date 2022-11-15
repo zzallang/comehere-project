@@ -6,7 +6,7 @@
 
   <resultMap type="Comment" id="commentMap">
     <id column="pcno" property="no"/>
-    <result column="pno" property="partyNo"/>
+    <result column="pno" property="objectNo"/>
     <result column="cont" property="content"/>
     <result column="cdt" property="createdDate"/>
     
@@ -20,8 +20,10 @@
 
   </resultMap>
 
-  <select id="findAll" resultMap="commentMap">
+  <select id="findByPartyNo" resultMap="commentMap" parameterType="HashMap">
     select
+      pc.pcno,
+      m.mno,
       m.filepath,
       m.nick,
       pc.cont,
@@ -32,10 +34,66 @@
       join party p on p.pno=pc.pno
     where
       pc.act=1
+      and p.pno=#{partyNo}
+    order by
+      pcno
+    limit #{cri.pagesStart}, #{cri.perPageNum}
+  </select>
+  
+  <select id="findCommentByNo" resultMap="commentMap">
+    select
+      pc.pcno,
+      m.filepath,
+      m.nick,
+      pc.cont,
+      pc.cdt
+    from
+      party_comment pc 
+      join member m on pc.mno=m.mno
+      join party p on p.pno=pc.bno
+    where
+      pc.act=1
       and p.pno=#{value}
     order by
       pc.pcno desc
+    limit 1
   </select>
+  
+  <insert id="insertComment" parameterType="comment"
+    useGeneratedKeys="true" keyColumn="pcno" keyProperty="no"> 
+    insert into party_comment(pno, mno, cont) 
+    values(#{objectNo},#{writer.no},#{content})
+  </insert>
+
+  <delete id="deleteCommentAll">
+    delete from party_comment 
+    where pno=#{value}
+  </delete>
+
+  <delete id="deleteComment">
+    delete from party_comment 
+    where pcno=#{value}
+  </delete>
+  
+  <update id="updateComment" parameterType="comment">
+    update 
+     party_comment 
+    set 
+      cont=#{content} 
+    where 
+      pcno=#{no}
+  </update> 
+  
+  <select id="findCommentsCount" resultType="Integer">
+    select 
+      count(*) 
+    from 
+      party_comment 
+    where 
+      pno = #{value}
+  </select>
+
+
 
 
 </mapper>

@@ -9,7 +9,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="viewport" content="initial-scale=1, maximum-scale=1">
 <!-- site metas -->
-<title>FindId</title>
+<title>로그인</title>
 <meta name="keywords" content="">
 <meta name="description" content="">
 <meta name="author" content="">
@@ -43,10 +43,20 @@
     color: white;
 }
 
+.contact_text1{
+    width: 100%;
+    float: left;
+    font-size: 36px;
+    color: #ffffff;
+    margin-left: 200px;
+
+}
+
 .col-md-7 {
 margin-left: 14vw;
 margin-right: 14vw;
 }
+
 
 </style>
 
@@ -57,19 +67,15 @@ margin-right: 14vw;
   <div class="header_section">
     <div class="container-fluid">
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="logo">
-          <a href="/app"><img src="../images/comehere_logo.png"></a>
-        </div>
+          <div class="main_logo"><a href="../"><img src="../images/logo.png"></a></div>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
-            <li class="nav-item"><a class="nav-link" href="index.html">운동하기</a></li>
-            <li class="nav-item"><a class="nav-link" href="services.html">건강관리</a></li>
-            <li class="nav-item"><a class="nav-link" href="about.html">커뮤니티</a></li>
+                   <li class="nav-item"><a class="nav-link" href="party/list">운동찾기</a></li>
+                  <li class="nav-item"><a class="nav-link" href="board/main">커뮤니티</a></li>
             <li class="nav-item"><a class="nav-link" href="shop.html">공지사항</a></li>
-            <li class="nav-item"><a class="nav-link" href="contact.html">마이페이지</a></li>
           </ul>
           </div>
       </nav>
@@ -83,7 +89,7 @@ margin-right: 14vw;
       <div class="col-md">
         <form action='findById' method="get">
           <table border='1'>
-            <center><h1 class="contact_text">아이디 찾기</h1></center>
+            <h1 class="contact_text1">Id</h1>
             <tr>
               <input type="text" class="email-bt" placeholder="이름를 입력해주세요" size='30' name ="name" data-th-value="${name}">
             </tr>
@@ -97,9 +103,6 @@ margin-right: 14vw;
         </form>
       </div>
     </div>
-  </div>
-  </div>
-  </div>
   </div>
   </div>
   <div class="copyright_section">

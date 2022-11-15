@@ -11,8 +11,6 @@ public interface MemberService {
 
   boolean update(Member member) throws Exception;
 
-  boolean updatePassWord(Member member) throws Exception;
-
   Member get(int no) throws Exception;
 
   Member get(String id, String password) throws Exception;
@@ -32,6 +30,8 @@ public interface MemberService {
   int nickCheck(String nickname) throws Exception;
 
   int emailCheck(String email) throws Exception;
+
+  boolean updatePW(String password, String email, String id) throws Exception;
 
 }
 

@@ -47,9 +47,9 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                   <ul class="navbar-nav mr-auto">
-			              <li class="nav-item"><a class="nav-link" href="../party/list">운동하기</a></li>
-			              <li class="nav-item"><a class="nav-link" href="../board/main">커뮤니티</a></li>
-			              <li class="nav-item"><a class="nav-link" href="#">공지사항</a></li>
+                       <li class="nav-item"><a class="nav-link" href="../party/list">운동하기</a></li>
+                       <li class="nav-item"><a class="nav-link" href="../board/main">커뮤니티</a></li>
+                       <li class="nav-item"><a class="nav-link" href="#">공지사항</a></li>
                   </ul>
                   <div class="search_icon">
                     <ul>
@@ -69,7 +69,7 @@
               <ul class="infoMenu">
                 <li class= "infoMenuOn"><a href="refresh:">회원 정보 변경</a></li>
                 <li class= "infoMenuOn"><a href="../mypage/party-management">모임 관리</a></li>
-                <li class= "infoMenuOn"><a href="../mypage/my-post">나의활동</a></li>
+                <li class= "infoMenuOn"><a href="../mypage/my-post">작성글/스크랩</a></li>
               </ul>
             </div>
             <div class="container">
@@ -114,17 +114,21 @@
                           </div>
                           <div class="join_menu">관심지역 <br>
                           <select class="favorite-choice" id="favoriteRegion1" name="regionDomain" >
+                          <option value="0">선택안함</option>
                           <option data-th-each="region : ${regionList}"  data-th-value="${region.no}" data-th-text="${region.sigu}"></option>
                       </select> 
                       <select class="favorite-choice" id="favoriteRegion2" name="regionDomain">
+                        <option value="0">선택안함</option>
                         <option data-th-each="region : ${regionList}"  data-th-value="${region.no}" data-th-text="${region.sigu}"></option>
                       </select><br />
                       </div>
                         <div class="join_menu">관심운동</div>
                       <select class="favorite-choice" id="favoriteSports1" name="sportsDomain">
+                        <option value="0">선택안함</option>
                         <option data-th-each="sports : ${sportsList}" data-th-value="${sports.no}" data-th-text="${sports.name}"></option>
                       </select> 
                       <select class="favorite-choice" id="favoriteSports2" name="sportsDomain">
+                        <option value="0">선택안함</option>
                         <option data-th-each="sports : ${sportsList}" data-th-value="${sports.no}" data-th-text="${sports.name}"></option>
                       </select><br />
                       <div class="send_bt"><button type="submit">변경</button></div>
@@ -164,17 +168,17 @@
             });
             
             /* 관심지역 선택한 값 불러오기 시작*/
-					  let memberRestion1 = [[${member.FavoriteRegion[0].Region.no}]]; // 예) 금천구의 번호
-					  console.log(memberRestion1);
-					
-					  let regionOptionLength1 = $("#favoriteRegion1").find("option").length; // select box 안에 option 개수 조회
-					
-					  for (let i=0; i<regionOptionLength1; i++) {
-					    let optionValue = $("#favoriteRegion1").find('option').eq(i).attr("value");
-					    if(memberRestion1 == optionValue) { //
-					      $("#favoriteRegion1").find('option').eq(i).attr('selected', true);
-					    }
-					  }
+                 let memberRestion1 = [[${member.FavoriteRegion[0].Region.no}]]; // 예) 금천구의 번호
+                 console.log(memberRestion1);
+               
+                 let regionOptionLength1 = $("#favoriteRegion1").find("option").length; // select box 안에 option 개수 조회
+               
+                 for (let i=0; i<regionOptionLength1; i++) {
+                   let optionValue = $("#favoriteRegion1").find('option').eq(i).attr("value");
+                   if(memberRestion1 == optionValue) { //
+                     $("#favoriteRegion1").find('option').eq(i).attr('selected', true);
+                   }
+                 }
             
             let memberRestion2 = [[${member.FavoriteRegion[1].Region.no}]]; // 예) 금천구의 번호
             console.log(memberRestion2);

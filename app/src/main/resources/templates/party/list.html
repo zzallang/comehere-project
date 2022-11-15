@@ -1,476 +1,437 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-   <head>
-      <!-- basic -->
-      <meta charset="utf-8">
-      <meta http-equiv="X-UA-Compatible" content="IE=edge">
-      <meta name="viewport" content="width=device-width, initial-scale=1">
-      <!-- mobile metas -->
-      <meta name="viewport" content="width=device-width, initial-scale=1">
-      <meta name="viewport" content="initial-scale=1, maximum-scale=1">
-      <!-- site metas -->
-      <title>여기모여</title>
-      <meta name="keywords" content="">
-      <meta name="description" content="">
-      <meta name="author" content="">
-      <!-- bootstrap css -->
-      <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
-      <!-- style css -->
-      <link rel="stylesheet" type="text/css" href="../css/style.css">
-      <!-- Responsive-->
-      <link rel="stylesheet" href="../css/responsive.css">
-      <!-- fevicon -->
-      <link rel="icon" href="../images/fevicon.png" type="image/gif" />
-      <!-- Scrollbar Custom CSS -->
-      <link rel="stylesheet" href="../css/jquery.mCustomScrollbar.min.css">
-      <!-- Tweaks for older IEs-->
-      <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
-      <!-- owl stylesheets --> 
-      <link rel="stylesheet" href="../css/owl.carousel.min.css">
-      <link rel="stylesheet" href="../css/owl.theme.default.min.css">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
-      <style>
-        .row_party {
-          width: 1200px;
-        }
-        
-        .col-md-6_party_wrap {
-          flex: 0 0 25%;
-            padding: 5px;
-          overflow: hidden;
-        }
-        
-        .col-md-6_party {
-          padding: 5px;
-          border: 1px solid gray;
-        }
-        
-        .temper_text_party {
-            width: 100%;
-            float: left;
-            font-size: medium;
-            color: #fabb25;
-            text-transform: uppercase;
-            font-weight: bold;
-            padding-top: 20px;
-        }
-        
-        .container_main_party {
-          position: relative;
-          width: 100%;
-          max-width: 100%;
-          float: left;
-        }
-        
-        
-        .dololr_text_region {
-          float: left;
-          color: #121111;
-          margin-left: 0px;
-          margin-top: 0px;
-          margin-bottom: 5px;
-          margin-right: 5px;
-          
-          font-size: x-small;
-          
-          border: 1px solid #fabb25;
-          border-radius: 5px;
-          padding-left: 5px;
-          padding-right: 5px;
-        }
-        
-        .dololr_text_sports {  
-          float: left;
-          color: #121111;
-          margin-left: 0px;
-          margin-top: 0px;
-          margin-bottom: 5px;
-          margin-right: 5px;
-          
-            font-size: x-small;
-          
-          
-          border: 1px solid #fabb25;
-          border-radius: 5px;
-          padding-left: 5px;
-          padding-right: 5px;
-        }
-        
-        .dololr_text_datetime {
-          float: right;
-          color: #121111;
-          margin-left: 0px;
-          margin-top: 0px;
-        }
-        
-        .dololr_text_party {
-          width: 100%;
-          float: left;
-          color: #121111;
-          margin-left: 0px;
-          margin-top: 0px;
-          margin-bottom: 0px;
-        }
-        
-        .party_search {
-            width: 100%;
-            float: left;
-            margin-left: 0px;
-            margin-top: 10px;
-        }
-        
-        .party_search_condition {
-            min-width: 1200px;
-          
-            height: 100px;
-            float: left;
-            margin-left: 0px;
-            margin-top: 10px;
-        }
-        
-        .party_condition {
-          display: flex !important;
-          margin: 10px 10px 10px 0;
-          float: left;
-          width: 80px;
-        }
-        
-        .party_search_bar {
-          border: 1px solid black;
-          margin-top: 10px;
-          width: 40%;
-          float: left;
-          
-        }
-        
-        .button_box {
-            width: 100%;
-          
-          overflow: hidden;
-          
-        }
-        
-        .party_insert_button {
-            float: right;
-          margin-right: 30px;
-          
-          border: 1px solid #fabb25;
-          border-radius: 5px;
-          padding: 5px 10px 5px 10px;
-                      font-size: x-small;
-        }
-        
-        .condition_button {
-          float: left;
-        
-          margin: 10px 10px 10px 5px;
-          
-          border: 1px solid #fabb25;
-          border-radius: 5px;
-          padding: 5px 10px 5px 10px;
-                      font-size: x-small;
-          
-        }
-        
-        
-        .layout_padding_party {
-          min-width: 1200px;
-             padding-top: 30px;
-             padding-bottom: 20px;
-             
-        }
-        
-        .container_party {
-            padding-right: 15px;
-            padding-left: 15px;
-          margin: 0 auto;
-        }
-        
-        .row_party_detail {
-          width: 100%;
-          margin: 0 auto;
-        }
-        
-        .layout_padding_party_detail {
-             padding-top: 30px;
-             padding-bottom: 0px;
-            overflow: hidden;
-        
-        }
-        
-        .dololr_text_tatlle {  
-          float: right;
-          color: #121111;
-          margin-left: 0px;
-          margin-top: 0px;
-          margin-bottom: 5px;
-          margin-right: 5px;
-          
-            font-size: x-small;
-          
-          
-          border: 1px solid #fabb25;
-          border-radius: 5px;
-          padding: 5px 10px 5px 10px;
-        }
-        
-        
-        .list_image {
-          opacity: 1;
-          display: block;
-          margin: 0 auto;
-          max-height: 200px;
-          transition: .5s ease;
-          backface-visibility: hidden;
-        }
-        
-        
-        
-      </style>
+<head>
+  <!-- basic -->
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- mobile metas -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+  <!-- site metas -->
+  
+  <title>여기모여</title>
+  
+  <meta name="keywords" content="">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <!-- bootstrap css -->
+  <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
+  <!-- style css -->
+  <link rel="stylesheet" type="text/css" href="../css/style.css">
+  <!-- Responsive-->
+  <link rel="stylesheet" href="../css/responsive.css">
+  <!-- fevicon -->
+  <link rel="icon" href="../images/fevicon.png" type="image/gif" />
+  <!-- Scrollbar Custom CSS -->
+  <link rel="stylesheet" href="../css/jquery.mCustomScrollbar.min.css">
+  <!-- Tweaks for older IEs-->
+  <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+  <!-- owl stylesheets --> 
+  <link rel="stylesheet" href="../css/owl.carousel.min.css">
+  <link rel="stylesheet" href="../css/owl.theme.default.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
 
+  <!-- 공식 부트스트랩 -->
+  <link href="../css/bootstrap/bootstrap.css" rel="stylesheet">
+  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 
+<style>
+  .row_party {
+    width: 1200px;
+    justify-content: flex-start;
+  }
+  
+  .col-md-6_party_wrap {
+    flex: 0 0 25%;
+    padding: 5px;
+    overflow: hidden;
+  }
+  
+  .col-md-6_party {
+    padding: 5px;
+    border: 1px solid gray;
+  }
+  
+  .temper_text_party {
+    width: 100%;
+    float: left;
+    font-size: medium;
+    color: #fabb25;
+    text-transform: uppercase;
+    font-weight: bold;
+    padding-top: 20px;
+  }
+  
+  .container_main_party {
+    position: relative;
+    width: 100%;
+    max-width: 100%;
+    float: left;
+  }
+  
+  
+  .dololr_text_region {
+    float: left;
+    color: #121111;
+    margin-left: 0px;
+    margin-top: 0px;
+    margin-bottom: 5px;
+    margin-right: 5px;
+    
+    font-size: x-small;
+    
+    border: 1px solid #fabb25;
+    border-radius: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+  
+  .dololr_text_sports {  
+    float: left;
+    color: #121111;
+    margin-left: 0px;
+    margin-top: 0px;
+    margin-bottom: 5px;
+    margin-right: 5px;
+    
+    font-size: x-small;
+  
+    
+    border: 1px solid #fabb25;
+    border-radius: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+  
+  .dololr_text_datetime {
+    float: right;
+    color: #121111;
+    margin-left: 0px;
+    margin-top: 0px;
+  }
+  
+  .dololr_text_party {
+    width: 30px;
+    float: left;
+    color: #121111;
+    margin-left: 0px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+  }
+  
+  .dololr_text_party_star {
+    float: left;
+    margin-left: 0px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+  }
+    
+  .party_search {
+    width: 100%;
+    float: left;
+    margin-left: 0px;
+    margin-top: 10px;
+  }
+  
+  .party_search_condition {
+    min-width: 1200px;
+  
+    height: 100px;
+    float: left;
+    margin-left: 0px;
+    margin-top: 10px;
+  }
+  
+  .party_condition {
+    display: flex !important;
+    margin: 10px 10px 10px 0;
+    float: left;
+    width: 80px;
+  }
+  
+  .party_search_bar {
+    border: 1px solid black;
+    margin-top: 10px;
+    width: 40%;
+    float: left;
+    
+  }
+  
+  .button_box {
+    width: 100%;
+  
+    overflow: hidden;
+    
+  }
+  
+  .party_insert_button {
+    float: right;
+    margin-right: 30px;
+    
+    border: 1px solid #fabb25;
+    border-radius: 5px;
+    padding: 5px 10px 5px 10px;
+    font-size: x-small;
+   
+  }
+  
+  .condition_button {
+    float: left;
+    background-color: white;
+    margin: 10px 10px 10px 5px;
+    
+    border: 1px solid #fabb25;
+    border-radius: 5px;
+    padding: 5px 10px 5px 10px;
+    font-size: x-small;
+    
+  }
+  
+  
+  .layout_padding_party {
+    min-width: 1200px;
+    padding-top: 30px;
+    padding-bottom: 20px;
+       
+  }
+  
+  .container_party {
+    padding-right: 15px;
+    padding-left: 15px;
+    margin: 0 auto;
+  }
+  
+  .row_party_detail {
+    width: 100%;
+    margin: 0 auto;
+  }
+  
+  .layout_padding_party_detail {
+    padding-top: 30px;
+    padding-bottom: 0px;
+    overflow: hidden;
+  
+  }
+  
+  .dololr_text_tatlle {  
+    float: right;
+    color: #121111;
+    margin-left: 0px;
+    margin-top: 0px;
+    margin-bottom: 5px;
+    margin-right: 5px;
+    
+    font-size: x-small;
+    
+    
+    border: 1px solid #fabb25;
+    border-radius: 5px;
+    padding: 5px 10px 5px 10px;
+  }
+  
+  
+  .list_image {
+    opacity: 1;
+    display: block;
+    margin: 0 auto;
+    max-height: 200px;
+    transition: .5s ease;
+    backface-visibility: hidden;
+  }
 
-   </head>
-   <body>
-  <!-- header section start -->
-  <div class="header_section">
-    <div class="container-fluid">
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="logo">
-          <a href="index.html"><img src="images/comehere_logo.png"></a>
-        </div>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item"><a class="nav-link" href="../party/list">운동하기</a></li>
-            <li class="nav-item"><a class="nav-link" href="#">건강관리</a></li>
-            <li class="nav-item"><a class="nav-link" href="../board/listBoard?no=1">커뮤니티</a></li>
-            <li class="nav-item"><a class="nav-link" href="#">공지사항</a></li>
-          </ul>
-          <div class="search_icon">
-            <ul>
-              <!-- <li><a href="auth/form"><img src="images/search-icon.png"></a></li> -->
-              <li data-th-if="${session.loginMember == null}"><a href="../auth/form" >로그인</a></li>
-              <li data-th-if="${session.loginMember != null}"><a href="../auth/logout" data-th-text="${session.loginMember.name} + '(로그아웃)'">동동(로그아웃)</a></li>
-              <li data-th-if="${session.loginMember != null}"><a href="../mypage/viewer">마이페이지</a></li>
-            </ul>
-          </div>
-        </div>
-      </nav>
+  .page_center {
+    display: flex;
+    margin: auto;
+  }
+
+</style>
+</head>
+
+<body>
+<!-- header section start -->
+<div class="header_section">
+  <div class="container-fluid">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="main_logo">
+      <a href="/app"><img src="../images/logo.png"></a>
     </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item"><a class="nav-link" href="list">운동찾기</a></li>
+        <li class="nav-item"><a class="nav-link" href="../board/main">커뮤니티</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">공지사항</a></li>
+      </ul>
+      <div class="login-bt">
+        <ul>
+          <li data-th-if="${session.loginMember == null}"><a href="../auth/form" >로그인</a></li>
+          <li data-th-if="${session.loginMember != null}"><a href="../member/viewer">마이페이지</a></li>
+          <li data-th-if="${session.loginMember != null}"><a href="../auth/logout" data-th-text="${session.loginMember.name} + '(로그아웃)'">동동(로그아웃)</a></li>
+        </ul>
+      </div>
+    </div>
+    </nav>
   </div>
-  <!-- header section end -->
-      <!-- furnitures section start -->
-      <div class="furnitures_section layout_padding_party">
-         <div class="container">
-            <h1 class="our_text">운동 모임 찾기</h1>
-            <p class="ipsum_text">원하는 운동을 찾아보세요!</p>
-
-
-<h2>모임 찾기</h2>
-<div class="party_search">
-<h4>상세검색</h4>
-<div class="party_search_condition">
-<div class="party_search">
-  <select class="party_condition" id="region_sido" onchange="loadRegion();">
-  </select>
-  <select class="party_condition"  id="region_sigu">
-  </select>
-  <select class="party_condition">
-    <th:block th:each="sport : ${sports}">
-       <option th:text="${sport.name}"  th:value="${sport.no}"></option>
-    </th:block>
-  </select>
-  <input class="" name="partyDate" type="date">
-  <input class="" name="partyTime" type="time" step="1" value="00:00:00">
-
 </div>
-<div class="party_search_bar">
-        <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
-          <input type="search" class="form-control form-control-dark text-bg-dark" placeholder="검색어를 입력하세요..." aria-label="Search">
-        </form>
+<!-- header section end -->
+<!-- furnitures section start -->
+<div class="furnitures_section layout_padding_party">
+  <div class="container">
+    <h1 class="our_text">운동 모임 찾기</h1>
+    <p class="ipsum_text">원하는 운동을 찾아보세요!</p>
+    <h2>모임 찾기</h2>
+    <div class="party_search">
+      <h4>상세검색</h4>
+      <div class="party_search_condition">
+        <div class="party_search">
+          <form action="">
+            <select class="party_condition" id="region_sido">
+              <option value="0" selected>-시/도-</option>
+              <option th:text="서울시" id="sidoNo" th:value="1"></option>
+            </select>
+            <select class="party_condition"  id="region_sigu">
+              <option value="0" selected>-시/군/구-</option>
+              <th:block th:each="region : ${regions}">
+                <option th:text="${region.sigu}" id="siguNo" th:value="${region.no}"></option>
+              </th:block>
+            </select>
+            <select class="party_condition"  id="sports_name">
+              <option value="0" selected>-운동-</option>
+              <th:block th:each="sport : ${sports}">
+                <option th:text="${sport.name}" id="sportsNo" th:value="${sport.no}"></option>
+              </th:block>
+            </select>
+            <input id="partyDate" name="partyDate" type="date" >
+            <input id="partyTime" name="partyTime" type="time" step="1" >
+          </form>
+        </div>
+        <div class="party_search_bar">
+          <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
+            <input id="list_search" type="search" class="form-control form-control-dark text-bg-dark" placeholder="검색어를 입력하세요..." aria-label="Search">
+            <button type="button" id='searchBtn'>검색</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="furnitures_section2 layout_padding_party">
+      <div class="button_box">
+        <button th:if="${session.loginMember} != null" class="party_insert_button" type="button" onclick="location.href='form'">모임 개설</button>
+        <button th:if="${session.loginMember} == null" class="party_insert_button" type="button" onclick="location.href='../auth/form'">모임 개설</button>
+      </div>
+      <div class="button_box">
+        <button type="button" value="0" id="list_reset" class="condition_button">전체보기</button>
+        <button type="button" value="0" id="list_star" class="condition_button">평점순</button>
+        <button type="button" value="0" id="list_create" class="condition_button">최신순</button>
+        <button type="button" value="0" id="list_partyDate" class="condition_button">기간임박순</button>
+      </div>
+      <div id="partyListResult" >
+        <div id="partyList" class="row row_party">
+          <div th:replace="party/list-ajax :: partyList">list-ajax.html</div>
+        </div>
+      </div>
+      <div id="partyPage">
+        <div th:replace="party/list-ajax-page :: partyPage">list-ajax-page.html</div>
+      </div>
+
+    </div> <!-- furnitures_section2 layout_padding_party -->
+  </div>
 </div>
-
-</div>
-
-</div>
-
-            <div class="furnitures_section2 layout_padding_party">
-            
-            <div class="button_box">
-                <button th:if="${session.loginMember} != null" class="party_insert_button" type="button" onclick="location.href='form'">모임 개설</button>
-                <button th:if="${session.loginMember} == null" class="party_insert_button" type="button" onclick="location.href='../auth/form'">모임 개설</button>
-            </div>
-            
-            <div class="button_box">
-                <button class="condition_button" type="button" onclick="location.href='#'">평점순</button>
-                <button class="condition_button" type="button" onclick="location.href='#'">최신순</button>
-                <button class="condition_button" type="button" onclick="location.href='#'">기간임박순</button>
-            </div>
-            
-               <div class="row row_party">
-                <th:block th:each="party : ${partys}">
-                  <div class="col-md-6 col-md-6_party_wrap">
-                     <div class="container_main_party">
-                     <a th:href="@{detail(no=${party.no})}">
-                     <img th:if="${party.thumbnail != null}"  th:src="@{'http://localhost:8888/app/party/files/' + ${party.thumbnail}}" alt="모임썸네일" class="list_image">
-                     <img th:if="${party.thumbnail == null}"  src="../images/img-2.png" alt="Avatar" class="list_image">
-                        <div class="overlay">
-                           <a th:href="@{detail(no=${party.no})}" class="icon" title="User Profile">
-                           <i class="fa fa-search"></i>
-                           </a>
-                        </div>
-                        </a>
-                     </div>
-                      <a th:href="@{detail(no=${party.no})}">
-                     <h3 class="temper_text_party" th:text="${party.title == ''} ? '(제목없음)' : ${party.title}">
-                     </h3>
-                     </a>
-                     
-                     <div class="container_main_party">
-                       <p class="dololr_text_region" th:text="${party.region.sido}"></p>
-                       <p class="dololr_text_region" th:text="${party.region.sigu}"></p>
-                       <p class="dololr_text_sports" th:text="${party.sports.name}"></p>
-                     </div>
-                     <span class="dololr_text_party" th:text="${party.star}"></span>
-                     <div class="container_main_party">
-                       <p class="dololr_text_datetime" th:text="${party.partyTime}"></p>
-                       <p class="dololr_text_datetime" th:text="${party.partyDate}"></p>
-                     </div>
+<!-- furnitures section end -->
 
 
-                  </div>
-                </th:block>
-
-
-               </div>
-            </div> <!-- furnitures_section2 layout_padding_party -->
+<!-- footer section start -->
+<div class="footer_section layout_padding">
+   <div class="container">
+      <div class="row">
+         <div class="col-lg-3 col-sm-6">
+            <div class="fooer_logo"><img src="../images/footer-logo.png"></div>
+            <p class="footer_lorem_text">There are many variat
+               ions of passages of L
+               orem Ipsum available
+               , but the majority h
+               ave suffered altera
+               tion in some form, by 
+            </p>
+         </div>
+         <div class="col-lg-3 col-sm-6">
+            <h1 class="customer_text">LET US HELP YOU</h1>
+            <p class="footer_lorem_text">There are many variat
+               ions of passages of L
+               orem Ipsum available
+               , but the majority h
+               ave suffered altera
+               tion in some form, by 
+            </p>
+         </div>
+         <div class="col-lg-3 col-sm-6">
+            <h1 class="customer_text">INFORMATION</h1>
+            <p class="footer_lorem_text1">About Us<br>
+               Careers<br>
+               Sell on shopee<br>
+               Press & News<br>
+               Competitions<br>
+               Terms & Conditions
+            </p>
+         </div>
+         <div class="col-lg-3 col-sm-6">
+            <h1 class="customer_text">OUR Design</h1>
+            <p class="footer_lorem_text">There are many variat
+               ions of passages of L
+               orem Ipsum available
+               , but the majority h
+               ave suffered altera
+               tion in some form, by 
+            </p>
          </div>
       </div>
-      <!-- furnitures section end -->
-      <!-- footer section start -->
-      <div class="footer_section layout_padding">
-         <div class="container">
-            <div class="row">
-               <div class="col-lg-3 col-sm-6">
-                  <div class="fooer_logo"><img src="../images/footer-logo.png"></div>
-                  <p class="footer_lorem_text">There are many variat
-                     ions of passages of L
-                     orem Ipsum available
-                     , but the majority h
-                     ave suffered altera
-                     tion in some form, by 
-                  </p>
-               </div>
-               <div class="col-lg-3 col-sm-6">
-                  <h1 class="customer_text">LET US HELP YOU</h1>
-                  <p class="footer_lorem_text">There are many variat
-                     ions of passages of L
-                     orem Ipsum available
-                     , but the majority h
-                     ave suffered altera
-                     tion in some form, by 
-                  </p>
-               </div>
-               <div class="col-lg-3 col-sm-6">
-                  <h1 class="customer_text">INFORMATION</h1>
-                  <p class="footer_lorem_text1">About Us<br>
-                     Careers<br>
-                     Sell on shopee<br>
-                     Press & News<br>
-                     Competitions<br>
-                     Terms & Conditions
-                  </p>
-               </div>
-               <div class="col-lg-3 col-sm-6">
-                  <h1 class="customer_text">OUR Design</h1>
-                  <p class="footer_lorem_text">There are many variat
-                     ions of passages of L
-                     orem Ipsum available
-                     , but the majority h
-                     ave suffered altera
-                     tion in some form, by 
-                  </p>
-               </div>
-            </div>
-            <div class="input-group mb-3">
-               <input type="text" class="form-control" placeholder="Enter your email" aria-label="Enter your email" aria-describedby="basic-addon2">
-               <div class="input-group-append">
-                  <span class="input-group-text" id="basic-addon2"><a href="#">Subscribe</a></span>
-               </div>
-            </div>
+      <div class="input-group mb-3">
+         <input type="text" class="form-control" placeholder="Enter your email" aria-label="Enter your email" aria-describedby="basic-addon2">
+         <div class="input-group-append">
+            <span class="input-group-text" id="basic-addon2"><a href="#">Subscribe</a></span>
          </div>
       </div>
-      <!--  footer section end -->
-      <!-- copyright section start -->
-      <div class="copyright_section">
-      <div class="container">
-         <div class="social_icon">
-            <ul>
-               <li><a href="#"><img src="../images/fb-icon.png"></a></li>
-               <li><a href="#"><img src="../images/twitter-icon.png"></a></li>
-               <li><a href="#"><img src="../images/instagram-icon.png"></a></li>
-               <li><a href="#"><img src="../images/linkedin-icon.png"></a></li>
-            </ul>
-         </div>
-         <p class="copyright_text">2020 All Rights Reserved. Design by <a href="https://html.design">Free html  Templates</a></p>
-      </div>
-      <!-- copyright section end -->
-      <!-- Javascript files-->
-   <!--    <script src="../js/jquery.min.js"></script> -->
+   </div>
+</div>
+<!--  footer section end -->
+
+<!-- copyright section start -->
+<div class="copyright_section">
+<div class="container">
+   <div class="social_icon">
+      <ul>
+         <li><a href="#"><img src="../images/fb-icon.png"></a></li>
+         <li><a href="#"><img src="../images/twitter-icon.png"></a></li>
+         <li><a href="#"><img src="../images/instagram-icon.png"></a></li>
+         <li><a href="#"><img src="../images/linkedin-icon.png"></a></li>
+      </ul>
+   </div>
+   <p class="copyright_text">2020 All Rights Reserved. Design by <a href="https://html.design">Free html  Templates</a></p>
+</div>
+<!-- copyright section end -->
+
+<script>
+document.getElementById('searchButton').addEventListener('click', deleteBoard);
+
+</script>
+
+<!-- Javascript files-->
+<script src="../js/jquery.min.js"></script>
 
 
-      <script>
-      let sidos = [
-          {no:"",sido:""},
-          {no:"1",sido:"서울시"},
-          {no:"2",sido:"경기도"}
-      ];
-      
-      let regions = [
-          {v:"",t:""},
-          {v:"1",t:"강남구"},
-          {v:"2",t:"서초구"}
-      ];
-      
-      function loadSido(){
-    	  let h= [];
-    	  sidos.forEach(item => {
-    		  h.push('<option value="' + item.no + '">' + item.sido + '</option>');
-    	  });
-    	  document.getElementById("region_sido").innerHTML = h.join("");
-      }
-      
-      function loadRegion(){
-    	    let region_sido = document.getElementById("region_sido").value;
-    	    let h = [];
-    	    if (region_sido == "") {
-    	    	
-    	    } else {
-    	    	if (region_sido == "1") {
-    	    		regions.forEach(item => {
-	    	      h.push('<option value="' + item.v + '">' + item.t + '</option>');
-	            });
-    	    	}
-    	    }
-	            document.getElementById("region_sigu").innerHTML = h.join("");
-        }
-      
-      loadSido();
-      </script>
-
-      <script src="../js/popper.min.js"></script>
-      <script src="../js/bootstrap.bundle.min.js"></script>
-      <script src="../js/jquery-3.0.0.min.js"></script>
-      <script src="../js/plugin.js"></script>
-      <!-- sidebar -->
-      <script src="../js/jquery.mCustomScrollbar.concat.min.js"></script>
-      <script src="../js/custom.js"></script>
-      <!-- javascript --> 
-      <script src="../js/owl.carousel.js"></script>
-      <script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>    
-
-   </body>
+<script src="../js/popper.min.js"></script> 
+<script src="../js/bootstrap.bundle.min.js"></script>
+<script src="../js/jquery-3.0.0.min.js"></script>
+<!--  <script src="../js/plugin.js"></script>--><!-- selectbox 뜨는 -->
+<!-- sidebar -->
+<script src="../js/jquery.mCustomScrollbar.concat.min.js"></script>
+<script src="../js/custom.js"></script>
+<!-- javascript --> 
+<script src="../js/owl.carousel.js"></script>
+<script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>    
+<script src="/app/js/party/partylist.js"></script>
+</body>
 </html>
