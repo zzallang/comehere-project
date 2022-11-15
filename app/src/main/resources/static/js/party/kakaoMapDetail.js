@@ -1,18 +1,14 @@
-  let latResultVal = $("#latResult").val();
-  let lngResultVal = $("#lngResult").val();
-  let mapNameVal = $("#mapName").val();
-  let mapAdressVal = $("#mapAdress").val();
-  
-  console.log(lngResultVal);
-  console.log(latResultVal);
-  
+let latResultVal = $("#latResult").val();
+let lngResultVal = $("#lngResult").val();
+let mapNameVal = $("#mapName").val();
+let mapAdressVal = $("#mapAdress").val();
   
 var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
     mapOption = {
         center: new kakao.maps.LatLng(lngResultVal, latResultVal), // 지도의 중심좌표
         level: 6, // 지도의 확대 레벨
     }; 
-      
+
 // 지도를 생성한다 
 var map = new kakao.maps.Map(mapContainer, mapOption); 
 // 마우스 드래그와 모바일 터치를 이용한 지도 이동을 막는다
@@ -50,7 +46,6 @@ function searchDetailAddrFromCoords(coords, callback) {
     geocoder.coord2Address(coords.getLng(), coords.getLat(), callback);
 }
 
-
 function detailPick (marker, mapNameVal, mapAdressVal) {
     detailAddr = '<div>주소 : ' + mapAdressVal + '</div>';
     
@@ -58,10 +53,8 @@ function detailPick (marker, mapNameVal, mapAdressVal) {
                     '<span class="title" style="padding-bottom:5px; font-weight: bolder">' + mapNameVal + '</span>' + 
                     detailAddr + 
                 '</div>';
-
     
     map.panTo(marker.getPosition());
-    console.log(marker.getPosition());
     
     let mapResult = JSON.stringify(marker.getPosition());
     let [latResult, lngResult] = mapResult.split(',');
@@ -69,17 +62,8 @@ function detailPick (marker, mapNameVal, mapAdressVal) {
     let [b, lngResult2] = lngResult.split(':');
     let [lngResult3, c] = lngResult2.split('}');
 
-    console.log(latResult2);
-    console.log(lngResult3);
-    
-    
-    
-    
     $('span[id=mapSelectName]').html(mapNameVal + ", ");
     $('span[id=mapSelectAddress]').html(mapAdressVal);
-    
-    
-    
     
     // 인포윈도우에 클릭한 위치에 대한 상세 주소정보를 표시합니다
     infowindow.setContent(content);
@@ -87,16 +71,13 @@ function detailPick (marker, mapNameVal, mapAdressVal) {
     
 }
 
-
 $(document).ready(() => {
-  console.log("이벤트 실행");
   searchDetailAddrFromCoords(marker.getPosition(), function(result, status) {
     if (status === kakao.maps.services.Status.OK) {
       detailPick(marker, mapNameVal, mapAdressVal);
     }   
   });
 });
-
 
 /*
 kakao.maps.event.addListener(marker, 'click', function() {
