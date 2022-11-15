@@ -7,6 +7,7 @@ let searchText = "0";
 let listStar = "0";
 let listCreate = "0";
 let listPartyDate = "0";
+let page = "0";
 
 let btnValue = "";
 
@@ -39,10 +40,10 @@ $("#list_reset").click(() => {
   $("#list_star").attr('value','0');
   $("#list_create").attr('value','0');
   $("#list_partyDate").attr('value','0');
-  console.log($("#list_star").val())
-  console.log($("#list_create").val())
-  console.log($("#list_partyDate").val())
-  console.log("구분")
+  $("#list_star").css('background-color','white');
+  $("#list_create").css('background-color','white');
+  $("#list_partyDate").css('background-color','white');
+  
   loadList(getListConditions())
 });
 
@@ -62,13 +63,29 @@ $("#list_partyDate").click(() => {
   loadList(getListConditions())
 });
 
-$("#test1").click(function test() {
-  function test(){
-  
-  }
+$(document).on("click", "#prevPage", () => {
+  let pageValue = $("#prevPage").val();
+  loadList(getListConditions(pageValue));
+  loadPage(getListConditions(pageValue));
 });
 
-
+$(document).on("click", ".pageNum", (e) => {
+  console.log($(e.target).val());
+  console.log($(e.target).text());
+  let pageValue = "";
+  if ($(e.target).text() != "") {
+    pageValue = $(e.target).text();
+  }
+  if ($(e.target).val() != "") {
+    pageValue = $(e.target).val();
+  }  loadList(getListConditions(pageValue));
+  loadPage(getListConditions(pageValue));
+});
+$(document).on("click", "#nextPage", () => {
+  let pageValue = $("#nextPage").val();
+  loadList(getListConditions(pageValue));
+  loadPage(getListConditions(pageValue));
+});
 
 function changeBtnValue(btnId, btnValue) {
   if (btnValue == 0) {
@@ -81,7 +98,7 @@ function changeBtnValue(btnId, btnValue) {
   }
 }
 
-function getListConditions() {
+function getListConditions(pageValue) {
   var params = {}
   if ($("#region_sido").val() != "0") {
     params.si = $("#region_sido").val();
@@ -126,8 +143,12 @@ function getListConditions() {
     params.listStar = $("#list_star").val();
     params.listCreate = $("#list_create").val();
     params.listPartyDate = $("#list_partyDate").val();
-
   }
+  if (pageValue != "") {
+    console.log(pageValue);
+    params.page = pageValue;
+  }
+  
   return params;
 }
 
@@ -148,3 +169,18 @@ function loadList(params) {
   });
 
 }
+
+function loadPage(params) {
+  
+  $.ajax({
+    type: "GET",
+    url: "/app/party/list-ajax-page",
+    data: params,
+    success: function(result) {
+        
+      console.log(result);
+      $('#partyPage').html(result);
+      }
+  });
+}
+

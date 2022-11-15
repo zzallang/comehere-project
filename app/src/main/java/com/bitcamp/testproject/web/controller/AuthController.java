@@ -46,9 +46,9 @@ public class AuthController {
   }
 
   @PostMapping("login")
-  public ModelAndView login(String id, String password, HttpServletRequest request , HttpServletResponse response,
-      HttpSession session, String beforePageURL) throws Exception {
-
+  public ModelAndView login(String id, String password, HttpServletResponse response,
+      HttpSession session) throws Exception {
+    //    , String beforePageURL
     Member member = memberService.get(id, password);
 
     if (member != null) {
@@ -64,8 +64,8 @@ public class AuthController {
     response.addCookie(cookie);
 
     if(member != null) {
-      //      ModelAndView mv = new ModelAndView("redirect:/");
-      ModelAndView mv = new ModelAndView("redirect:" + beforePageURL);
+      ModelAndView mv = new ModelAndView("redirect:/");
+      //      ModelAndView mv = new ModelAndView("redirect:" + beforePageURL);
       mv.addObject("member", member);
       return mv;
     }
@@ -74,6 +74,7 @@ public class AuthController {
     mv.addObject("member", member);
     return mv;
   }
+
 
   @GetMapping("findId")
   public String findId() {
@@ -140,10 +141,8 @@ public class AuthController {
   public String newPassword(String email, String id, Model model) {
     model.addAttribute("email", email);
     model.addAttribute("id", id);
-
     return "auth/newPassword";
   }
-
 
   @GetMapping("logout")
   public String logout(HttpSession session, HttpServletRequest request) throws Exception {
@@ -163,6 +162,7 @@ public class AuthController {
     boolean result = memberService.updatePW(password, email, id);
 
     if (result != false) {
+      System.out.println("변경 실패");
     } 
     return "redirect:form";
   }

@@ -18,6 +18,8 @@ public interface PartyCommentDao {
 
   int deleteComment(int partyNo);
 
+  int deleteCommentAll(int partyNo);
+
   int updateComment(Comment comment);
 
   int findCommentsCount(int partyNo);

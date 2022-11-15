@@ -5,6 +5,7 @@ import java.util.Map;
 import com.bitcamp.testproject.vo.Board;
 import com.bitcamp.testproject.vo.BoardCategory;
 import com.bitcamp.testproject.vo.Criteria;
+import com.bitcamp.testproject.vo.Search;
 
 // 비즈니스 로직을 수행하는 객체의 사용규칙(호출규칙)
 //
@@ -38,7 +39,7 @@ public interface BoardService {
 
   List<Map<String, Object>> list(Criteria cri) throws Exception;
 
-  int countBoardListTotal(int no);
+  int countTotalBoardWithSearch(int no, Search search);
 
   List<Map<String, Object>> bestList();
 
@@ -49,6 +50,10 @@ public interface BoardService {
   BoardCategory getCategory(int no);
 
   int deleteThumbnail(int no);
+
+  List<Map<String, Object>> listWithKeyword(Criteria cri, Search search);
+
+  int countTotalBoard(int no) throws Exception;
 
 
 

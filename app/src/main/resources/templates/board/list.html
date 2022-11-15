@@ -11,7 +11,6 @@
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <meta name="viewport" content="initial-scale=1, maximum-scale=1">
       <!-- site metas -->
-      <title>Contact</title>
       <meta name="keywords" content="">
       <meta name="description" content="">
       <meta name="author" content="">
@@ -86,6 +85,30 @@
         #community-title {
           color: #ffb607;
         }
+        .temp-height {
+          min-height: 500px;
+        }
+        .form-selectJd {
+          display: block;
+          width: 20%;
+          padding: 0.375rem 2.25rem 0.375rem 0.75rem;
+          -moz-padding-start: calc(0.75rem - 3px);
+          font-size: 1rem;
+          font-weight: 400;
+          line-height: 1.5;
+          color: #212529;
+          background-color: #fff;
+          background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e");
+          background-repeat: no-repeat;
+          background-position: right 0.75rem center;
+          background-size: 16px 12px;
+          border: 1px solid #ced4da;
+          border-radius: 0.375rem;
+          transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+          -webkit-appearance: none;
+          -moz-appearance: none;
+          appearance: none;
+        }
         
       </style>
 
@@ -140,6 +163,8 @@
             <div class="furnitures_section2 layout_padding">
                <div class="row">
                   <!-- 게시글 목록 시작 -->
+               <div style="width:90%;font-weight: lighter;" data-th-if="${search.keyword != null}" 
+                    data-th-text="'&lsquo;' + ${search.type} + '&rsquo;' + '에 '   + '&lsquo;' + ${search.keyword} + '&rsquo;' +' 을(를) 포함한 검색결과 입니다.'"></div>
                   <table class="table">
                     <tr>
                       <th>번호</th>
@@ -167,17 +192,21 @@
                     <ul class="pagination">
                       <div class="page_center">
                         <li class="page-item" th:if="${pageMaker.prev}">
-                          <a class="page-link" th:href="@{list(pageMaker.startPage-1, no=${catenoInBoard.cateno})}" aria-label="Previous">
+                          <a class="page-link" th:href="@{list(page=${pageMaker.startPage-1}, no=${catenoInBoard.cateno})}" aria-label="Previous">
                             <span aria-hidden="true">&laquo;</span>
                           </a>
                         </li>
-                        <th:block th:each="pageNum: ${#numbers.sequence(pageMaker.startPage, pageMaker.endPage)}">
-                          <li class="page-item">
-                            <a class="page-link" th:href="@{list(page=${pageNum}, no=${catenoInBoard.cateno})}"><i th:text="${pageNum}"></i></a>
+                        <th:block th:if="${pageMaker.endPage != 0}" th:each="pageNum: ${#numbers.sequence(pageMaker.startPage, pageMaker.endPage)}">
+                          <li data-th-id="${'pageButton' + pageNum}"  class="page-item">
+                            <a data-th-if="${search.keyword == null}" class="page-link" th:href="@{list(page=${pageNum}, no=${catenoInBoard.cateno})}"><i th:text="${pageNum}"></i></a>
+                            <a data-th-if="${search.keyword != null}" class="page-link" th:href="@{list(page=${pageNum}, no=${catenoInBoard.cateno}, keyword=${search.keyword}, type=${search.type})}"><i th:text="${pageNum}"></i></a>
                           </li>
                         </th:block>
-                        <li class="page-item" th:if="${pageMaker.next && pageMaker.endPage >0}">
-                          <a class="page-link" th:href="@{list(page=${pageMaker.endPage+1}, no=${catenoInBoard.cateno})}" aria-label="Next">
+                        <li class="page-item" th:if="${pageMaker.next && pageMaker.endPage > 0}">
+                          <a data-th-if="${search.keyword == null}" class="page-link" th:href="@{list(page=${pageMaker.endPage+1}, no=${catenoInBoard.cateno})}" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                          </a>
+                          <a data-th-if="${search.keyword != null}" class="page-link" th:href="@{list(page=${pageMaker.endPage+1}, no=${catenoInBoard.cateno}, keyword=${search.keyword}, type=${search.type})}" aria-label="Next">
                             <span aria-hidden="true">&raquo;</span>
                           </a>
                         </li>
@@ -187,10 +216,21 @@
                   <!-- 페이징 버튼 끝 -->
                  <nav class="navbar navbar-light">
                  <div style="margin: auto">
-                   <form class="form-inline"  >
-                     <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                     <button class="btn btn-outline-successJD my-2 my-sm-0"type="submit">Search</button>
-                   </form>
+                  <!-- 검색 버튼 시작 -->
+                  <form class="form-inline" action='list' method="get">
+                    <input data-th-value="${catenoInBoard.cateno}" type="hidden" name="no" aria-label="category">
+                    <select id="searchId" class="form-selectJd" name="type">
+                        <option value="T">제목</option>
+                        <option value="C">내용</option>
+                        <option value="W">작성자</option>
+                        <option value="TC">제목 + 내용</option>
+                        <option value="TW">제목 + 작성자</option>
+                        <option value="TCW">제목 + 내용 + 작성자</option>
+                    </select>   
+                    <input class="form-control mr-sm-2" type="search" name="keyword" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-successJD my-2 my-sm-0" type="submit" id="searchButton">Search</button>
+                  </form>
+                  <!-- 검색 버튼 끝 -->
                 </div>
               </nav>
             </div>
@@ -199,61 +239,6 @@
         </div>
       </div>
       <!-- furnitures section end -->
-      
-      <!-- footer section start -->
-      <div class="footer_section layout_padding">
-         <div class="container">
-            <div class="row">
-               <div class="col-lg-3 col-sm-6">
-                  <div class="fooer_logo"><img src="../images/footer-logo.png"></div>
-                  <p class="footer_lorem_text">There are many variat
-                     ions of passages of L
-                     orem Ipsum available
-                     , but the majority h
-                     ave suffered altera
-                     tion in some form, by 
-                  </p>
-               </div>
-               <div class="col-lg-3 col-sm-6">
-                  <h1 class="customer_text">LET US HELP YOU</h1>
-                  <p class="footer_lorem_text">There are many variat
-                     ions of passages of L
-                     orem Ipsum available
-                     , but the majority h
-                     ave suffered altera
-                     tion in some form, by 
-                  </p>
-               </div>
-               <div class="col-lg-3 col-sm-6">
-                  <h1 class="customer_text">INFORMATION</h1>
-                  <p class="footer_lorem_text1">About Us<br>
-                     Careers<br>
-                     Sell on shopee<br>
-                     Press & News<br>
-                     Competitions<br>
-                     Terms & Conditions
-                  </p>
-               </div>
-               <div class="col-lg-3 col-sm-6">
-                  <h1 class="customer_text">OUR Design</h1>
-                  <p class="footer_lorem_text">There are many variat
-                     ions of passages of L
-                     orem Ipsum available
-                     , but the majority h
-                     ave suffered altera
-                     tion in some form, by 
-                  </p>
-               </div>
-            </div>
-            <div class="input-group mb-3">
-               <input type="text" class="form-control" placeholder="Enter your email" aria-label="Enter your email" aria-describedby="basic-addon2">
-               <div class="input-group-append">
-                  <span class="input-group-text" id="basic-addon2"><a href="#">Subscribe</a></span>
-               </div>
-            </div>
-         </div>
-      </div>
-      <!--  footer section end -->
       <!-- copyright section start -->
       <div class="copyright_section">
       <div class="container">
@@ -277,7 +262,7 @@
       
       <!-- sidebar -->
       <script src="../js/jquery.mCustomScrollbar.concat.min.js"></script>
-      <script src="../js/custom.js"></script>
+      <!-- <script src="../js/custom.js"></script> --><!-- 검색때매 우선 막자 --> 
       
       <!-- javascript --> 
       <!-- <script src="../js/owl.carousel.js"></script> -->
@@ -290,12 +275,19 @@
       "use strict"
       document.getElementById('postButton').addEventListener('click', checkLogin);
       
+      // 검색기능 목록일 때 검색조건의 type을 selected하기 위한 메서드 
+      const searchOption = $("select").children();
+      for (let i = 0; i < searchOption.length; i++) {
+    	  if (searchOption.eq(i).val() == "[[${search.type}]]") {
+    		  $('#searchId').find("option").eq(i).attr("selected", true)
+    	  }
+      } 
+            
       let loginMemberNo = -1;
       if($(".loginId").attr("id") != -1) {
        loginMemberNo = $(".loginId").attr("id");
       };
       function checkLogin() {
-    	  console.log("a뭐야????" + loginMemberNo);
     	  if (loginMemberNo == undefined || loginMemberNo == -1) {
     		  if (confirm("로그인하시겠습니까?") == true){    //확인
               location.href = '../auth/form';
@@ -303,40 +295,43 @@
         	  return false;
           }
     	  } else {
-      	  console.log("경로어디야??" + $("#postButton").attr("value"));
       	  location.href = $("#postButton").attr("value");
     	  }
       }
       
       
-      window.onload = 
-    	  function findCategory() {
-        var para = document.location.href.split("no=");
-        console.log("카테고리 번호 =>" + para[1]);
+      window.addEventListener('DOMContentLoaded', function findCategory() {
+          var param = window.location.search.match(/no=([^&]*)/)[1];
+            switch(param) {
+              case '1' :
+                document.getElementById( 'cateName' ).innerHTML = "자유게시판";
+                document.getElementById( 'cateConment' ).innerHTML = "여기모여 회원들이 자유롭게 소통할 수 있는 자유게시판입니다. ";
+                break;
+              case '2' :
+                document.getElementById( 'cateName' ).innerHTML = "식단게시판";
+                document.getElementById( 'cateConment' ).innerHTML = "다이어트, 벌크업 등 식이요법에 대한 다양한 정보를 나누는 식단게시판입니다.";
+                break;
+              case '3' :
+                document.getElementById( 'cateName' ).innerHTML = "챌린지게시판";
+                document.getElementById( 'cateConment' ).innerHTML = "하루하루 도전하는 회원분들의 인증샷을 올리는 챌린지게시판입니다.";
+                break;
+              case '4' :
+                document.getElementById( 'cateName' ).innerHTML = "질문게시판";
+                document.getElementById( 'cateConment' ).innerHTML = "궁금한 건 어디에서 물어볼 지 고민인 분들을 위한 질문게시판입니다.";
+                break;
+              case '5' :
+                document.getElementById( 'cateName' ).innerHTML = "핫딜게시판";
+                document.getElementById( 'cateConment' ).innerHTML = "지금이 바로 득템 기회! 핫딜 제품들을 공유할 수 있는 핫딜게시판입니다.";
+          }
+        });
         
-        switch(para[1]) {
-          case '1' :
-        	  document.getElementById( 'cateName' ).innerHTML = "자유게시판";
-            document.getElementById( 'cateConment' ).innerHTML = "여기모여 회원들이 자유롭게 소통할 수 있는 자유게시판입니다. ";
-            break;
-          case '2' :
-        	  document.getElementById( 'cateName' ).innerHTML = "식단게시판";
-            document.getElementById( 'cateConment' ).innerHTML = "다이어트, 벌크업 등 식이요법에 대한 다양한 정보를 나누는 식단게시판입니다.";
-            break;
-          case '3' :
-        	  document.getElementById( 'cateName' ).innerHTML = "챌린지게시판";
-            document.getElementById( 'cateConment' ).innerHTML = "하루하루 도전하는 회원분들의 인증샷을 올리는 챌린지게시판입니다.";
-            break;
-          case '4' :
-        	  document.getElementById( 'cateName' ).innerHTML = "질문게시판";
-            document.getElementById( 'cateConment' ).innerHTML = "궁금한 건 어디에서 물어볼 지 고민인 분들을 위한 질문게시판입니다.";
-            break;
-          case '5' :
-        	  document.getElementById( 'cateName' ).innerHTML = "핫딜게시판";
-            document.getElementById( 'cateConment' ).innerHTML = "지금이 바로 득템 기회! 핫딜 제품들을 공유할 수 있는 핫딜게시판입니다.";
-        }
-        
-      }
+        window.addEventListener('DOMContentLoaded', function(){
+          var param = 1; 
+          if (window.location.search.match(/page=([^&]*)/) != null) {
+            param = window.location.search.match(/page=([^&]*)/)[1];
+          } 
+          $('#pageButton' + param).addClass('active');
+        });
 
       </script>
    </body>

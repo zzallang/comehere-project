@@ -35,7 +35,6 @@
       <!-- 공식부트스트랩 CSS -->
       <link href="../css/bootstrap/bootstrap.css" rel="stylesheet">
 
-<!--  -->
 <!--          
         <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
         <script src="../js/summernote/summernote-lite.js"></script>
@@ -164,9 +163,7 @@
                     enctype="multipart/form-data">
                     <table class="table_form">
                         <tr>
-                            <td><select name="cateno">
-                                <option data-th-value="${category.cateno}"></option>
-                            </select></td>
+                            <td><input type="hidden" name="cateno" data-th-value="${category.cateno}"></td>
                         </tr>
                         <tr>
                             <td><input
@@ -177,8 +174,11 @@
                                 placeholder="제목을 입력해주세요.">
                             </td>
                         </tr>
-                        <tr>
-                            <td><b>[썸네일]<b></b><input class="post_form1" name='file' type="file"></td>
+                        <tr data-th-if="${category.cateno == 3}">
+                            <td><b>[사진 인증]</b><input class="post_form1" name='file' type="file"></td>
+                        </tr>
+                        <tr data-th-if="${category.cateno != 3}">
+                            <td><input class="post_form1" name='file' type="file" style="display:none;"></td>
                         </tr>
                         <tr>
                             <td>

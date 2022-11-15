@@ -1,20 +1,28 @@
 package com.bitcamp.testproject.service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import com.bitcamp.testproject.dao.BoardCommentDao;
 import com.bitcamp.testproject.dao.BoardDao;
+import com.bitcamp.testproject.dao.ScrapDao;
 import com.bitcamp.testproject.vo.Board;
 import com.bitcamp.testproject.vo.BoardCategory;
 import com.bitcamp.testproject.vo.Criteria;
+import com.bitcamp.testproject.vo.Search;
 
 @Service
 public class DefaultBoardService implements BoardService {
 
   @Autowired 
   BoardDao boardDao;
+  @Autowired
+  BoardCommentDao boardCommentDao;
+  @Autowired
+  ScrapDao scrapDao;
   //
   //  @Transactional
   //  @Override
@@ -121,22 +129,40 @@ public class DefaultBoardService implements BoardService {
   }
 
   @Override
-  public int countBoardListTotal(int no) {
+  public int countTotalBoard(int no) throws Exception {
     return boardDao.findListTotalCount(no);
+  }
+  @Override
+  public int countTotalBoardWithSearch(int no, Search search) {
+    // 값들을 Map에 담아서 보내기
+    Map<String, Object> countObj = new HashMap<>(); 
+    countObj.put("search", search);
+    countObj.put("cateno", no);
+
+    return boardDao.findListTotalCountWithSearch(countObj);
   }
 
   @Transactional
   @Override
   public boolean delete(int no) throws Exception {
-    // 1) 첨부파일 삭제
-    boardDao.deleteFiles(no);
-    // 2) 게시글 삭제
+    // 게시글에 댓글 삭제하기 
+    boardCommentDao.deleteAll(no);
+    // 스크랩 삭제
+    scrapDao.deleteAll(no);
+
     return boardDao.delete(no) > 0;
   }
 
   @Transactional
   @Override
   public boolean update(Board board) throws Exception {
+
+    // 썸네일을 변경하지 않았을 때 원래 파일이름을 넣어준다.
+    if (board.getThumbnail() == null) {
+      String originThumb = boardDao.getThumbnailByBoardNo(board.getNo());
+      board.setThumbnail(originThumb);
+    }
+
     // 1) 게시글 변경
     if (boardDao.update(board) == 0) {
       return false;
@@ -152,6 +178,16 @@ public class DefaultBoardService implements BoardService {
   @Override
   public int deleteThumbnail(int no) {
     return boardDao.daleteThumbnailByNo(no);
+  }
+
+  @Override
+  public List<Map<String, Object>> listWithKeyword(Criteria cri, Search search) {
+    // 값들을 Map에 담아서 보내기
+    Map<String, Object> searchObj = new HashMap<>(); 
+    searchObj.put("search", search);
+    searchObj.put("cri", cri);
+
+    return boardDao.findByKeyword(searchObj);
   }
 
   //////////

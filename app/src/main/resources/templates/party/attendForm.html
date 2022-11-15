@@ -273,8 +273,9 @@
   }
   
   .party_detail_content {
+    overflow-y:scroll;
     width: 470px;
-    min-height: 150px;
+    height: 200px;
   }
   
   .party_detail_content_l {
@@ -415,10 +416,31 @@
             </div>
             <div>
               <span>별점 : </span>
-              <span data-th-text='${party.star}'></span>
+            <span data-th-if="${party.star} == 0 and ${party.star} < 0.5"><span class="reviewStarVal" th:value="${party.star}" th:text="${party.star}"></span>
+            <img src="/app/review/star/star0.png" style="height:23px;"></span>
+            <span data-th-if="${party.star} >= 0.5 and ${party.star} < 1"><span class="reviewStarVal" th:value="${party.star}" th:text="${party.star}"></span>
+            <img src="/app/review/star/star05.png" style="height:23px;"></span>
+            <span data-th-if="${party.star} >= 1 and ${party.star} < 1.5"><span class="reviewStarVal" th:value="${party.star}" th:text="${party.star}"></span>
+            <img src="/app/review/star/star10.png" style="height:23px;"></span>
+            <span data-th-if="${party.star} >= 1.5 and ${party.star} < 2"><span class="reviewStarVal" th:value="${party.star}" th:text="${party.star}"></span>
+            <img src="/app/review/star/star15.png" style="height:23px;"></span>
+            <span data-th-if="${party.star} >= 2 and ${party.star} < 2.5"><span class="reviewStarVal" th:value="${party.star}" th:text="${party.star}"></span>
+            <img src="/app/review/star/star20.png" style="height:23px;"></span>
+            <span data-th-if="${party.star} >= 2.5 and ${party.star} < 3"><span class="reviewStarVal" th:value="${party.star}" th:text="${party.star}"></span>
+            <img src="/app/review/star/star25.png" style="height:23px;"></span>
+            <span data-th-if="${party.star} >= 3 and ${party.star} < 3.5"><span class="reviewStarVal" th:value="${party.star}" th:text="${party.star}"></span>
+            <img src="/app/review/star/star30.png" style="height:23px;"></span>
+            <span data-th-if="${party.star} >= 3.5 and ${party.star} < 4"><span class="reviewStarVal" th:value="${party.star}" th:text="${party.star}"></span>
+            <img src="/app/review/star/star35.png" style="height:23px;"></span>
+            <span data-th-if="${party.star} >= 4 and ${party.star} < 4.5"><span class="reviewStarVal" th:value="${party.star}" th:text="${party.star}"></span>
+            <img src="/app/review/star/star40.png" style="height:23px;"></span>
+            <span data-th-if="${party.star} >= 4.5 and ${party.star} < 5"><span class="reviewStarVal" th:value="${party.star}" th:text="${party.star}"></span>
+            <img src="/app/review/star/star45.png" style="height:23px;"></span>
+            <span data-th-if="${party.star} == 5"><span class="reviewStarVal" th:value="${party.star}" th:text="${party.star}"></span>
+            <img src="/app/review/star/star50.png" style="height:23px;"></span>
             </div>
             <div>
-              <textarea class="party_detail_content" name='content' data-th-utext="${party.content}"></textarea>
+              <div class="party_detail_content" name='content' th:utext="${party.content}"></div>
             </div>
             <div>
               <span>모임일자 : </span>

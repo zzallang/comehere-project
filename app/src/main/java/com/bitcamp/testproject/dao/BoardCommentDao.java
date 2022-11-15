@@ -22,4 +22,6 @@ public interface BoardCommentDao {
 
   int findCommentsCount(int boardNo);
 
+  int deleteAll(int boardNo);
+
 }

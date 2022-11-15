@@ -65,6 +65,10 @@
     values(#{objectNo},#{writer.no},#{content})
   </insert>
 
+  <delete id="deleteCommentAll">
+    delete from party_comment 
+    where pno=#{value}
+  </delete>
 
   <delete id="deleteComment">
     delete from party_comment 

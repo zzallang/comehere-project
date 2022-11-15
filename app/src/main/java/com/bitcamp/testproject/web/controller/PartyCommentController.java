@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import com.bitcamp.testproject.service.PartyCommentService;
-import com.bitcamp.testproject.service.PartyService;
 import com.bitcamp.testproject.vo.Comment;
 import com.bitcamp.testproject.vo.Criteria;
 
@@ -23,8 +22,6 @@ public class PartyCommentController {
   @Autowired
   ServletContext sc;
 
-  @Autowired
-  PartyService partyService;
   @Autowired
   PartyCommentService partyCommentService;
 

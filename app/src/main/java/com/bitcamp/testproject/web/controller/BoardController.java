@@ -19,13 +19,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import com.bitcamp.testproject.service.BoardCommentService;
-import com.bitcamp.testproject.service.BoardReportService;
 import com.bitcamp.testproject.service.BoardService;
 import com.bitcamp.testproject.vo.Board;
 import com.bitcamp.testproject.vo.BoardCategory;
 import com.bitcamp.testproject.vo.Criteria;
 import com.bitcamp.testproject.vo.Member;
 import com.bitcamp.testproject.vo.PageMaker;
+import com.bitcamp.testproject.vo.Search;
 
 @Controller
 @RequestMapping("/board/")
@@ -36,8 +36,6 @@ public class BoardController {
 
   @Autowired
   BoardService boardService;
-  @Autowired
-  BoardReportService boardReportService;
   @Autowired
   BoardCommentService boardCommentService;
 
@@ -60,20 +58,17 @@ public class BoardController {
   @PostMapping("add") 
   public String add(Board board, int cateno, Part file, HttpSession session) throws Exception {
 
-    // 카테고리 번호, 파일경로넣기
+    // 카테고리 번호, 파일경로넣기, 등록회원 정보 넣기
     board.setCateno(cateno);
     board.setThumbnail(saveAttachedFile(file));
-
-    //    board.setWriter((Member) session.getAttribute("loginMember"));
+    board.setWriter((Member) session.getAttribute("loginMember"));
 
     boardService.add(board);
     return "redirect:list?no=" + cateno;
   }
 
   private String saveAttachedFile(Part file) throws IOException, ServletException {
-    //    List<AttachedFile> attachedFiles = new ArrayList<>();
     String dirPath = sc.getRealPath("/board/files");
-
     // 첨부파일이 있다면 실행
     if (file.getSize() != 0) {
       String filename = UUID.randomUUID().toString();
@@ -82,38 +77,6 @@ public class BoardController {
     }
     return null;
   }
-
-  //  private String saveThumbnailFile(Part file) throws Exception {
-  //    if (file.getSize() == 0) {
-  //      return null;
-  //    }
-  //
-  //    String dirPath = sc.getRealPath("/board/files");
-  //
-  //    String filename = UUID.randomUUID().toString();
-  //    file.write(dirPath + "/" + filename);
-  //
-  //    return filename;
-  //  }
-
-  //  
-  //  private List<AttachedFile> saveAttachedFiles(Part[] files)
-  //      throws IOException, ServletException {
-  //    List<AttachedFile> attachedFiles = new ArrayList<>();
-  //    String dirPath = sc.getRealPath("/board/files");
-  //
-  //    for (Part part : files) {
-  //      if (part.getSize() == 0) {
-  //        continue;
-  //      }
-  //
-  //      String filename = UUID.randomUUID().toString();
-  //      part.write(dirPath + "/" + filename);
-  //      attachedFiles.add(new AttachedFile(filename));
-  //    }
-  //    return attachedFiles;
-  //  }
-  //  
 
   @GetMapping("form")
   public Model form(int cateno, Model model) throws Exception {
@@ -126,7 +89,7 @@ public class BoardController {
 
     // 페이징하기 위한 연산 
     PageMaker pageMaker = new PageMaker();
-    cri.setPerPageNum(15);
+    cri.setPerPageNum(5);
     pageMaker.setCri(cri);
     pageMaker.setTotalCount(boardCommentService.countCommentListTotal(no));
 
@@ -173,49 +136,63 @@ public class BoardController {
   }
 
   @GetMapping("list")
-  public ModelAndView list(Criteria cri, int no) throws Exception {
-    // 페이징하기 위한 연산 
-    PageMaker pageMaker = new PageMaker();
-    cri.setCatenoToPage(no); // 특정 게시판을 목록을 출력하기위한 설정
-    pageMaker.setCri(cri);
-    pageMaker.setTotalCount(boardService.countBoardListTotal(no));
-
+  public ModelAndView list(Criteria cri, int no, Search search) throws Exception {
     ModelAndView mav;
     if (no == 3) {
-      // 챌린지 게시판일 경우 
+      // 챌린지 게시판일 경우 (listOfClg.html을 실행하고 게시글 9개만 출력)
       mav = new ModelAndView("board/listOfClg");
+      cri.setPerPageNum(6);
     } else {
       mav = new ModelAndView("board/list");
+      cri.setPerPageNum(5);
     }
+
+    cri.setCatenoToPage(no); // 특정 게시판을 목록을 출력하기위한 설정
+
+    // 검색 기능인지 단지 목록 출력인지에 따라 다른 메서드 호출 
+    List<Map<String,Object>> list;
+    int boardTotalCount;
+    if (search.getKeyword() == null) {
+      list = boardService.list(cri);
+      boardTotalCount = boardService.countTotalBoard(no);
+    } else {
+      list = boardService.listWithKeyword(cri, search);
+      boardTotalCount = boardService.countTotalBoardWithSearch(no, search);
+    }
+    System.out.println("출력한 리스트 사이즈>>>" + list.size());
+
+    // 페이징하기 위한 연산 
+    PageMaker pageMaker = new PageMaker();
+    pageMaker.setCri(cri);
+    pageMaker.setTotalCount(boardTotalCount);
 
     // 게시글 카테고리 번호 Board객체에 담아서 map객체에 담을 준비 
     Board catenoInBoard = new Board();
     catenoInBoard.setCateno(no);
 
-    List<Map<String,Object>> list = boardService.list(cri);
     mav.addObject("list", list);
     mav.addObject("pageMaker", pageMaker);
     mav.addObject("catenoInBoard", catenoInBoard);
+    mav.addObject("search", search);
 
     return mav;
   }
 
   @GetMapping("delete")
-  public String delete(
-      int no, 
-      HttpSession session) 
-          throws Exception {
+  public String delete(int no, HttpSession session) throws Exception {
 
-    // 돌아갈 게시판카테고리 넘버 찾기
+    // 삭제 후 돌아갈 게시판카테고리 넘버 찾기
     int cateno = boardService.get(no).getCateno();
+    // 회원 유효성 체크(삭제할 회원이 같이 회원인지)
+    checkOwner(no, session);
 
-    //    checkOwner(no, session);
     if (!boardService.delete(no)) {
       throw new Exception("게시글을 삭제할 수 없습니다.");
     }
 
     return "redirect:list?no=" + cateno;
   }
+
 
   @GetMapping("updateForm")
   public Model updateForm(int no, Model model) throws Exception {
@@ -248,12 +225,7 @@ public class BoardController {
   }
 
   @GetMapping("fileDelete")
-  public String boardFileDelete(
-      int no,
-      HttpSession session) 
-          throws Exception {
-
-    //    AttachedFile attachedFile = boardService.getAttachedFile(no); 
+  public String boardFileDelete(int no, HttpSession session) throws Exception {
 
     Member loginMember = (Member) session.getAttribute("loginMember");
     Board board = boardService.get(no);
@@ -267,12 +239,15 @@ public class BoardController {
       throw new Exception("게시글 첨부파일을 삭제할 수 없습니다.");
     }
 
-
     return "redirect:updateForm?no=" + board.getNo();
   }
 
-
-  /////// 제동 메서드 끝 
+  private void checkOwner(int boardNo, HttpSession session) throws Exception {
+    Member loginMember = (Member) session.getAttribute("loginMember");
+    if (boardService.get(boardNo).getWriter().getNo() != loginMember.getNo()) {
+      throw new Exception("게시글 작성자가 아닙니다.");
+    }
+  }
 
 
 

@@ -45,7 +45,7 @@ public class BoardCommentController {
 
     // 몇번 페이지인지 기록하고 넘기기
     Criteria cri = new Criteria();
-    cri.setPerPageNum(15);
+    cri.setPerPageNum(5);
     if (pageNo != 0) {
       cri.setPage(pageNo);
     }

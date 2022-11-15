@@ -14,6 +14,8 @@ public interface PartyCommentService {
 
   int delete(int partyNo);
 
+  int deleteAll(int partyNo);
+
   int update(Comment comment);
 
   int countCommentListTotal(int partyNo);

@@ -156,6 +156,11 @@
           padding: 30px;
         }
         
+        .thumbnail-temp {
+          width: 30%;
+          height: 30%;
+        }
+        
         /* Modal */
 #modal.modal-overlay {
   width: 100%;
@@ -315,24 +320,31 @@
            <!-- 게시판 카테고리 이동 끝 -->
 
             <h1>글조회</h1>
-            <h2 th:if="${board.cateno == 1}" value='게시판'>자유게시판</h2>
-            <h2 th:if="${board.cateno == 2}" value='게시판'>식단게시판</h2>
-            <h2 th:if="${board.cateno == 3}" value='게시판'>챌린지게시판</h2>
-            <h2 th:if="${board.cateno == 4}" value='게시판'>질문게시판</h2>
-            <h2 th:if="${board.cateno == 5}" value='게시판'>핫딜게시판</h2>
+            <h2 th:if="${board.cateno == 1}">자유게시판</h2>
+            <h2 th:if="${board.cateno == 2}">식단게시판</h2>
+            <h2 th:if="${board.cateno == 3}">챌린지게시판</h2>
+            <h2 th:if="${board.cateno == 4}">질문게시판</h2>
+            <h2 th:if="${board.cateno == 5}">핫딜게시판</h2>
             
             <div>
-                <a th:if="${session.loginMember} != null and ${session.loginMember.no} == ${board.writer.no}" 
-                   th:href="@{updateForm(no=${board.no})}" 
+                <a data-th-if="${session.loginMember} != null and ${session.loginMember.no} == ${board.writer.no}" 
+                   data-th-href="@{updateForm(no=${board.no})}" 
                    class="btn btn-primary" 
                    role="button">수정</a>
                 <a th:if="${session.loginMember} != null and ${session.loginMember.no} == ${board.writer.no}" 
-                   th:href="@{delete(no=${board.no})}"
-                   href='delete?no=1'
-                   class="btn btn-primary">삭제</a>
-                <a class="btn btn-primary" href="#" role="button" id="btn-modal">신고기능</a>
-                <a th:href="@{list(no=${board.cateno})}"
+                   class="btn btn-primary"
+                   role="button"
+                   id="delete-button">삭제</a>
+                <a data-th-if="${session.loginMember} == null or ${session.loginMember.no} != ${board.writer.no}" 
+                   class="btn btn-primary" 
+                   href="#" 
+                   role="button" 
+                   id="btn-modal">신고</a>
+                <a data-th-href="@{list(no=${board.cateno})}"
                    class="btn btn-primary">목록</a>
+                <a data-th-if="${session.loginMember} != null and ${session.loginMember.no} != ${board.writer.no}" 
+                   class="btn btn-primary"  role="button" id="scrap-button">스크랩</a>
+                
             </div>
             
             <div class="temp-line board-wrapper">
@@ -344,6 +356,10 @@
                 <span th:text="${board.createdDate}"></span>
                 <br>조회수 : <span th:text="${board.viewCount}">0</span>
               </div>
+              <div class="temp-line" th:if="${board.cateno == 3}">
+                <img th:if="${board.thumbnail == null}" src="/app/board/files/nothumpnail.jpg" alt="thumpnail" class="thumbnail-temp"/>
+                <img th:if="${board.thumbnail != null}" th:src="@{'/board/files/' + ${board.thumbnail}}" alt="Avatar" class="thumbnail-temp"/>
+              </div>
               <div th:utext="${board.content}" class="form-content">내용</div>
             </div>
             
@@ -354,17 +370,17 @@
                   <div class="commentList"></div>
               </div>
               
-            <!-- 댓글 페이징 -->
+            <!-- 댓글페이징 -->
             <nav aria-label="Page navigation">
               <ul class="pagination">
                 <div class="page_center">
                   <li class="page-item" th:if="${pageMaker.prev}">
-                    <a class="page-link" th:href="@{list(pageMaker.startPage-1}" aria-label="Previous">
+                    <a class="page-link" th:href="@{list(page=${pageMaker.startPage-1}, no=${catenoInBoard.cateno})}" aria-label="Previous">
                       <span aria-hidden="true">&laquo;</span>
                     </a>
                   </li>
                   <th:block th:if="${pageMaker.endPage != 0}" th:each="pageNum: ${#numbers.sequence(pageMaker.startPage, pageMaker.endPage)}">
-                    <li class="page-item">
+                    <li data-th-id="${'pageButton' + pageNum}"  class="page-item">
                       <a th:id="'pageNo' + ${pageNum}" class="page-link" onclick="getId(this.id)"><i th:text="${pageNum}"></i></a>
                     </li>
                   </th:block>
@@ -404,7 +420,7 @@
                       </div>
                   </div>
                   <div>
-                      <button id="commetButton" class="btn btn-sm btn-success">등록</button>
+                      <button id="commentButton" class="btn btn-sm btn-success">등록</button>
                   </div>
               </div>
             </div>
@@ -435,7 +451,7 @@
       <script src="../js/bootstrap.bundle.min.js"></script>
       <script src="../js/jquery-3.0.0.min.js"></script>
       <script src="../js/plugin.js"></script>
-       <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> <!-- sweetalert -->
+      <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script><!-- sweetalert -->
       <!-- sidebar -->
       <script src="../js/jquery.mCustomScrollbar.concat.min.js"></script>
       <script src="../js/custom.js"></script>
@@ -466,12 +482,17 @@
     		  commentList();
     	  } 
     	  
-    		document.getElementById('commetButton').addEventListener('click', insertAndReplay);
+        // 페이지 버튼 active 시키기
+        /* window.addEventListener('DOMContentLoaded', function(){
+            $('#pageButton' + pageNo).addClass('active');
+        }); */
+
+    		document.getElementById('commentButton').addEventListener('click', insertAndReplay);
     		// 댓글을 등록했을 때 한 페이지에 보일수 있는 댓글수 초과 시(현재 15개) 페이지 reload()
-    		document.getElementById('commetButton').addEventListener('click', countComment); 
+    		document.getElementById('commentButton').addEventListener('click', countComment); 
     	  function countComment() {
     		  var count = document.getElementsByClassName('commentArea').length;
-    		  if (count == 15) {
+    		  if (count == 5) {
     			  window.location.reload();
     		  }
     		};
@@ -498,7 +519,8 @@
                           a += '<a onclick="commentDelete('+value.no+');"> 삭제 </a> </div>';
                         }
                         if (loginMemberNo != value.writer.no && loginMemberNo != -1) {
-                            a += '<a onclick="commentComplain('+value.no+');"> 신고 </a> </div>';
+                        	a += '<button class="btn btn-primary btn-modal" role="button" > 신고 </button> </div>';
+                            /* a += '<a onclick="commentComplain('+value.no+');"> 신고 </a> </div>'; */
                         }
                         if (loginMemberNo == -1) {
                             a += '<a onclick="commentComplain('+value.no+');"> 신고 </a> </div>';
@@ -533,7 +555,6 @@
       	
         //댓글 삭제 
         function commentDelete(no){
-            console.log("댓글삭제 호출됨!!");
             $.ajax({
                 url : '/app/boardComment/delete/'+no,
                 type : 'post',
@@ -575,7 +596,70 @@
     		     return false;
       		 }
         }
+        
+        // 스크랩 관련 함수
+        if ($('#scrap-button').length != 0) {
+          document.getElementById('scrap-button').addEventListener('click', insertScrap);
+        }
+        
+        // 스크랩 등록
+        function insertScrap() {
+            if (confirm("스크랩 하시겠습니까?") == true){
+            	$.ajax({
+                    url : "/app/scrap/add",
+                    data : {
+                      boardNo : boardNo,
+                      memberNo : memberNo
+                    },
+                    type : "post",
+                    success : function(result){
+                      if(result == 1){
+                    	  alert("게시글 스크랩되었습니다.");
+                      } else if (result == 0) {
+                    	  if(confirm("이미 스크랩한 게시글입니다.\n스크랩을 취소하겠습니까?") == true){
+                    		  deleteScrap();
+                    		}else{
+                    			return false;
+                    		}
+                      }
+                    }
+                    })
+            } else{
+            	return false;
+            }
+        }
+        
+        // 스크랩 취소
+        function deleteScrap() {
+            $.ajax({
+                url : '/app/scrap/delete',
+                type : 'post',
+                data : { 
+                    boardNo : boardNo,
+                    memberNo : memberNo},
+                success : function(result){
+                    if(result == 1) {
+                      alert("스크랩이 취소되었습니다!");
+                    } else {
+                    	alert("오류??");
+                    }
+                }
+            });
+        }
+        
+        // 게시글 삭제 이벤트
+        if ($('#delete-button').length != 0) {
+          document.getElementById('delete-button').addEventListener('click', deleteBoard);
+        }
+        function deleteBoard() {
+            if (confirm("게시글을 삭제하시겠습니까?") == true){    //확인
+                  location.href = 'delete?no=' + boardNo;
+            }else{   //취소
+             return false;
+            }
+          }
         </script>
+        
 <!-- Modal Start -->
   <form action='report' method="post">
     <table border='1'>
@@ -675,7 +759,7 @@ $("#singo").click(function() {
               
           //디스플레이 non 버튼클릭하면 flex로 변환  
         const modal = document.getElementById("modal")
-        const btnModal = document.getElementById("btn-modal")
+        const btnModal = document.querySelector('#btn-modal');
         btnModal.addEventListener("click", e => {
         modal.style.display = "flex"
            // x버튼 누르면 종료

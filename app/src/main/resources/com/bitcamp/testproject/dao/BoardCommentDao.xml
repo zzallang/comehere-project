@@ -88,6 +88,11 @@
     where 
       bno = #{value}
   </select>
+  
+  <delete id="deleteAll">
+    delete from board_comment 
+    where bno=#{value}
+  </delete>
 
 </mapper>
 

@@ -110,13 +110,13 @@ function displayPlaces(places) {
     // 지도에 표시되고 있는 마커를 제거합니다
     removeMarker();
     
-    for ( var i=0; i<places.length; i++ ) {
+    for (let i=0; i<places.length; i++ ) {
  
         const lon = places[i].x;
         const lat = places[i].y;
  
         // 마커를 생성하고 지도에 표시합니다
-        var placePosition = new kakao.maps.LatLng(places[i].y, places[i].x),
+        let placePosition = new kakao.maps.LatLng(places[i].y, places[i].x),
             marker = addMarker(placePosition, i), 
             itemEl = getListItem(i, places[i]); // 검색 결과 항목 Element를 생성합니다
  
@@ -134,38 +134,54 @@ function displayPlaces(places) {
             itemEl.onmouseout =  function () {};
         })(marker, places[i].place_name);
  
+        (function(marker, title) {
+
+        // 마커와 검색 결과 항목에 대해 클릭 이벤트 리스너 등록
+        kakao.maps.event.addListener(marker, 'click', function() {
+          console.log(placePosition);
+          searchDetailAddrFromCoords(placePosition, function(result, status) {
+            console.log(result);
+            if (status === kakao.maps.services.Status.OK) {
+              detailPick(result, title, placePosition, marker);
+            }
+          });
+        });
+        
+        itemEl.onclick =  function () {
+          console.log(placePosition);
+          searchDetailAddrFromCoords(placePosition, function(result, status) {
+            console.log(result);
+            if (status === kakao.maps.services.Status.OK) {
+              detailPick(result, title, placePosition, marker);
+            }   
+          }); 
+        };
+        })(marker, places[i].place_name);
         // 마커와 검색 결과를 클릭했을때 좌표를 가져온다
+        /*
         (function(marker, title) {
             kakao.maps.event.addListener(marker, 'click', function() {
+              
                 searchDetailAddrFromCoords(placePosition, function(result, status) {
                     if (status === kakao.maps.services.Status.OK) {
                       detailPick(result, title, placePosition, marker);
                     }   
                 });
-            })
- 
+            });
+            
             itemEl.onclick =  function () {
+              
                 searchDetailAddrFromCoords(placePosition, function(result, status) {
                     if (status === kakao.maps.services.Status.OK) {
                         detailPick(result, title, placePosition, marker);
                     }   
-                });
+                }); 
             };
         })(marker, places[i].place_name);
- 
+        */
         fragment.appendChild(itemEl);
-    }
+    } // 반복문 종료
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
- 
     // 검색결과 항목들을 검색결과 목록 Elemnet에 추가합니다
     listEl.appendChild(fragment);
     menuEl.scrollTop = 0;
@@ -284,45 +300,50 @@ function searchDetailAddrFromCoords(coords, callback) {
 
 
 function detailPick (result, title, placePosition, marker) {
-    detailAddr = !!result[0].road_address ? '<div>도로명주소 : ' + result[0].road_address.address_name + '</div>' : '';
     
-    var content = '<div class="bAddr" style="padding-bottom:30px;">' +
-                    '<span class="title" style="padding-bottom:5px; font-weight: bolder">' + title + '</span>' + 
-                    detailAddr + 
-                '</div>';
+  resultAddr = !!result[0].road_address ? 
+  result[0].road_address.address_name : result[0].address.address_name;
+  
+  console.log(resultAddr);
+
+  detailAddr = !!result[0].road_address ? 
+  '<div>도로명주소 : ' + resultAddr + '</div>' :
+  '<div>지번주소 : ' + resultAddr + '</div>';
+  
+  var content = '<div class="bAddr" style="padding-bottom:30px;">' +
+                  '<span class="title" style="padding-bottom:5px; font-weight: bolder">' + title + '</span>' + 
+                  detailAddr + 
+              '</div>';
 
 
-    map.panTo(placePosition);
-    console.log(marker.getPosition());
-    
-    let mapResult = JSON.stringify(marker.getPosition());
-    let [latResult, lngResult] = mapResult.split(',');
-    let [a, latResult2] = latResult.split(':');
-    let [b, lngResult2] = lngResult.split(':');
-    let [lngResult3, c] = lngResult2.split('}');
+  map.panTo(placePosition);
+  
+  let mapResult = JSON.stringify(marker.getPosition());
+  let [latResult, lngResult] = mapResult.split(',');
+  let [a, latResult2] = latResult.split(':');
+  let [b, lngResult2] = lngResult.split(':');
+  let [lngResult3, c] = lngResult2.split('}');
 
-    console.log(title);
-    console.log(latResult2);
-    console.log(lngResult3);
-    
-    
-    
-    
-    $('span[id=mapSelectName]').html(title + ", ");
-    $('span[id=mapSelectAddress]').html(result[0].road_address.address_name);
-    
-    
-    $('input[name=mapName]').attr('value',title);
-    $('input[name=mapAddress]').attr('value',result[0].road_address.address_name);
-    $('input[name=latResult]').attr('value',latResult2);
-    $('input[name=lngResult]').attr('value',lngResult3);
-    
-    
-    
-    
-    // 인포윈도우에 클릭한 위치에 대한 상세 주소정보를 표시합니다
-    infowindow.setContent(content);
-    infowindow.open(map, marker);
-    
-    
+  console.log(title);
+  console.log(latResult2);
+  console.log(lngResult3);
+  
+  
+  $('span[id=mapSelectName]').html(title + ", ");
+  $('span[id=mapSelectAddress]').html(resultAddr);
+  
+  
+  $('input[name=mapName]').attr('value',title);
+  $('input[name=mapAddress]').attr('value',resultAddr);
+  $('input[name=latResult]').attr('value',latResult2);
+  $('input[name=lngResult]').attr('value',lngResult3);
+  
+  
+  
+  
+  // 인포윈도우에 클릭한 위치에 대한 상세 주소정보를 표시합니다
+  infowindow.setContent(content);
+  infowindow.open(map, marker);
+  
+  
 }

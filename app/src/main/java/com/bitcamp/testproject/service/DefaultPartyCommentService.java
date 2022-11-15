@@ -39,6 +39,11 @@ public class DefaultPartyCommentService implements PartyCommentService {
   }
 
   @Override
+  public int deleteAll(int partyNo) {
+    return partyCommentDao.deleteCommentAll(partyNo);
+  }
+
+  @Override
   public int update(Comment comment) {
     return partyCommentDao.updateComment(comment);
   }
