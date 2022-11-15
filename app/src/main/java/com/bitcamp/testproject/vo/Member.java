@@ -87,6 +87,14 @@ public class Member {
     this.nickname = nickname;
   }
 
+  public String getPassword() {
+    return password;
+  }
+
+  public void setPassword(String password) {
+    this.password = password;
+  }
+
   public String getTel() {
     return tel;
   }
@@ -190,16 +198,6 @@ public class Member {
   public void setAgeGroup(String ageGroup) {
     this.ageGroup = ageGroup;
   }
-
-  public String getPassword() {
-    return password;
-  }
-
-  public void setPassword(String password) {
-    this.password = password;
-  }
-
-
 
 
 }

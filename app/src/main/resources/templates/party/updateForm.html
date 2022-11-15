@@ -376,7 +376,7 @@
           <div class="party_form_wrap">
             <div class="party_form_img">
               <img th:if="${party.thumbnail != null}"  th:src="@{'/party/files/' + ${party.thumbnail}}" alt="Avatar" class="image party_detail_img">
-              <img th:if="${party.thumbnail == null}"  src="../images/img-2.png" alt="Avatar" class="image">
+              <img th:if="${party.thumbnail == null}"  src="/app/party/files/nothumpnail.jpg" alt="Avatar" class="image">
               <input name='file' type="file">
             </div>
             <div class="party_form_header">
@@ -409,7 +409,6 @@
             <div class="party_form_content">
               <button class="party_form_button_r" type="button" onclick="location.href='list'">취소</button>
               <input class="party_form_button_r" id="subBtn" type="button" value="등록" onclick="goWrite(this.form)"/>
-              <button class="party_form_button_r" type="button" onclick="location.href='#'">임시저장</button>
             </div>
           </div>
         </form>

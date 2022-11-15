@@ -28,6 +28,7 @@ public class DefaultMemberService implements MemberService {
   @Transactional
   @Override
   public void add(Member member) throws Exception {
+    // 1) 회원등록
     memberDao.insert(member);
 
     // 2) 관심지역 등록

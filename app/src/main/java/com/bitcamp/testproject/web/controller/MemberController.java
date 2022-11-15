@@ -6,12 +6,15 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+import com.bitcamp.testproject.service.FavoriteRegionService;
+import com.bitcamp.testproject.service.FavoriteSportsService;
 import com.bitcamp.testproject.service.MemberService;
 import com.bitcamp.testproject.service.RegionService;
 import com.bitcamp.testproject.service.SportsService;
@@ -31,6 +34,10 @@ public class MemberController {
   RegionService regionService;
   @Autowired
   SportsService sportsService;
+  @Autowired
+  FavoriteRegionService favoriteRegionService;
+  @Autowired
+  FavoriteSportsService favoriteSportsService;
 
   // 은지
   @GetMapping("join")
@@ -68,13 +75,19 @@ public class MemberController {
     return "member/myInfo";
   }
 
-
+  @Transactional
   @PostMapping("memberUpdate")
   public ModelAndView myPageMember(HttpSession session, Member member) throws Exception {
     Member loginMember = (Member) session.getAttribute("loginMember");
+    favoriteRegionService.deleteFavoriteRegion(loginMember.getNo());
+    favoriteSportsService.deleteFavoriteSports(loginMember.getNo());
     member.setNo(loginMember.getNo());
+    System.out.println(member.getRegionDomain());
+    System.out.println(member.getSportsDomain());
     member.setFavoriteRegion(saveRegion(member));
     member.setFavoriteSports(saveSports(member));
+    favoriteRegionService.addFavoriteRegion(member);
+    favoriteSportsService.addFavoriteSports(member);
     //member update logic
     //...
     memberService.update(member);

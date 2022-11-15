@@ -377,9 +377,7 @@
       <p class="ipsum_text">원하는 운동을 찾아보세요!</p>
       <div class="party_detail_bar">
         <div class="party_detail_buttons">
-          <button th:if="${session.loginMember} != null and ${session.loginMember.no} == ${party.user.no}" class="party_detail_button_r" type="button" onclick="location.href='#'">수정</button>
-          <button th:if="${session.loginMember} != null and ${session.loginMember.no} == ${party.user.no}" class="party_detail_button_r" type="button" onclick="location.href='#'">삭제</button>
-        </div>
+       </div>
       </div>
     </div>
     <div class="furnitures_section2 layout_padding_party">
@@ -388,7 +386,6 @@
           <p class="dololr_text_region" th:text="${party.region.sido}"></p>
           <p class="dololr_text_region" th:text="${party.region.sigu}"></p>
           <p class="dololr_text_sports" th:text="${party.sports.name}"></p>
-          <button th:if="${session.loginMember} != null and ${session.loginMember.no} != ${party.user.no}" class="dololr_text_tatlle" type="button" onclick="location.href='#'">신고</button>
         </div>
       </div>
       <div class="party_detil_view">
@@ -400,7 +397,7 @@
             <div>
               <div>
                 <img th:if="${party.thumbnail != null}"  th:src="@{'/party/files/' + ${party.thumbnail}}" alt="Avatar" class="image party_detail_img">
-                <img th:if="${party.thumbnail == null}"  src="../images/img-2.png" alt="Avatar" class="image">
+                <img th:if="${party.thumbnail == null}"  src="/app/party/files/nothumpnail.jpg" alt="Avatar" class="image">
               </div>
               <div class="profile_wrap">
                 <p>주최자</p>

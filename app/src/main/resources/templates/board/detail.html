@@ -335,11 +335,7 @@
                    class="btn btn-primary"
                    role="button"
                    id="delete-button">삭제</a>
-                <a data-th-if="${session.loginMember} == null or ${session.loginMember.no} != ${board.writer.no}" 
-                   class="btn btn-primary" 
-                   href="#" 
-                   role="button" 
-                   id="btn-modal">신고</a>
+                <a class="btn btn-primary btn-modal" href="#" role="button" type="button">신고기능</a>
                 <a data-th-href="@{list(no=${board.cateno})}"
                    class="btn btn-primary">목록</a>
                 <a data-th-if="${session.loginMember} != null and ${session.loginMember.no} != ${board.writer.no}" 
@@ -519,8 +515,7 @@
                           a += '<a onclick="commentDelete('+value.no+');"> 삭제 </a> </div>';
                         }
                         if (loginMemberNo != value.writer.no && loginMemberNo != -1) {
-                        	a += '<button class="btn btn-primary btn-modal" role="button" > 신고 </button> </div>';
-                            /* a += '<a onclick="commentComplain('+value.no+');"> 신고 </a> </div>'; */
+                            a += '<a onclick="commentComplain('+value.no+');"> 신고 </a> </div>';
                         }
                         if (loginMemberNo == -1) {
                             a += '<a onclick="commentComplain('+value.no+');"> 신고 </a> </div>';
@@ -537,7 +532,7 @@
       	// 댓글 등록
         function insertAndReplay(){
           $.ajax({
-            url : "/app/boardComment/insertAndReplay",
+            url : "/app/report/partyRport",
             data : {
               content : $("#commentCont").val(),
               boardNo : boardNo,
@@ -661,7 +656,7 @@
         </script>
         
 <!-- Modal Start -->
-  <form action='report' method="post">
+                <form action='partreport' method="post">
     <table border='1'>
       <div id="container">
         <div id="lorem-ipsum"></div>
@@ -673,25 +668,31 @@
             <div>
               <div class="report_menu">신고사유</div>
               <div class="form-check form-check-inline">
-                <input type="checkbox" value="Contents" class="form-check-input" id="1" name="reports" onclick='checkOnlyOne(this)'> <input type="hidden" name="_reports" value="on" /> <label for="reports1" class="form-check-label">불건전한 내용</label>
+                              <input type="checkbox" value="Contents" class="form-check-input" id="1" name="reports" onclick='checkOnlyOne(this)' style="display: block"> <input type="hidden" name="_reports" value="on" /> <label for="reports1" class="form-check-label">불건전한 내용</label>
               </div>
               <div class="form-check form-check-inline">
-                <input type="checkbox" value="promotion" class="form-check-input" id="2" name="reports" onclick='checkOnlyOne(this)'> <input type="hidden" name="_reports" value="on" /> <label for="reports2" class="form-check-label">스팸 및 부적절한 홍보</label>
+                              <input type="checkbox" value="promotion" class="form-check-input" id="2" name="reports" onclick='checkOnlyOne(this)' style="display: block"> <input type="hidden" name="_reports" value="on" /> <label for="reports2" class="form-check-label">스팸 및 부적절한 홍보</label>
               </div>
               <div class="form-check form-check-inline">
-                <input type="checkbox" value="calumny" class="form-check-input" id="3" name="reports" onclick='checkOnlyOne(this)'> <input type="hidden" name="_reports" value="on" /> <label for="reports3" class="form-check-label">명예훼손 및 비방</label>
+                              <input type="checkbox" value="calumny" class="form-check-input" id="3" name="reports" onclick='checkOnlyOne(this)' style="display: block"> <input type="hidden" name="_reports" value="on" /> <label for="reports3" class="form-check-label">명예훼손 및 비방</label>
               </div>
               <div class="form-check form-check-inline">
-                <input type="checkbox" value="prejudice" class="form-check-input" id="4" name="reports" onclick='checkOnlyOne(this)'> <input type="hidden" name="_reports" value="on" /> <label for="reports4" class="form-check-label">초상권 및 저작권 침해</label>
+                              <input type="checkbox" value="prejudice" class="form-check-input" id="4" name="reports" onclick='checkOnlyOne(this)' style="display: block"> <input type="hidden" name="_reports" value="on" /> <label for="reports4" class="form-check-label">초상권 및 저작권 침해</label>
               </div>
               <div class="form-check form-check-inline">
-                <input type="checkbox" value="embezzlement" class="form-check-input" id="5" name="reports" onclick='checkOnlyOne(this)'> <input type="hidden" name="_reports" value="on" /> <label for="reports5" class="form-check-label">개인정보 도용</label>
+                              <input type="checkbox" value="embezzlement" class="form-check-input" id="5" name="reports" onclick='checkOnlyOne(this)' style="display: block"> <input type="hidden" name="_reports" value="on" /> <label for="reports5" class="form-check-label">개인정보 도용</label>
               </div>
               <div class="form-check form-check-inline">
-                <input type="checkbox" value="act" class="form-check-input" id="6" name="reports" onclick='checkOnlyOne(this)'> <input type="hidden" name="_reports" value="on" /> <label for="reports6" class="form-check-label">기타 사이트 목적에 맞지 않는 행위</label>
+                              <input type="checkbox" value="act" class="form-check-input" id="6" name="reports" onclick='checkOnlyOne(this)' style="display: block"> <input type="hidden" name="_reports" value="on" /> <label for="reports6" class="form-check-label">기타 사이트 목적에 맞지 않는 행위</label>
               </div>
               <div class="form-check form-check-inline">
-                <input type="checkbox" value="Etc" class="form-check-input" id="7" name="reports" onclick='checkOnlyOne(this)'> <input type="hidden" name="_reports" value="on" /> <label for="reports7" class="form-check-label">기타</label>
+                              <input type="checkbox" value="Etc" class="form-check-input" id="7" name="reports" onclick='checkOnlyOne(this)' style="display: block"> <input type="hidden" name="_reports" value="on" /> <label for="reports7" class="form-check-label">기타</label>
+                            </div>
+
+
+                            <!-- 신고 종류 설정 input hidden type-->
+                            <div class="form-check form-check-inline">
+                              <input type="hidden" id="reportForm">
               </div>
             </div>
             <div class="send_bt3" id="singo">신고</div>
@@ -715,9 +716,7 @@
     }
 
 $("#singo").click(function() {
-    swal("신고 하였습니다.");
-
-    let data = "";
+    swal("신고 완료 했습니다.");
 
     $('input:checkbox[name=reports]').each(function (index) {
       if($(this).is(":checked")==true){
@@ -725,23 +724,18 @@ $("#singo").click(function() {
         id = $(this).attr("id");
       }
     });
+                  console.log($("#reportForm").val());
+                  console.log($("#reportForm").attr("name"));
+
+                  let value = $("#reportForm").val();
+                  let name = $("#reportForm").attr("name");
 
     $.ajax({
-        type: "GET",
-        url: "/app/report/insertReport",
-        async:false,
-        data: { id: id, 
-                loginMemberNo : loginMemberNo,
-                boardNo : boardNo},
-        success: function () {
-          
-          swal("신고 하였습니다.");
-          /* report_auth_cd = data; */
-          /* console.log(report_auth_cd); */
-         check = true;
-        },
-        error: function () {
-          swal("신고가 안되었습니다.");
+                    type: "POST",
+                    url: "/app/report/partyReport",
+                    data:{value: value, name: name},
+                    success: function (result) {
+                      console.log(result);
         },
       });
 });
@@ -750,36 +744,65 @@ $("#singo").click(function() {
 
 
   <script>
+              function commentComplain(number) {
+                console.log(number);
+                $("#reportForm").attr("value", number);
+                $("#reportForm").attr("name", "댓글");
+
+                modal.style.display = 'flex';
+                window.scrollTo(0,0);
+                // x버튼 누르면 종료
+                $(".closeBtn1").click(function () {
+                  modal.style.display = 'none';
+                });
+                // 신고 누르면 종료
+                $(".closeBtn").click(function () {
+                  modal.style.display = 'none';
+                });
+                // esc누르면 종료
+                window.addEventListener('keyup', (e) => {
+                  if (modal.style.display === 'flex' && e.key === 'Escape') {
+                    modal.style.display = 'none';
+                  }
+                });
+              }
+
         const loremIpsum = document.getElementById("lorem-ipsum")
          //fetch를 통해 받아온 데이터를 loremIpsum DOM에 넣어주기 때문에 모달창 내부에 내용이 채워져서 뜨는것. 
         //fetch("https://baconipsum.com/api/?type=all-meat&paras=200&format=html")
-          loremIpsum.innerHTML = `모달창에 넣을 내용`
+                        loremIpsum.innerHTML = ``
               /* .then(response => response.text())
               .then(result => loremIpsum.innerHTML = result) */
               
           //디스플레이 non 버튼클릭하면 flex로 변환  
         const modal = document.getElementById("modal")
-        const btnModal = document.querySelector('#btn-modal');
-        btnModal.addEventListener("click", e => {
-        modal.style.display = "flex"
+                      const btnModal = document.querySelectorAll(".btn-modal")
+                      let partyNumber = (window.location.search).substring(4,window.location.lengh);
+                      $("#reportForm").attr("value", partyNumber);
+                      $("#reportForm").attr("name", "파티");
+                         console.log(btnModal);
+                          btnModal.forEach((btn) => {
+                          btn.addEventListener('click', (e) => {
+                          modal.style.display = 'flex';
            // x버튼 누르면 종료
-          const closeBtn = modal.querySelector(".close-area")
-          closeBtn.addEventListener("click", e => {
-              modal.style.display = "none"
-          })
+                      const closeBtn = modal.querySelector('.close-area');
+                          closeBtn.addEventListener('click', (e) => {
+                          modal.style.display = 'none';
+                  });
           // 신고 누르면 종료
-           const closeBtn1 = modal.querySelector(".send_bt3")
-          closeBtn1.addEventListener("click", e => {
-              modal.style.display = "none"
-          })
+                      const closeBtn1 = modal.querySelector('.send_bt3');
+                           closeBtn1.addEventListener('click', (e) => {
+                           modal.style.display = 'none';
+                  });
           // esc누르면 종료
-          window.addEventListener("keyup", e => {
-    if(modal.style.display === "flex" && e.key === "Escape") {
-        modal.style.display = "none"
+                          window.addEventListener('keyup', (e) => {
+                    if (modal.style.display === 'flex' && e.key === 'Escape') {
+                        modal.style.display = 'none';
     }
-})
+                  });
+                });
+              });
           
-})
     </script>
 
 
