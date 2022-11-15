@@ -59,7 +59,13 @@ public class DefaultPartyService implements PartyService {
 
   @Transactional
   @Override
-  public boolean update(Party party) throws Exception {
+  public boolean update(Party party, Part file) throws Exception {
+
+    if (party.getThumbnail() == null) {
+      String originThumb = partyDao.getThumbnailByPartyNo(party.getNo());
+      party.setThumbnail(originThumb);
+    }
+
     // 1) 모임 변경
     if (partyDao.update(party) == 0) {
       return false;

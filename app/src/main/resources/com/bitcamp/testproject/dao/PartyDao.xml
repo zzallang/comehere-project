@@ -218,6 +218,15 @@
       table_name = 'party'
   </select>
 
+
+  <select id="getThumbnailByPartyNo" resultType="String">
+    select 
+      thumbnail
+    from 
+      party
+    where 
+      pno = #{value}
+  </select>
   
 </mapper>
 

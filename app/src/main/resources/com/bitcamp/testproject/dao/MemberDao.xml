@@ -138,7 +138,8 @@
       name
   </select>
 
-  <select id="findByIdPassword" resultMap="memberMap">
+
+<select id="findByIdPassword" resultMap="memberMap">
     SELECT 
       mno,
       name,
@@ -193,14 +194,6 @@
     email=#{email}
     and id=#{id}
     </update>
-
-	<delete id="delete">
-		DELETE 
-    FROM 
-      member
-		WHERE 
-      mno=#{value}
-	</delete>
 
 </mapper>
 

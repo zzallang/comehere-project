@@ -459,6 +459,9 @@
         }
     
     
+.party_detail_img {
+  max-height: 300px;
+}
   </style>
    </head>
    <body>
@@ -503,6 +506,26 @@
             <div class="party_detail_buttons">
                 <button th:if="${session.loginMember} != null and ${session.loginMember.no} == ${party.user.no}" class="party_detail_button_r" type="button" th:onclick="findPartyNoUpdate()">수정</button>
                 <button th:if="${session.loginMember} != null and ${session.loginMember.no} == ${party.user.no}" class="party_detail_button_r" type="button" th:onclick="findPartyNoDelete()">삭제</button>
+    <div class="furnitures_section2 layout_padding_party">
+      <div class="party_detail_bar">
+        <div class="party_detail_buttons">
+          <p class="dololr_text_region" th:text="${party.region.sido}"></p>
+          <p class="dololr_text_region" th:text="${party.region.sigu}"></p>
+          <p class="dololr_text_sports" th:text="${party.sports.name}"></p>
+          <button th:if="${session.loginMember} != null and ${session.loginMember.no} != ${party.user.no}" class="dololr_text_tatlle btn-modal" type="button" role="button">신고</button>
+        </div>
+      </div>
+      <div class="party_detail_view">
+        <div class="party_detail_content_l">
+          <div>
+            <img th:if="${party.thumbnail != null}"  th:src="@{'/party/files/' + ${party.thumbnail}}" alt="Avatar" class="image">
+            <img th:if="${party.thumbnail == null}"  src="../images/img-2.png" alt="Avatar" class="image party_detail_img">
+          </div>
+          <div class="profile_wrap">
+            <p>주최자</p>
+            <div class="profile_img">
+              <img th:if="${party.user.filepath != null}"  th:src="@{'/member/files/' + ${party.user.filepath}}" alt="Avatar" class="profile">
+              <img th:if="${party.user.filepath == null}"  src="http://placeimg.com/50/50/any" alt="Avatar" class="profile">
             </div>
 
             </div>
