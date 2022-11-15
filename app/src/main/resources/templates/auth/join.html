@@ -116,20 +116,16 @@
                           </div>
                         <div class="join_menu">관심지역</div>
                         <select class="favorite-choice" id="region1" name="regionDomain">
-                          <option value="0">선택안함</option>
 	                        <option data-th-each="region : ${regionList}" data-th-value="${region.no}" data-th-text="${region.sigu}"></option>
                       </select> 
                       <select class="favorite-choice" id="region2" name="regionDomain">
-                        <option value="0">선택안함</option>
                         <option data-th-each="region : ${regionList}" data-th-value="${region.no}" data-th-text="${region.sigu}"></option>
                       </select><br /> 
                         <div class="join_menu">관심운동</div>
                       <select class="favorite-choice" id="sports1" name="sportsDomain">
-                        <option value="0">선택안함</option>
                         <option data-th-each="sports : ${sportsList}" data-th-value="${sports.no}" data-th-text="${sports.name}"></option>
                       </select> 
                       <select class="favorite-choice" id="sports2" name="sportsDomain">
-                        <option value="0">선택안함</option>
                         <option data-th-each="sports : ${sportsList}" data-th-value="${sports.no}" data-th-text="${sports.name}"></option>
                       </select><br />
                       <div class="send_bt"><button type="submit" class="send_bt2">회원가입</button></div>
@@ -256,7 +252,7 @@
                     swal({
                     	  icon: "error",
                     	  title: "다시 입력해주세요.",
-                        text: "비밀번호는 4글자 이상, 16글자 이하만 이용 가능합니다.",
+                        text: "비밀번호는 4글자 이상, 16글자 이하만 가능합니다.",
                         button: "확인",
                       });
 	                document.getElementById('password').value='';

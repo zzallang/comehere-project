@@ -179,12 +179,20 @@
      email=#{email}
   </select>
 
-	<update id="updatePassWrod" parameterType="Member">
+<!-- 	<update id="updatePassWrod" parameterType="Member">
 		UPDATE member SET
 		  pwd=sha2(#{password},256)
 		WHERE
 		  mno=#{no}
-	</update>
+	</update> -->
+  
+    <update id="updatePW" parameterType="String">
+    update member set
+    pwd=sha2(#{password},256)
+    where
+    email=#{email}
+    and id=#{id}
+    </update>
 
 	<select id="findByPassword" resultMap="memberMap">
 		select

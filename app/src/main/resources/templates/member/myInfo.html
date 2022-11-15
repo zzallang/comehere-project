@@ -69,7 +69,7 @@
               <ul class="infoMenu">
                 <li class= "infoMenuOn"><a href="refresh:">회원 정보 변경</a></li>
                 <li class= "infoMenuOn"><a href="../mypage/party-management">모임 관리</a></li>
-                <li class= "infoMenuOn"><a href="../mypage/my-post">작성글/스크랩</a></li>
+                <li class= "infoMenuOn"><a href="../mypage/my-post">나의활동</a></li>
               </ul>
             </div>
             <div class="container">
@@ -114,21 +114,17 @@
                           </div>
                           <div class="join_menu">관심지역 <br>
                           <select class="favorite-choice" id="favoriteRegion1" name="regionDomain" >
-                          <option value="0">선택안함</option>
                           <option data-th-each="region : ${regionList}"  data-th-value="${region.no}" data-th-text="${region.sigu}"></option>
                       </select> 
                       <select class="favorite-choice" id="favoriteRegion2" name="regionDomain">
-                        <option value="0">선택안함</option>
                         <option data-th-each="region : ${regionList}"  data-th-value="${region.no}" data-th-text="${region.sigu}"></option>
                       </select><br />
                       </div>
                         <div class="join_menu">관심운동</div>
                       <select class="favorite-choice" id="favoriteSports1" name="sportsDomain">
-                        <option value="0">선택안함</option>
                         <option data-th-each="sports : ${sportsList}" data-th-value="${sports.no}" data-th-text="${sports.name}"></option>
                       </select> 
                       <select class="favorite-choice" id="favoriteSports2" name="sportsDomain">
-                        <option value="0">선택안함</option>
                         <option data-th-each="sports : ${sportsList}" data-th-value="${sports.no}" data-th-text="${sports.name}"></option>
                       </select><br />
 =======
