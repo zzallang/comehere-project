@@ -36,6 +36,7 @@ public class AdminController {
       return "redirect:/admin";
     }
 
+
     //    if(member != null) {
     //      ModelAndView mv = new ModelAndView("redirect:" + beforePageURL);
     //      mv.addObject("member", member);
@@ -46,6 +47,10 @@ public class AdminController {
     //    mv.addObject("member", member);
     //    return mv;
 
+  }
+
+  @GetMapping("mngment")
+  public void mngment() throws Exception {
   }
 
 

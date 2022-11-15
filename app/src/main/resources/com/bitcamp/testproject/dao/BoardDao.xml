@@ -13,6 +13,7 @@
     <result column="cdt" property="createdDate"/>
     <result column="vw_cnt" property="viewCount"/>
     <result column="thumbnail" property="thumbnail"/>
+    <result column="ment_cnt" property="commentCount"/>
     
     <association property="writer" javaType="member">
       <id column="mno" property="no"/>
@@ -330,6 +331,7 @@
   </select>
 
 <!-- 은지 -->
+<!-- 
   <select id="findByMyPost" parameterType="map" resultMap="boardMap" >
     SELECT
       *
@@ -341,6 +343,36 @@
       act = 1
     ORDER BY 
       bno desc
+    limit #{pagesStart}, #{perPageNum}
+  </select>
+   -->
+  <select id="findByMyPost" parameterType="map" resultMap="boardMap" >
+    SELECT
+    b.*,
+    cmt.cnt ment_cnt
+    FROM
+      board b
+    left join
+      (
+      SELECT
+        tb.bno tbno,
+        count(*) cnt
+      FROM
+        board_comment tc
+        join board tb on tb.bno = tc.bno
+      WHERE
+        tb.mno = #{memberNo}
+        AND
+        tb.act = 1
+      GROUP BY
+        tc.bno
+      ) cmt on cmt.tbno = b.bno
+    WHERE
+      b.mno = #{memberNo}
+      AND
+      b.act = 1
+    ORDER BY 
+      b.bno desc
     limit #{pagesStart}, #{perPageNum}
   </select>
   

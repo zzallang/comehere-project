@@ -18,11 +18,14 @@ public class Board {
   private List<String> report;
   private String thumbnail;
 
+  private int commentCount; // 게시글에 달린 댓글 개수
+
   @Override
   public String toString() {
     return "Board [no=" + no + ", cateno=" + cateno + ", writer=" + writer + ", title=" + title
         + ", active=" + active + ", content=" + content + ", createdDate=" + createdDate
-        + ", viewCount=" + viewCount + ", report=" + report + ", thumbnail=" + thumbnail + "]";
+        + ", viewCount=" + viewCount + ", report=" + report + ", thumbnail=" + thumbnail
+        + ", commentCount=" + commentCount + "]";
   }
 
   public int getNo() {
@@ -104,6 +107,15 @@ public class Board {
   public void setThumbnail(String thumbnail) {
     this.thumbnail = thumbnail;
   }
+
+  public int getCommentCount() {
+    return commentCount;
+  }
+
+  public void setCommentCount(int commentCount) {
+    this.commentCount = commentCount;
+  } 
+
 
 }
 

@@ -184,16 +184,16 @@
                             <div class="FormInputCheck">
 															<input data-th-id="'check_article_' + ${myPost.no}" type="checkbox" class="input_check">
 															<label data-th-for="'check_article_'  +${myPost.no}" class="label">
-															 <span class="blind">[[${i.count}]]</span>
+															 <span class="blind">[[${i.count} + (((${pageMaker.cri.page}) - 1) * ${pageMaker.cri.perPageNum})]]</span>
 															</label>
                           </div>
                         </td>
                         <td class="title-td">
                           <div class="board-list">
                             <div class="inner_list">
-															<a href="" target="_blank" class="article" >[[${myPost.title}]]</a>
+															<a data-th-href="@{/board/detail(no=${myPost.no})}" class="article" >[[${myPost.title}]]</a> <!-- 속성 우선 뺌 target="_blank" -->
                               <span data-v-8ce69c06=""></span>
-                              <a href="" target="_blank" class="cmt">[<em></em>]</a>
+                              <a data-th-href="@{/board/detail(no=${myPost.no})}" class="cmt">[<em>[[${myPost.commentCount}]]</em>]</a> <!-- 속성 우선 뺌 target="_blank" -->
                             </div>
                           </div>
                         </td>

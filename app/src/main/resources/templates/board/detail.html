@@ -335,7 +335,11 @@
                    class="btn btn-primary"
                    role="button"
                    id="delete-button">삭제</a>
-                <a class="btn btn-primary btn-modal" href="#" role="button" type="button">신고기능</a>
+                <a data-th-if="${session.loginMember} == null or ${session.loginMember.no} != ${board.writer.no}" 
+                   class="btn btn-primary btn-modal" 
+                   href="#" 
+                   role="button" 
+                   type="button">신고</a>
                 <a data-th-href="@{list(no=${board.cateno})}"
                    class="btn btn-primary">목록</a>
                 <a data-th-if="${session.loginMember} != null and ${session.loginMember.no} != ${board.writer.no}" 
@@ -532,7 +536,7 @@
       	// 댓글 등록
         function insertAndReplay(){
           $.ajax({
-            url : "/app/report/partyRport",
+            url : "/app/boardComment/insertAndReplay",
             data : {
               content : $("#commentCont").val(),
               boardNo : boardNo,

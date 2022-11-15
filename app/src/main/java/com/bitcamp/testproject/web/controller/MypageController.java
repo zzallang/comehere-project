@@ -42,6 +42,8 @@ public class MypageController {
     paramMap.put("pagesStart", cri.getPagesStart());
     paramMap.put("perPageNum", cri.getPerPageNum());
 
+    System.out.println(">>>>머야???!!!" + boardService.findByMyPost(paramMap));
+
     model.addAttribute("myPostList", boardService.findByMyPost(paramMap));
     model.addAttribute("pageMaker", pageMaker);
 
