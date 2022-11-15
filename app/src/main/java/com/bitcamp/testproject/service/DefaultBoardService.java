@@ -168,6 +168,19 @@ public class DefaultBoardService implements BoardService {
 
   //////////
 
+  // 은지
+  // 작성글
+  @Override
+  public List<Board> findByMyPost(Map<String, Object> paramMap) throws Exception {
+    return boardDao.findByMyPost(paramMap);
+  }
+
+  @Override
+  public int countMyPost(int memberNo) throws Exception {
+    return boardDao.countMyPost(memberNo);
+  }
+
+
 }
 
 

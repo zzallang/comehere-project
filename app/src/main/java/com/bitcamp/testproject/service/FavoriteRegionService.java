@@ -18,11 +18,3 @@ public interface FavoriteRegionService {
 
   void addFavoriteRegion(Member member);
 }
-
-
-
-
-
-
-
-

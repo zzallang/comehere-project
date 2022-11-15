@@ -48,6 +48,11 @@ public interface MemberDao {
       @Param("email") String email,
       @Param("SecCode") String SecCode);
 
+      
+  int updatePW(
+    @Param("password") String password,
+    @Param("email") String email,
+    @Param("id") String id);
 }
 
 

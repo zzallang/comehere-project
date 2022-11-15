@@ -71,18 +71,12 @@ public interface BoardDao {
   //  int deleteFilesByMemberBoards(int memberNo);
 
 
+  // 은지
+  List<Board> findByMyPost(Map<String, Object> paramMap);
+
+  int countMyPost(int memberNo);
+
 }
-
-
-
-
-
-
-
-
-
-
-
 
 
 

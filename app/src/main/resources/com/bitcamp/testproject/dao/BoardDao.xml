@@ -233,6 +233,31 @@
       cateno = #{value}
   </select>
 
+<!-- 은지 -->
+  <select id="findByMyPost" parameterType="map" resultMap="boardMap" >
+    SELECT
+      *
+    FROM
+      board
+    WHERE
+      mno = #{memberNo}
+    AND
+      act = 1
+    ORDER BY 
+      bno desc
+    limit #{pagesStart}, #{perPageNum}
+  </select>
+  
+  <select id="countMyPost" parameterType="int" resultType="int">
+    SELECT
+      COUNT(*)
+    FROM
+      board
+    WHERE
+      mno=#{no}
+    AND
+      act=1 
+  </select>
 
 </mapper>
 

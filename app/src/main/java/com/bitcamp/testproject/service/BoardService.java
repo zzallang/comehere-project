@@ -56,6 +56,12 @@ public interface BoardService {
 
 
   ////////////
+
+  // 은지
+  List<Board> findByMyPost(Map<String, Object> paramMap) throws Exception;
+
+  int countMyPost(int memberNo) throws Exception;
+
 }
 
 
