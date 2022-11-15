@@ -93,8 +93,8 @@
                       <input type="email" class="email-bt" id="email" placeholder="이메일" name="email" > 
                       <div><font id="email-feedback" size="3"></font></div>
                       <!-- @
-                         <input type="text" class="custom-email" placeholder="도메인 입력" name="mail_domain" id="mail_domain">
-                         <select class="custom-email" id="mail_domain_select" onchange="selectChange()">
+	                      <input type="text" class="custom-email" placeholder="도메인 입력" name="mail_domain" id="mail_domain">
+	                      <select class="custom-email" id="mail_domain_select" onchange="selectChange()">
                           <option value="">직접 입력</option>
                           <option value="naver.com">naver.com</option>
                           <option value="daum.net">daum.net</option>
@@ -110,9 +110,9 @@
                       <div><font id="nick-feedback" size="3"></font></div>
                           <button class="btn btn-outline-secondary" type="button" id="button-addon3">중복확인</button>
                           <div class="join_menu">비밀번호
-                               <input type="password" class="email-bt" id="password" onchange="check_pw()" placeholder="비밀번호" name="password"> 
-                               <input type="password" class="email-bt" id="passwordCheck" onchange="check_pw()" placeholder="비밀번호 확인" name="password_check" >&nbsp;
-                               <div><font id="check" size="3"></font> </div>
+			                      <input type="password" class="email-bt" id="password" onchange="check_pw()" placeholder="비밀번호" name="password"> 
+			                      <input type="password" class="email-bt" id="passwordCheck" onchange="check_pw()" placeholder="비밀번호 확인" name="password_check" >&nbsp;
+			                      <div><font id="check" size="3"></font> </div>
                           </div>
                         <div class="join_menu">관심지역</div>
                         <select class="favorite-choice" id="region1" name="regionDomain">
@@ -181,102 +181,102 @@
              
             /* 아이디 중복체크 */
             $('#button-addon1').click(function(){
-               let id = $('#id').val();
-               
-               $.ajax({
-                  url : '/app/member/duplicationIdCheck',
-                  type : "post",
-                  data : {id : id},
-                  dataType : 'json',
-                  success : function(result) { 
-                     if(result == 1) {
-                        $("#id-feedback").html('이미 사용 중인 아이디입니다.');
-                        $("#id-feedback").attr('color', 'red');
-                     } else {
-                        $("#id-feedback").html('사용할 수 있는 아이디입니다.');
-                        $("#id-feedback").attr('color', 'green');
-                     }
-                  }
-               })
+            	let id = $('#id').val();
+            	
+            	$.ajax({
+            		url : '/app/member/duplicationIdCheck',
+            		type : "post",
+            		data : {id : id},
+            		dataType : 'json',
+            		success : function(result) { 
+            			if(result == 1) {
+            				$("#id-feedback").html('이미 사용 중인 아이디입니다.');
+            				$("#id-feedback").attr('color', 'red');
+            			} else {
+            				$("#id-feedback").html('사용할 수 있는 아이디입니다.');
+            				$("#id-feedback").attr('color', 'green');
+            			}
+            		}
+            	})
             })
              
             /* 이메일 중복체크 */
             $('#button-addon2').click(function(){
-               let email = $('#email').val();
-               
-               $.ajax({
-                  url : '/app/member/duplicationEmailCheck',
-                  type : "post",
-                  data : {email : email},
-                  dataType : 'json',
-                  success : function(result) { 
-                     if(result == 1) {
-                        $("#email-feedback").html('이미 사용 중인 이메일입니다.');
-                        $("#email-feedback").attr('color', 'red');
-                     } else {
-                        $("#email-feedback").html('사용할 수 있는 이메일입니다.');
-                        $("#email-feedback").attr('color', 'green');
-                     }
-                  }
-               })
+            	let email = $('#email').val();
+            	
+            	$.ajax({
+            		url : '/app/member/duplicationEmailCheck',
+            		type : "post",
+            		data : {email : email},
+            		dataType : 'json',
+            		success : function(result) { 
+            			if(result == 1) {
+            				$("#email-feedback").html('이미 사용 중인 이메일입니다.');
+            				$("#email-feedback").attr('color', 'red');
+            			} else {
+            				$("#email-feedback").html('사용할 수 있는 이메일입니다.');
+            				$("#email-feedback").attr('color', 'green');
+            			}
+            		}
+            	})
             })
              
             /* 닉네임 중복체크 */
             $('#button-addon3').click(function(){
-               let nick = $('#nick').val();
-               
-               $.ajax({
-                  url : '/app/member/duplicationNickCheck',
-                  type : "post",
-                  data : {nickname : nick},
-                  dataType : 'json',
-                  success : function(result) { 
-                     if(result == 1) {
-                        $("#nick-feedback").html('이미 사용 중인 닉네임입니다.');
-                        $("#nick-feedback").attr('color', 'red');
-                     } else {
-                        $("#nick-feedback").html('사용할 수 있는 닉네임입니다.');
-                        $("#nick-feedback").attr('color', 'green');
-                     }
-                  }
-               })
+            	let nick = $('#nick').val();
+            	
+            	$.ajax({
+            		url : '/app/member/duplicationNickCheck',
+            		type : "post",
+            		data : {nickname : nick},
+            		dataType : 'json',
+            		success : function(result) { 
+            			if(result == 1) {
+            				$("#nick-feedback").html('이미 사용 중인 닉네임입니다.');
+            				$("#nick-feedback").attr('color', 'red');
+            			} else {
+            				$("#nick-feedback").html('사용할 수 있는 닉네임입니다.');
+            				$("#nick-feedback").attr('color', 'green');
+            			}
+            		}
+            	})
             })
             
             /* 비밀번호 체크 */
             function check_pw(){
-               var pw = document.getElementById('password').value;
-               /* var SC = ["!","@","#","$","%"];
-               var check_SC = 0; */
-    
-               if(pw.length < 4 || pw.length>16){
+	            var pw = document.getElementById('password').value;
+	            /* var SC = ["!","@","#","$","%"];
+	            var check_SC = 0; */
+	 
+	            if(pw.length < 4 || pw.length>16){
                     swal({
                     	  icon: "error",
                     	  title: "다시 입력해주세요.",
                         text: "비밀번호는 4글자 이상, 16글자 이하만 가능합니다.",
                         button: "확인",
                       });
-                   document.getElementById('password').value='';
-               }
-                /* for(var i=0;i<SC.length;i++){
-                   if(pw.indexOf(SC[i]) != -1){
-                       check_SC = 1;
-                   }
-               }
-               if(check_SC == 0){
-                   window.alert('!,@,#,$,% 의 특수문자가 들어가 있지 않습니다.')
-                   document.getElementById('password').value='';
-               } */
-               if(document.getElementById('password').value !='' && document.getElementById('passwordCheck').value!=''){
-                   if(document.getElementById('password').value==document.getElementById('passwordCheck').value){
-                       document.getElementById('check').innerHTML='비밀번호가 일치합니다.'
-                       document.getElementById('check').style.color='green';
-                   }
-                   else{
-                       document.getElementById('check').innerHTML='비밀번호가 일치하지 않습니다.';
-                       document.getElementById('check').style.color='red';
-                   }
-               }
-           }
+	                document.getElementById('password').value='';
+	            }
+ 	            /* for(var i=0;i<SC.length;i++){
+	                if(pw.indexOf(SC[i]) != -1){
+	                    check_SC = 1;
+	                }
+	            }
+	            if(check_SC == 0){
+	                window.alert('!,@,#,$,% 의 특수문자가 들어가 있지 않습니다.')
+	                document.getElementById('password').value='';
+	            } */
+	            if(document.getElementById('password').value !='' && document.getElementById('passwordCheck').value!=''){
+	                if(document.getElementById('password').value==document.getElementById('passwordCheck').value){
+	                    document.getElementById('check').innerHTML='비밀번호가 일치합니다.'
+	                    document.getElementById('check').style.color='green';
+	                }
+	                else{
+	                    document.getElementById('check').innerHTML='비밀번호가 일치하지 않습니다.';
+	                    document.getElementById('check').style.color='red';
+	                }
+	            }
+	        }
             </script>
         </body>
 

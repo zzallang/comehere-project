@@ -47,9 +47,9 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                   <ul class="navbar-nav mr-auto">
-                       <li class="nav-item"><a class="nav-link" href="../party/list">운동하기</a></li>
-                       <li class="nav-item"><a class="nav-link" href="../board/main">커뮤니티</a></li>
-                       <li class="nav-item"><a class="nav-link" href="#">공지사항</a></li>
+			              <li class="nav-item"><a class="nav-link" href="../party/list">운동하기</a></li>
+			              <li class="nav-item"><a class="nav-link" href="../board/main">커뮤니티</a></li>
+			              <li class="nav-item"><a class="nav-link" href="#">공지사항</a></li>
                   </ul>
                   <div class="search_icon">
                     <ul>
@@ -164,17 +164,17 @@
             });
             
             /* 관심지역 선택한 값 불러오기 시작*/
-                 let memberRestion1 = [[${member.FavoriteRegion[0].Region.no}]]; // 예) 금천구의 번호
-                 console.log(memberRestion1);
-               
-                 let regionOptionLength1 = $("#favoriteRegion1").find("option").length; // select box 안에 option 개수 조회
-               
-                 for (let i=0; i<regionOptionLength1; i++) {
-                   let optionValue = $("#favoriteRegion1").find('option').eq(i).attr("value");
-                   if(memberRestion1 == optionValue) { //
-                     $("#favoriteRegion1").find('option').eq(i).attr('selected', true);
-                   }
-                 }
+					  let memberRestion1 = [[${member.FavoriteRegion[0].Region.no}]]; // 예) 금천구의 번호
+					  console.log(memberRestion1);
+					
+					  let regionOptionLength1 = $("#favoriteRegion1").find("option").length; // select box 안에 option 개수 조회
+					
+					  for (let i=0; i<regionOptionLength1; i++) {
+					    let optionValue = $("#favoriteRegion1").find('option').eq(i).attr("value");
+					    if(memberRestion1 == optionValue) { //
+					      $("#favoriteRegion1").find('option').eq(i).attr('selected', true);
+					    }
+					  }
             
             let memberRestion2 = [[${member.FavoriteRegion[1].Region.no}]]; // 예) 금천구의 번호
             console.log(memberRestion2);

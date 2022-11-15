@@ -28,6 +28,7 @@ public class DefaultMemberService implements MemberService {
   @Transactional
   @Override
   public void add(Member member) throws Exception {
+    // 1) 회원등록
     memberDao.insert(member);
 
     // 2) 관심지역 등록
@@ -43,12 +44,10 @@ public class DefaultMemberService implements MemberService {
   }
 
   @Override
-  public boolean updatePW(String password, String email, String id) throws Exception {
-    if (memberDao.updatePW(password, email, id) == 0) {
-      return false;
-    }
-    return true;
+  public boolean updatePassWord(Member member) throws Exception {
+    return memberDao.update(member) > 0;
   }
+
   @Override
   public Member get(int no) throws Exception {
     return memberDao.findByNo(no);

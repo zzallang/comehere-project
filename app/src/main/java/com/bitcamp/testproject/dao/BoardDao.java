@@ -3,6 +3,7 @@ package com.bitcamp.testproject.dao;
 import java.util.List;
 import java.util.Map;
 import org.apache.ibatis.annotations.Mapper;
+import com.bitcamp.testproject.vo.AttachedFile;
 import com.bitcamp.testproject.vo.Board;
 import com.bitcamp.testproject.vo.BoardCategory;
 import com.bitcamp.testproject.vo.Criteria;
@@ -10,17 +11,23 @@ import com.bitcamp.testproject.vo.Criteria;
 @Mapper
 public interface BoardDao {
 
+  //  제동 소스
+
   int insert(Board board);
 
   int insertFiles(Board board);
 
   Board findByNo(int no);
 
+  //  List<Board> findAll(int no);
+
   int deleteFiles(int boardNo);
 
   int delete(int no);
 
   int update(Board board);
+
+  AttachedFile findFileByNo(int no);
 
   int deleteFile(int fileNo);
 
@@ -36,13 +43,6 @@ public interface BoardDao {
 
   BoardCategory findCategoryByNo(int no);
 
-  int daleteThumbnailByNo(int no);
-
-  String getThumbnailByBoardNo(int no);
-
-  List<Map<String, Object>> findByKeyword(Map<String,Object> searchObj);
-
-  int findListTotalCountWithSearch(Map<String, Object> countObj);
 
   //
 

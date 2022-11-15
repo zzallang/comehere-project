@@ -37,10 +37,6 @@
       <link href="../css/bootstrap/bootstrap.css" rel="stylesheet">
         
       <style>
-        .temp-line {
-          border: 1px solid black;
-        }
-      
         .our_textJD {
         width: 100%;
         float: left;
@@ -145,166 +141,53 @@
         }
         
         .form-content {
+          width: 800px;
           min-height: 700px;
         }
-        
-        .profile_pic {
-          height: 50px;
-          width: 50px;
-        }
-        .board-wrapper {
-          padding: 30px;
-        }
-        
-        .thumbnail-temp {
-          width: 30%;
-          height: 30%;
-        }
-        
-        /* Modal */
-#modal.modal-overlay {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  left: 0;
-  top: 0;
-  display: none;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background: rgba(255, 255, 255, 0.25);
-  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-  backdrop-filter: blur(1.5px);
-  -webkit-backdrop-filter: blur(1.5px);
-  border-radius: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.18);
-}
-
-#modal .modal-window {
-  background: rgba(255, 212, 0, 0.70);
-  /* background: rgba( 69, 139, 197, 0.70 ); */
-  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-  backdrop-filter: blur(13.5px);
-  -webkit-backdrop-filter: blur(13.5px);
-  border-radius: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  width: 500px;
-  height: 260px;
-  position: absolute;
-  top: 200px;
-  padding: 10px;
-  z-index: 10;
-}
-
-#modal .title {
-  padding-left: 10px;
-  display: inline;
-  text-shadow: 1px 1px 2px gray;
-  color: white;
-}
-
-#modal .title h2 {
-  display: inline;
-}
-
-#modal .close-area {
-  display: inline;
-  float: right;
-  padding-right: 10px;
-  cursor: pointer;
-  text-shadow: 1px 1px 2px gray;
-  color: white;
-}
-
-#modal .content {
-  margin-top: 20px;
-  padding: 0px 10px;
-  text-shadow: 1px 1px 2px gray;
-  color: white;
-}
-
-.email-bt3 {
-  color: #989696;
-  width: 300px;
-  height: 55px;
-  font-size: 18px;
-  padding: 15px;
-  margin-top: 30px;
-  margin-left: 80px;
-  margin-bottom: -20px;
-  border: 0px;
-  border-radius: 5px;
-  height: 55px;
-  font-size: 18px;
-}
-
-.report_menu {
-  text-align: center;
-  font-size: 40px;
-  margin-top: 20px;
-}
-
-.massage-bt1 {
-  color: #989696;
-  width: 100%;
-  height: 300px;
-  font-size: 18px;
-  padding: 50px 20px 10px 20px;
-  margin-top: 50px;
-  border: 0px;
-  border-radius: 5px;
-}
-
-.send_bt3 {
-  width: 30%;
-  float: left;
-  font-size: 20px;
-  color: #f8b81f7a;
-  text-align: center;
-  border: 2px solid #ffffff;
-  border-radius: 5px;
-  padding: 10px 0px;
-  font-weight: bold;
-  margin-top: 18px;
-  margin-left: 160px;
-  display: inline;
-  padding-right: 10px;
-  cursor: pointer;
-  text-shadow: 1px 1px 2px gray;
-  color: white;
-  /* f8b81f7a */
-}
         
       </style>
 
     </head>
     <body>
-  <!-- header section start -->
-  <div class="header_section">
-    <div class="container-fluid">
-      <nav class="navbar navbar-expand-lg navbar-light">
-        <div class="main_logo"><a href="/app"><img src="../images/logo.png"></a></div>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item"><a class="nav-link" href="../party/list">운동찾기</a></li>
-            <li class="nav-item"><a class="nav-link" href="main">커뮤니티</a></li>
-            <li class="nav-item"><a class="nav-link" href="#">공지사항</a></li>
-          </ul>
-          <div class="login-bt">
-            <ul>
-              <li th:if="${session.loginMember == null}" ><a href="../auth/form" >로그인</a></li>
-              <li class="loginId" th:if="${session.loginMember != null}" th:id=${session.loginMember.no}><a href="../member/viewer">마이페이지</a></li>
-              <li th:if="${session.loginMember != null}"><a href="../auth/logout" th:text="${session.loginMember.name} + '(로그아웃)'">동동(로그아웃)</a></li>
-            </ul>
-          </div>
-        </div>
-      </nav>
-    </div>
-  </div>
-  <!-- header section end -->
+
+      <!-- header section start -->
+      <div class="header_section">
+         <div class="container-fluid">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+               <div class="main_logo"><a href="/app"><img src="../images/logo.png"></a></div>
+               <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                  <ul class="navbar-nav mr-auto">
+                     <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                     </li>
+                     <li class="nav-item">
+                        <a class="nav-link" href="services.html">services</a>
+                     </li>
+                     <li class="nav-item">
+                        <a class="nav-link" href="about.html">About</a>
+                     </li>
+                     <li class="nav-item">
+                        <a class="nav-link" href="shop.html">Shop</a>
+                     </li>
+                     <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Contact</a>
+                     </li>
+                  </ul>
+                  <form class="form-inline my-2 my-lg-0">
+                     <h1 class="call_text">Call Us : +01 1234567890</h1>
+                  </form>
+                  <div class="search_icon">
+                     <ul>
+                        <li><a href="#"><img src="../images/search-icon.png"></a></li>
+                        <li><a href="#">LOGIN</a></li>
+                     </ul>
+                  </div>
+               </div>
+            </nav>
+         </div>
+      </div>
+      <!-- header section end -->
+      
       <!-- furnitures section start -->
       <div class="furnitures_sectionJD layout_padding">
          <a href="main"><h1 class="container" id="community-title">커뮤니티</h1></a>
@@ -319,130 +202,173 @@
            </ul>
            <!-- 게시판 카테고리 이동 끝 -->
 
-            <h1>글조회</h1>
-            <h2 th:if="${board.cateno == 1}">자유게시판</h2>
-            <h2 th:if="${board.cateno == 2}">식단게시판</h2>
-            <h2 th:if="${board.cateno == 3}">챌린지게시판</h2>
-            <h2 th:if="${board.cateno == 4}">질문게시판</h2>
-            <h2 th:if="${board.cateno == 5}">핫딜게시판</h2>
-            
-            <div>
-                <a data-th-if="${session.loginMember} != null and ${session.loginMember.no} == ${board.writer.no}" 
-                   data-th-href="@{updateForm(no=${board.no})}" 
-                   class="btn btn-primary" 
-                   role="button">수정</a>
-                <a th:if="${session.loginMember} != null and ${session.loginMember.no} == ${board.writer.no}" 
-                   class="btn btn-primary"
-                   role="button"
-                   id="delete-button">삭제</a>
-                <a data-th-if="${session.loginMember} == null or ${session.loginMember.no} != ${board.writer.no}" 
-                   class="btn btn-primary" 
-                   href="#" 
-                   role="button" 
-                   id="btn-modal">신고</a>
-                <a data-th-href="@{list(no=${board.cateno})}"
-                   class="btn btn-primary">목록</a>
-                <a data-th-if="${session.loginMember} != null and ${session.loginMember.no} != ${board.writer.no}" 
-                   class="btn btn-primary"  role="button" id="scrap-button">스크랩</a>
-                
-            </div>
-            
-            <div class="temp-line board-wrapper">
-              <input th:value="${board.no}" value=게시글번호 id="boardNo" name='no' type="hidden">
-              <h3 th:text='${board.title}'></h3>
-              <div>
-                <img th:src="@{'/member/files/' + ${board.writer.filepath}}" class="profile_pic" alt="profile_picture" onerror="this.src='../images/profile-pic.png';" >
-                <span th:text="${board.writer.nickname}"></span>
-                <span th:text="${board.createdDate}"></span>
-                <br>조회수 : <span th:text="${board.viewCount}">0</span>
-              </div>
-              <div class="temp-line" th:if="${board.cateno == 3}">
-                <img th:if="${board.thumbnail == null}" src="/app/board/files/nothumpnail.jpg" alt="thumpnail" class="thumbnail-temp"/>
-                <img th:if="${board.thumbnail != null}" th:src="@{'/board/files/' + ${board.thumbnail}}" alt="Avatar" class="thumbnail-temp"/>
-              </div>
-              <div th:utext="${board.content}" class="form-content">내용</div>
-            </div>
-            
-             <!-- 댓글 블록 시작 -->
-            <div>
-              <h2>달린 댓글 부분</h2>
-              <div class="container">
-                  <div class="commentList"></div>
-              </div>
-              
-            <!-- 댓글페이징 -->
-            <nav aria-label="Page navigation">
-              <ul class="pagination">
-                <div class="page_center">
-                  <li class="page-item" th:if="${pageMaker.prev}">
-                    <a class="page-link" th:href="@{list(page=${pageMaker.startPage-1}, no=${catenoInBoard.cateno})}" aria-label="Previous">
-                      <span aria-hidden="true">&laquo;</span>
-                    </a>
-                  </li>
-                  <th:block th:if="${pageMaker.endPage != 0}" th:each="pageNum: ${#numbers.sequence(pageMaker.startPage, pageMaker.endPage)}">
-                    <li data-th-id="${'pageButton' + pageNum}"  class="page-item">
-                      <a th:id="'pageNo' + ${pageNum}" class="page-link" onclick="getId(this.id)"><i th:text="${pageNum}"></i></a>
-                    </li>
-                  </th:block>
-                  <li class="page-item" th:if="${pageMaker.next && pageMaker.endPage >0}">
-                    <a class="page-link" th:href="@{list(page=${pageMaker.endPage+1}, no=${catenoInBoard.cateno})}" aria-label="Next">
-                      <span aria-hidden="true">&raquo;</span>
-                    </a>
-                  </li>
-                </div>
-              </ul>
-            </nav>
-            <!-- 댓글페이징 -->
-              
-              <h2>댓글 쓰기 부분</h2>
-              <div style="width: 80%;" class="temp-line">
-                  <div class="form-group">
-                      <label for="comment"></label>
-                      <div th:if="${session.loginMember}">
-                        <input type="hidden" id="memberNo"  th:value="${session.loginMember.no}" >
-                        <input
-                            type="text"
-                            class="form-control"
-                            id="commentCont"
-                            placeholder="댓글을 달아주세요!"
-                            style="height: 30px;"
-                            th:name="${session.loginMember.nickname}">
-                        </div>
-                      <div th:if="${session.loginMember == null}">
-                        <input type="hidden" id="memberNo"  value=0>
-                        <input
-                            type="text"
-                            class="form-control"
-                            id="commentCont"
-                            placeholder="댓글을 등록하려면 로그인 해주세요"
-                            style="height: 60px;" readonly
-                            onclick="alertToLogin();">
-                      </div>
-                  </div>
-                  <div>
-                      <button id="commentButton" class="btn btn-sm btn-success">등록</button>
-                  </div>
-              </div>
-            </div>
-            <!-- 댓글 블록 끝 -->
+         
+            <table border='1' style="margin: auto">
+                <tr>
+                    <th>게시판</th>
+                    <td>
+                      <span value='게시판' th:if="${board.cateno == 1}">자유게시판</span>
+                      <span value='게시판' th:if="${board.cateno == 2}">식단게시판</span>
+                      <span value='게시판' th:if="${board.cateno == 3}">챌린지게시판</span>
+                      <span value='게시판' th:if="${board.cateno == 4}">질문게시판</span>
+                      <span value='게시판' th:if="${board.cateno == 5}">핫딜게시판</span>
+                    </td>
 
+                </tr>
+                <tr>
+                    <th>번호</th>
+                    <td><input
+                        name='no'
+                        type='number'
+                        value='0'
+                        data-th-value="${board.no}"
+                        readonly="readonly"></td>
+                </tr>
+                <tr>
+                    <th>제목</th>
+                    <td><input
+                        name='title'
+                        type='text'
+                        value='제목'
+                        data-th-value='${board.title}'
+                        size='60'></td>
+                </tr>
+                <tr>
+                    <th>내용</th>
+                     <td>
+                        <div class="form-content" name='content' data-th-utext="${board.content}">내용</div>
+                    </td> 
+                </tr>
+                <tr>
+                    <th>조회수</th>
+                    <td data-th-text="${board.viewCount}">0</td>
+                </tr>
+                <tr>
+                    <th>작성자</th>
+                    <td data-th-text="${board.writer.name}">홍길동</td>
+                </tr>
+                <tr>
+                    <th>등록일</th>
+                    <td data-th-text="${board.createdDate}">0000-00-00</td>
+                </tr>  
+            </table>
+            <p>
+                <a class="btn btn-primary" href="updateForm?no=1" data-th-href="@{updateForm(no=${board.no})}" role="button">수정</a>
+                <a href='delete?no=1' data-th-href="@{delete(no=${board.no})}">삭제</a>
+                <a data-th-href="@{list(no=${board.cateno})}">목록</a>
+                <a class="btn btn-primary" href="#" role="button">신고기능</a>
+            </p>
+             <!-- 댓글 블록 시작 -->
+            <div> 
+          <th:block th:each="comment : ${comments}">
+            <div>
+            <div>
+              <p th:text="${comment.writer.filepath}"></p>
+            </div>
+            <div>
+              <p th:text="${comment.writer.nickname}"></p>
+              <p th:text="${comment.content}"></p>
+              <p th:text="${comment.createdDate}"></p>
+            </div>
+            </div>
+          </th:block>
+            <div>
+            <div>
+              <p></p>
+            </div>
+            <div>
+              <p></p>
+              
+              <form action='add' method="post">
+              <table border='1'>
+                <tr>
+                  <th>댓글 입력</th><td><textarea rows='4' cols='60'></textarea></td>
+                </tr>
+              </table>
+              <p>
+                <button type='submit'>등록</button>
+              </p>
+              </form>
+            </div>
+            </div>
+            </div> 
+            <!-- 댓글 블록 끝 -->
+         
+         </div>
+         
+         
+         
+         
+      </div>
+    
+    
+
+      <!-- footer section start -->
+      <div class="footer_section layout_padding">
+         <div class="container">
+            <div class="row">
+               <div class="col-lg-3 col-sm-6">
+                  <div class="fooer_logo"><img src="../images/footer-logo.png"></div>
+                  <p class="footer_lorem_text">There are many variat
+                     ions of passages of L
+                     orem Ipsum available
+                     , but the majority h
+                     ave suffered altera
+                     tion in some form, by 
+                  </p>
+               </div>
+               <div class="col-lg-3 col-sm-6">
+                  <h1 class="customer_text">LET US HELP YOU</h1>
+                  <p class="footer_lorem_text">There are many variat
+                     ions of passages of L
+                     orem Ipsum available
+                     , but the majority h
+                     ave suffered altera
+                     tion in some form, by 
+                  </p>
+               </div>
+               <div class="col-lg-3 col-sm-6">
+                  <h1 class="customer_text">INFORMATION</h1>
+                  <p class="footer_lorem_text1">About Us<br>
+                     Careers<br>
+                     Sell on shopee<br>
+                     Press & News<br>
+                     Competitions<br>
+                     Terms & Conditions
+                  </p>
+               </div>
+               <div class="col-lg-3 col-sm-6">
+                  <h1 class="customer_text">OUR Design</h1>
+                  <p class="footer_lorem_text">There are many variat
+                     ions of passages of L
+                     orem Ipsum available
+                     , but the majority h
+                     ave suffered altera
+                     tion in some form, by 
+                  </p>
+               </div>
+            </div>
+            <div class="input-group mb-3">
+               <input type="text" class="form-control" placeholder="Enter your email" aria-label="Enter your email" aria-describedby="basic-addon2">
+               <div class="input-group-append">
+                  <span class="input-group-text" id="basic-addon2"><a href="#">Subscribe</a></span>
+               </div>
+            </div>
          </div>
       </div>
-
       <!--  footer section end -->
       <!-- copyright section start -->
       <div class="copyright_section">
-        <div class="container">
-           <div class="social_icon">
-              <ul>
-                 <li><a href="#"><img src="../images/fb-icon.png"></a></li>
-                 <li><a href="#"><img src="../images/twitter-icon.png"></a></li>
-                 <li><a href="#"><img src="../images/instagram-icon.png"></a></li>
-                 <li><a href="#"><img src="../images/linkedin-icon.png"></a></li>
-              </ul>
-           </div>
-           <p class="copyright_text">2020 All Rights Reserved. Design by <a href="https://html.design">Free html  Templates</a></p>
-        </div>
+      <div class="container">
+         <div class="social_icon">
+            <ul>
+               <li><a href="#"><img src="../images/fb-icon.png"></a></li>
+               <li><a href="#"><img src="../images/twitter-icon.png"></a></li>
+               <li><a href="#"><img src="../images/instagram-icon.png"></a></li>
+               <li><a href="#"><img src="../images/linkedin-icon.png"></a></li>
+            </ul>
+         </div>
+         <p class="copyright_text">2020 All Rights Reserved. Design by <a href="https://html.design">Free html  Templates</a></p>
       </div>
       <!-- copyright section end -->
       <!-- Javascript files-->
@@ -451,7 +377,6 @@
       <script src="../js/bootstrap.bundle.min.js"></script>
       <script src="../js/jquery-3.0.0.min.js"></script>
       <script src="../js/plugin.js"></script>
-      <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script><!-- sweetalert -->
       <!-- sidebar -->
       <script src="../js/jquery.mCustomScrollbar.concat.min.js"></script>
       <script src="../js/custom.js"></script>
@@ -464,326 +389,40 @@
 
       <script>
       "use strict"
-    	  const boardNo = document.getElementById( 'boardNo').value;
-    	  const memberNo = document.getElementById( 'memberNo' ).value;
-    	  const lastPageNo = document.getElementsByClassName('page-link').length;
-    	  
-    	  // 로그인 회원 유효성을 위한 셋팅
-    	  let loginMemberNo = -1;
-    	  if($(".loginId").attr("id") != undefined) {
-    	   loginMemberNo = $(".loginId").attr("id");
-    	  };
-    	  
-    	  // 처음 페이지 로드했을 때 마지막 댓글 페이지가 보이게 셋팅
-    	  // 그 후 페이징 버튼 클릭 후 이벤트 제어를 위한 페이지 번호 셋팅
-    	  let pageNo = lastPageNo;
-    	  function getId(pageId) {
-    		  pageNo = pageId.replace('pageNo', '')
-    		  commentList();
-    	  } 
-    	  
-        // 페이지 버튼 active 시키기
-        /* window.addEventListener('DOMContentLoaded', function(){
-            $('#pageButton' + pageNo).addClass('active');
-        }); */
-
-    		document.getElementById('commentButton').addEventListener('click', insertAndReplay);
-    		// 댓글을 등록했을 때 한 페이지에 보일수 있는 댓글수 초과 시(현재 15개) 페이지 reload()
-    		document.getElementById('commentButton').addEventListener('click', countComment); 
-    	  function countComment() {
-    		  var count = document.getElementsByClassName('commentArea').length;
-    		  if (count == 5) {
-    			  window.location.reload();
-    		  }
-    		};
-    		
-        // 페이지 시작할 때 댓글 목록 출력 
-        $(document).ready(function(){
-          commentList(); //페이지 로딩시 댓글 목록 출력 
-        });
-    	  // 댓글 목록 
-    	  function commentList(){
-            $.ajax({
-                url : '/app/boardComment/list',
-                type : 'get',
-                data : {boardNo: boardNo,
-              	        pageNo: pageNo
-              	        },
-                success : function(result){
-                    var a =''; 
-                    $.each(result, function(key, value){ 
-                        a += '<div class="commentArea temp-line" style="border-bottom:1px solid darkgray; margin-bottom: 15px;">';
-                        a += '<div class="commentInfo' + value.no + '">' + '댓글번호 : ' + value.no + ' / 작성자 : ' + value.writer.nickname;
-                        if (loginMemberNo == value.writer.no) {
-                          a += '<a onclick="commentUpdate(' + value.no + ',\'' + value.content + '\');"> 수정 </a>';
-                          a += '<a onclick="commentDelete('+value.no+');"> 삭제 </a> </div>';
-                        }
-                        if (loginMemberNo != value.writer.no && loginMemberNo != -1) {
-                        	a += '<button class="btn btn-primary btn-modal" role="button" > 신고 </button> </div>';
-                            /* a += '<a onclick="commentComplain('+value.no+');"> 신고 </a> </div>'; */
-                        }
-                        if (loginMemberNo == -1) {
-                            a += '<a onclick="commentComplain('+value.no+');"> 신고 </a> </div>';
-                        }
-                        a += '<div class="commentContent'+value.no+'"> <p> 내용 : '+value.content +'</p>';
-                        a += '</div></div>';
-                    });
-                    $(".commentList").html(a);
-                }
-            });
-        }
-
-      	
-      	// 댓글 등록
-        function insertAndReplay(){
-          $.ajax({
-            url : "/app/boardComment/insertAndReplay",
-            data : {
-              content : $("#commentCont").val(),
-              boardNo : boardNo,
-              memberNo : memberNo
-            },
-            type : "post",
-            success : function(result){
-              if(result != null){
-               	commentList();
-                $("#commentCont").val("");
-              }
-            }
-            })
-        }
-      	
-        //댓글 삭제 
-        function commentDelete(no){
-            $.ajax({
-                url : '/app/boardComment/delete/'+no,
-                type : 'post',
-                success : function(result){
-                    if(result == 1) commentList(); //댓글 삭제후 목록 출력 
-                }
-            });
-        }
-      
-        //댓글 수정 모드- 댓글 내용 출력을 input 폼으로 변경 
-        function commentUpdate(commentNo, content){
-            var a ='';
-            a += '<label for="form"></label>';
-            a += '<div class="input-group temp-line">';
-            a += '<input type="text" class="form-control" name="content_' + commentNo + '" value="' + content + '"/>';
-            a += '<span class="input-group-btn"><button class="btn btn-default" type="button" onclick="commentUpdateProc(' + commentNo + ');">수정</button></span>';
-            a += '</div>';
+      window.onload = 
+        function findCategory() {
+        var para = document.location.href.split("no=");
+        console.log("카테고리 번호 =>" + para[1]);
+        
+        switch(para[1]) {
+          case '1' :
+            document.getElementById( 'cateName' ).innerHTML = "자유게시판";
+            document.getElementById( 'cateConment' ).innerHTML = "여기모여 회원들이 자유롭게 소통할 수 있는 자유게시판입니다. ";
+            break;
+          case '2' :
+            document.getElementById( 'cateName' ).innerHTML = "식단게시판";
+            document.getElementById( 'cateConment' ).innerHTML = "다이어트, 벌크업 등 식이요법에 대한 다양한 정보를 나누는 식단게시판입니다.";
+            break;
+          case '3' :
+            document.getElementById( 'cateName' ).innerHTML = "챌린지게시판";
+            document.getElementById( 'cateConment' ).innerHTML = "하루하루 도전하는 회원분들의 인증샷을 올리는 챌린지게시판입니다.";
+            break;
+          case '4' :
+            document.getElementById( 'cateName' ).innerHTML = "질문게시판";
+            document.getElementById( 'cateConment' ).innerHTML = "궁금한 건 어디에서 물어볼 지 고민인 분들을 위한 질문게시판입니다.";
+            break;
+          case '5' :
+            document.getElementById( 'cateName' ).innerHTML = "핫딜게시판";
+            document.getElementById( 'cateConment' ).innerHTML = "지금이 바로 득템 기회! 핫딜 제품들을 공유할 수 있는 핫딜게시판입니다.";
+            break;
+          default :
+            document.getElementById( 'cateName' ).innerHTML = "커뮤니티 메인";
             
-            $('.commentContent'+commentNo).html(a);
-        }
-        // 댓글 수정
-        function commentUpdateProc(commentNo){
-            var updateContent = $('[name=content_'+commentNo+']').val();
-            $.ajax({
-                url : '/app/boardComment/update',
-                type : 'post',
-                data : { 
-              	  'content' : updateContent, 
-              	  'no' : commentNo},
-                success : function(result){
-                    if(result == 1) commentList(); //댓글 수정후 목록 출력 
-                }
-            });
-        }
-        function alertToLogin(){
-      	  if (confirm("로그인하시겠습니까?") == true){    //확인
-      		  location.href = '../auth/form';
-      		 }else{   //취소
-    		     return false;
-      		 }
         }
         
-        // 스크랩 관련 함수
-        if ($('#scrap-button').length != 0) {
-          document.getElementById('scrap-button').addEventListener('click', insertScrap);
-        }
-        
-        // 스크랩 등록
-        function insertScrap() {
-            if (confirm("스크랩 하시겠습니까?") == true){
-            	$.ajax({
-                    url : "/app/scrap/add",
-                    data : {
-                      boardNo : boardNo,
-                      memberNo : memberNo
-                    },
-                    type : "post",
-                    success : function(result){
-                      if(result == 1){
-                    	  alert("게시글 스크랩되었습니다.");
-                      } else if (result == 0) {
-                    	  if(confirm("이미 스크랩한 게시글입니다.\n스크랩을 취소하겠습니까?") == true){
-                    		  deleteScrap();
-                    		}else{
-                    			return false;
-                    		}
-                      }
-                    }
-                    })
-            } else{
-            	return false;
-            }
-        }
-        
-        // 스크랩 취소
-        function deleteScrap() {
-            $.ajax({
-                url : '/app/scrap/delete',
-                type : 'post',
-                data : { 
-                    boardNo : boardNo,
-                    memberNo : memberNo},
-                success : function(result){
-                    if(result == 1) {
-                      alert("스크랩이 취소되었습니다!");
-                    } else {
-                    	alert("오류??");
-                    }
-                }
-            });
-        }
-        
-        // 게시글 삭제 이벤트
-        if ($('#delete-button').length != 0) {
-          document.getElementById('delete-button').addEventListener('click', deleteBoard);
-        }
-        function deleteBoard() {
-            if (confirm("게시글을 삭제하시겠습니까?") == true){    //확인
-                  location.href = 'delete?no=' + boardNo;
-            }else{   //취소
-             return false;
-            }
-          }
-        </script>
-        
-<!-- Modal Start -->
-  <form action='report' method="post">
-    <table border='1'>
-      <div id="container">
-        <div id="lorem-ipsum"></div>
-      </div>
-      <div id="modal" class="modal-overlay">
-        <div class="modal-window">
-          <div class="close-area">X</div>
-          <div class="content">
-            <div>
-              <div class="report_menu">신고사유</div>
-              <div class="form-check form-check-inline">
-                <input type="checkbox" value="Contents" class="form-check-input" id="1" name="reports" onclick='checkOnlyOne(this)'> <input type="hidden" name="_reports" value="on" /> <label for="reports1" class="form-check-label">불건전한 내용</label>
-              </div>
-              <div class="form-check form-check-inline">
-                <input type="checkbox" value="promotion" class="form-check-input" id="2" name="reports" onclick='checkOnlyOne(this)'> <input type="hidden" name="_reports" value="on" /> <label for="reports2" class="form-check-label">스팸 및 부적절한 홍보</label>
-              </div>
-              <div class="form-check form-check-inline">
-                <input type="checkbox" value="calumny" class="form-check-input" id="3" name="reports" onclick='checkOnlyOne(this)'> <input type="hidden" name="_reports" value="on" /> <label for="reports3" class="form-check-label">명예훼손 및 비방</label>
-              </div>
-              <div class="form-check form-check-inline">
-                <input type="checkbox" value="prejudice" class="form-check-input" id="4" name="reports" onclick='checkOnlyOne(this)'> <input type="hidden" name="_reports" value="on" /> <label for="reports4" class="form-check-label">초상권 및 저작권 침해</label>
-              </div>
-              <div class="form-check form-check-inline">
-                <input type="checkbox" value="embezzlement" class="form-check-input" id="5" name="reports" onclick='checkOnlyOne(this)'> <input type="hidden" name="_reports" value="on" /> <label for="reports5" class="form-check-label">개인정보 도용</label>
-              </div>
-              <div class="form-check form-check-inline">
-                <input type="checkbox" value="act" class="form-check-input" id="6" name="reports" onclick='checkOnlyOne(this)'> <input type="hidden" name="_reports" value="on" /> <label for="reports6" class="form-check-label">기타 사이트 목적에 맞지 않는 행위</label>
-              </div>
-              <div class="form-check form-check-inline">
-                <input type="checkbox" value="Etc" class="form-check-input" id="7" name="reports" onclick='checkOnlyOne(this)'> <input type="hidden" name="_reports" value="on" /> <label for="reports7" class="form-check-label">기타</label>
-              </div>
-            </div>
-            <div class="send_bt3" id="singo">신고</div>
-          </div>
-        </div>
-      </div>
-    </table>
-  </form>
-  <script>
-  
-  function checkOnlyOne(element) {
-      
-      const checkboxes 
-          = document.getElementsByName("reports");
-      
-      checkboxes.forEach((cb) => {
-        cb.checked = false;
-      })
-      
-      element.checked = true;
-    }
-
-$("#singo").click(function() {
-    swal("신고 하였습니다.");
-
-    let data = "";
-
-    $('input:checkbox[name=reports]').each(function (index) {
-      if($(this).is(":checked")==true){
-        console.log($(this).attr("id"));
-        id = $(this).attr("id");
       }
-    });
 
-    $.ajax({
-        type: "GET",
-        url: "/app/report/insertReport",
-        async:false,
-        data: { id: id, 
-                loginMemberNo : loginMemberNo,
-                boardNo : boardNo},
-        success: function () {
-          
-          swal("신고 하였습니다.");
-          /* report_auth_cd = data; */
-          /* console.log(report_auth_cd); */
-         check = true;
-        },
-        error: function () {
-          swal("신고가 안되었습니다.");
-        },
-      });
-});
-
-</script>
-
-
-  <script>
-        const loremIpsum = document.getElementById("lorem-ipsum")
-         //fetch를 통해 받아온 데이터를 loremIpsum DOM에 넣어주기 때문에 모달창 내부에 내용이 채워져서 뜨는것. 
-        //fetch("https://baconipsum.com/api/?type=all-meat&paras=200&format=html")
-          loremIpsum.innerHTML = `모달창에 넣을 내용`
-              /* .then(response => response.text())
-              .then(result => loremIpsum.innerHTML = result) */
-              
-          //디스플레이 non 버튼클릭하면 flex로 변환  
-        const modal = document.getElementById("modal")
-        const btnModal = document.querySelector('#btn-modal');
-        btnModal.addEventListener("click", e => {
-        modal.style.display = "flex"
-           // x버튼 누르면 종료
-          const closeBtn = modal.querySelector(".close-area")
-          closeBtn.addEventListener("click", e => {
-              modal.style.display = "none"
-          })
-          // 신고 누르면 종료
-           const closeBtn1 = modal.querySelector(".send_bt3")
-          closeBtn1.addEventListener("click", e => {
-              modal.style.display = "none"
-          })
-          // esc누르면 종료
-          window.addEventListener("keyup", e => {
-    if(modal.style.display === "flex" && e.key === "Escape") {
-        modal.style.display = "none"
-    }
-})
-          
-})
-    </script>
-
-
-  <!-- Modal End-->
+      </script>
       
    </body>
          

@@ -7,9 +7,8 @@ import com.bitcamp.testproject.vo.Review;
 //
 public interface ReviewService {
 
-  List<Review> list(int userNo, int sportNo);
+  List<Review> list(int partySportNo);
 
-  Review get(int reviewNo);
 
 }
 

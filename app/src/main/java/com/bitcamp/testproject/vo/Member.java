@@ -30,13 +30,6 @@ public class Member {
   // 모임 참여 명단에서 나이대
   private String ageGroup;
 
-  public Member() {}
-
-  public Member(int no) {
-    this.no = no;
-  }
-
-
   @Override
   public String toString() {
     return "Member [no=" + no + ", name=" + name + ", id=" + id + ", email=" + email + ", nickname="
@@ -85,6 +78,14 @@ public class Member {
 
   public void setNickname(String nickname) {
     this.nickname = nickname;
+  }
+
+  public String getPassword() {
+    return password;
+  }
+
+  public void setPassword(String password) {
+    this.password = password;
   }
 
   public String getTel() {
@@ -191,15 +192,10 @@ public class Member {
     this.ageGroup = ageGroup;
   }
 
-  public String getPassword() {
-    return password;
-  }
-
-  public void setPassword(String password) {
-    this.password = password;
-  }
-
-
-
 
 }
+
+
+
+
+
