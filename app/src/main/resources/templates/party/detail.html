@@ -27,7 +27,6 @@
 <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
 <!-- owl stylesheets -->
 <link rel="stylesheet" href="../css/owl.carousel.min.css">
-<link rel="stylesheet" href="../css/owl.theme.default.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
 <!-- 썸머노트 시작 -->
 <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
@@ -398,8 +397,6 @@
       min-height: 100px;
       width: 330px;
       margin: 10px auto;
-      float: left;
-      border-bottom: 1px solid black;
     }
     
     .party_detail_review_img {
@@ -529,7 +526,7 @@
       display: inline;
     }
     
-    #modalReview .close-area {
+    #modalReview .close-area2 {
       display: inline;
       float: right;
       padding-right: 10px;
@@ -739,7 +736,28 @@
           </div>
           <div>
             <span>별점 : </span>
-            <span data-th-text='${party.star}'></span>
+            <span data-th-if="${party.star} == 0 and ${party.star} < 0.5"><span class="reviewStarVal" th:value="${party.star}" th:text="${party.star}"></span>
+            <img src="/app/review/star/star0.png" style="height:23px;"></span>
+            <span data-th-if="${party.star} >= 0.5 and ${party.star} < 1"><span class="reviewStarVal" th:value="${party.star}" th:text="${party.star}"></span>
+            <img src="/app/review/star/star05.png" style="height:23px;"></span>
+            <span data-th-if="${party.star} >= 1 and ${party.star} < 1.5"><span class="reviewStarVal" th:value="${party.star}" th:text="${party.star}"></span>
+            <img src="/app/review/star/star10.png" style="height:23px;"></span>
+            <span data-th-if="${party.star} >= 1.5 and ${party.star} < 2"><span class="reviewStarVal" th:value="${party.star}" th:text="${party.star}"></span>
+            <img src="/app/review/star/star15.png" style="height:23px;"></span>
+            <span data-th-if="${party.star} >= 2 and ${party.star} < 2.5"><span class="reviewStarVal" th:value="${party.star}" th:text="${party.star}"></span>
+            <img src="/app/review/star/star20.png" style="height:23px;"></span>
+            <span data-th-if="${party.star} >= 2.5 and ${party.star} < 3"><span class="reviewStarVal" th:value="${party.star}" th:text="${party.star}"></span>
+            <img src="/app/review/star/star25.png" style="height:23px;"></span>
+            <span data-th-if="${party.star} >= 3 and ${party.star} < 3.5"><span class="reviewStarVal" th:value="${party.star}" th:text="${party.star}"></span>
+            <img src="/app/review/star/star30.png" style="height:23px;"></span>
+            <span data-th-if="${party.star} >= 3.5 and ${party.star} < 4"><span class="reviewStarVal" th:value="${party.star}" th:text="${party.star}"></span>
+            <img src="/app/review/star/star35.png" style="height:23px;"></span>
+            <span data-th-if="${party.star} >= 4 and ${party.star} < 4.5"><span class="reviewStarVal" th:value="${party.star}" th:text="${party.star}"></span>
+            <img src="/app/review/star/star40.png" style="height:23px;"></span>
+            <span data-th-if="${party.star} >= 4.5 and ${party.star} < 5"><span class="reviewStarVal" th:value="${party.star}" th:text="${party.star}"></span>
+            <img src="/app/review/star/star45.png" style="height:23px;"></span>
+            <span data-th-if="${party.star} == 5"><span class="reviewStarVal" th:value="${party.star}" th:text="${party.star}"></span>
+            <img src="/app/review/star/star50.png" style="height:23px;"></span>
           </div>
           <div>
             <div class="party_detail_content" name='content' th:utext="${party.content}"></div>
@@ -855,7 +873,18 @@
                 <div th:id="reviewDetail + ${review.no}" class="party_detail_bottom_review_wrap reviewDetailBtn">
                   <div class="party_detail_bottom_review">
                     <div class="party_detail_review_format">
-                      <span th:text="${review.star}"></span>
+                      <div data-th-if="${review.star} == 0 and ${review.star} < 1"><span class="reviewStarVal" th:value="${review.star}" th:text="${review.star}"></span>
+                      <img src="/app/review/star/star0.png" style="width:100px;"></div>
+                      <div data-th-if="${review.star} >= 1 and ${review.star} < 2"><span class="reviewStarVal" th:value="${review.star}" th:text="${review.star}"></span>
+                      <img src="/app/review/star/star10.png" style="width:100px;"></div>
+                      <div data-th-if="${review.star} >= 2 and ${review.star} < 3"><span class="reviewStarVal" th:value="${review.star}" th:text="${review.star}"></span>
+                      <img src="/app/review/star/star20.png" style="width:100px;"></div>
+                      <div data-th-if="${review.star} >= 3 and ${review.star} < 4"><span class="reviewStarVal" th:value="${review.star}" th:text="${review.star}"></span>
+                      <img src="/app/review/star/star30.png" style="width:100px;"></div>
+                      <div data-th-if="${review.star} >= 4 and ${review.star} < 5"><span class="reviewStarVal" th:value="${review.star}" th:text="${review.star}"></span>
+                      <img src="/app/review/star/star40.png" style="width:100px;"></div>
+                      <div data-th-if="${review.star} == 5"><span class="reviewStarVal" th:value="${review.star}" th:text="${review.star}"></span>
+                      <img src="/app/review/star/star50.png" style="width:100px;"></div>
                     </div>
                     <div class="party_detail_review_format">
                       <span th:text="${review.writer.nickname}"></span>
@@ -879,7 +908,20 @@
 <!-- furnitures_section2 layout_padding_party -->
 </div>
 <!-- furnitures section end -->
+<script type="text/javascript">
 
+$('.reviewStarVal').ready(function () {
+	
+	let starArr = [];
+	let starVal = $('.reviewStarVal').val();
+	console.log(starVal);
+}
+		
+		
+		);
+
+
+</script>
 
 
 <!-- copyright section start -->
@@ -905,7 +947,7 @@
     </div>
     <div id="modalReview" class="modal-overlay">
       <div class="modal-window">
-        <div class="close-area">X</div>
+        <div class="close-area2">X</div>
         <div class="content">
           <div>
             <div class="report_menu">리뷰 상세보기</div>
@@ -930,6 +972,7 @@
                 </div>
                 <div class="party_detail_review_format">
                   <span id="reviewDetailStar"></span>
+                  <span id="reviewDetailStarImg"></span>
                 </div>
                 <div class="party_detail_review_format">
                   <span id="reviewDetailWriterNickname"></span>
@@ -942,7 +985,6 @@
                   <p id="reviewDetailContent"></p>
                 </div>
             </div>
-          </div>
         </div>
       </div>
     </div>
@@ -989,16 +1031,46 @@ function imgList() {
 let reviewNo = "";
 let partyNoVal = "";
 
-const loremIpsum = document.getElementById("lorem-ipsum2");
-//fetch를 통해 받아온 데이터를 loremIpsum DOM에 넣어주기 때문에 모달창 내부에 내용이 채워져서 뜨는것. 
+const loremIpsum2 = document.getElementById("lorem-ipsum2");
+//fetch를 통해 받아온 데이터를 loremIpsum2 DOM에 넣어주기 때문에 모달창 내부에 내용이 채워져서 뜨는것. 
 //fetch("https://baconipsum.com/api/?type=all-meat&paras=200&format=html")
-loremIpsum.innerHTML = `모달창에 넣을 내용`
+loremIpsum2.innerHTML = `모달창에 넣을 내용`
 /*  .then(response => response.text())
-    .then(result => loremIpsum.innerHTML = result) */
+    .then(result => loremIpsum2.innerHTML = result) */
 //디스플레이 non 버튼클릭하면 flex로 변환  
 
 const modalReview = document.getElementById("modalReview");
 const btnModalReview = $('.reviewDetailBtn');
+
+
+function starImg (sVal) {
+  let imgTagArr = '';
+  if (sVal >= 0 && sVal < 1) {
+    imgTagArr += '<img src="/app/review/star/star0.png" style="width:100px;">'
+    $("#reviewDetailStarImg").html(imgTagArr);
+  }
+  if (sVal >= 1 && sVal < 2) {
+    imgTagArr += '<img src="/app/review/star/star10.png" style="width:100px;">'
+    $("#reviewDetailStarImg").html(imgTagArr);
+  }
+  if (sVal >= 2 && sVal < 3) {
+    imgTagArr += '<img src="/app/review/star/star20.png" style="width:100px;">'
+    $("#reviewDetailStarImg").html(imgTagArr);
+  }
+  if (sVal >= 3 && sVal < 4) {
+    imgTagArr += '<img src="/app/review/star/star30.png" style="width:100px;">'
+    $("#reviewDetailStarImg").html(imgTagArr);
+  }
+  if (sVal >= 4 && sVal < 5) {
+    imgTagArr += '<img src="/app/review/star/star40.png" style="width:100px;">'
+    $("#reviewDetailStarImg").html(imgTagArr);
+  }
+  if (sVal == 5) {
+    imgTagArr += '<img src="/app/review/star/star50.png" style="width:100px;">'
+    $("#reviewDetailStarImg").html(imgTagArr);
+  }
+}
+
 
 btnModalReview.click((e) => {
 	let [a, resultValue] = e.currentTarget.id.split("l");
@@ -1020,14 +1092,16 @@ btnModalReview.click((e) => {
                   z += '<li><img src="/app/review/files/' + value[i].filepath + '"></li>';
                   $('.slides').html(z);
                   i += 1;
-                  console.log(i);
                 }
               }
             })
 
             imgList();
+            $('#reviewDetailStar').text(result.star + ".0");
+            let sVal = result.star;
+            starImg(sVal);
 
-            $('#reviewDetailStar').text(result.star);
+            
             $('#reviewDetailWriterNickname').text(result.writer.nickname);
             $('#reviewDetailWriterSex').text(result.writer.sex);
             $('#reviewDetailWriterAgeGroup').text(result.writer.ageGroup);
@@ -1039,8 +1113,8 @@ btnModalReview.click((e) => {
             modalReview.style.position = "fixed"
             
             // x버튼 누르면 종료
-            const closeBtn = modalReview.querySelector(".close-area");
-            closeBtn.addEventListener("click", e => {
+            const closeBtn2 = modalReview.querySelector(".close-area2");
+            closeBtn2.addEventListener("click", e => {
               modalReview.style.display = "none"
               modalReview.style.position = "static"
             });
@@ -1384,7 +1458,6 @@ function commentList(){
 	<script src="../js/jquery.mCustomScrollbar.concat.min.js"></script>
 	<script src="../js/custom.js"></script>
 	<!-- javascript -->
-	<script src="../js/owl.carousel.js"></script>
 	<script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
 </body>
 </html>
