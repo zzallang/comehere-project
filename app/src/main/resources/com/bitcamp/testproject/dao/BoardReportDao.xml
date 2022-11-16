@@ -22,7 +22,7 @@
 	<insert id="insertReport" parameterType="hashMap"
 		useGeneratedKeys="true" keyColumn="btno" keyProperty="no">
 		insert into board_tatlle(trno,mno,decbno)
-		values(#{id},#{loginMemberNo},#{boardNo})
+		values(#{trno},#{mno},#{decbno})
 	</insert>
 
 </mapper>

@@ -27,6 +27,10 @@ public class DefaultBoardCommentService implements BoardCommentService {
   public List<Comment> getComments(Map<String, Object> map) {
     return boardCommentDao.findByBoardNo(map);
   }
+  @Override
+  public List<Comment> getCommentsOfMember(Map<String, Object> paramMap) {
+    return boardCommentDao.findCommentsByMemberNo(paramMap);
+  }
 
   @Override
   public Comment getComment(int commentNo) {
@@ -51,6 +55,11 @@ public class DefaultBoardCommentService implements BoardCommentService {
   @Override
   public int deleteAll(int boardNo) {
     return boardCommentDao.deleteAll(boardNo);
+  }
+
+  @Override
+  public int countTotalCommentOfMember(int MemberNo) {
+    return boardCommentDao.findTotalCommentOfMember(MemberNo);
   }
 }
 

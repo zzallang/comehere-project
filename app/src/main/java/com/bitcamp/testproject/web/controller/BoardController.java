@@ -93,6 +93,7 @@ public class BoardController {
     pageMaker.setCri(cri);
     pageMaker.setTotalCount(boardCommentService.countCommentListTotal(no));
 
+
     // 조회수 증가     
     viewCountUp(no, request, response);
 
@@ -109,6 +110,7 @@ public class BoardController {
 
   // 조회수 증가 
   private void viewCountUp(int no, HttpServletRequest request, HttpServletResponse response) {
+
     Cookie oldCookie = null;
     Cookie[] cookies = request.getCookies();
     if (cookies != null) {
@@ -159,7 +161,6 @@ public class BoardController {
       list = boardService.listWithKeyword(cri, search);
       boardTotalCount = boardService.countTotalBoardWithSearch(no, search);
     }
-    System.out.println("출력한 리스트 사이즈>>>" + list.size());
 
     // 페이징하기 위한 연산 
     PageMaker pageMaker = new PageMaker();
@@ -229,7 +230,6 @@ public class BoardController {
 
     Member loginMember = (Member) session.getAttribute("loginMember");
     Board board = boardService.get(no);
-    System.out.println(board);
 
     if (board.getWriter().getNo() != loginMember.getNo()) {
       throw new Exception("게시글 작성자가 아닙니다.");

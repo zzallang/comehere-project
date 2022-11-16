@@ -9,7 +9,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="viewport" content="initial-scale=1, maximum-scale=1">
         <!-- site metas -->
-        <title>작성글/스크랩</title>
+        <title>작성글</title>
         <meta name="keywords" content="">
         <meta name="description" content="">
         <meta name="author" content="">
@@ -150,9 +150,9 @@
                   <h1 class="contact_text">나의활동</h1>
                   <div class="mail_sectin">
 										<div class="sort_area">
-											<a href="#" class="link_sort on">작성글</a>
-											<a href="#" class="link_sort">작성댓글</a>
-											<a href="#" class="link_sort">스크랩</a>
+											<a href="my-post" class="link_sort">작성글</a>
+											<a href="my-comment" class="link_sort">작성댓글</a>
+											<a href="my-scrap" class="link_sort on">스크랩</a>
 									</div>
 									<table style="width:100%; background-color: white;">
 <!-- 										<caption>
@@ -166,10 +166,10 @@
 										<thead>
 											<tr>
 												<!-- <th scope="col" width="5"></th> -->
-												<th scope="col" width="10%">번호</th>
-												<th scope="col" width="50%">제목</th>
+												<th scope="col" width="5%">번호</th>
+                        <th scope="col" width="10%">게시판</th>
+												<th scope="col" width="60%">제목</th>
 												<th scope="col" width="20%">작성일</th>
-												<th scope="col" width="5%">조회</th>
 											</tr>
 										</thead>
 										<tbody>
@@ -179,26 +179,30 @@
 													</div>
                         </td>
 											</tr>
-											<tr data-th-each="myPost , i : ${myPostList}" >
+											<tr data-th-each="myScrap , i : ${myScrapList}" >
 											   <td>
-                            <div class="FormInputCheck">
-															<input data-th-id="'check_article_' + ${myPost.no}" type="checkbox" class="input_check">
-															<label data-th-for="'check_article_'  +${myPost.no}" class="label">
-															 <span class="blind">[[${i.count} + (((${pageMaker.cri.page}) - 1) * ${pageMaker.cri.perPageNum})]]</span>
+                          <div class="FormInputCheck">
+															<label data-th-for="'check_article_'  +${myScrap.no}" class="label">
+															<span class="blind">[[${i.count} + (((${pageMaker.cri.page}) - 1) * ${pageMaker.cri.perPageNum})]]</span>
 															</label>
                           </div>
                         </td>
+                        <td class="category">
+                          <div data-th-classappend="'cateNo' + ${myScrap.cateno}">게시판</div>
+                        </td>
                         <td class="title-td">
                           <div class="board-list">
-                            <div class="inner_list">
-															<a data-th-href="@{/board/detail(no=${myPost.no})}" class="article" >[[${myPost.title}]]</a> <!-- 속성 우선 뺌 target="_blank" -->
+                            <div data-th-if="${myScrap.act}" class="inner_list">
+															<a data-th-href="@{/board/detail(no=${myScrap.no})}" class="article" >[[${myScrap.title}]]</a> <!-- 속성 우선 뺌 target="_blank" -->
                               <span data-v-8ce69c06=""></span>
-                              <a data-th-href="@{/board/detail(no=${myPost.no})}" class="cmt">[<em>[[${myPost.commentCount}]]</em>]</a> <!-- 속성 우선 뺌 target="_blank" -->
+                            </div>
+                            <div data-th-if="${!myScrap.act}" class="inner_list">
+                              <a onclick="failAlert()" href="" class="article" >(삭제된 게시글입니다.)</a> <!-- 속성 우선 뺌 target="_blank" -->
+                              <span data-v-8ce69c06=""></span>
                             </div>
                           </div>
                         </td>
-												<td class="td_date">[[${myPost.createdDate}]]</td>
-												<td class="td_view">[[${myPost.viewCount}]]</td>
+												<td class="td_date">[[${myScrap.createdDate}]]</td>
                       </tr>
 										</tbody>
 									</table>
@@ -207,17 +211,17 @@
                     <ul class="pagination">
                       <div class="page_center">
                         <li class="page-item" th:if="${pageMaker.prev}">
-                          <a class="page-link" th:href="@{my-post(page=${pageMaker.startPage-1})}" aria-label="Previous">
+                          <a class="page-link" th:href="@{my-scrap(page=${pageMaker.startPage-1})}" aria-label="Previous">
                             <span aria-hidden="true">&laquo;</span>
                           </a>
                         </li>
                         <th:block th:each="pageNum: ${#numbers.sequence(pageMaker.startPage, pageMaker.endPage)}">
                           <li class="page-item">
-                            <a class="page-link" th:href="@{my-post(page=${pageNum})}"><i th:text="${pageNum}"></i></a>
+                            <a class="page-link" th:href="@{my-scrap(page=${pageNum})}"><i th:text="${pageNum}"></i></a>
                         </li>
                         </th:block>
                         <li class="page-item" th:if="${pageMaker.next && pageMaker.endPage >0}">
-                          <a class="page-link" th:href="@{my-post(page=${pageMaker.endPage+1})}" aria-label="Next">
+                          <a class="page-link" th:href="@{my-scrap(page=${pageMaker.endPage+1})}" aria-label="Next">
                             <span aria-hidden="true">&raquo;</span>
                           </a>
                         </li>
@@ -259,7 +263,35 @@
             <script src="js/owl.carousel.js"></script>
             <script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
             <script>
+            window.onload = 
+            	function setCategoryName() {
+            	
+                let category1 = document.getElementsByClassName( 'cateNo1' ),
+                    category2 = document.getElementsByClassName( 'cateNo2' ),
+                    category3 = document.getElementsByClassName( 'cateNo3' ),
+                    category4 = document.getElementsByClassName( 'cateNo4' ),
+                    category5 = document.getElementsByClassName( 'cateNo5' );
+                for (var i = 0; i < category1.length; i++) {
+                  category1[i].innerHTML = "자유"
+                }
+                for (var i = 0; i < category2.length; i++) {
+                  category2[i].innerHTML = "식단"
+                }
+                for (var i = 0; i < category3.length; i++) {
+                  category3[i].innerHTML = "챌린지"
+                }
+                for (var i = 0; i < category4.length; i++) {
+                  category4[i].innerHTML = "질문"
+                }
+                for (var i = 0; i < category5.length; i++) {
+                  category5[i].innerHTML = "핫딜"
+                }
+            }
             
+            function failAlert(){
+                alert("삭제된 게시글 입니다.");
+            }
+             
             </script>
         </body>
 

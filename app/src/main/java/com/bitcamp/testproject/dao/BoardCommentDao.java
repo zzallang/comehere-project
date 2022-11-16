@@ -24,4 +24,8 @@ public interface BoardCommentDao {
 
   int deleteAll(int boardNo);
 
+  int findTotalCommentOfMember(int memberNo);
+
+  List<Comment> findCommentsByMemberNo(Map<String, Object> paramMap);
+
 }

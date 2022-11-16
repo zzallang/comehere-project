@@ -9,6 +9,9 @@ public class Comment {
   private int objectNo;
   private String content;
   private Date createdDate;
+  private boolean act;
+
+  private Board board; // 댓글을 단 게시글의 정보를 가져오기 위해 정의
 
   public Comment() {}
 
@@ -18,13 +21,19 @@ public class Comment {
     this.writer = new Member(memberNo);
   }
 
+  public Board getBoard() {
+    return board;
+  }
+
+  public void setBoard(Board board) {
+    this.board = board;
+  }
 
   @Override
   public String toString() {
     return "Comment [no=" + no + ", writer=" + writer + ", objectNo=" + objectNo + ", content="
-        + content + ", createdDate=" + createdDate + "]";
+        + content + ", createdDate=" + createdDate + ", act=" + act + ", board=" + board + "]";
   }
-
 
   public int getNo() {
     return no;
@@ -62,6 +71,14 @@ public class Comment {
 
   public void setCreatedDate(Date createdDate) {
     this.createdDate = createdDate;
+  }
+
+  public boolean isAct() {
+    return act;
+  }
+
+  public void setAct(boolean act) {
+    this.act = act;
   }
 
 

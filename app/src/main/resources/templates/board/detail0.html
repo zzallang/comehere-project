@@ -519,10 +519,13 @@
                           a += '<a onclick="commentDelete('+value.no+');"> 삭제 </a> </div>';
                         }
                         if (loginMemberNo != value.writer.no && loginMemberNo != -1) {
-                            a += '<a  onclick="commentComplain('+value.no+');"> 신고 </a> </div>';
+                            a += '<a onclick="commentComplain('+value.no+');"> 신고 </a> </div>';
+                        }
+                        if (loginMemberNo == -1) {
+                            a += '<a onclick="commentComplain('+value.no+');"> 신고 </a> </div>';
                         }
                         a += '<div class="commentContent'+value.no+'"> <p> 내용 : '+value.content +'</p>';
-                        a += '</div></div></div>';
+                        a += '</div></div>';
                     });
                     $(".commentList").html(a);
                 }
@@ -657,7 +660,7 @@
         </script>
         
 <!-- Modal Start -->
-  <form action='partreport' method="post">
+                <form action='partreport' method="post">
     <table border='1'>
       <div id="container">
         <div id="lorem-ipsum"></div>
@@ -667,7 +670,6 @@
           <div class="close-area">X</div>
           <div class="content">
             <div>
-              <input type="hidden" name="boardNo" data-th-value="${board.no}">
               <div class="report_menu">신고사유</div>
               <div class="form-check form-check-inline">
                               <input type="checkbox" value="Contents" class="form-check-input" id="1" name="reports" onclick='checkOnlyOne(this)' style="display: block"> <input type="hidden" name="_reports" value="on" /> <label for="reports1" class="form-check-label">불건전한 내용</label>
@@ -692,9 +694,9 @@
                             </div>
 
 
-              <!-- 신고 종류 설정 input hidden type-->
-              <div class="form-check form-check-inline">
-                <input type="hidden" id="reportForm">
+                            <!-- 신고 종류 설정 input hidden type-->
+                            <div class="form-check form-check-inline">
+                              <input type="hidden" id="reportForm">
               </div>
             </div>
             <div class="send_bt3" id="singo">신고</div>
@@ -703,88 +705,6 @@
       </div>
     </table>
   </form>
-  
-  
-  <script>
-let objNo = "";
-              function commentComplain(number) {
-            	  objNo = number;
-                console.log(number);
-                $("#reportForm").attr("value", number);
-                $("#reportForm").attr("name", "댓글");
-
-                modal.style.display = 'flex';
-                window.scrollTo(0,0);
-                // x버튼 누르면 종료
-                $(".closeBtn1").click(function () {
-                    $("input:checkbox[name='reports']").each(function(){
-                        this.checked = false
-                        });
-                  modal.style.display = 'none';
-                  checkTag.setAttribute('checked', 'false');
-                });
-                // 신고 누르면 종료
-                $(".closeBtn").click(function () {
-                    $("input:checkbox[name='reports']").each(function(){
-                        this.checked = false
-                        });
-                  modal.style.display = 'none';
-                });
-                // esc누르면 종료
-                window.addEventListener('keyup', (e) => {
-                  if (modal.style.display === 'flex' && e.key === 'Escape') {
-                    modal.style.display = 'none';
-                    checkTag.setAttribute('checked', 'false');
-                  }
-                });
-              }
-
-        const loremIpsum = document.getElementById("lorem-ipsum")
-         //fetch를 통해 받아온 데이터를 loremIpsum DOM에 넣어주기 때문에 모달창 내부에 내용이 채워져서 뜨는것. 
-        //fetch("https://baconipsum.com/api/?type=all-meat&paras=200&format=html")
-                        loremIpsum.innerHTML = ``
-              /* .then(response => response.text())
-              .then(result => loremIpsum.innerHTML = result) */
-              
-          //디스플레이 non 버튼클릭하면 flex로 변환  
-        const modal = document.getElementById("modal")
-                      const btnModal = document.querySelectorAll(".btn-modal")
-                      let partyNumber = (window.location.search).substring(4,window.location.lengh);
-                      $("#reportForm").attr("value", partyNumber);
-                      $("#reportForm").attr("name", "게시글");
-                         console.log(btnModal);
-                          btnModal.forEach((btn) => {
-                          btn.addEventListener('click', (e) => {
-                        	objNo = boardNo;
-                          modal.style.display = 'flex';
-           // x버튼 누르면 종료
-                      const closeBtn = modal.querySelector('.close-area');
-                          closeBtn.addEventListener('click', (e) => {
-                              $("input:checkbox[name='reports']").each(function(){
-                                  this.checked = false
-                                  });
-                          modal.style.display = 'none';
-                  });
-          // 신고 누르면 종료
-                      const closeBtn1 = modal.querySelector('.send_bt3');
-                           closeBtn1.addEventListener('click', (e) => {
-                               $("input:checkbox[name='reports']").each(function(){
-                                   this.checked = false
-                                   });
-                           modal.style.display = 'none';
-                  });
-          // esc누르면 종료
-                          window.addEventListener('keyup', (e) => {
-                    if (modal.style.display === 'flex' && e.key === 'Escape') {
-                        modal.style.display = 'none';
-    }
-                  });
-                });
-              });
-          
-    </script>
-  
-  
   <script>
   
   function checkOnlyOne(element) {
@@ -798,18 +718,6 @@ let objNo = "";
       
       element.checked = true;
     }
-  
-  let check = 0;
-  let checkTag = "";
-
-      
-  $(".form-check-input").change(function(e){
-      if($(".form-check-input").is(":checked")){
-          check = e.currentTarget.id;
-          checkTag = e.currentTarget;
-      }else{
-      }
-  });
 
 $("#singo").click(function() {
     swal("신고 완료 했습니다.");
@@ -828,19 +736,78 @@ $("#singo").click(function() {
 
     $.ajax({
                     type: "POST",
-                    url: "/app/boardReport/add",
-                    data:{value: check, name: name, boardNo: boardNo, objectNo: objNo},
+                    url: "/app/report/partyReport",
+                    data:{value: value, name: name},
                     success: function (result) {
-                    	document.getElementById("modal").style.display = 'none';
-                    	checkTag.setAttribute('checked', 'false');
-                    	console.log("성공!");
-                    	
+                      console.log(result);
         },
       });
 });
 
 </script>
 
+
+  <script>
+              function commentComplain(number) {
+                console.log(number);
+                $("#reportForm").attr("value", number);
+                $("#reportForm").attr("name", "댓글");
+
+                modal.style.display = 'flex';
+                window.scrollTo(0,0);
+                // x버튼 누르면 종료
+                $(".closeBtn1").click(function () {
+                  modal.style.display = 'none';
+                });
+                // 신고 누르면 종료
+                $(".closeBtn").click(function () {
+                  modal.style.display = 'none';
+                });
+                // esc누르면 종료
+                window.addEventListener('keyup', (e) => {
+                  if (modal.style.display === 'flex' && e.key === 'Escape') {
+                    modal.style.display = 'none';
+                  }
+                });
+              }
+
+        const loremIpsum = document.getElementById("lorem-ipsum")
+         //fetch를 통해 받아온 데이터를 loremIpsum DOM에 넣어주기 때문에 모달창 내부에 내용이 채워져서 뜨는것. 
+        //fetch("https://baconipsum.com/api/?type=all-meat&paras=200&format=html")
+                        loremIpsum.innerHTML = ``
+              /* .then(response => response.text())
+              .then(result => loremIpsum.innerHTML = result) */
+              
+          //디스플레이 non 버튼클릭하면 flex로 변환  
+        const modal = document.getElementById("modal")
+                      const btnModal = document.querySelectorAll(".btn-modal")
+                      let partyNumber = (window.location.search).substring(4,window.location.lengh);
+                      $("#reportForm").attr("value", partyNumber);
+                      $("#reportForm").attr("name", "파티");
+                         console.log(btnModal);
+                          btnModal.forEach((btn) => {
+                          btn.addEventListener('click', (e) => {
+                          modal.style.display = 'flex';
+           // x버튼 누르면 종료
+                      const closeBtn = modal.querySelector('.close-area');
+                          closeBtn.addEventListener('click', (e) => {
+                          modal.style.display = 'none';
+                  });
+          // 신고 누르면 종료
+                      const closeBtn1 = modal.querySelector('.send_bt3');
+                           closeBtn1.addEventListener('click', (e) => {
+                           modal.style.display = 'none';
+                  });
+          // esc누르면 종료
+                          window.addEventListener('keyup', (e) => {
+                    if (modal.style.display === 'flex' && e.key === 'Escape') {
+                        modal.style.display = 'none';
+    }
+                  });
+                });
+              });
+          
+    </script>
 
 
   <!-- Modal End-->

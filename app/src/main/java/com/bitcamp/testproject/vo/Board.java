@@ -17,6 +17,7 @@ public class Board {
   private int viewCount;
   private List<String> report;
   private String thumbnail;
+  private boolean act;
 
   private int commentCount; // 게시글에 달린 댓글 개수
 
@@ -24,8 +25,8 @@ public class Board {
   public String toString() {
     return "Board [no=" + no + ", cateno=" + cateno + ", writer=" + writer + ", title=" + title
         + ", active=" + active + ", content=" + content + ", createdDate=" + createdDate
-        + ", viewCount=" + viewCount + ", report=" + report + ", thumbnail=" + thumbnail
-        + ", commentCount=" + commentCount + "]";
+        + ", viewCount=" + viewCount + ", report=" + report + ", thumbnail=" + thumbnail + ", act="
+        + act + ", commentCount=" + commentCount + "]";
   }
 
   public int getNo() {
@@ -114,7 +115,17 @@ public class Board {
 
   public void setCommentCount(int commentCount) {
     this.commentCount = commentCount;
+  }
+
+  public boolean isAct() {
+    return act;
+  }
+
+  public void setAct(boolean act) {
+    this.act = act;
   } 
+
+
 
 
 }

@@ -9,8 +9,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import com.bitcamp.testproject.service.BoardCommentService;
 import com.bitcamp.testproject.service.BoardService;
 import com.bitcamp.testproject.service.MemberService;
+import com.bitcamp.testproject.service.ScrapService;
 import com.bitcamp.testproject.vo.Criteria;
 import com.bitcamp.testproject.vo.Member;
 import com.bitcamp.testproject.vo.PageMaker;
@@ -24,8 +26,11 @@ public class MypageController {
   @Autowired
   BoardService boardService;
   @Autowired
+  BoardCommentService boardCommentService;
+  @Autowired
   MemberService memberService;
-
+  @Autowired
+  ScrapService scrapService;
 
   @GetMapping("my-post")
   public String myPost(HttpSession session, Model model, Criteria cri) throws Exception {
@@ -42,12 +47,10 @@ public class MypageController {
     paramMap.put("pagesStart", cri.getPagesStart());
     paramMap.put("perPageNum", cri.getPerPageNum());
 
-    System.out.println(">>>>머야???!!!" + boardService.findByMyPost(paramMap));
-
     model.addAttribute("myPostList", boardService.findByMyPost(paramMap));
     model.addAttribute("pageMaker", pageMaker);
 
-    return "mypage/myPost";
+    return "mypage/my-post";
   }
 
   @GetMapping("party-management")
@@ -55,6 +58,45 @@ public class MypageController {
     return "mypage/partyMgmt";
   }
 
+  @GetMapping("my-comment")
+  public String myComment(HttpSession session, Model model, Criteria cri) throws Exception {
+
+    Member loginMember = (Member) session.getAttribute("loginMember");
+    // 페이징하기 위한 연산 
+    PageMaker pageMaker = new PageMaker();
+    pageMaker.setCri(cri);
+    pageMaker.setTotalCount(boardCommentService.countTotalCommentOfMember(loginMember.getNo()));
+
+    Map<String, Object> paramMap = new HashMap<String, Object>();
+    paramMap.put("memberNo", loginMember.getNo());
+    paramMap.put("cri", cri);
+
+    model.addAttribute("myCommentList", boardCommentService.getCommentsOfMember(paramMap));
+    model.addAttribute("pageMaker", pageMaker);
+
+    return "mypage/my-comment";
+  }
+
+  @GetMapping("my-scrap")
+  public String myScrap(HttpSession session, Model model, Criteria cri) throws Exception {
+
+    Member loginMember = (Member) session.getAttribute("loginMember");
+    // 페이징하기 위한 연산 
+    PageMaker pageMaker = new PageMaker();
+    pageMaker.setCri(cri);
+    pageMaker.setTotalCount(scrapService.countTotalScrapOfMember(loginMember.getNo()));
+
+    Map<String, Object> paramMap = new HashMap<String, Object>();
+    paramMap.put("memberNo", loginMember.getNo());
+    paramMap.put("cri", cri);
+
+    System.out.println(scrapService.getScrapsOfMember(paramMap));
+
+    model.addAttribute("myScrapList", scrapService.getScrapsOfMember(paramMap));
+    model.addAttribute("pageMaker", pageMaker);
+
+    return "mypage/my-scrap";
+  }
 }
 
 

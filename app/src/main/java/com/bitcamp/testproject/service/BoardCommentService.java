@@ -22,5 +22,9 @@ public interface BoardCommentService {
 
   int deleteAll(int no);
 
+  int countTotalCommentOfMember(int no);
+
+  List<Comment> getCommentsOfMember(Map<String, Object> paramMap);
+
 
 }

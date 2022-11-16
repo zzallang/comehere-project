@@ -6,8 +6,9 @@ import java.util.Map;
 //
 public interface BoardReportService {
 
+  void addCommentReport(Map<String, Object> reportMap) throws Exception;
 
-  void addReport(Map<String, Object> reportMap);
+  void addBoardReport(Map<String, Object> reportMap) throws Exception;
 
 
 

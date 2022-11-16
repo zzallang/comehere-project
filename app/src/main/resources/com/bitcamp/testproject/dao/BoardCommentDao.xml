@@ -9,6 +9,7 @@
     <result column="bno" property="objectNo"/>
     <result column="cont" property="content"/>
     <result column="cdt" property="createdDate"/>
+    <result column="act" property="act"/>
     
     <!-- 조인 결과에서 같은 게시글에 대해 한 개의 회원 데이터를 담을 경우 -->
     <association property="writer" javaType="member">
@@ -16,6 +17,14 @@
       <result column="nick" property="nickname"/>
       <result column="filepath" property="filepath"/>
       <result column="ageGroup" property="ageGroup"/>
+    </association>
+    
+    <association property="board" javaType="board">
+      <id column="bno" property="no"/>
+      <result column="title" property="title"/>
+      <result column="cateno" property="cateno"/>
+      <result column="cdt" property="createdDate"/>
+      <result column="act" property="act"/>
     </association>
 
   </resultMap>
@@ -40,6 +49,26 @@
     limit #{cri.pagesStart}, #{cri.perPageNum}
   </select>
   
+  <select id="findCommentsByMemberNo" resultMap="commentMap" parameterType="HashMap">
+    select
+      bc.bcno,
+      bc.cont,
+      b.bno,
+      b.cdt,
+      b.title,
+      b.cateno,
+      b.act
+    from
+      board_comment bc 
+      join board b on b.bno=bc.bno
+    where
+      bc.act=1 and
+      bc.mno=#{memberNo}
+    order by
+      bcno desc
+    limit #{cri.pagesStart}, #{cri.perPageNum}
+  </select>
+  
   <select id="findCommentByNo" resultMap="commentMap">
     select
       bc.bcno,
@@ -58,6 +87,7 @@
       bc.bcno desc
     limit 1
   </select>
+  
   
   <insert id="insertComment" parameterType="comment"
     useGeneratedKeys="true" keyColumn="bcno" keyProperty="no"> 
@@ -93,6 +123,17 @@
     delete from board_comment 
     where bno=#{value}
   </delete>
+
+  <select id="findTotalCommentOfMember" resultType="Integer">
+    select 
+      count(*) 
+    from 
+      board_comment 
+    where 
+      mno = #{value}
+  </select>
+  
+  
 
 </mapper>
 

@@ -30,6 +30,16 @@
     delete from scrap
     where bno = #{value}
   </delete>
+  
+  <select id="findScrapsCount" resultType="Integer">
+    select 
+      count(*) 
+    from 
+      scrap 
+    where 
+      mno = #{value}
+  </select>
+
 
 </mapper>
 
