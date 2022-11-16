@@ -1,7 +1,9 @@
 package com.bitcamp.testproject.dao;
 
 import java.util.List;
+import java.util.Map;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import com.bitcamp.testproject.vo.Member;
 import com.bitcamp.testproject.vo.PartyMember;
 
@@ -22,13 +24,35 @@ public interface PartyMemberDao {
   // 모임 참가 시 멤버 신청상태 입력
   int insertMember(PartyMember partyMember);
 
-  // 모임 승인 거절
-  int update(PartyMember partyMember);
-
   int delete(int no);
 
   Member checkOwner(int partyNo);
 
+  List<PartyMember> findMyPartyMemberAll(Map<String, Object> paramMap);
+
+  int countMyPartyMember(int partyNo);
+
+  int partyMemberCheck(
+      @Param("memberNo")int memberNo, 
+      @Param("partyNo")int partyNo);
+
+  // 모임 승인 거절
+  int updateOk(
+      @Param("status")int status, 
+      @Param("memberNo")int memberNo, 
+      @Param("partyNo")int partyNo);
+
+  // 모임 승인 거절
+  int updateNo(
+      @Param("status")int status, 
+      @Param("memberNo")int memberNo, 
+      @Param("partyNo")int partyNo);
+
+  // 모임 승인 거절
+  int updateSecession(
+      @Param("status")int status, 
+      @Param("memberNo")int memberNo, 
+      @Param("partyNo")int partyNo);
 }
 
 

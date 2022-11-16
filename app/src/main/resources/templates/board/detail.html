@@ -532,7 +532,8 @@
       	// 댓글 등록
         function insertAndReplay(){
           $.ajax({
-            url : "/app/report/partyRport",
+            /* url : "/app/report/partyRport", */
+            url : "/app/boardComment/insertAndReplay",
             data : {
               content : $("#commentCont").val(),
               boardNo : boardNo,

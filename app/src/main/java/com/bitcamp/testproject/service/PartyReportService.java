@@ -6,12 +6,10 @@ import java.util.Map;
 //
 public interface PartyReportService {
 
+  void addCommentReport(Map<String, Object> reportMap) throws Exception;
 
-  void addReport(Map<String, Object> reportMap);
+  void addMemberReport(Map<String, Object> reportMap) throws Exception;
 
-
-
-  ////////////
 }
 
 

@@ -594,6 +594,9 @@ ALTER TABLE party_comment_tatlle
       pctno -- 신고번호
     );
 
+ALTER TABLE party_comment_tatlle
+  MODIFY COLUMN pctno INTEGER NOT NULL AUTO_INCREMENT COMMENT '신고번호';
+
 -- 게시글
 ALTER TABLE board
   ADD CONSTRAINT FK_member_TO_board -- 회원 -> 게시글
@@ -925,3 +928,4 @@ ALTER TABLE party_comment_tatlle
     REFERENCES member ( -- 회원
       mno -- 회원번호
     );
+    

@@ -1,6 +1,7 @@
 package com.bitcamp.testproject.dao;
 
 import java.util.List;
+import java.util.Map;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import com.bitcamp.testproject.vo.Criteria;
@@ -55,6 +56,20 @@ public interface PartyDao {
 
   String getThumbnailByPartyNo(int no);
 
+
+  List<Party> findByMyParty(Map<String, Object> paramMap);
+
+  int countMyParty(int memberNo);
+
+  List<Party> findByJoinParty(Map<String, Object> paramMap);
+
+  int countJoinParty(int memberNo);
+
+  List<Party> findByEndParty(Map<String, Object> paramMap);
+
+  List<Party> findByEndParty2(Map<String, Object> paramMap);
+
+  int countEndParty(int memberNo);
 }
 
 

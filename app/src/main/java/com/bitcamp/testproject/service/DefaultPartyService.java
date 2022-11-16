@@ -1,6 +1,8 @@
 package com.bitcamp.testproject.service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import javax.servlet.http.Part;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -137,6 +139,82 @@ public class DefaultPartyService implements PartyService {
   @Override
   public int checkOwner(int partyNo) {
     return partyDao.checkOwner(partyNo);
+  }
+
+
+  @Override
+  public List<Party> findByMyParty(Map<String, Object> paramMap) throws Exception {
+    return partyDao.findByMyParty(paramMap);
+  }
+
+  @Override
+  public int countMyParty(int memberNo) throws Exception {
+    return partyDao.countMyParty(memberNo);
+  }
+
+  @Override
+  public List<Party> findByJoinParty(Map<String, Object> paramMap) throws Exception {
+    return partyDao.findByJoinParty(paramMap);
+  }
+
+  @Override
+  public int countJoinParty(int memberNo) throws Exception {
+    return partyDao.countJoinParty(memberNo);
+  }
+
+  @Override
+  public List<Party> findByEndParty(Map<String, Object> paramMap) throws Exception {
+    List<Party> endPartyListTotal = new ArrayList<>();
+
+    List<Party> endPartyList = partyDao.findByEndParty(paramMap);
+
+    int[] partyNumbers = new int[endPartyList.size()];
+
+    for (int i=0; i<endPartyList.size(); i++) {
+      Party endParty = endPartyList.get(i);
+      endParty.setReviewAct("작성완료");
+      partyNumbers[i] = endParty.getNo();
+      endPartyListTotal.add(endParty);
+    }
+
+    List<Party> endPartyList2 = partyDao.findByEndParty2(paramMap);
+
+    for (Party endParty : endPartyList2) {
+
+      if (endParty.getReviewNo() == 0) {
+        endParty.setReviewAct("작성하기");
+        endPartyListTotal.add(endParty);
+      }
+      else {
+        int check = 0;
+
+        for (int k=0; k<partyNumbers.length; k++) {
+          int count = 0;
+
+          for (int j=0; j <partyNumbers.length; j++) {
+            if (partyNumbers[j] == endParty.getNo()) {
+              continue;
+            }
+            count++;
+          }
+
+          if (count == partyNumbers.length) {
+            if (check == 0) {
+              endParty.setReviewAct("작성하기");
+              endPartyListTotal.add(endParty);
+              check++;
+            }
+          }
+        }
+      }
+
+    }
+    return endPartyListTotal;
+  }
+
+  @Override
+  public int countEndParty(int memberNo) throws Exception {
+    return partyDao.countEndParty(memberNo);
   }
 
 }
