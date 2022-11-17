@@ -251,6 +251,10 @@
       pno=#{partyNo}
   </update>
   
+    <delete id="delete">
+    delete from party_members
+    where pno=#{value}
+  </delete>
   
 </mapper>
 

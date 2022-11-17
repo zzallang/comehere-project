@@ -75,8 +75,6 @@
       p.act = 1
     and
       p.pdate >= DATE_FORMAT(now(), '%Y-%m:%d')
-    and
-      p.ptime >= DATE_FORMAT(now(), '%H:%i:%s')
     order by 
       p.pno desc
     limit #{pagesStart}, #{perPageNum}
@@ -91,8 +89,6 @@
       act = 1
     and
       pdate >= DATE_FORMAT(now(), '%Y-%m:%d')
-    and
-      ptime >= DATE_FORMAT(now(), '%H:%i:%s')
   </select>  
   
   <select id="findAllCount2" resultType="Integer">
@@ -106,8 +102,6 @@
       act = 1
     and
       p.pdate >= DATE_FORMAT(now(), '%Y-%m:%d')
-    and
-      p.ptime >= DATE_FORMAT(now(), '%H:%i:%s')
       <if test="gu != null">
       and p.rno = #{gu}
       </if>
@@ -148,8 +142,6 @@
       p.act = 1
     and
       pdate >= DATE_FORMAT(now(), '%Y-%m:%d')
-    and
-      ptime >= DATE_FORMAT(now(), '%H:%i:%s')
       <if test="gu != null">
       and p.rno = #{gu}
       </if>
