@@ -1,6 +1,7 @@
 package com.bitcamp.testproject.service;
 
 import java.util.List;
+import java.util.Map;
 import javax.servlet.http.Part;
 import com.bitcamp.testproject.vo.Criteria;
 import com.bitcamp.testproject.vo.Party;
@@ -44,6 +45,21 @@ public interface PartyService {
       Criteria cri) throws Exception;
 
   int checkOwner(int partyNo) throws Exception;
+
+
+
+  List<Party> findByMyParty(Map<String, Object> paramMap) throws Exception;
+
+  int countMyParty(int memberNo) throws Exception;
+
+  List<Party> findByJoinParty(Map<String, Object> paramMap) throws Exception;
+
+  int countJoinParty(int memberNo) throws Exception;
+
+  List<Party> findByEndParty(Map<String, Object> paramMap) throws Exception;
+
+  int countEndParty(int memberNo) throws Exception;
+
 
 }
 

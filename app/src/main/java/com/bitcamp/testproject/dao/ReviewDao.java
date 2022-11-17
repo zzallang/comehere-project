@@ -14,6 +14,10 @@ public interface ReviewDao {
 
   Review findByNo(int reviewNo);
 
+  int insert(Review review);
+
+  int insertFiles(Review review);
+
 }
 
 

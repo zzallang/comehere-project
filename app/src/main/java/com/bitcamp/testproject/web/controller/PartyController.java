@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import com.bitcamp.testproject.service.PartyCommentService;
+import com.bitcamp.testproject.service.PartyMemberService;
 import com.bitcamp.testproject.service.PartyService;
 import com.bitcamp.testproject.service.RegionService;
 import com.bitcamp.testproject.service.ReviewService;
@@ -41,6 +42,7 @@ public class PartyController {
   SportsService sportsService;
   PartyCommentService partyCommentService;
   ReviewService reviewService;
+  PartyMemberService partyMemberService;
 
   public PartyController(
       PartyService partyService, 
@@ -48,6 +50,7 @@ public class PartyController {
       SportsService sportsService, 
       PartyCommentService partyCommentService,
       ReviewService reviewService,
+      PartyMemberService partyMemberService,
       ServletContext sc) {
     System.out.println("PartyController() 호출됨!");
     this.partyService = partyService;
@@ -55,6 +58,7 @@ public class PartyController {
     this.sportsService = sportsService;
     this.partyCommentService = partyCommentService;
     this.reviewService = reviewService;
+    this.partyMemberService = partyMemberService;
     this.sc = sc;
   }
 
@@ -148,26 +152,16 @@ public class PartyController {
       String listPartyDate,
       Criteria cri, 
       Model model) throws Exception {
-    System.out.println(cri);
-    System.out.println("1단계");
+
     PageMaker pageMaker = new PageMaker();
-    System.out.println("2단계");
     pageMaker.setCri(cri);
-    System.out.println("3단계");
     pageMaker.setDisplayPageNum(2);
-    System.out.println("4단계");
     pageMaker.setTotalCount(partyService.listCount2(gu, sports, partyDate, partyTime, searchText));
-    System.out.println("5단계");
-    System.out.println(cri.getPagesStart());
-    System.out.println(cri.getPerPageNum());
 
     model.addAttribute(
         "partys",
         partyService.list2(gu, sports, partyDate, partyTime, searchText, listStar, listCreate, listPartyDate, cri));
-    System.out.println("6단계");
     model.addAttribute("pageMaker", pageMaker);
-    System.out.println("7단계");
-    System.out.println(pageMaker);
     System.out.printf("%s, %s, %s, %s, %s, %s, %s, %s\n", gu, sports, partyDate, partyTime, searchText, listStar, listCreate, listPartyDate);
   }
 
@@ -183,32 +177,22 @@ public class PartyController {
       String listPartyDate,
       Criteria cri, 
       Model model) throws Exception {
-    System.out.println(cri);
-    System.out.println("1단계");
     PageMaker pageMaker = new PageMaker();
-    System.out.println("2단계");
     pageMaker.setCri(cri);
-    System.out.println("3단계");
     pageMaker.setDisplayPageNum(2);
-    System.out.println("4단계");
     pageMaker.setTotalCount(partyService.listCount2(gu, sports, partyDate, partyTime, searchText));
-    System.out.println("5단계");
-    System.out.println(cri.getPagesStart());
-    System.out.println(cri.getPerPageNum());
 
     model.addAttribute(
         "partys",
         partyService.list2(gu, sports, partyDate, partyTime, searchText, listStar, listCreate, listPartyDate, cri));
-    System.out.println("6단계");
     model.addAttribute("pageMaker", pageMaker);
-    System.out.println("7단계");
     System.out.println(pageMaker);
-    System.out.printf("%s, %s, %s, %s, %s, %s, %s, %s\n", gu, sports, partyDate, partyTime, searchText, listStar, listCreate, listPartyDate);
+    System.out.printf("%s, %s, %s, %s, %s, %s, %s\n", gu, sports, partyDate, partyTime, searchText, listStar, listCreate, listPartyDate);
   }
 
   @SuppressWarnings({"rawtypes", "unchecked"})
   @GetMapping("detail")
-  public Map detail(int no, Model model, Criteria cri) throws Exception {
+  public Map detail(int no, Model model, Criteria cri, HttpSession session) throws Exception {
 
     // 페이징하기 위한 연산 
     PageMaker pageMaker = new PageMaker();
@@ -216,12 +200,16 @@ public class PartyController {
     pageMaker.setCri(cri);
     pageMaker.setTotalCount(partyCommentService.countCommentListTotal(no));
 
+    int checkNo = 0;
+    if (session.getAttribute("loginMember") != null) {
+      Member loginMember = (Member) session.getAttribute("loginMember");
+      checkNo = partyMemberService.partyMemberCheck(loginMember.getNo(), no);
+    }
 
     Party party = partyService.get(no);
     System.out.println(party);
     int sportNo = party.getSports().getNo();
     int userNo = party.getUser().getNo();
-
     List<Review> reviewList = reviewService.list(userNo, sportNo);
 
     if (party == null) {
@@ -232,6 +220,7 @@ public class PartyController {
     model.addAttribute("reviews", reviewList);
     model.addAttribute("reviewDetail", reviewService.get(1));
     model.addAttribute("pageMaker", pageMaker);
+    model.addAttribute("checkNo", checkNo);
     return map;
   }
 

@@ -19,6 +19,9 @@
     <result column="mapAddress" property="mapAddress"/>
     <result column="lat" property="latResult"/>
     <result column="lng" property="lngResult"/>
+    <result column="act" property="active"/>
+    <result column="status" property="status"/>
+    <result column="reviewNo" property="reviewNo"/>
 
     <!-- 조인 결과에서 같은 게시글에 대해 한 개의 회원 데이터를 담을 경우 -->
     <association property="user" javaType="member">
@@ -28,6 +31,7 @@
       <result column="sex" property="sex"/>
       <result column="filepath" property="filepath"/>
       <result column="ageGroup" property="ageGroup"/>
+      <result column="auth" property="auth"/>
     </association>
 
     <!-- 조인 결과에서 같은 게시글에 대해 한 개의 회원 데이터를 담을 경우 -->
@@ -69,6 +73,10 @@
       join sports s on p.sno = s.sno
     where
       p.act = 1
+    and
+      p.pdate >= DATE_FORMAT(now(), '%Y-%m:%d')
+    and
+      p.ptime >= DATE_FORMAT(now(), '%H:%i:%s')
     order by 
       p.pno desc
     limit #{pagesStart}, #{perPageNum}
@@ -81,6 +89,10 @@
       party
     where
       act = 1
+    and
+      pdate >= DATE_FORMAT(now(), '%Y-%m:%d')
+    and
+      ptime >= DATE_FORMAT(now(), '%H:%i:%s')
   </select>  
   
   <select id="findAllCount2" resultType="Integer">
@@ -92,6 +104,10 @@
       join sports s on p.sno = s.sno
     where
       act = 1
+    and
+      p.pdate >= DATE_FORMAT(now(), '%Y-%m:%d')
+    and
+      p.ptime >= DATE_FORMAT(now(), '%H:%i:%s')
       <if test="gu != null">
       and p.rno = #{gu}
       </if>
@@ -130,6 +146,10 @@
       join sports s on p.sno = s.sno
     where
       p.act = 1
+    and
+      pdate >= DATE_FORMAT(now(), '%Y-%m:%d')
+    and
+      ptime >= DATE_FORMAT(now(), '%H:%i:%s')
       <if test="gu != null">
       and p.rno = #{gu}
       </if>
@@ -170,47 +190,47 @@
     <select id="findByNo" resultMap="partyMap">
     <![CDATA[
     select
-			p.pno,
-			r.sido,
-			r.sigu,
-			s.sno,
-			s.name,
-			p.title,
-			p.cont,
-			p.cdt,
-			p.headcnt,
-			p.ptime,
-			p.pdate,
-			p.mapName,
-			p.mapAddress,
-			p.lat,
-			p.lng,
-			m.mno,
-			m.nick,
-			m.bday,
-			m.sex,
-			m.filepath,
-			p.thumbnail,
-		CASE
-			WHEN age < 20 THEN '10대 이하'
-			WHEN age < 30 THEN '20대'
-			WHEN age < 40 THEN '30대'
-			WHEN age < 50 THEN '40대'
-			WHEN age < 60 THEN '50대'
-			WHEN age > 59 THEN '60대 이상'
-		END AS ageGroup
-		from
-			party p
-			join region r on p.rno = r.rno
-			join sports s on p.sno = s.sno
-			join party_members pm on p.pno = pm.pno
-			join member m on m.mno = pm.mno
-			join (SELECT *, FLOOR(date_format(now(), '%Y')-substring(bday,1,4)) age FROM member) ag on ag.mno=m.mno
-		where
-			pm.auth=1
-		and
-			p.pno=#{value}
-			]]>
+p.pno,
+r.sido,
+r.sigu,
+s.sno,
+s.name,
+p.title,
+p.cont,
+p.cdt,
+p.headcnt,
+p.ptime,
+p.pdate,
+p.mapName,
+p.mapAddress,
+p.lat,
+p.lng,
+m.mno,
+m.nick,
+m.bday,
+m.sex,
+m.filepath,
+p.thumbnail,
+CASE
+WHEN age < 20 THEN '10대 이하'
+WHEN age < 30 THEN '20대'
+WHEN age < 40 THEN '30대'
+WHEN age < 50 THEN '40대'
+WHEN age < 60 THEN '50대'
+WHEN age > 59 THEN '60대 이상'
+END AS ageGroup
+from
+party p
+join region r on p.rno = r.rno
+join sports s on p.sno = s.sno
+join party_members pm on p.pno = pm.pno
+join member m on m.mno = pm.mno
+join (SELECT *, FLOOR(date_format(now(), '%Y')-substring(bday,1,4)) age FROM member) ag on ag.mno=m.mno
+where
+pm.auth=1
+and
+p.pno=#{value}
+]]>
   </select>
   
   <insert id="insert" parameterType="party"
@@ -301,7 +321,175 @@
       pno = #{value}
   </select>
   
+  
+  
+  
+  
+    <select id="findByMyParty" parameterType="map" resultMap="partyMap" >
+    SELECT
+      p.pno, 
+      r.sido,
+      r.sigu,
+      s.name,
+      p.title,
+      p.cdt,
+      p.headcnt,
+      p.ptime,
+      p.pdate
+    FROM
+      party p
+      join party_members pm on p.pno=pm.pno
+      join region r on p.rno = r.rno
+      join sports s on p.sno = s.sno
+    WHERE
+      pm.mno = #{memberNo}
+    AND
+      p.act = 1
+    AND
+      pm.auth = 1
+    ORDER BY 
+      p.pno desc
+    limit #{pagesStart}, #{perPageNum}
+  </select>
+  
+  <select id="countMyParty" parameterType="int" resultType="int">
+    SELECT
+      COUNT(*)
+    FROM
+      party p
+      join party_members pm on p.pno=pm.pno
+
+    WHERE
+      pm.mno = #{memberNo}
+    AND
+      p.act=1 
+    AND
+      pm.auth = 1
+  </select>
+  
+
+    <select id="findByJoinParty" parameterType="map" resultMap="partyMap" >
+    SELECT
+      p.pno, 
+      r.sido,
+      r.sigu,
+      s.name,
+      p.title,
+      p.cdt,
+      p.headcnt,
+      p.ptime,
+      p.pdate,
+      ps.status
+    FROM
+      party p
+      join party_members pm on p.pno=pm.pno
+      join region r on p.rno = r.rno
+      join sports s on p.sno = s.sno
+      join party_status ps on ps.psno = pm.psno
+    WHERE
+      pm.mno = #{memberNo}
+    AND
+      p.act = 1
+    AND
+      pm.auth = 0
+    ORDER BY 
+      p.pno desc
+    limit #{pagesStart}, #{perPageNum}
+  </select>
+  
+  <select id="countJoinParty" parameterType="int" resultType="int">
+    SELECT
+      COUNT(*)
+    FROM
+      party p
+      join party_members pm on p.pno=pm.pno
+    WHERE
+      pm.mno = #{memberNo}
+    AND
+      p.act=1 
+    AND
+      pm.auth = 0
+  </select>
+  
+
+    <select id="findByEndParty" parameterType="map" resultMap="partyMap" >
+    SELECT
+      p.pno, 
+      r.sido,
+      r.sigu,
+      s.name,
+      p.title,
+      p.cdt,
+      p.headcnt,
+      p.ptime,
+      p.pdate,
+      pr.prno,
+      ifnull(pr.mno,0) reviewNo,
+      p.act
+    FROM
+      party p
+      join party_members pm on p.pno=pm.pno
+      join region r on p.rno = r.rno
+      join sports s on p.sno = s.sno
+      left join party_review pr on pr.pno = p.pno
+    WHERE
+      pm.auth = 0
+    AND
+      pm.mno = pr.mno
+    AND
+      pm.mno = #{memberNo}
+    ORDER BY 
+      p.pno desc
+    limit #{pagesStart}, #{perPageNum}
+  </select>
+
+    <select id="findByEndParty2" parameterType="map" resultMap="partyMap" >
+SELECT
+      p.pno, 
+     r.sido,
+     r.sigu,
+     s.name,
+     p.title,
+      p.cdt,
+      p.headcnt,
+      p.ptime,
+     p.pdate,
+     ifnull(pr.mno,0) reviewNo,
+     p.act
+    FROM
+      party p
+      join party_members pm on p.pno=pm.pno
+   join region r on p.rno = r.rno
+      join sports s on p.sno = s.sno
+     left join party_review pr on pr.pno = p.pno
+   WHERE
+     pm.auth = 0
+    AND
+     pm.mno = 1
+   AND
+   (pr.mno is null
+   or
+    pr.mno != pm.mno)
+    ORDER BY 
+      p.pno desc
+  </select>
+  <select id="countEndParty" parameterType="int" resultType="int">
+    SELECT
+      COUNT(*)
+    FROM
+      party p
+      join party_members pm on p.pno=pm.pno
+    WHERE
+      pm.auth = 0
+    AND
+      p.act = 0
+    AND
+      pm.mno = #{memberNo}
+  </select>
+  
+  
 </mapper>
+
 
 
 

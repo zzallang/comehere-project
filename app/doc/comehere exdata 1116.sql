@@ -38,6 +38,7 @@ INSERT INTO `region` (`rno`, `sido`, `sigu`) VALUES (22, '서울시', '서초구
 INSERT INTO `region` (`rno`, `sido`, `sigu`) VALUES (23, '서울시', '강남구');
 INSERT INTO `region` (`rno`, `sido`, `sigu`) VALUES (24, '서울시', '송파구');
 INSERT INTO `region` (`rno`, `sido`, `sigu`) VALUES (25, '서울시', '강동구');
+INSERT INTO `region` (`rno`, `sido`, `sigu`) VALUES (99, '서울시', '-선택안함-');
 
 -- 운동 종목 (완료)
 INSERT INTO `sports` (`sno`, `name`) VALUES (1, '헬스');
@@ -50,6 +51,7 @@ INSERT INTO `sports` (`sno`, `name`) VALUES (7, '탁구');
 INSERT INTO `sports` (`sno`, `name`) VALUES (8, '야구');
 INSERT INTO `sports` (`sno`, `name`) VALUES (9, '러닝');
 INSERT INTO `sports` (`sno`, `name`) VALUES (10, '사이클');
+INSERT INTO `sports` (`sno`, `name`) VALUES (99, '-선택안함-');
 
 -- 관리자 (완료)
 INSERT INTO `admin` (`adno`, `name`, `id`, `email`, `pwd`, `cdt`) VALUES (1, '관리자', 'admin', 'admin@test.com', sha2('1111', 256), '2022-10-06 00:00:00');
@@ -456,6 +458,7 @@ INSERT INTO `favorite_region` (`rno`, `mno`) VALUES (22, 9);
 INSERT INTO `favorite_region` (`rno`, `mno`) VALUES (23, 11);
 INSERT INTO `favorite_region` (`rno`, `mno`) VALUES (24, 11);
 INSERT INTO `favorite_region` (`rno`, `mno`) VALUES (25, 5);
+INSERT INTO `favorite_region` (`rno`, `mno`) VALUES (99, 3);
 
 -- 관심운동 
 -- 은지 완료

@@ -1,6 +1,8 @@
 package com.bitcamp.testproject.web.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
@@ -12,10 +14,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.bitcamp.testproject.service.BoardCommentService;
 import com.bitcamp.testproject.service.BoardService;
 import com.bitcamp.testproject.service.MemberService;
-import com.bitcamp.testproject.service.ScrapService;
 import com.bitcamp.testproject.vo.Criteria;
 import com.bitcamp.testproject.vo.Member;
 import com.bitcamp.testproject.vo.PageMaker;
+import com.bitcamp.testproject.vo.Party;
 
 @Controller
 @RequestMapping("/mypage/")
@@ -28,9 +30,13 @@ public class MypageController {
   @Autowired
   BoardCommentService boardCommentService;
   @Autowired
+  PartyService partyService;
+  @Autowired
   MemberService memberService;
   @Autowired
   ScrapService scrapService;
+  @Autowired
+  PartyMemberService partyMemberService;
 
   @GetMapping("my-post")
   public String myPost(HttpSession session, Model model, Criteria cri) throws Exception {
@@ -53,9 +59,25 @@ public class MypageController {
     return "mypage/my-post";
   }
 
-  @GetMapping("party-management")
-  public String partyMgmt(Member member/* , Party party */) {
-    return "mypage/partyMgmt";
+  @GetMapping("my-party")
+  public String myParty(HttpSession session, Model model, Criteria cri) throws Exception {
+
+    Member loginMember = (Member) session.getAttribute("loginMember");
+
+    // 페이징하기 위한 연산 
+    PageMaker pageMaker = new PageMaker();
+    pageMaker.setCri(cri);
+    pageMaker.setTotalCount(partyService.countMyParty(loginMember.getNo()));
+
+    Map<String, Object> paramMap = new HashMap<String, Object>();
+    paramMap.put("memberNo", loginMember.getNo());
+    paramMap.put("pagesStart", cri.getPagesStart());
+    paramMap.put("perPageNum", cri.getPerPageNum());
+
+    model.addAttribute("myPartys", partyService.findByMyParty(paramMap));
+    model.addAttribute("pageMaker", pageMaker);
+
+    return "mypage/my-party";
   }
 
   @GetMapping("my-comment")
@@ -97,6 +119,98 @@ public class MypageController {
 
     return "mypage/my-scrap";
   }
+
+  @GetMapping("join-party")
+  public String joinParty(HttpSession session, Model model, Criteria cri) throws Exception {
+
+    Member loginMember = (Member) session.getAttribute("loginMember");
+
+    // 페이징하기 위한 연산 
+    PageMaker pageMaker = new PageMaker();
+    pageMaker.setCri(cri);
+    pageMaker.setTotalCount(partyService.countJoinParty(loginMember.getNo()));
+
+    Map<String, Object> paramMap = new HashMap<String, Object>();
+    paramMap.put("memberNo", loginMember.getNo());
+    paramMap.put("pagesStart", cri.getPagesStart());
+    paramMap.put("perPageNum", cri.getPerPageNum());
+
+
+    model.addAttribute("joinPartys", partyService.findByJoinParty(paramMap));
+    model.addAttribute("pageMaker", pageMaker);
+
+    return "mypage/join-party";
+  }
+
+
+  @GetMapping("end-party")
+  public String endParty(HttpSession session, Model model, Criteria cri) throws Exception {
+
+    Member loginMember = (Member) session.getAttribute("loginMember");
+
+    // 페이징하기 위한 연산 
+    PageMaker pageMaker = new PageMaker();
+    pageMaker.setCri(cri);
+    pageMaker.setTotalCount(partyService.countEndParty(loginMember.getNo()));
+
+    Map<String, Object> paramMap = new HashMap<String, Object>();
+    paramMap.put("memberNo", loginMember.getNo());
+    paramMap.put("pagesStart", cri.getPagesStart());
+    paramMap.put("perPageNum", cri.getPerPageNum());
+
+    int pageNum = cri.getPage() - 1;
+    List<Party> endPartyListTotal = partyService.findByEndParty(paramMap);
+    List<Party> endPartyListTotal2 = new ArrayList<>();
+    int count = ((pageNum + 1) * 10) - 10;
+    System.out.println(count);
+    // 페이징 처리 (해당 개수만, 페이지 넘기거나 앞으로 하면 적용)
+    for (int i=0 + count; i<cri.getPerPageNum() + count; i++) {
+      endPartyListTotal2.add(endPartyListTotal.get(i));
+    }
+
+    model.addAttribute("endPartys", endPartyListTotal2);
+    model.addAttribute("pageMaker", pageMaker);
+
+    return "mypage/end-party";
+  }
+
+
+
+
+  @GetMapping("my-party-detail")
+  public String myPartyDetail(int no, Model model, Criteria cri, HttpSession session) throws Exception {
+
+    Party party = partyService.get(no);
+
+    // 페이징하기 위한 연산 
+    PageMaker pageMaker = new PageMaker();
+    pageMaker.setCri(cri);
+    pageMaker.setTotalCount(partyMemberService.countMyPartyMember(no));
+
+    Map<String, Object> paramMap = new HashMap<String, Object>();
+    paramMap.put("partyNo", party.getNo());
+    paramMap.put("pagesStart", cri.getPagesStart());
+    paramMap.put("perPageNum", cri.getPerPageNum());
+
+    model.addAttribute("party", party);
+    model.addAttribute("myPartyMembers", partyMemberService.findByMyPartyList(paramMap));
+    model.addAttribute("pageMaker", pageMaker);
+    return "mypage/my-party-detail";
+  }
+
+  @GetMapping("partymember-update")
+  public String partymemberUpdate(int status, int memberNo, int partyNo) throws Exception {
+    if (status == 2) {
+      if (!partyMemberService.partyMemberOk(status, memberNo, partyNo)) {
+      }    
+    }
+    if (status == 3) {
+      if (!partyMemberService.partyMemberNo(status, memberNo, partyNo)) {
+      }   
+    } 
+    return "redirect:my-party-detail?no=" + partyNo;
+  }
+
 }
 
 

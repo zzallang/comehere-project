@@ -7,9 +7,11 @@ import com.bitcamp.testproject.vo.Review;
 //
 public interface ReviewService {
 
-  List<Review> list(int userNo, int sportNo);
+  List<Review> list(int userNo, int sportNo) throws Exception ;
 
-  Review get(int reviewNo);
+  Review get(int reviewNo) throws Exception ;
+
+  void add(Review review) throws Exception ;
 
 }
 

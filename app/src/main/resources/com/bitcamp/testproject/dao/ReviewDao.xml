@@ -98,9 +98,19 @@
     ]]>
   </select>
 
+  <insert id="insert" parameterType="review"
+          useGeneratedKeys="true" keyColumn="prno" keyProperty="no">
+    insert into party_review(mno,pno,title,cont,star) 
+    values(#{writer.no},#{partyNo},#{title},#{content},#{star})
+  </insert>
 
-
-
+  <insert id="insertFiles" parameterType="review">
+    insert into party_review_file(filepath,prno) 
+    values 
+    <foreach collection="attachedFiles" item="file" separator=",">
+      (#{file.filepath},#{no})
+    </foreach>
+  </insert>
 
 </mapper>
 

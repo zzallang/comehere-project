@@ -35,6 +35,8 @@
 <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
 <!--  썸머노트 끝 -->
+
+
 <!-- 카카오 지도 -->
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=329b989eb923746c672a8d662638bae0&libraries=services"></script>
 
@@ -518,8 +520,7 @@
     #modalReview .title {
       padding-left: 10px;
       display: inline;
-      text-shadow: 1px 1px 2px gray;
-      color: white;
+      color: black;
     }
     
     #modalReview .title h2 {
@@ -531,15 +532,19 @@
       float: right;
       padding-right: 10px;
       cursor: pointer;
-      text-shadow: 1px 1px 2px gray;
-      color: white;
+      color: black;
     }
     
     #modalReview .content {
       margin-top: 20px;
       padding: 0px 10px;
-      text-shadow: 1px 1px 2px gray;
-      color: white;
+      color: black;
+      border-radius: 10px;
+      
+    }
+    
+    .reviewRadius {
+      border-radius: 5px;
     }
     /* Modal Review*/
 
@@ -712,7 +717,7 @@
           <p class="dololr_text_region" th:text="${party.region.sido}"></p>
           <p class="dololr_text_region" th:text="${party.region.sigu}"></p>
           <p class="dololr_text_sports" th:text="${party.sports.name}"></p>
-          <button th:if="${session.loginMember} != null and ${session.loginMember.no} != ${party.user.no}" class="dololr_text_tatlle btn-modal" type="button" role="button">신고</button>
+          <button th:if="${session.loginMember} != null and ${session.loginMember.no} != ${party.user.no}" class="dololr_text_tatlle btn-modal" data-th-id="${party.user.no}" type="button" role="button">신고</button>
         </div>
       </div>
       <div class="party_detail_view">
@@ -781,7 +786,7 @@
           </div>
           <form action="attend" method="get">
           <div class="button_box">
-            <button th:if="${session.loginMember} != null and ${session.loginMember.no} != ${party.user.no}" 
+            <button th:if="${session.loginMember} != null and ${session.loginMember.no} != ${party.user.no} and ${checkNo} != 1" 
             class="party_insert_button" type="button" th:onclick="findPartyNoAttend()">모임 신청</button>
             <button th:if="${session.loginMember} == null" class="party_insert_button" type="button" onclick="location.href='../auth/form'">모임 신청</button>
           </div>
@@ -818,29 +823,7 @@
               <div class="container">
                 <div class="commentList"></div>
               </div>
-              <!-- 댓글 페이징 -->
-              <nav aria-label="Page navigation">
-                <ul class="pagination">
-                  <div class="page_center">
-                    <li class="page-item" th:if="${pageMaker.prev}">
-                      <a class="page-link" th:href="@{list(pageMaker.startPage-1}" aria-label="Previous">
-                        <span aria-hidden="true">&laquo;</span>
-                      </a>
-                    </li>
-                    <th:block th:if="${pageMaker.endPage != 0}" th:each="pageNum: ${#numbers.sequence(pageMaker.startPage, pageMaker.endPage)}">
-                      <li class="page-item">
-                        <a th:id="'pageNo' + ${pageNum}" class="page-link" onclick="getId(this.id)"><i th:text="${pageNum}"></i></a>
-                      </li>
-                    </th:block>
-                    <li class="page-item" th:if="${pageMaker.next && pageMaker.endPage >0}">
-                      <a class="page-link" th:href="@{list(page=${pageMaker.endPage+1}" aria-label="Next">
-                        <span aria-hidden="true">&raquo;</span>
-                      </a>
-                    </li>
-                  </div>
-                </ul>
-              </nav>
-              <!-- 댓글페이징 -->
+              
               <h2>댓글 쓰기</h2>
               <div style="width: 80%;" class="temp-line">
                 <div class="form-group">
@@ -953,11 +936,11 @@ $('.reviewStarVal').ready(function () {
     <div id="modalReview" class="modal-overlay">
       <div class="modal-window">
         <div class="close-area2">X</div>
-        <div class="content">
+        <div class="content" style="background-color: white; overflow: hidden;">
           <div>
             <div class="report_menu">리뷰 상세보기</div>
               <div class="party_detail_bottom_review">
-                <div class="party_detail_review_img">
+                <div class="reviewRadius party_detail_review_img">
                   <div class="slide_wrapper">
                     <div class="slide_wrapper">
                       <ul class="slides">
@@ -975,17 +958,17 @@ $('.reviewStarVal').ready(function () {
                       <p id="reviewDetailAttachedFiles"></p>
                   </div>
                 </div>
-                <div class="party_detail_review_format">
+                <div class="reviewRadius party_detail_review_format">
                   <span id="reviewDetailStar"></span>
                   <span id="reviewDetailStarImg"></span>
                 </div>
-                <div class="party_detail_review_format">
+                <div class="reviewRadius party_detail_review_format">
                   <span id="reviewDetailWriterNickname"></span>
                   <span id="reviewDetailWriterSex"></span>
                   <span id="reviewDetailWriterAgeGroup"></span>
                   <span id="reviewDetailCreatedDate"></span>
                 </div>
-                <div class="party_detail_review_content">
+                <div class="reviewRadius party_detail_review_content">
                   <p id="reviewDetailTitle"></p>
                   <p id="reviewDetailContent"></p>
                 </div>
@@ -1077,6 +1060,17 @@ function starImg (sVal) {
 }
 
 
+function sexText(sex) {
+    if (sex == 0) {
+      
+    console.log("확인용 ");
+      $('#reviewDetailWriterSex').text('여자');
+    }
+    if (sex == 1) {
+        $('#reviewDetailWriterSex').text('남자');
+      }
+  }
+
 btnModalReview.click((e) => {
 	let [a, resultValue] = e.currentTarget.id.split("l");
 	partyNoVal = $('#partyNo').val();
@@ -1087,7 +1081,7 @@ btnModalReview.click((e) => {
           data: { no: partyNoVal,
                   reviewNo: resultValue },
           success: function(result) {
-            window.scrollTo(0,0);
+        	  window.scrollTo(0,0);
 
             var z =''; 
             let i = 0;
@@ -1106,9 +1100,11 @@ btnModalReview.click((e) => {
             let sVal = result.star;
             starImg(sVal);
 
+
+            
+            sexText(result.writer.sex);
             
             $('#reviewDetailWriterNickname').text(result.writer.nickname);
-            $('#reviewDetailWriterSex').text(result.writer.sex);
             $('#reviewDetailWriterAgeGroup').text(result.writer.ageGroup);
             $('#reviewDetailCreatedDate').text(result.createdDate);
             $('#reviewDetailTitle').text(result.title);
@@ -1165,12 +1161,12 @@ btnModalReview.click((e) => {
 
 <!-- 댓글 시작 -->
 <script>
-
-
+      "use strict"
 const partyNo = $("#partyNo").val();
 const memberNo = $('#memberNo').val();
 const lastPageNo = document.getElementsByClassName('page-link').length;
 
+    	  // 로그인 회원 유효성을 위한 셋팅
 let loginMemberNo = -1;
 if($(".loginId").attr("id") != undefined) {
  loginMemberNo = $(".loginId").attr("id");
@@ -1183,18 +1179,30 @@ function getId(pageId) {
   pageNo = pageId.replace('pageNo', '')
   commentList();
 } 
+    	  
+        // 페이지 버튼 active 시키기
+        window.addEventListener('DOMContentLoaded', function(){
+            $('#pageButton' + pageNo).addClass('active');
+        });
+        document.querySelectorAll('.page-item').forEach((pageBtn) => {
+        	pageBtn.addEventListener('click', function(e) {
+        		console.log("하이");
+        			$('.page-item').removeClass('active');
+          		$(e.currentTarget).addClass('active');
+          });
+        });
 
 document.getElementById('commetButton').addEventListener('click', insertAndReplay);
 // 댓글을 등록했을 때 한 페이지에 보일수 있는 댓글수 초과 시(현재 15개) 페이지 reload()
 document.getElementById('commetButton').addEventListener('click', countComment); 
 function countComment() {
   var count = document.getElementsByClassName('commentArea').length;
-  if (count == 15) {
+  if (count == 5) {
     window.location.reload();
   }
 };
 
-
+        // 페이지 시작할 때 댓글 목록 출력 
 $(document).ready(function(){
     commentList(); //페이지 로딩시 댓글 목록 출력 
 });
@@ -1215,17 +1223,13 @@ function commentList(){
             a += '<div class="commentInfo' + value.no + '">' + '댓글번호 : ' + value.no + ' / 작성자 : ' + value.writer.nickname;
             if (loginMemberNo == value.writer.no) {
               a += '<a onclick="commentUpdate(' + value.no + ',\'' + value.content + '\');"> 수정 </a>';
-              a += '<a onclick="commentDelete('+value.no+');"> 삭제 </a>';
+                  a += '<a onclick="commentDelete('+value.no+');"> 삭제 </a> </div>';
             }
             if (loginMemberNo != value.writer.no && loginMemberNo != -1) {
-            	a += '<a onclick="commentComplain('+value.no+');"> 신고 </a> </div>';
-            }
-            if (loginMemberNo == -1) {
-                a += '<a onclick="commentComplain('+value.no+');"> 신고 </a> </div>';
-                /* a += '<a onclick="commentComplain(${value.no});"> 신고 </a> </div>'; */ /* 가독성을 위해 이코드를 사용한다. */
+            	a += '<a name="commentTatlle" value="' + value.writer.no + '"' + 'onclick="commentComplain('+value.no+');"> 신고 </a> </div>';
             }
             a += '<div class="commentContent'+value.no+'"> <p> 내용 : '+value.content +'</p>';
-            a += '</div></div>';
+            a += '</div></div></div>';
         });
         $(".commentList").html(a);
     }
@@ -1254,7 +1258,6 @@ function commentList(){
   
   //댓글 삭제 
   function commentDelete(no){
-      console.log("댓글삭제 호출됨!!");
       $.ajax({
           url : '/app/partyComment/delete/'+no,
           type : 'post',
@@ -1297,7 +1300,7 @@ function commentList(){
      }
   }
 </script>
-<!-- Modal Start -->
+ <!-- Modal Start -->
   <form action='partreport' method="post">
     <table border='1'>
       <div id="container">
@@ -1308,113 +1311,88 @@ function commentList(){
           <div class="close-area">X</div>
           <div class="content">
             <div>
+              <input type="hidden" name="partyNo" data-th-value="${party.no}">
               <div class="report_menu">신고사유</div>
               <div class="form-check form-check-inline">
-                <input type="checkbox" value="Contents" class="form-check-input" id="1" name="reports" onclick='checkOnlyOne(this)' style="display: block"> <input type="hidden" name="_reports" value="on" /> <label for="reports1" class="form-check-label">불건전한 내용</label>
+                              <input type="checkbox" value="Contents" class="form-check-input" id="1" name="reports" onclick='checkOnlyOne(this)' style="display: block"> <input type="hidden" name="_reports" value="on" /> <label for="reports1" class="form-check-label">불건전한 내용</label>
               </div>
               <div class="form-check form-check-inline">
-                <input type="checkbox" value="promotion" class="form-check-input" id="2" name="reports" onclick='checkOnlyOne(this)' style="display: block"> <input type="hidden" name="_reports" value="on" /> <label for="reports2" class="form-check-label">스팸 및 부적절한 홍보</label>
+                              <input type="checkbox" value="promotion" class="form-check-input" id="2" name="reports" onclick='checkOnlyOne(this)' style="display: block"> <input type="hidden" name="_reports" value="on" /> <label for="reports2" class="form-check-label">스팸 및 부적절한 홍보</label>
               </div>
               <div class="form-check form-check-inline">
-                <input type="checkbox" value="calumny" class="form-check-input" id="3" name="reports" onclick='checkOnlyOne(this)' style="display: block"> <input type="hidden" name="_reports" value="on" /> <label for="reports3" class="form-check-label">명예훼손 및 비방</label>
+                              <input type="checkbox" value="calumny" class="form-check-input" id="3" name="reports" onclick='checkOnlyOne(this)' style="display: block"> <input type="hidden" name="_reports" value="on" /> <label for="reports3" class="form-check-label">명예훼손 및 비방</label>
               </div>
               <div class="form-check form-check-inline">
-                <input type="checkbox" value="prejudice" class="form-check-input" id="4" name="reports" onclick='checkOnlyOne(this)' style="display: block"> <input type="hidden" name="_reports" value="on" /> <label for="reports4" class="form-check-label">초상권 및 저작권 침해</label>
+                              <input type="checkbox" value="prejudice" class="form-check-input" id="4" name="reports" onclick='checkOnlyOne(this)' style="display: block"> <input type="hidden" name="_reports" value="on" /> <label for="reports4" class="form-check-label">초상권 및 저작권 침해</label>
               </div>
               <div class="form-check form-check-inline">
-                <input type="checkbox" value="embezzlement" class="form-check-input" id="5" name="reports" onclick='checkOnlyOne(this)' style="display: block"> <input type="hidden" name="_reports" value="on" /> <label for="reports5" class="form-check-label">개인정보 도용</label>
+                              <input type="checkbox" value="embezzlement" class="form-check-input" id="5" name="reports" onclick='checkOnlyOne(this)' style="display: block"> <input type="hidden" name="_reports" value="on" /> <label for="reports5" class="form-check-label">개인정보 도용</label>
               </div>
               <div class="form-check form-check-inline">
-                <input type="checkbox" value="act" class="form-check-input" id="6" name="reports" onclick='checkOnlyOne(this)' style="display: block"> <input type="hidden" name="_reports" value="on" /> <label for="reports6" class="form-check-label">기타 사이트 목적에 맞지 않는 행위</label>
+                              <input type="checkbox" value="act" class="form-check-input" id="6" name="reports" onclick='checkOnlyOne(this)' style="display: block"> <input type="hidden" name="_reports" value="on" /> <label for="reports6" class="form-check-label">기타 사이트 목적에 맞지 않는 행위</label>
               </div>
               <div class="form-check form-check-inline">
-                <input type="checkbox" value="Etc" class="form-check-input" id="7" name="reports" onclick='checkOnlyOne(this)' style="display: block"> <input type="hidden" name="_reports" value="on" /> <label for="reports7" class="form-check-label">기타</label>
-              </div>
- <!-- 신고 종류 설정 input hidden type-->
-                            <div class="form-check form-check-inline">
-                              <input type="hidden" id="reportForm">
+                              <input type="checkbox" value="Etc" class="form-check-input" id="7" name="reports" onclick='checkOnlyOne(this)' style="display: block"> <input type="hidden" name="_reports" value="on" /> <label for="reports7" class="form-check-label">기타</label>
                             </div>
-                          </div>
-                          <div class="send_bt3" id="singo">신고</div>
-                        </div>
-                      </div>
-                    </div>
-                  </table>
-                </form>
-                <script>
-                
-                function checkOnlyOne(element) {
-                    
-                    const checkboxes 
-                        = document.getElementsByName("reports");
-                    
-                    checkboxes.forEach((cb) => {
-                      cb.checked = false;
-                    })
-                    
-                    element.checked = true;
-                  }
 
 
-                $("#singo").click(function() {
-                  swal("신고 완료 했습니다.");
+              <!-- 신고 종류 설정 input hidden type-->
+              <div class="form-check form-check-inline">
+                <input type="hidden" id="reportForm">
+              </div>
+            </div>
+            <div class="send_bt3" id="singo">신고</div>
+          </div>
+        </div>
+      </div>
+    </table>
+  </form>
 
-                  $('input:checkbox[name=reports]').each(function (index) {
-                    if($(this).is(":checked")==true){
-                      id = $(this).attr("id");
-                    }
-                  });
-                  console.log($("#reportForm").val());
-                  console.log($("#reportForm").attr("name"));
-
-                  let value = $("#reportForm").val();
-                  let name = $("#reportForm").attr("name");
-
-                  $.ajax({
-                    type: "POST",
-                    url: "/app/report/partyReport",
-                    data:{value: value, name: name},
-                    success: function (result) {
-                      console.log(result);
-                    },
-                  });
-                });
-              </script>
-
-
-                <script>
+  <script>
+  let tatlleVal = "";
               function commentComplain(number) {
-                console.log(number);
+            	  console.log(number);
+            	  tatlleVal = number;
+                console.log(tatlleVal);
+
                 $("#reportForm").attr("value", number);
                 $("#reportForm").attr("name", "댓글");
 
                 modal.style.display = 'flex';
                 window.scrollTo(0,0);
                 // x버튼 누르면 종료
-                $(".closeBtn1").click(function () {
+                $(".close-area").click(function () {
+                    $("input:checkbox[name='reports']").each(function(){
+                        this.checked = false
+                        });
                   modal.style.display = 'none';
+                  checkTag.setAttribute('checked', 'false');
                 });
                 // 신고 누르면 종료
                 $(".closeBtn").click(function () {
+                    $("input:checkbox[name='reports']").each(function(){
+                        this.checked = false
+                        });
                   modal.style.display = 'none';
                 });
                 // esc누르면 종료
                 window.addEventListener('keyup', (e) => {
                   if (modal.style.display === 'flex' && e.key === 'Escape') {
                     modal.style.display = 'none';
+                    checkTag.setAttribute('checked', 'false');
                   }
                 });
               }
 
-                      const loremIpsum = document.getElementById("lorem-ipsum")
-                       //fetch를 통해 받아온 데이터를 loremIpsum DOM에 넣어주기 때문에 모달창 내부에 내용이 채워져서 뜨는것. 
-                      //fetch("https://baconipsum.com/api/?type=all-meat&paras=200&format=html")
+        const loremIpsum = document.getElementById("lorem-ipsum")
+         //fetch를 통해 받아온 데이터를 loremIpsum DOM에 넣어주기 때문에 모달창 내부에 내용이 채워져서 뜨는것. 
+        //fetch("https://baconipsum.com/api/?type=all-meat&paras=200&format=html")
                         loremIpsum.innerHTML = ``
-                            /* .then(response => response.text())
-                            .then(result => loremIpsum.innerHTML = result) */
-                            
-                        //디스플레이 non 버튼클릭하면 flex로 변환  
-                      const modal = document.getElementById("modal")
+              /* .then(response => response.text())
+              .then(result => loremIpsum.innerHTML = result) */
+              
+          //디스플레이 non 버튼클릭하면 flex로 변환  
+        const modal = document.getElementById("modal")
                       const btnModal = document.querySelectorAll(".btn-modal")
                       let partyNumber = (window.location.search).substring(4,window.location.lengh);
                       $("#reportForm").attr("value", partyNumber);
@@ -1422,30 +1400,93 @@ function commentList(){
                          console.log(btnModal);
                           btnModal.forEach((btn) => {
                           btn.addEventListener('click', (e) => {
+                        	  tatlleVal = e.currentTarget.id;
+                          console.log(tatlleVal);
                           modal.style.display = 'flex';
-                    // x버튼 누르면 종료
+           // x버튼 누르면 종료
                       const closeBtn = modal.querySelector('.close-area');
                           closeBtn.addEventListener('click', (e) => {
+                              $("input:checkbox[name='reports']").each(function(){
+                                  this.checked = false
+                                  });
                           modal.style.display = 'none';
                   });
-                  // 신고 누르면 종료
+          // 신고 누르면 종료
                       const closeBtn1 = modal.querySelector('.send_bt3');
                            closeBtn1.addEventListener('click', (e) => {
+                               $("input:checkbox[name='reports']").each(function(){
+                                   this.checked = false
+                                   });
                            modal.style.display = 'none';
                   });
-                  // esc누르면 종료
+          // esc누르면 종료
                           window.addEventListener('keyup', (e) => {
                     if (modal.style.display === 'flex' && e.key === 'Escape') {
                         modal.style.display = 'none';
-                    }
+    }
                   });
                 });
               });
-                          
-                          
-                  </script>
+          
+    </script>
 
+  <script>
+  const partyNum = document.getElementById( 'partyNo').value;
+  function checkOnlyOne(element) {
+      
+      const checkboxes 
+          = document.getElementsByName("reports");
+      
+      checkboxes.forEach((cb) => {
+        cb.checked = false;
+      })
+      
+      element.checked = true;
+    }
+  
+  let check = 0;
+  let checkTag = "";
 
+      
+  $(".form-check-input").change(function(e){
+      if($(".form-check-input").is(":checked")){
+          check = e.currentTarget.id;
+          checkTag = e.currentTarget;
+      }else{
+      }
+  });
+
+$("#singo").click(function() {
+
+    $('input:checkbox[name=reports]').each(function (index) {
+      if($(this).is(":checked")==true){
+        console.log($(this).attr("id"));
+        id = $(this).attr("id");
+      }
+    });
+                  console.log($("#reportForm").val());
+                  console.log($("#reportForm").attr("name"));
+
+                  let value = $("#reportForm").val();
+                  let name = $("#reportForm").attr("name");
+
+    $.ajax({
+                    type: "POST",
+                    url: "/app/partyReport/add",
+                    data:{value: check, name: name, partyNo: partyNum, objectNo: tatlleVal},
+                    success: function (result) {
+                        swal("신고 완료 했습니다.");
+                      document.getElementById("modal").style.display = 'none';
+                      checkTag.setAttribute('checked', 'false');
+                      console.log("성공!");
+                      
+        },
+      });
+});
+
+</script>
+
+  <!--  Modal End -->
 
 	<!-- 댓글  -->
 	<!-- 카카오 지도 시작 -->

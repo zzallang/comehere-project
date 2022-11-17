@@ -11,10 +11,7 @@ let page = "0";
 
 let btnValue = "";
 
-
-$("#region_sido").change(() => {
-  loadList(getListConditions())
-});
+console.log("js준비");
 
 $("#region_sigu").change(() => {
   loadList(getListConditions())
@@ -103,10 +100,10 @@ function getListConditions(pageValue) {
   if ($("#region_sido").val() != "0") {
     params.si = $("#region_sido").val();
   }
-  if ($("#region_sigu").val() != "0") {
+  if ($("#region_sigu").val() != "99") {
     params.gu = $("#region_sigu").val();
   }
-  if ($("#sports_name").val() != "0") {
+  if ($("#sports_name").val() != "99") {
     params.sports = $("#sports_name").val();
   }
   if ($("#partyDate").val() != "") {
