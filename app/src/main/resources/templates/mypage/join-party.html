@@ -214,17 +214,17 @@
                     <ul class="pagination">
                       <div class="page_center">
                         <li class="page-item" th:if="${pageMaker.prev}">
-                          <a class="page-link" th:href="@{my-post(page=${pageMaker.startPage-1})}" aria-label="Previous">
+                          <a class="page-link" th:href="@{join-party(page=${pageMaker.startPage-1})}" aria-label="Previous">
                             <span aria-hidden="true">&laquo;</span>
                           </a>
                         </li>
-                        <th:block th:each="pageNum: ${#numbers.sequence(pageMaker.startPage, pageMaker.endPage)}">
-                          <li class="page-item">
-                            <a class="page-link" th:href="@{my-post(page=${pageNum})}"><i th:text="${pageNum}"></i></a>
+                        <th:block data-th-if="${pageNum} != 0" th:each="pageNum: ${#numbers.sequence(pageMaker.startPage, pageMaker.endPage)}">
+                          <li data-th-id="${'pageButton' + pageNum}" class="page-item">
+                            <a class="page-link" th:href="@{join-party(page=${pageNum})}"><i th:text="${pageNum}"></i></a>
                         </li>
                         </th:block>
                         <li class="page-item" th:if="${pageMaker.next && pageMaker.endPage >0}">
-                          <a class="page-link" th:href="@{my-post(page=${pageMaker.endPage+1})}" aria-label="Next">
+                          <a class="page-link" th:href="@{join-party(page=${pageMaker.endPage+1})}" aria-label="Next">
                             <span aria-hidden="true">&raquo;</span>
                           </a>
                         </li>
@@ -253,6 +253,15 @@
             </div>
             </div>
             <!-- copyright section end -->
+                        <script type="text/javascript">
+            window.addEventListener('DOMContentLoaded', function(){
+                var param = 1; 
+                if (window.location.search.match(/page=([^&]*)/) != null) {
+                  param = window.location.search.match(/page=([^&]*)/)[1];
+                } 
+                $('#pageButton' + param).addClass('active');
+              });
+            </script>
             <!-- Javascript files-->
             <!--       <script src="js/jquery.min.js"></script> -->
             <script src="js/popper.min.js"></script>

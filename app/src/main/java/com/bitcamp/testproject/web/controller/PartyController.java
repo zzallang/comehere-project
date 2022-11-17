@@ -88,18 +88,6 @@ public class PartyController {
     return map;
   }
 
-
-  @GetMapping("review-detail-form") 
-  public Map reviewDetailForm(int no) throws Exception {
-    Party party = partyService.get(no);
-    if (party == null) {
-      throw new Exception("해당 번호의 모임이 없습니다!");
-    }
-    Map map = new HashMap();
-    map.put("party", party);
-    return map;
-  }
-
   @PostMapping("add") 
   public String add(
       Party party,
@@ -164,26 +152,16 @@ public class PartyController {
       String listPartyDate,
       Criteria cri, 
       Model model) throws Exception {
-    System.out.println(cri);
-    System.out.println("1단계");
+
     PageMaker pageMaker = new PageMaker();
-    System.out.println("2단계");
     pageMaker.setCri(cri);
-    System.out.println("3단계");
     pageMaker.setDisplayPageNum(2);
-    System.out.println("4단계");
     pageMaker.setTotalCount(partyService.listCount2(gu, sports, partyDate, partyTime, searchText));
-    System.out.println("5단계");
-    System.out.println(cri.getPagesStart());
-    System.out.println(cri.getPerPageNum());
 
     model.addAttribute(
         "partys",
         partyService.list2(gu, sports, partyDate, partyTime, searchText, listStar, listCreate, listPartyDate, cri));
-    System.out.println("6단계");
     model.addAttribute("pageMaker", pageMaker);
-    System.out.println("7단계");
-    System.out.println(pageMaker);
     System.out.printf("%s, %s, %s, %s, %s, %s, %s, %s\n", gu, sports, partyDate, partyTime, searchText, listStar, listCreate, listPartyDate);
   }
 
@@ -199,27 +177,17 @@ public class PartyController {
       String listPartyDate,
       Criteria cri, 
       Model model) throws Exception {
-    System.out.println(cri);
-    System.out.println("1단계");
     PageMaker pageMaker = new PageMaker();
-    System.out.println("2단계");
     pageMaker.setCri(cri);
-    System.out.println("3단계");
     pageMaker.setDisplayPageNum(2);
-    System.out.println("4단계");
     pageMaker.setTotalCount(partyService.listCount2(gu, sports, partyDate, partyTime, searchText));
-    System.out.println("5단계");
-    System.out.println(cri.getPagesStart());
-    System.out.println(cri.getPerPageNum());
 
     model.addAttribute(
         "partys",
         partyService.list2(gu, sports, partyDate, partyTime, searchText, listStar, listCreate, listPartyDate, cri));
-    System.out.println("6단계");
     model.addAttribute("pageMaker", pageMaker);
-    System.out.println("7단계");
     System.out.println(pageMaker);
-    System.out.printf("%s, %s, %s, %s, %s, %s, %s, %s\n", gu, sports, partyDate, partyTime, searchText, listStar, listCreate, listPartyDate);
+    System.out.printf("%s, %s, %s, %s, %s, %s, %s\n", gu, sports, partyDate, partyTime, searchText, listStar, listCreate, listPartyDate);
   }
 
   @SuppressWarnings({"rawtypes", "unchecked"})

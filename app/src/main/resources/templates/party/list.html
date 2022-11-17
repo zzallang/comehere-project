@@ -29,7 +29,7 @@
   <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
   <!-- owl stylesheets --> 
   <link rel="stylesheet" href="../css/owl.carousel.min.css">
-  <link rel="stylesheet" href="../css/owl.theme.default.min.css">
+  <!-- <link rel="stylesheet" href="../css/owl.theme.default.min.css"> -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
 
   <!-- 공식 부트스트랩 -->
@@ -290,17 +290,15 @@
         <div class="party_search">
           <form action="">
             <select class="party_condition" id="region_sido">
-              <option value="0" selected>-시/도-</option>
+              <option value="0" selected>-선택안함-</option>
               <option th:text="서울시" id="sidoNo" th:value="1"></option>
             </select>
             <select class="party_condition"  id="region_sigu">
-              <option value="0" selected>-시/군/구-</option>
               <th:block th:each="region : ${regions}">
                 <option th:text="${region.sigu}" id="siguNo" th:value="${region.no}"></option>
               </th:block>
             </select>
             <select class="party_condition"  id="sports_name">
-              <option value="0" selected>-운동-</option>
               <th:block th:each="sport : ${sports}">
                 <option th:text="${sport.name}" id="sportsNo" th:value="${sport.no}"></option>
               </th:block>
@@ -310,14 +308,21 @@
           </form>
         </div>
         <div class="party_search_bar">
-          <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
-            <input id="list_search" type="search" class="form-control form-control-dark text-bg-dark" placeholder="검색어를 입력하세요..." aria-label="Search">
-            <button type="button" id='searchBtn'>검색</button>
-          </form>
+                 <nav class="navbar navbar-light">
+                 <div style="margin: auto">
+                  <!-- 검색 버튼 시작 -->
+                  <form class="form-inline" action='list' method="get"> 
+                    <input class="form-control mr-sm-2" type="search" id="list_search" name="keyword" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-successJD my-2 my-sm-0" type="button" id="searchBtn">Search</button>
+                  </form>
+                  <!-- 검색 버튼 끝 -->
+                 </div>
+                 </nav>
         </div>
+
       </div>
     </div>
-    <div class="furnitures_section2 layout_padding_party">
+    <div class="furnitures_section2 layout_padding_party"> 
       <div class="button_box">
         <button th:if="${session.loginMember} != null" class="party_insert_button" type="button" onclick="location.href='form'">모임 개설</button>
         <button th:if="${session.loginMember} == null" class="party_insert_button" type="button" onclick="location.href='../auth/form'">모임 개설</button>
@@ -399,7 +404,7 @@
 <!--  footer section end -->
 
 <!-- copyright section start -->
-<div class="copyright_section">
+<div class="copyright_section"></div>
 <div class="container">
    <div class="social_icon">
       <ul>
@@ -414,7 +419,8 @@
 <!-- copyright section end -->
 
 <script>
-document.getElementById('searchButton').addEventListener('click', deleteBoard);
+
+
 
 </script>
 
@@ -428,10 +434,12 @@ document.getElementById('searchButton').addEventListener('click', deleteBoard);
 <!--  <script src="../js/plugin.js"></script>--><!-- selectbox 뜨는 -->
 <!-- sidebar -->
 <script src="../js/jquery.mCustomScrollbar.concat.min.js"></script>
-<script src="../js/custom.js"></script>
+<!-- <script src="../js/custom.js"></script> -->
 <!-- javascript --> 
-<script src="../js/owl.carousel.js"></script>
+<!-- <script src="../js/owl.carousel.js"></script> -->
 <script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>    
 <script src="/app/js/party/partylist.js"></script>
+
+
 </body>
 </html>
