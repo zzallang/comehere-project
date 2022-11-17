@@ -217,7 +217,7 @@
                  <nav class="navbar navbar-light">
                  <div style="margin: auto">
                   <!-- 검색 버튼 시작 -->
-                  <form class="form-inline" action='list' method="get">
+                  <form class="form-inline" action='list' method="GET">
                     <input data-th-value="${catenoInBoard.cateno}" type="hidden" name="no" aria-label="category">
                     <select id="searchId" class="form-selectJd" name="type">
                         <option value="T">제목</option>
@@ -269,7 +269,9 @@
       <!-- <script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>  -->
       
       <!-- 공식부트스트랩 JS -->
-      <script src="../js/bootstrap/bootstrap.js"></script>   
+      <script src="../js/bootstrap/bootstrap.js"></script>  
+      <!-- sweetalert -->
+      <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
       <script>
       "use strict"
@@ -288,15 +290,22 @@
        loginMemberNo = $(".loginId").attr("id");
       };
       function checkLogin() {
+          swal({
+              icon: "success",
+            }).then(function(){
+            	location.href = '../auth/form'; 
+            });
     	  if (loginMemberNo == undefined || loginMemberNo == -1) {
-    		  if (confirm("로그인하시겠습니까?") == true){    //확인
+    		  
+     		  if (confirm("로그인하시겠습니까?") == true){    //확인
               location.href = '../auth/form';
           } else {
         	  return false;
           }
     	  } else {
-      	  location.href = $("#postButton").attr("value");
-    	  }
+      	  location.href = $("#postButton").attr("value"); 
+    	  } 
+
       }
       
       

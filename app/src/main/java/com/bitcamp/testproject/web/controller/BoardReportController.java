@@ -22,11 +22,13 @@ public class BoardReportController {
 
 
   @PostMapping("add")
-  public String add(int boardNo,int objectNo, int value, String name, HttpSession session) throws Exception {
+  public String add(int tatlleNo, int boardNo, int value, String name, HttpSession session) throws Exception {
     Map<String, Object> reportMap = new HashMap<>();
-    reportMap.put("trno", value);
+
+    // 신고사유, 신고한 회원, 신고 대상번호 데이터를 담아 놓는다.
+    reportMap.put("trno", tatlleNo);
     reportMap.put("mno", ((Member) session.getAttribute("loginMember")).getNo());
-    reportMap.put("decbno",objectNo);
+    reportMap.put("decbno", value);
 
     if (name.equals("댓글")) {
       boardReportService.addCommentReport(reportMap);

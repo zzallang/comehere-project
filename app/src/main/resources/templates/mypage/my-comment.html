@@ -226,7 +226,7 @@
                           </a>
                         </li>
                         <th:block th:each="pageNum: ${#numbers.sequence(pageMaker.startPage, pageMaker.endPage)}">
-                          <li class="page-item">
+                          <li data-th-id="${'pageButton' + pageNum}" class="page-item">
                             <a class="page-link" th:href="@{my-comment(page=${pageNum})}"><i th:text="${pageNum}"></i></a>
                         </li>
                         </th:block>
@@ -261,7 +261,7 @@
             </div>
             <!-- copyright section end -->
             <!-- Javascript files-->
-            <!--       <script src="js/jquery.min.js"></script> -->
+            <script src="../js/jquery.min.js"></script>
             <!-- <script src="js/popper.min.js"></script> -->
             <!-- <script src="js/bootstrap.bundle.min.js"></script> -->
             <!-- <script src="js/jquery-3.0.0.min.js"></script> -->
@@ -273,6 +273,13 @@
             <!-- <script src="js/owl.carousel.js"></script> -->
             <!-- <script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script> -->
             <script>
+            window.addEventListener('DOMContentLoaded', function(){
+                var param = 1; 
+                if (window.location.search.match(/page=([^&]*)/) != null) {
+                  param = window.location.search.match(/page=([^&]*)/)[1];
+                } 
+                $('#pageButton' + param).addClass('active');
+              });
             function failAlert(){
                 alert("삭제된 게시글 입니다.");
             }
