@@ -155,7 +155,7 @@ public class BoardController {
     // 검색 기능인지 단지 목록 출력인지에 따라 다른 메서드 호출 
     List<Map<String,Object>> list;
     int boardTotalCount;
-    if (search.getKeyword() == null) {
+    if (search.getKeyword() == null || search.getKeyword() == "") {
       list = boardService.list(cri);
       boardTotalCount = boardService.countTotalBoard(no);
     } else {

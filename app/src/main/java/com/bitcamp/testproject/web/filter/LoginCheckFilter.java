@@ -37,6 +37,7 @@ public class LoginCheckFilter implements Filter {
         servletPath.toLowerCase().endsWith("update") ||
         servletPath.toLowerCase().endsWith("viewer") ||
         servletPath.toLowerCase().endsWith("delete") ||
+        servletPath.toLowerCase().endsWith("board/form") ||
         servletPath.toLowerCase().startsWith("/mypage")) {
 
       Member loginMember = (Member) httpRequest.getSession().getAttribute("loginMember");

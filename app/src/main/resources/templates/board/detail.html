@@ -271,6 +271,10 @@
   color: white;
   /* f8b81f7a */
 }
+
+        .swal-text {
+          text-align: center;
+        } 
         
       </style>
 
@@ -363,10 +367,7 @@
             <div>
               <h2>달린 댓글 부분</h2>
               <div class="container">
-                  <div class="commentList">
-                  
-                  
-                  </div>
+                  <div class="commentList"></div>
               </div>
             <!-- 댓글페이징 -->
             <nav aria-label="Page navigation">
@@ -406,7 +407,7 @@
                             type="text"
                             class="form-control"
                             id="commentCont"
-                            placeholder="댓글을 달아주세요!"
+                            placeholder="댓글을 입력하세요."
                             style="height: 30px;"
                             th:name="${session.loginMember.nickname}">
                         </div>
@@ -416,7 +417,7 @@
                             type="text"
                             class="form-control"
                             id="commentCont"
-                            placeholder="댓글을 등록하려면 로그인 해주세요"
+                            placeholder="댓글을 등록하려면 로그인 하세요."
                             style="height: 60px;" readonly
                             onclick="alertToLogin();">
                       </div>
@@ -453,7 +454,6 @@
       <script src="../js/bootstrap.bundle.min.js"></script>
       <script src="../js/jquery-3.0.0.min.js"></script>
       <script src="../js/plugin.js"></script>
-      <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script><!-- sweetalert -->
       <!-- sidebar -->
       <script src="../js/jquery.mCustomScrollbar.concat.min.js"></script>
       <script src="../js/custom.js"></script>
@@ -462,7 +462,9 @@
       <!-- <script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>  -->
       
       <!-- 공식부트스트랩 JS -->
-      <script src="../js/bootstrap/bootstrap.js"></script>   
+      <script src="../js/bootstrap/bootstrap.js"></script>  
+      <!-- sweetalert -->
+      <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> 
 
       <script>
       "use strict"
@@ -490,22 +492,30 @@
         });
         document.querySelectorAll('.page-item').forEach((pageBtn) => {
         	pageBtn.addEventListener('click', function(e) {
-        		console.log("하이");
         			$('.page-item').removeClass('active');
           		$(e.currentTarget).addClass('active');
           });
         });
 
-    		document.getElementById('commentButton').addEventListener('click', insertAndReplay);
-    		// 댓글을 등록했을 때 한 페이지에 보일수 있는 댓글수 초과 시(현재 5개) 페이지 reload()
-    		document.getElementById('commentButton').addEventListener('click', countComment); 
-    	  function countComment() {
-    		  var count = document.getElementsByClassName('commentArea').length;
-    		  if (count == 5) {
-    			  window.location.reload();
-    		  }
-    		};
+        document.getElementById('commentButton').addEventListener('click', insertCommentProcess);
+    		/* document.getElementById('commentButton').addEventListener('click', insertAndReplay); */
+    		/* document.getElementById('commentButton').addEventListener('click', countComment); */ 
     		
+    		// 댓글 등록 시 과정 (댓글 유효성 체크 -> 등록(ajax) -> 댓글 개수 카운트)
+        function insertCommentProcess(){
+          if (document.getElementById('commentCont').value == '') {
+            swal('등록 실패!', "내용을 입력해주세요.", 'error');
+            return false;
+          }
+          insertAndReplay();
+        }
+        // 댓글을 등록했을 때 한 페이지에 보일수 있는 댓글수 초과 시(현재 5개) 페이지 reload()
+        function countComment() {
+          var count = document.getElementsByClassName('commentArea').length;
+          if (count == 5) {
+            window.location.reload();
+          }
+        };
         // 페이지 시작할 때 댓글 목록 출력 
         $(document).ready(function(){
           commentList(); //페이지 로딩시 댓글 목록 출력 
@@ -537,7 +547,6 @@
             }
           });
         }
-      	
       	// 댓글 등록
         function insertAndReplay(){
           $.ajax({
@@ -552,18 +561,43 @@
               if(result != null){
                	commentList();
                 $("#commentCont").val("");
+                swal({
+                	    title: '등록 성공!',
+                	    icon: 'success',
+                	    buttons : [ ,"확인"],
+                	   }).then(function(isConfirm){
+                        	if (isConfirm) {
+                        		countComment(); // 한 페이지의 댓글 개수를 초과하는지 체크 
+                        	}
+                     });
               }
             }
-            })
+          })
         }
+
       	
         //댓글 삭제 
         function commentDelete(no){
-            $.ajax({
-                url : '/app/boardComment/delete/'+no,
-                type : 'post',
-                success : function(result){
-                    if(result == 1) commentList(); //댓글 삭제후 목록 출력 
+            swal({
+                text : "댓글을 삭제하시겠습니까?",
+                icon : "warning",
+                buttons : ["아니요", "예"],
+              }).then(function(isConfirm) {
+                if (isConfirm) {
+                    $.ajax({
+                        url : '/app/boardComment/delete/'+no,
+                        type : 'post',
+                        success : function(result){
+                            if(result == 1) {
+                            	commentList(); //댓글 삭제후 목록 출력
+                            	swal('','댓글이 삭제되었습니다.','success')
+                            } else {
+                            	swal('','댓글을 삭제할 수 없습니다!','error')
+                            }
+                        }
+                    });
+                } else{
+                  return false;
                 }
             });
         }
@@ -594,11 +628,17 @@
             });
         }
         function alertToLogin(){
-      	  if (confirm("로그인하시겠습니까?") == true){    //확인
-      		  location.href = '../auth/form';
-      		 }else{   //취소
-    		     return false;
-      		 }
+            swal({
+                text :  "댓글을 작성하려면 로그인을 해야합니다.\n로그인하시겠습니까?",
+                icon : "warning",
+                buttons : ["아니요", "예"],
+              }).then(function(isConfirm) {
+                if (isConfirm) {
+                  location.href = '../auth/form';
+                } else{
+                  return false;
+                }
+            });
         }
         
         // 스크랩 관련 함수
@@ -608,6 +648,42 @@
         
         // 스크랩 등록
         function insertScrap() {
+            swal({
+                text : "스크랩 하시겠습니까?",
+                icon : "info",
+                buttons : ["아니요", "예"],
+              }).then(function(isConfirm) {
+                if (isConfirm) {
+                    $.ajax({
+                        url : "/app/scrap/add",
+                        data : {
+                          boardNo : boardNo,
+                          memberNo : memberNo
+                        },
+                        type : "post",
+                        success : function(result){
+                          if(result == 1){
+                            swal('','게시글이 스크랩되었습니다.','success');
+                          } else if (result == 0) {
+                        	  swal({
+                                  text : "이미 스크랩한 게시글입니다.\n스크랩을 취소하겠습니까?",
+                                  icon : "warning",
+                                  buttons : ["아니요", "예"],
+                              }).then(function(isConfirm) {
+                            	  if (isConfirm) {
+                            		  deleteScrap();
+                            	  } else {
+                                  return false;
+                                }
+                            });
+                          }
+                        }
+                     })
+                } else{
+                  return false;
+                }
+            });
+/*         	
             if (confirm("스크랩 하시겠습니까?") == true){
             	$.ajax({
                     url : "/app/scrap/add",
@@ -631,6 +707,7 @@
             } else{
             	return false;
             }
+             */
         }
         
         // 스크랩 취소
@@ -643,7 +720,7 @@
                     memberNo : memberNo},
                 success : function(result){
                     if(result == 1) {
-                      alert("스크랩이 취소되었습니다!");
+                    	swal('','스크랩이 취소되었습니다!','success');
                     } else {
                     	alert("오류??");
                     }
