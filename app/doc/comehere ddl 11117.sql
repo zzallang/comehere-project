@@ -263,11 +263,12 @@ ALTER TABLE board_comment
 
 -- 공지사항
 CREATE TABLE notice (
-  nno    INTEGER      NOT NULL COMMENT '게시글번호', -- 게시글번호
-  title  VARCHAR(255) NOT NULL COMMENT '제목', -- 제목
-  cont   MEDIUMTEXT   NOT NULL COMMENT '내용', -- 내용
-  cdt    DATETIME     NOT NULL DEFAULT now() COMMENT '등록일', -- 등록일
-  vw_cnt INTEGER      NOT NULL DEFAULT 0 COMMENT '조회수' -- 조회수
+  nno       INTEGER      NOT NULL COMMENT '게시글번호', -- 게시글번호
+  title     VARCHAR(255) NOT NULL COMMENT '제목', -- 제목
+  cont      MEDIUMTEXT   NOT NULL COMMENT '내용', -- 내용
+  cdt       DATETIME     NOT NULL DEFAULT now() COMMENT '등록일', -- 등록일
+  vw_cnt    INTEGER      NOT NULL DEFAULT 0 COMMENT '조회수', -- 조회수
+  thumbnail VARCHAR(255) NULL     COMMENT '썸네일' -- 썸네일
 )
 COMMENT '공지사항';
 
@@ -928,4 +929,3 @@ ALTER TABLE party_comment_tatlle
     REFERENCES member ( -- 회원
       mno -- 회원번호
     );
-    

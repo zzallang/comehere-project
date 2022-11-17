@@ -139,6 +139,7 @@ public class BoardController {
 
   @GetMapping("list")
   public ModelAndView list(Criteria cri, int no, Search search) throws Exception {
+    System.out.println("보cri" + cri);
     ModelAndView mav;
     if (no == 3) {
       // 챌린지 게시판일 경우 (listOfClg.html을 실행하고 게시글 9개만 출력)

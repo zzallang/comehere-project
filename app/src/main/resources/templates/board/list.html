@@ -110,6 +110,10 @@
           appearance: none;
         }
         
+        .swal-text {
+          text-align: center;
+        } 
+        
       </style>
 
     </head>
@@ -290,11 +294,17 @@
        loginMemberNo = $(".loginId").attr("id");
       };
       function checkLogin() {
+    	  if (loginMemberNo == undefined || loginMemberNo == -1) {
+    		  
           swal({
-              icon: "success",
-            }).then(function(){
-            	location.href = '../auth/form'; 
-            });
+            icon: "warning",
+      	    text: "회원만 이용가능합니다.\n로그인하시겠습니까?",        	    
+
+          }).then(function(){
+          	location.href = '../auth/form'; 
+          });
+    	  }
+/*           
     	  if (loginMemberNo == undefined || loginMemberNo == -1) {
     		  
      		  if (confirm("로그인하시겠습니까?") == true){    //확인
@@ -304,7 +314,7 @@
           }
     	  } else {
       	  location.href = $("#postButton").attr("value"); 
-    	  } 
+    	  }  */
 
       }
       
