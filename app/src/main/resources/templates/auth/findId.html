@@ -91,14 +91,14 @@ margin-right: 14vw;
           <table border='1'>
             <h1 class="contact_text1">ID</h1>
             <tr>
-              <input type="text" class="email-bt" placeholder="이름를 입력해주세요" size='30' name ="name" data-th-value="${name}" id = "name">
+              <input type="text" class="email-bt" placeholder="이름를 입력해주세요" size='30' name ="name"  id = "name">
             </tr>
             <tr>
-              <input type="text" class="email-bt" placeholder="E-Mail를 입력해주세요" size='30' name ="email" data-th-value="${email}" id = "email">
+              <input type="text" class="email-bt" placeholder="E-Mail를 입력해주세요" size='30' name ="email"  id = "email">
             </tr>
           </table>
           <p>
-            <button type="button"class="btnon1" id = "findID" onclick = "bt(this.form);" >ID찾기</button>
+            <button type="button"class="btnon1" id = "findID" >ID찾기</button>
           </p>
         </form>
       </div>
@@ -122,16 +122,30 @@ margin-right: 14vw;
     <!-- copyright section end -->
       
           <script>
-       function bt(frm) {
-           var name = frm.name.value;
-           var email = frm.email.value;
-           
-           if (name.trim() == ''| email.trim()== '') {
-               swal("이름이나 email을 입력해주세요");
-               return false;
-           } 
-             frm.submit();
-           }
+       $(function () {
+    	    $("#findID").click(function () {
+    	    var name = $("#name").val();
+    	    var email = $("#email").val();
+    	      if (name == "" | email == "") {
+    	        swal("이름과 Email을 입력해주세요.");
+    	        return false;
+    	      }
+    	    });
+       });
+    	      $.ajax({
+    	        type: "POST",
+    	        url: "findById",
+    	        data: {name:name, email:email},
+    	        success: function(data) {
+    	          console.log(data);
+    	          if(data == 'mv'){
+    	          } else {
+    	            swal("name와 Email이 다릅니다.");
+    	          }
+    	        }
+    	      });
+       
+       
       </script>
     
     

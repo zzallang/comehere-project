@@ -47,9 +47,20 @@ public class AuthController {
 
   @PostMapping("login")
   public ModelAndView login(String id, String password, HttpServletResponse response,
-      HttpSession session) throws Exception {
-
+      HttpSession session, String beforePageURL) throws Exception {
+    System.out.println("너 머야?" + beforePageURL);
     Member member = memberService.get(id, password);
+
+    String[] url = beforePageURL.split("app/");
+    if (url.length > 1) {
+      String[] url2 = url[1].split("/");
+      if (url2[0].equals("auth")) {
+        ModelAndView mv = new ModelAndView("redirect:../");
+        System.out.println("도착함 ");
+        session.setAttribute("loginMember", member);
+        return mv;    
+      }
+    }
 
     if (member != null) {
       session.setAttribute("loginMember", member);
@@ -74,7 +85,6 @@ public class AuthController {
     }
 
   }
-
 
   @GetMapping("findId")
   public String findId() {
@@ -102,7 +112,7 @@ public class AuthController {
       session.setAttribute("findId", member);
     }
 
-    ModelAndView mv = new ModelAndView("auth/findIdResult");
+    ModelAndView mv = new ModelAndView("auth/form");
     mv.addObject("member", member);
     return mv;
   }
