@@ -47,18 +47,9 @@ public class AuthController {
 
   @PostMapping("login")
   public ModelAndView login(String id, String password, HttpServletResponse response,
-      HttpSession session, String beforePageURL) throws Exception {
-    String[] url = beforePageURL.split("app/");
-    String[] url2 = url[1].split("/");
+      HttpSession session) throws Exception {
 
     Member member = memberService.get(id, password);
-
-    if (url2[0].equals("auth")) {
-      ModelAndView mv = new ModelAndView("redirect:../");
-      System.out.println("도착함 ");
-      session.setAttribute("loginMember", member);
-      return mv;    
-    } 
 
     if (member != null) {
       session.setAttribute("loginMember", member);
@@ -73,7 +64,7 @@ public class AuthController {
     response.addCookie(cookie);
 
     if(member != null) {
-      ModelAndView mv = new ModelAndView("redirect:" + beforePageURL);
+      ModelAndView mv = new ModelAndView("redirect:../");
 
       mv.addObject("member", member);
       return mv;
@@ -156,12 +147,8 @@ public class AuthController {
   @GetMapping("logout")
   public String logout(HttpSession session, HttpServletRequest request) throws Exception {
 
-    String beforePageURL = request.getHeader("Referer");
-    request.getSession().setAttribute("redirectURI", beforePageURL);
-
     session.invalidate();
-    //    return "redirect:../";
-    return "redirect:" + beforePageURL;
+    return "redirect:../";
   }
 
 

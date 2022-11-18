@@ -111,6 +111,7 @@ margin-right: 14vw;
                      <input type="password" class="email-bt" placeholder="Password를 입력해주세요" name="password" id = "password">
                   </tr>
                </table>
+               <div data-th-if="${loginFail}">아이디 또는 비밀번호를 잘못 입력했습니다. 입력하신 내용을 다시 확인해주세요.</div>
                <p>
                   <button type="button"class="btnon1" id = "login" onclick = "bt(this.form);">로그인</button>
                </p>
