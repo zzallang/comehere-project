@@ -30,20 +30,21 @@ public class LoginCheckFilter implements Filter {
 
     System.out.println(httpRequest.getContextPath());
     String servletPath = httpRequest.getServletPath();
-    System.out.println("멍미멍미어미어미어밍?" + servletPath.toLowerCase());
 
     // 콘텐트를 등록,변경,삭제하는 경우 로그인 여부를 검사한다.
     if (servletPath.toLowerCase().endsWith("add") ||
         servletPath.toLowerCase().endsWith("update") ||
         servletPath.toLowerCase().endsWith("viewer") ||
         servletPath.toLowerCase().endsWith("delete") ||
+        servletPath.toLowerCase().endsWith("board/form") ||
         servletPath.toLowerCase().startsWith("/mypage")) {
 
       Member loginMember = (Member) httpRequest.getSession().getAttribute("loginMember");
       if (loginMember == null) { // 로그인 하지 않았다면
         httpResponse.sendRedirect(httpRequest.getContextPath() + "/auth/form");
         return;
-      }
+      } 
+
     }
 
 
