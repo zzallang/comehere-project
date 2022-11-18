@@ -48,17 +48,19 @@ public class AuthController {
   @PostMapping("login")
   public ModelAndView login(String id, String password, HttpServletResponse response,
       HttpSession session, String beforePageURL) throws Exception {
-    String[] url = beforePageURL.split("app/");
-    String[] url2 = url[1].split("/");
-
+    System.out.println("너 머야?" + beforePageURL);
     Member member = memberService.get(id, password);
 
-    if (url2[0].equals("auth")) {
-      ModelAndView mv = new ModelAndView("redirect:../");
-      System.out.println("도착함 ");
-      session.setAttribute("loginMember", member);
-      return mv;    
-    } 
+    String[] url = beforePageURL.split("app/");
+    if (url.length > 1) {
+      String[] url2 = url[1].split("/");
+      if (url2[0].equals("auth")) {
+        ModelAndView mv = new ModelAndView("redirect:../");
+        System.out.println("도착함 ");
+        session.setAttribute("loginMember", member);
+        return mv;    
+      }
+    }
 
     if (member != null) {
       session.setAttribute("loginMember", member);
