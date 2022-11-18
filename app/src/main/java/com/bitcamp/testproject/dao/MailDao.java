@@ -1,20 +1,9 @@
 package com.bitcamp.testproject.dao;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
-@Getter
-@Setter
-@NoArgsConstructor
 public class MailDao {
   private String address;
   private String title;
   private String content;
-
-  public MailDao() {
-  }
-  // test
 
   @Override
   public String toString() {
@@ -23,7 +12,6 @@ public class MailDao {
         + getContent() + ", getClass()=" + getClass() + ", hashCode()=" + hashCode()
         + ", toString()=" + super.toString() + "]";
   }
-
 
   public String getAddress() {
     return address;
@@ -43,8 +31,5 @@ public class MailDao {
   public void setContent(String content) {
     this.content = content;
   }
-
-
-
 
 }
