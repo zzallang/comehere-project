@@ -9,7 +9,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="viewport" content="initial-scale=1, maximum-scale=1">
         <!-- site metas -->
-        <title>개인정보 수정</title>
+        <title>여기모여</title>
         <meta name="keywords" content="">
         <meta name="description" content="">
         <meta name="author" content="">
@@ -127,7 +127,7 @@
                       <select class="favorite-choice" id="favoriteSports2" name="sportsDomain">
                         <option data-th-each="sports : ${sportsList}" data-th-value="${sports.no}" data-th-text="${sports.name}"></option>
                       </select><br />
-                      <div class="send_bt"><button type="submit">변경</button></div>
+                      <div class="send_bt"><button type="button" onclick="joinSuccess(this.form)">변경</button></div>
                     </form>
                   </div>
                 </div>
@@ -149,6 +149,7 @@
             <!-- <script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script> -->
             <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
             <script src="/app/node_modules/sweetalert/dist/sweetalert.min.js"></script>
+            <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
             <script>
             $(document).on("keyup", ".phoneNumber", function () {
               $(this).val(
@@ -293,6 +294,29 @@
                   event.preventDefault();
                 };
               }, true);
+            
+            function joinSuccess(form)  {
+                if($('#password').val() == '') {
+                      swal({
+                              title: '회원 변경 오류!',
+                              text: '비밀번호를 입력해주세요.', 
+                              icon: 'error',
+                              buttons : [ ,"확인"],
+                             })
+                    } else {
+                  swal({
+                      title: '회원변경이 완료되었습니다.',
+                      icon: 'success',
+                      buttons : [ ,"확인"],
+                     }).then(function(isConfirm){
+                          if (isConfirm) {
+                            
+                            form.submit();
+                        
+                          }
+                     });
+                    }
+              }
             </script>
         </body>
 

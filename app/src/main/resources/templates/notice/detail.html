@@ -2,7 +2,7 @@
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
     <head>
         <meta charset="UTF-8">
-        <title>comehere-커뮤니티 게시글 조회</title>
+        <title>여기모여</title>
         
       <!-- basic -->
       <meta charset="utf-8">
@@ -12,7 +12,6 @@
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <meta name="viewport" content="initial-scale=1, maximum-scale=1">
       <!-- site metas -->
-      <title>Contact</title>
       <meta name="keywords" content="">
       <meta name="description" content="">
       <meta name="author" content="">
@@ -290,8 +289,8 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item"><a class="nav-link" href="../party/list">운동찾기</a></li>
-            <li class="nav-item"><a class="nav-link" href="main">커뮤니티</a></li>
-            <li class="nav-item"><a class="nav-link" href="#">공지사항</a></li>
+            <li class="nav-item"><a class="nav-link" href="../board/main">커뮤니티</a></li>
+            <li class="nav-item"><a class="nav-link" href="../notice/list">공지사항</a></li>
           </ul>
           <div class="login-bt">
             <ul>
@@ -307,7 +306,7 @@
   <!-- header section end -->
       <!-- furnitures section start -->
       <div class="furnitures_sectionJD layout_padding">
-         <a href="main"><h1 class="container" id="community-title">공지사항</h1></a>
+         <h1 class="container" id="community-title">공지사항</h1>
          <div class="container cate-bottom-line">
             <div>
                 <a data-th-if="${session.loginMember != null and session.loginMember.id == 'admin'}"
@@ -315,13 +314,11 @@
                    class="btn btn-primary" 
                    role="button">수정</a>
                 <a data-th-if="${session.loginMember != null and session.loginMember.id == 'admin'}"
-                   data-th-href="@{delete(no=${notice.no})}"
                    class="btn btn-primary"
                    role="button"
                    id="delete-button">삭제</a>
                 <a data-th-href="@{list}"
                    class="btn btn-primary">목록</a>
-                
             </div>
             
             <div class="temp-line board-wrapper">
@@ -351,7 +348,7 @@
                  <li><a href="#"><img src="../images/linkedin-icon.png"></a></li>
               </ul>
            </div>
-           <p class="copyright_text">2020 All Rights Reserved. Design by <a href="https://html.design">Free html  Templates</a></p>
+           <p class="copyright_text">2020 All Rights Reserved. by comehere</p>
         </div>
       </div>
       <!-- copyright section end -->
@@ -361,394 +358,41 @@
       <script src="../js/bootstrap.bundle.min.js"></script>
       <script src="../js/jquery-3.0.0.min.js"></script>
       <script src="../js/plugin.js"></script>
-      <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script><!-- sweetalert -->
       <!-- sidebar -->
       <script src="../js/jquery.mCustomScrollbar.concat.min.js"></script>
       <script src="../js/custom.js"></script>
       <!-- javascript --> 
       <!-- <script src="../js/owl.carousel.js"></script> -->
       <!-- <script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>  -->
-      
+      <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
       <!-- 공식부트스트랩 JS -->
       <script src="../js/bootstrap/bootstrap.js"></script>   
+      <!-- sweetalert -->
+      <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> 
 
       <script>
       "use strict"
-    	  const boardNo = document.getElementById( 'boardNo').value;
-    	  const memberNo = document.getElementById( 'memberNo' ).value;
-    	  const lastPageNo = document.getElementsByClassName('page-link').length;
+      const noticeNo = document.getElementById( 'noticeNo').value;
     	  
-    	  // 로그인 회원 유효성을 위한 셋팅
-    	  let loginMemberNo = -1;
-    	  if($(".loginId").attr("id") != undefined) {
-    	   loginMemberNo = $(".loginId").attr("id");
-    	  };
-    	  
-    	  // 처음 페이지 로드했을 때 마지막 댓글 페이지가 보이게 셋팅
-    	  // 그 후 페이징 버튼 클릭 후 이벤트 제어를 위한 페이지 번호 셋팅
-    	  let pageNo = lastPageNo;
-    	  function getId(pageId) {
-    		  pageNo = pageId.replace('pageNo', '')
-    		  commentList();
-    	  } 
-    	  
-        // 페이지 버튼 active 시키기
-        /* window.addEventListener('DOMContentLoaded', function(){
-            $('#pageButton' + pageNo).addClass('active');
-        }); */
-
-    		document.getElementById('commentButton').addEventListener('click', insertAndReplay);
-    		// 댓글을 등록했을 때 한 페이지에 보일수 있는 댓글수 초과 시(현재 15개) 페이지 reload()
-    		document.getElementById('commentButton').addEventListener('click', countComment); 
-    	  function countComment() {
-    		  var count = document.getElementsByClassName('commentArea').length;
-    		  if (count == 5) {
-    			  window.location.reload();
-    		  }
-    		};
-    		
-        // 페이지 시작할 때 댓글 목록 출력 
-        $(document).ready(function(){
-          commentList(); //페이지 로딩시 댓글 목록 출력 
-        });
-    	  // 댓글 목록 
-    	  function commentList(){
-            $.ajax({
-                url : '/app/boardComment/list',
-                type : 'get',
-                data : {noticeNo: boardNo,
-              	        pageNo: pageNo
-              	        },
-                success : function(result){
-                    var a =''; 
-                    $.each(result, function(key, value){ 
-                        a += '<div class="commentArea temp-line" style="border-bottom:1px solid darkgray; margin-bottom: 15px;">';
-                        a += '<div class="commentInfo' + value.no + '">' + '댓글번호 : ' + value.no + ' / 작성자 : ' + value.writer.nickname;
-                        if (loginMemberNo == value.writer.no) {
-                          a += '<a onclick="commentUpdate(' + value.no + ',\'' + value.content + '\');"> 수정 </a>';
-                          a += '<a onclick="commentDelete('+value.no+');"> 삭제 </a> </div>';
-                        }
-                        if (loginMemberNo != value.writer.no && loginMemberNo != -1) {
-                            a += '<a onclick="commentComplain('+value.no+');"> 신고 </a> </div>';
-                        }
-                        if (loginMemberNo == -1) {
-                            a += '<a onclick="commentComplain('+value.no+');"> 신고 </a> </div>';
-                        }
-                        a += '<div class="commentContent'+value.no+'"> <p> 내용 : '+value.content +'</p>';
-                        a += '</div></div>';
-                    });
-                    $(".commentList").html(a);
-                }
-            });
-        }
-
-      	
-      	// 댓글 등록
-        function insertAndReplay(){
-          $.ajax({
-            url : "/app/report/partyRport",
-            data : {
-              content : $("#commentCont").val(),
-              boardNo : boardNo,
-              memberNo : memberNo
-            },
-            type : "post",
-            success : function(result){
-              if(result != null){
-               	commentList();
-                $("#commentCont").val("");
-              }
-            }
-            })
-        }
-      	
-        //댓글 삭제 
-        function commentDelete(no){
-            $.ajax({
-                url : '/app/boardComment/delete/'+no,
-                type : 'post',
-                success : function(result){
-                    if(result == 1) commentList(); //댓글 삭제후 목록 출력 
-                }
-            });
-        }
-      
-        //댓글 수정 모드- 댓글 내용 출력을 input 폼으로 변경 
-        function commentUpdate(commentNo, content){
-            var a ='';
-            a += '<label for="form"></label>';
-            a += '<div class="input-group temp-line">';
-            a += '<input type="text" class="form-control" name="content_' + commentNo + '" value="' + content + '"/>';
-            a += '<span class="input-group-btn"><button class="btn btn-default" type="button" onclick="commentUpdateProc(' + commentNo + ');">수정</button></span>';
-            a += '</div>';
-            
-            $('.commentContent'+commentNo).html(a);
-        }
-        // 댓글 수정
-        function commentUpdateProc(commentNo){
-            var updateContent = $('[name=content_'+commentNo+']').val();
-            $.ajax({
-                url : '/app/boardComment/update',
-                type : 'post',
-                data : { 
-              	  'content' : updateContent, 
-              	  'no' : commentNo},
-                success : function(result){
-                    if(result == 1) commentList(); //댓글 수정후 목록 출력 
-                }
-            });
-        }
-        function alertToLogin(){
-      	  if (confirm("로그인하시겠습니까?") == true){    //확인
-      		  location.href = '../auth/form';
-      		 }else{   //취소
-    		     return false;
-      		 }
-        }
-        
-        // 스크랩 관련 함수
-        if ($('#scrap-button').length != 0) {
-          document.getElementById('scrap-button').addEventListener('click', insertScrap);
-        }
-        
-        // 스크랩 등록
-        function insertScrap() {
-            if (confirm("스크랩 하시겠습니까?") == true){
-            	$.ajax({
-                    url : "/app/scrap/add",
-                    data : {
-                      boardNo : boardNo,
-                      memberNo : memberNo
-                    },
-                    type : "post",
-                    success : function(result){
-                      if(result == 1){
-                    	  alert("게시글 스크랩되었습니다.");
-                      } else if (result == 0) {
-                    	  if(confirm("이미 스크랩한 게시글입니다.\n스크랩을 취소하겠습니까?") == true){
-                    		  deleteScrap();
-                    		}else{
-                    			return false;
-                    		}
-                      }
-                    }
-                    })
-            } else{
-            	return false;
-            }
-        }
-        
-        // 스크랩 취소
-        function deleteScrap() {
-            $.ajax({
-                url : '/app/scrap/delete',
-                type : 'post',
-                data : { 
-                    boardNo : boardNo,
-                    memberNo : memberNo},
-                success : function(result){
-                    if(result == 1) {
-                      alert("스크랩이 취소되었습니다!");
-                    } else {
-                    	alert("오류??");
-                    }
-                }
-            });
-        }
-        
-        // 게시글 삭제 이벤트
         if ($('#delete-button').length != 0) {
           document.getElementById('delete-button').addEventListener('click', deleteBoard);
         }
         function deleteBoard() {
-            if (confirm("게시글을 삭제하시겠습니까?") == true){    //확인
-                  location.href = 'delete?no=' + boardNo;
-            }else{   //취소
-             return false;
-            }
+            swal({
+                text : "게시글을 삭제하시겠습니까?",
+                icon : "warning",
+                buttons : ["아니요", "예"],
+              }).then(function(isConfirm) {
+                if (isConfirm) {
+                	console.log("되냐?");
+                   location.href = 'delete?no=' + noticeNo;
+                } else{
+                  return false;
+                }
+            });
           }
         </script>
-        
-<!-- Modal Start -->
-                <form action='partreport' method="post">
-    <table border='1'>
-      <div id="container">
-        <div id="lorem-ipsum"></div>
-      </div>
-      <div id="modal" class="modal-overlay">
-        <div class="modal-window">
-          <div class="close-area">X</div>
-          <div class="content">
-            <div>
-              <div class="report_menu">신고사유</div>
-								<div class="form-check form-check-inline">
-									<input type="checkbox" value="Contents"
-										class="form-check-input" id="1" name="reports"
-										onclick='checkOnlyOne(this)' style="display: block"> <input
-										type="hidden" name="_reports" value="on" /> <label
-										for="reports1" class="form-check-label">불건전한 내용</label>
-								</div>
-								<div class="form-check form-check-inline">
-									<input type="checkbox" value="promotion"
-										class="form-check-input" id="2" name="reports"
-										onclick='checkOnlyOne(this)' style="display: block"> <input
-										type="hidden" name="_reports" value="on" /> <label
-										for="reports2" class="form-check-label">스팸 및 부적절한 홍보</label>
-								</div>
-								<div class="form-check form-check-inline">
-									<input type="checkbox" value="calumny" class="form-check-input"
-										id="3" name="reports" onclick='checkOnlyOne(this)'
-										style="display: block"> <input type="hidden"
-										name="_reports" value="on" /> <label for="reports3"
-										class="form-check-label">명예훼손 및 비방</label>
-								</div>
-								<div class="form-check form-check-inline">
-									<input type="checkbox" value="prejudice"
-										class="form-check-input" id="4" name="reports"
-										onclick='checkOnlyOne(this)' style="display: block"> <input
-										type="hidden" name="_reports" value="on" /> <label
-										for="reports4" class="form-check-label">초상권 및 저작권 침해</label>
-								</div>
-								<div class="form-check form-check-inline">
-									<input type="checkbox" value="embezzlement"
-										class="form-check-input" id="5" name="reports"
-										onclick='checkOnlyOne(this)' style="display: block"> <input
-										type="hidden" name="_reports" value="on" /> <label
-										for="reports5" class="form-check-label">개인정보 도용</label>
-								</div>
-								<div class="form-check form-check-inline">
-									<input type="checkbox" value="act" class="form-check-input"
-										id="6" name="reports" onclick='checkOnlyOne(this)'
-										style="display: block"> <input type="hidden"
-										name="_reports" value="on" /> <label for="reports6"
-										class="form-check-label">기타 사이트 목적에 맞지 않는 행위</label>
-								</div>
-								<div class="form-check form-check-inline">
-									<input type="checkbox" value="Etc" class="form-check-input"
-										id="7" name="reports" onclick='checkOnlyOne(this)'
-										style="display: block"> <input type="hidden"
-										name="_reports" value="on" /> <label for="reports7"
-										class="form-check-label">기타</label>
-								</div>
 
-								<!-- 신고 종류 설정 input hidden type-->
-								<div class="form-check form-check-inline">
-									<input type="hidden" id="reportForm">
-								</div>
-							</div>
-            <div class="send_bt3" id="singo">신고</div>
-          </div>
-        </div>
-      </div>
-    </table>
-  </form>
-  <script>
-  
-  function checkOnlyOne(element) {
-      
-      const checkboxes 
-          = document.getElementsByName("reports");
-      
-      checkboxes.forEach((cb) => {
-        cb.checked = false;
-      })
-      
-      element.checked = true;
-    }
-
-$("#singo").click(function() {
-    swal("신고 완료 했습니다.");
-
-    $('input:checkbox[name=reports]').each(function (index) {
-      if($(this).is(":checked")==true){
-        console.log($(this).attr("id"));
-        id = $(this).attr("id");
-      }
-    });
-                  console.log($("#reportForm").val());
-                  console.log($("#reportForm").attr("name"));
-
-                  let value = $("#reportForm").val();
-                  let name = $("#reportForm").attr("name");
-
-    $.ajax({
-                    type: "POST",
-                    url: "/app/report/partyReport",
-                    data:{value: value, name: name},
-                    success: function (result) {
-                      console.log(result);
-        },
-      });
-});
-
-</script>
-
-
-  <script>
-              function commentComplain(number) {
-                console.log(number);
-                $("#reportForm").attr("value", number);
-                $("#reportForm").attr("name", "댓글");
-
-                modal.style.display = 'flex';
-                window.scrollTo(0,0);
-                // x버튼 누르면 종료
-                $(".closeBtn1").click(function () {
-                  modal.style.display = 'none';
-                });
-                // 신고 누르면 종료
-                $(".closeBtn").click(function () {
-                  modal.style.display = 'none';
-                });
-                // esc누르면 종료
-                window.addEventListener('keyup', (e) => {
-                  if (modal.style.display === 'flex' && e.key === 'Escape') {
-                    modal.style.display = 'none';
-                  }
-                });
-              }
-
-        const loremIpsum = document.getElementById("lorem-ipsum")
-         //fetch를 통해 받아온 데이터를 loremIpsum DOM에 넣어주기 때문에 모달창 내부에 내용이 채워져서 뜨는것. 
-        //fetch("https://baconipsum.com/api/?type=all-meat&paras=200&format=html")
-                        loremIpsum.innerHTML = ``
-              /* .then(response => response.text())
-              .then(result => loremIpsum.innerHTML = result) */
-              
-          //디스플레이 non 버튼클릭하면 flex로 변환  
-        const modal = document.getElementById("modal")
-                      const btnModal = document.querySelectorAll(".btn-modal")
-                      let partyNumber = (window.location.search).substring(4,window.location.lengh);
-                      $("#reportForm").attr("value", partyNumber);
-                      $("#reportForm").attr("name", "파티");
-                         console.log(btnModal);
-                          btnModal.forEach((btn) => {
-                          btn.addEventListener('click', (e) => {
-                          modal.style.display = 'flex';
-           // x버튼 누르면 종료
-                      const closeBtn = modal.querySelector('.close-area');
-                          closeBtn.addEventListener('click', (e) => {
-                          modal.style.display = 'none';
-                  });
-          // 신고 누르면 종료
-                      const closeBtn1 = modal.querySelector('.send_bt3');
-                           closeBtn1.addEventListener('click', (e) => {
-                           modal.style.display = 'none';
-                  });
-          // esc누르면 종료
-                          window.addEventListener('keyup', (e) => {
-                    if (modal.style.display === 'flex' && e.key === 'Escape') {
-                        modal.style.display = 'none';
-    }
-                  });
-                });
-              });
-          
-    </script>
-
-
-  <!-- Modal End-->
-      
    </body>
          
 </html>

@@ -9,7 +9,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="viewport" content="initial-scale=1, maximum-scale=1">
         <!-- site metas -->
-        <title>회원가입</title>
+        <title>여기모여</title>
         <meta name="keywords" content="">
         <meta name="description" content="">
         <meta name="author" content="">
@@ -78,7 +78,7 @@
                         <div class="join_menu">이름</div>
                       <input type="text" class="email-bt" placeholder="이름" name="name">
                         <div class="join_menu">생년월일</div>
-                      <input type='date' class="email-bt" placeholder="생년월일" name="birthday">
+                      <input id='birthday' type='date' class="email-bt" placeholder="생년월일" name="birthday">
                         <div class="join_menu">성별<br/>
                           <div class= "join_gender">
                         <span class =gender>남성</span>
@@ -128,7 +128,7 @@
                       <select class="favorite-choice" id="sports2" name="sportsDomain">
                         <option data-th-each="sports : ${sportsList}" data-th-value="${sports.no}" data-th-text="${sports.name}"></option>
                       </select><br />
-                      <div class="send_bt"><button type="submit" class="send_bt2">회원가입</button></div>
+                      <div class="send_bt"><button type="button" onclick="joinSuccess(this.form)" class="send_bt2">회원가입</button></div>
                     </form>
                   </div>
                 </div>
@@ -164,7 +164,9 @@
             <!-- <script src="js/owl.carousel.js"></script> -->
             <!-- <script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script> -->
             <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-            <script src="/app/node_modules/sweetalert/dist/sweetalert.min.js"></script>
+            <!-- <script src="/app/node_modules/sweetalert/dist/sweetalert.min.js"></script> -->
+            <!-- sweetalert -->
+            <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
             <script>
              $(document).on("keyup", ".phoneNumber", function () {
               $(this).val(
@@ -277,6 +279,28 @@
                    }
                }
            }
+            function joinSuccess(form)  {
+            	if($('#birthday').val() == '') {
+                    swal({
+                            title: '회원가입 오류!',
+                            text: '내용을 모두 입력해주세요.', 
+                            icon: 'error',
+                            buttons : [ ,"확인"],
+                           })
+                  } else {
+                swal({
+                    title: '회원가입이 완료되었습니다.',
+                    icon: 'success',
+                    buttons : [ ,"확인"],
+                   }).then(function(isConfirm){
+                        if (isConfirm) {
+                        	
+                        	form.submit();
+                      
+                        }
+                   });
+                  }
+            }
             </script>
         </body>
 

@@ -47,8 +47,14 @@ public class MemberController {
     return "auth/join";
   }
 
+  @Transactional
   @PostMapping("addjoin")
   public ModelAndView add(Member member) throws Exception {
+    System.out.println("듷어와" + member);
+    if (member.getId() == null || member.getId() == "") {
+      ModelAndView mv = new ModelAndView("redirect:../auth/form");
+      return mv;
+    }
     System.out.println(member);
     member.setFavoriteRegion(saveRegion(member));
     member.setFavoriteSports(saveSports(member));

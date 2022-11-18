@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -59,6 +60,7 @@ public class NoticeController {
     return "/notice/form";
   }
 
+  @Transactional
   @PostMapping("add")
   public String add(Notice notice, Part file, HttpSession session) throws Exception {
     // 파일경로넣기, 등록회원 정보 넣기
@@ -98,6 +100,7 @@ public class NoticeController {
     return model.addAttribute("notice", notice);
   }
 
+  @Transactional
   @PostMapping("update")
   public String update(Notice notice, Part file, HttpSession session) throws Exception {
 
