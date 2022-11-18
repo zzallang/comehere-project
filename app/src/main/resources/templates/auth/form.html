@@ -151,13 +151,29 @@ margin-right: 14vw;
                swal("ID나 password을 입력해주세요");
                return false;
            } 
+           $.ajax({
+               type: "POST",
+               url: "login",
+               data: {id:id, password:password},
+               success: function(data) {
+                 console.log(data);
+                 if(data == 'true'){
+                   swal("로그인 성공입니다.");
+                 } else {
+                   swal("ID와 password가 다릅니다.");
+                 }
+               }
+             });
+           
              frm.submit();
            }
+
+       
       </script>
       
       
       <!-- Javascript files-->
-        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+      <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
       <script src="../js/jquery.min.js"></script>
       <script src="../js/popper.min.js"></script>
       <script src="../js/bootstrap.bundle.min.js"></script>
