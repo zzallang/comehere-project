@@ -167,6 +167,19 @@ public class AuthController {
     return "redirect:form";
   }
 
+  @PostMapping("idEmailCheck")
+  @ResponseBody
+  public String idEmailCheck( String id,String email , HttpSession session) throws Exception {
+    Member result = memberService.idEmailCheck(id,email);
+
+    if (result == null) {
+      System.out.println("회원 없음");
+      return "false";
+    } 
+    return "true";
+  }
+
+
   // 헌식 끝
 
 }

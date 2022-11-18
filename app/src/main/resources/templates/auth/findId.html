@@ -89,16 +89,16 @@ margin-right: 14vw;
       <div class="col-md">
         <form action='findById' method="get">
           <table border='1'>
-            <h1 class="contact_text1">Id</h1>
+            <h1 class="contact_text1">ID</h1>
             <tr>
-              <input type="text" class="email-bt" placeholder="이름를 입력해주세요" size='30' name ="name" data-th-value="${name}">
+              <input type="text" class="email-bt" placeholder="이름를 입력해주세요" size='30' name ="name" data-th-value="${name}" id = "name">
             </tr>
             <tr>
-              <input type="text" class="email-bt" placeholder="E-Mail를 입력해주세요" size='30' name ="email" data-th-value="${email}">
+              <input type="text" class="email-bt" placeholder="E-Mail를 입력해주세요" size='30' name ="email" data-th-value="${email}" id = "email">
             </tr>
           </table>
           <p>
-            <button type='submit'class="btnon1" >ID찾기</button>
+            <button type="button"class="btnon1" id = "findID" onclick = "bt(this.form);" >ID찾기</button>
           </p>
         </form>
       </div>
@@ -120,7 +120,23 @@ margin-right: 14vw;
       </p>
     </div>
     <!-- copyright section end -->
+      
+          <script>
+       function bt(frm) {
+           var name = frm.name.value;
+           var email = frm.email.value;
+           
+           if (name.trim() == ''| email.trim()== '') {
+               swal("이름이나 email을 입력해주세요");
+               return false;
+           } 
+             frm.submit();
+           }
+      </script>
+    
+    
     <!-- Javascript files-->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="../js/jquery.min.js"></script>
     <script src="../js/popper.min.js"></script>
     <script src="../js/bootstrap.bundle.min.js"></script>

@@ -76,7 +76,7 @@
     WHERE
       nick = #{nickname}
   </select>
-
+  
   <!-- 이메일 중복체크 -->
    <select id="emailCheck" parameterType="String" resultType="Integer">
     SELECT 
@@ -199,6 +199,14 @@
      email=#{email}
   </select>
 
+  <select id="idEmailCheck" resultType="member">
+    select
+    name
+    from
+    member
+    where
+    id=#{id} and email=#{email}
+  </select>
 
 </mapper>
 
