@@ -29,5 +29,4 @@ public class MailDao {
     this.content = content;
   }
 
-
 }

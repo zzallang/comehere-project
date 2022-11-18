@@ -37,7 +37,6 @@
       and p.pno=#{partyNo}
     order by
       pcno
-    limit #{cri.pagesStart}, #{cri.perPageNum}
   </select>
   
   <select id="findCommentByNo" resultMap="commentMap">

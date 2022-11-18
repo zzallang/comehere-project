@@ -104,6 +104,11 @@ public class DefaultMemberService implements MemberService {
   public int emailCheck(String email) throws Exception {
     return memberDao.emailCheck(email);
   }
+
+  @Override
+  public Member idEmailCheck(String id, String email) throws Exception {
+    return memberDao.idEmailCheck(id, email);
+  }
 }
 
 

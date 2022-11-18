@@ -53,6 +53,11 @@ public interface MemberDao {
       @Param("password") String password,
       @Param("email") String email,
       @Param("id") String id);
+
+  Member idEmailCheck(
+      @Param("id") String id,
+      @Param("email") String email);
+
 }
 
 

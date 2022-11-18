@@ -18,6 +18,10 @@ public interface ReviewDao {
 
   int insertFiles(Review review);
 
+  Double findStarByNo(
+      @Param("userNo")int userNo, 
+      @Param("sportNo")int sportNo);
+
 }
 
 

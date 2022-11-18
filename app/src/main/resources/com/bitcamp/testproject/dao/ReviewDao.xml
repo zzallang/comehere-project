@@ -112,6 +112,28 @@
     </foreach>
   </insert>
 
+  <select id="findStarByNo" resultType="double">
+
+    select
+      ifnull (truncate(avg(star), 1), 0)
+      as star
+    from
+      party_review pr
+      join member m on pr.mno=pr.mno
+      join (select p2.pno pno2, p2.sno from party p2 join party_members pm on p2.pno=pm.pno where pm.auth=1 and pm.mno=#{userNo}) p on pr.pno=p.pno2
+      join sports s on s.sno=p.sno
+    where
+      pr.act=1
+      and pr.mno=m.mno
+      and s.sno=#{sportNo}
+    order by
+      pr.prno desc,
+      pr.cdt desc
+
+  </select>
+
+
+
 </mapper>
 
 
