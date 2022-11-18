@@ -154,19 +154,19 @@ margin-right: 14vw;
            } 
            $.ajax({
                type: "POST",
-               url: "login",
+               url: "idPasswordCheck",
                data: {id:id, password:password},
                success: function(data) {
                  console.log(data);
                  if(data == 'true'){
-                   swal("로그인 성공입니다.");
+                   swal("로그인 성공입니다.").then((result) => {
+                       if(result) frm.submit();
+                   });;
                  } else {
-                   swal("ID와 password가 다릅니다.");
+                   swal("ID와 password가 다릅니다.")
                  }
                }
              });
-           
-             frm.submit();
            }
 
        

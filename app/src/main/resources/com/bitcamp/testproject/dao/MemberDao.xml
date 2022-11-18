@@ -207,6 +207,28 @@
     where
     id=#{id} and email=#{email}
   </select>
+  
+  
+   <select id="idPasswordCheck" resultType="member">
+    select
+    name
+    from
+    member
+    where
+    id=#{id} and pwd=sha2(#{password},256)
+  </select>
+  
+     <select id="findIdCheck" resultType="member">
+    select
+    id
+    from
+    member
+    where
+    name=#{name} and email=#{email}
+  </select>
+  
+  
+  
 
 </mapper>
 
