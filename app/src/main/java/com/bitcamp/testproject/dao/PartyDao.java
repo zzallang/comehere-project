@@ -49,8 +49,6 @@ public interface PartyDao {
 
   int checkOwner(int partyNo);
 
-  Double findStarByNo(int no);
-
   // 모임 주최자 추가를 위한 현재 생성 모임 pno 구하기
   int findNowPartyNo();
 
