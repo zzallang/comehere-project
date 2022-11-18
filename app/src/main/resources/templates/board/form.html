@@ -228,6 +228,8 @@
       
       <!-- 공식부트스트랩 JS -->
       <script src="../js/bootstrap/bootstrap.js"></script>   
+      <!-- sweetalert -->
+      <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
          
       <script>
@@ -236,14 +238,24 @@
            var title = frm.title.value;
            var content = frm.content.value;
            if (title.trim() == '') {
-               alert("제목을 입력해주세요");
+        	   swal('','제목을 입력해주세요','warning');
                return false;
            }
            if (content.trim() == '') {
-               alert("내용을 입력해주세요");
+        	   swal('','내용을 입력해주세요','warning');
                return false;
            }
-           frm.submit();
+           swal({
+               title: '등록 성공!',
+               icon: 'success',
+               buttons : [ ,"확인"],
+              }).then(function(isConfirm){
+                   if (isConfirm) {
+                	   frm.submit(); // 한 페이지의 댓글 개수를 초과하는지 체크 
+                   }
+              });
+           
+           
        }
       
       

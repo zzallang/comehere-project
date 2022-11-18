@@ -102,6 +102,7 @@ margin-right: 14vw;
          
             <form action='login' method="post">
                <table border='1'>
+                  <input type="hidden" name="beforePageURL" data-th-value="${session.redirectURI}">
                   <h1 class="contact_text1">Login</h1>
                   <tr>
                      <input type="text" class="email-bt" placeholder="ID를 입력해주세요" size='30' name ="id" data-th-value="${id}" id ="id">

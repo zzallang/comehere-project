@@ -5,10 +5,6 @@ public class MailDao {
   private String title;
   private String content;
 
-  public MailDao() {
-  }
-  // test
-
   @Override
   public String toString() {
     return "MailDao [address=" + address + ", title=" + title + ", content=" + content
@@ -16,7 +12,6 @@ public class MailDao {
         + getContent() + ", getClass()=" + getClass() + ", hashCode()=" + hashCode()
         + ", toString()=" + super.toString() + "]";
   }
-
 
   public String getAddress() {
     return address;

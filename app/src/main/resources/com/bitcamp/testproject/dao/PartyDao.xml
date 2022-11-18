@@ -63,16 +63,20 @@
       p.headcnt,
       p.ptime,
       p.pdate,
-      (select truncate(avg(star), 1) from party_review where pno=p.pno) as star,
       r.rno,
       s.sno,
+      m.mno,
       p.thumbnail
     from 
       party p
       join region r on p.rno = r.rno
       join sports s on p.sno = s.sno
+      join party_members pm on p.pno = pm.pno
+      join member m on m.mno = pm.mno
     where
       p.act = 1
+    and
+      pm.auth=1
     and
       p.pdate >= DATE_FORMAT(now(), '%Y-%m:%d')
     order by 
@@ -130,16 +134,20 @@
       p.headcnt,
       p.ptime,
       p.pdate,
-      (select truncate(avg(star), 1) from party_review where pno=p.pno) as star,
       r.rno,
       s.sno,
+      m.mno,
       p.thumbnail
     from 
       party p
       join region r on p.rno = r.rno
       join sports s on p.sno = s.sno
+			join party_members pm on p.pno = pm.pno
+			join member m on m.mno = pm.mno
     where
       p.act = 1
+    and
+      pm.auth=1
     and
       pdate >= DATE_FORMAT(now(), '%Y-%m:%d')
       <if test="gu != null">
@@ -283,19 +291,8 @@ p.pno=#{value}
       pm.pno=#{value}
   </select>
 
-  <select id="findStarByNo" resultType="double">
-    select
-      ifnull (truncate(avg(star), 1), 0)
-      as star    
-    from       
-      party_review     
-    where       
-      
-      pno=#{value}
-  </select>
-
   <select id="findNowPartyNo" resultType="int">
-    SELECT 
+    SELECT
       (AUTO_INCREMENT-1) no 
     FROM 
       information_schema.tables 

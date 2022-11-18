@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.bitcamp.testproject.dao.PartyCommentDao;
 import com.bitcamp.testproject.dao.PartyDao;
 import com.bitcamp.testproject.dao.PartyMemberDao;
+import com.bitcamp.testproject.dao.ReviewDao;
 import com.bitcamp.testproject.vo.Criteria;
 import com.bitcamp.testproject.vo.Party;
 import com.bitcamp.testproject.vo.PartyMember;
@@ -23,6 +24,8 @@ public class DefaultPartyService implements PartyService {
   PartyMemberDao partyMemberDao;
   @Autowired
   PartyCommentDao partyCommentDao;
+  @Autowired
+  ReviewDao reviewDao;
 
   @Transactional
   @Override
@@ -78,8 +81,10 @@ public class DefaultPartyService implements PartyService {
   @Override
   public Party get(int no) throws Exception {
     Party party = partyDao.findByNo(no); // 첨부파일 데이터까지 조인하여 select를 한 번만 실행한다.
-    if (partyDao.findStarByNo(no) != null) {
-      party.setStar(partyDao.findStarByNo(no));
+    int userNo = party.getUser().getNo();
+    int sportNo = party.getSports().getNo();
+    if (reviewDao.findStarByNo(userNo, sportNo) != null) {
+      party.setStar(reviewDao.findStarByNo(userNo, sportNo));
     }
     return party;
   }
@@ -98,7 +103,18 @@ public class DefaultPartyService implements PartyService {
 
   @Override
   public List<Party> list(Criteria cri) throws Exception {
-    return partyDao.findAll(cri);
+    List<Party> list = partyDao.findAll(cri);
+    List<Party> list2 = new ArrayList<>();
+    for (Party party : list) {
+      int userNo = party.getUser().getNo();
+      int sportNo = party.getSports().getNo();
+      party.setStar(reviewDao.findStarByNo(userNo, sportNo));
+
+      list2.add(party);
+    }
+
+    return list2;
+
   }
 
   @Override
@@ -133,7 +149,16 @@ public class DefaultPartyService implements PartyService {
     int perPageNum = cri.getPerPageNum();
     List<Party> result = partyDao.findAll2(
         gu, sports, partyTime, partyDate, searchText, listStar, listCreate, listPartyDate, pagesStart, perPageNum);
-    return result;
+    List<Party> list2 = new ArrayList<>();
+    for (Party party : result) {
+      int userNo = party.getUser().getNo();
+      int sportNo = party.getSports().getNo();
+      party.setStar(reviewDao.findStarByNo(userNo, sportNo));
+      list2.add(party);
+    }
+
+    return list2;
+
   }
 
   @Override
