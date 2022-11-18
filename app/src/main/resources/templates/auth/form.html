@@ -111,6 +111,7 @@ margin-right: 14vw;
                      <input type="password" class="email-bt" placeholder="Password를 입력해주세요" name="password" id = "password">
                   </tr>
                </table>
+               <div data-th-if="${loginFail}">아이디 또는 비밀번호를 잘못 입력했습니다. 입력하신 내용을 다시 확인해주세요.</div>
                <p>
                   <button type="button"class="btnon1" id = "login" onclick = "bt(this.form);">로그인</button>
                </p>
@@ -151,13 +152,29 @@ margin-right: 14vw;
                swal("ID나 password을 입력해주세요");
                return false;
            } 
+           $.ajax({
+               type: "POST",
+               url: "login",
+               data: {id:id, password:password},
+               success: function(data) {
+                 console.log(data);
+                 if(data == 'true'){
+                   swal("로그인 성공입니다.");
+                 } else {
+                   swal("ID와 password가 다릅니다.");
+                 }
+               }
+             });
+           
              frm.submit();
            }
+
+       
       </script>
       
       
       <!-- Javascript files-->
-        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+      <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
       <script src="../js/jquery.min.js"></script>
       <script src="../js/popper.min.js"></script>
       <script src="../js/bootstrap.bundle.min.js"></script>

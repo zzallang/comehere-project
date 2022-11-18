@@ -75,7 +75,7 @@ public class AuthController {
     response.addCookie(cookie);
 
     if(member != null) {
-      ModelAndView mv = new ModelAndView("redirect:" + beforePageURL);
+      ModelAndView mv = new ModelAndView("redirect:../");
 
       mv.addObject("member", member);
       return mv;
@@ -85,7 +85,6 @@ public class AuthController {
     }
 
   }
-
 
   @GetMapping("findId")
   public String findId() {
@@ -113,7 +112,7 @@ public class AuthController {
       session.setAttribute("findId", member);
     }
 
-    ModelAndView mv = new ModelAndView("auth/findIdResult");
+    ModelAndView mv = new ModelAndView("auth/form");
     mv.addObject("member", member);
     return mv;
   }
@@ -158,12 +157,8 @@ public class AuthController {
   @GetMapping("logout")
   public String logout(HttpSession session, HttpServletRequest request) throws Exception {
 
-    String beforePageURL = request.getHeader("Referer");
-    request.getSession().setAttribute("redirectURI", beforePageURL);
-
     session.invalidate();
-    //    return "redirect:../";
-    return "redirect:" + beforePageURL;
+    return "redirect:../";
   }
 
 

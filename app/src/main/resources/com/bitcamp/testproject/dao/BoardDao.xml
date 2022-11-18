@@ -245,7 +245,7 @@
     from 
       board
     where 
-      b.act = 1 and
+      act = 1 and
       bno = #{value}
   </select>
 

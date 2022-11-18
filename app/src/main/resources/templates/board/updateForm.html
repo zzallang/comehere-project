@@ -93,7 +93,7 @@
            
            <!-- 게시글 수정폼 시작 -->
            <div class="furnitures_section2 layout_padding">
-            <h1>게시글 수정</h1>
+            <h2>게시글 수정</h2>
             <form action='update' method="post" enctype="multipart/form-data">
                 <table border='1'>
                     <tr>
@@ -130,7 +130,7 @@
                             data-th-value='${board.title}'
                             size='60'></td>
                     </tr>
-                    <tr>
+                    <tr data-th-if="${board.cateno == 3}">
                       <th>사진인증</th>
                       <td>
                         
