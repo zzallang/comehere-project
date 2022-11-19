@@ -129,6 +129,25 @@
       m.mno=#{no};
   </select>
   
+  <select id="findByFilepath" resultMap="memberMap">
+    SELECT
+      filepath
+    FROM
+      member
+    WHERE
+      mno=#{no}
+  </select>
+  
+  <select id="getFileByMemberNo" resultType="String">
+    SELECT 
+      filepath
+    FROM 
+      member
+    WHERE
+      act = 1 and
+      mno=#{value}
+  </select>
+  
   <select id="findAll" resultMap="memberMap">
     SELECT 
       mno,
@@ -182,7 +201,8 @@
       email=#{email}, 
       pwd=sha2(#{password},256),
       nick=#{nickname},
-      tel=#{tel}
+      tel=#{tel},
+      filepath=#{filepath}
     WHERE 
       mno=#{no}
   </update>
