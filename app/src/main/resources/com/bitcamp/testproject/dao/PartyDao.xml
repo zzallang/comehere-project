@@ -137,7 +137,14 @@
       r.rno,
       s.sno,
       m.mno,
-      p.thumbnail
+      p.thumbnail,
+      (select ifnull (truncate(avg(star), 1), 0) as star
+      from party_review pr
+        join member m on m.mno=pr.mno
+        join (select p2.pno pno2, p2.sno from party p2 join party_members pm on p2.pno=pm.pno where pm.auth=1) p3 on pr.pno=p3.pno2
+        join sports s on s.sno=p3.sno
+       where
+         pr.act=1 and pr.mno=m.mno and p3.pno2=p.pno) star
     from 
       party p
       join region r on p.rno = r.rno
@@ -454,7 +461,7 @@ SELECT
    WHERE
      pm.auth = 0
     AND
-     pm.mno = 1
+     pm.mno = #{memberNo}
    AND
    (pr.mno is null
    or
