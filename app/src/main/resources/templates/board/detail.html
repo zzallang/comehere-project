@@ -297,7 +297,7 @@
           <div class="login-bt">
             <ul>
               <li th:if="${session.loginMember == null}" ><a href="../auth/form" >로그인</a></li>
-              <li class="loginId" th:if="${session.loginMember != null}" th:id=${session.loginMember.no}><a href="../member/viewer">마이페이지</a></li>
+              <li class="loginId" th:if="${session.loginMember != null}" th:id=${session.loginMember.no}><a href="../mypage/my-post">마이페이지</a></li>
               <li th:if="${session.loginMember != null}"><a href="../auth/logout" th:text="${session.loginMember.name} + '(로그아웃)'">동동(로그아웃)</a></li>
             </ul>
           </div>
