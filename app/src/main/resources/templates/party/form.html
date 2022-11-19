@@ -233,7 +233,7 @@
               <input name='lngResult' type="hidden">
             </div>
             <div class="party_form_content">
-              <button class="party_form_button_r" type="button" onclick="location.href='list'">취소</button>
+              <button class="party_form_button_r" type="button" onclick="partyDelete()">취소</button>
               <input class="party_form_button_r" id="subBtn" type="button" value="등록" onclick="goWrite(this.form)"/>
             </div>
           </div>
@@ -368,6 +368,24 @@ function readImage(input) {
               }
         });
   }
+</script>
+
+
+<script type="text/javascript">
+function partyDelete(){
+    swal({
+          text : "모임 등록을 취소하시겠습니까?",
+          icon : "warning",
+          buttons : ["아니요", "예"],
+        }).then(function(isConfirm) {
+          if (isConfirm) {
+        	  window.location.href = 'list';
+          } else {
+              return false;
+        }
+      });
+}
+          
 </script>
 <!-- 썸머노트 자바스크립트 끝 -->
 <!-- 카카오 지도 시작 -->

@@ -35,6 +35,9 @@ public interface MemberService {
 
   Member idEmailCheck(String id, String email) throws Exception;
 
+  Member idPasswordCheck(String id, String password) throws Exception;
+
+  Member findIdCheck(String name, String email) throws Exception;
 }
 
 

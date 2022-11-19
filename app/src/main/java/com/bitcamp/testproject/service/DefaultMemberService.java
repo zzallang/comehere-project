@@ -116,6 +116,16 @@ public class DefaultMemberService implements MemberService {
   public Member idEmailCheck(String id, String email) throws Exception {
     return memberDao.idEmailCheck(id, email);
   }
+
+  @Override
+  public Member idPasswordCheck(String id, String password) throws Exception {
+    return memberDao.idPasswordCheck(id, password);
+  }
+
+  @Override
+  public Member findIdCheck(String name, String email) throws Exception {
+    return memberDao.findIdCheck(name, email);
+  }
 }
 
 

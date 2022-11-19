@@ -409,7 +409,7 @@
               <input class="" name="partyTime" type="time" step="1" value="00:00:00"  th:value='${party.partyTime}'>
             </div>
             <div class="party_form_content">
-              <button class="party_form_button_r" type="button" onclick="location.href='list'">취소</button>
+              <button class="party_form_button_r" type="button" data-th-onclick="@{'partyDelete(' + ${party.no} + ')'}">취소</button>
               <input class="party_form_button_r" id="subBtn" type="button" value="등록" onclick="goWrite(this.form)"/>
             </div>
           </div>
@@ -543,6 +543,23 @@ function readImage(input) {
     
     
   }
+</script>
+
+<script type="text/javascript">
+function partyDelete(no){
+    swal({
+          text : "모임 등록을 취소하시겠습니까?",
+          icon : "warning",
+          buttons : ["아니요", "예"],
+        }).then(function(isConfirm) {
+          if (isConfirm) {
+            window.location.href = 'detail?no=' + no;
+          } else {
+              return false;
+        }
+      });
+}
+          
 </script>
 <!--    <script src="../js/jquery.min.js"></script> -->
 <script src="../js/popper.min.js"></script>

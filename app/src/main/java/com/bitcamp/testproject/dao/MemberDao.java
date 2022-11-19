@@ -60,6 +60,15 @@ public interface MemberDao {
       @Param("id") String id,
       @Param("email") String email);
 
+  Member idPasswordCheck(
+      @Param("id") String id,
+      @Param("password") String password);
+
+  Member findIdCheck(
+      @Param("name") String name,
+      @Param("email") String email);
+
+
 
 }
 

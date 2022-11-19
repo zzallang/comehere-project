@@ -57,10 +57,11 @@ public class BoardController {
   //  제동 메서드 추가 
   @PostMapping("add") 
   public String add(Board board, int cateno, Part file, HttpSession session) throws Exception {
-
     // 카테고리 번호, 파일경로넣기, 등록회원 정보 넣기
+    if (board.getCateno() == 3) {
+      board.setThumbnail(saveAttachedFile(file));
+    }
     board.setCateno(cateno);
-    board.setThumbnail(saveAttachedFile(file));
     board.setWriter((Member) session.getAttribute("loginMember"));
 
     boardService.add(board);
@@ -208,22 +209,17 @@ public class BoardController {
   }
 
   @PostMapping("update")
-  public String update(
-      int cateno,
-      Board board,
-      Part file,
-      HttpSession session) 
-          throws Exception {
-
-    board.setThumbnail(saveAttachedFile(file));
-
-    //      checkOwner(board.getNo(), session);
+  public String update(Board board, Part file, HttpSession session) throws Exception {
+    if (board.getCateno() == 3) {
+      board.setThumbnail(saveAttachedFile(file));
+    }
+    checkOwner(board.getNo(), session);
 
     if (!boardService.update(board)) {
       throw new Exception("게시글을 변경할 수 없습니다!");
     }
 
-    return "redirect:list?no=" + cateno;
+    return "redirect:detail?no=" + board.getNo();
   }
 
   @GetMapping("fileDelete")

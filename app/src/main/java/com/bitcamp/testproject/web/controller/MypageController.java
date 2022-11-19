@@ -115,8 +115,6 @@ public class MypageController {
     paramMap.put("memberNo", loginMember.getNo());
     paramMap.put("cri", cri);
 
-    System.out.println(scrapService.getScrapsOfMember(paramMap));
-
     model.addAttribute("myScrapList", scrapService.getScrapsOfMember(paramMap));
     model.addAttribute("pageMaker", pageMaker);
 
