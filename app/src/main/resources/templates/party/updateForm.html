@@ -36,6 +36,8 @@
 <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
 <!--  썸머노트 끝 -->
+<!-- sweetalert -->
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> 
 <style>
   .row_party {
     width: 1200px;
@@ -375,9 +377,9 @@
           <input name='no' type="hidden" th:value="${party.no}">
           <div class="party_form_wrap">
             <div class="party_form_img">
-              <img th:if="${party.thumbnail != null}"  th:src="@{'/party/files/' + ${party.thumbnail}}" alt="Avatar" class="image party_detail_img">
-              <img th:if="${party.thumbnail == null}"  src="/app/party/files/nothumpnail.jpg" alt="Avatar" class="image">
-              <input name='file' type="file">
+              <img id="previewImg" th:if="${party.thumbnail != null}"  th:src="@{'/party/files/' + ${party.thumbnail}}" alt="Avatar" class="image party_detail_img">
+              <img id="previewImg" th:if="${party.thumbnail == null}"  src="/app/party/files/nothumpnail.jpg" alt="Avatar" class="image">
+              <input id="fileTag" name='file' type="file" >
             </div>
             <div class="party_form_header">
               <div class="party_form_title">
@@ -439,6 +441,59 @@
 <!-- copyright section end -->
 
 <!-- Javascript files-->
+
+
+<script type="text/javascript">
+$('#fileTag').on('change', function () {
+    if(window.FileReader){
+        var filename = $(this)[0].files[0].name;
+        if(!validFileType(filename)){
+            alert("허용하지 않는 확장자 파일입니다.");
+            return false;
+        }else{
+            if(!validFileSize($(this)[0].files[0])){
+                alert("파일 사이즈가 5MB를 초과합니다.");
+                return false;
+            }
+        }
+    } else {
+        var filename = $(this).val().split('/').pop().split('\\').pop();
+    }
+    $(this).prev().val(filename); //input upload-name 에 파일명 설정해주기
+
+    readImage($(this)[0]); //미리보기
+});
+
+function validFileType(filename) {
+    const fileTypes = ["png", "jpg", "jpeg"];
+return fileTypes.indexOf(filename.substring(filename.lastIndexOf(".")+1, filename.length).toLowerCase()) >= 0;
+}
+
+function validFileSize(file){
+    if(file.size > 5000000){ //5MB
+        return false;
+    }else{
+        return true;
+    }
+}
+
+//이미지 띄우기
+function readImage(input) {
+    if(input.files && input.files[0]) {
+        const reader = new FileReader();
+        reader.onload = function(e){
+            const previewImage = document.getElementById("previewImg");
+            previewImage.src = e.target.result;
+        }
+        // reader가 이미지 읽도록 하기
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+
+</script>
+
+
+
 <!-- 썸머노트 자바스크립트 시작 -->
 <script>
   $(document).ready(function() {
@@ -452,14 +507,41 @@
     var title = frm.title.value;
     var content = frm.content.value;
     if (title.trim() == '') {
-      alert("제목을 입력해주세요");
+      swal("제목을 입력해주세요.");
       return false;
     }
     if (content.trim() == '') {
-      alert("내용을 입력해주세요");
+      swal("내용을 입력해주세요.");
       return false;
     }
-    frm.submit();
+    if ($('input[name=headCount]').val() == '') {
+        swal("정원을 입력해주세요.");
+        return false;
+    }
+    if ($('input[name=partyDate]').val() == '') {
+        swal("모임일자를 선택해주세요.");
+        return false;
+    }
+    if ($('input[name=partyTime]').val() == '') {
+        swal("모임시간을 선택해주세요.");
+        return false;
+    }
+    swal({
+        text : "모임을 수정하시겠습니까?",
+        icon : "warning",
+        buttons : ["아니요", "예"],
+      }).then(function(isConfirm) {
+              if (isConfirm) {
+                frm.submit();
+              } else{
+                return false;
+              }
+        
+      });
+    
+    
+    
+    
   }
 </script>
 <!--    <script src="../js/jquery.min.js"></script> -->
