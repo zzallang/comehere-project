@@ -177,4 +177,22 @@ public class MemberController {
     }
     return null;
   }
+
+  @GetMapping("deleteMember")
+  @ResponseBody
+  public boolean deleteMember(int no, HttpSession session) throws Exception{
+    boolean result = memberService.delete(no);
+    if (result) {
+      session.invalidate();
+    } else {
+      result = false;
+    }
+    return result;
+  }
+
+  @GetMapping("delete_pw_check_viewer")
+  public String deletePwCehckViewer(int no, Model model) {
+    model.addAttribute("no", no);
+    return "member/delete_pw_check_viewer";
+  }
 }

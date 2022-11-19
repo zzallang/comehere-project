@@ -162,8 +162,11 @@ margin-right: 14vw;
                    swal("로그인 성공입니다.").then((result) => {
                        if(result) frm.submit();
                    });;
-                 } else {
+                 } else if (data == 'false'){
                    swal("ID와 password가 다릅니다.")
+                 
+               } else if (data == 'active'){
+                   swal("존재하지 않는 계정입니다.")
                  }
                }
              });
