@@ -34,6 +34,7 @@ public class LoginCheckFilter implements Filter {
     // 콘텐트를 등록,변경,삭제하는 경우 로그인 여부를 검사한다.
     if (servletPath.toLowerCase().endsWith("add") ||
         servletPath.toLowerCase().endsWith("update") ||
+        servletPath.toLowerCase().endsWith("updateForm") ||
         servletPath.toLowerCase().endsWith("viewer") ||
         servletPath.toLowerCase().endsWith("delete") ||
         servletPath.toLowerCase().endsWith("board/form") ||

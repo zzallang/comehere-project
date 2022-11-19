@@ -48,7 +48,7 @@ public class AuthController {
   @PostMapping("login")
   public ModelAndView login(String id, String password, HttpServletResponse response,
       HttpSession session, String beforePageURL) throws Exception {
-    System.out.println("너 머야?" + beforePageURL);
+
     Member member = memberService.get(id, password);
 
     String[] url = beforePageURL.split("app/");
