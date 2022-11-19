@@ -209,6 +209,10 @@
       overflow: hidden;
     }
     
+    .container_comment {
+      width:825px;
+    }
+    
     .party_detail_button_l {
       float: left;
       color: #121111;
@@ -706,8 +710,8 @@
       <p class="ipsum_text">원하는 운동을 찾아보세요!</p>
       <div class="party_detail_bar">
         <div class="party_detail_buttons">
-          <button th:if="${session.loginMember} != null and ${session.loginMember.no} == ${party.user.no}" class="party_detail_button_r" type="button" th:onclick="findPartyNoUpdate()">수정</button>
           <button th:if="${session.loginMember} != null and ${session.loginMember.no} == ${party.user.no}" class="party_detail_button_r" type="button" th:onclick="findPartyNoDelete()">삭제</button>
+          <button th:if="${session.loginMember} != null and ${session.loginMember.no} == ${party.user.no}" class="party_detail_button_r" type="button" th:onclick="findPartyNoUpdate()">수정</button>
         </div>
       </div>
     </div>
@@ -820,7 +824,7 @@
             <!-- 댓글 블록 시작 -->
             <div>
               <h2>댓글</h2>
-              <div class="container">
+              <div class="container_comment">
                 <div class="commentList"></div>
               </div>
               
@@ -944,11 +948,11 @@ $('.reviewStarVal').ready(function () {
                   <div class="slide_wrapper">
                     <div class="slide_wrapper">
                       <ul class="slides">
-                        <li><img alt="" src="http://placeimg.com/400/350/any"></li>
-                        <li><img alt="" src="http://placeimg.com/400/350/any"></li>
-                        <li><img alt="" src="http://placeimg.com/400/350/any"></li>
-                        <li><img alt="" src="http://placeimg.com/400/350/any"></li>
-                        <li><img alt="" src="http://placeimg.com/400/350/any"></li>
+                        <li><img alt="" src="/app/party/files/nothumpnail.jpg"></li>
+                        <li><img alt="" src="/app/party/files/nothumpnail.jpg"></li>
+                        <li><img alt="" src="/app/party/files/nothumpnail.jpg"></li>
+                        <li><img alt="" src="/app/party/files/nothumpnail.jpg"></li>
+                        <li><img alt="" src="/app/party/files/nothumpnail.jpg"></li>
                       </ul>
                     </div>
                     <p class="controls">
@@ -1151,7 +1155,31 @@ btnModalReview.click((e) => {
   /*<![CDATA[*/
   function findPartyNoDelete() {
     let partyNo = /*[[${party.no}]]*/
-    location.href=`delete?no=${partyNo}`;
+    swal({
+          text : "모임을 삭제하시겠습니까?",
+          icon : "warning",
+          buttons : ["아니요", "예"],
+        }).then(function(isConfirm) {
+          if (isConfirm) {
+            swal({
+                text: '모임이 삭제되었습니다.',
+                icon: 'success',
+                closeOnClickOutside: false
+              }).then(() => {
+                location.href=`delete?no=${partyNo}`;
+              });
+          } else{
+              return false;
+          }
+      });
+    
+    
+    
+    
+    
+    
+    
+    
   }
   /*]]>*/
 </script>
@@ -1212,18 +1240,18 @@ function commentList(){
     success : function(result){
         var a =''; 
         $.each(result, function(key, value){ 
-            a += '<div class="commentArea temp-line" style="border-bottom:1px solid darkgray; margin-bottom: 15px;">';
+            a += '<div class="commentArea temp-line" style="min-height: 100px;border-bottom:1px solid darkgray; margin-bottom: 15px;">';
             a += '<div class="commentInfo' + value.no + '">' + '댓글번호 : ' + value.no + ' / 작성자 : ' + value.writer.nickname;
             if (loginMemberNo == value.writer.no) {
               a += '<a onclick="commentUpdate(' + value.no + ',\'' + value.content + '\');"> 수정 </a>';
-                  a += '<a onclick="commentDelete('+value.no+');"> 삭제 </a> </div>';
+              a += '<a onclick="commentDelete('+value.no+');"> 삭제 </a> </div>';
             }
             if (loginMemberNo != value.writer.no && loginMemberNo != -1) {
-            	a += '<a name="commentTatlle" value="' + value.writer.no + '"' + 'onclick="commentComplain('+value.no+');"> 신고 </a> </div>';
+                a += '<a  onclick="commentComplain('+value.no+');"> 신고 </a> </div>';
             }
-            a += '<div class="commentContent'+value.no+'"> <p> 내용 : '+value.content +'</p>';
-            a += '</div></div></div>';
-        });
+            a += '<div class="commentContent'+value.no+' temp-line"> <p> 내용 : '+value.content +'</p>';
+              a += '</div></div></div>';
+          });
         $(".commentList").html(a);
     }
   });
@@ -1251,13 +1279,34 @@ function commentList(){
   
   //댓글 삭제 
   function commentDelete(no){
-      $.ajax({
-          url : '/app/partyComment/delete/'+no,
-          type : 'post',
-          success : function(result){
-              if(result == 1) commentList(); //댓글 삭제후 목록 출력 
-          }
-      });
+    swal({
+          text : "댓글을 삭제하시겠습니까?",
+          icon : "warning",
+          buttons : ["아니요", "예"],
+        }).then(function(isConfirm) {
+          if (isConfirm) {
+            $.ajax({
+                url : '/app/partyComment/delete/'+no,
+                type : 'post',
+                success : function(result){
+                    if(result == 1) {
+                        commentList(); //댓글 삭제후 목록 출력
+                        swal({
+                          text: '댓글이 삭제되었습니다.',
+                          icon: 'success',
+                          closeOnClickOutside: false
+                        }).then(() => {
+                          countCommentToDelete() // 웹 상에서 댓글이 0개면 reload
+                        });
+                      } else {
+                        swal('','댓글을 삭제할 수 없습니다!','error');
+                      }
+                    }
+                   });
+            } else {
+                  return false;
+            }
+          });
   }
 
   //댓글 수정 모드- 댓글 내용 출력을 input 폼으로 변경 
@@ -1324,9 +1373,6 @@ function commentList(){
               <div class="form-check form-check-inline">
                               <input type="checkbox" value="act" class="form-check-input" id="6" name="reports" onclick='checkOnlyOne(this)' style="display: block"> <input type="hidden" name="_reports" value="on" /> <label for="reports6" class="form-check-label">기타 사이트 목적에 맞지 않는 행위</label>
               </div>
-              <div class="form-check form-check-inline">
-                              <input type="checkbox" value="Etc" class="form-check-input" id="7" name="reports" onclick='checkOnlyOne(this)' style="display: block"> <input type="hidden" name="_reports" value="on" /> <label for="reports7" class="form-check-label">기타</label>
-                            </div>
 
 
               <!-- 신고 종류 설정 input hidden type-->

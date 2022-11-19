@@ -460,6 +460,20 @@
     color: #000;
 
 }
+
+#att_zone {
+  width: 660px;
+  min-height: 150px;
+  padding: 10px;
+  border: 1px dotted #00f;
+}
+
+#att_zone:empty:before {
+  content: attr(data-placeholder);
+  color: #999;
+  font-size: .9em;
+}
+
 </style>
 </head>
 <body>
@@ -508,17 +522,23 @@
 									<input type="radio" id="2-stars" name="star" value="2.0"/> <label for="2-stars" class="star">&#9733;</label> 
 									<input type="radio" id="1-star" name="star" value="1.0"/> <label for="1-star" class="star">&#9733;</label>
 								</div>
-
+              
+                  
+  <div id='image_preview'>
+    <h3>첨부파일 이미지 미리보기</h3>
+    <input class = "col-md9" name='files' type='file' id='btnAtt' multiple='multiple' />
+    <div id='att_zone'
+      data-placeholder='파일을 첨부 하려면 파일 선택 버튼을 클릭하거나 파일을 드래그앤드롭 하세요'></div>
+  </div>
 								<div class="container">
 									<div class="input-group mb-3">
 										<div class="input-group-prepend">
 											<span class="contact_text9">제목</span>
 												<!-- <li data-th-each="file : ${party.attachedFiles}"><a href="files/test.gif" data-th-href="@{files/{path}(path=${file.filepath})}" data-th-text="${file.filepath}">test.gif</a> [<a href="fileDelete?no=1" data-th-href="@{fileDelete(no=${file.no})}">삭제</a>]</li> -->
-												 <input class = "col-md9" name='files' type="file" multiple id="reviewtitle" >
 										</div>
 									</div>
 									<div class="input-group mb-3">
-										<input type="text" name="title" class="form-control1" id="author">
+										<input type="text" name="title" class="form-control1" id="reviewtitle">
 									</div>
 									<div class="input-group mb-3">
 										<div class="input-group-prepend">
@@ -526,7 +546,7 @@
 										</div>
 										<textarea class="form-control1" name="content" id="reviewcont" cols="30" rows="5" placeholder="160자까지 입력할 수 있습니다."></textarea>
 									</div>
-									<button type="submit" class="btnon8" id="reviewadd">등록</button>
+									<button type="button" class="btnon8" id="reviewadd" onclick="makeReview()">등록</button>
 									<a data-th-href="@{'../review/review-detail-form?no=' + ${party.no}}">
                   <button type="button" class="btnon9" id="revoewcancle" >취소</button>
 						      </a>
@@ -559,31 +579,43 @@
 	<!-- copyright section end -->
 
 	<!-- Javascript files-->
+  
 	<!-- 썸머노트 자바스크립트 시작 -->
 	<script>
+	let starResult = '';
 	  $(document).ready(function () {
 	    $('#1-star').click(function () {
 	      swal("1점을 선택 했습니다.");
+	      starResult = $(this).val();
+	      console.log("선택" + starResult);
 	    });
 	  });
 	  $(document).ready(function () {
 	      $('#2-stars').click(function () {
 	        swal("2점을 선택 했습니다.");
+	        starResult = $(this).val();
+	        console.log("선택" + starResult);
 	      });
 	    });
 	  $(document).ready(function () {
 	      $('#3-stars').click(function () {
 	        swal("3점을 선택 했습니다.");
+	        starResult = $(this).val();
+	        console.log("선택" + starResult);
 	      });
 	    });
 	  $(document).ready(function () {
 	      $('#4-stars').click(function () {
 	        swal("4점을 선택 했습니다.");
+	        starResult = $(this).val();
+	        console.log("선택" + starResult);
 	      });
 	    });
 	  $(document).ready(function () {
 	      $('#5-stars').click(function () {
 	        swal("5점을 선택 했습니다.");
+	        starResult = $(this).val();
+	        console.log("선택" + starResult);
 	      });
 	    });
 	  
@@ -591,25 +623,160 @@
 	    
 	    <script>
 	    
-	   
+	       console.log("결과1" + starResult);
+   
 	function makeReview() {
         let title = $('#reviewtitle').val()
         let cont = $('#reviewcont').val()
         let add = $('#reviewadd').val()
         let cancle = $('#revoewcancle').val()
+         console.log("결과2" + starResult);
 
+        
+        if (starResult == '') {
+          swal("별점을 선택해주세요.");
+          return false;
+        }
+        if ($('input[name=title]').val() == '') {
+          swal("제목을 입력해주세요.");
+          return false;
+        }
+        if ($('textarea[name=content]').val() == '') {
+          swal("내용을 입력해주세요.");
+          return false;
+        }
+        
+        swal({
+            text : "리뷰를 등록하시겠습니까?",
+            icon : "warning",
+            buttons : ["아니요", "예"],
+          }).then(function(isConfirm) {
+            if (isConfirm) {
         $.ajax({
             type: "POST",
             url: "review",
             data: {reviewtitle:reviewtitle,reviewcont:reviewcont, reviewadd:reviewadd, revoewcancle:revoewcancle},
             success: function (response) {
-                swal(response["msg"]);
-                window.location.reload(); 
-            }
-        })
+            	swal({
+                    text: '리뷰가 등록되었습니다.',
+                    icon: 'success',
+                    closeOnClickOutside: false
+                  }).then(() => {
+                    window.location.href = '../mypage/end-party';
+                  });
+            
+          }
+      });
+  } else{
+    return false;
+  }
+});
     }
 	</script>
 	<!-- 썸머노트 자바스크립트 끝 -->
+
+<script type="text/javascript">
+( /* att_zone : 이미지들이 들어갈 위치 id, btn : file tag id */
+		  imageView = function imageView(att_zone, btn){
+
+		    var attZone = document.getElementById(att_zone);
+		    var btnAtt = document.getElementById(btn)
+		    var sel_files = [];
+		    
+		    // 이미지와 체크 박스를 감싸고 있는 div 속성
+		    var div_style = 'display:inline-block;position:relative;'
+		                  + 'width:150px;height:120px;margin:5px;border:1px solid #00f;z-index:1';
+		    // 미리보기 이미지 속성
+		    var img_style = 'width:100%;height:100%;z-index:none';
+		    // 이미지안에 표시되는 체크박스의 속성
+		    var chk_style = 'width:30px;height:30px;position:absolute;font-size:24px;'
+		                  + 'right:0px;bottom:0px;z-index:999;background-color:rgba(255,255,255,0.1);color:#f00';
+		  
+		    btnAtt.onchange = function(e){
+		      var files = e.target.files;
+		      var fileArr = Array.prototype.slice.call(files)
+		      for(f of fileArr){
+		        imageLoader(f);
+		      }
+		    }  
+		    
+		  
+		    // 탐색기에서 드래그앤 드롭 사용
+		    attZone.addEventListener('dragenter', function(e){
+		      e.preventDefault();
+		      e.stopPropagation();
+		    }, false)
+		    
+		    attZone.addEventListener('dragover', function(e){
+		      e.preventDefault();
+		      e.stopPropagation();
+		      
+		    }, false)
+		  
+		    attZone.addEventListener('drop', function(e){
+		      var files = {};
+		      e.preventDefault();
+		      e.stopPropagation();
+		      var dt = e.dataTransfer;
+		      files = dt.files;
+		      for(f of files){
+		        imageLoader(f);
+		      }
+		      
+		    }, false)
+		    
+
+		    
+		    /*첨부된 이미리즐을 배열에 넣고 미리보기 */
+		    imageLoader = function(file){
+		      sel_files.push(file);
+		      var reader = new FileReader();
+		      reader.onload = function(ee){
+		        let img = document.createElement('img')
+		        img.setAttribute('style', img_style)
+		        img.src = ee.target.result;
+		        attZone.appendChild(makeDiv(img, file));
+		      }
+		      
+		      reader.readAsDataURL(file);
+		    }
+		    
+		    /*첨부된 파일이 있는 경우 checkbox와 함께 attZone에 추가할 div를 만들어 반환 */
+		    makeDiv = function(img, file){
+		      var div = document.createElement('div')
+		      div.setAttribute('style', div_style)
+		      
+		      var btn = document.createElement('input')
+		      btn.setAttribute('type', 'button')
+		      btn.setAttribute('value', 'x')
+		      btn.setAttribute('delFile', file.name);
+		      btn.setAttribute('style', chk_style);
+		      btn.onclick = function(ev){
+		        var ele = ev.srcElement;
+		        var delFile = ele.getAttribute('delFile');
+		        for(var i=0 ;i<sel_files.length; i++){
+		          if(delFile== sel_files[i].name){
+		            sel_files.splice(i, 1);      
+		          }
+		        }
+		        
+		        dt = new DataTransfer();
+		        for(f in sel_files) {
+		          var file = sel_files[f];
+		          dt.items.add(file);
+		        }
+		        btnAtt.files = dt.files;
+		        var p = ele.parentNode;
+		        attZone.removeChild(p)
+		      }
+		      div.appendChild(img)
+		      div.appendChild(btn)
+		      return div
+		    }
+		  }
+		)('att_zone', 'btnAtt')
+</script>
+
 
 	<!--    <script src="../js/jquery.min.js"></script> -->
 	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
