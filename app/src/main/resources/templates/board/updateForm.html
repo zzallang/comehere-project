@@ -97,7 +97,7 @@
            <div class="furnitures_section2 layout_padding">
             <h2>게시글 수정</h2>
             <form action='update' method="post" enctype="multipart/form-data">
-                <input name='no' type="hidden" data-th-value="${board.no}">
+                <input id="boardNo" name='no' type="hidden" data-th-value="${board.no}">
                 <input name='cateno' type="hidden" data-th-value="${board.cateno}">
                 <table>
                     <tr>
@@ -120,7 +120,7 @@
                 </table>
                 <p>
                     <input id="subBtn" type="button" value="수정" onclick="goWrite(this.form);"/>
-                    <input id="subBtn" type="button" value="취소" th:onclick="|location.href='@{detail(no=${board.no})}'|"/>
+                    <input id="subBtn" type="button" value="취소" onclick="updateCancel()"/>
                 </p>
             </form>
            </div>
@@ -194,6 +194,7 @@
 </script>
 
 <script type="text/javascript">
+const boardNo = document.getElementById( 'boardNo').value;
 $('#fileTag').on('change', function () {
     if(window.FileReader){
        
@@ -230,6 +231,19 @@ function readImage(input) {
         reader.readAsDataURL(input.files[0]);
     }
 }
+function updateCancel() {
+	  swal({
+	        text : "게시글을 수정을 취소하시겠습니까?",
+	        icon : "info",
+	        buttons : ["아니요", "예"],
+	      }).then(function(isConfirm) {
+	        if (isConfirm) {
+	          location.href= 'detail?no=' + boardNo;
+	        } else{
+	          return false;
+	        }
+	    });
+	}
 
 </script>
 

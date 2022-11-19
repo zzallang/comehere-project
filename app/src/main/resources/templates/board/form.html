@@ -163,7 +163,7 @@
                     enctype="multipart/form-data">
                     <table class="table_form">
                         <tr>
-                            <td><input type="hidden" name="cateno" data-th-value="${category.cateno}"></td>
+                            <td><input id='cateno' type="hidden" name="cateno" data-th-value="${category.cateno}"></td>
                         </tr>
                         <tr>
                             <td><input
@@ -189,7 +189,8 @@
                     </table>
                     <div class="post_button_box">
                         <input id="subBtn" type="button" value="등록" onclick="goWrite(this.form);"/>
-                        <input id="subBtn" type="button" value="취소" th:onclick="|location.href='@{list(no=${category.cateno})}'|"/>
+                        <input id="subBtn" type="button" value="취소" onclick="insertCancel()"/>
+                        <!-- <input id="subBtn" type="button" value="취소" th:onclick="|location.href='@{list(no=${category.cateno})}'|"/> -->
                     </div>
                 </form>
             </section>
@@ -269,6 +270,8 @@
       </script>
       
       <script type="text/javascript">
+      const cateNo = document.getElementById('cateno').value;
+      
 $('#fileTag').on('change', function () {
     if(window.FileReader){
        
@@ -304,6 +307,19 @@ function readImage(input) {
         // reader가 이미지 읽도록 하기
         reader.readAsDataURL(input.files[0]);
     }
+}
+function insertCancel() {
+	swal({
+        text : "게시글을 등록을 취소하시겠습니까?",
+        icon : "info",
+        buttons : ["아니요", "예"],
+      }).then(function(isConfirm) {
+        if (isConfirm) {
+        	location.href='list?no=' + cateNo;
+        } else{
+          return false;
+        }
+    });
 }
 
 </script>
