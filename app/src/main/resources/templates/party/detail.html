@@ -671,13 +671,19 @@
   width: auto;
   max-height: 300px;
 }
+
+      .windowWidth {
+        max-width:1280px !important;
+        min-width:1280px !important;
+        margin: auto !important;
+      }
   </style>
 
 
 </head>
 <body>
 <!-- header section start -->
-<div class="header_section">
+<div class="header_section windowWidth">
   <div class="container-fluid">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="main_logo"><a href="/app"><img src="../images/logo.png"></a></div>
@@ -703,7 +709,7 @@
 </div>
 <!-- header section end -->
 <!-- furnitures section start -->
-<div class="furnitures_section layout_padding_party_detail">
+<div class="furnitures_section layout_padding_party_detail windowWidth">
   <div class="container_party">
     <div class="furnitures_section2 layout_padding_party">
       <h1 class="our_text">모임 상세보기</h1>
@@ -917,8 +923,8 @@ $('.reviewStarVal').ready(function () {
 
 
 <!-- copyright section start -->
-<div class="copyright_section">
-  <div class="container">
+<div class="copyright_section windowWidth">
+  <div class="container windowWidth" >
     <div class="social_icon">
       <ul>
         <li><a href="#"><img src="../images/fb-icon.png"></a></li>

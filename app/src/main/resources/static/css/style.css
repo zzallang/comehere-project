@@ -223,7 +223,7 @@ button {
 }
 
 .header_section{
-    width: 100%;
+    width: 1200px;
     float: left;
     background-image: url(../images/header-bg.png);
     height: auto;
@@ -505,7 +505,7 @@ button {
     background-color: #ffffff;
 }
 .furnitures_section {
-    width: 100%;
+    width: 1200px;
     float: left;
     padding-bottom: 90px;
 }
@@ -1018,7 +1018,7 @@ textarea#comment::placeholder {
 }
 
 .copyright_section {
-    width: 100%;
+    width: 1200px;
     float: left;
     background-color: #ffffff;
     height: auto;
