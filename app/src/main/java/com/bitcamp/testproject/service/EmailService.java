@@ -33,13 +33,11 @@ public class EmailService {
     //참조자 설정
     //helper.setCc(mail.getCcAddress());
 
-    String email = mail.getAddress();
     String checkNum = String.valueOf(mail.getCheckNum());
     String templates = mail.getTemplate();
 
     //템플릿에 전달할 데이터 설정
     Context context = new Context();
-    context.setVariable("email", email);
     context.setVariable("checkNum", checkNum);
 
     //메일 내용 설정 : 템플릿 프로세스

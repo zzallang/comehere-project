@@ -46,6 +46,7 @@ public class AuthController {
     return "auth/form";
   }
 
+
   @PostMapping("login")
   public ModelAndView login(String id, String password, HttpServletResponse response,
       HttpSession session, String beforePageURL) throws Exception {
@@ -130,7 +131,7 @@ public class AuthController {
 
     Mail mail = new Mail();
     mail.setAddress(email);
-    mail.setTitle("[Comehere] 이메일 계정 인증");
+    mail.setTitle("[여기모여] 이메일 계정 인증");
     mail.setCheckNum(SecCode);
     mail.setTemplate("emailCode");
     emailService.sendTemplateMessage(mail);
