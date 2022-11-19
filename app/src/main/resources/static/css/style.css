@@ -1211,3 +1211,7 @@ margin-right: auto;
     margin-top: 10px;
 }
 
+.menu {
+  float: left;
+  margin: 10px 30px 50px;
+}

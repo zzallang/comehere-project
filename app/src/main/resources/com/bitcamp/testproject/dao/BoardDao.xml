@@ -325,7 +325,7 @@
       scrap s 
       join board b on b.bno=s.bno
     where
-      s.mno=3
+      s.mno=#{memberNo}
     order by
       bno desc
     limit #{cri.pagesStart}, #{cri.perPageNum}

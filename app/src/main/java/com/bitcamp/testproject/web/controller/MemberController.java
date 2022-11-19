@@ -1,9 +1,13 @@
 package com.bitcamp.testproject.web.controller;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpSession;
+import javax.servlet.http.Part;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -49,16 +53,28 @@ public class MemberController {
 
   @Transactional
   @PostMapping("addjoin")
-  public ModelAndView add(Member member) throws Exception {
-    System.out.println("듷어와" + member);
+  public ModelAndView add(Member member, Part file) throws Exception {
     if (member.getId() == null || member.getId() == "") {
       ModelAndView mv = new ModelAndView("redirect:../auth/form");
       return mv;
     }
-    System.out.println(member);
+    System.out.println(file);
+    System.out.println(file.getName());
+
+    String dirPath = sc.getRealPath("/member/files");
+
+    if (file != null) {
+      String filename = UUID.randomUUID().toString();
+      file.write(dirPath + "/" + filename);
+      System.out.println(filename + "\n파일네임 들어왔냐!>!>!");
+      member.setFilepath(filename);
+    }
+
     member.setFavoriteRegion(saveRegion(member));
     member.setFavoriteSports(saveSports(member));
+    //    member.setFilepath(saveAttachedFile(file));
     memberService.add(member);
+    System.out.println("member=" + member);
     ModelAndView mv = new ModelAndView("redirect:../auth/form");
     return mv;
   }
@@ -69,7 +85,7 @@ public class MemberController {
   }
 
   @GetMapping("myInfo")
-  public String confirmation(HttpSession session, Model model) throws Exception {
+  public String confirmation(HttpSession session, Model model, Part file) throws Exception {
     Member loginMember = (Member) session.getAttribute("loginMember");
     Member member = memberService.get(loginMember.getNo());
     member.setNo(loginMember.getNo());
@@ -83,13 +99,12 @@ public class MemberController {
 
   @Transactional
   @PostMapping("memberUpdate")
-  public ModelAndView myPageMember(HttpSession session, Member member) throws Exception {
+  public ModelAndView myPageMember(HttpSession session, Member member, Part file) throws Exception {
     Member loginMember = (Member) session.getAttribute("loginMember");
     favoriteRegionService.deleteFavoriteRegion(loginMember.getNo());
     favoriteSportsService.deleteFavoriteSports(loginMember.getNo());
     member.setNo(loginMember.getNo());
-    System.out.println(member.getRegionDomain());
-    System.out.println(member.getSportsDomain());
+    member.setFilepath(saveAttachedFile(file));
     member.setFavoriteRegion(saveRegion(member));
     member.setFavoriteSports(saveSports(member));
     favoriteRegionService.addFavoriteRegion(member);
@@ -150,9 +165,34 @@ public class MemberController {
 
     return favoriteSports;
   }
+
+  private String saveAttachedFile(Part file) throws IOException, ServletException {
+    String dirPath = sc.getRealPath("/member/files");
+    // 첨부파일이 있다면 실행
+    if (file.getSize() != 0) {
+      String filename = UUID.randomUUID().toString();
+      file.write(dirPath + "/" + filename);
+      System.out.println(filename + "\n파일네임 들어왔냐!>!>!");
+      return filename;
+    }
+    return null;
+  }
+
+  @GetMapping("deleteMember")
+  @ResponseBody
+  public boolean deleteMember(int no, HttpSession session) throws Exception{
+    boolean result = memberService.delete(no);
+    if (result) {
+      session.invalidate();
+    } else {
+      result = false;
+    }
+    return result;
+  }
+
+  @GetMapping("delete_pw_check_viewer")
+  public String deletePwCehckViewer(int no, Model model) {
+    model.addAttribute("no", no);
+    return "member/delete_pw_check_viewer";
+  }
 }
-
-
-
-
-

@@ -119,12 +119,12 @@
           <ul class="navbar-nav mr-auto">
             <li class="nav-item"><a class="nav-link" href="../party/list">운동찾기</a></li>
             <li class="nav-item"><a class="nav-link" href="main">커뮤니티</a></li>
-            <li class="nav-item"><a class="nav-link" href="#">공지사항</a></li>
+            <li class="nav-item"><a class="nav-link" href="../notice/list">공지사항</a></li>
           </ul>
           <div class="login-bt">
             <ul>
               <li data-th-if="${session.loginMember == null}"><a href="../auth/form" >로그인</a></li>
-              <li data-th-if="${session.loginMember != null}"><a href="../member/viewer">마이페이지</a></li>
+              <li data-th-if="${session.loginMember != null}"><a href="../mypage/my-post">마이페이지</a></li>
               <li data-th-if="${session.loginMember != null}"><a href="../auth/logout" data-th-text="${session.loginMember.name} + '(로그아웃)'">동동(로그아웃)</a></li>
             </ul>
           </div>
@@ -163,7 +163,7 @@
                     enctype="multipart/form-data">
                     <table class="table_form">
                         <tr>
-                            <td><input type="hidden" name="cateno" data-th-value="${category.cateno}"></td>
+                            <td><input id='cateno' type="hidden" name="cateno" data-th-value="${category.cateno}"></td>
                         </tr>
                         <tr>
                             <td><input
@@ -175,7 +175,8 @@
                             </td>
                         </tr>
                         <tr data-th-if="${category.cateno == 3}">
-                            <td><b>[사진 인증]</b><input class="post_form1" name='file' type="file"></td>
+                            <img id="previewImg" src="">
+                            <td><b>[사진 인증]</b><input id="fileTag" class="post_form1" name='file' type="file"></td>
                         </tr>
                         <tr data-th-if="${category.cateno != 3}">
                             <td><input class="post_form1" name='file' type="file" style="display:none;"></td>
@@ -188,7 +189,8 @@
                     </table>
                     <div class="post_button_box">
                         <input id="subBtn" type="button" value="등록" onclick="goWrite(this.form);"/>
-                        <button type='reset'>취소</button>
+                        <input id="subBtn" type="button" value="취소" onclick="insertCancel()"/>
+                        <!-- <input id="subBtn" type="button" value="취소" th:onclick="|location.href='@{list(no=${category.cateno})}'|"/> -->
                     </div>
                 </form>
             </section>
@@ -213,21 +215,21 @@
       
       <!-- Javascript files-->
       <!-- <script src="../js/jquery.min.js"></script> -->
-      <script src="../js/popper.min.js"></script>
-      <script src="../js/bootstrap.bundle.min.js"></script>
-      <script src="../js/jquery-3.0.0.min.js"></script>
+      <!-- <script src="../js/popper.min.js"></script> -->
+      <!-- <script src="../js/bootstrap.bundle.min.js"></script> -->
+      <!-- <script src="../js/jquery-3.0.0.min.js"></script> -->
       <!-- <script src="../js/plugin.js"></script> -->
       
       <!-- sidebar -->
-      <script src="../js/jquery.mCustomScrollbar.concat.min.js"></script>
-      <script src="../js/custom.js"></script>
+      <!-- <script src="../js/jquery.mCustomScrollbar.concat.min.js"></script> -->
+      <!-- <script src="../js/custom.js"></script> -->
       
       <!-- javascript --> 
       <!-- <script src="../js/owl.carousel.js"></script> -->
       <!-- <script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>  -->
       
       <!-- 공식부트스트랩 JS -->
-      <script src="../js/bootstrap/bootstrap.js"></script>   
+      <!-- <script src="../js/bootstrap/bootstrap.js"></script>    -->
       <!-- sweetalert -->
       <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
@@ -239,23 +241,26 @@
            var content = frm.content.value;
            if (title.trim() == '') {
         	   swal('','제목을 입력해주세요','warning');
-               return false;
+        	       return false;
            }
            if (content.trim() == '') {
-        	   swal('','내용을 입력해주세요','warning');
-               return false;
-           }
-           swal({
-               title: '등록 성공!',
-               icon: 'success',
-               buttons : [ ,"확인"],
-              }).then(function(isConfirm){
+        	   swal('','내용을 입력해주세요','warning').then(() =>{
+                 return false;
+             });
+           } else {
+               swal({
+                   text : "게시글을 등록하시겠습니까?",
+                   icon : "info",
+                   buttons : ["아니요", "예"],
+                 }).then(function(isConfirm) {
                    if (isConfirm) {
-                	   frm.submit(); // 한 페이지의 댓글 개수를 초과하는지 체크 
+                	   frm.submit();
+                   } else{
+                     return false;
                    }
-              });
-           
-           
+               });
+           }
+
        }
       
       
@@ -263,6 +268,62 @@
            $('textarea').summernote({height: 700});
         });
       </script>
+      
+      <script type="text/javascript">
+      const cateNo = document.getElementById('cateno').value;
+      
+$('#fileTag').on('change', function () {
+    if(window.FileReader){
+       
+    } else {
+        var filename = $(this).val().split('/').pop().split('\\').pop();
+    }
+    $(this).prev().val(filename); //input upload-name 에 파일명 설정해주기
+
+    readImage($(this)[0]); //미리보기
+});
+
+function validFileType(filename) {
+    const fileTypes = ["png", "jpg", "jpeg"];
+return fileTypes.indexOf(filename.substring(filename.lastIndexOf(".")+1, filename.length).toLowerCase()) >= 0;
+}
+
+function validFileSize(file){
+    if(file.size > 5000000){ //5MB
+        return false;
+    }else{
+        return true;
+    }
+}
+
+//이미지 띄우기
+function readImage(input) {
+    if(input.files && input.files[0]) {
+        const reader = new FileReader();
+        reader.onload = function(e){
+            const previewImage = document.getElementById("previewImg");
+            previewImage.src = e.target.result;
+        }
+        // reader가 이미지 읽도록 하기
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+function insertCancel() {
+	swal({
+        text : "게시글을 등록을 취소하시겠습니까?",
+        icon : "info",
+        buttons : ["아니요", "예"],
+      }).then(function(isConfirm) {
+        if (isConfirm) {
+        	location.href='list?no=' + cateNo;
+        } else{
+          return false;
+        }
+    });
+}
+
+</script>
+
     </body>
 
 </html>

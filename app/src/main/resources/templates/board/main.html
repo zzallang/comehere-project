@@ -161,12 +161,12 @@
               <ul class="navbar-nav mr-auto">
                 <li class="nav-item"><a class="nav-link" href="../party/list">운동찾기</a></li>
                 <li class="nav-item"><a class="nav-link" href="main">커뮤니티</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">공지사항</a></li>
+                <li class="nav-item"><a class="nav-link" href="../notice/list">공지사항</a></li>
               </ul>
               <div class="login-bt">
                 <ul>
                   <li data-th-if="${session.loginMember == null}"><a href="../auth/form" >로그인</a></li>
-                  <li data-th-if="${session.loginMember != null}"><a href="../member/viewer">마이페이지</a></li>
+                  <li data-th-if="${session.loginMember != null}"><a href="../mypage/my-post">마이페이지</a></li>
                   <li data-th-if="${session.loginMember != null}"><a href="../auth/logout" data-th-text="${session.loginMember.name} + '(로그아웃)'">동동(로그아웃)</a></li>
                 </ul>
               </div>

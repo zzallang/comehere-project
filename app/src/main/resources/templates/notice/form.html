@@ -123,7 +123,7 @@
           <div class="login-bt">
             <ul>
               <li data-th-if="${session.loginMember == null}"><a href="../auth/form" >로그인</a></li>
-              <li data-th-if="${session.loginMember != null}"><a href="../member/viewer">마이페이지</a></li>
+              <li data-th-if="${session.loginMember != null}"><a href="../mypage/my-post">마이페이지</a></li>
               <li data-th-if="${session.loginMember != null}"><a href="../auth/logout" data-th-text="${session.loginMember.name} + '(로그아웃)'">동동(로그아웃)</a></li>
             </ul>
           </div>
@@ -172,7 +172,7 @@
                     </table>
                     <div class="post_button_box">
                         <input id="subBtn" type="button" value="등록" onclick="goWrite(this.form);"/>
-                        <button type='reset'>취소</button>
+                        <input id="subBtn" type="button" value="취소" onclick="cancel()"/>
                     </div>
                 </form>
             </section>
@@ -201,15 +201,15 @@
       <script src="../js/popper.min.js"></script>
       <script src="../js/bootstrap.bundle.min.js"></script>
       <script src="../js/jquery-3.0.0.min.js"></script>
-      <!-- <script src="../js/plugin.js"></script> -->
+      <script src="../js/plugin.js"></script>
       
-      <!-- sidebar -->
+      sidebar
       <script src="../js/jquery.mCustomScrollbar.concat.min.js"></script>
       <script src="../js/custom.js"></script>
       
-      <!-- javascript --> 
-      <!-- <script src="../js/owl.carousel.js"></script> -->
-      <!-- <script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>  -->
+      javascript 
+      <script src="../js/owl.carousel.js"></script>
+      <script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script> 
       
       <!-- 공식부트스트랩 JS -->
       <script src="../js/bootstrap/bootstrap.js"></script>   
@@ -235,6 +235,23 @@
         $(document).ready(function() {
            $('textarea').summernote({height: 700});
         });
+        
+        
+        // 등록 취소
+        function cancel() {
+            swal({
+                text : "등록을 취소하시겠습니까?",
+                icon : "warning",
+                buttons : ["아니요", "예"],
+              }).then(function(isConfirm) {
+                if (isConfirm) {
+                  window.location.href = 'list';
+                } else {
+                    return false;
+              }
+            });
+          }
+          
       </script>
     </body>
 

@@ -9,7 +9,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="viewport" content="initial-scale=1, maximum-scale=1">
         <!-- site metas -->
-        <title>작성글</title>
+        <title>여기모여</title>
         <meta name="keywords" content="">
         <meta name="description" content="">
         <meta name="author" content="">
@@ -121,12 +121,12 @@
                   <ul class="navbar-nav mr-auto">
                     <li class="nav-item"><a class="nav-link" href="../party/list">운동하기</a></li>
                     <li class="nav-item"><a class="nav-link" href="../board/main">커뮤니티</a></li>
-                    <li class="nav-item"><a class="nav-link" href="../notice">공지사항</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../notice/list">공지사항</a></li>
                   </ul>
                   <div class="search_icon">
                     <ul>
                       <li data-th-if="${session.loginMember == null}"><a href="../auth/form" >로그인</a></li>
-                      <li data-th-if="${session.loginMember != null}"><a href="../member/viewer">마이페이지</a></li>
+                      <li data-th-if="${session.loginMember != null}"><a href="../mypage/my-post">마이페이지</a></li>
                       <li data-th-if="${session.loginMember != null}"><a href="../auth/logout" data-th-text="${session.loginMember.name} + '(로그아웃)'">동동(로그아웃)</a></li>
                     </ul>
                   </div>
@@ -139,20 +139,19 @@
           <div class="contact_section layout_padding">
             <div class= info>
               <ul class="infoMenu">
-                <li class= "infoMenuOn"><a href="../member/myInfo">회원 정보 변경</a></li>
-                <li class= "infoMenuOn"><a href="../mypage/party-management">모임 관리</a></li>
-                <li class= "infoMenuOn"><a href="../mypage/my-post">나의활동</a></li>
+                <li class= "menu"><a href="../mypage/my-post">나의 활동</a></li>
+                <li class= "menu on"><a href="../mypage/my-party">모임 관리</a></li>
+                <li class= "menu"><a href="../member/viewer">회원 정보 변경</a></li>
               </ul>
             </div>
             <div class="container">
               <div class="row">
                 <div class="col-md-10">
-                  <h1 class="contact_text">나의활동</h1>
                   <div class="mail_sectin">
                     <div class="sort_area">
                       <a href="my-party" class="link_sort">내가 만든 모임</a>
                       <a href="join-party" class="link_sort">참여 중인 모임</a>
-                      <a href="end-party" class="link_sort on">과거 모임</a>
+                      <a href="end-party" class="link_sort on">종료된 모임</a>
                   </div>
                   <table style="width:100%; background-color: white;">
 <!--                    <caption>

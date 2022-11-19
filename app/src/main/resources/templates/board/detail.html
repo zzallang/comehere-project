@@ -292,12 +292,12 @@
           <ul class="navbar-nav mr-auto">
             <li class="nav-item"><a class="nav-link" href="../party/list">운동찾기</a></li>
             <li class="nav-item"><a class="nav-link" href="main">커뮤니티</a></li>
-            <li class="nav-item"><a class="nav-link" href="#">공지사항</a></li>
+            <li class="nav-item"><a class="nav-link" href="../notice/list">공지사항</a></li>
           </ul>
           <div class="login-bt">
             <ul>
               <li th:if="${session.loginMember == null}" ><a href="../auth/form" >로그인</a></li>
-              <li class="loginId" th:if="${session.loginMember != null}" th:id=${session.loginMember.no}><a href="../member/viewer">마이페이지</a></li>
+              <li class="loginId" th:if="${session.loginMember != null}" th:id=${session.loginMember.no}><a href="../mypage/my-post">마이페이지</a></li>
               <li th:if="${session.loginMember != null}"><a href="../auth/logout" th:text="${session.loginMember.name} + '(로그아웃)'">동동(로그아웃)</a></li>
             </ul>
           </div>
@@ -782,9 +782,6 @@
             <div class="form-check form-check-inline">
               <input type="checkbox" value="act" class="form-check-input" id="6" name="reports" onclick='checkOnlyOne(this)' style="display: block"> <input type="hidden" name="_reports" value="on" /> <label for="6" class="form-check-label">기타 사이트 목적에 맞지 않는 행위</label>
             </div>
-            <div class="form-check form-check-inline">
-              <input type="checkbox" value="Etc" class="form-check-input" id="7" name="reports" onclick='checkOnlyOne(this)' style="display: block"> <input type="hidden" name="_reports" value="on" /> <label for="7" class="form-check-label">기타</label>
-            </div>
             <!-- 신고 종류 설정 input hidden type-->
             <div class="form-check form-check-inline"><input type="hidden" id="reportForm"></div>
           </div>
@@ -809,7 +806,6 @@ function commentComplain(number) {
   window.scrollTo(0,0);
   // x버튼 누르면 종료
   $(".close-area").click(function () {
-	  console.log("너가 실행이 된다고?")
       $("input:checkbox[name='reports']").each(function(){
           this.checked = false
           });

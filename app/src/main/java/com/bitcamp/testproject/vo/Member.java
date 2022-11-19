@@ -17,7 +17,7 @@ public class Member {
   private boolean sex;
   private String filepath;
   private Date createdDate;
-  private boolean active;
+  private int active;
   private boolean black;
   private List<FavoriteRegion> favoriteRegion;
   private List<FavoriteSports> favoriteSports;
@@ -111,7 +111,7 @@ public class Member {
     this.birthday = birthday;
   }
 
-  public boolean isSex() {
+  public boolean getSex() {
     return sex;
   }
 
@@ -135,15 +135,15 @@ public class Member {
     this.createdDate = createdDate;
   }
 
-  public boolean isActive() {
+  public int getActive() {
     return active;
   }
 
-  public void setActive(boolean active) {
+  public void setActive(int active) {
     this.active = active;
   }
 
-  public boolean isBlack() {
+  public boolean getBlack() {
     return black;
   }
 
@@ -183,7 +183,7 @@ public class Member {
     this.sportsDomain = sportsDomain;
   }
 
-  public boolean isAuth() {
+  public boolean getAuth() {
     return auth;
   }
 

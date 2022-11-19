@@ -1,10 +1,14 @@
 package com.bitcamp.testproject.service;
 
+import javax.mail.MessagingException;
+import javax.mail.internet.MimeMessage;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
-import com.bitcamp.testproject.dao.MailDao;
+import org.thymeleaf.context.Context;
+import org.thymeleaf.spring5.SpringTemplateEngine;
+import com.bitcamp.testproject.vo.Mail;
 import lombok.AllArgsConstructor;
 
 
@@ -14,22 +18,34 @@ public class EmailService {
   @Autowired
   JavaMailSender emailSender;
 
-  public void sendSimpleMessage(String email, int SecCode) {
-    SimpleMailMessage message = new SimpleMailMessage();
+  @Autowired
+  private SpringTemplateEngine templateEngine;
 
-    message.setFrom("hunsik0302@gmail.com");
-    message.setTo(email);
-    message.setSubject("인증번호 입니다.");
-    message.setText(Integer.toString(SecCode));
+  public void sendTemplateMessage(Mail mail) throws MessagingException {
+    MimeMessage message = emailSender.createMimeMessage();
+    MimeMessageHelper helper = new MimeMessageHelper(message, true, "UTF-8");
+    //메일 제목 설정
+    helper.setSubject(mail.getTitle());
+
+    //수신자 설정
+    helper.setTo(mail.getAddress());
+
+    //참조자 설정
+    //helper.setCc(mail.getCcAddress());
+
+    String checkNum = String.valueOf(mail.getCheckNum());
+    String templates = mail.getTemplate();
+
+    //템플릿에 전달할 데이터 설정
+    Context context = new Context();
+    context.setVariable("checkNum", checkNum);
+
+    //메일 내용 설정 : 템플릿 프로세스
+    String html = templateEngine.process(templates, context);
+    helper.setText(html, true);
+
+    //메일 보내기
     emailSender.send(message);
   }
-  // test
-  public void sendSimpleMessage(MailDao mailDao) {
-    // TODO Auto-generated method stub
-
-  }
-
-
-
 
 }

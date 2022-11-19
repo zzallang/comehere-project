@@ -38,8 +38,14 @@ public class DefaultMemberService implements MemberService {
     favoriteSprotsDao.insertSports(member);
   }
 
+  @Transactional
   @Override
   public boolean update(Member member) throws Exception {
+
+    if (member.getFilepath() == null) {
+      String originFile = memberDao.getFileByMemberNo(member.getNo());
+      member.setFilepath(originFile);
+    }
     return memberDao.update(member) > 0;
   }
 
@@ -50,6 +56,7 @@ public class DefaultMemberService implements MemberService {
     }
     return true;
   }
+
   @Override
   public Member get(int no) throws Exception {
     return memberDao.findByNo(no);
@@ -108,6 +115,16 @@ public class DefaultMemberService implements MemberService {
   @Override
   public Member idEmailCheck(String id, String email) throws Exception {
     return memberDao.idEmailCheck(id, email);
+  }
+
+  @Override
+  public Member idPasswordCheck(String id, String password) throws Exception {
+    return memberDao.idPasswordCheck(id, password);
+  }
+
+  @Override
+  public Member findIdCheck(String name, String email) throws Exception {
+    return memberDao.findIdCheck(name, email);
   }
 }
 

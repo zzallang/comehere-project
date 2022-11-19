@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import com.bitcamp.testproject.service.EmailService;
 import com.bitcamp.testproject.service.MemberService;
+import com.bitcamp.testproject.vo.Mail;
 import com.bitcamp.testproject.vo.Member;
 
 @Controller
@@ -45,10 +46,11 @@ public class AuthController {
     return "auth/form";
   }
 
+
   @PostMapping("login")
   public ModelAndView login(String id, String password, HttpServletResponse response,
       HttpSession session, String beforePageURL) throws Exception {
-    System.out.println("너 머야?" + beforePageURL);
+
     Member member = memberService.get(id, password);
 
     String[] url = beforePageURL.split("app/");
@@ -122,12 +124,18 @@ public class AuthController {
 
   @PostMapping("mail/send")
   @ResponseBody
-  public String send(String email) {
+  public String send(String email) throws Exception {
 
     Random random = new Random();
     int SecCode = random.nextInt(888888) + 111111;
 
-    emailService.sendSimpleMessage(email, SecCode);
+    Mail mail = new Mail();
+    mail.setAddress(email);
+    mail.setTitle("[여기모여] 이메일 계정 인증");
+    mail.setCheckNum(SecCode);
+    mail.setTemplate("emailCode");
+    emailService.sendTemplateMessage(mail);
+
     return Integer.toString(SecCode);
   }
 
@@ -176,12 +184,46 @@ public class AuthController {
   @ResponseBody
   public String idEmailCheck( String id,String email , HttpSession session) throws Exception {
     Member result = memberService.idEmailCheck(id,email);
+    System.out.println(result);
 
     if (result == null) {
       System.out.println("회원 없음");
       return "false";
     } 
     return "true";
+  }
+
+  @PostMapping("idPasswordCheck")
+  @ResponseBody
+  public String idPasswordCheck( String id,String password , HttpSession session) throws Exception {
+    Member result = memberService.idPasswordCheck(id,password);
+    System.out.println(result);
+
+    if (result == null) {
+      System.out.println("회원 없음");
+      return "false";
+    }
+    System.out.println(result.getActive());
+
+    if (result.getActive() == 0) {
+      System.out.println("탈퇴한 회원");
+      return "active";
+    }
+    return "true";
+  }
+
+  @GetMapping("findIdCheck")
+  @ResponseBody
+  public String findIdCheck( String name,String email , HttpSession session) throws Exception {
+    Member result = memberService.findIdCheck(name,email);
+    System.out.println("name" + name);
+    System.out.println("email" + email);
+    System.out.println("result" + result);
+    if (result == null) {
+      System.out.println("회원 없음");
+      return "false";
+    }
+    return result.getId();
   }
 
 
