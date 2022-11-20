@@ -224,7 +224,7 @@
                             <span aria-hidden="true">&laquo;</span>
                           </a>
                         </li>
-                        <th:block th:each="pageNum: ${#numbers.sequence(pageMaker.startPage, pageMaker.endPage)}">
+                        <th:block th:if="${pageMaker.endPage != 0}"  th:each="pageNum: ${#numbers.sequence(pageMaker.startPage, pageMaker.endPage)}">
                           <li data-th-id="${'pageButton' + pageNum}" class="page-item">
                             <a class="page-link" th:href="@{my-comment(page=${pageNum})}"><i th:text="${pageNum}"></i></a>
                         </li>
@@ -284,6 +284,14 @@
             }
             
             </script>
+            <script>
+						  // 뒤로가기하면 자동으로 새로고침 (조회수 반영을 위해)
+						  window.onpageshow = function(e) {
+						    if (e.persisted || (window.performance && window.performance.navigation.type === 2)) {
+						      window.location.reload();
+						    }
+						  }
+						</script>
         </body>
 
 </html>
