@@ -197,11 +197,18 @@ public class AuthController {
   @ResponseBody
   public String idPasswordCheck( String id,String password , HttpSession session) throws Exception {
     Member result = memberService.idPasswordCheck(id,password);
+    System.out.println(result);
 
     if (result == null) {
       System.out.println("회원 없음");
       return "false";
-    } 
+    }
+    System.out.println(result.getActive());
+
+    if (result.getActive() == 0) {
+      System.out.println("탈퇴한 회원");
+      return "active";
+    }
     return "true";
   }
 

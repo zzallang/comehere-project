@@ -17,6 +17,8 @@
     <result column="sex" property="sex"/>
     <result column="filepath" property="filepath"/>
     <result column="cdt" property="createdDate"/>
+    <result column="black" property="black"/>
+    <result column="act" property="active"/>
     
     <collection property="favoriteRegion" ofType="favoriteRegion">
       <result column="rno" property="rno"/>
@@ -169,13 +171,12 @@
   </update>
   
 
-   <delete id="delete">
-      DELETE 
-    FROM 
-      member
-      WHERE 
+   <update id="delete" parameterType="int">
+    update member set
+      act=0
+    WHERE 
       mno=#{value}
-   </delete>
+   </update>
 
 <select id="findByIdPassword" resultMap="memberMap">
     SELECT 
@@ -231,14 +232,16 @@
   
    <select id="idPasswordCheck" resultType="member">
     select
-    name
+    name,
+    act active,
+    black
     from
     member
     where
     id=#{id} and pwd=sha2(#{password},256)
   </select>
   
-     <select id="findIdCheck" resultType="member">
+  <select id="findIdCheck" resultType="member">
     select
     id
     from
@@ -246,8 +249,6 @@
     where
     name=#{name} and email=#{email}
   </select>
-  
-  
   
 
 </mapper>
