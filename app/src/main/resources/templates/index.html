@@ -26,8 +26,8 @@
 <!-- Tweaks for older IEs-->
 <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
 <!-- owl stylesheets -->
-<!-- <link rel="stylesheet" href="css/owl.carousel.min.css">
-<link rel="stylesheet" href="css/owl.theme.default.min.css"> -->
+<link rel="stylesheet" href="css/owl.carousel.min.css">
+<link rel="stylesheet" href="css/owl.theme.default.min.css">
 <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen"> -->
 <style type="text/css">
  
@@ -54,8 +54,8 @@
               <li style="margin-right: 100px" data-th-if="${session.loginMember != null and session.loginMember.id == 'admin'}"><a href="amdin/" >관리</a></li>
 							<li data-th-if="${session.loginMember == null}"><a href="auth/form" >로그인</a></li>
               <li data-th-if="${session.loginMember != null}"><a href="mypage/my-post">마이페이지</a></li>
-                     <li data-th-if="${session.loginMember != null}"><a href="auth/logout" data-th-text="${session.loginMember.name} + '(로그아웃)'">동동(로그아웃)</a></li>
-                  </ul>
+              <li data-th-if="${session.loginMember != null}"><a href="auth/logout" data-th-text="${session.loginMember.name} + '(로그아웃)'">동동(로그아웃)</a></li>
+            </ul>
                </div>
             </div>
          </nav>
@@ -76,6 +76,7 @@
                      </div>
                   </div>
                </div>
+              <div class="carousel-item active">
                <div class="carousel-item">
                   <h1 class="furniture_text">운동장소 찾기</h1>
                   <p class="there_text">광범위한 검색 말고 원하는 장소만 콕<br> 관심운동/관심지역 위주로 콕</p>
@@ -84,7 +85,9 @@
                         <a href="party/list">둘러보기</a>
                      </div>
                   </div>
+                </div>
                </div>
+              <div class="carousel-item active">
                <div class="carousel-item">
                   <h1 class="furniture_text">커뮤니티</h1>
                   <p class="there_text">운동 관련 종합 커뮤니티<br>식단,챌린지,핫딜 그리고 Q&A를 한 곳에!</p>
@@ -94,6 +97,7 @@
                      </div>
                   </div>
                </div>
+              </div>
             </div>
             <a class="carousel-control-prev" href="#costum_slider" role="button" data-slide="prev"> <i class=""><img src="images/left-arrow.png"></i>
             </a> <a class="carousel-control-next" href="#costum_slider" role="button" data-slide="next"> <i class=""><img src="images/right-arrow.png"></i>
@@ -216,7 +220,7 @@
       <!-- <script src="js/jquery.mCustomScrollbar.concat.min.js"></script> -->
       <!-- <script src="js/custom.js"></script> -->
       <!-- javascript -->
-      <!-- <script src="js/owl.carousel.js"></script> -->
+      <script src="js/owl.carousel.js"></script>
       <!-- <script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script> -->
    </div>
 </body>

@@ -253,6 +253,14 @@
           }
           
       </script>
+      <script>
+        // 뒤로가기하면 자동으로 새로고침 (조회수 반영을 위해)
+        window.onpageshow = function(e) {
+          if (e.persisted || (window.performance && window.performance.navigation.type === 2)) {
+            window.location.reload();
+          }
+        }
+      </script>
     </body>
 
 </html>
