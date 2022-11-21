@@ -38,35 +38,148 @@
       }
       
       .nav-line {
-        border-bottom: 1px solid #090808;
-        border-top: 1px solid #090808;
+        border-bottom: 1px solid #e4e8eb;
+        border-top: 1px solid #e4e8eb;
+        margin-bottom: 30px;
       }
       
       .category-name-wrapper {
+        border: 1px solid #e4e8eb;
         background-color: rgb(125, 144, 197);
         height: 300px;
       }
       
+      .table-jedong {
+        font-size: 17px;      
+        width: 100%;
+        margin-bottom: 1rem;
+        margin: auto;
+        color: var(--bs-table-color);
+        vertical-align: top;
+        border-color: var(--bs-table-border-color);
+        border-collapse: separate;
+        border-spacing: 0 20px;
+      }
+
+      .cate-button {
+        font-size: 15px;
+        text-align: center;
+        width: 70%;
+        border: 1px solid #e4e8eb;
+        border-radius: 12px;
+      }
       
-        .our_textJD {
+      .cate-button {
+        text-align: center;
+        width: 70%;
+        border: 1px solid #e4e8eb;
+        margin: auto;
+        border-radius: 12px;
+        color: gray;
+      }
+      .cate-button:hover {
+        color: white;
+        background-color: #3B4BFF;
+      }
+      
+      #table-setting {
+        min-height: 100px; 
+      }
+      
+      #table-setting > :first-child {
+        width: 10%;
+      }
+      #table-setting > :nth-child(2) {
+        overflow: hidden;
+        white-space: nowrap;
+        width: 70%;
+      }
+      #table-setting > :nth-child(3) {
+        color: gray;
+        width: 7%;
+      }
+      #table-setting > :nth-child(4) {
+        /* margin: 0 10px 0 10px;
+        background-size: cover; */ 
+        width: 2%; 
+        /* background-image: url(../images/view-icon2.png); */
+      }
+      #table-setting > :nth-child(5) {
+        color: gray;
+        font-size: 15px;
+        width: 7%;
+      }
+      .layout_padding-jedong {
+          padding-top: 50px;
+          padding-bottom: 0px;
+      }
+      
+
+      .clg {
+        display:inline-block;
+        min-height: 318px;
+        min-width: 19.5%;
+        padding:10px;
+        border: 1px solid #eaedf4;
+        border-radius: 12px;          
+      }
+      .clg-in {
+        position:absolute;
+        border-radius: 12px;
+      }
+      .clg-in-img {
+        width: 188.398px;
+        min-height: 240px;
+        max-height: 240px; 
+        border-radius: 12px;
+        /* object-fit: cover; */
+      }
+      .clg-in-title {
+        position: relative;
+        height: 35px;
+        width:100%;
+      }
+      .clg-in-tt {
+        font-weight: bold;
+        margin: 0 10px 0 10px;
+        width: 170px;
+        min-height: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        line-height: 35px;
+      }
+      .clg-in-wt {
+        margin: 0 15px 0 10px;
+        width: 170px;
+        min-height: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        line-height: 22px;
+        font-size: 15px;
+        color: gray;
+      }
+      
+      .our_textJD {
         background-image: url("../images/community_benner.png");
         width: 100%;
         height : 100%;
         line-height:300px;
         float: left;
-        font-size: 60px;
+        font-size: 45px;
         font-weight:bold;
-        color: #121111;
+        color: white;
         text-transform: uppercase;
         text-align: center;
         /* padding-top: 120px; */
         }
         
         .furnitures_sectionJD {
-            width: 100%;
-            min-height: 1300px;
-            float: left;
-            padding-bottom: 90px;
+          width: 100%;
+          min-height: 1300px;
+          float: left;
+          padding-bottom: 90px;
         }
         
         .write-box {
@@ -104,18 +217,29 @@
           color: #ffb607;
         }
         
-         .mainList-title {
-          margin: 0 66px 0 66px;
+        .mainList-title {
+          font-size: 27px;
           font-weight: bold;
+          margin-bottom:  25px;
         }
         
         .row1 {
-          width: 50%;
-          border-right: 1px solid #dee2e6;
+          width: 100%;
+          padding: 27px 28px 36px 32px;
+          border: 1px solid #eaedf4;
+          border-radius: 12px;
           float: left;
+          margin-bottom: 50px;
+        }
+        
+        .row2 {
+          width: 100%;
+          float: left;
+          margin-bottom: 100px;
         }
         
         .clg-plus {
+          color: gray;
           float: right;
           font-size: 17px;
           font-weight: normal;
@@ -124,24 +248,16 @@
         }
         
         .recent-clg-list {
-          /* border: 1px solid blue; */
-          width: 90%;
+          width: 100%;
           margin: auto;
           min-height: 500px;
-        }
-        .recent-clg-wapper {
-          display: inline-block;
-          width: 48%;
-          padding: 2%;
-          margin: 4px;
-          background-color: #fcd780;
         }
         .recent-clg-img-wapper {
           height: 256.031px;
           width: 256.031px;
         }
         .imgJD {
-          width: 100%;
+          width: 50%;
           height: 100%;
           object-fit: cover;
           margin: auto;
@@ -166,7 +282,7 @@
       <div class="header_section windowWidth" >
         <div class="container-fluid windowWidth">
           <nav class="navbar navbar-expand-lg navbar-light windowWidth">
-            <div class="main_logo"><a href="/app"><img src="../images/logo.png">커뮤니티</a></div>
+            <div class="main_logo"><a href="/app"><img src="../images/logo.png"></a></div>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>
@@ -208,73 +324,62 @@
          </a>
       </div>
       <!-- 메인 상단 끝 -->
-      <!-- furnitures section start -->
+      
+      <!-- 메인 하단 시작 -->
       <div class="furnitures_sectionJD windowWidth">
-
-         <div class="container windowWidth" style="width: 100%;">
-           
-           <div class="furnitures_section2 layout_padding windowWidth">
+         <div class="container windowWidth">
+           <div class="furnitures_section2 layout_padding-jedong windowWidth">
                <div class="write-wrapper">
-               <div class="row1">
-                  <!-- 게시글 목록 시작 -->
-                  
-                  <!-- 인기글 파트 시작 -->
-                  <h3 class="mainList-title">인기글</h3>
-                  <table class="table">
-                    <tr>
-                      <th>게시판</th>
-                      <th>제목</th>
-                      <th>작성자</th>
-                      <th>조회수</th>
-                    </tr>
-                    <tr th:each="board : ${bestList}">
-                      <td><a data-th-classappend="'boardCateNo' + ${board.cateno}" class="nav-link" th:href="@{list(no=${board.cateno})}">게시판</a></td>
-                      <td class="title-min-width2"><a href='detail?no=1'
-                          th:href="@{detail(no=${board.no})}"
-                          th:text="${board.title == ''} ? '(제목없음)' : ${board.title}">제목없음</a></td>
-                      <td th:text="${board.writer.name}">유길동</td>
-                      <td th:text="${board.viewCount}">17</td>
-                    </tr>
-                  </table> 
-                  <!-- 인기글 파트 끝 -->
-                </div>
-                <div class="row1">
-                  <h3 class="mainList-title">최근 챌린지 인증<a href="list?no=3" class="clg-plus">더보기+</a></h3>
-                  <div class="recent-clg-list">
-                  <th:block th:each="board : ${clgList}">
-                    <span class="recent-clg-wapper">
-                      <div class="recent-clg-img-wapper">
-                        <a th:href="@{detail(no=${board.no})}"><img th:if="${board.thumbnail == null}" src="/app/board/files/nothumpnail.jpg" alt="Avatar" class="imgJD"/></a>
-                        <a th:href="@{detail(no=${board.no})}"><img  th:if="${board.thumbnail != null}" th:src="@{'http://localhost:8888/app/board/files/' + ${board.thumbnail}}" alt="Avatar" class="imgJD"/></a>
-                      </div>
-                      <div class="recent-clg-content-wapper">
-                        <b><a href='detail?no=1' th:href="@{detail(no=${board.no})}" th:text="${board.title == ''} ? '(제목없음)' : ${board.title}">제목없음</a></b><br>
-                        <span th:text="${board.writer.name}">유길동</span>
-                        <span class="float-end" th:text="${board.createdDate}">등록일</span>
-                      </div>
-                    </span>
-                  </th:block>
-                  </div>
-                </div>
-            
+               <!-- 인기글 파트 시작 -->
+                 <div class="mainList-title">커뮤니티 인기글</div>
+                 <div class="row1">
+                    <table class="table-jedong">
+                      <tr id="table-setting" th:each="board : ${bestList}">
+                        <td><a data-th-classappend="'boardCateNo' + ${board.cateno}" class="nav-link cate-button" th:href="@{list(no=${board.cateno})}"></a></td>
+                        <td class="title-min-width2 title_line"><a href='detail?no=1'
+                            th:href="@{detail(no=${board.no})}"
+                            th:text="${board.title == ''} ? '(제목없음)' : ${board.title}">제목없음</a></td>
+                        <td th:text="${board.writer.nickname}">유길동</td>
+                        <td><img style="object-fit: cover; width: 15px; height: 15px;" src="../images/view-icon2.png"></td>
+                        <td th:text="${board.viewCount}">17</td>
+                      </tr>
+                    </table> 
+                 </div>
+                <!-- 인기글 파트 끝 -->
+                
+                <!-- 최근 챌린지 파트 시작 -->
+                  <div class="mainList-title">최근 챌린지 인증<a href="list?no=3" class="clg-plus">더보기+</a></div>
+                  <div class="row2">
+                    <th:block th:each="board : ${clgList}">
+                      <span class="clg" style="position:relative;">
+                        <div class="clg-in">
+                          <a th:href="@{detail(no=${board.no})}">
+                            <img class="clg-in-img" th:if="${board.thumbnail == null}" src="/app/board/files/nothumpnail.jpg"/>
+                            <img class="clg-in-img" th:if="${board.thumbnail != null}" th:src="@{'/board/files/' + ${board.thumbnail}}"/>
+                          </a>
+                          <div class="clg-in-title">
+                          <div class="clg-in-tt">
+                            <a href='detail?no=1' th:href="@{detail(no=${board.no})}" th:text="${board.title == ''} ? '(제목없음)' : ${board.title}">제목없음</a><br>
+                          </div>
+                          <div class="clg-in-wt">
+                            <span th:text="${board.writer.nickname}" style="float: right;">유길동</span>
+                          </div>
+                          </div>
+                        </div>
+                      </span>
+                    </th:block>
+                 </div>
+                <!-- 최근 챌린지 파트 시작 -->
+              </div>
+           </div>
          </div>
-        </div>
-
-        
-     </div>
       <!-- furnitures section end -->
+      
+      
       
       <!-- copyright section start -->
       <div class="copyright_section windowWidth">
         <div class="container">
-           <div class="social_icon">
-              <ul>
-                 <li><a href="#"><img src="../images/fb-icon.png"></a></li>
-                 <li><a href="#"><img src="../images/twitter-icon.png"></a></li>
-                 <li><a href="#"><img src="../images/instagram-icon.png"></a></li>
-                 <li><a href="#"><img src="../images/linkedin-icon.png"></a></li>
-              </ul>
-           </div>
            <p class="copyright_text">2020 All Rights Reserved. Design by <a href="https://html.design">Free html  Templates</a></p>
         </div>
       </div>
@@ -334,19 +439,19 @@
             category4 = document.getElementsByClassName( 'boardCateNo4' ),
             category5 = document.getElementsByClassName( 'boardCateNo5' );
         for (var i = 0; i < category1.length; i++) {
-        	category1[i].innerHTML = "자유"
+        	category1[i].innerHTML = "자 유"
         }
         for (var i = 0; i < category2.length; i++) {
-        	category2[i].innerHTML = "식단"
+        	category2[i].innerHTML = "식 단"
         }
         for (var i = 0; i < category3.length; i++) {
         	category3[i].innerHTML = "챌린지"
         }
         for (var i = 0; i < category4.length; i++) {
-        	category4[i].innerHTML = "질문"
+        	category4[i].innerHTML = "질 문"
         }
         for (var i = 0; i < category5.length; i++) {
-        	category5[i].innerHTML = "핫딜"
+        	category5[i].innerHTML = "핫 딜"
         }
         
       }
