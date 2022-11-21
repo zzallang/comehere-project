@@ -128,6 +128,9 @@ public class PartyController {
   public void list(Criteria cri, Model model) throws Exception {
     System.out.println(cri);
     PageMaker pageMaker = new PageMaker();
+
+    cri.setPerPageNum(12);
+
     pageMaker.setCri(cri);
     pageMaker.setDisplayPageNum(2);
     pageMaker.setTotalCount(partyService.listCount());
@@ -154,6 +157,10 @@ public class PartyController {
       Model model) throws Exception {
 
     PageMaker pageMaker = new PageMaker();
+
+    cri.setPerPageNum(12);
+
+
     pageMaker.setCri(cri);
     pageMaker.setDisplayPageNum(2);
     pageMaker.setTotalCount(partyService.listCount2(gu, sports, partyDate, partyTime, searchText));
@@ -178,6 +185,10 @@ public class PartyController {
       Criteria cri, 
       Model model) throws Exception {
     PageMaker pageMaker = new PageMaker();
+
+    cri.setPerPageNum(12);
+
+
     pageMaker.setCri(cri);
     pageMaker.setDisplayPageNum(2);
     pageMaker.setTotalCount(partyService.listCount2(gu, sports, partyDate, partyTime, searchText));

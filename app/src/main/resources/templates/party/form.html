@@ -4,10 +4,7 @@
 <!-- basic -->
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- mobile metas -->
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="viewport" content="initial-scale=1, maximum-scale=1">
 <!-- site metas -->
 <title>여기모여</title>
 <meta name="keywords" content="">
@@ -44,7 +41,9 @@
 <!-- 카카오 지도 -->
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <!-- summernote submit메서드 -->
-
+  <!-- 공식 부트스트랩 -->
+  <link href="../css/bootstrap/bootstrap.css" rel="stylesheet">
+  
 <style>
   .party_condition {
     display: flex !important;
@@ -53,46 +52,41 @@
     width: 80px;
   }
   .party_form_wrap {
-    width: 1200px;
+    width: 825px;
     margin: 10px auto;
     overflow: hidden;
   }
   .party_form_button_r {
     float: right;
-    color: #121111;
-    margin-left: 0px;
-    margin-top: 0px;
-    margin-bottom: 5px;
-    margin-right: 5px;
     
-    font-size: x-small;
-    
-    border: 1px solid #fabb25;
+    margin: 30px 10px 10px 10px;
+    font-size: medium;
     border-radius: 5px;
     padding: 5px 10px 5px 10px;
   }
   .party_form_title {
-    width: 800px;
+    width: 480px;
     height: 50px;
-    margin-top: 40px;
+    margin-top: 60px;
     margin-bottom: 60px;
+    position: relative;
   }
-  .party_form_title > span{
+  .party_form_title span{
     font-size: xx-large;
   }
   .party_form_title_input {
-    width: 600px;
-    height: 50px;
+    width: 360px;
+    height: 40px;
     font-size: large;
   }
   .party_form_img {
     width: 330px;
-    height:350px;
+    height:270px;
     float: left;
   }
   .party_form_header {
-    width: 800px;
-    height:350px;
+    width: 480px;
+    height: 270px;
     float: left;
   }
   .party_header_filepath {
@@ -112,7 +106,76 @@
   .party_form_content {
     width: 100%;
     float: left;
+    margin-top: 10px;
   }
+  
+  .previewImg {
+    margin: 0 auto;
+    width: auto;
+    max-height: 200px;
+    max-width: 300px;
+  }
+  
+  
+  .form-selectJd {
+          display: inline-block;
+          padding: 0.375rem 2.25rem 0.375rem 0.75rem;
+          -moz-padding-start: calc(0.75rem - 3px);
+          font-size: 1rem;
+          font-weight: 400;
+          line-height: 1.5;
+          color: #212529;
+          background-color: #fff;
+          background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e");
+          background-repeat: no-repeat;
+          background-position: right 0.75rem center;
+          background-size: 16px 12px;
+          border: 1px solid #ced4da;
+          border-radius: 0.375rem;
+          transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+          -webkit-appearance: none;
+          -moz-appearance: none;
+          appearance: none;
+          margin-top: 10px;
+          margin-bottom: 10px;
+          margin-left: 10px;
+        }
+  .form-selectJd2 {
+          display: inline-block;
+          padding: 0.375rem 2.25rem 0.375rem 0.75rem;
+          -moz-padding-start: calc(0.75rem - 3px);
+          font-size: 1rem;
+          font-weight: 400;
+          line-height: 1.5;
+          color: #212529;
+          background-color: #fff;
+          background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e");
+          background-repeat: no-repeat;
+          background-position: right 0.75rem center;
+          background-size: 16px 12px;
+          border: 1px solid #ced4da;
+          border-radius: 0.375rem;
+          transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+          -webkit-appearance: none;
+          -moz-appearance: none;
+          appearance: none;
+        }
+        
+        .party_form_img_wrap {
+        border: 1px solid gray;
+    border-radius: 5px;
+    padding: 5px;
+    margin: 10px 2px 20px 2px;
+        }
+        
+          .condition_button {
+
+    color: #0d6efd;
+          background-color: transparent;
+          background-image: none;
+          border: 1px solid #0d6efd;
+  }
+  
 </style>
 </head>
 <body>
@@ -157,26 +220,36 @@
           <input name='memberNo' type="hidden" th:value="${session.loginMember.no}">
           <div class="party_form_wrap">
             <div class="party_form_img">
-              <img id="previewImg" src="/app/party/files/nothumpnail.jpg">
+              <div class="party_form_img_wrap">
+              <img id="previewImg" class="previewImg" src="/app/party/files/nothumpnail.jpg">
+              </div>
               <input id="fileTag" name='file' type="file">
             </div>
             <div class="party_form_header">
-              <div class="party_form_title">
-                <span>모임 명: </span>
-                <input class="party_form_title_input" name='title' type="text">
+              <div class="party_form_content">
+                <select class="form-selectJd" >
+                  <option value="0" selected>-선택안함-</option>
+                  <option th:text="서울시" id="sidoNo" th:value="1"></option>
+                  </th:block>
+                </select>
+                <select class="form-selectJd" name="regionNo">
+                  <th:block th:each="region : ${regions}">
+                    <option th:value="${region.no}" th:text="${region.sigu}"></option>
+                  </th:block>
+                </select>
+                <select class="form-selectJd" name="sportsNo">
+                  <th:block th:each="sport : ${sports}">
+                    <option th:value="${sport.no}" th:text="${sport.name}"></option>
+                  </th:block>
+                </select>
               </div>
               <div class="party_form_title">
-                <div class="party_header_filepath">
-                  <img th:if="${session.loginMember.filepath != null}" th:src="@{'/member/files/' + ${session.loginMember.filepath}}">
-                  <img th:if="${session.loginMember.filepath == null}" src="/app/party/files/nothumpnail.jpg">
-                </div>
-                <div class="party_header_nickname">
-                  <p th:text="${session.loginMember.nickname}">닉네임</p>
-                </div>
+                <div style="position: absolute;"><span>모임 명: </span></div>
+                <div style="position: absolute; left: 110px; top:4px;"><input maxlength="20" class="party_form_title_input" name='title' type="text"></div>
               </div>
             </div>
             <div class="party_form_content">
-              <p>내용</p><textarea name='content'></textarea>
+              <textarea name='content'></textarea>
             </div>
             <div class="party_form_content">
               <span>정원</span>
@@ -184,32 +257,11 @@
             </div>
             <div class="party_form_content">
               <span>일자 시간</span>
-              <input class="" name="partyDate" type="date">
-              <input class="" name="partyTime" type="time" step="1" value="00:00:00">
+              <input class="form-selectJd2" name="partyDate" type="date">
+              <input class="form-selectJd2" name="partyTime" type="time" step="1" value="00:00:00">
             </div>
+
             <div class="party_form_content">
-              <span>운동종류</span>
-              <select class="party_condition" name="sportsNo">
-                <th:block th:each="sport : ${sports}">
-                  <option th:value="${sport.no}" th:text="${sport.name}"></option>
-                </th:block>
-              </select>
-            </div>
-            <div class="party_form_content">
-              <span>시도/ 시/군/구</span>
-              <select class="party_condition" >
-                <th:block th:each="region : ${regions}">
-                  <option th:value="${region.sido}" th:text="${region.sido}"></option>
-                </th:block>
-              </select>
-              <select class="party_condition" name="regionNo">
-                <th:block th:each="region : ${regions}">
-                  <option th:value="${region.no}" th:text="${region.sigu}"></option>
-                </th:block>
-              </select>
-            </div>
-            <div class="party_form_content">
-              <span>지도설정</span>
               <div>
                 <span>선택 장소 : </span><span id="mapSelectName">없음</span><span id="mapSelectAddress"></span>
               </div>
@@ -233,8 +285,8 @@
               <input name='lngResult' type="hidden">
             </div>
             <div class="party_form_content">
-              <button class="party_form_button_r" type="button" onclick="partyDelete()">취소</button>
-              <input class="party_form_button_r" id="subBtn" type="button" value="등록" onclick="goWrite(this.form)"/>
+              <button class="btn btn-primary condition_button party_form_button_r" type="button" onclick="partyDelete()">취소</button>
+              <input class="btn btn-primary party_form_button_r" id="subBtn" type="button" value="등록" onclick="goWrite(this.form)"/>
             </div>
           </div>
         </form>
@@ -402,5 +454,7 @@ function partyDelete(){
  --><!-- javascript --> 
 <script src="../js/owl.carousel.js"></script>
 <script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>    
-</body>
+
+<!-- 공식부트스트랩 JS --> 
+<script src="../js/bootstrap/bootstrap.js"></script>   </body>
 </html>

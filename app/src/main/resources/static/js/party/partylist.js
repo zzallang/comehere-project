@@ -1,3 +1,16 @@
+var param = 1; 
+var pageNum ="";
+$('#pageButton' + param).addClass('active');
+
+  document.querySelectorAll('.page-item').forEach((pageBtn) => {
+  console.log("bbbbbd");
+  pageBtn.addEventListener('click', function(e) {
+  console.log("얌마????!");
+      $('.page-item').removeClass('active');
+      pageNum = $(e.currentTarget).find('button').val();
+  });
+});
+
 let region_sido = "0";
 let region_sigu = "0";
 let sports = "0";
@@ -29,7 +42,7 @@ $("#partyTime").change(() => {
   loadList(getListConditions())
 });
 
-$("#searchBtn").click(() => {
+$("#searchButton").click(() => {
   loadList(getListConditions())
 });
 
@@ -37,9 +50,12 @@ $("#list_reset").click(() => {
   $("#list_star").attr('value','0');
   $("#list_create").attr('value','0');
   $("#list_partyDate").attr('value','0');
-  $("#list_star").css('background-color','white');
-  $("#list_create").css('background-color','white');
-  $("#list_partyDate").css('background-color','white');
+  $("#list_star").css('background-color','transparent');
+  $("#list_create").css('background-color','transparent');
+  $("#list_partyDate").css('background-color','transparent');
+  $("#list_star").hover(function() {$(this).css('background-color','#0d6efd'); $(this).css('color','#fff')}, function() {$(this).css('background-color','transparent'), $(this).css('color','#0d6efd');});
+  $("#list_create").hover(function() {$(this).css('background-color','#0d6efd'); $(this).css('color','#fff')}, function() {$(this).css('background-color','transparent'), $(this).css('color','#0d6efd');});
+  $("#list_partyDate").hover(function() {$(this).css('background-color','#0d6efd'); $(this).css('color','#fff')}, function() {$(this).css('background-color','transparent'), $(this).css('color','#0d6efd');});
   
   loadList(getListConditions())
 });
@@ -87,11 +103,13 @@ $(document).on("click", "#nextPage", () => {
 function changeBtnValue(btnId, btnValue) {
   if (btnValue == 0) {
     $("#" + btnId).attr('value','1');
-    $("#" + btnId).css('background-color','gray');
+    $("#" + btnId).css('background-color','#CCCCCC');
+    $("#" + btnId).hover(function() {$(this).css('background-color','#0d6efd'); $(this).css('color','#fff')}, function() {$(this).css('background-color','#CCCCCC');});
   }
   if (btnValue == 1) {
     $("#" + btnId).attr('value','0');
-    $("#" + btnId).css('background-color','white');
+    $("#" + btnId).css('background-color','transparent');
+    $("#" + btnId).hover(function() {$(this).css('background-color','#0d6efd'); $(this).css('color','#fff')}, function() {$(this).css('background-color','transparent'), $(this).css('color','#0d6efd');});
   }
 }
 
@@ -174,9 +192,21 @@ function loadPage(params) {
     url: "/app/party/list-ajax-page",
     data: params,
     success: function(result) {
-        
       console.log(result);
+
       $('#partyPage').html(result);
+              console.log("ddd");
+
+      $('#pageButton' + pageNum).addClass('active');
+    document.querySelectorAll('.page-item').forEach((pageBtn) => {
+  console.log("bbbbbd");
+  pageBtn.addEventListener('click', function(e) {
+  console.log("얌마????!");
+      $('.page-item').removeClass('active');
+      pageNum = $(e.currentTarget).find('button').val();
+  });
+
+});
       }
   });
 }

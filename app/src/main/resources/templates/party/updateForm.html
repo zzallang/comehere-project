@@ -4,10 +4,7 @@
 <!-- basic -->
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- mobile metas -->
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="viewport" content="initial-scale=1, maximum-scale=1">
 <!-- site metas -->
 <title>여기모여</title>
 <meta name="keywords" content="">
@@ -384,7 +381,7 @@
             <div class="party_form_header">
               <div class="party_form_title">
                 <span>모임 명: </span>
-                <input class="party_form_title_input" name='title' type="text"  th:value='${party.title}'>
+                <input maxlength="20" class="party_form_title_input" name='title' type="text"  th:value='${party.title}'>
               </div>
               <div class="party_form_title">
                 <div class="party_header_filepath">
@@ -417,6 +414,8 @@
       </div>
     </div>
   </div> 
+  
+  
   <!-- furnitures_section2 layout_padding_party -->
 </div>
 <!-- furnitures section end -->
