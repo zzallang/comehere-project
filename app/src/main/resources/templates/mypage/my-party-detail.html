@@ -13,7 +13,7 @@
 <!-- bootstrap css -->
 <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
 <!-- style css -->
-<link rel="stylesheet" type="text/css" href="../css/style2.css">
+<link rel="stylesheet" type="text/css" href="../css/style.css">
 <!-- Responsive-->
 <!-- fevicon -->
 <link rel="icon" href="../images/fevicon.png" type="image/gif" />
@@ -379,16 +379,16 @@
 	<script src="js/jquery-3.0.0.min.js"></script>
 	<!-- sidebar -->
 	<!-- javascript -->
-	<script>
-		function joinInfoSubmit() {
-			var form = document.getElementById("joinForm");
-			console.log(form);
-			const formData = new FormData(form);
-			const request = new XMLHttpRequest();
-			request.open("POST", "/app/sign-up");
-			request.send(formData);
-		}
-	</script>
+<script>
+function joinInfoSubmit() {
+	var form = document.getElementById("joinForm");
+	console.log(form);
+	const formData = new FormData(form);
+	const request = new XMLHttpRequest();
+	request.open("POST", "/app/sign-up");
+	request.send(formData);
+}
+</script>
   
   <script type="text/javascript">
 

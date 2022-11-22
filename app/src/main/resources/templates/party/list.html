@@ -4,10 +4,7 @@
   <!-- basic -->
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- mobile metas -->
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="viewport" content="initial-scale=1, maximum-scale=1">
   <!-- site metas -->
   
   <title>여기모여</title>
@@ -20,7 +17,6 @@
   <!-- style css -->
   <link rel="stylesheet" type="text/css" href="../css/style.css">
   <!-- Responsive-->
-  <link rel="stylesheet" href="../css/responsive.css">
   <!-- fevicon -->
   <link rel="icon" href="../images/fevicon.png" type="image/gif" />
   <!-- Scrollbar Custom CSS -->
@@ -39,7 +35,7 @@
 
 <style>
   .row_party {
-    width: 1200px;
+    width: 1130px;
     justify-content: flex-start;
   }
   
@@ -57,73 +53,83 @@
   .temper_text_party {
     width: 100%;
     float: left;
+    margin: 0 10px;
     font-size: medium;
-    color: #fabb25;
+    color: #3B4BFF;
     text-transform: uppercase;
     font-weight: bold;
     padding-top: 20px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
   
   .container_main_party {
     position: relative;
-    width: 100%;
-    max-width: 100%;
     float: left;
   }
   
+  .container_main_party_star {
+    position: relative;
+    float: right;
+    padding-right: 5px;
+    margin-bottom: 25px;
+  }
+    
+  .container_main_party_img {
+    position: relative;
+    width: 290px;
+    height: 200px;
+    float: left;
+    
+  }
+  .party_list_img {
+    position: relative; 
+    width: 290px; 
+    height: 200px; 
+    
+    display: flex;
+     justify-content: center; 
+     align-items: center;
+  }
+  
+    .party_list_img :after{display:inline-block; height:100%; content:""; vertical-align:middle;}
   
   .dololr_text_region {
     float: left;
     color: #121111;
-    margin-left: 0px;
+    margin-left: 3px;
     margin-top: 0px;
     margin-bottom: 5px;
-    margin-right: 5px;
+    margin-right: 3px;
+    height: 25px;
     
     font-size: x-small;
     
-    border: 1px solid #fabb25;
     border-radius: 5px;
-    padding-left: 5px;
-    padding-right: 5px;
+    padding: 0px 5px 5px 5px;
   }
   
   .dololr_text_sports {  
     float: left;
     color: #121111;
-    margin-left: 0px;
+    margin-left: 3px;
     margin-top: 0px;
-    margin-bottom: 5px;
+    margin-bottom: 3px;
     margin-right: 5px;
-    
+    height: 25px;
+
     font-size: x-small;
   
     
-    border: 1px solid #fabb25;
     border-radius: 5px;
-    padding-left: 5px;
-    padding-right: 5px;
-  }
-  
-  .dololr_text_datetime {
-    float: right;
-    color: #121111;
-    margin-left: 0px;
-    margin-top: 0px;
-  }
-  
-  .dololr_text_party {
-    width: 30px;
-    float: left;
-    color: #121111;
-    margin-left: 0px;
-    margin-top: 0px;
-    margin-bottom: 0px;
+    padding: 0px 5px 5px 5px;
   }
   
   .dololr_text_party_star {
+    width:100.312px; 
     float: left;
-    margin-left: 0px;
+    margin-left: 3px;
     margin-top: 0px;
     margin-bottom: 0px;
   }
@@ -131,7 +137,7 @@
   .party_search {
     width: 100%;
     float: left;
-    margin-left: 0px;
+    margin-left: 10px;
     margin-top: 10px;
   }
   
@@ -148,13 +154,63 @@
     display: flex !important;
     margin: 10px 10px 10px 0;
     float: left;
-    width: 80px;
+    width: 100px;
+    height: 35px;
+    border-color: 0d6efd;
+  }
+  
+  .form-selectJd {
+          display: inline-block;
+          padding: 0.375rem 2.25rem 0.375rem 0.75rem;
+          -moz-padding-start: calc(0.75rem - 3px);
+          font-size: 1rem;
+          font-weight: 400;
+          line-height: 1.5;
+          color: #212529;
+          background-color: #fff;
+          background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e");
+          background-repeat: no-repeat;
+          background-position: right 0.75rem center;
+          background-size: 16px 12px;
+          border: 1px solid #ced4da;
+          border-radius: 0.375rem;
+          transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+          -webkit-appearance: none;
+          -moz-appearance: none;
+          appearance: none;
+        }
+  .form-selectJd2 {
+          display: inline-block;
+          padding: 0.375rem 2.25rem 0.375rem 0.75rem;
+          -moz-padding-start: calc(0.75rem - 3px);
+          font-size: 1rem;
+          font-weight: 400;
+          line-height: 1.5;
+          color: #212529;
+          background-color: #fff;
+          background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e");
+          background-repeat: no-repeat;
+          background-position: right 0.75rem center;
+          background-size: 16px 12px;
+          border: 1px solid #ced4da;
+          border-radius: 0.375rem;
+          transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+          -webkit-appearance: none;
+          -moz-appearance: none;
+          appearance: none;
+        }
+  
+  .party_condition_datetime {
+    display: flex !important;
+    margin: 10px 10px 10px 0;
+    float: left;    
+    width: 140px;
+    height: 35px;
   }
   
   .party_search_bar {
-    border: 1px solid black;
     margin-top: 10px;
-    width: 40%;
+    width: 700px;
     float: left;
     
   }
@@ -170,7 +226,7 @@
     float: right;
     margin-right: 30px;
     
-    border: 1px solid #fabb25;
+    border: 1px solid #3B4BFF;
     border-radius: 5px;
     padding: 5px 10px 5px 10px;
     font-size: x-small;
@@ -179,19 +235,26 @@
   
   .condition_button {
     float: left;
-    background-color: white;
     margin: 10px 10px 10px 5px;
     
-    border: 1px solid #fabb25;
     border-radius: 5px;
     padding: 5px 10px 5px 10px;
-    font-size: x-small;
+    font-size: small;
+    color: #0d6efd;
+          background-color: transparent;
+          background-image: none;
+          border: 1px solid #0d6efd;
     
   }
-  
-  
+  .condition_button:hover {
+          color: #fff;
+          background-color: #0d6efd;
+          border-color: #0d6efd;
+        }
+
+
   .layout_padding_party {
-    min-width: 1200px;
+    min-width: 1130px;
     padding-top: 30px;
     padding-bottom: 20px;
        
@@ -226,32 +289,57 @@
     font-size: x-small;
     
     
-    border: 1px solid #fabb25;
+    border: 1px solid #3B4BFF;
     border-radius: 5px;
     padding: 5px 10px 5px 10px;
   }
   
   
   .list_image {
+    max-width: 290px;
+    max-height: 200px;
     opacity: 1;
     display: block;
     margin: 0 auto;
     max-height: 200px;
     transition: .5s ease;
     backface-visibility: hidden;
+    position: absolute;
+      left: 50%;
+    transform: translateX(-50%);
   }
 
+.searchBox {
+  overflow: hidden;
+}
   .page_center {
     display: flex;
     margin: auto;
   }
-
+      .windowWidth {
+        max-width:1130px !important;
+        min-width:1130px !important;
+        margin: 0 auto !important;
+      }
+      
+  .btn-outline-successJD {
+          color: #0d6efd;
+          background-color: transparent;
+          background-image: none;
+          border-color: #0d6efd;
+        }
+        .btn-outline-successJD:hover {
+          color: #fff;
+          background-color: #0d6efd;
+          border-color: #0d6efd;
+        }
 </style>
 </head>
 
 <body>
+<div style="width: 100%; overflow: hidden;">
 <!-- header section start -->
-<div class="header_section">
+<div class="header_section windowWidth">
   <div class="container-fluid">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="main_logo">
@@ -279,41 +367,39 @@
 </div>
 <!-- header section end -->
 <!-- furnitures section start -->
-<div class="furnitures_section layout_padding_party">
-  <div class="container">
+<div class="furnitures_section layout_padding_party windowWidth">
+  <div class="">
     <h1 class="our_text">운동 모임 찾기</h1>
-    <p class="ipsum_text">원하는 운동을 찾아보세요!</p>
-    <h2>모임 찾기</h2>
+    <p class="ipsum_text" style="margin-bottom: 40px;" >원하는 운동을 찾아보세요!</p>
     <div class="party_search">
-      <h4>상세검색</h4>
       <div class="party_search_condition">
         <div class="party_search">
           <form action="">
-            <select class="party_condition" id="region_sido">
+            <select class="form-selectJd" id="region_sido">
               <option value="0" selected>-선택안함-</option>
               <option th:text="서울시" id="sidoNo" th:value="1"></option>
             </select>
-            <select class="party_condition"  id="region_sigu">
+            <select class="form-selectJd"  id="region_sigu">
               <th:block th:each="region : ${regions}">
                 <option th:text="${region.sigu}" id="siguNo" th:value="${region.no}"></option>
               </th:block>
             </select>
-            <select class="party_condition"  id="sports_name">
+            <select class="form-selectJd"  id="sports_name">
               <th:block th:each="sport : ${sports}">
                 <option th:text="${sport.name}" id="sportsNo" th:value="${sport.no}"></option>
               </th:block>
             </select>
-            <input id="partyDate" name="partyDate" type="date" >
-            <input id="partyTime" name="partyTime" type="time" step="1" >
+            <input class="form-selectJd2" id="partyDate" name="partyDate" type="date" >
+            <input class="form-selectJd2" id="partyTime" name="partyTime" type="time" step="1" >
           </form>
         </div>
         <div class="party_search_bar">
                  <nav class="navbar navbar-light">
-                 <div style="margin: auto">
+                 <div style="margin: 10px; width: 600px;">
                   <!-- 검색 버튼 시작 -->
-                  <form class="form-inline" action='list' method="get"> 
-                    <input class="form-control mr-sm-2" type="search" id="list_search" name="keyword" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-successJD my-2 my-sm-0" type="button" id="searchBtn">Search</button>
+                  <form class="form-inline searchBox" action='list' method="get"> 
+                    <input style="width: 400px;" class="form-control mr-sm-2" type="search" id="list_search" name="keyword" placeholder="제목으로 찾아보세요." aria-label="Search">
+                    <button class="btn btn-outline-successJD my-2 my-sm-0" type="button" id="searchButton">검색</button>
                   </form>
                   <!-- 검색 버튼 끝 -->
                  </div>
@@ -324,8 +410,8 @@
     </div>
     <div class="furnitures_section2 layout_padding_party"> 
       <div class="button_box">
-        <button th:if="${session.loginMember} != null" class="party_insert_button" type="button" onclick="location.href='form'">모임 개설</button>
-        <button th:if="${session.loginMember} == null" class="party_insert_button" type="button" onclick="location.href='../auth/form'">모임 개설</button>
+        <button th:if="${session.loginMember} != null" class="btn btn-primary" style="float: right;" type="button" onclick="location.href='form'">모임 개설</button>
+        <button th:if="${session.loginMember} == null" class="btn btn-primary" style="float: right;" type="button" onclick="location.href='../auth/form'">모임 개설</button>
       </div>
       <div class="button_box">
         <button type="button" value="0" id="list_reset" class="condition_button">전체보기</button>
@@ -347,65 +433,9 @@
 </div>
 <!-- furnitures section end -->
 
-
-<!-- footer section start -->
-<div class="footer_section layout_padding">
-   <div class="container">
-      <div class="row">
-         <div class="col-lg-3 col-sm-6">
-            <div class="fooer_logo"><img src="../images/footer-logo.png"></div>
-            <p class="footer_lorem_text">There are many variat
-               ions of passages of L
-               orem Ipsum available
-               , but the majority h
-               ave suffered altera
-               tion in some form, by 
-            </p>
-         </div>
-         <div class="col-lg-3 col-sm-6">
-            <h1 class="customer_text">LET US HELP YOU</h1>
-            <p class="footer_lorem_text">There are many variat
-               ions of passages of L
-               orem Ipsum available
-               , but the majority h
-               ave suffered altera
-               tion in some form, by 
-            </p>
-         </div>
-         <div class="col-lg-3 col-sm-6">
-            <h1 class="customer_text">INFORMATION</h1>
-            <p class="footer_lorem_text1">About Us<br>
-               Careers<br>
-               Sell on shopee<br>
-               Press & News<br>
-               Competitions<br>
-               Terms & Conditions
-            </p>
-         </div>
-         <div class="col-lg-3 col-sm-6">
-            <h1 class="customer_text">OUR Design</h1>
-            <p class="footer_lorem_text">There are many variat
-               ions of passages of L
-               orem Ipsum available
-               , but the majority h
-               ave suffered altera
-               tion in some form, by 
-            </p>
-         </div>
-      </div>
-      <div class="input-group mb-3">
-         <input type="text" class="form-control" placeholder="Enter your email" aria-label="Enter your email" aria-describedby="basic-addon2">
-         <div class="input-group-append">
-            <span class="input-group-text" id="basic-addon2"><a href="#">Subscribe</a></span>
-         </div>
-      </div>
-   </div>
-</div>
-<!--  footer section end -->
-
 <!-- copyright section start -->
-<div class="copyright_section"></div>
-<div class="container">
+<div class="copyright_section windowWidth"></div>
+<div class="container windowWidth">
    <div class="social_icon">
       <ul>
          <li><a href="#"><img src="../images/fb-icon.png"></a></li>
@@ -421,25 +451,24 @@
 <script>
 
 
-
 </script>
 
 <!-- Javascript files-->
 <script src="../js/jquery.min.js"></script>
-
-
 <script src="../js/popper.min.js"></script> 
 <script src="../js/bootstrap.bundle.min.js"></script>
 <script src="../js/jquery-3.0.0.min.js"></script>
-<!--  <script src="../js/plugin.js"></script>--><!-- selectbox 뜨는 -->
-<!-- sidebar -->
+<script src="../js/plugin.js"></script>
 <script src="../js/jquery.mCustomScrollbar.concat.min.js"></script>
 <!-- <script src="../js/custom.js"></script> -->
 <!-- javascript --> 
 <!-- <script src="../js/owl.carousel.js"></script> -->
-<script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>    
+<!-- <script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script> -->    
+
 <script src="/app/js/party/partylist.js"></script>
+<!-- 공식부트스트랩 JS --> 
+<script src="../js/bootstrap/bootstrap.js"></script>   
 
-
+</div>
 </body>
 </html>

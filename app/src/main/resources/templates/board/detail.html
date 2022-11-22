@@ -1,39 +1,131 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
     <head>
-        <meta charset="UTF-8">
-        <title>comehere-커뮤니티 게시글 조회</title>
-        
+      <title>comehere-커뮤니티 게시글 조회</title>
+      <meta charset="UTF-8">
       <!-- basic -->
-      <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
-      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
       <!-- mobile metas -->
-      <meta name="viewport" content="width=device-width, initial-scale=1">
-      <meta name="viewport" content="initial-scale=1, maximum-scale=1">
-      <!-- site metas -->
-      <title>Contact</title>
+      <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
+      <!-- <meta name="viewport" content="initial-scale=1, maximum-scale=1"> -->
       <!-- bootstrap css -->
       <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
       <!-- style css -->
       <link rel="stylesheet" type="text/css" href="../css/style.css">
       <!-- Responsive-->
-      <link rel="stylesheet" href="../css/responsive.css">
+      <!-- <link rel="stylesheet" href="../css/responsive.css"> -->
       <!-- fevicon -->
       <link rel="icon" href="../images/fevicon.png" type="image/gif" />
       <!-- Scrollbar Custom CSS -->
-      <link rel="stylesheet" href="../css/jquery.mCustomScrollbar.min.css">
+      <!-- <link rel="stylesheet" href="../css/jquery.mCustomScrollbar.min.css"> -->
       <!-- Tweaks for older IEs-->
-      <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+      <!-- <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css"> -->
       <!-- owl stylesheets --> 
-      <link rel="stylesheet" href="../css/owl.carousel.min.css">
+      <!-- <link rel="stylesheet" href="../css/owl.carousel.min.css"> -->
       <!-- <link rel="stylesheet" href="../css/owl.theme.default.min.css"> -->
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
+      <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen"> -->
       
       <!-- 공식부트스트랩 CSS -->
       <link href="../css/bootstrap/bootstrap.css" rel="stylesheet">
         
       <style>
+      .windowWidth {
+        max-width:1130px !important;
+        min-width:1130px !important;
+        margin: auto !important;
+        float: none !important;
+      }
+      .nav-line {
+        border-bottom: 1px solid #e4e8eb;
+        border-top: 1px solid #e4e8eb;
+        margin-bottom: 30px;
+      }
+      .container-detail {
+        width: 960px;
+        margin: auto;
+      }
+      .bnt-setting1 {
+        font-size: 13px;
+        float: right; 
+        position: relative; 
+        top:0; 
+        left:0; 
+        z-index: 998; 
+        margin-left: 5px;
+      }
+      .bnt-setting {
+        color: white !important;
+        font-size: 13px;
+      }
+      .board-title {
+        font-size: 18px;
+      }
+      .board-info {
+        position: relative;
+        margin-top: 22px;
+        padding-bottom: 22px;
+        border-bottom: 1px solid #e4e8eb;
+      }
+      
+.comment_input_wrap {
+    overflow: hidden;
+    position: relative;
+    margin-top: 10px;
+    border: 1px solid #d7dce5;
+    border-radius: 8px;
+    box-sizing: border-box;
+}
+.comment_input_wrap .comment_input_bot {
+    height: 47px;
+    box-sizing: border-box;
+}
+.comment_input_wrap .comment_submit {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    z-index: 10;
+    width: 128px;
+    border-radius: 0;
+}
+.comment_input_wrap .comment_input textarea {
+    margin-top: 12px;
+    width: 100%;
+    height: 98px;
+    border: 0;
+    box-sizing: border-box;
+    color: #373f57;
+    font-size: 14px;
+    letter-spacing: -1px;
+    line-height: 24px;
+    background-color: #fff;
+    resize: none;
+}
+.comment_input_wrap .comment_input {
+    padding: 22px 24px 0 24px;
+    border-bottom: 1px solid #d7dce5;
+}
+.comment_input_wrap .comment_input.img_add {
+    padding-right: 108px;
+}
+.btnSizeL {
+    padding: 10px 16px 12px;
+    height: 48px;
+    font-size: 16px;
+    line-height: 24px;
+}
+[class*="btnSize"] {
+    display: inline-block;
+    border: 1px solid #4876ef;
+    border-radius: 4px;
+    box-sizing: border-box;
+    color: #fff;
+    letter-spacing: -1px;
+    text-align: center;
+    background-color: #0d6efd;
+}
+      
+      
         .temp-line {
           border: 1px solid black;
         }
@@ -88,18 +180,12 @@
         }
         
         #community-title {
-          color: #ffb607;
+          color: #0d6efd;
         }
         
          .mainList-title {
           margin: 0 66px 0 66px;
           font-weight: bold;
-        }
-        
-        .row1 {
-          width: 50%;
-          border-right: 1px solid #dee2e6;
-          float: left;
         }
         
         .clg-plus {
@@ -121,7 +207,7 @@
           width: 48%;
           padding: 2%;
           margin: 4px;
-          background-color: #fcd780;
+          background-color: #0d6efd;
         }
         .recent-clg-img-wapper {
           height: 256.031px;
@@ -142,15 +228,23 @@
         }
         
         .form-content {
-          min-height: 700px;
+          margin-top: 32px;
+          min-height: 400px;
         }
         
         .profile_pic {
+          margin-right: 5px;
+          border: 1px solid rgba(55, 63, 87, 0.15);
+          border-radius: 50%;
           height: 50px;
           width: 50px;
         }
         .board-wrapper {
+          margin-bottom: 10px;
+          margin-top: 10px;
           padding: 30px;
+          border: 1px solid #d7dce5;
+          border-radius: 8px;      
         }
         
         .thumbnail-temp {
@@ -175,11 +269,11 @@
   -webkit-backdrop-filter: blur(1.5px);
   border-radius: 10px;
   border: 1px solid rgba(255, 255, 255, 0.18);
+  z-index: 999;
 }
 
 #modal .modal-window {
-  background: rgba(255, 212, 0, 0.70);
-  /* background: rgba( 69, 139, 197, 0.70 ); */
+  background: rgba(13, 110, 253, 0.70);
   box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
   backdrop-filter: blur(13.5px);
   -webkit-backdrop-filter: blur(13.5px);
@@ -256,7 +350,7 @@
   width: 30%;
   float: left;
   font-size: 20px;
-  color: #f8b81f7a;
+  color: #0d6efd;
   text-align: center;
   border: 2px solid #ffffff;
   border-radius: 5px;
@@ -272,6 +366,65 @@
   /* f8b81f7a */
 }
 
+.comment-wrapper {
+  margin-top: 30px;
+} 
+.commentList {
+  border-bottom: 1px solid #d7dce5;
+}
+.comment-area {
+  position: relative;
+  padding: 24px 16px;
+  border-top: 1px solid #d7dce5;
+}
+.comment-cont {
+  display: inline-block;
+  width: 90%;
+  min-height: 60px;
+  margin-bottom: 20px;
+}
+.comment-info {
+    right: 20px;
+    top: 20px;
+    position: absolute;
+}
+.comment-writer {
+    position: absolute;
+    left: 30px;
+    top: 90px;
+    color: gray;
+}
+.btn-jd {
+    color: black !important;
+    border: #d7dce5 1px solid;
+}
+.btn-jd:hover {
+    background-color: #d7dce5;
+    border: #d7dce5 1px solid;
+}
+.update-form {
+    resize: none;
+    border: #d7dce5 1px solid !important;
+    z-index: 300;
+    background-color: white !important;
+    border-radius: 8px !important;
+}
+.in-img {
+    width: 188.398px;
+    min-height: 240px;
+    max-height: 240px;
+    border-radius: 12px;
+    object-fit: cover;
+}
+.clg1 {
+    display: inline-block;
+    padding: 10px;
+    border: 1px solid #eaedf4;
+    border-radius: 12px;
+    width: 210px;
+}
+
+
         .swal-text {
           text-align: center;
         } 
@@ -281,9 +434,9 @@
     </head>
     <body>
   <!-- header section start -->
-  <div class="header_section">
-    <div class="container-fluid">
-      <nav class="navbar navbar-expand-lg navbar-light">
+  <div class="header_section windowWidth">
+    <div class="container-fluid windowWidth">
+      <nav class="navbar navbar-expand-lg navbar-light windowWidth">
         <div class="main_logo"><a href="/app"><img src="../images/logo.png"></a></div>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -307,71 +460,149 @@
   </div>
   <!-- header section end -->
       <!-- furnitures section start -->
-      <div class="furnitures_sectionJD layout_padding">
-         <a href="main"><h1 class="container" id="community-title">커뮤니티</h1></a>
-         <div class="container cate-bottom-line">
+         <!-- <a href="main"><h1 class="container" id="community-title">커뮤니티</h1></a> -->
            <!-- 게시판 카테고리 이동 시작 -->
-           <ul class="nav nav-pills nav-justified">
+           <div class="nav-line">
+           <ul class="nav nav-pills nav-justified windowWidth">
              <li class="nav-item"><a class="nav-link" href="list?no=1">자유게시판</a></li>
              <li class="nav-item"><a class="nav-link" href="list?no=2">식단게시판</a></li>
              <li class="nav-item"><a class="nav-link" href="list?no=3">챌린지게시판</a></li>
              <li class="nav-item"><a class="nav-link" href="list?no=4">질문게시판</a></li>
              <li class="nav-item"><a class="nav-link" href="list?no=5">핫딜게시판</a></li>
            </ul>
+           </div>
            <!-- 게시판 카테고리 이동 끝 -->
 
-            <h1>글조회</h1>
-            <h2 th:if="${board.cateno == 1}">자유게시판</h2>
-            <h2 th:if="${board.cateno == 2}">식단게시판</h2>
-            <h2 th:if="${board.cateno == 3}">챌린지게시판</h2>
-            <h2 th:if="${board.cateno == 4}">질문게시판</h2>
-            <h2 th:if="${board.cateno == 5}">핫딜게시판</h2>
-            
-            <div>
-              <a data-th-if="${session.loginMember} != null and ${session.loginMember.no} == ${board.writer.no}" 
-                 data-th-href="@{updateForm(no=${board.no})}" 
-                 class="btn btn-primary" 
-                 role="button">수정</a>
-              <a th:if="${session.loginMember} != null and ${session.loginMember.no} == ${board.writer.no}" 
-                 class="btn btn-primary"
-                 role="button"
-                 id="delete-button">삭제</a>
-              <a data-th-if="${session.loginMember} != null and ${session.loginMember.no} != ${board.writer.no}" 
-                 class="btn btn-primary btn-modal" 
-                 href="#" 
-                 role="button" 
-                 type="button">신고</a>
-              <a data-th-href="@{list(no=${board.cateno})}"
-                 class="btn btn-primary">목록</a>
-              <a data-th-if="${session.loginMember} != null and ${session.loginMember.no} != ${board.writer.no}" 
-                 class="btn btn-primary"  role="button" id="scrap-button" href="#">스크랩</a>
-            </div>
-            
-            <div class="temp-line board-wrapper">
+            <div class="furnitures_sectionJD windowWidth">
+            <div class="container-detail">
+              <div style="height: 34px;">
+                <span style="float: right;"><a data-th-href="@{list(no=${board.cateno})}" class="btn btn-primary bnt-setting">목록</a></span>
+              </div>
+            <div class="board-wrapper">
               <input th:value="${board.no}" value=게시글번호 id="boardNo" name='no' type="hidden">
-              <h3 th:text='${board.title}'></h3>
-              <div>
+              <a data-th-if="${session.loginMember} != null and ${session.loginMember.no} != ${board.writer.no}" 
+               class="btn btn-primary bnt-setting1"  role="button" id="scrap-button" href="#">스크랩</a>
+              <a data-th-if="${session.loginMember} != null and ${session.loginMember.no} != ${board.writer.no}" 
+               class="btn btn-primary btn-modal bnt-setting1" 
+               href="#" 
+               role="button" 
+               type="button">신고</a>
+              <h3 class="board-title" th:text='${board.title}'>제목없음</h3>
+              <div class="board-info" style="color: gray">
                 <img th:src="@{'/member/files/' + ${board.writer.filepath}}" class="profile_pic" alt="profile_picture" onerror="this.src='../images/profile-pic.png';" >
                 <span th:text="${board.writer.nickname}"></span>
-                <span th:text="${board.createdDate}"></span>
-                <br>조회수 : <span th:text="${board.viewCount}">0</span>
+                <div style="float: right; margin-top: 28px">
+                  <span th:text="${board.createdDate}"></span>
+                  <img style="width: 18px; margin-left: 1px;" src="../images/view-icon2.png"><span th:text="${board.viewCount}">0</span>
+                </div>
               </div>
-              <div class="temp-line" th:if="${board.cateno == 3}">
-                <img th:if="${board.thumbnail == null}" src="/app/board/files/nothumpnail.jpg" alt="thumpnail" class="thumbnail-temp"/>
-                <img th:if="${board.thumbnail != null}" th:src="@{'/board/files/' + ${board.thumbnail}}" alt="Avatar" class="thumbnail-temp"/>
+              <div th:if="${board.cateno == 3}">
+                <h5 style="margin-top: 15px; margin-left: 41px; margin-bottom: 0px; color: gray;">챌린지 인증 사진</h5>
+                <div class="clg1">
+                  <img th:if="${board.thumbnail == null}" src="/app/board/files/nothumpnail.jpg" alt="thumpnail" class="in-img"/>
+                  <img th:if="${board.thumbnail != null}" th:src="@{'/board/files/' + ${board.thumbnail}}" alt="Avatar" class="in-img"/>
+                </div>
               </div>
               <div th:utext="${board.content}" class="form-content">내용</div>
             </div>
-            
+            <div style="height: 34px;">
+              <span style="float: right;">
+                <a data-th-if="${session.loginMember} != null and ${session.loginMember.no} == ${board.writer.no}" 
+                   data-th-href="@{updateForm(no=${board.no})}" 
+                   class="btn btn-primary bnt-setting" 
+                   role="button">수정</a>
+                <a data-th-if="${session.loginMember} != null and ${session.loginMember.no} == ${board.writer.no}" 
+                   class="btn btn-primary bnt-setting"
+                   role="button"
+                   id="delete-button">삭제</a>
+              </span>
+            </div>
+              
              <!-- 댓글 블록 시작 -->
             <div>
-              <h2>달린 댓글 부분</h2>
-              <div class="container">
-                  <div class="commentList"></div>
+              <div th:if="${session.loginMember}">        
+                <input type="hidden" id="memberNo"  th:value="${session.loginMember.no}">
+                <div class="comment_input_wrap">
+                  <div class="comment_input img_add">
+                    <textarea id="commentCont" class="scrollbar" placeholder="내용을 입력하세요."></textarea>
+                  </div>
+                  <div class="comment_input_bot">
+                    <button id="commentButton" type="button" class="btnSizeL comment_submit">댓글 등록</button>
+                  </div>
+                </div>
+              </div>
+              <div th:if="${session.loginMember == null}">  
+                <input type="hidden" id="memberNo"  value=0>      
+                <div class="comment_input_wrap" onclick="alertToLogin();">
+                  <div class="comment_input img_add">
+                      <textarea id="commentCont" class="scrollbar" placeholder="댓글을 등록하려면 로그인 하세요." disabled=""></textarea>
+                  </div>
+                  <div class="comment_input_bot">
+                    <button id="commentButton" type="button" class="btnSizeL comment_submit" onclick="alertToLogin();">댓글 등록</button>
+                  </div>
+                </div>
+              </div>
+<!--               
+              <div style="width: 80%;" class="temp-line">
+                  <div class="form-group">
+                      <label for="comment"></label>
+                      <div th:if="${session.loginMember}">
+                        <input type="hidden" id="memberNo"  th:value="${session.loginMember.no}">
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="commentCont"
+                            placeholder="내용을 입력하세요."
+                            style="height: 30px;"
+                            th:name="${session.loginMember.nickname}">
+                        </div>
+                      <div th:if="${session.loginMember == null}">
+                        <input type="hidden" id="memberNo"  value=0>
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="commentCont"
+                            placeholder="댓글을 등록하려면 로그인 하세요."
+                            style="height: 60px;" readonly
+                            onclick="alertToLogin();">
+                      </div>
+                  </div>
+                  <div>
+                      <button id="commentButton" class="btn btn-sm btn-success">등록</button>
+                  </div>
+               </div>
+             -->
+<!--                <div class="comment-wrapper1">
+                  <div class="commentList1">
+                    <div class="commentArea comment-area">
+                      <div class="commentInfo comment-info"><a class="btn btn-outline-primary btn-sm" onclick="commentComplain(31);"> 신고 </a> </div>
+                      <div class="commentContent298 comment-cont">
+                        <label for="form"></label>
+                        <div class="input-group">
+                          <textarea cols="40" rows="3" class="form-control" name="content_298" value="ㅓㅗ허ㅗㅎㅏㅐㅔㅐㅏㅓㅗ허ㅗ허ㅗㅎ"></textarea>
+                          <span class="input-group-btn">
+                           <button class="btn btn-default" type="button" onclick="commentUpdateProc(298);">수정</button>
+                          </span>
+                        </div>
+                      </div>
+                      <div class="comment-writer">동동</div>
+                    </div>
+                    <div class="commentArea comment-area">
+                      <div class="commentContent comment-cont"> 내용</div>
+                      <div class="commentInfo comment-info"><a class="btn btn-outline-primary btn-sm" onclick="commentComplain(31);"> 신고 </a> </div>
+                    </div>
+                  </div>
+
+              </div> -->
+              
+              
+              <div class="comment-wrapper">
+                  <div class="commentList">
+                  </div>
               </div>
             <!-- 댓글페이징 -->
             <nav aria-label="Page navigation">
-              <ul class="pagination">
+              <ul class="pagination" style="margin-top: 20px">
                 <div class="page_center">
                   <!-- 이전 페이지 보류                 
                   <li class="page-item" th:if="${pageMaker.prev}">
@@ -396,36 +627,7 @@
               </ul>
             </nav>
             <!-- 댓글페이징 -->
-              
-              <h2>댓글 쓰기 부분</h2>
-              <div style="width: 80%;" class="temp-line">
-                  <div class="form-group">
-                      <label for="comment"></label>
-                      <div th:if="${session.loginMember}">
-                        <input type="hidden" id="memberNo"  th:value="${session.loginMember.no}" >
-                        <input
-                            type="text"
-                            class="form-control"
-                            id="commentCont"
-                            placeholder="내용을 입력하세요."
-                            style="height: 30px;"
-                            th:name="${session.loginMember.nickname}">
-                        </div>
-                      <div th:if="${session.loginMember == null}">
-                        <input type="hidden" id="memberNo"  value=0>
-                        <input
-                            type="text"
-                            class="form-control"
-                            id="commentCont"
-                            placeholder="댓글을 등록하려면 로그인 하세요."
-                            style="height: 60px;" readonly
-                            onclick="alertToLogin();">
-                      </div>
-                  </div>
-                  <div>
-                      <button id="commentButton" class="btn btn-sm btn-success">등록</button>
-                  </div>
-              </div>
+
             </div>
             <!-- 댓글 블록 끝 -->
 
@@ -471,7 +673,7 @@
     	  const boardNo = document.getElementById( 'boardNo').value;
     	  const memberNo = document.getElementById( 'memberNo' ).value;
     	  const lastPageNo = document.getElementsByClassName('page-link').length;
-        document.getElementById('commentButton').addEventListener('click', insertAndReplay);
+        document.getElementById('commentButton').addEventListener('click', insertCommentProcess);
     	  
     	  // 로그인 회원 유효성을 위한 셋팅
     	  let loginMemberNo = -1;
@@ -498,7 +700,6 @@
           		$(e.currentTarget).addClass('active');
           });
         });
-
     		// 댓글 등록 시 과정 (댓글 유효성 체크 -> 등록(ajax) -> 댓글 개수 카운트)
         function insertCommentProcess(){
           if (document.getElementById('commentCont').value == '') {
@@ -538,23 +739,27 @@
             success : function(result){
               var a =''; 
               $.each(result, function(key, value){ 
-                a += '<div class="commentArea temp-line" style="min-height: 100px;border-bottom:1px solid darkgray; margin-bottom: 15px;">';
-                a += '<div class="commentInfo' + value.no + '">' + '댓글번호 : ' + value.no + ' / 작성자 : ' + value.writer.nickname;
+                a += '<div class="commentArea comment-area">';
+                a += '<div class="commentInfo' + value.no + ' comment-info">';
                 if (loginMemberNo == value.writer.no) {
-                  a += '<a onclick="commentUpdate(' + value.no + ',\'' + value.content + '\');"> 수정 </a>';
-                  a += '<a onclick="commentDelete('+value.no+');"> 삭제 </a> </div>';
+                  a += '<a id="udBnt' +value.no+ '" class="btn btn-outline-primary btn-sm btn-jd" onclick="commentUpdate(' + value.no + ',\'' + value.content + '\');"> 수정 </a>';
+                  a += '<a id="dlBnt' +value.no+ '" class="btn btn-outline-primary btn-sm btn-jd" onclick="commentDelete('+value.no+');"> 삭제 </a> </div>';
                 }
-                if (loginMemberNo != value.writer.no && loginMemberNo != -1) {
-                    a += '<a  onclick="commentComplain('+value.no+');"> 신고 </a> </div>';
+                if (loginMemberNo != -1 && loginMemberNo != value.writer.no) {
+                    a += '<a class="btn btn-outline-primary btn-sm btn-jd" onclick="commentComplain('+value.no+');"> 신고 </a></div>';
                 }
-                a += '<div class="commentContent'+value.no+' temp-line"> <p> 내용 : '+value.content +'</p>';
-                  a += '</div></div></div>';
+                if (loginMemberNo == -1) {
+                    a += '<a class="btn btn-outline-primary btn-sm btn-jd" onclick="alertToLoginByTattle();"> 신고 </a></div>';
+                }
+                a += '<div class="commentContent'+value.no+' comment-cont">'+value.content;
+                a += '<div class="comment-writer">' +value.writer.nickname + '</div>';
+                a += '</div></div></div>';
               });
               $(".commentList").html(a);
             }
           });
         }
-      	
+    	  
       	// 댓글 등록
         function insertAndReplay(){
           $.ajax({
@@ -608,15 +813,19 @@
       
         //댓글 수정 모드- 댓글 내용 출력을 input 폼으로 변경 
         function commentUpdate(commentNo, content){
+        	$('#udBnt'+commentNo).css('display', 'none');
+        	$('#dlBnt'+commentNo).css('display', 'none');
             var a ='';
             a += '<label for="form"></label>';
-            a += '<div class="input-group temp-line">';
-            a += '<input type="text" cols="40" rows="5" class="form-control" name="content_' + commentNo + '" value="' + content + '"/>';
-            a += '<span class="input-group-btn"><button class="btn btn-default" type="button" onclick="commentUpdateProc(' + commentNo + ');">수정</button></span>';
+            a += '<div class="input-group">';
+            a += '<textarea cols="40" rows="3" class="form-control update-form" name="content_' + commentNo + '">' + content + '</textarea>';
+            a += '<span class="input-group-btn"><button class="btn btn-outline-primary btn-sm btn-jd" type="button" onclick="commentUpdateProc(' + commentNo + ');">수정</button></span>';
+            a += '<span class="input-group-btn"><button class="btn btn-outline-primary btn-sm btn-jd" type="button" onclick="commentList()">취소</button></span>';
             a += '</div>';
             
             $('.commentContent'+commentNo).html(a);
         }
+        
         // 댓글 수정
         function commentUpdateProc(commentNo){
             var updateContent = $('[name=content_'+commentNo+']').val();
@@ -634,6 +843,19 @@
         function alertToLogin(){
             swal({
                 text :  "댓글을 작성하려면 로그인을 해야합니다.\n로그인하시겠습니까?",
+                icon : "warning",
+                buttons : ["아니요", "예"],
+              }).then(function(isConfirm) {
+                if (isConfirm) {
+                  location.href = '../auth/form';
+                } else{
+                  return false;
+                }
+            });
+        }
+        function alertToLoginByTattle(){
+            swal({
+                text :  "신고를 하려면 로그인을 해야합니다.\n로그인하시겠습니까?",
                 icon : "warning",
                 buttons : ["아니요", "예"],
               }).then(function(isConfirm) {
