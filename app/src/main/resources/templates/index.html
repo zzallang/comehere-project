@@ -117,39 +117,37 @@ body .container {
 </head>
 <body>
 <div style="overflow: hidden; min-width: 1190px;">
-	<!-- header section start -->
-	<div class="header_section">
-		<div class="container-fluid">
-			<nav class="navbar navbar-expand-lg navbar-light bg-light">
-				<div class="main_logo">
-					<a href="/app"><img src="images/logo.png"></a>
-				</div>
-				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-					<span class="navbar-toggler-icon"></span>
-				</button>
-				<div class="collapse navbar-collapse" id="navbarSupportedContent">
-					<ul class="navbar-nav mr-auto">
-						<li class="nav-item"><a class="nav-link" href="party/list">운동찾기</a></li>
-						<li class="nav-item"><a class="nav-link" href="board/main">커뮤니티</a></li>
-						<li class="nav-item"><a class="nav-link" href="notice/list">공지사항</a></li>
-					</ul>
-					<div class="login-bt">
-						<ul>
-							<li style="margin-right: 100px" data-th-if="${session.loginMember != null and session.loginMember.id == 'admin'}"><a href="amdin/">관리</a></li>
-							<li data-th-if="${session.loginMember == null}"><a href="auth/form">로그인</a></li>
-							<li data-th-if="${session.loginMember != null}"><a href="mypage/my-post">마이페이지</a></li>
-							<li data-th-if="${session.loginMember != null}"><a href="auth/logout" data-th-text="${session.loginMember.name} + '(로그아웃)'">동동(로그아웃)</a></li>
-						</ul>
-					</div>
-				</div>
-			</nav>
-		</div>
-	</div>
-	<!-- header section end -->
+  <!-- header section start -->
+  <div class="header_section">
+    <div class="container-fluid">
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="main_logo">
+          <a href="/app"><img src="images/logo.png"></a>
+        </div>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item"><a class="nav-link" href="party/list">운동찾기</a></li>
+            <li class="nav-item"><a class="nav-link" href="board/main">커뮤니티</a></li>
+            <li class="nav-item"><a class="nav-link" href="notice/list">공지사항</a></li>
+          </ul>
+          <div class="login-bt">
+            <ul>
+              <li data-th-if="${session.loginMember == null}"><a href="auth/form" >로그인</a></li>
+              <li data-th-if="${session.loginMember != null and session.loginMember.id != 'admin'}"><a href="mypage/my-post">마이페이지</a></li>
+              <li data-th-if="${session.loginMember != null}"><a href="auth/logout" data-th-text="${session.loginMember.name} + '(로그아웃)'">동동(로그아웃)</a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </div>
+  <!-- header section end -->
 
 	<!-- banner section start -->
-	<div class="layout_padding banner_section">
-	<div id="mainImg" >
+	<div id="mainImg" class="layout_padding banner_section">
 		<div class="container" style="width:1200px;">
 			<div id="costum_slider" class="carousel slide" data-ride="carousel">
 				<div class="carousel-inner">
@@ -182,7 +180,6 @@ body .container {
 			</div>
 		</div>
 	</div>
-	</div> 
 	<!-- banner section end -->
 	<!-- copyright section start -->
 	<div class="copyright_section">
@@ -211,37 +208,37 @@ body .container {
 		<script src="js/owl.carousel.js"></script>
 		<script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
 
-		<script type="text/javascript">
-			$('.carousel-control-next')
-					.click(
-							function() {
+    <script type="text/javascript">
+      $('.carousel-control-next')
+          .click(
+              function() {
 
-								if ($('#mainImg').attr("class") == 'layout_padding banner_section') {
-									$('#mainImg').removeClass('banner_section');
-									$('#mainImg').addClass('banner_section2');
-								} else if ($('#mainImg').attr("class") == 'layout_padding banner_section2') {
-									$('#mainImg')
-											.removeClass('banner_section2');
-									console.log("다음 시작");
-									$('#mainImg').addClass('banner_section');
-								}
-							});
-			$('.carousel-control-prev')
-					.click(
-							function() {
-								if ($('#mainImg').attr("class") == 'layout_padding banner_section') {
-									$('#mainImg').removeClass('banner_section');
-									$('#mainImg').addClass('banner_section2');
-								} else if ($('#mainImg').attr("class") == 'layout_padding banner_section2') {
-									console.log("이전 시작");
-									$('#mainImg')
-											.removeClass('banner_section2');
-									$('#mainImg').addClass('banner_section');
-								}
-							});
-		</script>
+                if ($('#mainImg').attr("class") == 'layout_padding banner_section') {
+                  $('#mainImg').removeClass('banner_section');
+                  $('#mainImg').addClass('banner_section2');
+                } else if ($('#mainImg').attr("class") == 'layout_padding banner_section2') {
+                  $('#mainImg')
+                      .removeClass('banner_section2');
+                  console.log("다음 시작");
+                  $('#mainImg').addClass('banner_section');
+                }
+              });
+      $('.carousel-control-prev')
+          .click(
+              function() {
+                if ($('#mainImg').attr("class") == 'layout_padding banner_section') {
+                  $('#mainImg').removeClass('banner_section');
+                  $('#mainImg').addClass('banner_section2');
+                } else if ($('#mainImg').attr("class") == 'layout_padding banner_section2') {
+                  console.log("이전 시작");
+                  $('#mainImg')
+                      .removeClass('banner_section2');
+                  $('#mainImg').addClass('banner_section');
+                }
+              });
+    </script>
 
 
-	</div>
+
 </body>
 </html>

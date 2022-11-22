@@ -48,6 +48,7 @@ public class MypageController {
 
     // 페이징하기 위한 연산 
     PageMaker pageMaker = new PageMaker();
+    cri.setPerPageNum(10);
     pageMaker.setCri(cri);
     pageMaker.setTotalCount(boardService.countMyPost(loginMember.getNo()));
 
