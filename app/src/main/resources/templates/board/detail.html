@@ -64,6 +64,8 @@
       .board-info {
         position: relative;
         margin-top: 22px;
+        padding-bottom: 22px;
+        border-bottom: 1px solid #e4e8eb;
       }
       
 .comment_input_wrap {
@@ -241,7 +243,7 @@
           margin-bottom: 10px;
           margin-top: 10px;
           padding: 30px;
-          border: 1px solid #edeef0;
+          border: 1px solid #d7dce5;
           border-radius: 8px;      
         }
         
@@ -394,7 +396,7 @@
     color: gray;
 }
 .btn-jd {
-    color: #d7dce5;
+    color: black !important;
     border: #d7dce5 1px solid;
 }
 .btn-jd:hover {
@@ -407,6 +409,20 @@
     z-index: 300;
     background-color: white !important;
     border-radius: 8px !important;
+}
+.in-img {
+    width: 188.398px;
+    min-height: 240px;
+    max-height: 240px;
+    border-radius: 12px;
+    object-fit: cover;
+}
+.clg1 {
+    display: inline-block;
+    padding: 10px;
+    border: 1px solid #eaedf4;
+    border-radius: 12px;
+    width: 210px;
 }
 
 
@@ -481,9 +497,12 @@
                   <img style="width: 18px; margin-left: 1px;" src="../images/view-icon2.png"><span th:text="${board.viewCount}">0</span>
                 </div>
               </div>
-              <div class="temp-line" th:if="${board.cateno == 3}">
-                <img th:if="${board.thumbnail == null}" src="/app/board/files/nothumpnail.jpg" alt="thumpnail" class="thumbnail-temp"/>
-                <img th:if="${board.thumbnail != null}" th:src="@{'/board/files/' + ${board.thumbnail}}" alt="Avatar" class="thumbnail-temp"/>
+              <div th:if="${board.cateno == 3}">
+                <h5 style="margin-top: 15px; margin-left: 41px; margin-bottom: 0px; color: gray;">챌린지 인증 사진</h5>
+                <div class="clg1">
+                  <img th:if="${board.thumbnail == null}" src="/app/board/files/nothumpnail.jpg" alt="thumpnail" class="in-img"/>
+                  <img th:if="${board.thumbnail != null}" th:src="@{'/board/files/' + ${board.thumbnail}}" alt="Avatar" class="in-img"/>
+                </div>
               </div>
               <div th:utext="${board.content}" class="form-content">내용</div>
             </div>
@@ -801,8 +820,8 @@
             a += '<label for="form"></label>';
             a += '<div class="input-group">';
             a += '<textarea cols="40" rows="3" class="form-control update-form" name="content_' + commentNo + '">' + content + '</textarea>';
-            a += '<span class="input-group-btn"><button class="btn btn-default btn-sm" type="button" onclick="commentUpdateProc(' + commentNo + ');">수정</button></span>';
-            a += '<span class="input-group-btn"><button class="btn btn-default btn-sm" type="button" onclick="commentList()">취소</button></span>';
+            a += '<span class="input-group-btn"><button class="btn btn-outline-primary btn-sm btn-jd" type="button" onclick="commentUpdateProc(' + commentNo + ');">수정</button></span>';
+            a += '<span class="input-group-btn"><button class="btn btn-outline-primary btn-sm btn-jd" type="button" onclick="commentList()">취소</button></span>';
             a += '</div>';
             
             $('.commentContent'+commentNo).html(a);

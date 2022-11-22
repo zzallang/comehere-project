@@ -66,7 +66,7 @@
         min-height: 240px;
         max-height: 240px; 
         border-radius: 12px;
-        /* object-fit: cover; */
+        object-fit: cover; 
       }
       .clg-in-title {
         position: relative;
@@ -301,8 +301,10 @@
                       <span class="clg" style="position:relative;">
                         <div class="clg-in">
                           <a th:href="@{detail(no=${board.no})}">
+                          <div>
                             <img class="clg-in-img" th:if="${board.thumbnail == null}" src="/app/board/files/nothumpnail.jpg"/>
                             <img class="clg-in-img" th:if="${board.thumbnail != null}" th:src="@{'/board/files/' + ${board.thumbnail}}"/>
+                          </div>
                           </a>
                           <div class="clg-in-title">
                             <div class="clg-in-tt">
