@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import com.bitcamp.testproject.dao.NoticeDao;
 import com.bitcamp.testproject.vo.Notice;
 
@@ -38,6 +39,7 @@ public class DefaultNoticeService implements NoticeService {
     noticeDao.increaseViews(no);
   }
 
+  @Transactional
   @Override
   public boolean update(Notice notice) {
 
