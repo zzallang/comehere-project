@@ -35,8 +35,11 @@ body {
      line-height: 1.80857;
      font-weight: normal;
      overflow-x: hidden;
+     max-width:1280px !important;
+     min-width:1280px !important;
+     margin: auto !important;
+     float: none !important;
 }
-
 a {
      color: #1f1f1f;
      text-decoration: none !important;
@@ -212,9 +215,9 @@ button {
 }
 
 .header_section{
-    width: 100%;
+    width: 1100px;
     float: left;
-    background-image: url(../images/header-bg.png);
+    background: url(../images/);
     height: auto;
     background-size: 100%;
 }
@@ -236,13 +239,13 @@ button {
     text-transform: uppercase;
 }
 .navbar-light .navbar-nav .nav-link:focus, .navbar-light .navbar-nav .nav-link:hover {
-    color: #ffb607;
+    color: #0d6efd;
 }
 .call_text {
     width: 100%;
     float: left;
     font-size: 18px;
-    color: #ffb607;
+    color: #0d6efd;
     padding-top: 10px;
 }
 
@@ -265,7 +268,7 @@ button {
     color: #000;
 }
 .login-bt li a:hover{
-    color: #ffb607;
+    color: #0d6efd;
 }
 .navbar-expand-lg .navbar-nav .nav-link {
     padding-right: 20px;
@@ -289,10 +292,20 @@ button {
 .banner_section {
     width: 100%;
     float: left;
-    background-image: url(../images/banner-bg.png);
-    height: auto;
+    /* background-image: url(../images/banner-bg.gif); */
+    background: url('../images/banner-bg.gif') no-repeat center center fixed;
+    height: 874px;
     padding-bottom: 50px;
-    background-size: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.banner_section2 {
+    width: 100%;
+    float: left;
+    background: url('../images/banner-bg7.gif') no-repeat center center fixed;
+    height: 874px;
+    padding-bottom: 50px;
+    background-size: cover;
     background-repeat: no-repeat;
 }
 .icon_1{
@@ -329,16 +342,14 @@ button {
     width: 100%;
     float: left;
     font-size: 18px;
-    color: #ffffff;
-    background-color: #ffb607;
+    color: #000;
     text-align: center;
     padding: 10px 0px;
     border-radius: 5px;
     text-transform: uppercase;
 }
 .contact_bt a:hover{
-    color: #ffffff;
-    background-color: #000;
+    background-color: #0d6efd;
 }
 
 .fa-angle-right:before {
@@ -350,29 +361,27 @@ button {
 #costum_slider a.carousel-control-prev {
     position: absolute;
     left: -153px;
-    top: 57%;
-    background-color: #000;
-    color: #ffffff;
+    top: 37%;
+    color: #000;
     border-radius: 100px;
 }
 
 #costum_slider a.carousel-control-next {
     position: absolute;
     right: -150px;
-    top: 57%;
+    top: 45%;
 }
 #costum_slider .carousel-control-prev, #costum_slider .carousel-control-next {
     width: 85px;
     height: 85px;
-    background: #000;
-    opacity: 1;
+    opacity: 0.5;
     font-size: 30px;
-    color: #fff;
+    color: #000;
     border-radius: 100px;
 }
 #costum_slider .carousel-control-prev:hover, #costum_slider .carousel-control-next:hover, #costum_slider .carousel-control-prev:focus, #costum_slider .carousel-control-next:focus {
-    background: #f8ca12;
-    color: #fff;
+    background: #0d6efd;
+    color: #000;
 }
 
 .services_section{
@@ -435,20 +444,19 @@ button {
     float: left;
     font-size: 18px;
     color: #ffffff;
-    background-color: #ffb607;
+    background-color: #0d6efd;
     text-align: center;
     padding: 10px 0px;
     border-radius: 5px;
     text-transform: uppercase;
 }
 .read_bt a:hover{
-    color: #ffffff;
     background-color: #000;
 }
 .about_section{
     width: 100%;
     float: left;
-    background-color: #ffb607;
+    background-color: #0d6efd;
     height: auto;
     padding-bottom: 90px;
 }
@@ -491,7 +499,6 @@ button {
 }
 .read_bt1 a:hover{
     color: #000;
-    background-color: #ffffff;
 }
 .furnitures_section {
     width: 100%;
@@ -527,7 +534,6 @@ button {
 }
 
 a:hover {
-    color: #fff;
     text-decoration: underline;
 }
 .image {
@@ -810,7 +816,7 @@ a:hover {
 .carousel-indicators li {
     width: 20px;
     height: 20px;
-    background-color: #ffb607;
+    background-color: #0d6efd;
     border-radius: 20px;
 }
 .carousel-indicators .active {
@@ -883,7 +889,7 @@ textarea#comment::placeholder {
     color: #ffffff;
     text-align: center;
     border: 2px solid #ffffff;
-    background-color: #f8b81f7a;
+    background-color: #0d6efd;
     padding: 10px 0px;
     font-weight: bold;
 }
@@ -991,8 +997,8 @@ textarea#comment::placeholder {
     margin-left: 0px;
 }
 .social_icon {
-    width: 100%;
-    margin: 0 auto;
+    width: 1100px;
+    /* margin: 0 auto; */
     text-align: center;
     padding-top: 30px;
 }
@@ -1014,7 +1020,7 @@ textarea#comment::placeholder {
 }
 
 .copyright_text {
-    width: 100%;
+    width: 1100px;
     float: left;
     color: #000;
     text-align: center;
@@ -1025,7 +1031,7 @@ textarea#comment::placeholder {
     color: #000;
 }
 .copyright_text a:hover{
-    color: #fdbe28;
+    color: #0d6efd;
 }
 
 /* 수정 css */
@@ -1044,10 +1050,7 @@ textarea#comment::placeholder {
   font-size: 36px;
   color: #313131;
 }
-/* .col-md-6 { */
-/*   margin-left: 20vw; */
-/*   margin-right: 20vw; */
-/* } */
+
 .send_bt {
   margin-left: 30%;
 }
@@ -1113,7 +1116,7 @@ textarea#comment::placeholder {
   font-size: 12px;
   color: #989696;
   text-align: center;
-  border: 2px solid #ffc107;
+  border: 2px solid #0d6efd;
 }
 .infoMenu {
 display: table;

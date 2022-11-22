@@ -6,8 +6,19 @@
   <component name="ChangeListManager">
     <list default="true" id="e53a733f-0d44-4eae-a53e-61aae41aff0b" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bitcamp/testproject/web/controller/BoardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/bitcamp/testproject/web/controller/BoardController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/resources/templates/board/detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/resources/templates/board/detail_modal.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/resources/static/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/resources/static/css/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/resources/static/images/logo.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/resources/static/images/logo.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/resources/static/images/logo2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/resources/templates/auth/findId.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/resources/templates/auth/findId.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/resources/templates/auth/findPassword.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/resources/templates/auth/findPassword.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/resources/templates/auth/form.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/resources/templates/auth/form.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/resources/templates/auth/loginResult.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/resources/templates/auth/loginResult.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/resources/templates/auth/newPassword.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/resources/templates/auth/newPassword.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/resources/templates/board/detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/resources/templates/board/detail.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/resources/templates/emailCode.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/resources/templates/emailCode.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/resources/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/resources/templates/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/resources/templates/party/detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/resources/templates/party/detail.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/resources/templates/review/review-form.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/resources/templates/review/review-form.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

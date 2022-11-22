@@ -58,7 +58,7 @@
   width: 100%;
   float: left;
   font-size: medium;
-  color: #fabb25;
+  color: #0d6efd;;
   text-transform: uppercase;
   font-weight: bold;
   padding-top: 20px;
@@ -79,7 +79,7 @@
   margin-bottom: 5px;
   margin-right: 5px;
   font-size: x-small;
-  border: 1px solid #fabb25;
+  border: 1px solid #0d6efd;;
   border-radius: 5px;
   padding-left: 5px;
   padding-right: 5px;
@@ -93,7 +93,7 @@
   margin-bottom: 5px;
   margin-right: 5px;
   font-size: x-small;
-  border: 1px solid #fabb25;
+  border: 1px solid #0d6efd;;
   border-radius: 5px;
   padding-left: 5px;
   padding-right: 5px;
@@ -185,7 +185,7 @@
   margin-bottom: 5px;
   margin-right: 5px;
   font-size: x-small;
-  border: 1px solid #fabb25;
+  border: 1px solid #0d6efd;;
   border-radius: 5px;
   padding: 5px 10px 5px 10px;
 }
@@ -198,7 +198,7 @@
   margin-bottom: 5px;
   margin-right: 5px;
   font-size: x-small;
-  border: 1px solid #fabb25;
+  border: 1px solid #0d6efd;;
   border-radius: 5px;
   padding: 5px 10px 5px 10px;
 }
@@ -207,7 +207,7 @@
   color: #121111;
   margin: 30px 10px 10px 10px;
   font-size: medium;
-  border: 1px solid #fabb25;
+  border: 1px solid #0d6efd;;
   border-radius: 5px;
   padding: 5px 10px 5px 10px;
 }
@@ -231,7 +231,7 @@
   margin-bottom: 5px;
   margin-right: 5px;
   font-size: x-small;
-  border: 1px solid #fabb25;
+  border: 1px solid #0d6efd;;
   border-radius: 5px;
   padding: 5px 10px 5px 10px;
 }
@@ -321,14 +321,11 @@
   padding-bottom: 0px;
 }
 
-.contact_section1 {
-  width: 100%;
-  float: left;
-  background-image: url(../images/contact-bg.png);
-  height: auto;
-  background-size: cover;
-  background-repeat: no-repeat;
-  padding-bottom: 180px;
+.star-wrapper {
+  margin-left: -40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .star-rating {
@@ -339,8 +336,6 @@
   padding: 0 .2em;
   text-align: center;
   width: 5em;
-  margin-left: 6vw;
-  margin-right: 16vw;
 }
 
 .star-rating input {
@@ -353,11 +348,11 @@
 }
 
 .star-rating :checked ~ label {
-  color: #ffdf3e;
+  color: #9F9F9F;
 }
 
 .star-rating label:hover, .star-rating label:hover ~ label {
-  color: #ffdf3e;
+  color: #FFDD22;
 }
 
 .article {
@@ -370,37 +365,29 @@
   max-width: 30em;
   padding: 2em;
 }
-.col-md7 {
- height: 560px;
- width: 1000px;
- background-color: #ffffff;
- border-radius: 8px 8px/8px 8px;
- 
-    
-}
 
-.col-md8 {
-  margin-left: 14vw;
-  margin-right: 16vw;
+.col-md6 {
+  margin-left: 2vw;
+  margin-bottom: 1vw;
+  width: 100%;
 }
 
 .col-md9 {
-  margin-left: 20vw;
-  margin-right: 16vw;
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 1vw;
 }
 
-.contact_text1 {
+.contact_text8 {
   width: 100%;
   float: left;
   font-size: 36px;
-  color: #000;
-  margin-left: 8vw;
-  margin-right: 16vw;
+  color: #0d6efd;
 }
 
 .form-control1 {
   display: block;
-  width: 60%;
+  width: 50%;
   padding: 0px 15px 10px 0px;
   font-size: 18px;
   line-height: 1.5;
@@ -411,7 +398,6 @@
   transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
   border: 1px solid black;
   border-radius: 4px/4px;
-  margin-left: -2vw;
   margin-right: 1vw;
 }
 
@@ -425,8 +411,6 @@
   font-weight: bold;
   margin-top: 25px;
   margin-bottom: 8px;
-  margin-right: 1px;
-  margin-left: 420px;
   border-radius: 8px 8px/8px 8px;
 }
 
@@ -438,7 +422,7 @@
   border-radius: 10px;
   font-size: 25px;
   font-weight: bold;
-  background-color: #000;
+  background-color: #0d6efd;;
   color: white;
 }
 
@@ -451,21 +435,21 @@
   border-radius: 10px;
   font-size: 25px;
   font-weight: bold;
-  background-color: #000;
+  background-color: #0d6efd;;
   color: white;
 }
 
-.contact_text9{
-    font-size: 20px;
-    color: #000;
-
+.contact_text9 {
+  font-size: 20px;
+  color: #0d6efd;
 }
 
 #att_zone {
-  width: 660px;
+  width: 510px;
   min-height: 150px;
   padding: 10px;
   border: 1px dotted #00f;
+  border-radius: 8px 8px/8px 8px;
 }
 
 #att_zone:empty:before {
@@ -474,6 +458,41 @@
   font-size: .9em;
 }
 
+.form-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.form-container form {
+  display: flex;
+  width: 600px;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.contact_section9 {
+  min-width: 1100px;
+  width: 100%;
+  float: left;
+  background-image: url(../images/party_review.png);
+  height: auto;
+  background-color: #fff;
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding-bottom: 90px;
+  opacity: 0.8;
+}
+
+.layout_padding9 {
+  padding-top: 40px;
+  padding-bottom: 200px;
+}
+
+body .container {
+  width: 1200px;
+  max-width: none;
+}
 </style>
 </head>
 <body>
@@ -506,57 +525,53 @@
 	</div>
 
 
-	<div class="contact_section1 layout_padding1">
+	<div class="contact_section9 layout_padding9">
 		<div class="container">
-			<div class="col-md">
-			<div class="col-md7">
-				<form action="review-add" method="post" class = "col-md8" enctype="multipart/form-data">
-					<h1 class="contact_text1">Party Review</h1>
-					<table border="1">
-						<tbody>
-							<tr>
-								<div class="star-rating">
-									<input type="radio" id="5-stars" name="star" value="5.0"/> <label for="5-stars" class="star">&#9733;</label> 
-									<input type="radio" id="4-stars" name="star" value="4.0"/> <label for="4-stars" class="star">&#9733;</label> 
-									<input type="radio" id="3-stars" name="star" value="3.0"/> <label for="3-stars" class="star">&#9733;</label> 
-									<input type="radio" id="2-stars" name="star" value="2.0"/> <label for="2-stars" class="star">&#9733;</label> 
-									<input type="radio" id="1-star" name="star" value="1.0"/> <label for="1-star" class="star">&#9733;</label>
-								</div>
-              
-                  
-  <div id='image_preview'>
-    <h3>첨부파일 이미지 미리보기</h3>
-    <input class = "col-md9" name='files' type='file' id='btnAtt' multiple='multiple' />
-    <div id='att_zone'
-      data-placeholder='파일을 첨부 하려면 파일 선택 버튼을 클릭하거나 파일을 드래그앤드롭 하세요'></div>
-  </div>
-								<div class="container">
-									<div class="input-group mb-3">
-										<div class="input-group-prepend">
-											<span class="contact_text9">제목</span>
-												<!-- <li data-th-each="file : ${party.attachedFiles}"><a href="files/test.gif" data-th-href="@{files/{path}(path=${file.filepath})}" data-th-text="${file.filepath}">test.gif</a> [<a href="fileDelete?no=1" data-th-href="@{fileDelete(no=${file.no})}">삭제</a>]</li> -->
+			<div class="">
+				<div class="form-container">
+					<form action="review-add" method="post" class="" enctype="multipart/form-data">
+						<table border="1">
+							<tbody>
+								<tr>
+									<div>
+										<div class='star-wrapper'>
+											<div class="star-rating">
+												<input type="radio" id="5-stars" name="star" value="5.0" /> <label for="5-stars" class="star">&#9733;</label> <input type="radio" id="4-stars" name="star" value="4.0" /> <label for="4-stars" class="star">&#9733;</label> <input type="radio" id="3-stars" name="star" value="3.0" /> <label for="3-stars" class="star">&#9733;</label> <input type="radio" id="2-stars" name="star" value="2.0" /> <label for="2-stars" class="star">&#9733;</label> <input type="radio" id="1-star" name="star" value="1.0" /> <label for="1-star" class="star">&#9733;</label>
+											</div>
 										</div>
-									</div>
-									<div class="input-group mb-3">
-										<input type="text" name="title" class="form-control1" id="reviewtitle">
-									</div>
-									<div class="input-group mb-3">
-										<div class="input-group-prepend">
-											<span class="contact_text9">내용</span>
+										<div id='image_preview' class="col-md6">
+											<div class="col-md9">
+												<input name='files' type='file' id='btnAtt' multiple='multiple' />
+											</div>
+											<div id='att_zone' data-placeholder='파일을 첨부 하려면 파일 선택 버튼을 클릭하거나 파일을 드래그앤드롭 하세요'></div>
 										</div>
-										<textarea class="form-control1" name="content" id="reviewcont" cols="30" rows="5" placeholder="160자까지 입력할 수 있습니다."></textarea>
-									</div>
-									<button type="button" class="btnon8" id="reviewadd" onclick="makeReview()">등록</button>
-									<a data-th-href="@{'../review/review-detail-form?no=' + ${party.no}}">
-                  <button type="button" class="btnon9" id="revoewcancle" >취소</button>
-						      </a>
-            <thead>
-						</thead>
-					</table>
-			</div>
+										<div class="container">
+											<div class="input-group mb-3">
+												<div class="input-group-prepend">
+													<span class="contact_text9">제목</span>
+												</div>
+											</div>
+											<div class="input-group mb-3">
+												<input type="text" name="title" class="form-control1" id="reviewtitle">
+											</div>
+											<div class="input-group mb-3">
+												<div class="input-group-prepend">
+													<span class="contact_text9">내용</span>
+												</div>
+												<textarea class="form-control1" name="content" id="reviewcont" cols="30" rows="5" placeholder="200자 까지 입력할 수 있습니다." maxlength="200"></textarea>
+											</div>
+											<button type="button" class="btnon8" id="reviewadd" onclick="makeReview()">등록</button>
+											<a data-th-href="@{'../review/review-detail-form?no=' + ${party.no}}">
+												<button type="button" class="btnon9" id="revoewcancle">취소</button>
+											</a>
+										</div>
+										<thead>
+										</thead>
+						</table>
+				</div>
 			</div>
 		</div>
-    <input type="hidden" name="no" data-th-value="${party.no}">
+		<input type="hidden" name="no" data-th-value="${party.no}">
 		</form>
 	</div>
 
@@ -579,7 +594,7 @@
 	<!-- copyright section end -->
 
 	<!-- Javascript files-->
-  
+
 	<!-- 썸머노트 자바스크립트 시작 -->
 	<script>
 	let starResult = '';
@@ -620,8 +635,8 @@
 	    });
 	  
 	    </script>
-	    
-	    <script>
+
+	<script>
 	    
 	       console.log("결과1" + starResult);
    
@@ -675,7 +690,7 @@
 	</script>
 	<!-- 썸머노트 자바스크립트 끝 -->
 
-<script type="text/javascript">
+	<script type="text/javascript">
 ( /* att_zone : 이미지들이 들어갈 위치 id, btn : file tag id */
 		  imageView = function imageView(att_zone, btn){
 
