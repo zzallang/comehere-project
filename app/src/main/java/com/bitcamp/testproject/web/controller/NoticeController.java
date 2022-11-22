@@ -100,15 +100,15 @@ public class NoticeController {
     return model.addAttribute("notice", notice);
   }
 
-  @Transactional
   @PostMapping("update")
   public String update(Notice notice, Part file, HttpSession session) throws Exception {
 
-
+    System.out.println(notice + "\n 노티스 넘어오았냐?!!?!?!?!?");
     notice.setThumbnail(saveAttachedFile(file));
-
-    if (!noticeService.update(notice)) { throw new Exception("게시글을 변경할 수 없습니다!"); }
-
+    System.out.println(file + "\n 파일 넘어오았냐?!!?!?!?!?");
+    if (!noticeService.update(notice)) { 
+      throw new Exception("게시글을 변경할 수 없습니다!"); 
+    }
 
     return "redirect:detail?no=" + notice.getNo();
   }

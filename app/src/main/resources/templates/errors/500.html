@@ -65,7 +65,7 @@
   min-width: 1100px;
   width: 100%;
   float: left;
-  background-image: url(../images/error.png);
+  background-image: url(../images/error2.png);
   height: auto;
   background-color: #fff;
   background-size: cover;
@@ -130,12 +130,17 @@ body .container {
 					<form action='login' method="post">
 						<table border='1'>
 							<input type="hidden" name="beforePageURL" data-th-value="${session.redirectURI}">
+							<!-- <h1 class="contact_text1">Login</h1> -->
+							<tr>
+							</tr>
 							<h1 text-align:left;>
 								   &nbsp; &nbsp;잘못된 접근입니다.
 								</h>
 								<p>
-									Whitelabel Error PageThis application<br> has no explicit mapping for /error, <br>so you are seeing this as a fallback.<br> <br> There was an unexpected error (type=Not Found, status=404).<br> <br>Not Found
+									Whitelabel Error PageThis application<br> has no explicit mapping for /error, <br>so you are seeing this as a fallback.<br> <br> There was an unexpected error (type=Not Found, status=500).<br> <br>Not Found
 								</p>
+							<tr>
+							</tr>
 						</table>
 						<div data-th-if="${loginFail}"></div>
 						<p></p>
@@ -164,5 +169,6 @@ body .container {
 	<!-- javascript -->
 	<script src="../js/owl.carousel.js"></script>
 	<script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+	</div>
 </body>
 </html>

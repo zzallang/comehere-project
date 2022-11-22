@@ -96,11 +96,11 @@
                         <th id="noSort" style="width:7%">번호</th>
                         <th style="width:7%">시도</th>
                         <th style="width:10%">시군구</th>
-                        <th style="width:13%">운동</th>
+                        <th style="width:10%">운동</th>
                         <th id="titleSort" data-type="" data-th-data-type="${titleSort}" style="width:25%">제목</th>
                         <th style="width:13%">모임일자</th>
-                        <th style="width:7%">모임시간</th>
-                        <th style="width:7%">명단관리</th>
+                        <th style="width:10%">모임시간</th>
+                        <th style="width:10%">명단관리</th>
 											</tr>
 										</thead>
 										<tbody>
@@ -172,8 +172,8 @@
             </div>
             </div>
             <!-- copyright section end -->
-            
-            <script type="text/javascript">
+            <script src="../js/jquery.min.js"></script>
+            <script>
             window.addEventListener('DOMContentLoaded', function(){
                 var param = 1; 
                 if (window.location.search.match(/page=([^&]*)/) != null) {
