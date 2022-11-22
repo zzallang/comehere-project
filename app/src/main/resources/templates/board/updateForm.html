@@ -53,6 +53,7 @@
 }
 
 .post_form2 {
+  width: 200px;
   float: left;
   margin: 10px 0px;
 }
@@ -106,6 +107,7 @@
     border: 1px solid #eaedf4;
     border-radius: 12px;
     width: 210px;
+    height: 312px;
 }
 .clg2 {
     float: right;
@@ -114,6 +116,7 @@
     border-radius: 12px;
     width: 740px;
     height: 312px;
+    text-align: 312px;
 }
 </style>
 </head>
@@ -167,7 +170,7 @@
                       <td>
                           <div class="clg1">
                             <img id="previewImg" th:if="${board.thumbnail != null}"  th:src="@{'/board/files/' + ${board.thumbnail}}" alt="Avatar" class="image party_detail_img in-img">
-                            <img id="previewImg" th:if="${board.thumbnail == null}"  src="/app/board/files/nothumpnail.jpg" alt="Avatar" class="image">
+                            <img id="previewImg" th:if="${board.thumbnail == null}"  src="../images/nothumbnail.png" alt="Avatar" class="in-img">
                             <input class="post_form2"  id="fileTag" name='file' type="file">
                           </div>
                             <div class="clg2">
@@ -344,5 +347,6 @@ function updateCancel() {
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <!-- 공식부트스트랩 JS -->
 <script src="../js/bootstrap/bootstrap.js"></script>   
+
     </body>
 </html>

@@ -109,7 +109,7 @@
                             <img id="previewImg" th:if="${board.thumbnail != null}"  th:src="@{'/board/files/' + ${board.thumbnail}}" alt="Avatar" class="image party_detail_img">
                             <img id="previewImg" th:if="${board.thumbnail == null}"  src="/app/board/files/nothumpnail.jpg" alt="Avatar" class="image">
                           </div>
-                          <input id="fileTag" name='file' type="file">
+                          <input class="post_form2" id="fileTag" name='file' type="file">
                       </td>        
                     </tr> 
                     <tr>
