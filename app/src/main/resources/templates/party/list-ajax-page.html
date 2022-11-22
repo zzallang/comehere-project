@@ -12,7 +12,7 @@
               </button>
             </li>
             <th:block th:each="pageNum: ${#numbers.sequence(pageMaker.startPage, pageMaker.endPage)}">
-              <li class="page-item">
+              <li data-th-id="${'pageButton' + pageNum}" class="page-item">
                 <button type="button" th:value="${pageNum}" class="page-link pageNum"><i th:text="${pageNum}"></i></button>
               </li>
             </th:block>
