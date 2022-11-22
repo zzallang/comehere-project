@@ -4,10 +4,7 @@
 				<!-- basic -->
 				<meta charset="utf-8">
 				<meta http-equiv="X-UA-Compatible" content="IE=edge">
-				<meta name="viewport" content="width=device-width, initial-scale=1">
 				<!-- mobile metas -->
-				<meta name="viewport" content="width=device-width, initial-scale=1">
-				<meta name="viewport" content="initial-scale=1, maximum-scale=1">
 				<!-- site metas -->
 				<title>여기모여</title>
 				<meta name="keywords" content="">
@@ -16,7 +13,7 @@
 				<!-- bootstrap css -->
 				<link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
 				<!-- style css -->
-				<link rel="stylesheet" type="text/css" href="../css/style.css">
+				<link rel="stylesheet" type="text/css" href="../css/style2.css">
 				<!-- Responsive-->
 				<link rel="stylesheet" href="../css/responsive.css">
 				<!-- fevicon -->
@@ -34,19 +31,36 @@
           media="screen"> -->
 
       <style>
-			.swal-button:not([disabled]):hover {
-			    background-color: #78cbf200;
-			    border: 1px solid #989696;
-			    color: #989696;
+      .swal-button:not([disabled]):hover {
+        background-color: #ffffff00;
+        border: 1px solid #989696;
+        color: #0d6efd;
+      }
+      .swal-button {
+        padding: 7px 19px;
+        border-radius: 2px;
+        background-color: #0d6efd;
+        font-size: 12px;
+        border: 1px solid #989696;
+      }
+      a:not([href]):not([tabindex]) {
+       color: #0d6efd;
+				}
+			.swal-button--cancel {
+			  color: #0d6efd;
+			  background-color: #ffffff;
 			}
-			.swal-button {
-		    padding: 7px 19px;
-		    border-radius: 2px;
-		    background-color: #ffb607;
-		    font-size: 12px;
-		    border: 1px solid #989696;
-		    text-shadow: 0px -1px 0px rgb(0 0 0 / 0%);
-		  }
+			.swal-button:hover {
+			  color: #ffffff;
+			  background-color: #0d6efd;
+			  transition: all .3s ease;
+			}
+      .row {
+        margin:0 auto;
+      }
+       .col-md-6 {
+       margin: 0 auto;
+       }
 
       </style>
 		</head>
@@ -159,11 +173,6 @@
                           icon: "error",
                           button: "확인",
                         });
-                
-          
-              
-                 
-                 
                
                   }
                   }
@@ -175,10 +184,6 @@
 						    event.preventDefault();
 						  };
 						}, true);
-             
-             
-             
-             
              
             </script>
 				</body>

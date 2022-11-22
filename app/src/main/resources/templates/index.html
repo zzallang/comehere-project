@@ -4,10 +4,7 @@
 <!-- basic -->
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- mobile metas -->
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="viewport" content="initial-scale=1, maximum-scale=1">
 <!-- site metas -->
 <title>여기모여</title>
 <meta name="keywords" content="">
@@ -18,20 +15,14 @@
 <!-- style css -->
 <link rel="stylesheet" type="text/css" href="css/style.css">
 <!-- Responsive-->
-<link rel="stylesheet" href="css/responsive.css">
 <!-- fevicon -->
 <link rel="icon" href="images/fevicon.png" type="image/gif" />
 <!-- Scrollbar Custom CSS -->
-<link rel="stylesheet" href="css/jquery.mCustomScrollbar.min.css">
 <!-- Tweaks for older IEs-->
-<link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
 <!-- owl stylesheets -->
-<link rel="stylesheet" href="css/owl.carousel.min.css">
-<link rel="stylesheet" href="css/owl.theme.default.min.css">
 <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen"> -->
 <style type="text/css">
- 
-   
+
 </style>
 </head>
 <body>
@@ -51,9 +42,8 @@
 					</ul>
 					<div class="login-bt">
 						<ul>
-              <li style="margin-right: 100px" data-th-if="${session.loginMember != null and session.loginMember.id == 'admin'}"><a href="amdin/" >관리</a></li>
 							<li data-th-if="${session.loginMember == null}"><a href="auth/form" >로그인</a></li>
-              <li data-th-if="${session.loginMember != null}"><a href="mypage/my-post">마이페이지</a></li>
+              <li data-th-if="${session.loginMember != null and session.loginMember.id != 'admin'}"><a href="mypage/my-post">마이페이지</a></li>
               <li data-th-if="${session.loginMember != null}"><a href="auth/logout" data-th-text="${session.loginMember.name} + '(로그아웃)'">동동(로그아웃)</a></li>
             </ul>
                </div>

@@ -35,6 +35,10 @@ body {
      line-height: 1.80857;
      font-weight: normal;
      overflow-x: hidden;
+     max-width:1280px !important;
+     min-width:1280px !important;
+     margin: auto !important;
+     float: none !important;
 }
 
 a {
@@ -221,12 +225,9 @@ button {
 .bg-light {
     background-color: transparent !important;
 }
-.logo {
-    width: 25%;
-    float: left;
-}
+
 .main_logo {
-    max-width: 10%;
+    max-width: 140px;
     height: auto;
     margin: 20px 50px 20px 30px;
 }
@@ -247,7 +248,6 @@ button {
 }
 
 .login-bt{
-    width: 12%;
     float: left;
 }
 .login-bt ul{
@@ -320,26 +320,6 @@ button {
     margin: 0 auto;
     text-align: center;
 }
-.contact_bt {
-    width: 100%;
-    float: left;
-    margin-top: 360px;
-}
-.contact_bt a{
-    width: 100%;
-    float: left;
-    font-size: 18px;
-    color: #ffffff;
-    background-color: #ffb607;
-    text-align: center;
-    padding: 10px 0px;
-    border-radius: 5px;
-    text-transform: uppercase;
-}
-.contact_bt a:hover{
-    color: #ffffff;
-    background-color: #000;
-}
 
 .fa-angle-right:before {
     content: "\f105";
@@ -347,32 +327,11 @@ button {
 .fa-angle-left:before {
     content: "\f105";
 }
-#costum_slider a.carousel-control-prev {
-    position: absolute;
-    left: -153px;
-    top: 57%;
-    background-color: #000;
-    color: #ffffff;
-    border-radius: 100px;
-}
 
 #costum_slider a.carousel-control-next {
     position: absolute;
     right: -150px;
     top: 57%;
-}
-#costum_slider .carousel-control-prev, #costum_slider .carousel-control-next {
-    width: 85px;
-    height: 85px;
-    background: #000;
-    opacity: 1;
-    font-size: 30px;
-    color: #fff;
-    border-radius: 100px;
-}
-#costum_slider .carousel-control-prev:hover, #costum_slider .carousel-control-next:hover, #costum_slider .carousel-control-prev:focus, #costum_slider .carousel-control-next:focus {
-    background: #f8ca12;
-    color: #fff;
 }
 
 .services_section{
@@ -425,26 +384,6 @@ button {
     margin: 0 auto;
     text-align: center;
 }
-.read_bt {
-    width: 100%;
-    float: left;
-    margin-top: 10px;
-}
-.read_bt a{
-    width: 100%;
-    float: left;
-    font-size: 18px;
-    color: #ffffff;
-    background-color: #ffb607;
-    text-align: center;
-    padding: 10px 0px;
-    border-radius: 5px;
-    text-transform: uppercase;
-}
-.read_bt a:hover{
-    color: #ffffff;
-    background-color: #000;
-}
 .about_section{
     width: 100%;
     float: left;
@@ -472,26 +411,6 @@ button {
     color: #ffffff;
     margin-left: 0px;
     padding-top: 40px;
-}
-.read_bt1 {
-    width: 30%;
-    float: left;
-    margin-top: 70px;
-}
-.read_bt1 a{
-    width: 100%;
-    float: left;
-    font-size: 18px;
-    color: #ffffff;
-    background-color: #070201;
-    text-align: center;
-    padding: 10px 0px;
-    border-radius: 5px;
-    text-transform: uppercase;
-}
-.read_bt1 a:hover{
-    color: #000;
-    background-color: #ffffff;
 }
 .furnitures_section {
     width: 100%;
@@ -526,10 +445,6 @@ button {
   max-width: 100%;
 }
 
-a:hover {
-    color: #fff;
-    text-decoration: underline;
-}
 .image {
   display: block;
   width: 100%;
@@ -831,10 +746,7 @@ a:hover {
     background-repeat: no-repeat;
     padding-bottom: 90px;
 }
-.mail_sectin{
-    width: 100%;
-    float: left;
-}
+
 .contact_text{
     width: 100%;
     float: left;
@@ -842,14 +754,14 @@ a:hover {
     color: #ffffff;
 
 }
-.email-bt {
+.email-bt,.phoneNumber {
     color: #989696;
-    width: 100%;
-    height: 55px;
-    font-size: 18px;
-    padding: 20px;
+    width: 440px;
+    height: 40px;
+    font-size: 17px;
+    padding: 15px;
     margin-top: 10px;
-    border: 0px;
+    border: 1px solid #989696;
     border-radius: 5px;
 }
 input.email-bt::placeholder {
@@ -873,9 +785,6 @@ textarea#comment::placeholder {
     float: left;
     margin-top: 50px;  
 }
-.send_bt2 {
-    border-radius: 5px;
-}
 .send_bt button{
     width: 30%;
     float: left;
@@ -883,9 +792,10 @@ textarea#comment::placeholder {
     color: #ffffff;
     text-align: center;
     border: 2px solid #ffffff;
-    background-color: #f8b81f7a;
+    background-color: #0d6efd;
     padding: 10px 0px;
     font-weight: bold;
+    border-radius: 7px;
 }
 .send_bt a{
     width: 30%;
@@ -899,8 +809,28 @@ textarea#comment::placeholder {
     font-weight: bold;
 }
 .send_bt button:hover{
-    color: #989696;
+    color: #0d6efd;
     background-color: #ffffff;
+}
+.delete_bt {
+  width: 100%;
+  float: left;
+  margin-top: 50px;
+}
+.delete_bt button {
+    width: 13%;
+    float: right;
+    font-size: 13px;
+    color: darkgrey;
+    text-align: center;
+    border: 2px solid #ffffff;
+    padding: 10px 0px;
+    margin-right: 60px;
+    background-color: #ffffff00;
+}
+.delete_bt button:hover{
+    color: blue;
+    background-color: #ffffff00;
 }
 .image_9 {
     width: 100%;
@@ -914,16 +844,12 @@ textarea#comment::placeholder {
 
 .form-control {
     display: block;
-    /* width: 100%; */
     padding: 0px 15px 10px 0px;
     font-size: 18px;
-    /* line-height: 1.5; */
     color: #fff;
     background-color: transparent;
-    /* background-clip: padding-box; */
     border-bottom: 1px solid #fff !important;
     border-radius: 0px;
-    /* transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out; */
     border: 0px;
 }
 .input-group-text {
@@ -951,11 +877,6 @@ textarea#comment::placeholder {
     border-bottom: 1px solid #ffff;
 }
 
-
-
-
-
-
 .footer_section{
     width: 100%;
     float: left;
@@ -972,7 +893,7 @@ textarea#comment::placeholder {
     width: 100%;
     float: left;
     font-size: 24px;
-    color: #ffffff;
+/*     color: #ffffff; */
     text-transform: uppercase;
 }
 
@@ -1011,6 +932,7 @@ textarea#comment::placeholder {
     float: left;
     background-color: #ffffff;
     height: auto;
+    margin-top: 100px;
 }
 
 .copyright_text {
@@ -1028,7 +950,7 @@ textarea#comment::placeholder {
     color: #fdbe28;
 }
 
-/* 수정 css */
+/* 은지 수정 css */
 .contact_section1 {
   width: 100%;
   float: left;
@@ -1044,20 +966,12 @@ textarea#comment::placeholder {
   font-size: 36px;
   color: #313131;
 }
-/* .col-md-6 { */
-/*   margin-left: 20vw; */
-/*   margin-right: 20vw; */
-/* } */
 .send_bt {
   margin-left: 30%;
 }
 .send_bt a {
   border: 2px solid #000000;
 }
-.email-bt {
-  width: 500px;
-}
-
 .pwd-checkbox {
   width: 500px;
   color: #989696;
@@ -1068,69 +982,35 @@ textarea#comment::placeholder {
   border: 2px solid gray;
   border-radius: 5px;
 }
-.email-bt2 {
-  color: #989696;
-  width: 236px; 
-  height : 55px; 
-  font-size : 18px;
-  padding: 15px;
-  margin-top: 30px;
-  border: 0px;
-  border-radius: 5px;
-  height: 55px;
-  font-size: 18px;
+.small-area {
+  width: 330px;
 }
+.small-area2 {
+  width: 300px; 
+}
+
 .favorite-choice {
   color: #989696;
-  width: 236px; 
-  height : 55px; 
+  width: 210px; 
+  height : 40px; 
   font-size : 18px;
-  padding: 15px;
+  padding-left: 15px;
   margin-top: 10px;
-  margin-right: 24px;
-  border: 0px;
-  border-radius: 5px;
+  margin-right: 15px;
+  border: 1px solid #989696;
+  border-radius: 5px; 
 }
-  .phoneNumber {
-  color: #989696;
-  width: 500px; 
-  height : 55px; 
-  font-size : 18px;
-  padding: 15px;
-  margin-top: 30px;
-  border: 0px;
-  border-radius: 5px;
-  height: 55px;
-  font-size: 18px;
-}
-.골뱅이 {
-  color: white;
-  font-size: 20px;
-}
-.cross-check-bt {
-  width: 10%;
-  float: left;
-  font-size: 12px;
-  color: #989696;
-  text-align: center;
-  border: 2px solid #ffc107;
+.favorite-choice#favoriteRegion2,#favoriteSports2 {
+  margin-right:0px
 }
 .infoMenu {
-display: table;
-list-style: none;
-text-align: center;
-font-size: 20px;
-margin-left: auto;
-margin-right: auto;
-}
-.infoMenuOn {
-  float:left;
-  margin-left: 30px;
-  margin-right: 10px;
-  margin-bottom: 50px;
-}
-.row {
-  justify-content: center;
+  display: table;
+  list-style: none;
+  text-align: center;
+  font-size: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  cursor:pointer;
 }
 .gender {
   font-size:16px;
@@ -1142,7 +1022,7 @@ margin-right: auto;
 }
 .join_menu {
   font-size: 18px;
-  margin-top: 20px;
+  margin-top: 10px;
 }
 .join_gender {
   margin-left: 15px;
@@ -1153,9 +1033,9 @@ margin-right: auto;
 }
 
 .send_bt a {
-    border: 2px solid #5f5f5f70;
-    color: white;
-    border-radius: 7px;
+  border: 2px solid #5f5f5f70;
+  color: white;
+  border-radius: 7px;
 }
 
 .custom-email {
@@ -1181,31 +1061,180 @@ margin-right: auto;
   border: 0px;
   border-radius: 5px;
 }
-
-.custom-email-bt-check {
-  outline: none !important;
-  border-color: #719ECE;
-  box-shadow: 0 0 10px #719ECE;
-  color: #989696;
-  width: 100%;
-  height: 55px;
-  font-size: 18px;
-  padding: 20px;
-  margin-top: 25px;
-  border: 0px;
-  border-radius: 5px;
+.btn-outline-secondary.check {
+    margin-top: 0px;
+    margin-bottom: 3px;
 }
-
 .btn-outline-secondary {
-    margin-top: 10px;
+  margin-top: 10px;
+  color: #0d6efd;
+  background-color: #ffffff00;
+  border: 1px solid grey;
 }
-
+.btn-outline-secondary:hover {
+  color:#ffffff;
+  background-color: #0d6efd;
+  transition:all .3s ease;
+}
+.reviewFormBtn {
+  color: #0d6efd;
+  background-color: #ffffff00;
+  border-radius: 3px;
+  border: 1px solid grey;
+}
+a.reviewFormBtn {
+  color: #0d6efd;
+  background-color: #ffffff00;
+  border-radius: 3px;
+  border: 1px solid grey;
+  padding: 0px 5px;
+}
+.reviewFormBtn:hover {
+  color:#ffffff;
+  background-color: #0d6efd;
+  transition:all .3s ease;
+  cursor: pointer;
+}
+.reviewFormBtnDisabled {
+  color: #989696;
+  background-color: #ffffff00;
+  border-radius: 3px;
+  border: 1px solid grey;
+}
 .menu {
   float: left;
   margin: 10px 30px 50px;
 }
-.windowWidth {
-  max-width:1280px !important;
-  min-width:1280px !important;
-  margin: auto !important;
+.menu:hover {
+  color:#0d6efd;
+  transition:all .3s ease;
+  }
+.menu > a {
+  position:relative;
+}
+
+.menu > a::after {
+  content: '';
+  width: 0%;
+  left: 50%;
+  height: 1px;
+  display: block;
+  position: absolute;
+  margin-top: 3px;
+  border-bottom: 2px solid #0d6efd;
+  transition:all .3s ease;
+}
+.menu:hover > a::after {
+  content: '';
+  width: 100%;
+  left: 0px;
+  height: 1px;
+  display: block;
+  position: absolute;
+  margin-top: 3px;
+  border-bottom: 2px solid #0d6efd;
+  transition:all .3s ease;
+}
+.menu-on {
+  color:#0d6efd;
+  transition:all .3s ease;
+  border-bottom: thick 2px solid #0d6efd;
+}
+
+.link_sort.on {
+  position: relative;
+  padding-bottom: 5px;
+  color: #0d6efd;
+  font-weight: 700;
+}
+
+.link_sort {
+  font-size: 15px;
+  margin: 0px 80px 0px;
+}
+.sort_area {
+  float: left;
+  width: 100%;
+  padding-top: 0;
+  margin-bottom: 60px;
+  text-align: center;
+}
+#imagePreview {
+  margin: 150px 0px 0px 0px;
+  position: absolute;
+  left: 400px;
+  top: 0px;
+}
+#previewImg {
+  width: 130px;
+  height: 130px;
+  margin-bottom: 15px;
+  border-radius: 50%;
+  border: 2px solid #dedede;
+  overflow: hidden;
+}
+.image_inputType_file {
+  position: absolute;
+}
+#btn-upload.btn {
+    position: absolute;
+    right: 30px;
+    top: 150px;
+}
+#email-bt {
+  position: relative;
+}
+list-style {
+  padding: 29px 0 18px;
+}
+
+.list-style {
+  padding: 6px 0 10px;
+}
+.my-page {
+  width:100%; 
+  background-color: white;
+}
+.my-page tr {
+  text-align:center;
+  padding: 5px;
+}
+.my-page tr .title-td {
+  text-align:left;
+}
+.my-page th {
+  border-top:1px solid rgb(0 0 0 / 20%);
+  border-bottom:2px solid rgb(0 0 0 / 20%);
+  padding: 10px;
+}
+.my-page td {
+  font-size: 14px;
+  border-bottom:1px solid rgb(0 0 0 / 20%);
+  padding: 5px 0px;
+}
+.imgimg {
+  max-width: 150px;
+  max-height: 170px;
+  min-width: 150px;
+  min-height: 170px;
+  line-height: 170px;
+}
+.imgimg img {
+  vertical-align:middle;
+}
+.join_menu.black {
+  width: 300px;
+}
+.row {
+  margin-left: 150px;
+}
+.container-detail {
+  width: 960px;
+  margin: auto;
+}
+.profile {
+  opacity: 1;
+  display: block;
+  transition: .5s ease;
+  backface-visibility: hidden;
 }

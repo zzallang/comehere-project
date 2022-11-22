@@ -4,10 +4,7 @@
         <!-- basic -->
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- mobile metas -->
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="viewport" content="initial-scale=1, maximum-scale=1">
         <!-- site metas -->
         <title>여기모여</title>
         <meta name="keywords" content="">
@@ -16,16 +13,12 @@
         <!-- bootstrap css -->
         <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
         <!-- style css -->
-        <link rel="stylesheet" type="text/css" href="../css/style.css">
+        <link rel="stylesheet" type="text/css" href="../css/style2.css">
         <!-- Responsive-->
-        <link rel="stylesheet" href="../css/responsive.css">
         <!-- fevicon -->
         <link rel="icon" href="../images/fevicon.png" type="image/gif" />
         <!-- Scrollbar Custom CSS -->
-        <link rel="stylesheet" href="../css/jquery.mCustomScrollbar.min.css">
         <!-- Tweaks for older IEs-->
-        <link rel="stylesheet"
-          href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
         <!-- owl stylesheets -->
         <link rel="stylesheet" href="../css/owl.carousel.min.css">
         <link rel="stylesheet" href="../css/owl.theme.default.min.css">
@@ -34,62 +27,6 @@
           media="screen">
     </head>
     <style>
-	    /*
-		th {
-	    height: 40px;
-	    padding: 2px;
-	    border-top: 1px solid var(--boardArticleListBorderTop);
-	    border-bottom: 1px solid var(--boardArticleListBorderBottom);
-	    text-align: center;
-	    font-size: 13px;
-	    color: var(--boardArticleListTh);
-   	} */
-   	tr {
-   	  text-align:center;
-      padding: 5px;
-   	}
-   	tr .title-td {
-   	  text-align:left;
-   	} 
-   	th {
-	   	border-top:1px solid rgb(0 0 0 / 20%);;
-	   	border-bottom:2px solid rgb(0 0 0 / 20%);; 
-	    padding: 10px;
-   	}
-   	
-	    list-style {
-        padding: 29px 0 18px;
-			}
-			
-			.list-style {
-        padding: 6px 0 10px;
-			}
-			
-			div {
-        display: block;
-			}
-			
-			.sort_area {
-		    float: left;
-		    width: 100%;
-		    padding-top: 0;
-        margin-bottom: 60px;
-	    }
-	    .link_sort.on {
-		    position: relative;
-		    padding-bottom: 5px;
-		    color: #03c75a;
-		    font-weight: 700;
-		    margin: 0px 100px 0px;
-			}
-			.link_sort {
-		    font-size: 15px;
-	    margin: 0px 100px 0px;
-			}
-			.contact_text {
-		    margin: 20px 20px 50px 20%;
-		    color: #313131;
-		}
 		.page_center {
        display : flex;
        margin : auto;
@@ -98,15 +35,6 @@
     .pagination {
 			margin: 20px;
     }
-    .menu {
-      float: left;
-      margin: 10px 30px 50px;
-    }
-/*     a.article :hover {
-      text-decoration: underline; 
-      text-underline-position:under;
-      color: black;
-    } */
     </style>
         <body>
           <!-- header section start -->
@@ -142,9 +70,9 @@
           <div class="contact_section layout_padding">
             <div class= info>
               <ul class="infoMenu">
-                <li class= "menu"><a href="../mypage/my-post">나의 활동</a></li>
-                <li class= "menu on"><a href="../mypage/my-party">모임 관리</a></li>
-                <li class= "menu"><a href="../member/viewer">회원 정보 변경</a></li>
+                <li class= "menu"><a href="../mypage/my-post" ><span>나의 활동</span></a></li>
+                <li class= "menu"><a href="../mypage/my-party"><span class="menu-on">모임 관리</span></a></li>
+                <li class= "menu"><a href="../member/viewer"><span>회원 정보 변경</span></a></li>
               </ul>
             </div>
             <div class="container">
@@ -156,10 +84,7 @@
 											<a href="join-party" class="link_sort">참여 중인 모임</a>
 											<a href="end-party" class="link_sort">종료된 모임</a>
 									</div>
-									<table style="width:100%; background-color: white;">
-<!-- 										<caption>
-											<span class="blind">게시글 목록</span>
-										</caption> -->
+									<table class="my-page">
 										<colgroup>
 											<col>
 											<col style="width: 120px;">
@@ -168,27 +93,20 @@
 										<thead>
 											<tr>
 												<!-- <th scope="col" width="5"></th> -->
-                        <th id="noSort">번호</th>
-                        <th >시도</th>
-                        <th >시군구</th>
-                        <th >운동</th>
-                        <th id="titleSort" data-type="" data-th-data-type="${titleSort}">제목</th>
-                        <th>모임일자</th>
-                        <th>모임시간</th>
-                        <th>명단관리</th>
+                        <th id="noSort" style="width:7%">번호</th>
+                        <th style="width:7%">시도</th>
+                        <th style="width:10%">시군구</th>
+                        <th style="width:13%">운동</th>
+                        <th id="titleSort" data-type="" data-th-data-type="${titleSort}" style="width:25%">제목</th>
+                        <th style="width:13%">모임일자</th>
+                        <th style="width:7%">모임시간</th>
+                        <th style="width:7%">명단관리</th>
 											</tr>
 										</thead>
 										<tbody>
-											<tr>
-												<td class="td_article">
-												  <div class="check_box only_box">
-													</div>
-                        </td>
-											</tr>
 											<tr data-th-each="myParty , i : ${myPartys}" >
 											   <td>
                             <div class="FormInputCheck">
-															<input data-th-id="'check_article_' + ${myParty.no}" type="checkbox" class="input_check">
 															<label data-th-for="'check_article_' + ${myParty.no}" class="label">
 															 <span class="blind">[[${i.count} + (((${pageMaker.cri.page}) - 1) * ${pageMaker.cri.perPageNum})]]</span>
 															</label>
@@ -197,7 +115,6 @@
                         <td class="td_date">[[${myParty.region.sido}]]</td>
                         <td class="td_date">[[${myParty.region.sigu}]]</td>
                         <td class="td_date">[[${myParty.sports.name}]]</td>
-
                         <td class="title-td">
                           <div class="board-list">
                             <div class="inner_list">
@@ -207,7 +124,7 @@
                         </td>
                         <td class="td_date">[[${myParty.partyDate}]]</td>
                         <td class="td_date">[[${myParty.partyTime}]]</td>
-                        <td><a type="button" class="" data-th-href="@{my-party-detail(no=${myParty.no})}" >관리하기</a></td> 
+                        <td><a type="button" class="reviewFormBtn" data-th-href="@{my-party-detail(no=${myParty.no})}" >관리하기</a></td> 
                       </tr>
 										</tbody>
 									</table>
@@ -267,17 +184,8 @@
             </script>
             
             <!-- Javascript files-->
-            <!--       <script src="js/jquery.min.js"></script> -->
-            <script src="js/popper.min.js"></script>
-            <script src="js/bootstrap.bundle.min.js"></script>
-            <script src="js/jquery-3.0.0.min.js"></script>
-            <script src="js/plugin.js"></script>
             <!-- sidebar -->
-            <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
-            <script src="js/custom.js"></script>
             <!-- javascript -->
-            <script src="js/owl.carousel.js"></script>
-            <script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
             <script>
             
             </script>
