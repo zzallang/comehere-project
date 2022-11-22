@@ -38,6 +38,9 @@
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
 <!--  썸머노트 끝 -->
 
+  <!-- 공식 부트스트랩 -->
+  <link href="../css/bootstrap/bootstrap.css" rel="stylesheet">
+  
 <style>
   .row_party {
     width: 1200px;
@@ -63,7 +66,12 @@
     font-weight: bold;
     padding-top: 20px;
   }
-  
+    .party_detail_thumbnail_wrap {
+      border: 1px solid gray;
+      border-radius: 5px;
+      padding: 5px;
+      margin: 46px 2px 45px 2px;
+    }
   .container_main_party {
     position: relative;
     width: 100%;
@@ -75,33 +83,33 @@
   .dololr_text_region {
     float: left;
     color: #121111;
-    margin-left: 0px;
+    margin-left: 3px;
     margin-top: 0px;
     margin-bottom: 5px;
-    margin-right: 5px;
+    margin-right: 3px;
+    height: 25px;
     
-    font-size: x-small;
+    font-size: small;
+    font-weight: bold;
     
-    border: 1px solid #fabb25;
     border-radius: 5px;
-    padding-left: 5px;
-    padding-right: 5px;
+    padding: 0px 5px 5px 5px;
   }
   
   .dololr_text_sports {  
     float: left;
     color: #121111;
-    margin-left: 0px;
+    margin-left: 3px;
     margin-top: 0px;
-    margin-bottom: 5px;
+    margin-bottom: 3px;
     margin-right: 5px;
+    height: 25px;
     
-    font-size: x-small;
+    font-size: small;
+    font-weight: bold;
     
-    border: 1px solid #fabb25;
     border-radius: 5px;
-    padding-left: 5px;
-    padding-right: 5px;
+    padding: 0px 5px 5px 5px;
   }
   
   .dololr_text_datetime {
@@ -163,8 +171,11 @@
   }
   
   .condition_button {
-    float: left;
-    margin: 10px 10px 10px 5px;
+
+    color: #0d6efd;
+          background-color: transparent;
+          background-image: none;
+          border: 1px solid #0d6efd;
   }
   
   
@@ -219,15 +230,10 @@
   
   .party_detail_button_center {
     
-    color: #121111;
     margin: 30px 10px 10px 10px;
-    
-    font-size: medium;
-    
-    
-    border: 1px solid #fabb25;
+    font-size: large;
     border-radius: 5px;
-    padding: 5px 10px 5px 10px;
+    padding: 7px 15px 7px 15px;
   }
   
   .row_party_detail {
@@ -275,7 +281,21 @@
   .party_detail_content {
     overflow-y:scroll;
     width: 470px;
-    height: 200px;
+      height: 213px;
+      font-size: medium;
+      border-top: 1px solid gray;
+      border-bottom: 1px solid gray;
+    }
+    
+    .party_detail_content > p {
+      font-size: medium;
+    }
+  
+    .party_detail_r_cont {
+  margin-bottom: 10px;
+  }
+  .party_detail_r_cont > span{
+  font-size: medium;
   }
   
   .party_detail_content_l {
@@ -286,6 +306,7 @@
   .party_detail_content_r {
     width: 470px;
     float: left;
+      margin-left: 10px;
   }
           
   .party_detail_content_center_wrap {
@@ -302,9 +323,7 @@
     margin: 0 auto;
   }
   
-  .party_detail_content_r span {
-    font-size: 1.2em;
-  }
+ 
   
   
   .profile {
@@ -320,10 +339,15 @@
     width: 330px;
     min-height: 70px;
     overflow: hidden;
+            margin-top: 25px;
+      
   }
   
   .profile_img {
     width: 50px;
+      height: 50px;
+            border-radius: 50%;
+      overflow: hidden;
     float: left;
   }
   
@@ -335,6 +359,11 @@
     transform: translateY(-50%);
   }
 
+    .profile_user > span {
+      font-size: large;
+      margin-left: 5px;
+    }
+    
 .party_detail_img {
   margin: 0 auto;
   width: auto;
@@ -373,18 +402,16 @@
 <div class="furnitures_section layout_padding_party_detail">
   <div class="container_party">
     <div class="furnitures_section2 layout_padding_party">
-      <h1 class="our_text">모임 상세보기</h1>
-      <p class="ipsum_text">원하는 운동을 찾아보세요!</p>
-      <div class="party_detail_bar">
-        <div class="party_detail_buttons">
-       </div>
+      <h1 class="our_text">종료된 모임</h1>
       </div>
     </div>
     <div class="furnitures_section2 layout_padding_party">
       <div class="party_detail_bar">
         <div class="party_detail_buttons">
           <p class="dololr_text_region" th:text="${party.region.sido}"></p>
+        <p style="float: left; font-size: x-small; margin: 0px;">|</p>
           <p class="dololr_text_region" th:text="${party.region.sigu}"></p>
+        <p style="float: left; font-size: x-small; margin: 0px;">|</p>
           <p class="dololr_text_sports" th:text="${party.sports.name}"></p>
         </div>
       </div>
@@ -395,12 +422,11 @@
           <input name='no' type="hidden" th:value="${party.no}">
           <div class="party_detail_content_l">
             <div>
-              <div>
+              <div class="party_detail_thumbnail_wrap">
                 <img th:if="${party.thumbnail != null}"  th:src="@{'/party/files/' + ${party.thumbnail}}" alt="Avatar" class="image party_detail_img">
                 <img th:if="${party.thumbnail == null}"  src="/app/party/files/nothumpnail.jpg" alt="Avatar" class="image">
               </div>
               <div class="profile_wrap">
-                <p>주최자</p>
                 <div class="profile_img">
                   <img th:if="${party.user.filepath != null}"  th:src="@{'/member/files/' + ${party.user.filepath}}" alt="Avatar" class="profile">
                   <img th:if="${party.user.filepath == null}"  src="http://placeimg.com/50/50/any" alt="Avatar" class="profile">
@@ -414,53 +440,66 @@
             </div>
           </div>
           <div class="party_detail_content_r">
-            <div>
-              <h3 data-th-text='${party.title}'></h3>
+            <div style="border-bottom: 1px solid gray; margin-bottom: 5px;">
+              <h1 data-th-text='${party.title}'></h1>
             </div>
             <div>
-              <span>별점 : </span>
-            <span data-th-if="${party.star} == 0 and ${party.star} < 0.5"><span class="reviewStarVal" th:value="${party.star}" th:text="${party.star}"></span>
-            <img src="/app/review/star/star0.png" style="height:23px;"></span>
-            <span data-th-if="${party.star} >= 0.5 and ${party.star} < 1"><span class="reviewStarVal" th:value="${party.star}" th:text="${party.star}"></span>
-            <img src="/app/review/star/star05.png" style="height:23px;"></span>
-            <span data-th-if="${party.star} >= 1 and ${party.star} < 1.5"><span class="reviewStarVal" th:value="${party.star}" th:text="${party.star}"></span>
-            <img src="/app/review/star/star10.png" style="height:23px;"></span>
-            <span data-th-if="${party.star} >= 1.5 and ${party.star} < 2"><span class="reviewStarVal" th:value="${party.star}" th:text="${party.star}"></span>
-            <img src="/app/review/star/star15.png" style="height:23px;"></span>
-            <span data-th-if="${party.star} >= 2 and ${party.star} < 2.5"><span class="reviewStarVal" th:value="${party.star}" th:text="${party.star}"></span>
-            <img src="/app/review/star/star20.png" style="height:23px;"></span>
-            <span data-th-if="${party.star} >= 2.5 and ${party.star} < 3"><span class="reviewStarVal" th:value="${party.star}" th:text="${party.star}"></span>
-            <img src="/app/review/star/star25.png" style="height:23px;"></span>
-            <span data-th-if="${party.star} >= 3 and ${party.star} < 3.5"><span class="reviewStarVal" th:value="${party.star}" th:text="${party.star}"></span>
-            <img src="/app/review/star/star30.png" style="height:23px;"></span>
-            <span data-th-if="${party.star} >= 3.5 and ${party.star} < 4"><span class="reviewStarVal" th:value="${party.star}" th:text="${party.star}"></span>
-            <img src="/app/review/star/star35.png" style="height:23px;"></span>
-            <span data-th-if="${party.star} >= 4 and ${party.star} < 4.5"><span class="reviewStarVal" th:value="${party.star}" th:text="${party.star}"></span>
-            <img src="/app/review/star/star40.png" style="height:23px;"></span>
-            <span data-th-if="${party.star} >= 4.5 and ${party.star} < 5"><span class="reviewStarVal" th:value="${party.star}" th:text="${party.star}"></span>
-            <img src="/app/review/star/star45.png" style="height:23px;"></span>
-            <span data-th-if="${party.star} == 5"><span class="reviewStarVal" th:value="${party.star}" th:text="${party.star}"></span>
-            <img src="/app/review/star/star50.png" style="height:23px;"></span>
+            <div class="party_detail_r_cont">
+              <div style="position: relative; height: 30px;" data-th-if="${party.star} == 0 and ${party.star} < 0.5"><div style="position: absolute; top: 1.6px;">
+              <span style="font-size: large;" class="reviewStarVal" th:value="${party.star}" th:text="${party.star}"></span></div>
+              <div style="position: absolute; top: 2px; left: 30px;"><img src="/app/review/star/star0.png" style="height:23px;"></div></div>
+              <div style="position: relative; height: 30px;" data-th-if="${party.star} >= 0.5 and ${party.star} < 1"><div style="position: absolute; top: 1.6px;">
+              <span style="font-size: large;" class="reviewStarVal" th:value="${party.star}" th:text="${party.star}"></span></div>
+              <div style="position: absolute; top: 2px; left: 30px;"><img src="/app/review/star/star05.png" style="height:23px;"></div></div>
+              <div style="position: relative; height: 30px;" data-th-if="${party.star} >= 1 and ${party.star} < 1.5"><div style="position: absolute; top: 1.6px;">
+              <span style="font-size: large;" class="reviewStarVal" th:value="${party.star}" th:text="${party.star}"></span></div>
+              <div style="position: absolute; top: 2px; left: 30px;"><img src="/app/review/star/star10.png" style="height:23px;"></div></div>
+              <div style="position: relative; height: 30px;" data-th-if="${party.star} >= 1.5 and ${party.star} < 2"><div style="position: absolute; top: 1.6px;">
+              <span style="font-size: large;" class="reviewStarVal" th:value="${party.star}" th:text="${party.star}"></span></div>
+              <div style="position: absolute; top: 2px; left: 30px;"><img src="/app/review/star/star15.png" style="height:23px;"></div></div>
+              <div style="position: relative; height: 30px;" data-th-if="${party.star} >= 2 and ${party.star} < 2.5"><div style="position: absolute; top: 1.6px;">
+              <span style="font-size: large;" class="reviewStarVal" th:value="${party.star}" th:text="${party.star}"></span></div>
+              <div style="position: absolute; top: 2px; left: 30px;"><img src="/app/review/star/star20.png" style="height:23px;"></div></div>
+              <div style="position: relative; height: 30px;" data-th-if="${party.star} >= 2.5 and ${party.star} < 3"><div style="position: absolute; top: 1.6px;">
+              <span style="font-size: large;" class="reviewStarVal" th:value="${party.star}" th:text="${party.star}"></span></div>
+              <div style="position: absolute; top: 2px; left: 30px;"><img src="/app/review/star/star25.png" style="height:23px;"></div></div>
+              <div style="position: relative; height: 30px;" data-th-if="${party.star} >= 3 and ${party.star} < 3.5"><div style="position: absolute; top: 1.6px;">
+              <span style="font-size: large;" class="reviewStarVal" th:value="${party.star}" th:text="${party.star}"></span></div>
+              <div style="position: absolute; top: 2px; left: 30px;"><img src="/app/review/star/star30.png" style="height:23px;"></div></div>
+              <div style="position: relative; height: 30px;" data-th-if="${party.star} >= 3.5 and ${party.star} < 4"><div style="position: absolute; top: 1.6px;">
+              <span style="font-size: large;" class="reviewStarVal" th:value="${party.star}" th:text="${party.star}"></span></div>
+              <div style="position: absolute; top: 2px; left: 30px;"><img src="/app/review/star/star35.png" style="height:23px;"></div></div>
+              <div style="position: relative; height: 30px;" data-th-if="${party.star} >= 4 and ${party.star} < 4.5"><div style="position: absolute; top: 1.6px;">
+              <span style="font-size: large;" class="reviewStarVal" th:value="${party.star}" th:text="${party.star}"></span></div>
+              <div style="position: absolute; top: 2px; left: 30px;"><img src="/app/review/star/star40.png" style="height:23px;"></div></div>
+              <div style="position: relative; height: 30px;" data-th-if="${party.star} >= 4.5 and ${party.star} < 5"><div style="position: absolute; top: 1.6px;">
+              <span style="font-size: large;" class="reviewStarVal" th:value="${party.star}" th:text="${party.star}"></span></div>
+              <div style="position: absolute; top: 2px; left: 30px;"><img src="/app/review/star/star45.png" style="height:23px;"></div></div>
+              <div style="position: relative; height: 30px;" data-th-if="${party.star} == 5"><div style="position: absolute;">
+              <span style="font-size: large;" class="reviewStarVal" th:value="${party.star}" th:text="${party.star}"></span></div>
+              <div style="position: absolute; top: 2px; left: 30px;"><img src="/app/review/star/star50.png" style="height:23px;"></div></div>
             </div>
-            <div>
+          <div class="party_detail_r_cont">
               <div class="party_detail_content" name='content' th:utext="${party.content}"></div>
             </div>
-            <div>
+          <div class="party_detail_r_cont">
               <span>모임일자 : </span>
-              <span data-th-text='${party.partyDate}'></span>
+            <span data-th-text="${#dates.format(party.partyDate, 'yy/MM/dd')}"></span>
             </div>
-            <div>
+          <div class="party_detail_r_cont">
               <span>모임시간 : </span>
-              <span data-th-text='${party.partyTime}'></span>
+            <span data-th-text="${#dates.format(party.partyTime, 'HH시mm분')}"></span>
             </div>
-            <div>
+          <div class="party_detail_r_cont">
               <span>모집인원 : </span>
               <span data-th-text="${party.headCount} + '명'"></span>
             </div>
           </div>
+                </div>
+          
           <div class="party_detail_content_center_wrap">
             <div class="party_detail_content_center">
-                <button th:if="${session.loginMember} != null" class="party_detail_button_center" >후기 작성</button>
+                <button th:if="${session.loginMember} != null" class="btn btn-primary party_detail_button_center" >후기 작성</button>
             </div>
           </div>
         </form>
@@ -519,5 +558,7 @@ $(document).ready(function() {
 <!-- javascript --> 
 <script src="../js/owl.carousel.js"></script>
 <script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>    
+<!-- 공식부트스트랩 JS --> 
+<script src="../js/bootstrap/bootstrap.js"></script>   
 </body>
 </html>

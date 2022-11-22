@@ -4,10 +4,7 @@
 <!-- basic -->
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- mobile metas -->
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="viewport" content="initial-scale=1, maximum-scale=1">
 <!-- site metas -->
 <title>여기모여</title>
 <meta name="keywords" content="">
@@ -36,7 +33,9 @@
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
 <!--  썸머노트 끝 -->
 
-
+  <!-- 공식 부트스트랩 -->
+  <link href="../css/bootstrap/bootstrap.css" rel="stylesheet">
+  
 <!-- 카카오 지도 -->
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=329b989eb923746c672a8d662638bae0&libraries=services"></script>
 
@@ -45,17 +44,531 @@ input {
   display: none;
 }
 
-input:nth-of-type(1) ~ div:nth-last-of-type(3) {
-  display: none;
-}
+    .row_party {
+      width: 1130px;
+    }
+    
+    .col-md-6_party_wrap {
+      flex: 0 0 25%;
+      padding: 5px;
+      overflow: hidden;
+    }
+    
+    .col-md-6_party {
+      padding: 5px;
+      border: 1px solid gray;
+    }
+    
+    .temper_text_party {
+      width: 100%;
+      float: left;
+      font-size: medium;
+      color: #fabb25;
+      text-transform: uppercase;
+      font-weight: bold;
+      padding-top: 20px;
+    }
+    
+    .container_main_party {
+      position: relative;
+      width: 100%;
+      max-width: 100%;
+      float: left;
+    }
+    
+    
+ .dololr_text_region {
+    float: left;
+    color: #121111;
+    margin-left: 3px;
+    margin-top: 0px;
+    margin-bottom: 5px;
+    margin-right: 3px;
+    height: 25px;
+    
+    font-size: small;
+    font-weight: bold;
+    
+    border-radius: 5px;
+    padding: 0px 5px 5px 5px;
+  }
+  
+  .dololr_text_sports {  
+    float: left;
+    color: #121111;
+    margin-left: 3px;
+    margin-top: 0px;
+    margin-bottom: 3px;
+    margin-right: 5px;
+    height: 25px;
 
-input:nth-of-type(2) ~ div:nth-last-of-type(2) {
-  display: none;
-}
+    font-size: small;
+    font-weight: bold;
+    
+    border-radius: 5px;
+    padding: 0px 5px 5px 5px;
+  }
+    
+    .dololr_text_datetime {
+      float: right;
+      color: #121111;
+      margin-left: 0px;
+      margin-top: 0px;
+    }
+    
+    .dololr_text_party {
+      width: 100%;
+      float: left;
+      color: #121111;
+      margin-left: 0px;
+      margin-top: 0px;
+      margin-bottom: 0px;
+    }
+    
+    .party_search {
+      width: 100%;
+      float: left;
+      margin-left: 0px;
+      margin-top: 10px;
+    }
+    
+    .party_search_condition {
+      min-width: 1130px;
+    
+      height: 100px;
+      float: left;
+      margin-left: 0px;
+      margin-top: 10px;
+    }
+    
+    .party_condition {
+      display: flex !important;
+      margin: 10px 10px 10px 0;
+      float: left;
+      width: 80px;
+    }
+    
+    .party_search_bar {
+      border: 1px solid black;
+      margin-top: 10px;
+      width: 40%;
+      float: left;
+    }
+    
+    .button_box {
+      width: 470px;
+      overflow: hidden;
+    }
+    
+    .party_insert_button {
+      margin-left: 235px;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 35px;
+      font-size: 1.4em;
+    }
+    
+    .condition_button {
+      float: left;
+      margin: 10px 10px 10px 5px;
+    }
+    
+    
+    .layout_padding_party {
+      min-width: 1130px;
+       padding-top: 30px;
+       padding-bottom: 20px;
+         
+    }
+    
+    .container_party {
+      padding-right: 15px;
+      padding-left: 15px;
+      margin: 0 auto;
+    }
+    
+    .party_detail_view {
+      width: 825px;
+      margin: 20px auto;
+      overflow: hidden;
+    }
+    
+    .container_comment {
+      width:825px;
+    }
+    
+    .party_detail_button_l {
+      float: left;
+      margin-left: 0px;
+      margin-top: 0px;
+      margin-bottom: 5px;
+      margin-right: 5px;
+      border-radius: 5px;
+      font-size: x-small;
 
-input:nth-of-type(3) ~ div:nth-last-of-type(1) {
-  display: none;
-}
+    color: #0d6efd;
+          background-color: transparent;
+          background-image: none;
+          border: 1px solid #0d6efd;
+          
+      padding: 5px 10px 5px 10px;
+    }
+    
+        .party_detail_button_l:hover {
+          color: #fff;
+          background-color: #0d6efd;
+          border-color: #0d6efd;
+        }
+    
+    .party_detail_button_r {
+      float: right;
+      margin-right: 10px;
+      
+    }
+    
+    .row_party_detail {
+      width: 100%;
+      margin: 0 auto;
+    }
+    
+    .layout_padding_party_detail {
+      padding-top: 30px;
+      padding-bottom: 0px;
+      overflow: hidden;
+    
+    }
+    
+    .dololr_text_tatlle {  
+      float: right;
+
+      font-size: x-small;
+      
+
+      padding: 5px 10px 5px 10px;
+    }
+    
+    .party_detail_bar {
+      width: 100%;
+      height: 50px;
+      float: left;
+      margin: 0 auto;
+    }
+    
+    .party_detail_buttons {
+      width: 825px;
+      height: 40px;
+      margin: 0 auto;
+      padding: 10px 0;
+      
+    }
+    
+    .party_detail_content {
+      overflow-y:scroll;
+      width: 470px;
+      height: 213px;
+      font-size: medium;
+      border-top: 1px solid gray;
+      border-bottom: 1px solid gray;
+    }
+    
+    .party_detail_content > p {
+      font-size: medium;
+    }
+        
+    .party_detail_content_l {
+      width: 330px;
+      float: left;
+    }
+    
+    .party_detail_content_r {
+      width: 470px;
+      float: left;
+      margin-left: 10px;
+    }
+    
+    .party_detail_content_r span {
+      font-size: 1.2em;
+    }
+    
+    .party_detail_thumbnail_wrap {
+      border: 1px solid gray;
+      border-radius: 5px;
+      padding: 5px;
+      margin: 46px 2px 45px 2px;
+    }
+    
+    .profile {
+      opacity: 1;
+      display: block;
+      transition: .5s ease;
+      backface-visibility: hidden;
+    }
+    
+    .profile_wrap {
+      width: 330px;
+      min-height: 70px;
+      overflow: hidden;
+            margin-top: 25px;
+      
+    }
+    
+    .profile_img {
+      width: 50px;
+      height: 50px;
+            border-radius: 50%;
+      overflow: hidden;
+      float: left;
+    }
+    
+    
+    .profile_user {
+      width: 280px;
+      float: left;
+      margin-top: 25px;
+      transform: translateY(-50%);
+    }
+    
+    .profile_user > span {
+      font-size: large;
+      margin-left: 5px;
+    }
+    
+    
+    
+    .party_detail_bottom {
+      width: 825px;
+      margin: 0 auto;
+      padding: 10px 0;
+    
+      
+    }
+    
+    .party_detail_bottom_bar {
+      width: 100%;
+      float: left;
+      margin: 0 auto;
+      overflow: hidden;
+    }
+    
+    .party_detail_bottom_content {
+      min-height: 100px;
+      width: 825px;
+      margin: 10px auto;
+      float: left;
+      overflow: hidden;
+      border-bottom: 1px solid black;
+    }
+    
+    .party_detail_bottom_content > span {
+      font-size: medium;
+    }
+    
+    .map_wrap {
+      position: relative;
+      width: 825px;
+      height: 500px;
+      margin-top: 10px;
+    }
+    
+    .party_detail_bottom_comment {
+      min-height: 100px;
+      width: 825px;
+      margin: 10px auto;
+      float: left;
+      overflow: hidden;
+      border-bottom: 1px solid black;
+    }
+    
+    .party_detail_comment_img {
+      min-height: 80px;
+      padding: 5px;
+      width: 10%;
+      margin: 5px;
+      float: left;
+      border: 1px solid black;
+    }
+    
+    .party_detail_comment_format {
+      min-height: 40px;
+      width: 75%;
+      margin: 5px;
+      float: left;
+      border: 1px solid black;
+    }
+    
+    .party_detail_bottom_review_wrap {
+      height: 200px;
+      width: 50%;
+      float: left;
+      overflow: hidden;
+    }
+
+        
+    .party_detail_bottom_review {
+      width: 340px;
+      margin: 10px auto;
+      
+      box-shadow: inset 0 2px 2px #c9c9d0;
+      border-radius: 5px;
+    }
+    
+    .party_detail_bottom_review span {
+      font-size: small;
+      
+    }
+
+    .party_detail_bottom_review p {
+      font-size: medium;
+      font-weight: bold;
+    }
+    
+    .party_detail_review_img {
+      min-height: 60px;
+      padding: 5px;
+      width: 330px;
+      margin: 5px auto;
+    }
+    
+    .party_detail_review_format {
+      min-height: 30px;
+      width: 320px;
+      margin: 5px auto;
+      border: 1px solid white;
+    }
+    .party_detail_review_content {
+      min-height: 40px;
+      width: 320px;
+      margin: 5px auto;
+      border: 1px solid white;
+    }
+    
+    .party_detail_review_null {
+      width: 100%;
+      height: 100px;
+      align-content: center;
+      font-size: xx-large;
+    }
+
+    /* 리뷰디테일사진 */
+    .sldes li {list-style: none;}
+  .slide_wrapper {
+    position: relative;
+    width: 300px;
+    margin: 0 auto;
+    height: 300px;
+    overflow: hidden;
+    border: 1px solid #333;
+  }
+  .slide_wrapper * {
+  padding: 0;
+  margin: 0;
+  }
+  .slides {
+    position: absolute;
+    left:0 ;
+    
+    top: 0;
+    transition:left 0.5s ease-out;
+  }
+  .slides li:not(:last-child){
+    float: left;
+    margin-right: 30px;
+  }
+  .slides img {
+    width: 300px;
+  }
+  .controls {
+    text-align: center;
+    margin-top: 50px;
+  }
+  .controls span.prev {
+    position: absolute;
+    background: rgba(230, 230, 230, 0.6);
+    color: #333;
+    padding: 5px 2px;
+    margin: 0 10px;
+    top: 58%;
+    transform: translateY(-50%);
+    left: 13.5%;
+    }
+  .controls span.next {
+    position: absolute;
+    background: rgba(230, 230, 230, 0.6);
+    color: #333;
+    padding: 5px 2px;
+    margin: 0 10px;
+    top: 58%;
+    transform: translateY(-50%);
+    right: 13.5%;
+    }
+    /* 리뷰디테일사진 */
+    
+    /* Modal Review*/
+    #modalReview.modal-overlay {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      left: 0;
+      top: 0;
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255, 255, 255, 0.25);
+      box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+      backdrop-filter: blur(1.5px);
+      -webkit-backdrop-filter: blur(1.5px);
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+    }
+    
+    #modalReview .modal-window {
+      background: rgba(19, 110, 255, 0.70);
+      /* background: rgba( 69, 139, 197, 0.70 ); */
+      box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+      backdrop-filter: blur(13.5px);
+      -webkit-backdrop-filter: blur(13.5px);
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      width: 500px;
+      height: 500px;
+      position: absolute;
+      top: 200px;
+      padding: 10px;
+      z-index: 10;
+      overflow: scroll;
+    }
+    
+    #modalReview .title {
+      padding-left: 10px;
+      display: inline;
+      color: black;
+    }
+    
+    #modalReview .title h2 {
+      display: inline;
+    }
+    
+    #modalReview .close-area2 {
+      display: inline;
+      float: right;
+      padding-right: 10px;
+      cursor: pointer;
+      color: black;
+    }
+    
+    #modalReview .content {
+      margin-top: 20px;
+      padding: 0px 10px;
+      color: black;
+      border-radius: 10px;
+      
+    }
+    
+    .reviewRadius {
+      border-radius: 5px;
+    }
+    /* Modal Review*/
 
 input:nth-of-type(1):checked ~ div:nth-last-of-type(3) {
   display: block;
@@ -660,131 +1173,265 @@ input:nth-of-type(3):checked ~ div:nth-last-of-type(1) {
 .party_detail_img {
   margin: 0 auto;
   width: auto;
-  max-height: 300px;
+  max-height: 200px;
+  max-width: 300px;
 }
-</style>
+
+      .windowWidth {
+        max-width:1130px !important;
+        min-width:1130px !important;
+        margin: auto !important;
+      }
+  .party_detail_r_cont {
+  margin-bottom: 10px;
+  }
+  .party_detail_r_cont > span{
+  font-size: medium;
+  }
+  </style>
 
 
 </head>
 <body>
-	<!-- header section start -->
-	<div class="header_section">
-		<div class="container-fluid">
-			<nav class="navbar navbar-expand-lg navbar-light bg-light">
-				<div class="main_logo">
-					<a href="/app"><img src="../images/logo.png"></a>
-				</div>
-				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-					<span class="navbar-toggler-icon"></span>
-				</button>
-				<div class="collapse navbar-collapse" id="navbarSupportedContent">
-					<ul class="navbar-nav mr-auto">
-						<li class="nav-item"><a class="nav-link" href="list">운동찾기</a></li>
-						<li class="nav-item"><a class="nav-link" href="../board/main">커뮤니티</a></li>
-						<li class="nav-item"><a class="nav-link" href="../notice/list">공지사항</a></li>
-					</ul>
-					<div class="login-bt">
-						<ul>
-							<li data-th-if="${session.loginMember == null}"><a href="../auth/form">로그인</a></li>
-							<li class="loginId" th:id="${session.loginMember.no}" data-th-if="${session.loginMember != null}"><a href="../mypage/my-post">마이페이지</a></li>
-							<li data-th-if="${session.loginMember != null}"><a href="../auth/logout" data-th-text="${session.loginMember.name} + '(로그아웃)'">동동(로그아웃)</a></li>
-						</ul>
-					</div>
-				</div>
-			</nav>
-		</div>
-	</div>
-	<!-- header section end -->
-	<!-- furnitures section start -->
-	<div class="furnitures_section layout_padding_party_detail">
-		<div class="container_party">
-			<div class="furnitures_section2 layout_padding_party">
-				<h1 class="our_text">모임 상세보기</h1>
-				<p class="ipsum_text">원하는 운동을 찾아보세요!</p>
-				<div class="party_detail_bar">
-					<div class="party_detail_buttons">
-						<button th:if="${session.loginMember} != null and ${session.loginMember.no} == ${party.user.no}" class="party_detail_button_r" type="button" th:onclick="findPartyNoDelete()">삭제</button>
-						<button th:if="${session.loginMember} != null and ${session.loginMember.no} == ${party.user.no}" class="party_detail_button_r" type="button" th:onclick="findPartyNoUpdate()">수정</button>
-					</div>
-				</div>
-			</div>
-			<div class="furnitures_section2 layout_padding_party">
-				<div class="party_detail_bar">
-					<div class="party_detail_buttons">
-						<p class="dololr_text_region" th:text="${party.region.sido}"></p>
-						<p class="dololr_text_region" th:text="${party.region.sigu}"></p>
-						<p class="dololr_text_sports" th:text="${party.sports.name}"></p>
-						<button th:if="${session.loginMember} != null and ${session.loginMember.no} != ${party.user.no}" class="dololr_text_tatlle btn-modal" data-th-id="${party.user.no}" type="button" role="button">신고</button>
-					</div>
-				</div>
-				<div class="party_detail_view">
-					<div class="party_detail_content_l">
-						<div>
-							<img th:if="${party.thumbnail != null}" th:src="@{'/party/files/' + ${party.thumbnail}}" alt="Avatar" class="image party_detail_img"> <img th:if="${party.thumbnail == null}" src="/app/party/files/nothumpnail.jpg" alt="Avatar" class="image party_detail_img">
-						</div>
-						<div class="profile_wrap">
-							<p>주최자</p>
-							<div class="profile_img">
-								<img th:if="${party.user.filepath != null}" th:src="@{'/member/files/' + ${party.user.filepath}}" alt="Avatar" class="profile"> <img th:if="${party.user.filepath == null}" src="http://placeimg.com/50/50/any" alt="Avatar" class="profile">
-							</div>
-							<div class="profile_user">
-								<span data-th-text='${party.user.nickname}'>홍길동</span> <span data-th-text='${party.user.ageGroup}'>90대</span> <span data-th-text="${party.user.sex} == true ? '남자' : '여자'">성별</span>
-							</div>
-						</div>
-					</div>
-					<div class="party_detail_content_r">
-						<div>
-							<input type="hidden" data-th-value="${party.no}" id="partyNo">
-							<h3 data-th-text='${party.title}'></h3>
-						</div>
-						<div>
-							<span>별점 : </span> <span data-th-if="${party.star} == 0 and ${party.star} < 0.5"><span class="reviewStarVal" th:value="${party.star}" th:text="${party.star}"></span> <img src="/app/review/star/star0.png" style="height: 23px;"></span> <span data-th-if="${party.star} >= 0.5 and ${party.star} < 1"><span class="reviewStarVal" th:value="${party.star}" th:text="${party.star}"></span> <img src="/app/review/star/star05.png" style="height: 23px;"></span> <span data-th-if="${party.star} >= 1 and ${party.star} < 1.5"><span class="reviewStarVal" th:value="${party.star}" th:text="${party.star}"></span> <img src="/app/review/star/star10.png" style="height: 23px;"></span> <span data-th-if="${party.star} >= 1.5 and ${party.star} < 2"><span class="reviewStarVal" th:value="${party.star}" th:text="${party.star}"></span> <img src="/app/review/star/star15.png" style="height: 23px;"></span> <span data-th-if="${party.star} >= 2 and ${party.star} < 2.5"><span
-								class="reviewStarVal" th:value="${party.star}" th:text="${party.star}"
-							></span> <img src="/app/review/star/star20.png" style="height: 23px;"></span> <span data-th-if="${party.star} >= 2.5 and ${party.star} < 3"><span class="reviewStarVal" th:value="${party.star}" th:text="${party.star}"></span> <img src="/app/review/star/star25.png" style="height: 23px;"></span> <span data-th-if="${party.star} >= 3 and ${party.star} < 3.5"><span class="reviewStarVal" th:value="${party.star}" th:text="${party.star}"></span> <img src="/app/review/star/star30.png" style="height: 23px;"></span> <span data-th-if="${party.star} >= 3.5 and ${party.star} < 4"><span class="reviewStarVal" th:value="${party.star}" th:text="${party.star}"></span> <img src="/app/review/star/star35.png" style="height: 23px;"></span> <span data-th-if="${party.star} >= 4 and ${party.star} < 4.5"><span class="reviewStarVal" th:value="${party.star}" th:text="${party.star}"></span> <img src="/app/review/star/star40.png" style="height: 23px;"></span> <span
-								data-th-if="${party.star} >= 4.5 and ${party.star} < 5"
-							><span class="reviewStarVal" th:value="${party.star}" th:text="${party.star}"></span> <img src="/app/review/star/star45.png" style="height: 23px;"></span> <span data-th-if="${party.star} == 5"><span class="reviewStarVal" th:value="${party.star}" th:text="${party.star}"></span> <img src="/app/review/star/star50.png" style="height: 23px;"></span>
-						</div>
-						<div>
-							<div class="party_detail_content" name='content' th:utext="${party.content}"></div>
-						</div>
-						<div>
-							<span>모임일자 : </span> <span data-th-text='${party.partyDate}'></span>
-						</div>
-						<div>
-							<span>모임시간 : </span> <span data-th-text='${party.partyTime}'></span>
-						</div>
-						<div>
-							<span>모집인원 : </span> <span data-th-text="${party.headCount} + '명'"></span>
-						</div>
-						<form action="attend" method="get">
-							<div class="button_box">
-								<button th:if="${session.loginMember} != null and ${session.loginMember.no} != ${party.user.no} and ${checkNo} != 1" class="party_insert_button" type="button" th:onclick="findPartyNoAttend()">모임 신청</button>
-								<button th:if="${session.loginMember} == null" class="party_insert_button" type="button" onclick="location.href='../auth/form'">모임 신청</button>
-							</div>
-						</form>
-					</div>
-				</div>
-				<div class="furnitures_section2 layout_padding_party">
-					<div class="party_detail_bottom_bar">
-						<div class="party_detail_bottom">
-							<label class="party_detail_button_l" for="tab-1">모임 장소 보기</label> <label class="party_detail_button_l" for="tab-2">댓글</label> <label class="party_detail_button_l" for="tab-3">모임 후기</label> <input type="radio" name="tab" id="tab-1" checked="checked"> <input type="radio" name="tab" id="tab-2"> <input type="radio" name="tab" id="tab-3">
-							<button class="party_detail_button_r" onclick="location.href = 'list' ">목록</button>
-							<button class="party_detail_button_r" onclick="location.href = '#' ">top</button>
-							<!-- 장소 블록 시작 -->
-							<div class="tab-item party_detail_bottom_content">
-								<input id="latResult" type="hidden" th:value="${party.latResult}"> <input id="lngResult" type="hidden" th:value="${party.lngResult}"> <span>지도설정</span> <span>선택 장소 : </span><span id="mapSelectName">없음</span><span id="mapSelectAddress"></span>
-								<div class="map_wrap">
-									<div id="map" style="width: 825px; height: 350px;"></div>
-								</div>
-								<input id="mapName" type="hidden" th:value="${party.mapName}"> <input id="mapAdress" type="hidden" th:value="${party.mapAddress}">
-							</div>
-							<!-- 장소 블록 끝 -->
-							<!-- 댓글 블록 시작 -->
-							<div>
-								<h2>댓글</h2>
-								<div class="container_comment">
-									<div class="commentList"></div>
-								</div>
+<!-- header section start -->
+<div class="header_section windowWidth">
+  <div class="container-fluid">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="main_logo"><a href="/app"><img src="../images/logo.png"></a></div>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item"><a class="nav-link" href="list">운동찾기</a></li>
+          <li class="nav-item"><a class="nav-link" href="../board/main">커뮤니티</a></li>
+          <li class="nav-item"><a class="nav-link" href="../notice/list">공지사항</a></li>
+        </ul>
+        <div class="login-bt">
+          <ul>
+            <li data-th-if="${session.loginMember == null}"><a href="../auth/form" >로그인</a></li>
+            <li class="loginId" th:id="${session.loginMember.no}" data-th-if="${session.loginMember != null}"><a href="../mypage/my-post">마이페이지</a></li>
+            <li data-th-if="${session.loginMember != null}"><a href="../auth/logout" data-th-text="${session.loginMember.name} + '(로그아웃)'">동동(로그아웃)</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </div>
+</div>
+<!-- header section end -->
+<!-- furnitures section start -->
+<div class="furnitures_section layout_padding_party_detail windowWidth">
+  <div class="container_party">
+    <div class="furnitures_section2 layout_padding_party">
+      <div class="party_detail_bar">
+        <div class="party_detail_buttons">
+          <button th:if="${session.loginMember} != null and ${session.loginMember.no} == ${party.user.no}" class="btn btn-primary party_detail_button_r" type="button" th:onclick="findPartyNoDelete()">삭제</button>
+          <button th:if="${session.loginMember} != null and ${session.loginMember.no} == ${party.user.no}" class="btn btn-primary party_detail_button_r" type="button" th:onclick="findPartyNoUpdate()">수정</button>
+        </div>
+      </div>
+    </div>
+    <div class="furnitures_section2 layout_padding_party">
+      <div class="party_detail_bar">
+        <div class="party_detail_buttons">
+          <p class="dololr_text_region" th:text="${party.region.sido}"></p>
+        <p style="float: left; font-size: x-small; margin: 0px;">|</p>
+          <p class="dololr_text_region" th:text="${party.region.sigu}"></p>
+        <p style="float: left; font-size: x-small; margin: 0px;">|</p>
+          <p class="dololr_text_sports" th:text="${party.sports.name}"></p>
+          <button th:if="${session.loginMember} != null and ${session.loginMember.no} != ${party.user.no}" class="btn btn-primary dololr_text_tatlle btn-modal" data-th-id="${party.user.no}" type="button" role="button">신고</button>
+        </div>
+      </div>
+      <div class="party_detail_view">
+        <div class="party_detail_content_l">
+          <div class="party_detail_thumbnail_wrap">
+            <img th:if="${party.thumbnail != null}"  th:src="@{'/party/files/' + ${party.thumbnail}}" alt="Avatar" class="image party_detail_img">
+            <img th:if="${party.thumbnail == null}"  src="/app/party/files/nothumpnail.jpg" alt="Avatar" class="image party_detail_img">
+          </div>
+          <div class="profile_wrap">
+            <div class="profile_img">
+              <img th:if="${party.user.filepath != null}"  th:src="@{'/member/files/' + ${party.user.filepath}}" alt="Avatar" class="profile">
+              <img th:if="${party.user.filepath == null}"  src="http://placeimg.com/50/50/any" alt="Avatar" class="profile">
+            </div>
+            <div class="profile_user">
+              <span data-th-text='${party.user.nickname}'>홍길동</span>
+              <span data-th-text='${party.user.ageGroup}'>90대</span>
+              <span data-th-text="${party.user.sex} == true ? '남자' : '여자'">성별</span>
+            </div>
+          </div>
+        </div>
+        <div class="party_detail_content_r">
+          <div style="border-bottom: 1px solid gray; margin-bottom: 5px;">
+            <input type="hidden" data-th-value="${party.no}" id="partyNo">
+            <h1 data-th-text='${party.title}'></h1>
+          </div>
+          <div class="party_detail_r_cont">
+            <div style="position: relative; height: 30px;" data-th-if="${party.star} == 0 and ${party.star} < 0.5"><div style="position: absolute; top: 1.6px;">
+            <span style="font-size: large;" class="reviewStarVal" th:value="${party.star}" th:text="${party.star}"></span></div>
+            <div style="position: absolute; top: 2px; left: 30px;"><img src="/app/review/star/star0.png" style="height:23px;"></div></div>
+            <div style="position: relative; height: 30px;" data-th-if="${party.star} >= 0.5 and ${party.star} < 1"><div style="position: absolute; top: 1.6px;">
+            <span style="font-size: large;" class="reviewStarVal" th:value="${party.star}" th:text="${party.star}"></span></div>
+            <div style="position: absolute; top: 2px; left: 30px;"><img src="/app/review/star/star05.png" style="height:23px;"></div></div>
+            <div style="position: relative; height: 30px;" data-th-if="${party.star} >= 1 and ${party.star} < 1.5"><div style="position: absolute; top: 1.6px;">
+            <span style="font-size: large;" class="reviewStarVal" th:value="${party.star}" th:text="${party.star}"></span></div>
+            <div style="position: absolute; top: 2px; left: 30px;"><img src="/app/review/star/star10.png" style="height:23px;"></div></div>
+            <div style="position: relative; height: 30px;" data-th-if="${party.star} >= 1.5 and ${party.star} < 2"><div style="position: absolute; top: 1.6px;">
+            <span style="font-size: large;" class="reviewStarVal" th:value="${party.star}" th:text="${party.star}"></span></div>
+            <div style="position: absolute; top: 2px; left: 30px;"><img src="/app/review/star/star15.png" style="height:23px;"></div></div>
+            <div style="position: relative; height: 30px;" data-th-if="${party.star} >= 2 and ${party.star} < 2.5"><div style="position: absolute; top: 1.6px;">
+            <span style="font-size: large;" class="reviewStarVal" th:value="${party.star}" th:text="${party.star}"></span></div>
+            <div style="position: absolute; top: 2px; left: 30px;"><img src="/app/review/star/star20.png" style="height:23px;"></div></div>
+            <div style="position: relative; height: 30px;" data-th-if="${party.star} >= 2.5 and ${party.star} < 3"><div style="position: absolute; top: 1.6px;">
+            <span style="font-size: large;" class="reviewStarVal" th:value="${party.star}" th:text="${party.star}"></span></div>
+            <div style="position: absolute; top: 2px; left: 30px;"><img src="/app/review/star/star25.png" style="height:23px;"></div></div>
+            <div style="position: relative; height: 30px;" data-th-if="${party.star} >= 3 and ${party.star} < 3.5"><div style="position: absolute; top: 1.6px;">
+            <span style="font-size: large;" class="reviewStarVal" th:value="${party.star}" th:text="${party.star}"></span></div>
+            <div style="position: absolute; top: 2px; left: 30px;"><img src="/app/review/star/star30.png" style="height:23px;"></div></div>
+            <div style="position: relative; height: 30px;" data-th-if="${party.star} >= 3.5 and ${party.star} < 4"><div style="position: absolute; top: 1.6px;">
+            <span style="font-size: large;" class="reviewStarVal" th:value="${party.star}" th:text="${party.star}"></span></div>
+            <div style="position: absolute; top: 2px; left: 30px;"><img src="/app/review/star/star35.png" style="height:23px;"></div></div>
+            <div style="position: relative; height: 30px;" data-th-if="${party.star} >= 4 and ${party.star} < 4.5"><div style="position: absolute; top: 1.6px;">
+            <span style="font-size: large;" class="reviewStarVal" th:value="${party.star}" th:text="${party.star}"></span></div>
+            <div style="position: absolute; top: 2px; left: 30px;"><img src="/app/review/star/star40.png" style="height:23px;"></div></div>
+            <div style="position: relative; height: 30px;" data-th-if="${party.star} >= 4.5 and ${party.star} < 5"><div style="position: absolute; top: 1.6px;">
+            <span style="font-size: large;" class="reviewStarVal" th:value="${party.star}" th:text="${party.star}"></span></div>
+            <div style="position: absolute; top: 2px; left: 30px;"><img src="/app/review/star/star45.png" style="height:23px;"></div></div>
+            <div style="position: relative; height: 30px;" data-th-if="${party.star} == 5"><div style="position: absolute;">
+            <span style="font-size: large;" class="reviewStarVal" th:value="${party.star}" th:text="${party.star}"></span></div>
+            <div style="position: absolute; top: 2px; left: 30px;"><img src="/app/review/star/star50.png" style="height:23px;"></div></div>
+          </div>
+          <div class="party_detail_r_cont">
+            <div class="party_detail_content" name='content' th:utext="${party.content}"></div>
+          </div>
+          <div class="party_detail_r_cont">
+            <span>모임일자 : </span>
+            <span data-th-text="${#dates.format(party.partyDate, 'yy/MM/dd')}"></span>
+          </div>
+          <div class="party_detail_r_cont">
+            <span>모임시간 : </span>
+            <span data-th-text="${#dates.format(party.partyTime, 'HH시mm분')}"></span>
+          </div>
+          <div class="party_detail_r_cont">
+            <span>모집인원 : </span>
+            <span data-th-text="${party.headCount} + '명'"></span>
+          </div>
+          <form action="attend" method="get">
+          <div class="button_box">
+            <button th:if="${session.loginMember} != null and ${session.loginMember.no} != ${party.user.no} and ${checkNo} != 1" 
+            class="btn btn-primary party_insert_button" type="button" th:onclick="findPartyNoAttend()">모임 신청</button>
+            <button th:if="${session.loginMember} == null" class="btn btn-primary party_insert_button" type="button" onclick="location.href='../auth/form'">모임 신청</button>
+          </div>
+          </form>
+        </div>
+      </div>
+      <div class="furnitures_section2 layout_padding_party">
+        <div class="party_detail_bottom_bar">
+          <div class="party_detail_bottom">
+            <label class="party_detail_button_l" for="tab-1">모임 장소 보기</label>
+            <label class="party_detail_button_l" for="tab-2">댓글</label>
+            <label class="party_detail_button_l" for="tab-3">모임 후기</label>
+            <input type="radio" name="tab" id="tab-1" checked="checked">
+            <input type="radio" name="tab" id="tab-2">
+            <input type="radio" name="tab" id="tab-3">
+            <button class="btn btn-primary party_detail_button_r" onclick = "location.href = 'list' ">목록</button>
+            <button class="btn btn-primary party_detail_button_r" onclick = "location.href = '#' ">top</button>
+            <!-- 장소 블록 시작 -->
+            <div class="tab-item party_detail_bottom_content"> 
+              <input id="latResult" type="hidden" th:value="${party.latResult}">
+              <input id="lngResult" type="hidden" th:value="${party.lngResult}">
+              <span>선택 장소 : </span><span id="mapSelectName">없음</span><span id="mapSelectAddress"></span>
+              <div class="map_wrap">
+                <div id="map" style="width:825px;height:350px;"></div>
+              </div>
+              <input id="mapName" type="hidden" th:value="${party.mapName}">
+              <input id="mapAdress" type="hidden" th:value="${party.mapAddress}">
+            </div> 
+            <!-- 장소 블록 끝 -->
+            <!-- 댓글 블록 시작 -->
+            <div class="tab-item party_detail_bottom_content"> 
+              
+              <h2>댓글 쓰기</h2>
+              <div style="width: 80%;" class="temp-line">
+                <div class="form-group">
+                  <label for="comment"></label>
+                  <div th:if="${session.loginMember}">
+                    <input type="hidden" id="memberNo"  th:value="${session.loginMember.no}" >
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="commentCont"
+                      placeholder="댓글을 달아주세요!"
+                      style="height: 30px;"
+                      th:name="${session.loginMember.nickname}">
+                  </div>
+                  <div th:if="${session.loginMember == null}">
+                    <input type="hidden" id="memberNo"  value=0>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="commentCont"
+                      placeholder="댓글을 등록하려면 로그인 해주세요"
+                      style="height: 60px;" readonly
+                      onclick="alertToLogin();">
+                  </div>
+                </div>
+                <div>
+                    <button id="commetButton" class="btn btn-sm btn-success">등록</button>
+                </div>
+              </div>
+              
+              <div class="container_comment">
+                <div class="commentList"></div>
+              </div>
+              
+            </div>
+            <!-- 댓글 블록 끝 -->
+            <!-- 후기 블록 시작 -->
+            <div class="tab-item party_detail_bottom_content"> 
+              <th:block th:each="review : ${reviews}">
+                <div class="party_detail_bottom_review_wrap">
+                  <div th:id="reviewDetail + ${review.no}" class="party_detail_bottom_review reviewDetailBtn">
+                    <div class="party_detail_review_content">
+                      <p th:text="${review.title}"></p>
+                    </div>
+                    <div class="party_detail_review_format">
+                      <div style="position: relative;" data-th-if="${review.star} == 0 and ${review.star} < 1"><div style="position: absolute;">
+                      <span style="font-size: medium;" class="reviewStarVal" th:value="${review.star}" th:text="${review.star}"></span></div>
+                      <div style="position: absolute; top: 2px; left: 30px;"><img src="/app/review/star/star0.png" style="width:100px;"></div></div>
+                      <div style="position: relative;" data-th-if="${review.star} >= 1 and ${review.star} < 2"><div style="position: absolute;">
+                      <span style="font-size: medium;" class="reviewStarVal" th:value="${review.star}" th:text="${review.star}"></span></div>
+                      <div style="position: absolute; top: 2px; left: 30px;"><img src="/app/review/star/star10.png" style="width:100px;"></div></div>
+                      <div style="position: relative;" data-th-if="${review.star} >= 2 and ${review.star} < 3"><div style="position: absolute;">
+                      <span style="font-size: medium;" class="reviewStarVal" th:value="${review.star}" th:text="${review.star}"></span></div>
+                      <div style="position: absolute; top: 2px; left: 30px;"><img src="/app/review/star/star20.png" style="width:100px;"></div></div>
+                      <div style="position: relative;" data-th-if="${review.star} >= 3 and ${review.star} < 4"><div style="position: absolute;">
+                      <span style="font-size: medium;" class="reviewStarVal" th:value="${review.star}" th:text="${review.star}"></span></div>
+                      <div style="position: absolute; top: 2px; left: 30px;"><img src="/app/review/star/star30.png" style="width:100px;"></div></div>
+                      <div style="position: relative;" data-th-if="${review.star} >= 4 and ${review.star} < 5"><div style="position: absolute;">
+                      <span style="font-size: medium;" class="reviewStarVal" th:value="${review.star}" th:text="${review.star}"></span></div>
+                      <div style="position: absolute; top: 2px; left: 30px;"><img src="/app/review/star/star40.png" style="width:100px;"></div></div>
+                      <div style="position: relative;" data-th-if="${review.star} == 5"><div style="position: absolute;">
+                      <span style="font-size: medium;" class="reviewStarVal" th:value="${review.star}" th:text="${review.star}"></span></div>
+                      <div style="position: absolute; top: 2px; left: 30px;"><img src="/app/review/star/star50.png" style="width:100px;"></div></div>
+                    </div>
+                    <div class="party_detail_review_format">
+                      <span th:text="${review.writer.nickname}"></span>
+                      <span th:text="${review.writer.sex} == true ? '남자' : '여자'"></span>
+                      <span th:text="${review.writer.ageGroup}"></span>
+                    </div>
+                  </div>
+                </div>
+              </th:block>
+            </div> 
+            <!-- 후기 블록 끝 -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div> 
+<!-- furnitures_section2 layout_padding_party -->
+</div>
+<!-- furnitures section end -->
+<script type="text/javascript">
 
 								<h2>댓글 쓰기</h2>
 								<div style="width: 80%;" class="temp-line">
@@ -860,71 +1507,93 @@ $('.reviewStarVal').ready(function () {
 		);
 
 
+$('.profile').ready(function () {
+	const img = new Image();
+	const imgSize = "";
+	let[imgUrl, imgPath] = $('.profile').attr('src').split('files/');
+	img.src = imgPath;
+    console.log(imgPath);
+    console.log(img.src);
+	  console.log(imgPath.height);
+	  console.log(imgPath.width);
+	if (img.width > img.height) {
+		imgSize = img.height;
+		console.log(imgSize + "dd");
+		$('.profile').css('max-height', imgSize);
+	} else if (img.width < img.height) {
+    imgSize = img.width;
+    console.log(imgSize + "dd");
+    $('.profile').css('max-width', imgSize);
+	}
+	
+});
+
 </script>
 
 
-	<!-- copyright section start -->
-	<div class="copyright_section">
-		<div class="container">
-			<div class="social_icon">
-				<ul>
-					<li><a href="#"><img src="../images/fb-icon.png"></a></li>
-					<li><a href="#"><img src="../images/twitter-icon.png"></a></li>
-					<li><a href="#"><img src="../images/instagram-icon.png"></a></li>
-					<li><a href="#"><img src="../images/linkedin-icon.png"></a></li>
-				</ul>
-			</div>
-			<p class="copyright_text">
-				2020 All Rights Reserved. Design by <a href="https://html.design">Free html Templates</a>
-			</p>
-		</div>
-	</div>
-	<!-- copyright section end -->
+<!-- copyright section start -->
+<div class="copyright_section windowWidth">
+  <div class="container windowWidth" >
+    <div class="social_icon">
+      <ul>
+        <li><a href="#"><img src="../images/fb-icon.png"></a></li>
+        <li><a href="#"><img src="../images/twitter-icon.png"></a></li>
+        <li><a href="#"><img src="../images/instagram-icon.png"></a></li>
+        <li><a href="#"><img src="../images/linkedin-icon.png"></a></li>
+      </ul>
+    </div>
+    <p class="copyright_text">2020 All Rights Reserved. Design by <a href="https://html.design">Free html  Templates</a></p>
+  </div>
+</div>
+<!-- copyright section end -->
 
-	<!-- Modal Start -->
-	<table border='1'>
-		<div id="container2">
-			<div id="lorem-ipsum2"></div>
-		</div>
-		<div id="modalReview" class="modal-overlay">
-			<div class="modal-window">
-				<div class="close-area2">X</div>
-				<div class="content" style="background-color: white; overflow: hidden;">
-					<div>
-						<div class="report_menu">리뷰 상세보기</div>
-						<div class="party_detail_bottom_review">
-							<div class="reviewRadius party_detail_review_img">
-								<div class="slide_wrapper">
-									<div class="slide_wrapper">
-										<ul class="slides">
-											<li><img alt="" src="/app/party/files/nothumpnail.jpg"></li>
-											<li><img alt="" src="/app/party/files/nothumpnail.jpg"></li>
-											<li><img alt="" src="/app/party/files/nothumpnail.jpg"></li>
-											<li><img alt="" src="/app/party/files/nothumpnail.jpg"></li>
-											<li><img alt="" src="/app/party/files/nothumpnail.jpg"></li>
-										</ul>
-									</div>
-									<p class="controls">
-										<span class="prev"><</span> <span class="next">></span>
-									</p>
-									<p id="reviewDetailAttachedFiles"></p>
-								</div>
-							</div>
-							<div class="reviewRadius party_detail_review_format">
-								<span id="reviewDetailStar"></span> <span id="reviewDetailStarImg"></span>
-							</div>
-							<div class="reviewRadius party_detail_review_format">
-								<span id="reviewDetailWriterNickname"></span> <span id="reviewDetailWriterSex"></span> <span id="reviewDetailWriterAgeGroup"></span> <span id="reviewDetailCreatedDate"></span>
-							</div>
-							<div class="reviewRadius party_detail_review_content">
-								<p id="reviewDetailTitle"></p>
-								<p id="reviewDetailContent"></p>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-	</table>
+<!-- Modal Start -->
+<table border='1'>
+    <div id="container2">
+      <div id="lorem-ipsum2"></div>
+    </div>
+    <div id="modalReview" class="modal-overlay">
+      <div class="modal-window">
+        <div class="close-area2">X</div>
+        <div class="content" style="background-color: white; overflow: hidden;">
+          <div>
+            <div class="report_menu">리뷰 상세보기</div>
+              <div class="party_detail_bottom_review">
+                <div class="reviewRadius party_detail_review_img">
+                  <div class="slide_wrapper">
+                    <div class="slide_wrapper">
+                      <ul class="slides">
+                        <li><img alt="" src="/app/party/files/nothumpnail.jpg"></li>
+                        <li><img alt="" src="/app/party/files/nothumpnail.jpg"></li>
+                        <li><img alt="" src="/app/party/files/nothumpnail.jpg"></li>
+                        <li><img alt="" src="/app/party/files/nothumpnail.jpg"></li>
+                        <li><img alt="" src="/app/party/files/nothumpnail.jpg"></li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                    <p class="controls">
+                      <span class="prev"><</span>
+                      <span class="next">></span>
+                    </p>
+                <div style="position: relative;" class="reviewRadius party_detail_review_format">
+                  <div style="position: absolute;"><span id="reviewDetailStar" style="font-size: large;"></span></div>
+                  <div style="position: absolute; top: 2px; left: 30px;"><span id="reviewDetailStarImg"></span></div>
+                </div>
+                <div class="reviewRadius party_detail_review_format">
+                  <p id="reviewDetailTitle" style="font-size: x-large;"></p>
+                  <span id="reviewDetailWriterNickname" style="font-size: large;"></span>
+                  <span id="reviewDetailWriterSex" style="font-size: large;"></span>
+                  <span id="reviewDetailWriterAgeGroup" style="font-size: large;"></span>
+                </div>
+                <div class="reviewRadius party_detail_review_content">
+                  <p id="reviewDetailContent" style="font-weight: normal;"></p>
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </table>
 
 	<!-- 리뷰 디테일 사진 -->
 	<script>
@@ -970,7 +1639,6 @@ let partyNoVal = "";
 const loremIpsum2 = document.getElementById("lorem-ipsum2");
 //fetch를 통해 받아온 데이터를 loremIpsum2 DOM에 넣어주기 때문에 모달창 내부에 내용이 채워져서 뜨는것. 
 //fetch("https://baconipsum.com/api/?type=all-meat&paras=200&format=html")
-loremIpsum2.innerHTML = `모달창에 넣을 내용`
 /*  .then(response => response.text())
     .then(result => loremIpsum2.innerHTML = result) */
 //디스플레이 non 버튼클릭하면 flex로 변환  
@@ -1488,5 +2156,8 @@ $("#singo").click(function() {
 	<script src="../js/custom.js"></script>
 	<!-- javascript -->
 	<script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+  
+<!-- 공식부트스트랩 JS --> 
+<script src="../js/bootstrap/bootstrap.js"></script>   
 </body>
 </html>
