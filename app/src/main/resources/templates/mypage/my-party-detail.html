@@ -20,8 +20,17 @@
 <!-- Scrollbar Custom CSS -->
 <!-- Tweaks for older IEs-->
 <!-- owl stylesheets -->
-
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <style>
+
+.party_detail_img {
+  margin: 0 auto;
+  width: auto;
+  max-height: 200px;
+  max-width: 300px;
+}
+
 .layout_padding_party {
   min-width: 825px;
   padding-top: 30px;
@@ -143,6 +152,11 @@
   border-radius: 5px;
   padding: 5px;
   margin: 46px 2px 45px 2px;
+                  width: 310px;
+    height: 210px;
+    display: flex;
+     justify-content: center; 
+     align-items: center;
 }
     
 .party_detail_r_cont {
@@ -226,13 +240,15 @@
 							<div class="party_detail_view">
 								<div class="party_detail_content_l">
                   <div class="party_detail_thumbnail_wrap">
-										<img th:if="${party.thumbnail != null}" th:src="@{'/party/files/' + ${party.thumbnail}}" alt="Avatar" class="image party_detail_img"> <img
-											   th:if="${party.thumbnail == null}" src="/app/party/files/nothumpnail.jpg" alt="Avatar" class="image party_detail_img">
-									</div>
+                    <div style="margin: auto 0; display: flex; justify-content: center; align-items: center;">
+  										<img th:if="${party.thumbnail != null}" th:src="@{'/party/files/' + ${party.thumbnail}}" alt="Avatar" class="image party_detail_img"> 
+                      <img th:if="${party.thumbnail == null}" src="/app/party/files/nothumbnail.png" alt="Avatar" class="image party_detail_img">
+                    </div>
+                  </div>
 									<div class="profile_wrap">
 										<div class="profile_img">
-											<img th:if="${party.user.filepath != null}" th:src="@{'/member/files/' + ${party.user.filepath}}" alt="Avatar" class="profile"> <img
-												   th:if="${party.user.filepath == null}" src="http://placeimg.com/50/50/any" alt="Avatar" class="profile">
+											<img th:if="${party.user.filepath != null}" th:src="@{'/member/files/' + ${party.user.filepath}}" alt="Avatar" class="profile"> 
+                      <img th:if="${party.user.filepath == null}" src="http://placeimg.com/50/50/any" alt="Avatar" class="profile">
 										</div>
 										<div class="profile_user">
 											<span data-th-text='${party.user.nickname}'>홍길동</span> 
@@ -290,12 +306,14 @@
 										</div>
                     <div class="party_detail_r_cont">
 											<span>모임시간 : </span> 
-                      <span data-th-text='${party.partyTime}'></span>
-										</div>
                       <span data-th-text="${#dates.format(party.partyTime, 'HH시mm분')}"></span>
+										</div>
 											<span>모집인원 : </span> <span data-th-text="${party.headCount} + '명'"></span>
 										</div>
 									</div>
+                  <div>
+                    <button type="button" name="partyEndBtn" th:id="${party.partyDate}" th:onclick="partyEnd(this.getAttribute('id'))">모임 종료</button>
+                  </div>
 									<p style="width: 470px; float: left; margin-bottom: 20px;" text=" "></p>
 								<!-- 신청한 멤버들 보이게 -->
 								<table class="my-page">
@@ -423,6 +441,58 @@ $('.profile').ready(function () {
   }
   
 });
+
+
+function partyEnd(pdate) {
+	console.log("들어온 모임일자" + pdate);
+	let partyNo = $('#partyNo').val();
+	console.log("들어온 모임번호" + partyNo);
+	var now = new Date();
+	var partyDate = new Date(pdate);
+	console.log(now + " " + partyDate);
+	if(pdate){
+		  if(partyDate > now){
+		    console.log("모임 일자가 현재 날짜보다 빠릅니다.");
+		    swal({
+                text: '모임 일자가 현재 날짜보다 빠릅니다.',
+                icon: 'success',
+                closeOnClickOutside: false
+              });
+		  } else {
+			  swal({
+		          text : "모임을 종료하시겠습니까?",
+		          icon : "warning",
+		          buttons : ["아니요", "예"],
+		        }).then(function(isConfirm) {
+		          if (isConfirm) {
+		        	  $.ajax({
+		        		  type: "GET",
+		              url: "/app/party/party-end-ajax",
+		              data: { no: partyNo },
+		              success: function(result) {
+		            	  $('button[name=partyEndBtn]').css('display', 'none');
+		            swal({
+		                text: '모임이 종료되었습니다.',
+		                icon: 'success',
+		                closeOnClickOutside: false
+		              }).then(() => {
+		                console.log("dhk");
+		                window.location.href="my-party";
+		              });
+		              }
+		        	  });
+		          } else {
+		              return false;
+		          }
+		              
+		          });
+		        	  
+		  }
+		  }
+		  
+	
+	
+}
 
 </script>
   

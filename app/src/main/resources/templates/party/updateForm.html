@@ -462,7 +462,7 @@
               <div class="party_form_img_wrap">
                 <div style="margin: auto 0; display: flex; justify-content: center; align-items: center;">
                   <img id="previewImg" th:if="${party.thumbnail != null}"  th:src="@{'/party/files/' + ${party.thumbnail}}" alt="Avatar" class="image previewImgparty_detail_img previewImg">
-                  <img id="previewImg" th:if="${party.thumbnail == null}"  src="/app/party/files/nothumpnail.jpg" alt="Avatar" class="image previewImg">
+                  <img id="previewImg" th:if="${party.thumbnail == null}"  src="/app/party/files/nothumbnail.png" alt="Avatar" class="image previewImg">
                 </div>
               </div>
               <input id="fileTag" class="fileTag" name='file' type="file" >

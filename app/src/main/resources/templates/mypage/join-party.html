@@ -119,8 +119,8 @@
                             </div>
                           </div>
                         </td>
-                        <td class="td_date">[[${joinParty.partyDate}]]</td>
-                        <td class="td_date">[[${joinParty.partyTime}]]</td>
+                        <td class="td_date" data-th-text="${#dates.format(joinParty.partyDate, 'yy/MM/dd')}"></td>
+                        <td class="td_date" data-th-text="${#dates.format(joinParty.partyTime, 'HH시mm분')}"></td>
     <td data-th-text="${joinParty.status}">홍길동</td> <!-- 확인 -->
                       </tr>
                     </tbody>

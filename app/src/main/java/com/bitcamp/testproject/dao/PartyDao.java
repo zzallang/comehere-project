@@ -68,6 +68,8 @@ public interface PartyDao {
   List<Party> findByEndParty2(Map<String, Object> paramMap);
 
   int countEndParty(int memberNo);
+
+  int partyEnd(int partyNo);
 }
 
 

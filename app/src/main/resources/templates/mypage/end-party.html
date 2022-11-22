@@ -109,7 +109,7 @@
                         </td>
                         <td class="td_date">[[${endParty.region.sido}]]</td>
                         <td class="td_date">[[${endParty.region.sigu}]]</td>
-                        <td class="td_date">[[${endParty.sports.name}]]</td>
+                        <td class="td_date" >[[${endParty.sports.name}]]</td>
 
                         <td class="title-td">
                           <div class="board-list">
@@ -118,8 +118,8 @@
                             </div>
                           </div>
                         </td>
-                        <td class="td_date">[[${endParty.partyDate}]]</td>
-                        <td class="td_date">[[${endParty.partyTime}]]</td>
+                        <td class="td_date" data-th-text="${#dates.format(endParty.partyDate, 'yy/MM/dd')}"></td>
+                        <td class="td_date" data-th-text="${#dates.format(endParty.partyTime, 'HH시mm분')}"></td>
 					              <td>
 					              <form action="../review/review-detail-form">
 					              <input type="submit" class="reviewFormBtn" data-th-value="${endParty.reviewAct}">

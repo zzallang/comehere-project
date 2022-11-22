@@ -314,6 +314,11 @@
       border-radius: 5px;
       padding: 5px;
       margin: 46px 2px 45px 2px;
+          width: 310px;
+    height: 210px;
+    display: flex;
+     justify-content: center; 
+     align-items: center;
     }
     
     .profile {
@@ -606,11 +611,11 @@
   -webkit-backdrop-filter: blur(1.5px);
   border-radius: 10px;
   border: 1px solid rgba(255, 255, 255, 0.18);
+  z-index: 999;
 }
 
 #modal .modal-window {
-  background: rgba(255, 212, 0, 0.70);
-  /* background: rgba( 69, 139, 197, 0.70 ); */
+  background: rgba(13, 110, 253, 0.70);
   box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
   backdrop-filter: blur(13.5px);
   -webkit-backdrop-filter: blur(13.5px);
@@ -650,6 +655,8 @@
   text-shadow: 1px 1px 2px gray;
   color: white;
 }
+
+
 
 .email-bt3 {
   color: #989696;
@@ -721,6 +728,102 @@
   .party_detail_r_cont > span{
   font-size: medium;
   }
+  
+  
+  .comment_input_wrap {
+    overflow: hidden;
+    position: relative;
+    margin-top: 10px;
+    border: 1px solid #d7dce5;
+    border-radius: 8px;
+    box-sizing: border-box;
+}
+.comment_input_wrap .comment_input_bot {
+    height: 47px;
+    box-sizing: border-box;
+}
+.comment_input_wrap .comment_submit {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    z-index: 10;
+    width: 128px;
+    border-radius: 0;
+}
+.comment_input_wrap .comment_input textarea {
+    margin-top: 12px;
+    width: 100%;
+    height: 98px;
+    border: 0;
+    box-sizing: border-box;
+    color: #373f57;
+    font-size: 14px;
+    letter-spacing: -1px;
+    line-height: 24px;
+    background-color: #fff;
+    resize: none;
+}
+.comment_input_wrap .comment_input {
+    padding: 22px 24px 0 24px;
+    border-bottom: 1px solid #d7dce5;
+}
+.comment_input_wrap .comment_input.img_add {
+    padding-right: 108px;
+}
+.btnSizeL {
+    padding: 10px 16px 12px;
+    height: 48px;
+    font-size: 16px;
+    line-height: 24px;
+}
+[class*="btnSize"] {
+    display: inline-block;
+    border: 1px solid #4876ef;
+    border-radius: 4px;
+    box-sizing: border-box;
+    color: #fff;
+    letter-spacing: -1px;
+    text-align: center;
+    background-color: #0d6efd;
+}
+  
+  .comment-wrapper {
+  margin-top: 30px;
+} 
+.commentList {
+  border-bottom: 1px solid #d7dce5;
+}
+.comment-area {
+  position: relative;
+  padding: 24px 16px;
+  border-top: 1px solid #d7dce5;
+}
+.comment-cont {
+  display: inline-block;
+  width: 99.3%;
+  min-height: 60px;
+  margin-bottom: 20px;
+}
+.comment-info {
+    right: 22px;
+    top: 24px;
+    position: absolute;
+}
+.comment-writer {
+    position: absolute;
+    left: 30px;
+    top: 90px;
+    color: gray;
+}
+.btn-jd {
+    color: black !important;
+    border: #d7dce5 1px solid;
+}
+.btn-jd:hover {
+    background-color: #d7dce5;
+    border: #d7dce5 1px solid;
+}
+  
   </style>
 
 
@@ -777,13 +880,15 @@
       <div class="party_detail_view">
         <div class="party_detail_content_l">
           <div class="party_detail_thumbnail_wrap">
-            <img th:if="${party.thumbnail != null}"  th:src="@{'/party/files/' + ${party.thumbnail}}" alt="Avatar" class="image party_detail_img">
-            <img th:if="${party.thumbnail == null}"  src="/app/party/files/nothumpnail.jpg" alt="Avatar" class="image party_detail_img">
+            <div style="margin: auto 0; display: flex; justify-content: center; align-items: center;">
+              <img th:if="${party.thumbnail != null}"  th:src="@{'/party/files/' + ${party.thumbnail}}" alt="Avatar" class="image party_detail_img">
+              <img th:if="${party.thumbnail == null}"  src="/app/party/files/nothumbnail.png" alt="Avatar" class="image party_detail_img">
+            </div>
           </div>
           <div class="profile_wrap">
             <div class="profile_img">
-              <img th:if="${party.user.filepath != null}"  th:src="@{'/member/files/' + ${party.user.filepath}}" alt="Avatar" class="profile">
-              <img th:if="${party.user.filepath == null}"  src="http://placeimg.com/50/50/any" alt="Avatar" class="profile">
+                <img th:if="${party.user.filepath != null}"  th:src="@{'/member/files/' + ${party.user.filepath}}" alt="Avatar" class="profile">
+                <img th:if="${party.user.filepath == null}"  src="http://placeimg.com/50/50/any" alt="Avatar" class="profile">
             </div>
             <div class="profile_user">
               <span data-th-text='${party.user.nickname}'>홍길동</span>
@@ -882,38 +987,31 @@
             <!-- 댓글 블록 시작 -->
             <div class="tab-item party_detail_bottom_content"> 
               
-              <h2>댓글 쓰기</h2>
-              <div style="width: 80%;" class="temp-line">
-                <div class="form-group">
-                  <label for="comment"></label>
-                  <div th:if="${session.loginMember}">
-                    <input type="hidden" id="memberNo"  th:value="${session.loginMember.no}" >
-                    <input
-                      type="text"
-                      class="form-control"
-                      id="commentCont"
-                      placeholder="댓글을 달아주세요!"
-                      style="height: 30px;"
-                      th:name="${session.loginMember.nickname}">
+              <div th:if="${session.loginMember}">        
+                <input type="hidden" id="memberNo"  th:value="${session.loginMember.no}">
+                <div class="comment_input_wrap">
+                  <div class="comment_input img_add">
+                    <textarea id="commentCont" class="scrollbar" placeholder="내용을 입력하세요."></textarea>
                   </div>
-                  <div th:if="${session.loginMember == null}">
-                    <input type="hidden" id="memberNo"  value=0>
-                    <input
-                      type="text"
-                      class="form-control"
-                      id="commentCont"
-                      placeholder="댓글을 등록하려면 로그인 해주세요"
-                      style="height: 60px;" readonly
-                      onclick="alertToLogin();">
+                  <div class="comment_input_bot">
+                    <button id="commentButton" type="button" class="btnSizeL comment_submit">댓글 등록</button>
                   </div>
                 </div>
-                <div>
-                    <button id="commetButton" class="btn btn-sm btn-success">등록</button>
+              </div>
+              <div th:if="${session.loginMember == null}">  
+                <input type="hidden" id="memberNo"  value=0>      
+                <div class="comment_input_wrap" onclick="alertToLogin();">
+                  <div class="comment_input img_add">
+                      <textarea id="commentCont" class="scrollbar" placeholder="댓글을 등록하려면 로그인 하세요." disabled=""></textarea>
+                  </div>
+                  <div class="comment_input_bot">
+                    <button id="commentButton" type="button" class="btnSizeL comment_submit" onclick="alertToLogin();">댓글 등록</button>
+                  </div>
                 </div>
               </div>
               
-              <div class="container_comment">
-                <div class="commentList"></div>
+              <div class="comment-wrapper">
+                  <div class="commentList"></div>
               </div>
               
             </div>
@@ -1033,11 +1131,11 @@ $('.profile').ready(function () {
                   <div class="slide_wrapper">
                     <div class="slide_wrapper">
                       <ul class="slides">
-                        <li><img alt="" src="/app/party/files/nothumpnail.jpg"></li>
-                        <li><img alt="" src="/app/party/files/nothumpnail.jpg"></li>
-                        <li><img alt="" src="/app/party/files/nothumpnail.jpg"></li>
-                        <li><img alt="" src="/app/party/files/nothumpnail.jpg"></li>
-                        <li><img alt="" src="/app/party/files/nothumpnail.jpg"></li>
+                        <li><img alt="" src="/app/party/files/nothumbnail.png"></li>
+                        <li><img alt="" src="/app/party/files/nothumbnail.png"></li>
+                        <li><img alt="" src="/app/party/files/nothumbnail.png"></li>
+                        <li><img alt="" src="/app/party/files/nothumbnail.png"></li>
+                        <li><img alt="" src="/app/party/files/nothumbnail.png"></li>
                       </ul>
                     </div>
                   </div>
@@ -1275,6 +1373,7 @@ btnModalReview.click((e) => {
 const partyNo = $("#partyNo").val();
 const memberNo = $('#memberNo').val();
 const lastPageNo = document.getElementsByClassName('page-link').length;
+document.getElementById('commentButton').addEventListener('click', insertCommentProcess);
 
     	  // 로그인 회원 유효성을 위한 셋팅
 let loginMemberNo = -1;
@@ -1301,8 +1400,17 @@ function getId(pageId) {
           		$(e.currentTarget).addClass('active');
           });
         });
-
-document.getElementById('commetButton').addEventListener('click', insertAndReplay);
+        
+        // 댓글 등록 시 과정 (댓글 유효성 체크 -> 등록(ajax) -> 댓글 개수 카운트)
+        function insertCommentProcess(){
+          if (document.getElementById('commentCont').value == '') {
+            swal('등록 실패!', "내용을 입력해주세요.", 'error');
+            return false;
+          }
+          insertAndReplay();
+        }
+        
+insertAndReplay();
 
 
         // 페이지 시작할 때 댓글 목록 출력 
@@ -1322,17 +1430,21 @@ function commentList(){
     success : function(result){
         var a =''; 
         $.each(result, function(key, value){ 
-            a += '<div class="commentArea temp-line" style="min-height: 100px;border-bottom:1px solid darkgray; margin-bottom: 15px;">';
-            a += '<div class="commentInfo' + value.no + '">' + '댓글번호 : ' + value.no + ' / 작성자 : ' + value.writer.nickname;
+        	a += '<div class="commentArea comment-area">';
+            a += '<div class="commentInfo' + value.no + ' comment-info">';
             if (loginMemberNo == value.writer.no) {
-              a += '<a onclick="commentUpdate(' + value.no + ',\'' + value.content + '\');"> 수정 </a>';
-              a += '<a onclick="commentDelete('+value.no+');"> 삭제 </a> </div>';
+              a += '<a id="udBnt' +value.no+ '" class="btn btn-outline-primary btn-sm btn-jd" onclick="commentUpdate(' + value.no + ',\'' + value.content + '\');"> 수정 </a>';
+              a += '<a id="dlBnt' +value.no+ '" class="btn btn-outline-primary btn-sm btn-jd" onclick="commentDelete('+value.no+');"> 삭제 </a> </div>';
             }
-            if (loginMemberNo != value.writer.no && loginMemberNo != -1) {
-                a += '<a  onclick="commentComplain('+value.no+');"> 신고 </a> </div>';
+            if (loginMemberNo != -1 && loginMemberNo != value.writer.no) {
+                a += '<a class="btn btn-outline-primary btn-sm btn-jd" onclick="commentComplain('+value.no+');"> 신고 </a></div>';
             }
-            a += '<div class="commentContent'+value.no+' temp-line"> <p> 내용 : '+value.content +'</p>';
-              a += '</div></div></div>';
+            if (loginMemberNo == -1) {
+                a += '<a class="btn btn-outline-primary btn-sm btn-jd" onclick="alertToLoginByTattle();"> 신고 </a></div>';
+            }
+            a += '<div class="commentContent'+value.no+' comment-cont">'+value.content;
+            a += '<div class="comment-writer">' +value.writer.nickname + '</div>';
+            a += '</div></div></div>';
           });
         $(".commentList").html(a);
     }
@@ -1392,36 +1504,52 @@ function commentList(){
   }
 
   //댓글 수정 모드- 댓글 내용 출력을 input 폼으로 변경 
-  function commentUpdate(commentNo, content){
-      var a ='';
-      a += '<label for="form"></label>';
-      a += '<div class="input-group temp-line">';
-      a += '<input type="text" class="form-control" name="content_' + commentNo + '" value="' + content + '"/>';
-      a += '<span class="input-group-btn"><button class="btn btn-default" type="button" onclick="commentUpdateProc(' + commentNo + ');">수정</button></span>';
-      a += '</div>';
-      
-      $('.commentContent'+commentNo).html(a);
-  }
+        function commentUpdate(commentNo, content){
+          $('#udBnt'+commentNo).css('display', 'none');
+          $('#dlBnt'+commentNo).css('display', 'none');
+            var a ='';
+            a += '<label for="form"></label>';
+            a += '<div class="input-group">';
+            a += '<textarea cols="40" rows="3" class="form-control update-form" name="content_' + commentNo + '">' + content + '</textarea>';
+            a += '<span style="width: 29.325px;" class="input-group-btn"><button class="btn btn-outline-primary btn-sm btn-jd" type="button" onclick="commentUpdateProc(' + commentNo + ');">수정</button></span>';
+            a += '<span style="width: 29.325px;" class="input-group-btn"><button class="btn btn-outline-primary btn-sm btn-jd" type="button" onclick="commentList()">취소</button></span>';
+            a += '</div>';
+            
+            $('.commentContent'+commentNo).html(a);
+        }
   // 댓글 수정
-  function commentUpdateProc(commentNo){
-      var updateContent = $('[name=content_'+commentNo+']').val();
-      $.ajax({
-          url : '/app/partyComment/update',
-          type : 'post',
-          data : { 
-            'content' : updateContent, 
-            'no' : commentNo},
-          success : function(result){
-              if(result == 1) commentList(); //댓글 수정후 목록 출력 
-          }
-      });
-  }
+          function commentUpdateProc(commentNo){
+            var updateContent = $('[name=content_'+commentNo+']').val();
+            $.ajax({
+                url : '/app/partyComment/update',
+                type : 'post',
+                data : { 
+                  'content' : updateContent, 
+                  'no' : commentNo},
+                success : function(result){
+                    if(result == 1) commentList(); //댓글 수정후 목록 출력 
+                }
+            });
+        }
   function alertToLogin(){
     if (confirm("로그인하시겠습니까?") == true){    //확인
       location.href = '../auth/form';
      }else{   //취소
        return false;
      }
+  }
+  function alertToLoginByTattle(){
+      swal({
+          text :  "신고를 하려면 로그인을 해야합니다.\n로그인하시겠습니까?",
+          icon : "warning",
+          buttons : ["아니요", "예"],
+        }).then(function(isConfirm) {
+          if (isConfirm) {
+            location.href = '../auth/form';
+          } else{
+            return false;
+          }
+      });
   }
 </script>
  <!-- Modal Start -->
@@ -1438,22 +1566,22 @@ function commentList(){
               <input type="hidden" name="partyNo" data-th-value="${party.no}">
               <div class="report_menu">신고사유</div>
               <div class="form-check form-check-inline">
-                              <input type="checkbox" value="Contents" class="form-check-input" id="1" name="reports" onclick='checkOnlyOne(this)' style="display: block"> <input type="hidden" name="_reports" value="on" /> <label for="reports1" class="form-check-label">불건전한 내용</label>
+                              <input type="checkbox" value="Contents" class="form-check-input" id="1" name="reports" onclick='checkOnlyOne(this)' style="display: block; width: 16px;height: 16px;margin-top: 4px;"> <input type="hidden" name="_reports" value="on" /> <label style="font-size: 16px;" for="reports1" class="form-check-label">불건전한 내용</label>
               </div>
               <div class="form-check form-check-inline">
-                              <input type="checkbox" value="promotion" class="form-check-input" id="2" name="reports" onclick='checkOnlyOne(this)' style="display: block"> <input type="hidden" name="_reports" value="on" /> <label for="reports2" class="form-check-label">스팸 및 부적절한 홍보</label>
+                              <input type="checkbox" value="promotion" class="form-check-input" id="2" name="reports" onclick='checkOnlyOne(this)' style="display: block; width: 16px;height: 16px;margin-top: 4px;"> <input type="hidden" name="_reports" value="on" /> <label style="font-size: 16px;" for="reports2" class="form-check-label">스팸 및 부적절한 홍보</label>
               </div>
               <div class="form-check form-check-inline">
-                              <input type="checkbox" value="calumny" class="form-check-input" id="3" name="reports" onclick='checkOnlyOne(this)' style="display: block"> <input type="hidden" name="_reports" value="on" /> <label for="reports3" class="form-check-label">명예훼손 및 비방</label>
+                              <input type="checkbox" value="calumny" class="form-check-input" id="3" name="reports" onclick='checkOnlyOne(this)' style="display: block; width: 16px;height: 16px;margin-top: 4px;"> <input type="hidden" name="_reports" value="on" /> <label style="font-size: 16px;" for="reports3" class="form-check-label">명예훼손 및 비방</label>
               </div>
               <div class="form-check form-check-inline">
-                              <input type="checkbox" value="prejudice" class="form-check-input" id="4" name="reports" onclick='checkOnlyOne(this)' style="display: block"> <input type="hidden" name="_reports" value="on" /> <label for="reports4" class="form-check-label">초상권 및 저작권 침해</label>
+                              <input type="checkbox" value="prejudice" class="form-check-input" id="4" name="reports" onclick='checkOnlyOne(this)' style="display: block; width: 16px;height: 16px;margin-top: 4px;"> <input type="hidden" name="_reports" value="on" /> <label style="font-size: 16px;" for="reports4" class="form-check-label">초상권 및 저작권 침해</label>
+              </div>
+              <div class="form-check form-check-inline" style="display: inline-block;">
+                              <input type="checkbox" value="embezzlement" class="form-check-input" id="5" name="reports" onclick='checkOnlyOne(this)' style="display: block; width: 16px;height: 16px;margin-top: 4px;"> <input type="hidden" name="_reports" value="on" /> <label style="font-size: 16px;" for="reports5" class="form-check-label">개인정보 도용</label>
               </div>
               <div class="form-check form-check-inline">
-                              <input type="checkbox" value="embezzlement" class="form-check-input" id="5" name="reports" onclick='checkOnlyOne(this)' style="display: block"> <input type="hidden" name="_reports" value="on" /> <label for="reports5" class="form-check-label">개인정보 도용</label>
-              </div>
-              <div class="form-check form-check-inline">
-                              <input type="checkbox" value="act" class="form-check-input" id="6" name="reports" onclick='checkOnlyOne(this)' style="display: block"> <input type="hidden" name="_reports" value="on" /> <label for="reports6" class="form-check-label">기타 사이트 목적에 맞지 않는 행위</label>
+                              <input type="checkbox" value="act" class="form-check-input" id="6" name="reports" onclick='checkOnlyOne(this)' style="display: block; width: 16px;height: 16px;margin-top: 4px;"> <input type="hidden" name="_reports" value="on" /> <label style="font-size: 16px;" for="reports6" class="form-check-label">기타 사이트 목적에 맞지 않는 행위</label>
               </div>
 
 

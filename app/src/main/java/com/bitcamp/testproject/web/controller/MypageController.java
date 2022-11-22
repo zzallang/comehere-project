@@ -163,13 +163,24 @@ public class MypageController {
     int pageNum = cri.getPage() - 1;
     List<Party> endPartyListTotal = partyService.findByEndParty(paramMap);
     List<Party> endPartyListTotal2 = new ArrayList<>();
-    int count = ((pageNum + 1) * 10) - 10;
-    System.out.println(count);
-    // 페이징 처리 (해당 개수만, 페이지 넘기거나 앞으로 하면 적용)
-    for (int i=0 + count; i<cri.getPerPageNum() + count; i++) {
-      endPartyListTotal2.add(endPartyListTotal.get(i));
+    if (partyService.countEndParty(loginMember.getNo()) != 0) {
+      int count = ((pageNum + 1) * 10) - 10;
+      System.out.println(count);
+      int listt = partyService.countEndParty(loginMember.getNo());
+      // 페이징 처리 (해당 개수만, 페이지 넘기거나 앞으로 하면 적용)
+      if (partyService.countEndParty(loginMember.getNo()) >= 10) {
+        for (int i=0 + count; i<cri.getPerPageNum() + count; i++) {
+          System.out.println("dded");
+          endPartyListTotal2.add(endPartyListTotal.get(i));
+          System.out.println("dded");
+        }
+      } else {
+        for (int i=0 + count; i< listt; i++) {
+          System.out.println("dded");
+          endPartyListTotal2.add(endPartyListTotal.get(i));
+          System.out.println("dded");
+        }      }
     }
-
     model.addAttribute("endPartys", endPartyListTotal2);
     model.addAttribute("pageMaker", pageMaker);
 

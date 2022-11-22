@@ -60,6 +60,7 @@ public interface PartyService {
 
   int countEndParty(int memberNo) throws Exception;
 
+  boolean partyEnd(int partyNo) throws Exception;
 
 }
 

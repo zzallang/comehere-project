@@ -122,8 +122,8 @@
                             </div>
                           </div>
                         </td>
-                        <td class="td_date">[[${myParty.partyDate}]]</td>
-                        <td class="td_date">[[${myParty.partyTime}]]</td>
+                        <td class="td_date" data-th-text="${#dates.format(myParty.partyDate, 'yy/MM/dd')}"></td>
+                        <td class="td_date" data-th-text="${#dates.format(myParty.partyTime, 'HH시mm분')}"></td>
                         <td><a type="button" class="reviewFormBtn" data-th-href="@{my-party-detail(no=${myParty.no})}" >관리하기</a></td> 
                       </tr>
 										</tbody>

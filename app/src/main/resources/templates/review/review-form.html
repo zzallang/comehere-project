@@ -38,6 +38,8 @@
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
 <!--  썸머노트 끝 -->
 
+<script src="jQuery.MultiFile.min.js" type="text/javascript" language="javascript"> </script>
+
 <style>
 .row_party {
   width: 1200px;
@@ -529,7 +531,7 @@ body .container {
 		<div class="container">
 			<div class="">
 				<div class="form-container">
-					<form action="review-add" method="post" class="" enctype="multipart/form-data">
+					<form action="review-add" method="post" id="reviewAdd" enctype="multipart/form-data">
 						<table border="1">
 							<tbody>
 								<tr>
@@ -542,6 +544,8 @@ body .container {
 										<div id='image_preview' class="col-md6">
 											<div class="col-md9">
 												<input name='files' type='file' id='btnAtt' multiple='multiple' />
+                            <input type="hidden" name="no" data-th-value="${party.no}">
+                        
 											</div>
 											<div id='att_zone' data-placeholder='파일을 첨부 하려면 파일 선택 버튼을 클릭하거나 파일을 드래그앤드롭 하세요'></div>
 										</div>
@@ -571,7 +575,6 @@ body .container {
 				</div>
 			</div>
 		</div>
-		<input type="hidden" name="no" data-th-value="${party.no}">
 		</form>
 	</div>
 
@@ -641,11 +644,14 @@ body .container {
 	       console.log("결과1" + starResult);
    
 	function makeReview() {
-        let title = $('#reviewtitle').val()
-        let cont = $('#reviewcont').val()
-        let add = $('#reviewadd').val()
-        let cancle = $('#revoewcancle').val()
+        let reviewtitle = $('#reviewtitle').val()
+        let reviewcont = $('#reviewcont').val()
+        let reviewadd = $('#reviewadd').val()
+        let reviewcancle = $('#revoewcancle').val()
          console.log("결과2" + starResult);
+        let reviewno = $('input[name=no]').val();
+        let reviewfiles = $('input[name=files]').val();
+        console.log("1 " + reviewno + "2 " + reviewfiles);
 
         
         if (starResult == '') {
@@ -660,28 +666,23 @@ body .container {
           swal("내용을 입력해주세요.");
           return false;
         }
-        
-        swal({
-            text : "리뷰를 등록하시겠습니까?",
-            icon : "warning",
-            buttons : ["아니요", "예"],
-          }).then(function(isConfirm) {
-            if (isConfirm) {
-        $.ajax({
-            type: "POST",
-            url: "review",
-            data: {reviewtitle:reviewtitle,reviewcont:reviewcont, reviewadd:reviewadd, revoewcancle:revoewcancle},
-            success: function (response) {
-            	swal({
-                    text: '리뷰가 등록되었습니다.',
-                    icon: 'success',
-                    closeOnClickOutside: false
-                  }).then(() => {
-                    window.location.href = '../mypage/end-party';
-                  });
-            
+        if ($('input[name=files]').val() == '') {
+            swal("리뷰 사진을 추가해주세요.");
+            return false;
           }
-      });
+        
+        
+        
+        
+swal({
+    text : "리뷰를 등록하시겠습니까?",
+    icon : "warning",
+    buttons : ["아니요", "예"],
+  }).then(function(isConfirm) {
+    if (isConfirm) {
+    	console.log("ddd1");
+      $('#reviewAdd').submit();
+      console.log("ddd2");
   } else{
     return false;
   }

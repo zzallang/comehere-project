@@ -242,6 +242,14 @@ public class DefaultPartyService implements PartyService {
     return partyDao.countEndParty(memberNo);
   }
 
+  @Override
+  public boolean partyEnd(int partyNo) throws Exception {
+    if (partyDao.partyEnd(partyNo) == 0) {
+      return false;
+    }
+    return true;
+  }
+
 }
 
 

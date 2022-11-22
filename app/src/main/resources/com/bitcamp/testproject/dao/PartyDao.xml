@@ -212,6 +212,7 @@ p.mapName,
 p.mapAddress,
 p.lat,
 p.lng,
+p.act,
 m.mno,
 m.nick,
 m.bday,
@@ -431,6 +432,8 @@ p.pno=#{value}
     WHERE
       pm.auth = 0
     AND
+      p.act = 0
+    AND
       pm.mno = pr.mno
     AND
       pm.mno = #{memberNo}
@@ -461,6 +464,8 @@ SELECT
    WHERE
      pm.auth = 0
     AND
+      p.act = 0
+    AND
      pm.mno = #{memberNo}
    AND
    (pr.mno is null
@@ -477,12 +482,18 @@ SELECT
       join party_members pm on p.pno=pm.pno
     WHERE
       pm.auth = 0
-    AND
+    and
       p.act = 0
     AND
       pm.mno = #{memberNo}
   </select>
   
+  <update id="partyEnd">
+    update party set 
+      act=0
+    where 
+      pno=#{partyNo}
+  </update>
   
 </mapper>
 

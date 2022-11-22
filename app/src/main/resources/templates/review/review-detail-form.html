@@ -367,8 +367,10 @@
 .party_detail_img {
   margin: 0 auto;
   width: auto;
-  max-height: 300px;
+  max-height: 200px;
+  max-width: 300px;
 }
+
 </style>
 </head>
 <body>
@@ -423,8 +425,10 @@
           <div class="party_detail_content_l">
             <div>
               <div class="party_detail_thumbnail_wrap">
-                <img th:if="${party.thumbnail != null}"  th:src="@{'/party/files/' + ${party.thumbnail}}" alt="Avatar" class="image party_detail_img">
-                <img th:if="${party.thumbnail == null}"  src="/app/party/files/nothumpnail.jpg" alt="Avatar" class="image">
+                <div style="margin: auto 0; display: flex; justify-content: center; align-items: center;">
+                  <img th:if="${party.thumbnail != null}"  th:src="@{'/party/files/' + ${party.thumbnail}}" alt="Avatar" class="image party_detail_img">
+                  <img th:if="${party.thumbnail == null}"  src="/app/party/files/nothumbnail.png" alt="Avatar" class="image party_detail_img">
+                </div>
               </div>
               <div class="profile_wrap">
                 <div class="profile_img">

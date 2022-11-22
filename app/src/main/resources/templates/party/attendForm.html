@@ -68,6 +68,11 @@
       border-radius: 5px;
       padding: 5px;
       margin: 46px 2px 45px 2px;
+                width: 310px;
+    height: 210px;
+    display: flex;
+     justify-content: center; 
+     align-items: center;
     }
   .container_main_party {
     position: relative;
@@ -93,6 +98,13 @@
     padding: 0px 5px 5px 5px;
   }
   
+  .party_detail_img {
+  margin: 0 auto;
+  width: auto;
+  max-height: 200px;
+  max-width: 300px;
+}
+
   .dololr_text_sports {  
     float: left;
     color: #121111;
@@ -361,11 +373,6 @@
       margin-left: 5px;
     }
     
-.party_detail_img {
-  margin: 0 auto;
-  width: auto;
-  max-height: 300px;
-}
 </style>
 </head>
 <body>
@@ -424,8 +431,10 @@
           <div class="party_detail_content_l">
             <div>
               <div class="party_detail_thumbnail_wrap">
-                <img th:if="${party.thumbnail != null}"  th:src="@{'/party/files/' + ${party.thumbnail}}" alt="Avatar" class="image party_detail_img">
-                <img th:if="${party.thumbnail == null}"  src="/app/party/files/nothumpnail.jpg" alt="Avatar" class="image">
+                <div style="margin: auto 0; display: flex; justify-content: center; align-items: center;">
+                  <img th:if="${party.thumbnail != null}"  th:src="@{'/party/files/' + ${party.thumbnail}}" alt="Avatar" class="image party_detail_img">
+                  <img th:if="${party.thumbnail == null}"  src="/app/party/files/nothumbnail.png" alt="Avatar" class="image party_detail_img">
+                </div>
               </div>
               <div class="profile_wrap">
                 <div class="profile_img">

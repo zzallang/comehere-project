@@ -297,6 +297,15 @@ public class PartyController {
     return "redirect:list";
   }
 
+  @GetMapping("party-end-ajax")
+  public String partyEnd(int no) throws Exception {
+    System.out.println("도착함?");
+    if (!partyService.partyEnd(no)) {
+      throw new Exception("모임을 종료할 수 없습니다!");
+    }
+    return "redirect:../mypage/my-party-detail?no=" + no;
+  }
+
 }
 
 
