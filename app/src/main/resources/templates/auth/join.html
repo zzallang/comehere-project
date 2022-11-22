@@ -97,7 +97,6 @@
                       <input type="text" class="email-bt small-area2" placeholder="이름" id="name" name="name">
                         <div class="join_menu">생년월일</div>
                       <input type='date' class="email-bt small-area2" placeholder="생년월일" id="birthday" name="birthday">
-                      <div><font id="id-feedback" size="3"></font></div>
                         <div class="join_menu">성별<br/>
                           <div class= "join_gender">
                         <span class =gender>남성</span>
@@ -109,6 +108,7 @@
                         <div class="join_menu">아이디</div> 
                       <input type="text" class="email-bt small-area" placeholder="아이디" name="id" id="id">
                       <button class="btn btn-outline-secondary check" type="button" id="button-addon1">중복확인</button>
+                      <div><font id="id-feedback" size="3"></font></div>
                         <div class="join_menu">이메일</div>
                       <input type="email" class="email-bt small-area"  id="email" placeholder="이메일" name="email" > 
                       <button class="btn btn-outline-secondary check" type="button" id="button-addon2">중복확인</button>
@@ -191,12 +191,6 @@
               var password = document.getElementById("password");
               var passwordCheck = document.getElementById("passwordCheck");
 
-              if (id.value == "") {
-                alert("아이디를 입력하세요.");
-                id.focus();
-                return false;
-              };
-
               if (name.value == "") {
                   alert("이름을 입력하세요.");
                   name.focus();
@@ -215,9 +209,9 @@
                 return false;
               }
 
-              if (tel.value == "") {
-                alert("전화번호를 입력하세요.");
-                tel.focus();
+              if (id.value == "") {
+                alert("아이디를 입력하세요.");
+                id.focus();
                 return false;
               };
 
@@ -226,10 +220,16 @@
                 email.focus();
                 return false;
               }
-              
+
               if (nick.value == "") {
                 alert("닉네임을 입력하세요.");
                 nick.focus();
+                return false;
+              };
+              
+              if (tel.value == "") {
+                alert("전화번호를 입력하세요.");
+                tel.focus();
                 return false;
               };
 
