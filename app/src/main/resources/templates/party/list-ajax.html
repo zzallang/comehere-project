@@ -6,8 +6,12 @@
       <div class="container_main_party_img">
         <div class="party_list_img">
           <a th:href="@{detail(no=${party.no})}">
+          <div style="display: flex;
+    justify-content: center;
+    align-items: center;">
           <img th:if="${party.thumbnail != null}"  th:src="@{'/party/files/' + ${party.thumbnail}}" alt="모임썸네일" class="list_image">
           <img th:if="${party.thumbnail == null}"  src="/app/party/files/nothumpnail.jpg" alt="Avatar" class="list_image">
+          </div>
           <div class="overlay">
             <a th:href="@{detail(no=${party.no})}" class="icon" title="User Profile">
             <i class="fa fa-search"></i>

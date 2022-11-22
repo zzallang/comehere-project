@@ -83,9 +83,10 @@
     width: 330px;
     height:270px;
     float: left;
+    position: relative;
   }
   .party_form_header {
-    width: 480px;
+    width: 490px;
     height: 270px;
     float: left;
   }
@@ -109,8 +110,12 @@
     margin-top: 10px;
   }
   
+  .party_form_content span{
+    font-size: small;
+  }
+  
   .previewImg {
-    margin: 0 auto;
+    margin: 0 auto !important;
     width: auto;
     max-height: 200px;
     max-width: 300px;
@@ -166,6 +171,11 @@
     border-radius: 5px;
     padding: 5px;
     margin: 10px 2px 20px 2px;
+    width: 310px;
+    height: 210px;
+    display: flex;
+     justify-content: center; 
+     align-items: center;
         }
         
           .condition_button {
@@ -176,6 +186,11 @@
           border: 1px solid #0d6efd;
   }
   
+   .layout_padding_party {
+    min-width: 1130px;
+   padding-top: 30px;
+   padding-bottom: 20px;
+  }
 </style>
 </head>
 <body>
@@ -183,7 +198,7 @@
 <div class="header_section">
   <div class="container-fluid">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <div class="main_logo"><a href="/app"><img src="../images/logo.png"></a></div>
+      <div class="main_logo"><a href="/app"><img src="../images/logo.png" ></a></div>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -210,8 +225,6 @@
   <div class="container_party">
     <div class="furnitures_section2 layout_padding_party">
       <h1 class="our_text">모임 만들기</h1>
-      <p class="ipsum_text">운동 모임을 만들어 보세요!</p>
-      <div class="party_detail_bar"></div>
     </div>
     <div class="furnitures_section2 layout_padding_party">
       <div>
@@ -221,7 +234,9 @@
           <div class="party_form_wrap">
             <div class="party_form_img">
               <div class="party_form_img_wrap">
-              <img id="previewImg" class="previewImg" src="/app/party/files/nothumpnail.jpg">
+                <div style="margin: auto 0; display: flex; justify-content: center; align-items: center;">
+                  <img id="previewImg" class="image previewImgparty_detail_img previewImg" src="/app/party/files/nothumpnail.jpg">
+                </div>
               </div>
               <input id="fileTag" name='file' type="file">
             </div>
@@ -252,11 +267,10 @@
               <textarea name='content'></textarea>
             </div>
             <div class="party_form_content">
-              <span>정원</span>
+              <span>정원 </span>
               <input class="" name="headCount" type="number" min='2'>
-            </div>
-            <div class="party_form_content">
-              <span>일자 시간</span>
+            
+              <span style="margin-left: 10px;">일자 시간 </span>
               <input class="form-selectJd2" name="partyDate" type="date">
               <input class="form-selectJd2" name="partyTime" type="time" step="1" value="00:00:00">
             </div>
@@ -266,7 +280,7 @@
                 <span>선택 장소 : </span><span id="mapSelectName">없음</span><span id="mapSelectAddress"></span>
               </div>
               <div class="map_wrap">
-                <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
+                <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden; margin-top: 10px;"></div>
                 <div id="menu_wrap" class="bg_white">
                   <div class="option">
                     <div>
@@ -456,5 +470,6 @@ function partyDelete(){
 <script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>    
 
 <!-- 공식부트스트랩 JS --> 
-<script src="../js/bootstrap/bootstrap.js"></script>   </body>
+<script src="../js/bootstrap/bootstrap.js"></script>   
+</body>
 </html>

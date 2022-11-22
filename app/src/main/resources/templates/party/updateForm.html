@@ -35,9 +35,11 @@
 <!--  썸머노트 끝 -->
 <!-- sweetalert -->
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> 
+  <!-- 공식 부트스트랩 -->
+  <link href="../css/bootstrap/bootstrap.css" rel="stylesheet">
 <style>
   .row_party {
-    width: 1200px;
+    width: 1130px;
   }
   
   .col-md-6_party_wrap {
@@ -69,36 +71,36 @@
   }
   
   
-  .dololr_text_region {
+ .dololr_text_region {
     float: left;
     color: #121111;
-    margin-left: 0px;
+    margin-left: 3px;
     margin-top: 0px;
     margin-bottom: 5px;
-    margin-right: 5px;
+    margin-right: 3px;
+    height: 25px;
     
-    font-size: x-small;
+    font-size: small;
+    font-weight: bold;
     
-    border: 1px solid #fabb25;
     border-radius: 5px;
-    padding-left: 5px;
-    padding-right: 5px;
+    padding: 0px 5px 5px 5px;
   }
   
   .dololr_text_sports {  
     float: left;
     color: #121111;
-    margin-left: 0px;
+    margin-left: 3px;
     margin-top: 0px;
-    margin-bottom: 5px;
+    margin-bottom: 3px;
     margin-right: 5px;
+    height: 25px;
+
+    font-size: small;
+    font-weight: bold;
     
-    font-size: x-small;
-    
-    border: 1px solid #fabb25;
     border-radius: 5px;
-    padding-left: 5px;
-    padding-right: 5px;
+    padding: 0px 5px 5px 5px;
   }
   
   .dololr_text_datetime {
@@ -125,7 +127,7 @@
   }
   
   .party_search_condition {
-    min-width: 1200px;
+    min-width: 1130px;
   
     height: 100px;
     float: left;
@@ -166,7 +168,7 @@
   
   
   .layout_padding_party {
-    min-width: 1200px;
+    min-width: 1130px;
    padding-top: 30px;
    padding-bottom: 20px;
   }
@@ -177,7 +179,7 @@
     margin: 0 auto;
   }
   .party_update_view {
-    width: 1200px;
+    width: 1130px;
     margin: 0 auto;
     overflow: hidden;
   }
@@ -254,24 +256,21 @@
     
   }
   
-
+  .fileTag {
+    bottom: 0%;
+    position: absolute;
+  }
   
   .party_form_wrap {
-    width: 1200px;
+    width: 825px;
     margin: 10px auto;
     overflow: hidden;
   }
   .party_form_button_r {
     float: right;
-    color: #121111;
-    margin-left: 0px;
-    margin-top: 0px;
-    margin-bottom: 5px;
-    margin-right: 5px;
     
-    font-size: x-small;
-    
-    border: 1px solid #fabb25;
+    margin: 30px 10px 10px 10px;
+    font-size: medium;
     border-radius: 5px;
     padding: 5px 10px 5px 10px;
   }
@@ -280,23 +279,25 @@
     height: 50px;
     margin-top: 40px;
     margin-bottom: 60px;
+    position: relative;
   }
-  .party_form_title > span{
+  .party_form_title span{
     font-size: xx-large;
   }
   .party_form_title_input {
-    width: 600px;
-    height: 50px;
+    width: 360px;
+    height: 40px;
     font-size: large;
   }
   .party_form_img {
     width: 330px;
-    height:350px;
+    height:270px;
     float: left;
+    position: relative;
   }
   .party_form_header {
-    width: 800px;
-    height:350px;
+    width: 490px;
+    height:270px;
     float: left;
   }
   .party_header_filepath {
@@ -323,6 +324,90 @@
   width: auto;
   max-height: 300px;
 }
+
+.party_form_content {
+    width: 100%;
+    float: left;
+    margin-top: 10px;
+  }
+  
+  .party_form_content span{
+    font-size: small;
+  }
+          
+        .party_form_img_wrap {
+        border: 1px solid gray;
+    border-radius: 5px;
+    padding: 5px;
+    margin: 10px 2px 20px 2px;
+    width: 310px;
+    height: 210px;
+    display: flex;
+     justify-content: center; 
+     align-items: center;
+        }
+        
+  .previewImg {
+    margin: 0 auto;
+    width: auto;
+    max-height: 200px;
+    max-width: 300px;
+  }
+  
+  
+  .form-selectJd {
+          display: inline-block;
+          padding: 0.375rem 2.25rem 0.375rem 0.75rem;
+          -moz-padding-start: calc(0.75rem - 3px);
+          font-size: 1rem;
+          font-weight: 400;
+          line-height: 1.5;
+          color: #212529;
+          background-color: #fff;
+          background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e");
+          background-repeat: no-repeat;
+          background-position: right 0.75rem center;
+          background-size: 16px 12px;
+          border: 1px solid #ced4da;
+          border-radius: 0.375rem;
+          transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+          -webkit-appearance: none;
+          -moz-appearance: none;
+          appearance: none;
+          margin-top: 10px;
+          margin-bottom: 10px;
+          margin-left: 10px;
+        }
+  .form-selectJd2 {
+          display: inline-block;
+          padding: 0.375rem 2.25rem 0.375rem 0.75rem;
+          -moz-padding-start: calc(0.75rem - 3px);
+          font-size: 1rem;
+          font-weight: 400;
+          line-height: 1.5;
+          color: #212529;
+          background-color: #fff;
+          background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e");
+          background-repeat: no-repeat;
+          background-position: right 0.75rem center;
+          background-size: 16px 12px;
+          border: 1px solid #ced4da;
+          border-radius: 0.375rem;
+          transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+          -webkit-appearance: none;
+          -moz-appearance: none;
+          appearance: none;
+        }
+
+        
+          .condition_button {
+
+    color: #0d6efd;
+          background-color: transparent;
+          background-image: none;
+          border: 1px solid #0d6efd;
+  }
+
 </style>
 </head>
 <body>
@@ -357,14 +442,14 @@
   <div class="container_party">
     <div class="furnitures_section2 layout_padding_party">
       <h1 class="our_text">모임 수정하기</h1>
-      <p class="ipsum_text">운동 모임을 만들어 보세요!</p>
-      <div class="party_detail_bar"></div>
     </div>
     <div class="furnitures_section2 layout_padding_party">
       <div class="party_detail_bar">
         <div class="party_detail_buttons">
           <p class="dololr_text_region" th:text="${party.region.sido}"></p>
+        <p style="float: left; font-size: x-small; margin: 0px;">|</p>
           <p class="dololr_text_region" th:text="${party.region.sigu}"></p>
+        <p style="float: left; font-size: x-small; margin: 0px;">|</p>
           <p class="dololr_text_sports" th:text="${party.sports.name}"></p>
           <button th:if="${session.loginMember} != null and ${session.loginMember.no} != ${party.user.no}" class="dololr_text_tatlle" type="button" onclick="location.href='#'">신고</button>
         </div>
@@ -374,40 +459,33 @@
           <input name='no' type="hidden" th:value="${party.no}">
           <div class="party_form_wrap">
             <div class="party_form_img">
-              <img id="previewImg" th:if="${party.thumbnail != null}"  th:src="@{'/party/files/' + ${party.thumbnail}}" alt="Avatar" class="image party_detail_img">
-              <img id="previewImg" th:if="${party.thumbnail == null}"  src="/app/party/files/nothumpnail.jpg" alt="Avatar" class="image">
-              <input id="fileTag" name='file' type="file" >
+              <div class="party_form_img_wrap">
+                <div style="margin: auto 0; display: flex; justify-content: center; align-items: center;">
+                  <img id="previewImg" th:if="${party.thumbnail != null}"  th:src="@{'/party/files/' + ${party.thumbnail}}" alt="Avatar" class="image previewImgparty_detail_img previewImg">
+                  <img id="previewImg" th:if="${party.thumbnail == null}"  src="/app/party/files/nothumpnail.jpg" alt="Avatar" class="image previewImg">
+                </div>
+              </div>
+              <input id="fileTag" class="fileTag" name='file' type="file" >
             </div>
             <div class="party_form_header">
               <div class="party_form_title">
-                <span>모임 명: </span>
-                <input maxlength="20" class="party_form_title_input" name='title' type="text"  th:value='${party.title}'>
-              </div>
-              <div class="party_form_title">
-                <div class="party_header_filepath">
-                  <img th:if="${party.user.filepath != null}"  th:src="@{'/member/files/' + ${party.user.filepath}}" alt="Avatar" class="profile party_detail_img">
-                  <img th:if="${party.user.filepath == null}"  src="../images/img-2.png" alt="Avatar" class="profile">
-                </div>
-                <div class="party_header_nickname">
-                  <p th:text="${party.user.nickname}">닉네임</p>
-                </div>
+                <div style="position: absolute;"><span>모임 명: </span></div>
+                <div style="position: absolute; left: 110px; top:4px;"><input maxlength="20" class="party_form_title_input" name='title' type="text"  th:value='${party.title}'></div>
               </div>
             </div>
             <div class="party_form_content">
-              <p>내용</p><textarea name='content' th:text="${party.content}"></textarea>
+              <textarea name='content' th:text="${party.content}"></textarea>
             </div>
             <div class="party_form_content">
               <span>정원</span>
               <input class="" name="headCount" type="number" th:value="${party.headCount}">
+              <span style="margin-left: 10px;">일자 시간 </span>
+              <input class="form-selectJd2" name="partyDate" type="date"  th:value='${party.partyDate}'>
+              <input class="form-selectJd2" name="partyTime" type="time" step="1" value="00:00:00"  th:value='${party.partyTime}'>
             </div>
             <div class="party_form_content">
-              <span>일자 시간</span>
-              <input class="" name="partyDate" type="date"  th:value='${party.partyDate}'>
-              <input class="" name="partyTime" type="time" step="1" value="00:00:00"  th:value='${party.partyTime}'>
-            </div>
-            <div class="party_form_content">
-              <button class="party_form_button_r" type="button" data-th-onclick="@{'partyDelete(' + ${party.no} + ')'}">취소</button>
-              <input class="party_form_button_r" id="subBtn" type="button" value="등록" onclick="goWrite(this.form)"/>
+              <button class="btn btn-primary condition_button  party_form_button_r" type="button" data-th-onclick="@{'partyDelete(' + ${party.no} + ')'}">취소</button>
+              <input class="btn btn-primary party_form_button_r" id="subBtn" type="button" value="등록" onclick="goWrite(this.form)"/>
             </div>
           </div>
         </form>
@@ -571,5 +649,8 @@ function partyDelete(no){
 <!-- javascript --> 
 <script src="../js/owl.carousel.js"></script>
 <script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>    
+
+<!-- 공식부트스트랩 JS --> 
+<script src="../js/bootstrap/bootstrap.js"></script>   
 </body>
 </html>
