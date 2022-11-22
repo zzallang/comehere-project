@@ -126,7 +126,7 @@ p {
               <input data-th-value="${notice.no}" value=공지사항번호 id="noticeNo" name='no' type="hidden">
 		              <h3 class="board-title" data-th-text='${notice.title}'></h3>
                   <img style="width:45px; border-radius: 50vw; margin-right:10px;"src="../images/profile-pic.png"><span>관리자</span>
-                <div style="float: right;">
+                <div style="float: right; margin-top: 15px;">
                   <span th:text="${notice.createdDate}" style="margin-right: 10px;"></span>
                   <img style="width: 18px; margin-left: 1px;" src="../images/view-icon2.png"><span th:text="${notice.viewCount}">0</span>
                 </div>
@@ -141,21 +141,6 @@ p {
             </div>
 
       <!--  footer section end -->
-      <!-- copyright section start -->
-      <div class="copyright_section">
-        <div class="container">
-           <div class="social_icon">
-              <ul>
-                 <li><a href="#"><img src="../images/fb-icon.png"></a></li>
-                 <li><a href="#"><img src="../images/twitter-icon.png"></a></li>
-                 <li><a href="#"><img src="../images/instagram-icon.png"></a></li>
-                 <li><a href="#"><img src="../images/linkedin-icon.png"></a></li>
-              </ul>
-           </div>
-           <p class="copyright_text">2020 All Rights Reserved. by comehere</p>
-        </div>
-      </div>
-      <!-- copyright section end -->
       <!-- Javascript files-->
 <!--       <script src="../js/jquery.min.js"></script>
       <script src="../js/popper.min.js"></script>

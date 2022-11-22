@@ -53,6 +53,7 @@
 }
 
 .post_form2 {
+  width: 200px;
   float: left;
   margin: 10px 0px;
 }
@@ -106,6 +107,7 @@
     border: 1px solid #eaedf4;
     border-radius: 12px;
     width: 210px;
+    height: 312px;
 }
 .clg2 {
     float: right;
@@ -114,12 +116,13 @@
     border-radius: 12px;
     width: 740px;
     height: 312px;
+    text-align: 312px;
 }
 </style>
 </head>
 <body>
 	<!-- header section start -->
-  <div class="container-fluid windowWidth">
+  <div class="container-fluid">
       <nav class="navbar navbar-expand-lg navbar-light windowWidth">
         <div class="main_logo"><a href="/app"><img src="../images/logo.png"></a></div>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -167,7 +170,7 @@
                       <td>
                           <div class="clg1">
                             <img id="previewImg" th:if="${board.thumbnail != null}"  th:src="@{'/board/files/' + ${board.thumbnail}}" alt="Avatar" class="image party_detail_img in-img">
-                            <img id="previewImg" th:if="${board.thumbnail == null}"  src="/app/board/files/nothumpnail.jpg" alt="Avatar" class="image">
+                            <img id="previewImg" th:if="${board.thumbnail == null}"  src="../images/nothumbnail.png" alt="Avatar" class="in-img">
                             <input class="post_form2"  id="fileTag" name='file' type="file">
                           </div>
                             <div class="clg2">
@@ -206,21 +209,6 @@
            <!-- 게시글 수정폼 끝 -->
          </div>
      <!-- furnitures section end -->
-      <!-- copyright section start -->
-      <div class="copyright_section">
-        <div class="container">
-           <div class="social_icon">
-              <ul>
-                 <li><a href="#"><img src="../images/fb-icon.png"></a></li>
-                 <li><a href="#"><img src="../images/twitter-icon.png"></a></li>
-                 <li><a href="#"><img src="../images/instagram-icon.png"></a></li>
-                 <li><a href="#"><img src="../images/linkedin-icon.png"></a></li>
-              </ul>
-           </div>
-           <p class="copyright_text">2020 All Rights Reserved. Design by <a href="https://html.design">Free html  Templates</a></p>
-        </div>
-      </div>
-      <!-- copyright section end -->
 
 <!-- Javascript files-->
 <!-- 썸머노트 자바스크립트 시작 -->
@@ -344,5 +332,6 @@ function updateCancel() {
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <!-- 공식부트스트랩 JS -->
 <script src="../js/bootstrap/bootstrap.js"></script>   
+
     </body>
 </html>

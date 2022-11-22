@@ -218,7 +218,7 @@ button {
 .header_section{
     width: 100%;
     float: left;
-    background-image: url(../images/header-bg.png);
+    /* background-image: url(../images/header-bg.png); */
     height: auto;
     background-size: 100%;
 }
@@ -237,17 +237,11 @@ button {
     text-transform: uppercase;
 }
 .navbar-light .navbar-nav .nav-link:focus, .navbar-light .navbar-nav .nav-link:hover {
-    color: #ffb607;
-}
-.call_text {
-    width: 100%;
-    float: left;
-    font-size: 18px;
-    color: #ffb607;
-    padding-top: 10px;
+    color: #0d6efd;
 }
 
 .login-bt{
+   width: 18%;
     float: left;
 }
 .login-bt ul{
@@ -265,7 +259,7 @@ button {
     color: #000;
 }
 .login-bt li a:hover{
-    color: #ffb607;
+    color: #0d6efd;
 }
 .navbar-expand-lg .navbar-nav .nav-link {
     padding-right: 20px;
@@ -287,26 +281,13 @@ button {
     float: left;
 }
 .banner_section {
-    width: 100%;
+    width: 1280px;
     float: left;
     background-image: url(../images/banner-bg.png);
     height: auto;
     padding-bottom: 50px;
     background-size: 100%;
     background-repeat: no-repeat;
-}
-.icon_1{
-    width: 100%;
-    float: left;
-    text-align: center;
-}
-.furniture_text{
-    width: 100%;
-    float: left;
-    font-size: 100px;
-    color: #090808;
-    text-align: center;
-    text-transform: uppercase;
 }
 .there_text {
     width: 50%;
@@ -333,20 +314,6 @@ button {
     right: -150px;
     top: 57%;
 }
-
-.services_section{
-    width: 100%;
-    float: left;
-    padding-bottom: 90px;
-}
-.services_taital{
-    width: 100%;
-    float: left;
-    font-size: 36px;
-    color: #090808;
-    text-align: center;
-    text-transform: uppercase;
-}
 .many_taital{
     width: 100%;
     float: left;
@@ -355,19 +322,6 @@ button {
     text-align: center;
     margin-left: 0px;
     margin-top: 10px;
-}
-.services_section2{
-    width: 100%;
-    float: left;
-}
-.furnitures_text {
-    width: 100%;
-    float: left;
-    font-size: 24px;
-    color: #090808;
-    text-transform: uppercase;
-    text-align: center;
-    padding-top: 20px;
 }
 .dummy_text{
     width: 100%;
@@ -383,66 +337,6 @@ button {
     width: 60%;
     margin: 0 auto;
     text-align: center;
-}
-.about_section{
-    width: 100%;
-    float: left;
-    background-color: #ffb607;
-    height: auto;
-    padding-bottom: 90px;
-}
-.image_1{
-    width: 100%;
-    float: left; 
-}
-
-.about_text {
-    width: 100%;
-    float: left;
-    font-size: 40px;
-    color: #ffffff;
-    text-transform: uppercase;
-    font-weight: 500;
-}
-.lorem_text {
-    width: 100%;
-    float: left;
-    font-size: 16px;
-    color: #ffffff;
-    margin-left: 0px;
-    padding-top: 40px;
-}
-.furnitures_section {
-    width: 100%;
-    float: left;
-    padding-bottom: 90px;
-}
-.our_text{
-    width: 100%;
-    float: left;
-    font-size: 36px;
-    color: #121111;
-    text-transform: uppercase;
-    text-align: center;
-}
-.ipsum_text{
-    width: 100%;
-    float: left;
-    font-size: 16px;
-    color: #090808;
-    text-align: center;
-    margin-left: 0px;
-    margin-top: 10px;
-}
-.furnitures_section2{
-    width: 100%;
-    float: left;
-}
-
-.container_main {
-  position: relative;
-  width: 100%;
-  max-width: 100%;
 }
 
 .image {
@@ -461,7 +355,7 @@ button {
     width: 42%;
     opacity: 0;
     transition: .3s ease;
-    background-color: #fabc26;
+    background-color: #0d6efd;
     margin: 0 auto;
     border-radius: 100px;
     top: 55px;
@@ -485,94 +379,10 @@ button {
 .fa-user:hover {
   color: #eee;
 }
-.temper_text{
-    width: 100%;
-    float: left;
-    font-size: 18px;
-    color: #fabb25;
-    text-transform: uppercase;
-    font-weight: bold;
-    padding-top: 35px;
-}
-.dololr_text{
-    width: 100%;
-    float: left;
-    font-size: 18px;
-    color: #121111;
-    margin-top: 10px;
-    margin-left: 0px;
-}
-.who_section{
-    width: 100%;
-    float: left;
-    background-image: url(../images/bg-1.png);
-    height: auto;
-    padding-bottom: 55px;
-    background-size: 100%;
-}
-.who_taital{
-    width: 100%;
-    float: left;
-    font-size: 36px;
-    color: #ffffff;
-    text-align: center;
-    text-transform: uppercase;
-    font-weight: 500;
-}
-.designer_text{
-    width: 100%;
-    float: left;
-    font-size: 18px;
-    color: #ffffff;
-    text-align: center;
-    text-transform: uppercase;
-}
-.lorem_ipsum_text{
-    width: 100%;
-    float: left;
-    font-size: 16px;
-    color: #ffffff;
-    text-align: center;
-    margin-left: 0px;
-}
 .get_bt_main{
     width: 13%;
     margin: 0 auto;
     text-align: center;
-}
-.get_bt {
-    width: 100%;
-    float: left;
-    margin-top: 70px;
-}
-.get_bt a{
-    width: 100%;
-    float: left;
-    font-size: 18px;
-    color: #ffffff;
-    background-color: #070201;
-    text-align: center;
-    padding: 10px 0px;
-    border-radius: 5px;
-    text-transform: uppercase;
-}
-.get_bt a:hover{
-    color: #000;
-    background-color: #ffffff;
-}
-.projects_section{
-    width: 100%;
-    float: left;
-}
-.projects_section2{
-    width: 100%;
-    float: left;
-    padding-top: 60px;
-}
-
-.container_main1 {
-    /* position: relative; */
-    width: 100%;
 }
 
 .image {
@@ -610,150 +420,20 @@ button {
     padding: 10px 20px;
     border: 2px solid #fff;
 }
-.container_main2 {
-    width: 100%;
-    float: left;
-}
-.container_main1::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    width: 92%;
-    height: 90%;
-    background-color: rgb(255,182,7,.6);
-    z-index: 11;
-    display: none;
-}
-.container_main1:hover::after{
-    display: block;
-}
-.modern_text {
-    width: 100%;
-    float: left;
-    font-size: 20px;
-    text-transform: uppercase;
-    color: #ffffff;
-    position: relative;
-    top: -50px;
-    text-align: center;
-    z-index: 22;
-}
-#main_slider a.carousel-control-prev {
-    position: absolute;
-    left: -94px;
-    top: 57%;
-    background-color: #000;
-    color: #ffffff;
-}
-
-#main_slider a.carousel-control-next {
-    position: absolute;
-    right: -95px;
-    top: 57%;
-}
-#main_slider .carousel-control-prev, #main_slider .carousel-control-next {
-    width: 65px;
-    height: 65px;
-    background: #000;
-    opacity: 1;
-    font-size: 30px;
-    color: #fff;
-}
-#main_slider .carousel-control-prev:hover, #main_slider .carousel-control-next:hover, #main_slider .carousel-control-prev:focus, #main_slider .carousel-control-next:focus {
-    background: #f8ca12;
-    color: #fff;
-}
-.clients_section {
-    width: 100%;
-    float: left;
-    padding-top: 50px;
-    padding-bottom: 90px;
-}
-.client_text{
-    width: 100%;
-    float: left;
-    font-size: 36px;
-    color: #121111;
-    text-transform: uppercase;
-    text-align: center;
-}
-.clients_section2{
-    width: 100%;
-    float: left;
-    padding-top: 70px;
-}
-.client_1{
-    width: 60%;
-    float: left;
-    border: 1px solid #000;
-    padding: 17px 17px 0px 17px;
-}
 .image_7{
     width: 100%;
     float: left;
 }
-.quote_icon {
-    width: 85%;
-    float: left;
-    text-align: center;
-    position: absolute;
-    bottom: 35px;
-}
 
-.loksans_text{
-    width: 100%;
-    float: left;
-    font-size: 20px; 
-    color: #191919;
-    text-transform: uppercase;
-}
-.dolor_ipsum_text{
-    width: 100%;
-    float: left;
-    font-size: 16px; 
-    color: #191919;
-    margin-left: 0px;
-    margin-top: 0px;
-}
-.client_2 {
-    width: 60%;
-    float: right;
-    border: 1px solid #000;
-    padding: 17px 17px 0px 17px;
-    margin-top: 30px;
-}
-.carousel-indicators li {
-    width: 20px;
-    height: 20px;
-    background-color: #ffb607;
-    border-radius: 20px;
-}
-.carousel-indicators .active {
-    background-color: #111111;
-}
-
-.carousel-indicators {
-    justify-content: left;
-    margin-left: 0%;
-    bottom: 50px;
-}
 .contact_section {
-    width: 100%;
+    width: 1280px;
     float: left;
-    background-image: url(../images/contact-bg.png);
     height: auto;
     background-size: cover;
     background-repeat: no-repeat;
     padding-bottom: 90px;
 }
 
-.contact_text{
-    width: 100%;
-    float: left;
-    font-size: 36px;
-    color: #ffffff;
-
-}
 .email-bt,.phoneNumber {
     color: #989696;
     width: 440px;
@@ -781,12 +461,13 @@ textarea#comment::placeholder {
     color: #989696;
 }
 .send_bt {
-    width: 100%;
     float: left;
-    margin-top: 50px;  
+    margin-top: 50px;
+    margin: 40p;
+    margin-left: 180px;
 }
 .send_bt button{
-    width: 30%;
+    width: 130px;
     float: left;
     font-size: 20px;
     color: #ffffff;
@@ -947,7 +628,7 @@ textarea#comment::placeholder {
     color: #000;
 }
 .copyright_text a:hover{
-    color: #fdbe28;
+    color: #0d6efd;
 }
 
 /* 은지 수정 css */
@@ -966,16 +647,9 @@ textarea#comment::placeholder {
   font-size: 36px;
   color: #313131;
 }
-.send_bt {
-  margin-left: 30%;
-}
-.send_bt a {
-  border: 2px solid #000000;
-}
 .pwd-checkbox {
   width: 500px;
   color: #989696;
-  width: 100%;
   font-size: 18px;
   padding: 20px;
   margin-top: 25px;
@@ -1011,6 +685,7 @@ textarea#comment::placeholder {
   margin-left: auto;
   margin-right: auto;
   cursor:pointer;
+  width: auto;
 }
 .gender {
   font-size:16px;
@@ -1033,9 +708,9 @@ textarea#comment::placeholder {
 }
 
 .send_bt a {
-  border: 2px solid #5f5f5f70;
   color: white;
   border-radius: 7px;
+  border: 2px solid #000000;
 }
 
 .custom-email {
@@ -1153,9 +828,7 @@ a.reviewFormBtn {
   margin: 0px 80px 0px;
 }
 .sort_area {
-  float: left;
-  width: 100%;
-  padding-top: 0;
+  width: 890px;
   margin-bottom: 60px;
   text-align: center;
 }
@@ -1192,8 +865,9 @@ list-style {
   padding: 6px 0 10px;
 }
 .my-page {
-  width:100%; 
   background-color: white;
+  min-width: 970px;
+  max-width: 970px;
 }
 .my-page tr {
   text-align:center;
@@ -1226,7 +900,8 @@ list-style {
   width: 300px;
 }
 .row {
-  margin-left: 150px;
+  width: 970px;
+  margin: 0 auto;
 }
 .container-detail {
   width: 960px;
@@ -1237,4 +912,22 @@ list-style {
   display: block;
   transition: .5s ease;
   backface-visibility: hidden;
+}
+.feedback {
+  height: 10px;
+}
+.feedback font {
+  font-size: 14px;
+}
+.container {
+  min-width: 1130px;
+}
+.pagination {
+  margin: 20px;
+  min-width: 890px;
+  max-width: 890px;
+}
+.page_center {
+  display: flex;
+  margin: 0 auto;
 }

@@ -125,11 +125,6 @@
     background-color: #0d6efd;
 }
       
-      
-        .temp-line {
-          border: 1px solid black;
-        }
-      
         .our_textJD {
         width: 100%;
         float: left;
@@ -379,13 +374,13 @@
 }
 .comment-cont {
   display: inline-block;
-  width: 90%;
+  width: 99.3%;
   min-height: 60px;
   margin-bottom: 20px;
 }
 .comment-info {
-    right: 20px;
-    top: 20px;
+    right: 22px;
+    top: 24px;
     position: absolute;
 }
 .comment-writer {
@@ -497,9 +492,9 @@
                 </div>
               </div>
               <div th:if="${board.cateno == 3}">
-                <h5 style="margin-top: 15px; margin-left: 41px; margin-bottom: 0px; color: gray;">챌린지 인증 사진</h5>
+                <h5 style="margin-top: 15px; margin-left: 40px; margin-bottom: 0px; color: gray; font-size: 20px;">챌린지 인증 사진</h5>
                 <div class="clg1">
-                  <img th:if="${board.thumbnail == null}" src="/app/board/files/nothumpnail.jpg" alt="thumpnail" class="in-img"/>
+                  <img th:if="${board.thumbnail == null}" src="../images/nothumbnail.png" alt="thumbnail" class="in-img"/>
                   <img th:if="${board.thumbnail != null}" th:src="@{'/board/files/' + ${board.thumbnail}}" alt="Avatar" class="in-img"/>
                 </div>
               </div>
@@ -518,16 +513,16 @@
               </span>
             </div>
               
-             <!-- 댓글 블록 시작 -->
             <div>
+              <!-- 댓글 등록 시작 -->
               <div th:if="${session.loginMember}">        
                 <input type="hidden" id="memberNo"  th:value="${session.loginMember.no}">
                 <div class="comment_input_wrap">
                   <div class="comment_input img_add">
-                    <textarea id="commentCont" class="scrollbar" placeholder="내용을 입력하세요."></textarea>
+                    <textarea id="commentCont" class="scrollbar" placeholder="내용을 입력하세요." onkeypress="block_enter(event)"></textarea>
                   </div>
                   <div class="comment_input_bot">
-                    <button id="commentButton" type="button" class="btnSizeL comment_submit">댓글 등록</button>
+                    <button id="commentButton" type="button" class="btnSizeL comment_submit" >댓글 등록</button>
                   </div>
                 </div>
               </div>
@@ -542,64 +537,14 @@
                   </div>
                 </div>
               </div>
-<!--               
-              <div style="width: 80%;" class="temp-line">
-                  <div class="form-group">
-                      <label for="comment"></label>
-                      <div th:if="${session.loginMember}">
-                        <input type="hidden" id="memberNo"  th:value="${session.loginMember.no}">
-                        <input
-                            type="text"
-                            class="form-control"
-                            id="commentCont"
-                            placeholder="내용을 입력하세요."
-                            style="height: 30px;"
-                            th:name="${session.loginMember.nickname}">
-                        </div>
-                      <div th:if="${session.loginMember == null}">
-                        <input type="hidden" id="memberNo"  value=0>
-                        <input
-                            type="text"
-                            class="form-control"
-                            id="commentCont"
-                            placeholder="댓글을 등록하려면 로그인 하세요."
-                            style="height: 60px;" readonly
-                            onclick="alertToLogin();">
-                      </div>
-                  </div>
-                  <div>
-                      <button id="commentButton" class="btn btn-sm btn-success">등록</button>
-                  </div>
-               </div>
-             -->
-<!--                <div class="comment-wrapper1">
-                  <div class="commentList1">
-                    <div class="commentArea comment-area">
-                      <div class="commentInfo comment-info"><a class="btn btn-outline-primary btn-sm" onclick="commentComplain(31);"> 신고 </a> </div>
-                      <div class="commentContent298 comment-cont">
-                        <label for="form"></label>
-                        <div class="input-group">
-                          <textarea cols="40" rows="3" class="form-control" name="content_298" value="ㅓㅗ허ㅗㅎㅏㅐㅔㅐㅏㅓㅗ허ㅗ허ㅗㅎ"></textarea>
-                          <span class="input-group-btn">
-                           <button class="btn btn-default" type="button" onclick="commentUpdateProc(298);">수정</button>
-                          </span>
-                        </div>
-                      </div>
-                      <div class="comment-writer">동동</div>
-                    </div>
-                    <div class="commentArea comment-area">
-                      <div class="commentContent comment-cont"> 내용</div>
-                      <div class="commentInfo comment-info"><a class="btn btn-outline-primary btn-sm" onclick="commentComplain(31);"> 신고 </a> </div>
-                    </div>
-                  </div>
-
-              </div> -->
+              <!-- 댓글 등록 끝 -->
               
-              
+              <!-- 댓글 목록 시작 -->
               <div class="comment-wrapper">
-                  <div class="commentList">
-                  </div>
+                  <div class="commentList"></div>
               </div>
+              <!-- 댓글 목록 끝 -->
+              
             <!-- 댓글페이징 -->
             <nav aria-label="Page navigation">
               <ul class="pagination" style="margin-top: 20px">
@@ -635,21 +580,7 @@
       </div>
 
       <!--  footer section end -->
-      <!-- copyright section start -->
-      <div class="copyright_section">
-        <div class="container">
-           <div class="social_icon">
-              <ul>
-                 <li><a href="#"><img src="../images/fb-icon.png"></a></li>
-                 <li><a href="#"><img src="../images/twitter-icon.png"></a></li>
-                 <li><a href="#"><img src="../images/instagram-icon.png"></a></li>
-                 <li><a href="#"><img src="../images/linkedin-icon.png"></a></li>
-              </ul>
-           </div>
-           <p class="copyright_text">2020 All Rights Reserved. Design by <a href="https://html.design">Free html  Templates</a></p>
-        </div>
-      </div>
-      <!-- copyright section end -->
+      
       <!-- Javascript files-->
       <script src="../js/jquery.min.js"></script>
       <script src="../js/popper.min.js"></script>
@@ -840,6 +771,7 @@
                 }
             });
         }
+        // 비회원 댓글 작성시 로그인 유도
         function alertToLogin(){
             swal({
                 text :  "댓글을 작성하려면 로그인을 해야합니다.\n로그인하시겠습니까?",
@@ -853,6 +785,7 @@
                 }
             });
         }
+        // 비회원 신고 시 로그인 유도 
         function alertToLoginByTattle(){
             swal({
                 text :  "신고를 하려면 로그인을 해야합니다.\n로그인하시겠습니까?",
@@ -865,6 +798,12 @@
                   return false;
                 }
             });
+        }
+        // 댓글 우선 엔터 막자
+        function block_enter(e){
+           if(e.keyCode == 13){
+        	   event.preventDefault();
+           }
         }
         
         // 스크랩 관련 함수
@@ -909,31 +848,6 @@
                   return false;
                 }
             });
-/*         	
-            if (confirm("스크랩 하시겠습니까?") == true){
-            	$.ajax({
-                    url : "/app/scrap/add",
-                    data : {
-                      boardNo : boardNo,
-                      memberNo : memberNo
-                    },
-                    type : "post",
-                    success : function(result){
-                      if(result == 1){
-                    	  alert("게시글 스크랩되었습니다.");
-                      } else if (result == 0) {
-                    	  if(confirm("이미 스크랩한 게시글입니다.\n스크랩을 취소하겠습니까?") == true){
-                    		  deleteScrap();
-                    		}else{
-                    			return false;
-                    		}
-                      }
-                    }
-                    })
-            } else{
-            	return false;
-            }
-             */
         }
         
         // 스크랩 취소
@@ -987,22 +901,22 @@
             <input type="hidden" name="boardNo" data-th-value="${board.no}">
             <div class="report_menu">신고사유</div>
             <div class="form-check form-check-inline">
-              <input type="checkbox" value="Contents" class="form-check-input" id="1" name="reports" onclick='checkOnlyOne(this)' style="display: block"> <input type="hidden" name="_reports" value="on" /> <label for="1" class="form-check-label">불건전한 내용</label>
+              <input type="checkbox" value="Contents" class="form-check-input" id="tt1" name="reports" onclick='checkOnlyOne(this)' style="margin-top: 4px; display: block"> <input type="hidden" name="_reports" value="on" /> <label for="tt1" class="form-check-label">불건전한 내용</label>
             </div>
             <div class="form-check form-check-inline">
-              <input type="checkbox" value="promotion" class="form-check-input" id="2" name="reports" onclick='checkOnlyOne(this)' style="display: block"> <input type="hidden" name="_reports" value="on" /> <label for="2" class="form-check-label">스팸 및 부적절한 홍보</label>
+              <input type="checkbox" value="promotion" class="form-check-input" id="tt2" name="reports" onclick='checkOnlyOne(this)' style="margin-top: 4px; display: block"> <input type="hidden" name="_reports" value="on" /> <label for="tt2" class="form-check-label">스팸 및 부적절한 홍보</label>
             </div>
             <div class="form-check form-check-inline">
-              <input type="checkbox" value="calumny" class="form-check-input" id="3" name="reports" onclick='checkOnlyOne(this)' style="display: block"> <input type="hidden" name="_reports" value="on" /> <label for="3" class="form-check-label">명예훼손 및 비방</label>
+              <input type="checkbox" value="calumny" class="form-check-input" id="tt3" name="reports" onclick='checkOnlyOne(this)' style="margin-top: 4px; display: block"> <input type="hidden" name="_reports" value="on" /> <label for="tt3" class="form-check-label">명예훼손 및 비방</label>
             </div>
             <div class="form-check form-check-inline">
-              <input type="checkbox" value="prejudice" class="form-check-input" id="4" name="reports" onclick='checkOnlyOne(this)' style="display: block"> <input type="hidden" name="_reports" value="on" /> <label for="4" class="form-check-label">초상권 및 저작권 침해</label>
+              <input type="checkbox" value="prejudice" class="form-check-input" id="tt4" name="reports" onclick='checkOnlyOne(this)' style="margin-top: 4px; display: block"> <input type="hidden" name="_reports" value="on" /> <label for="tt4" class="form-check-label">초상권 및 저작권 침해</label>
             </div>
             <div class="form-check form-check-inline">
-              <input type="checkbox" value="embezzlement" class="form-check-input" id="5" name="reports" onclick='checkOnlyOne(this)' style="display: block"> <input type="hidden" name="_reports" value="on" /> <label for="5" class="form-check-label">개인정보 도용</label>
+              <input type="checkbox" value="embezzlement" class="form-check-input" id="tt5" name="reports" onclick='checkOnlyOne(this)' style="margin-top: 4px; display: block"> <input type="hidden" name="_reports" value="on" /> <label for="tt5" class="form-check-label">개인정보 도용</label>
             </div>
             <div class="form-check form-check-inline">
-              <input type="checkbox" value="act" class="form-check-input" id="6" name="reports" onclick='checkOnlyOne(this)' style="display: block"> <input type="hidden" name="_reports" value="on" /> <label for="6" class="form-check-label">기타 사이트 목적에 맞지 않는 행위</label>
+              <input type="checkbox" value="act" class="form-check-input" id="tt6" name="reports" onclick='checkOnlyOne(this)' style="margin-top: 4px; display: block"> <input type="hidden" name="_reports" value="on" /> <label for="tt6" class="form-check-label">기타 사이트 목적에 맞지 않는 행위</label>
             </div>
             <!-- 신고 종류 설정 input hidden type-->
             <div class="form-check form-check-inline"><input type="hidden" id="reportForm"></div>
@@ -1061,7 +975,6 @@ const loremIpsum = document.getElementById("lorem-ipsum")
 const modal = document.getElementById("modal")
 const btnModal = document.querySelectorAll(".btn-modal")
 
-console.log($('input[name=게시글]').val());
 $("#reportForm").attr("value", boardNo);
 $("#reportForm").attr("name", "게시글");
 btnModal.forEach((btn) => {

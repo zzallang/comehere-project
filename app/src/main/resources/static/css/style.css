@@ -35,10 +35,7 @@ body {
      line-height: 1.80857;
      font-weight: normal;
      overflow-x: hidden;
-     max-width:1280px !important;
-     min-width:1280px !important;
-     margin: auto !important;
-     float: none !important;
+    
 }
 a {
      color: #1f1f1f;
@@ -250,7 +247,7 @@ button {
 }
 
 .login-bt{
-    width: 12%;
+    width: 18%;
     float: left;
 }
 .login-bt ul{
@@ -552,7 +549,7 @@ a:hover {
     width: 42%;
     opacity: 0;
     transition: .3s ease;
-    background-color: #fabc26;
+    background-color: #0d6efd;
     margin: 0 auto;
     border-radius: 100px;
     top: 55px;
@@ -580,7 +577,7 @@ a:hover {
     width: 100%;
     float: left;
     font-size: 18px;
-    color: #fabb25;
+    color: #0d6efd;
     text-transform: uppercase;
     font-weight: bold;
     padding-top: 35px;
@@ -711,7 +708,7 @@ a:hover {
     top: 0;
     width: 92%;
     height: 90%;
-    background-color: rgb(255,182,7,.6);
+    background-color: rgb(13,110,253,.6);
     z-index: 11;
     display: none;
 }
@@ -751,7 +748,7 @@ a:hover {
     color: #fff;
 }
 #main_slider .carousel-control-prev:hover, #main_slider .carousel-control-next:hover, #main_slider .carousel-control-prev:focus, #main_slider .carousel-control-next:focus {
-    background: #f8ca12;
+    background: 0d6efd;;
     color: #fff;
 }
 .clients_section {

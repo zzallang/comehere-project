@@ -104,6 +104,7 @@
 		<div class="row"  style="justify-content: center;">
 			<!-- 게시글 수정폼 시작 -->
 				<form class="post_max_box" action='update' method="post" enctype="multipart/form-data" style="margin-left: 7%;">
+				  <input id="boardNo" name='no' type="hidden" data-th-value="${notice.no}">
 					<table class="table_form" style="width:1100px">
 						<tr>
 							<td><input class="post_form1"  name='title' type='text' value='제목'data-th-value='${notice.title}' size='60'></td>
@@ -124,21 +125,6 @@
 			<!-- 게시글 수정폼 끝 -->
 		</div>
 	<!-- furnitures section end -->
-	<!-- copyright section start -->
-	<div class="copyright_section">
-		<div class="container">
-			<div class="social_icon">
-				<ul>
-					<li><a href="#"><img src="../images/fb-icon.png"></a></li>
-					<li><a href="#"><img src="../images/twitter-icon.png"></a></li>
-					<li><a href="#"><img src="../images/instagram-icon.png"></a></li>
-					<li><a href="#"><img src="../images/linkedin-icon.png"></a></li>
-				</ul>
-			</div>
-			<p class="copyright_text">2022 All Rights Reserved. by comehere</p>
-		</div>
-	</div>
-	<!-- copyright section end -->
 
   <!-- Javascript files-->
   <script src="../js/bootstrap.bundle.min.js"></script>
@@ -154,15 +140,29 @@
     var title = frm.title.value;
     var content = frm.content.value;
     if (title.trim() == '') {
-      alert("제목을 입력해주세요");
-      return false;
-    }
-    if (content.trim() == '') {
-      alert("내용을 입력해주세요");
-      return false;
-    }
-    frm.submit();
+    	swal('','제목을 입력해주세요','warning');
+        return false;
   }
+    if (content.trim() == '') {
+        swal('','내용을 입력해주세요','warning').then(() =>{
+            return false;
+        });      } else {
+            swal({
+                text : "게시글을 수정하시겠습니까?",
+                icon : "info",
+                buttons : ["아니요", "예"],
+              }).then(function(isConfirm) {
+                if (isConfirm) {
+                  frm.submit();
+                } else{
+                  return false;
+                }
+            });
+        }
+    
+    }
+  
+  // 썸머노트
   $(document).ready(function() {
 	    $('textarea[name=content]').summernote({height: 500});
 	  });

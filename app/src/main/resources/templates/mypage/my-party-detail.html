@@ -13,7 +13,7 @@
 <!-- bootstrap css -->
 <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
 <!-- style css -->
-<link rel="stylesheet" type="text/css" href="../css/style.css">
+<link rel="stylesheet" type="text/css" href="../css/style2.css">
 <!-- Responsive-->
 <!-- fevicon -->
 <link rel="icon" href="../images/fevicon.png" type="image/gif" />
@@ -165,7 +165,24 @@
 .party_detail_r_cont > span{
   font-size: medium;
 }
-  
+.my-page {
+    text-align: center;
+    margin: 30px auto;
+}
+.btn-outline-secondary {
+  margin: 0px;
+  padding: 3px 8px;
+}
+.profile {
+  opacity: 1;
+  display: block;
+  transition: .5s ease;
+  backface-visibility: hidden;
+  margin: 0 auto;
+  width: 50px; 
+  height: 50px; 
+  border-radius: 50%;
+}
 </style>
 </head>
 <body>
@@ -186,18 +203,13 @@
 					<ul class="navbar-nav mr-auto">
 						<li class="nav-item"><a class="nav-link" href="../party/list">운동하기</a></li>
 						<li class="nav-item"><a class="nav-link" href="../board/main">커뮤니티</a></li>
-						<li class="nav-item"><a class="nav-link"
-							href="../notice/list">공지사항</a></li>
+						<li class="nav-item"><a class="nav-link" href="../notice/list">공지사항</a></li>
 					</ul>
 					<div class="search_icon">
 						<ul>
-							<li data-th-if="${session.loginMember == null}"><a
-								href="auth/form">로그인</a></li>
-							<li data-th-if="${session.loginMember != null}"><a
-								href="../mypage/my-post">마이페이지</a></li>
-							<li data-th-if="${session.loginMember != null}"><a
-								href="auth/logout"
-								data-th-text="${session.loginMember.name} + '(로그아웃)'">동동(로그아웃)</a></li>
+							<li data-th-if="${session.loginMember == null}"><a href="auth/form">로그인</a></li>
+							<li data-th-if="${session.loginMember != null}"><a href="../mypage/my-post">마이페이지</a></li>
+							<li data-th-if="${session.loginMember != null}"><a href="auth/logout" data-th-text="${session.loginMember.name} + '(로그아웃)'">동동(로그아웃)</a></li>
 						</ul>
 					</div>
 				</div>
@@ -209,12 +221,9 @@
 	<div class="contact_section layout_padding">
 		<div class=info>
 			<ul class="infoMenu">
-				<li class="menu"><a href="../mypage/my-post"><span>나의
-							활동</span></a></li>
-				<li class="menu"><a href="../mypage/my-party"><span
-						class="menu-on">모임 관리</span></a></li>
-				<li class="menu"><a href="../member/viewer"><span>회원
-							정보 변경</span></a></li>
+				<li class="menu"><a href="../mypage/my-post"><span>나의 활동</span></a></li>
+				<li class="menu"><a href="../mypage/my-party"><span class="menu-on">모임 관리</span></a></li>
+				<li class="menu"><a href="../member/viewer"><span>회원 정보 변경</span></a></li>
 			</ul>
 		</div>
 		<div class="container">
@@ -222,9 +231,9 @@
 				<div class="col-md-10">
 					<div class="mail_sectin">
 						<div class="sort_area">
-							<a href="my-party" class="link_sort">내가 만든 모임</a> <a
-								href="join-party" class="link_sort">참여 중인 모임</a> <a
-								href="end-party" class="link_sort">종료된 모임</a>
+							<a href="my-party" class="link_sort">내가 만든 모임</a>
+							<a href="join-party" class="link_sort">참여 중인 모임</a>
+							<a href="end-party" class="link_sort">종료된 모임</a>
 						</div>
 						<div class="furnitures_section2 layout_padding_party">
 							<div class="party_detail_bar">
@@ -317,41 +326,38 @@
 									<p style="width: 470px; float: left; margin-bottom: 20px;" text=" "></p>
 								<!-- 신청한 멤버들 보이게 -->
 								<table class="my-page">
-									<colgroup>
-										<col>
-										<col style="width: 120px;">
-										<col style="width: 80px;">
-									</colgroup>
-									<thead>
+									<thead style="border-bottom: 1px solid grey;">
 										<tr>
-											<th>프로필</th>
-											<th>닉네임</th>
-											<th>연령대</th>
-											<th>성별</th>
-											<th>비고</th>
+											<th style="width:5%"></th>
+											<th style="width:15%">프로필</th>
+											<th style="width:15%">닉네임</th>
+											<th style="width:15%">연령대</th>
+											<th style="width:15%">성별</th>
+											<th style="width:30%">비고</th>
 										</tr>
 									</thead>
 									<tbody>
 										<tr data-th-each="myPartyMember , i : ${myPartyMembers}">
 											<td>
 												<div class="FormInputCheck">
-													<input data-th-id="'check_article_' + ${myPartyMember.member.no}" type="checkbox" class="input_check">
 													<label data-th-for="'check_article_' + ${myPartyMember.member.no}" class="label"> <span class="blind">[[${i.count} + (((${pageMaker.cri.page}) - 1) * ${pageMaker.cri.perPageNum})]]</span>
 													</label>
 												</div>
 											</td>
-											<td><img th:src="@{'/member/files/' + ${myPartyMember.member.filepath}}" style="max-width: 50px; max-height: 50px;"></td>
+											<td>
+											   <img class="profile" th:src="@{'/member/files/' + ${myPartyMember.member.filepath}}">
+											</td>
 											<td data-th-text="${myPartyMember.member.nickname}">17</td>
 											<td data-th-text="${myPartyMember.member.ageGroup}">17</td>
 											<td data-th-text="${myPartyMember.member.sex} == true ? '남자' : '여자'">17</td>
 											<td>
-											  <div style="width: 120px; overflow: hidden;">
+											  <div style="width: 120px; overflow: hidden; margin: auto;">
 													<div style="width: 55px; float: left;">
 														<form action="partymember-update">
 															<input type="hidden" name="status" value="2">
 															<input type="hidden" name="memberNo" data-th-value="${myPartyMember.member.no}">
 															<input type="hidden" name="partyNo" data-th-value="${party.no}">
-															<input type="submit" class="partyOkBtn" data-th-id="${myPartyMember.member.no} + 'ok'" value="승인">
+															<input type="submit" class="btn btn-outline-secondary" data-th-id="${myPartyMember.member.no} + 'ok'" value="승인">
 														</form>
 													</div>
 													<div style="width: 55px; float: left;">
@@ -359,7 +365,7 @@
 															<input type="hidden" name="status" value="3">
 															<input type="hidden" name="memberNo" data-th-value="${myPartyMember.member.no}">
 															<input type="hidden" name="partyNo" data-th-value="${party.no}">
-															<input type="submit" class="partyNoBtn" data-th-id="${myPartyMember.member.no} + 'no'" value="거절">
+															<input type="submit" class="btn btn-outline-secondary" data-th-id="${myPartyMember.member.no} + 'no'" value="거절">
 														</form>
 													</div>
 												</div>
@@ -375,23 +381,6 @@
 		</div>
 	<!-- contact section end -->
 
-	<!-- copyright section start -->
-	<div class="copyright_section">
-		<div class="container">
-			<div class="social_icon">
-				<ul>
-					<li><a href="#"><img src="images/fb-icon.png"></a></li>
-					<li><a href="#"><img src="images/twitter-icon.png"></a></li>
-					<li><a href="#"><img src="images/instagram-icon.png"></a></li>
-					<li><a href="#"><img src="images/linkedin-icon.png"></a></li>
-				</ul>
-			</div>
-			<p class="copyright_text">
-				<a>2022 All Rights Reserved. Design by comehere</a>
-			</p>
-		</div>
-	</div>
-	<!-- copyright section end -->
 	<!-- Javascript files-->
 	<!--       <script src="js/jquery.min.js"></script> -->
 	<script src="js/jquery-3.0.0.min.js"></script>

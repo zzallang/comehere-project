@@ -45,7 +45,7 @@
       
       .category-name-wrapper {
         border: 1px solid #e4e8eb;
-        background-color: rgb(125, 144, 197);
+        background-color: #7e92c6; 
         height: 300px;
       }
       
@@ -354,7 +354,7 @@
                       <span class="clg" style="position:relative;">
                         <div class="clg-in">
                           <a th:href="@{detail(no=${board.no})}">
-                            <img class="clg-in-img" th:if="${board.thumbnail == null}" src="/app/board/files/nothumpnail.jpg"/>
+                            <img class="clg-in-img" th:if="${board.thumbnail == null}" src="../images/nothumbnail.png"/>
                             <img class="clg-in-img" th:if="${board.thumbnail != null}" th:src="@{'/board/files/' + ${board.thumbnail}}"/>
                           </a>
                           <div class="clg-in-title">
@@ -377,13 +377,6 @@
       
       
       
-      <!-- copyright section start -->
-      <div class="copyright_section windowWidth">
-        <div class="container">
-           <p class="copyright_text">2020 All Rights Reserved. Design by <a href="https://html.design">Free html  Templates</a></p>
-        </div>
-      </div>
-      <!-- copyright section end -->
       
       <!-- Javascript files-->
       <script src="../js/jquery.min.js"></script>

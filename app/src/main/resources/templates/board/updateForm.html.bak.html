@@ -109,7 +109,7 @@
                             <img id="previewImg" th:if="${board.thumbnail != null}"  th:src="@{'/board/files/' + ${board.thumbnail}}" alt="Avatar" class="image party_detail_img">
                             <img id="previewImg" th:if="${board.thumbnail == null}"  src="/app/board/files/nothumpnail.jpg" alt="Avatar" class="image">
                           </div>
-                          <input id="fileTag" name='file' type="file">
+                          <input class="post_form2" id="fileTag" name='file' type="file">
                       </td>        
                     </tr> 
                     <tr>
@@ -128,21 +128,6 @@
          </div>
      </div>
      <!-- furnitures section end -->
-      <!-- copyright section start -->
-      <div class="copyright_section">
-        <div class="container">
-           <div class="social_icon">
-              <ul>
-                 <li><a href="#"><img src="../images/fb-icon.png"></a></li>
-                 <li><a href="#"><img src="../images/twitter-icon.png"></a></li>
-                 <li><a href="#"><img src="../images/instagram-icon.png"></a></li>
-                 <li><a href="#"><img src="../images/linkedin-icon.png"></a></li>
-              </ul>
-           </div>
-           <p class="copyright_text">2020 All Rights Reserved. Design by <a href="https://html.design">Free html  Templates</a></p>
-        </div>
-      </div>
-      <!-- copyright section end -->
 
 <!-- Javascript files-->
 <!-- 썸머노트 자바스크립트 시작 -->
