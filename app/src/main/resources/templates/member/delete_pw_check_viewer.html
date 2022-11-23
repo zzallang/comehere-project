@@ -88,7 +88,7 @@
 									<h1 class="contact_text">비밀번호 재확인</h1>
 								    <p>회원탈퇴를 위해 회원님의 비밀번호를 다시 한번 확인합니다.</p>
 									<div class="mail_sectin">
-										<form action="/app/member/myInfo" method="post" name="myForm">
+										<form action="/app/member/my-info" method="post" name="myForm">
 											<input type="password" class="pwd-checkbox" placeholder="Password" name="password">
 										<div class="send_bt"><button type="button" id="PWCheck" >탈퇴하기</button></div>
 										</form>
@@ -117,14 +117,14 @@
              $('#PWCheck').click(function(){
               let pw = $('.pwd-checkbox').val();
               $.ajax({
-                url : '/app/member/verificationPWCheck',
+                url : '/app/member/verification-pw-check',
                 type : "post",
                 data : {password : pw},
                 dataType : 'json',
                 success : function(result) { console.log(result);
                   if(result == 1) {
                 	  swal({
-                          text : "회원탈퇴 하시겠습니까?",
+                          text : "탈퇴 하시겠습니까?",
                           icon : "warning",
                           buttons : ["아니요", "예"],
                         }).then(function(isConfirm) {
@@ -132,13 +132,13 @@
                     	  const num = $('#deleteMemberNo').val();
                           console.log(num);
                           $.ajax({
-                                    url : '/app/member/deleteMember',
+                                    url : '/app/member/delete',
                                     type : "get",
                                     data : {no : num},
                                     dataType : 'json',
                                     success : function(result) { 
                                       if(result == 1) {
-                                        swal("탈퇴 하였습니다.").then(() => {
+                                        swal("탈퇴 되었습니다.").then(() => {
                                               window.location.href = '../';
                                           });;
                                       } else {

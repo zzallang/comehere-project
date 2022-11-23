@@ -10,7 +10,7 @@
       <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
       <!-- <meta name="viewport" content="initial-scale=1, maximum-scale=1"> -->
       <!-- bootstrap css -->
-      <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
+      <!-- <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css"> -->
       <!-- style css -->
       <link rel="stylesheet" type="text/css" href="../css/style.css">
       <!-- Responsive-->
@@ -484,7 +484,7 @@
                type="button">신고</a>
               <h3 class="board-title" th:text='${board.title}'>제목없음</h3>
               <div class="board-info" style="color: gray">
-                <img th:src="@{'/member/files/' + ${board.writer.filepath}}" class="profile_pic" alt="profile_picture" onerror="this.src='../images/profile-pic.png';" >
+                <img th:src="@{'/member/files/' + ${board.writer.filepath}}" class="profile_pic" alt="profile_picture" onerror="this.src='../images/default-profile-pic.png';" >
                 <span th:text="${board.writer.nickname}"></span>
                 <div style="float: right; margin-top: 28px">
                   <span th:text="${board.createdDate}"></span>
@@ -749,7 +749,7 @@
             var a ='';
             a += '<label for="form"></label>';
             a += '<div class="input-group">';
-            a += '<textarea cols="40" rows="3" class="form-control update-form" name="content_' + commentNo + '">' + content + '</textarea>';
+            a += '<textarea onkeypress="block_enter(event)" cols="40" rows="3" class="form-control update-form" name="content_' + commentNo + '">' + content + '</textarea>';
             a += '<span class="input-group-btn"><button class="btn btn-outline-primary btn-sm btn-jd" type="button" onclick="commentUpdateProc(' + commentNo + ');">수정</button></span>';
             a += '<span class="input-group-btn"><button class="btn btn-outline-primary btn-sm btn-jd" type="button" onclick="commentList()">취소</button></span>';
             a += '</div>';
