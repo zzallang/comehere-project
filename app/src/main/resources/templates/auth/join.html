@@ -269,7 +269,7 @@
                let id = $('#id').val();
                
                $.ajax({
-                  url : '/app/member/duplicationIdCheck',
+                  url : '/app/member/duplication-id-check',
                   type : "post",
                   data : {id : id},
                   dataType : 'json',
@@ -290,7 +290,7 @@
                let email = $('#email').val();
                
                $.ajax({
-                  url : '/app/member/duplicationEmailCheck',
+                  url : '/app/member/duplication-email-check',
                   type : "post",
                   data : {email : email},
                   dataType : 'json',
@@ -311,7 +311,7 @@
                let nick = $('#nick').val();
                
                $.ajax({
-                  url : '/app/member/duplicationNickCheck',
+                  url : '/app/member/duplication-nick-check',
                   type : "post",
                   data : {nickname : nick},
                   dataType : 'json',
@@ -330,23 +330,25 @@
             /* 비밀번호 체크 */
             function check_pw(){
                var pw = document.getElementById('password').value;
-               var SC = ["-","?","/"];
+               var SC = ["!","@","#","$","%"];
                var check_SC = 0;
     
                for(var i=0;i<SC.length;i++){
-                   if(pw.indexOf(SC[i]) != -1){
-                       check_SC = 0;
+                   if(pw.indexOf(SC[i]) == 0){
+                       check_SC = 1;
                    }
                }
                
-               if(pw.length < 4 || pw.length>16){
+               if(pw.length < 4 || pw.length>16) {
                    window.alert('비밀번호는 4글자 이상, 16글자 이하만 이용 가능합니다.');
                    document.getElementById('password').value='';
-               } else if(check_SC == 1){
-			            	     window.alert('-,?,/ 제외 특수문자를 입력해주세요')
-			                   document.getElementById('password').value='';
-			               }
+               }
                
+               if(check_SC == 0){
+                   window.alert('!,@,#,$,% 중 특수문자를 1개 이상 입력해주세요.')
+                   document.getElementById('password').value='';
+               }
+                   
                 if(document.getElementById('password').value !='' && document.getElementById('passwordCheck').value!=''){
                    if(document.getElementById('password').value==document.getElementById('passwordCheck').value){
                        document.getElementById('password-check').innerHTML='비밀번호가 일치합니다.'

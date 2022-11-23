@@ -84,7 +84,7 @@ public class MemberController {
     return "member/pwCheckViewer";
   }
 
-  @GetMapping("myInfo")
+  @GetMapping("my-info")
   public String confirmation(HttpSession session, Model model, Part file) throws Exception {
     Member loginMember = (Member) session.getAttribute("loginMember");
     Member member = memberService.get(loginMember.getNo());
@@ -98,7 +98,7 @@ public class MemberController {
   }
 
   @Transactional
-  @PostMapping("memberUpdate")
+  @PostMapping("update")
   public ModelAndView myPageMember(HttpSession session, Member member, Part file) throws Exception {
     Member loginMember = (Member) session.getAttribute("loginMember");
     favoriteRegionService.deleteFavoriteRegion(loginMember.getNo());
@@ -112,39 +112,58 @@ public class MemberController {
     //member update logic
     //...
     memberService.update(member);
-    ModelAndView mv = new ModelAndView("redirect:myInfo");
+    ModelAndView mv = new ModelAndView("redirect:my-info");
     return mv;
   }
 
+  @GetMapping("delete")
+  @ResponseBody
+  public boolean deleteMember(int no, HttpSession session) throws Exception{
+    boolean result = memberService.delete(no);
+    if (result) {
+      session.invalidate();
+    } else {
+      result = false;
+    }
+    return result;
+  }
 
-  @PostMapping("duplicationIdCheck")
+  @GetMapping("delete_pw_check_viewer")
+  public String deletePwCehckViewer(int no, Model model) {
+    model.addAttribute("no", no);
+    return "member/delete_pw_check_viewer";
+  }
+
+  @PostMapping("duplication-id-check")
   @ResponseBody
   public int idCheck(String id) throws Exception{
     int result = memberService.idCheck(id); 
     return result;
   }
 
-  @PostMapping("duplicationEmailCheck")
+  @PostMapping("duplication-email-check")
   @ResponseBody
   public int emailCheck(String email) throws Exception{
     int result = memberService.emailCheck(email); 
     return result;
   }
 
-  @PostMapping("verificationPWCheck")
+  @PostMapping("duplication-nick-check")
+  @ResponseBody
+  public int nickCheck(String nickname) throws Exception{
+    int result = memberService.nickCheck(nickname);
+    return result;  
+
+
+  }
+
+  @PostMapping("verification-pw-check")
   @ResponseBody
   public int pWCheck(HttpSession session, String password) throws Exception{
     Member loginMember = (Member) session.getAttribute("loginMember");
     System.out.println(password);
     System.out.println(loginMember);
     int result = memberService.verificationPw(password, loginMember.getNo());
-    return result;
-  }
-
-  @PostMapping("duplicationNickCheck")
-  @ResponseBody
-  public int nickCheck(String nickname) throws Exception{
-    int result = memberService.nickCheck(nickname);
     return result;
   }
 
@@ -176,23 +195,5 @@ public class MemberController {
       return filename;
     }
     return null;
-  }
-
-  @GetMapping("deleteMember")
-  @ResponseBody
-  public boolean deleteMember(int no, HttpSession session) throws Exception{
-    boolean result = memberService.delete(no);
-    if (result) {
-      session.invalidate();
-    } else {
-      result = false;
-    }
-    return result;
-  }
-
-  @GetMapping("delete_pw_check_viewer")
-  public String deletePwCehckViewer(int no, Model model) {
-    model.addAttribute("no", no);
-    return "member/delete_pw_check_viewer";
   }
 }

@@ -26,7 +26,7 @@
       width:550px;
       padding: 15px 60px;
       border-radius: 10px;
-      box-shadow: inset 0 2px 2px #c9c9d0;
+      box-shadow: inset 0 1px 1px 1px #c9c9d0;
       background-color: #ffffff;
     } 
     .row {
@@ -94,12 +94,12 @@
                 <div class="col-md-6">
                   <h1 class="contact_text">개인정보 수정</h1>
                    <div class="mail_sectin">
-                    <form action="memberUpdate" enctype="multipart/form-data" method="post" id="updateForm" name="myForm"  style="width: 500px;">
+                    <form action="update" enctype="multipart/form-data" method="post" id="updateForm" name="myForm"  style="width: 500px;">
                        <!-- 사진첨부 -->
                         <div id="imagePreview">
                           <div class="imgimg">
                           <div class="add-file">
-                            <img id="previewImg" th:src="@{'/member/files/' + ${member.filepath}}" onerror="this.src='../imeges/default-profile-pic.png'" class="profile_pic profile " alt="profile_picture"  >
+                            <img id="previewImg" th:src="@{'/member/files/' + ${member.filepath}}" onerror="this.src='../images/default-profile-pic.png'" class="profile_pic profile " alt="profile_picture"  >
                             <button type="button" class="btn btn-outline-secondary file" id="btn-upload">사진변경</button>
                           </div>
                             <input type="file" id="real-input" class="image_inputType_file btn btn-primary" name="file">
@@ -291,7 +291,7 @@
               let email = $('#email').val();
               
               $.ajax({
-                url : '/app/member/duplicationEmailCheck',
+                url : '/app/member/duplication-email-check',
                 type : "post",
                 data : {email : email},
                 dataType : 'json',
@@ -312,7 +312,7 @@
               let nick = $('#nick').val();
               
               $.ajax({
-                url : '/app/member/duplicationNickCheck',
+                url : '/app/member/duplication-nick-check',
                 type : "post",
                 data : {nickname : nick},
                 dataType : 'json',
@@ -330,23 +330,25 @@
             
             /* 비밀번호 체크 */
             function check_pw(){
-              var pw = document.getElementById('password').value;
-              var SC = ["-","?","/"];
-              var check_SC = 0;
-   
-              for(var i=0;i<SC.length;i++){
-                  if(pw.indexOf(SC[i]) != -1){
-                      check_SC = 0;
-                  }
-              }
-              
-              if(pw.length < 4 || pw.length>16){
-                  window.alert('비밀번호는 4글자 이상, 16글자 이하만 이용 가능합니다.');
-                  document.getElementById('password').value='';
-              } else if(check_SC == 1){
-                        window.alert('-,?,/ 제외 특수문자를 입력해주세요')
-                        document.getElementById('password').value='';
-                    }
+               var pw = document.getElementById('password').value;
+               var SC = ["!","@","#","$","%"];
+               var check_SC = 0;
+    
+               for(var i=0;i<SC.length;i++){
+                   if(pw.indexOf(SC[i]) == 0){
+                       check_SC = 1;
+                   }
+               }
+               
+               if(pw.length < 4 || pw.length>16) {
+                   window.alert('비밀번호는 4글자 이상, 16글자 이하만 이용 가능합니다.');
+                   document.getElementById('password').value='';
+               }
+               
+               if(check_SC == 0){
+                   window.alert('!,@,#,$,% 중 특수문자를 1개 이상 입력해주세요.')
+                   document.getElementById('password').value='';
+               }
               
               if(document.getElementById('password').value !='' && document.getElementById('passwordCheck').value!=''){
                   if(document.getElementById('password').value==document.getElementById('passwordCheck').value){
@@ -420,9 +422,9 @@
 						  /*<![CDATA[*/
 						  function deleteMember(no) {
 							  console.log("GHKRDLS");
-						    let partyNo = no
-						    console.log(partyNo);
-						    location.href=`delete_pw_check_viewer?no=${partyNo}`;
+						    let memberNo = no
+						    console.log(memberNo);
+						    location.href=`delete_pw_check_viewer?no=${memberNo}`;
 						  }
 						  /*]]>*/
 						
