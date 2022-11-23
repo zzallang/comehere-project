@@ -749,7 +749,7 @@
             var a ='';
             a += '<label for="form"></label>';
             a += '<div class="input-group">';
-            a += '<textarea cols="40" rows="3" class="form-control update-form" name="content_' + commentNo + '">' + content + '</textarea>';
+            a += '<textarea onkeypress="block_enter(event)" cols="40" rows="3" class="form-control update-form" name="content_' + commentNo + '">' + content + '</textarea>';
             a += '<span class="input-group-btn"><button class="btn btn-outline-primary btn-sm btn-jd" type="button" onclick="commentUpdateProc(' + commentNo + ');">수정</button></span>';
             a += '<span class="input-group-btn"><button class="btn btn-outline-primary btn-sm btn-jd" type="button" onclick="commentList()">취소</button></span>';
             a += '</div>';
