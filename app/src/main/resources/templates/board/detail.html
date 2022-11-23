@@ -418,6 +418,10 @@
     border-radius: 12px;
     width: 210px;
 }
+.login-bt-d {
+ margin-left: 531px;
+ font-size: 15px;
+}
 
 
         .swal-text {
@@ -442,7 +446,7 @@
             <li class="nav-item"><a class="nav-link" href="main">커뮤니티</a></li>
             <li class="nav-item"><a class="nav-link" href="../notice/list">공지사항</a></li>
           </ul>
-          <div class="login-bt">
+          <div class="login-bt-d">
             <ul>
               <li th:if="${session.loginMember == null}" ><a href="../auth/form" >로그인</a></li>
               <li class="loginId" th:if="${session.loginMember != null}" th:id=${session.loginMember.no}><a href="../mypage/my-post">마이페이지</a></li>
