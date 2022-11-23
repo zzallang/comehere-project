@@ -207,23 +207,27 @@ button {
 }
 
 .layout_padding {
-     padding-top: 90px;
-     padding-bottom: 0px;
+  padding-top: 90px;
+  padding-bottom: 0px;
 }
 
-.padding_0{
-     padding: 0px;
+.padding_0 {
+  padding: 0px;
 }
 
-.header_section{
-    width: 100%;
-    float: left;
-    /* background-image: url(../images/header-bg.png); */
-    height: auto;
-    background-size: 100%;
+.header_section {
+  width: 1200px;
+  float: left;
+  background: url(../images/);
+  height: auto;
+  background-size: 100%;
+  min-width: 1130px !important;
+  margin: auto !important;
+  float: none !important;
 }
+
 .bg-light {
-    background-color: transparent !important;
+  background-color: transparent !important;
 }
 
 .main_logo {
