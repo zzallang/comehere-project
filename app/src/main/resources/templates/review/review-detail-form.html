@@ -25,7 +25,7 @@
 <link rel="stylesheet" href="../css/jquery.mCustomScrollbar.min.css">
 <!-- Tweaks for older IEs-->
 <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
-<!-- owl stylesheets --> 
+<!-- owl stylesheets -->
 <link rel="stylesheet" href="../css/owl.carousel.min.css">
 <link rel="stylesheet" href="../css/owl.theme.default.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
@@ -38,337 +38,321 @@
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
 <!--  썸머노트 끝 -->
 
-  <!-- 공식 부트스트랩 -->
-  <link href="../css/bootstrap/bootstrap.css" rel="stylesheet">
-  
+<!-- 공식 부트스트랩 -->
+<link href="../css/bootstrap/bootstrap.css" rel="stylesheet">
+
 <style>
-  .row_party {
-    width: 1200px;
-  }
-  
-  .col-md-6_party_wrap {
-    flex: 0 0 25%;
-    padding: 5px;
-    overflow: hidden;
-  }
-  
-  .col-md-6_party {
-    padding: 5px;
-    border: 1px solid gray;
-  }
-  
-  .temper_text_party {
-    width: 100%;
-    float: left;
-    font-size: medium;
-    color: #fabb25;
-    text-transform: uppercase;
-    font-weight: bold;
-    padding-top: 20px;
-  }
-    .party_detail_thumbnail_wrap {
-      border: 1px solid gray;
-      border-radius: 5px;
-      padding: 5px;
-      margin: 46px 2px 45px 2px;
-    }
-  .container_main_party {
-    position: relative;
-    width: 100%;
-    max-width: 100%;
-    float: left;
-  }
-  
-  
-  .dololr_text_region {
-    float: left;
-    color: #121111;
-    margin-left: 3px;
-    margin-top: 0px;
-    margin-bottom: 5px;
-    margin-right: 3px;
-    height: 25px;
-    
-    font-size: small;
-    font-weight: bold;
-    
-    border-radius: 5px;
-    padding: 0px 5px 5px 5px;
-  }
-  
-  .dololr_text_sports {  
-    float: left;
-    color: #121111;
-    margin-left: 3px;
-    margin-top: 0px;
-    margin-bottom: 3px;
-    margin-right: 5px;
-    height: 25px;
-    
-    font-size: small;
-    font-weight: bold;
-    
-    border-radius: 5px;
-    padding: 0px 5px 5px 5px;
-  }
-  
-  .dololr_text_datetime {
-    float: right;
-    color: #121111;
-    margin-left: 0px;
-    margin-top: 0px;
-  }
-  
-  .dololr_text_party {
-    width: 100%;
-    float: left;
-    color: #121111;
-    margin-left: 0px;
-    margin-top: 0px;
-    margin-bottom: 0px;
-  }
-  
-  .party_search {
-    width: 100%;
-    float: left;
-    margin-left: 0px;
-    margin-top: 10px;
-  }
-  
-  .party_search_condition {
-    min-width: 1200px;
-  
-    height: 100px;
-    float: left;
-    margin-left: 0px;
-    margin-top: 10px;
-  }
-  
-  .party_condition {
-    display: flex !important;
-    margin: 10px 10px 10px 0;
-    float: left;
-    width: 80px;
-  }
-  
-  .party_search_bar {
-    border: 1px solid black;
-    margin-top: 10px;
-    width: 40%;
-    float: left;
-    
-  }
-  
-  .button_box {
-    width: 100%;
-    overflow: hidden;
-    
-  }
-  
-  .party_insert_button {
-    float: right;
-    margin-right: 30px;
-  }
-  
-  .condition_button {
+.row_party {
+  width: 1200px;
+}
 
-    color: #0d6efd;
-          background-color: transparent;
-          background-image: none;
-          border: 1px solid #0d6efd;
-  }
-  
-  
-  .layout_padding_party {
-    min-width: 1200px;
-    padding-top: 30px;
-    padding-bottom: 20px;
-  }
-  
-  .container_party {
-    padding-right: 15px;
-    padding-left: 15px;
-    margin: 0 auto;
-  }
-  .party_detil_view {
-    width: 825px;
-    margin: 0 auto;
-    overflow: hidden;
-  }
-  
-  .party_detail_button_l {
-    float: left;
-    color: #121111;
-    margin-left: 0px;
-    margin-top: 0px;
-    margin-bottom: 5px;
-    margin-right: 5px;
-    
-    font-size: x-small;
-    
-    
-    border: 1px solid #fabb25;
-    border-radius: 5px;
-    padding: 5px 10px 5px 10px;
-  }
-  
-  .party_detail_button_r {
-    float: right;
-    color: #121111;
-    margin-left: 0px;
-    margin-top: 0px;
-    margin-bottom: 5px;
-    margin-right: 5px;
-    
-    font-size: x-small;
-    
-    
-    border: 1px solid #fabb25;
-    border-radius: 5px;
-    padding: 5px 10px 5px 10px;
-  }
-  
-  .party_detail_button_center {
-    
-    margin: 30px 10px 10px 10px;
-    font-size: large;
-    border-radius: 5px;
-    padding: 7px 15px 7px 15px;
-  }
-  
-  .row_party_detail {
-    width: 100%;
-    margin: 0 auto;
-  }
-  
-  .layout_padding_party_detail {
-    padding-top: 30px;
-    padding-bottom: 0px;
-    overflow: hidden;
-  
-  }
-  
-  .dololr_text_tatlle {  
-    float: right;
-    color: #121111;
-    margin-left: 0px;
-    margin-top: 0px;
-    margin-bottom: 5px;
-    margin-right: 5px;
-    
-    font-size: x-small;
-    
-    border: 1px solid #fabb25;
-    border-radius: 5px;
-    padding: 5px 10px 5px 10px;
-  }
-  
-  .party_detail_bar {
-    width: 100%;
-    height: 50px;
-    float: left;
-    margin: 0 auto;
-  }
-  
-  .party_detail_buttons {
-    width: 825px;
-    height: 40px;
-    margin: 0 auto;
-    padding: 10px 0;
-    
-  }
-  
-  .party_detail_content {
-    overflow-y:scroll;
-    width: 470px;
-      height: 213px;
-      font-size: medium;
-      border-top: 1px solid gray;
-      border-bottom: 1px solid gray;
-    }
-    
-    .party_detail_content > p {
-      font-size: medium;
-    }
-  
-    .party_detail_r_cont {
-  margin-bottom: 10px;
-  }
-  .party_detail_r_cont > span{
+.col-md-6_party_wrap {
+  flex: 0 0 25%;
+  padding: 5px;
+  overflow: hidden;
+}
+
+.col-md-6_party {
+  padding: 5px;
+  border: 1px solid gray;
+}
+
+.temper_text_party {
+  width: 100%;
+  float: left;
   font-size: medium;
-  }
-  
-  .party_detail_content_l {
-    width: 330px;
-    float: left;
-  }
-  
-  .party_detail_content_r {
-    width: 470px;
-    float: left;
-      margin-left: 10px;
-  }
-          
-  .party_detail_content_center_wrap {
-    width: 825px;
-    float: left;
-    overflow: hidden;
-  
-  }
-  
-  
-  .party_detail_content_center {
-    width: 145px;
-    height: 100px;
-    margin: 0 auto;
-  }
-  
- 
-  
-  
-  .profile {
-    opacity: 1;
-    display: block;
-    width: 50px;
-    height: auto;
-    transition: .5s ease;
-    backface-visibility: hidden;
-  }
-  
-  .profile_wrap {
-    width: 330px;
-    min-height: 70px;
-    overflow: hidden;
-            margin-top: 25px;
-      
-  }
-  
-  .profile_img {
-    width: 50px;
-      height: 50px;
-            border-radius: 50%;
-      overflow: hidden;
-    float: left;
-  }
-  
-  
-  .profile_user {
-    width: 280px;
-    float: left;
-    margin-top: 25px;
-    transform: translateY(-50%);
-  }
+  color: #fabb25;
+  text-transform: uppercase;
+  font-weight: bold;
+  padding-top: 20px;
+}
 
-    .profile_user > span {
-      font-size: large;
-      margin-left: 5px;
-    }
-    
+.party_detail_thumbnail_wrap {
+  border: 1px solid gray;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 46px 2px 45px 2px;
+}
+
+.container_main_party {
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  float: left;
+}
+
+.dololr_text_region {
+  float: left;
+  color: #121111;
+  margin-left: 3px;
+  margin-top: 0px;
+  margin-bottom: 5px;
+  margin-right: 3px;
+  height: 25px;
+  font-size: small;
+  font-weight: bold;
+  border-radius: 5px;
+  padding: 0px 5px 5px 5px;
+}
+
+.dololr_text_sports {
+  float: left;
+  color: #121111;
+  margin-left: 3px;
+  margin-top: 0px;
+  margin-bottom: 3px;
+  margin-right: 5px;
+  height: 25px;
+  font-size: small;
+  font-weight: bold;
+  border-radius: 5px;
+  padding: 0px 5px 5px 5px;
+}
+
+.dololr_text_datetime {
+  float: right;
+  color: #121111;
+  margin-left: 0px;
+  margin-top: 0px;
+}
+
+.dololr_text_party {
+  width: 100%;
+  float: left;
+  color: #121111;
+  margin-left: 0px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+.party_search {
+  width: 100%;
+  float: left;
+  margin-left: 0px;
+  margin-top: 10px;
+}
+
+.party_search_condition {
+  min-width: 1200px;
+  height: 100px;
+  float: left;
+  margin-left: 0px;
+  margin-top: 10px;
+}
+
+.party_condition {
+  display: flex !important;
+  margin: 10px 10px 10px 0;
+  float: left;
+  width: 80px;
+}
+
+.party_search_bar {
+  border: 1px solid black;
+  margin-top: 10px;
+  width: 40%;
+  float: left;
+}
+
+.button_box {
+  width: 100%;
+  overflow: hidden;
+}
+
+.party_insert_button {
+  float: right;
+  margin-right: 30px;
+}
+
+.condition_button {
+  color: #0d6efd;
+  background-color: transparent;
+  background-image: none;
+  border: 1px solid #0d6efd;
+}
+
+.layout_padding_party {
+  min-width: 1200px;
+  padding-top: 30px;
+  padding-bottom: 20px;
+}
+
+.container_party {
+  padding-right: 15px;
+  padding-left: 15px;
+  margin: 0 auto;
+}
+
+.party_detil_view {
+  width: 825px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.party_detail_button_l {
+  float: left;
+  color: #121111;
+  margin-left: 0px;
+  margin-top: 0px;
+  margin-bottom: 5px;
+  margin-right: 5px;
+  font-size: x-small;
+  border: 1px solid #fabb25;
+  border-radius: 5px;
+  padding: 5px 10px 5px 10px;
+}
+
+.party_detail_button_r {
+  float: right;
+  color: #121111;
+  margin-left: 0px;
+  margin-top: 0px;
+  margin-bottom: 5px;
+  margin-right: 5px;
+  font-size: x-small;
+  border: 1px solid #fabb25;
+  border-radius: 5px;
+  padding: 5px 10px 5px 10px;
+}
+
+.party_detail_button_center {
+  margin: 30px 10px 10px 10px;
+  font-size: large;
+  border-radius: 5px;
+  padding: 7px 15px 7px 15px;
+}
+
+.row_party_detail {
+  width: 100%;
+  margin: 0 auto;
+}
+
+.layout_padding_party_detail {
+  float: left;
+  padding-top: 30px;
+  padding-bottom: 0px;
+  overflow: hidden;
+}
+
+.dololr_text_tatlle {
+  float: right;
+  color: #121111;
+  margin-left: 0px;
+  margin-top: 0px;
+  margin-bottom: 5px;
+  margin-right: 5px;
+  font-size: x-small;
+  border: 1px solid #fabb25;
+  border-radius: 5px;
+  padding: 5px 10px 5px 10px;
+}
+
+.party_detail_bar {
+  width: 100%;
+  height: 50px;
+  float: left;
+  margin: 0 auto;
+}
+
+.party_detail_buttons {
+  width: 825px;
+  height: 40px;
+  margin: 0 auto;
+  padding: 10px 0;
+}
+
+.party_detail_content {
+  overflow-y: scroll;
+  width: 470px;
+  height: 213px;
+  font-size: medium;
+  border-top: 1px solid gray;
+  border-bottom: 1px solid gray;
+}
+
+.party_detail_content>p {
+  font-size: medium;
+}
+
+.party_detail_r_cont {
+  margin-bottom: 10px;
+}
+
+.party_detail_r_cont>span {
+  font-size: medium;
+}
+
+.party_detail_content_l {
+  width: 330px;
+  float: left;
+}
+
+.party_detail_content_r {
+  width: 470px;
+  float: left;
+  margin-left: 10px;
+}
+
+.party_detail_content_center_wrap {
+  width: 825px;
+  float: left;
+  overflow: hidden;
+}
+
+.party_detail_content_center {
+  width: 145px;
+  height: 100px;
+  margin: 0 auto;
+}
+
+.profile {
+  opacity: 1;
+  display: block;
+  width: 50px;
+  height: auto;
+  transition: .5s ease;
+  backface-visibility: hidden;
+}
+
+.profile_wrap {
+  width: 330px;
+  min-height: 70px;
+  overflow: hidden;
+  margin-top: 25px;
+}
+
+.profile_img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  overflow: hidden;
+  float: left;
+}
+
+.profile_user {
+  width: 280px;
+  float: left;
+  margin-top: 25px;
+  transform: translateY(-50%);
+}
+
+.profile_user>span {
+  font-size: large;
+  margin-left: 5px;
+}
+
 .party_detail_img {
   margin: 0 auto;
   width: auto;
   max-height: 200px;
   max-width: 300px;
+}
+
+.windowWidth {
+  max-width: 1130px !important;
+  min-width: 1130px !important;
+  margin: auto !important;
+  float: none !important;
 }
 
 </style>
@@ -513,40 +497,52 @@
 </div>
 <!-- furnitures section end -->
 
-      <!-- footer section start -->
-      <!--  footer section end -->
-      
+					<div class="party_detail_content_center_wrap">
+						<div class="party_detail_content_center">
+							<button th:if="${session.loginMember} != null" class="btn btn-primary party_detail_button_center">후기 작성</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	</div>
+	<!-- furnitures section end -->
 
-<!-- Javascript files-->
-<!-- 썸머노트 자바스크립트 시작 -->
-<script>
-$(document).ready(function() {
-  $('textarea[name=content]').html('[[${party.content}]]');
-  $('textarea[name=content]').summernote({
-	  toolbar:false,
-  	width: 470,
-    height: null,
-    minHeight : 150,
-    maxHeight : null,
-    disableDragAndDrop: true
-  });
-  $('textarea[name=content]').summernote('disable');
-});
-</script>
-<!-- 썸머노트 자바스크립트 끝 -->
+	<!-- footer section start -->
+	<!--  footer section end -->
 
-<!--    <script src="../js/jquery.min.js"></script> -->
-<script src="../js/popper.min.js"></script>
-<script src="../js/bootstrap.bundle.min.js"></script>
-<script src="../js/jquery-3.0.0.min.js"></script>
-<script src="../js/plugin.js"></script>
-<!-- sidebar -->
-<script src="../js/jquery.mCustomScrollbar.concat.min.js"></script>
-<script src="../js/custom.js"></script> 
-<!-- javascript --> 
-<script src="../js/owl.carousel.js"></script>
-<script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>    
-<!-- 공식부트스트랩 JS --> 
-<script src="../js/bootstrap/bootstrap.js"></script>   
+
+	<!-- Javascript files-->
+	<!-- 썸머노트 자바스크립트 시작 -->
+	<script>
+		$(document).ready(function() {
+			$('textarea[name=content]').html('[[${party.content}]]');
+			$('textarea[name=content]').summernote({
+				toolbar : false,
+				width : 470,
+				height : null,
+				minHeight : 150,
+				maxHeight : null,
+				disableDragAndDrop : true
+			});
+			$('textarea[name=content]').summernote('disable');
+		});
+	</script>
+	<!-- 썸머노트 자바스크립트 끝 -->
+
+	<!--    <script src="../js/jquery.min.js"></script> -->
+	<script src="../js/popper.min.js"></script>
+	<script src="../js/bootstrap.bundle.min.js"></script>
+	<script src="../js/jquery-3.0.0.min.js"></script>
+	<script src="../js/plugin.js"></script>
+	<!-- sidebar -->
+	<script src="../js/jquery.mCustomScrollbar.concat.min.js"></script>
+	<script src="../js/custom.js"></script>
+	<!-- javascript -->
+	<script src="../js/owl.carousel.js"></script>
+	<script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+	<!-- 공식부트스트랩 JS -->
+	<script src="../js/bootstrap/bootstrap.js"></script>
 </body>
 </html>
