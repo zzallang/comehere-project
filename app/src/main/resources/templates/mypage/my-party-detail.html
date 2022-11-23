@@ -183,6 +183,27 @@
   height: 50px; 
   border-radius: 50%;
 }
+  
+  .condition_button {
+    margin: 10px auto;
+    position: absolute;
+    border-radius: 5px;
+    padding: 5px 10px 5px 10px;
+    font-size: small;
+    color: #0d6efd;
+          background-color: transparent;
+          background-image: none;
+          border: 1px solid #0d6efd;
+      transform: translateX(-50%);
+      left: 50%;
+    
+  }
+  .condition_button:hover {
+          color: #fff;
+          background-color: #0d6efd;
+          border-color: #0d6efd;
+        }
+        
 </style>
 </head>
 <body>
@@ -320,8 +341,8 @@
 											<span>모집인원 : </span> <span data-th-text="${party.headCount} + '명'"></span>
 										</div>
 									</div>
-                  <div>
-                    <button type="button" name="partyEndBtn" th:id="${party.partyDate}" th:onclick="partyEnd(this.getAttribute('id'))">모임 종료</button>
+                  <div style="width: 100%; height: 50px; position: relative;">
+                    <button type="button" name="partyEndBtn" th:id="${party.partyDate}" th:onclick="partyEnd(this.getAttribute('id'))" class="condition_button">모임 종료</button>
                   </div>
 									<p style="width: 470px; float: left; margin-bottom: 20px;" text=" "></p>
 								<!-- 신청한 멤버들 보이게 -->
