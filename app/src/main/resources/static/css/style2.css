@@ -843,6 +843,7 @@ a.reviewFormBtn {
   top: 0px;
 }
 #previewImg {
+  object-fit: cover;
   width: 130px;
   height: 130px;
   margin-bottom: 15px;
