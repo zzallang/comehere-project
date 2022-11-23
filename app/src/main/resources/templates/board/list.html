@@ -271,8 +271,11 @@ text-align: center;
              <div class="container">
                <div class="row">
                   <!-- 게시글 목록 시작 -->
-               <div class="windowWidth" style="font-weight: lighter;" data-th-if="${search.keyword != null}" 
-                    data-th-text="'&lsquo;' + ${search.typeName} + '&rsquo;' + '에 '   + '&lsquo;' + ${search.keyword} + '&rsquo;' +' 을(를) 포함한 검색결과 입니다.'"></div>
+              <div style="min-width: 960px; max-width: 960px">
+               <span style="font-weight: lighter; float: left;" data-th-if="${search.keyword != null}" 
+                    data-th-text="'&lsquo;' + ${search.typeName} + '&rsquo;' + '에 '   + '&lsquo;' + ${search.keyword} + '&rsquo;' +' 을(를) 포함한 검색결과 입니다.'">
+               </span>
+              </div>
                   <table class="my-page">
                     <tr>
                       <th style="width: 10%;">번호</th>

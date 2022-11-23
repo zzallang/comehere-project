@@ -296,6 +296,11 @@
             
             <div class="furnitures_sectionJD layout_padding windowWidth">
               <div class="container windowWidth">
+                    <div style="min-width: 960px; max-width: 960px">
+                     <span style="font-weight: lighter; float: left;" data-th-if="${search.keyword != null}" 
+                          data-th-text="'&lsquo;' + ${search.typeName} + '&rsquo;' + '에 '   + '&lsquo;' + ${search.keyword} + '&rsquo;' +' 을(를) 포함한 검색결과 입니다.'">
+                     </span>
+                    </div>
                   <div class="row2">
                     <th:block th:each="board : ${list}">
                       <span class="clg" style="position:relative;">
