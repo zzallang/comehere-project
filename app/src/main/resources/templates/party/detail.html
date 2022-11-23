@@ -834,7 +834,7 @@ input:nth-of-type(3):checked ~ div:nth-last-of-type(1) {
 	<!-- header section start -->
 	<div class="header_section windowWidth">
 		<div class="container-fluid windowWidth">
-			<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			<nav class="navbar navbar-expand-lg navbar-light">
 				<div class="main_logo">
 					<a href="/app"><img src="../images/logo.png"></a>
 				</div>
@@ -1034,7 +1034,7 @@ input:nth-of-type(3):checked ~ div:nth-last-of-type(1) {
 									<input type="hidden" id="memberNo" th:value="${session.loginMember.no}">
 									<div class="comment_input_wrap">
 										<div class="comment_input img_add">
-											<textarea id="commentCont" class="scrollbar" placeholder="내용을 입력하세요."></textarea>
+											<textarea id="commentCont" class="scrollbar" placeholder="내용을 입력하세요." onkeypress="block_enter(event)"></textarea>
 										</div>
 										<div class="comment_input_bot">
 											<button id="commentButton" type="button" class="btnSizeL comment_submit">댓글 등록</button>
@@ -1567,7 +1567,7 @@ function commentList(){
             var a ='';
             a += '<label for="form"></label>';
             a += '<div class="input-group">';
-            a += '<textarea cols="40" rows="3" class="form-control update-form" name="content_' + commentNo + '">' + content + '</textarea>';
+            a += '<textarea onkeypress="block_enter(event)" cols="40" rows="3" class="form-control update-form" name="content_' + commentNo + '">' + content + '</textarea>';
             a += '<span style="width: 29.325px;" class="input-group-btn"><button class="btn btn-outline-primary btn-sm btn-jd" type="button" onclick="commentUpdateProc(' + commentNo + ');">수정</button></span>';
             a += '<span style="width: 29.325px;" class="input-group-btn"><button class="btn btn-outline-primary btn-sm btn-jd" type="button" onclick="commentList()">취소</button></span>';
             a += '</div>';
@@ -1608,6 +1608,13 @@ function commentList(){
           }
       });
   }
+  // 댓글 우선 엔터 막자
+  function block_enter(e){
+     if(e.keyCode == 13){
+       event.preventDefault();
+     }
+  }
+  
 </script>
 	<!-- Modal Start -->
 	<form action='partreport' method="post">

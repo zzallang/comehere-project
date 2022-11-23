@@ -334,13 +334,13 @@
                var check_SC = 0;
     
                for(var i=0;i<SC.length;i++){
-                   if(pw.indexOf(SC[i]) == 0){
+                   if(pw.indexOf(SC[i]) != -1){
                        check_SC = 1;
                    }
                }
                
                if(pw.length < 4 || pw.length>16) {
-                   window.alert('비밀번호는 4글자 이상, 16글자 이하만 이용 가능합니다.');
+                   window.alert('4자 이상, 16자 이하만 이용 가능합니다.');
                    document.getElementById('password').value='';
                }
                
