@@ -5046,10 +5046,10 @@ input[type="button"].btn-block {
   background-size: 1rem 1rem;
 }
 
-.progress-bar-animated {
+/* .progress-bar-animated {
   -webkit-animation: progress-bar-stripes 1s linear infinite;
   animation: progress-bar-stripes 1s linear infinite;
-}
+} */
 
 .media {
   display: -ms-flexbox;
