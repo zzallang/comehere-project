@@ -1,313 +1,301 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-  <!-- basic -->
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <!-- mobile metas -->
-  <!-- site metas -->
-  
-  <title>여기모여</title>
-  
-  <meta name="keywords" content="">
-  <meta name="description" content="">
-  <meta name="author" content="">
-  <!-- bootstrap css -->
-  <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
-  <!-- style css -->
-  <link rel="stylesheet" type="text/css" href="../css/style.css">
-  <!-- Responsive-->
-  <!-- fevicon -->
-  <link rel="icon" href="../images/fevicon.png" type="image/gif" />
-  <!-- Scrollbar Custom CSS -->
-  <link rel="stylesheet" href="../css/jquery.mCustomScrollbar.min.css">
-  <!-- Tweaks for older IEs-->
-  <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
-  <!-- owl stylesheets --> 
-  <link rel="stylesheet" href="../css/owl.carousel.min.css">
-  <!-- <link rel="stylesheet" href="../css/owl.theme.default.min.css"> -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
+<!-- basic -->
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<!-- mobile metas -->
+<!-- site metas -->
 
-  <!-- 공식 부트스트랩 -->
-  <link href="../css/bootstrap/bootstrap.css" rel="stylesheet">
-  
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+<title>여기모여</title>
+
+<meta name="keywords" content="">
+<meta name="description" content="">
+<meta name="author" content="">
+<!-- bootstrap css -->
+<link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
+<!-- style css -->
+<link rel="stylesheet" type="text/css" href="../css/style.css">
+<!-- Responsive-->
+<!-- fevicon -->
+<link rel="icon" href="../images/comehere_con.ico" type="image/gif" />
+<!-- Scrollbar Custom CSS -->
+<link rel="stylesheet" href="../css/jquery.mCustomScrollbar.min.css">
+<!-- Tweaks for older IEs-->
+<link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+<!-- owl stylesheets -->
+<link rel="stylesheet" href="../css/owl.carousel.min.css">
+<!-- <link rel="stylesheet" href="../css/owl.theme.default.min.css"> -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
+
+<!-- 공식 부트스트랩 -->
+<link href="../css/bootstrap/bootstrap.css" rel="stylesheet">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 
 <style>
-  .row_party {
-    width: 1130px;
-    justify-content: flex-start;
-  }
-  
-  .col-md-6_party_wrap {
-    flex: 0 0 25%;
-    padding: 5px;
-    overflow: hidden;
-  }
-  
-  .col-md-6_party {
-    padding: 5px;
-    border: 1px solid gray;
-  }
-  
-  .temper_text_party {
-    width: 100%;
-    float: left;
-    margin: 0 10px;
-    font-size: medium;
-    color: #3B4BFF;
-    text-transform: uppercase;
-    font-weight: bold;
-    padding-top: 20px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-  
-  .container_main_party {
-    position: relative;
-    float: left;
-  }
-  
-  .container_main_party_star {
-    position: relative;
-    float: right;
-    padding-right: 5px;
-    margin-bottom: 25px;
-  }
-    
-  .container_main_party_img {
-    position: relative;
-    width: 290px;
-    height: 200px;
-    float: left;
-    
-  }
-  .party_list_img {
-    position: relative; 
-    width: 290px; 
-    height: 200px; 
-    
-    display: flex;
-     justify-content: center; 
-     align-items: center;
-  }
-  
-    .party_list_img :after{display:inline-block; height:100%; content:""; vertical-align:middle;}
-  
-  .dololr_text_region {
-    float: left;
-    color: #121111;
-    margin-left: 3px;
-    margin-top: 0px;
-    margin-bottom: 5px;
-    margin-right: 3px;
-    height: 25px;
-    
-    font-size: x-small;
-    
-    border-radius: 5px;
-    padding: 0px 5px 5px 5px;
-  }
-  
-  .dololr_text_sports {  
-    float: left;
-    color: #121111;
-    margin-left: 3px;
-    margin-top: 0px;
-    margin-bottom: 3px;
-    margin-right: 5px;
-    height: 25px;
+.row_party {
+  width: 1130px;
+  justify-content: flex-start;
+}
 
-    font-size: x-small;
-  
-    
-    border-radius: 5px;
-    padding: 0px 5px 5px 5px;
-  }
-  
-  .dololr_text_party_star {
-    width:100.312px; 
-    float: left;
-    margin-left: 3px;
-    margin-top: 0px;
-    margin-bottom: 0px;
-  }
-    
-  .party_search {
-    width: 100%;
-    float: left;
-    margin-left: 10px;
-    margin-top: 10px;
-  }
-  
-  .party_search_condition {
-    min-width: 1200px;
-  
-    height: 100px;
-    float: left;
-    margin-left: 0px;
-    margin-top: 10px;
-  }
-  
-  .party_condition {
-    display: flex !important;
-    margin: 10px 10px 10px 0;
-    float: left;
-    width: 100px;
-    height: 35px;
-    border-color: 0d6efd;
-  }
-  
-  .form-selectJd {
-          display: inline-block;
-          padding: 0.375rem 2.25rem 0.375rem 0.75rem;
-          -moz-padding-start: calc(0.75rem - 3px);
-          font-size: 1rem;
-          font-weight: 400;
-          line-height: 1.5;
-          color: #212529;
-          background-color: #fff;
-          background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e");
-          background-repeat: no-repeat;
-          background-position: right 0.75rem center;
-          background-size: 16px 12px;
-          border: 1px solid #ced4da;
-          border-radius: 0.375rem;
-          transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-          -webkit-appearance: none;
-          -moz-appearance: none;
-          appearance: none;
-        }
-  .form-selectJd2 {
-          display: inline-block;
-          padding: 0.375rem 2.25rem 0.375rem 0.75rem;
-          -moz-padding-start: calc(0.75rem - 3px);
-          font-size: 1rem;
-          font-weight: 400;
-          line-height: 1.5;
-          color: #212529;
-          background-color: #fff;
-          background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e");
-          background-repeat: no-repeat;
-          background-position: right 0.75rem center;
-          background-size: 16px 12px;
-          border: 1px solid #ced4da;
-          border-radius: 0.375rem;
-          transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-          -webkit-appearance: none;
-          -moz-appearance: none;
-          appearance: none;
-        }
-  
-  .party_condition_datetime {
-    display: flex !important;
-    margin: 10px 10px 10px 0;
-    float: left;    
-    width: 140px;
-    height: 35px;
-  }
-  
-  .party_search_bar {
-    margin-top: 10px;
-    width: 700px;
-    float: left;
-    
-  }
-  
-  .button_box {
-    width: 100%;
-  
-    overflow: hidden;
-    
-  }
-  
-  .party_insert_button {
-    float: right;
-    margin-right: 30px;
-    
-    border: 1px solid #3B4BFF;
-    border-radius: 5px;
-    padding: 5px 10px 5px 10px;
-    font-size: x-small;
-   
-  }
-  
-  .condition_button {
-    float: left;
-    margin: 10px 10px 10px 5px;
-    
-    border-radius: 5px;
-    padding: 5px 10px 5px 10px;
-    font-size: small;
-    color: #0d6efd;
-          background-color: transparent;
-          background-image: none;
-          border: 1px solid #0d6efd;
-    
-  }
-  .condition_button:hover {
-          color: #fff;
-          background-color: #0d6efd;
-          border-color: #0d6efd;
-        }
+.col-md-6_party_wrap {
+  flex: 0 0 25%;
+  padding: 5px;
+  overflow: hidden;
+}
 
+.col-md-6_party {
+  padding: 5px;
+  border: 1px solid gray;
+}
 
-  .layout_padding_party {
-    min-width: 1130px;
-    padding-top: 30px;
-    padding-bottom: 20px;
-       
-  }
-  
-  .container_party {
-    padding-right: 15px;
-    padding-left: 15px;
-    margin: 0 auto;
-  }
-  
-  .row_party_detail {
-    width: 100%;
-    margin: 0 auto;
-  }
-  
-  .layout_padding_party_detail {
-    padding-top: 30px;
-    padding-bottom: 0px;
-    overflow: hidden;
-  
-  }
-  
-  .dololr_text_tatlle {  
-    float: right;
-    color: #121111;
-    margin-left: 0px;
-    margin-top: 0px;
-    margin-bottom: 5px;
-    margin-right: 5px;
-    
-    font-size: x-small;
-    
-    
-    border: 1px solid #3B4BFF;
-    border-radius: 5px;
-    padding: 5px 10px 5px 10px;
-  }
-  
-  
-  .list_image {
-    max-width: 290px;
-    max-height: 200px;
-    opacity: 1;
-    display: block;
-    margin: 0 auto;
-    max-height: 200px;
-    transition: .5s ease;
-    backface-visibility: hidden;
-    position: absolute;
-      left: 50%;
-    transform: translateX(-50%);
-  }
+.temper_text_party {
+  width: 100%;
+  float: left;
+  margin: 0 10px;
+  font-size: medium;
+  color: #3B4BFF;
+  text-transform: uppercase;
+  font-weight: bold;
+  padding-top: 20px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.container_main_party {
+  position: relative;
+  float: left;
+}
+
+.container_main_party_star {
+  position: relative;
+  float: right;
+  padding-right: 5px;
+  margin-bottom: 25px;
+}
+
+.container_main_party_img {
+  position: relative;
+  width: 290px;
+  height: 200px;
+  float: left;
+}
+
+.party_list_img {
+  position: relative;
+  width: 290px;
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.party_list_img :after {
+  display: inline-block;
+  height: 100%;
+  content: "";
+  vertical-align: middle;
+}
+
+.dololr_text_region {
+  float: left;
+  color: #121111;
+  margin-left: 3px;
+  margin-top: 0px;
+  margin-bottom: 5px;
+  margin-right: 3px;
+  height: 25px;
+  font-size: x-small;
+  border-radius: 5px;
+  padding: 0px 5px 5px 5px;
+}
+
+.dololr_text_sports {
+  float: left;
+  color: #121111;
+  margin-left: 3px;
+  margin-top: 0px;
+  margin-bottom: 3px;
+  margin-right: 5px;
+  height: 25px;
+  font-size: x-small;
+  border-radius: 5px;
+  padding: 0px 5px 5px 5px;
+}
+
+.dololr_text_party_star {
+  width: 100.312px;
+  float: left;
+  margin-left: 3px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+.party_search {
+  width: 100%;
+  float: left;
+  margin-left: 10px;
+  margin-top: 10px;
+}
+
+.party_search_condition {
+  min-width: 1200px;
+  height: 100px;
+  float: left;
+  margin-left: 0px;
+  margin-top: 10px;
+}
+
+.party_condition {
+  display: flex !important;
+  margin: 10px 10px 10px 0;
+  float: left;
+  width: 100px;
+  height: 35px;
+  border-color: 0d6efd;
+}
+
+.form-selectJd {
+  display: inline-block;
+  padding: 0.375rem 2.25rem 0.375rem 0.75rem;
+  -moz-padding-start: calc(0.75rem - 3px);
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #212529;
+  background-color: #fff;
+  background-image:
+    url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  background-size: 16px 12px;
+  border: 1px solid #ced4da;
+  border-radius: 0.375rem;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+.form-selectJd2 {
+  display: inline-block;
+  padding: 0.375rem 2.25rem 0.375rem 0.75rem;
+  -moz-padding-start: calc(0.75rem - 3px);
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #212529;
+  background-color: #fff;
+  background-image:
+    url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  background-size: 16px 12px;
+  border: 1px solid #ced4da;
+  border-radius: 0.375rem;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+.party_condition_datetime {
+  display: flex !important;
+  margin: 10px 10px 10px 0;
+  float: left;
+  width: 140px;
+  height: 35px;
+}
+
+.party_search_bar {
+  margin-top: 10px;
+  width: 700px;
+  float: left;
+}
+
+.button_box {
+  width: 100%;
+  overflow: hidden;
+}
+
+.party_insert_button {
+  float: right;
+  margin-right: 30px;
+  border: 1px solid #3B4BFF;
+  border-radius: 5px;
+  padding: 5px 10px 5px 10px;
+  font-size: x-small;
+}
+
+.condition_button {
+  float: left;
+  margin: 10px 10px 10px 5px;
+  border-radius: 5px;
+  padding: 5px 10px 5px 10px;
+  font-size: small;
+  color: #0d6efd;
+  background-color: transparent;
+  background-image: none;
+  border: 1px solid #0d6efd;
+}
+
+.condition_button:hover {
+  color: #fff;
+  background-color: #0d6efd;
+  border-color: #0d6efd;
+}
+
+.layout_padding_party {
+  min-width: 1130px;
+  padding-top: 30px;
+  padding-bottom: 20px;
+}
+
+.container_party {
+  padding-right: 15px;
+  padding-left: 15px;
+  margin: 0 auto;
+}
+
+.row_party_detail {
+  width: 100%;
+  margin: 0 auto;
+}
+
+.layout_padding_party_detail {
+  padding-top: 30px;
+  padding-bottom: 0px;
+  overflow: hidden;
+}
+
+.dololr_text_tatlle {
+  float: right;
+  color: #121111;
+  margin-left: 0px;
+  margin-top: 0px;
+  margin-bottom: 5px;
+  margin-right: 5px;
+  font-size: x-small;
+  border: 1px solid #3B4BFF;
+  border-radius: 5px;
+  padding: 5px 10px 5px 10px;
+}
+
+.list_image {
+  max-width: 290px;
+  max-height: 200px;
+  opacity: 1;
+  display: block;
+  margin: 0 auto;
+  max-height: 200px;
+  transition: .5s ease;
+  backface-visibility: hidden;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
 
 .searchBox {
   overflow: hidden;
@@ -428,55 +416,55 @@ text-align: center;
                  </nav>
         </div>
 
-      </div>
-    </div>
-    <div class="furnitures_section2 layout_padding_party"> 
-      <div class="button_box">
-        <button th:if="${session.loginMember} != null" class="btn btn-primary" style="float: right;" type="button" onclick="location.href='form'">모임 개설</button>
-        <button th:if="${session.loginMember} == null" class="btn btn-primary" style="float: right;" type="button" onclick="location.href='../auth/form'">모임 개설</button>
-      </div>
-      <div class="button_box">
-        <button type="button" value="0" id="list_reset" class="condition_button">전체보기</button>
-        <button type="button" value="0" id="list_star" class="condition_button">평점순</button>
-        <button type="button" value="0" id="list_create" class="condition_button">최신순</button>
-        <button type="button" value="0" id="list_partyDate" class="condition_button">기간임박순</button>
-      </div>
-      <div id="partyListResult" >
-        <div id="partyList" class="row row_party">
-          <div th:replace="party/list-ajax :: partyList">list-ajax.html</div>
-        </div>
-      </div>
-      <div id="partyPage">
-        <div th:replace="party/list-ajax-page :: partyPage">list-ajax-page.html</div>
-      </div>
+					</div>
+				</div>
+				<div class="furnitures_section2 layout_padding_party">
+					<div class="button_box">
+						<button th:if="${session.loginMember} != null" class="btn btn-primary" style="float: right;" type="button" onclick="location.href='form'">모임 개설</button>
+						<button th:if="${session.loginMember} == null" class="btn btn-primary" style="float: right;" type="button" onclick="location.href='../auth/form'">모임 개설</button>
+					</div>
+					<div class="button_box">
+						<button type="button" value="0" id="list_reset" class="condition_button">전체보기</button>
+						<button type="button" value="0" id="list_star" class="condition_button">평점순</button>
+						<button type="button" value="0" id="list_create" class="condition_button">최신순</button>
+						<button type="button" value="0" id="list_partyDate" class="condition_button">기간임박순</button>
+					</div>
+					<div id="partyListResult">
+						<div id="partyList" class="row row_party">
+							<div th:replace="party/list-ajax :: partyList">list-ajax.html</div>
+						</div>
+					</div>
+					<div id="partyPage">
+						<div th:replace="party/list-ajax-page :: partyPage">list-ajax-page.html</div>
+					</div>
 
-    </div> <!-- furnitures_section2 layout_padding_party -->
-  </div>
-</div>
-<!-- furnitures section end -->
-
-
-<script>
+				</div>
+				<!-- furnitures_section2 layout_padding_party -->
+			</div>
+		</div>
+		<!-- furnitures section end -->
 
 
-</script>
+		<script>
+			
+		</script>
 
-<!-- Javascript files-->
-<script src="../js/jquery.min.js"></script>
-<script src="../js/popper.min.js"></script> 
-<script src="../js/bootstrap.bundle.min.js"></script>
-<script src="../js/jquery-3.0.0.min.js"></script>
-<script src="../js/plugin.js"></script>
-<script src="../js/jquery.mCustomScrollbar.concat.min.js"></script>
-<!-- <script src="../js/custom.js"></script> -->
-<!-- javascript --> 
-<!-- <script src="../js/owl.carousel.js"></script> -->
-<!-- <script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script> -->    
+		<!-- Javascript files-->
+		<script src="../js/jquery.min.js"></script>
+		<script src="../js/popper.min.js"></script>
+		<script src="../js/bootstrap.bundle.min.js"></script>
+		<script src="../js/jquery-3.0.0.min.js"></script>
+		<script src="../js/plugin.js"></script>
+		<script src="../js/jquery.mCustomScrollbar.concat.min.js"></script>
+		<!-- <script src="../js/custom.js"></script> -->
+		<!-- javascript -->
+		<!-- <script src="../js/owl.carousel.js"></script> -->
+		<!-- <script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script> -->
 
-<script src="/app/js/party/partylist.js"></script>
-<!-- 공식부트스트랩 JS --> 
-<script src="../js/bootstrap/bootstrap.js"></script>   
+		<script src="/app/js/party/partylist.js"></script>
+		<!-- 공식부트스트랩 JS -->
+		<script src="../js/bootstrap/bootstrap.js"></script>
 
-</div>
+	</div>
 </body>
 </html>

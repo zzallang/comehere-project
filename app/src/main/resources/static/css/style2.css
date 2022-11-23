@@ -253,7 +253,7 @@ button {
 }
 .login-bt li {
     float:left; 
-    font-size: 18px
+    font-size: 15px
 }
 .login-bt li a{
     color: #000;
@@ -930,4 +930,7 @@ list-style {
 .page_center {
   display: flex;
   margin: 0 auto;
+}
+.main_logo img{
+  width: 113.797px
 }
