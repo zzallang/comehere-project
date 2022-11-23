@@ -88,14 +88,14 @@ public class AuthController {
 
   }
 
-  @GetMapping("findId")
+  @GetMapping("find-id")
   public String findId() {
-    return "auth/findId";
+    return "auth/find-id";
   }
 
-  @GetMapping("findPassword")
+  @GetMapping("find-password")
   public String findIdPassword() {
-    return "auth/findPassword";
+    return "auth/find-password";
   }
 
 
@@ -155,11 +155,11 @@ public class AuthController {
     return mv;
   }
 
-  @GetMapping("newPassword")
+  @GetMapping("new-password")
   public String newPassword(String email, String id, Model model) {
     model.addAttribute("email", email);
     model.addAttribute("id", id);
-    return "auth/newPassword";
+    return "auth/new-password";
   }
 
   @GetMapping("logout")
