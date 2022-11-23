@@ -432,8 +432,7 @@
               </div>
               <div class="profile_wrap">
                 <div class="profile_img">
-                  <img th:if="${party.user.filepath != null}"  th:src="@{'/member/files/' + ${party.user.filepath}}" alt="Avatar" class="profile">
-                  <img th:if="${party.user.filepath == null}"  src="http://placeimg.com/50/50/any" alt="Avatar" class="profile">
+                <img th:src="@{'/member/files/' + ${party.user.filepath}}" alt="Avatar" class="profile" onerror="this.src='../images/default-profile-pic.png';" > 
                 </div>
                 <div class="profile_user">
                   <span data-th-text='${party.user.nickname}'>홍길동</span>
