@@ -20,6 +20,8 @@ public interface PartyMemberService {
 
   boolean partyMemberSecession(int status, int memberNo, int partyNo) throws Exception;
 
+  int countPartyMember(int partyNo) throws Exception;
+
 }
 
 

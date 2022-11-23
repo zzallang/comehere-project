@@ -55,6 +55,11 @@ public class DefaultPartyMemberService implements PartyMemberService {
     return true;
   }
 
+  @Override
+  public int countPartyMember(int partyNo) throws Exception {
+    return partyMemberDao.countPartyMember(partyNo);
+  }
+
 }
 
 

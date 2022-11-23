@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import com.bitcamp.testproject.service.BoardCommentService;
 import com.bitcamp.testproject.service.BoardService;
 import com.bitcamp.testproject.service.MemberService;
@@ -224,6 +225,16 @@ public class MypageController {
     return "redirect:my-party-detail?no=" + partyNo;
   }
 
+  @GetMapping("check-headcount-ajax")
+  @ResponseBody
+  public String checkHeadcout(int partyNo) throws Exception {
+    Party party = partyService.get(partyNo);
+    if (party.getHeadCount() > partyMemberService.countPartyMember(partyNo)) {
+      return "1";
+    } else {
+      return "0";
+    }
+  }
 }
 
 

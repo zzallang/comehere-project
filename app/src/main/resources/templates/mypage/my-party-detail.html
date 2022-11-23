@@ -378,7 +378,7 @@
 															<input type="hidden" name="status" value="2">
 															<input type="hidden" name="memberNo" data-th-value="${myPartyMember.member.no}">
 															<input type="hidden" name="partyNo" data-th-value="${party.no}">
-															<input type="submit" class="btn btn-outline-secondary" data-th-id="${myPartyMember.member.no} + 'ok'" value="승인">
+															<input type="button" class="btn btn-outline-secondary" data-th-id="${myPartyMember.member.no} + 'ok'" value="승인" th:onclick="|javascript:checkHeadCount('${party.no},${myPartyMember.member.no}')|">
 														</form>
 													</div>
 													<div style="width: 55px; float: left;">
@@ -386,7 +386,7 @@
 															<input type="hidden" name="status" value="3">
 															<input type="hidden" name="memberNo" data-th-value="${myPartyMember.member.no}">
 															<input type="hidden" name="partyNo" data-th-value="${party.no}">
-															<input type="submit" class="btn btn-outline-secondary" data-th-id="${myPartyMember.member.no} + 'no'" value="거절">
+															<input type="button" class="btn btn-outline-secondary" data-th-id="${myPartyMember.member.no} + 'no'" value="거절" th:onclick="|javascript:noMember('${party.no},${myPartyMember.member.no}')|">
 														</form>
 													</div>
 												</div>
@@ -504,6 +504,53 @@ function partyEnd(pdate) {
 	
 }
 
+</script>
+<script type="text/javascript">
+function checkHeadCount(noData) {
+	let [pno, mno] = noData.split(",");
+	$.ajax({
+        type: "GET",
+        url: "/app/mypage/check-headcount-ajax",
+        data: { partyNo: pno },
+        success: function(result) {
+        	if (result == "1") {
+                swal({
+                    text: '승인되었습니다.',
+                    icon: 'success',
+                    closeOnClickOutside: false
+                    }).then(function(isConfirm) {
+                        if (isConfirm) {
+                            location.href="partymember-update?status=2&memberNo=" + mno + "&partyNo=" + pno;
+                            } else{
+                                return false;
+                            };
+              });
+        	} else if (result == "0") {
+          	swal({
+            text: '모임이 정원을 초과했습니다.',
+            icon: 'error',
+            closeOnClickOutside: false
+            });
+        	}
+        }
+      });
+	
+}
+
+function noMember(noData) {
+	 let [pno, mno] = noData.split(",");
+	swal({
+        text: '거절되었습니다.',
+        icon: 'success',
+        closeOnClickOutside: false
+        }).then(function(isConfirm) {
+            if (isConfirm) {
+            	location.href="partymember-update?status=3&memberNo=" + mno + "&partyNo=" + pno;
+              } else{
+                  return false;
+              };
+});
+}
 </script>
   
   

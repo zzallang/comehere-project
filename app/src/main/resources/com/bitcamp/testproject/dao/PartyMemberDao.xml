@@ -256,6 +256,19 @@
     where pno=#{value}
   </delete>
   
+  <select id="countPartyMember" parameterType="int" resultType="int">
+  SELECT
+      COUNT(*)
+    FROM
+      party p
+      join party_members pm on p.pno=pm.pno
+    WHERE
+      pm.psno = 2
+    and
+      p.pno = #{partyNo}
+  </select>
+  
+  
 </mapper>
 
 

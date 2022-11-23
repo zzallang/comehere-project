@@ -53,6 +53,8 @@ public interface PartyMemberDao {
       @Param("status")int status, 
       @Param("memberNo")int memberNo, 
       @Param("partyNo")int partyNo);
+
+  int countPartyMember(int partyNo);
 }
 
 
