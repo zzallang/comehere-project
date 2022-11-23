@@ -124,7 +124,7 @@
                 success : function(result) { console.log(result);
                   if(result == 1) {
                 	  swal({
-                          text : "회원탈퇴 하시겠습니까?",
+                          text : "탈퇴 하시겠습니까?",
                           icon : "warning",
                           buttons : ["아니요", "예"],
                         }).then(function(isConfirm) {
@@ -137,11 +137,11 @@
                                     data : {no : num},
                                     dataType : 'json',
                                     success : function(result) { 
-/*                                       if(result == 1) {
-                                        swal("탈퇴 되어ㅆ.").then(() => {
+                                      if(result == 1) {
+                                        swal("탈퇴 되었습니다.").then(() => {
                                               window.location.href = '../';
                                           });;
-                                      } else { */
+                                      } else {
                                         return false;
                                       
                                       }
