@@ -228,6 +228,7 @@
 }
 
 .layout_padding_party_detail {
+  float: left;
   padding-top: 30px;
   padding-bottom: 0px;
   overflow: hidden;
@@ -353,6 +354,7 @@
   margin: auto !important;
   float: none !important;
 }
+
 </style>
 </head>
 <body>
@@ -385,13 +387,13 @@
 	</div>
 	<!-- header section end -->
 	<!-- furnitures section start -->
-	<div class="furnitures_section layout_padding_party_detail windowWidth">
+	<div class="layout_padding_party_detail windowWidth">
 		<div class="container_party">
-			<div class="furnitures_section2 layout_padding_party">
+			<div class=" layout_padding_party">
 				<h1 class="our_text">종료된 모임</h1>
 			</div>
 		</div>
-		<div class="furnitures_section2 layout_padding_party">
+		<div class=" layout_padding_party">
 			<div class="party_detail_bar">
 				<div class="party_detail_buttons">
 					<p class="dololr_text_region" th:text="${party.region.sido}"></p>
@@ -540,7 +542,6 @@
 			</div>
 		</div>
 	</div>
-	<!-- furnitures_section2 layout_padding_party -->
 	</div>
 	<!-- furnitures section end -->
 
