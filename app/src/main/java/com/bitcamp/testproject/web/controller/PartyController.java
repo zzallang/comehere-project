@@ -77,7 +77,7 @@ public class PartyController {
 
   }
 
-  @GetMapping("attendForm") 
+  @GetMapping("attend-form") 
   public Map attendForm(int no) throws Exception {
     Party party = partyService.get(no);
     if (party == null) {
@@ -100,7 +100,7 @@ public class PartyController {
     return "redirect:list";
   }
 
-  @PostMapping("attendAdd")
+  @PostMapping("attend-add")
   public String attendAdd(
       Party party,
       PartyMember partyMember,
@@ -250,7 +250,7 @@ public class PartyController {
 
 
 
-  @GetMapping("updateForm")
+  @GetMapping("update-form")
   public Model updateForm(int no, Model model) throws Exception {
     Party party = partyService.get(no);
     if (party == null) {
