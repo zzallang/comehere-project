@@ -161,20 +161,13 @@
             
             <script src="../js/jquery.min.js"></script>
 						<script>
-						console.log("시작");
 						let reviewFormBtns = document.querySelectorAll('.reviewFormBtn');
 						
 						for (let reviewFormBtn of reviewFormBtns) {
-						    console.log("반복 시작");
-						    console.log(reviewFormBtn.value);
 						  
 						  if (reviewFormBtn.value == '작성완료') {
-						      console.log("조건시작");
-						      
-						 
 						      reviewFormBtn.setAttribute('disabled','disabled');
 						      reviewFormBtn.className='reviewFormBtnDisabled';
-						      console.log("완료@");
 						    }
 						};
 						</script>

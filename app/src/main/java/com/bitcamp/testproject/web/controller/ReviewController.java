@@ -66,7 +66,6 @@ public class ReviewController {
       String content,
       Review review,
       HttpSession session) throws Exception {
-    System.out.println("add 도착?");
     Member member = (Member) session.getAttribute("loginMember");
 
     review.setPartyNo(no);

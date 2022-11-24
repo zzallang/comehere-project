@@ -58,30 +58,25 @@ public class MemberController {
       ModelAndView mv = new ModelAndView("redirect:../auth/form");
       return mv;
     }
-    System.out.println(file);
-    System.out.println(file.getName());
 
     String dirPath = sc.getRealPath("/member/files");
 
     if (file != null) {
       String filename = UUID.randomUUID().toString();
       file.write(dirPath + "/" + filename);
-      System.out.println(filename + "\n파일네임 들어왔냐!>!>!");
-      member.setFilepath(filename);
     }
 
     member.setFavoriteRegion(saveRegion(member));
     member.setFavoriteSports(saveSports(member));
     //    member.setFilepath(saveAttachedFile(file));
     memberService.add(member);
-    System.out.println("member=" + member);
     ModelAndView mv = new ModelAndView("redirect:../auth/form");
     return mv;
   }
 
   @GetMapping("viewer")
   public String passwordCheckViewer() {
-    return "member/pwCheckViewer";
+    return "member/pw-check-viewer";
   }
 
   @GetMapping("my-info")
@@ -92,8 +87,6 @@ public class MemberController {
     model.addAttribute("member", member);
     model.addAttribute("regionList", regionService.list());
     model.addAttribute("sportsList", sportsService.list());
-    System.out.println("loginMember :" + loginMember);
-    System.out.println("member :" + member.toString());
     return "member/myInfo";
   }
 
@@ -161,8 +154,6 @@ public class MemberController {
   @ResponseBody
   public int pWCheck(HttpSession session, String password) throws Exception{
     Member loginMember = (Member) session.getAttribute("loginMember");
-    System.out.println(password);
-    System.out.println(loginMember);
     int result = memberService.verificationPw(password, loginMember.getNo());
     return result;
   }
@@ -191,7 +182,6 @@ public class MemberController {
     if (file.getSize() != 0) {
       String filename = UUID.randomUUID().toString();
       file.write(dirPath + "/" + filename);
-      System.out.println(filename + "\n파일네임 들어왔냐!>!>!");
       return filename;
     }
     return null;

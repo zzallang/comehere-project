@@ -133,7 +133,7 @@ p {
                <hr class="black-line" style="color:grey;">
               <div th:utext="${notice.content}" class="form-content">내용</div>
             <div class="edit-btn" >
-              <a data-th-if="${session.loginMember != null and session.loginMember.id == 'admin'}" data-th-href="@{updateForm(no=${notice.no})}" class="btn btn-primary" role="button" style="margin-top: 10px;">수정</a>
+              <a data-th-if="${session.loginMember != null and session.loginMember.id == 'admin'}" data-th-href="@{update-form(no=${notice.no})}" class="btn btn-primary" role="button" style="margin-top: 10px;">수정</a>
               <a data-th-if="${session.loginMember != null and session.loginMember.id == 'admin'}" class="btn btn-outline-secondary" role="button" id="delete-button">삭제</a>
             </div>
             </div>
@@ -173,7 +173,6 @@ p {
                 buttons : ["아니요", "예"],
               }).then(function(isConfirm) {
                 if (isConfirm) {
-                	console.log("되냐?");
                    location.href = 'delete?no=' + noticeNo;
                 } else{
                   return false;

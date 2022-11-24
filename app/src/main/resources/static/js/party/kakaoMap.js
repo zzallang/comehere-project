@@ -1,7 +1,5 @@
 
 $('#mapbtn').click(() => {
-  console.log("hello");
-  console.log($('#mapbtn').val());
 });
 
 
@@ -138,9 +136,7 @@ function displayPlaces(places) {
 
         // 마커와 검색 결과 항목에 대해 클릭 이벤트 리스너 등록
         kakao.maps.event.addListener(marker, 'click', function() {
-          console.log(placePosition);
           searchDetailAddrFromCoords(placePosition, function(result, status) {
-            console.log(result);
             if (status === kakao.maps.services.Status.OK) {
               detailPick(result, title, placePosition, marker);
             }
@@ -148,9 +144,7 @@ function displayPlaces(places) {
         });
         
         itemEl.onclick =  function () {
-          console.log(placePosition);
           searchDetailAddrFromCoords(placePosition, function(result, status) {
-            console.log(result);
             if (status === kakao.maps.services.Status.OK) {
               detailPick(result, title, placePosition, marker);
             }   
@@ -304,7 +298,6 @@ function detailPick (result, title, placePosition, marker) {
   resultAddr = !!result[0].road_address ? 
   result[0].road_address.address_name : result[0].address.address_name;
   
-  console.log(resultAddr);
 
   detailAddr = !!result[0].road_address ? 
   '<div>도로명주소 : ' + resultAddr + '</div>' :
@@ -324,10 +317,6 @@ function detailPick (result, title, placePosition, marker) {
   let [b, lngResult2] = lngResult.split(':');
   let [lngResult3, c] = lngResult2.split('}');
 
-  console.log(title);
-  console.log(latResult2);
-  console.log(lngResult3);
-  
   
   $('span[id=mapSelectName]').html(title + ", ");
   $('span[id=mapSelectAddress]').html(resultAddr);

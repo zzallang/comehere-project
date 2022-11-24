@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class App {
 
   public static void main(String[] args) {
-    System.out.println("비트캠프 프로젝트");
+    System.out.println("여기모여 프로젝트");
     SpringApplication.run(App.class, args);
   }
 

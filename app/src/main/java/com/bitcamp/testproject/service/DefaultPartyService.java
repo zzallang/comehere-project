@@ -49,9 +49,6 @@ public class DefaultPartyService implements PartyService {
   @Override
   public void attend(Party party, PartyMember partyMember) throws Exception {
 
-    System.out.println(party);
-    System.out.println(partyMember);
-
     if (party.getUserNo() == partyMember.getMemberNo()) {
       partyMember.setPartyNo(party.getNo());
       if (partyMemberDao.insertMember(partyMember) == 0) {

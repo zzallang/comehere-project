@@ -36,7 +36,6 @@ public class NoticeController {
 
   @GetMapping("list")
   public String notiList(Model model, Criteria cri, Search search) {
-    System.out.println(search);
     // 페이징하기 위한 연산
     PageMaker pageMaker = new PageMaker();
     cri.setPerPageNum(10);
@@ -89,7 +88,7 @@ public class NoticeController {
   }
 
 
-  @GetMapping("updateForm")
+  @GetMapping("update-form")
   public Model updateForm(int no, Model model) throws Exception {
     Notice notice = noticeService.get(no);
 
@@ -103,9 +102,7 @@ public class NoticeController {
   @PostMapping("update")
   public String update(Notice notice, Part file, HttpSession session) throws Exception {
 
-    System.out.println(notice + "\n 노티스 넘어오았냐?!!?!?!?!?");
     notice.setThumbnail(saveAttachedFile(file));
-    System.out.println(file + "\n 파일 넘어오았냐?!!?!?!?!?");
     if (!noticeService.update(notice)) { 
       throw new Exception("게시글을 변경할 수 없습니다!"); 
     }

@@ -168,7 +168,6 @@ body .container {
                url: "idPasswordCheck",
                data: {id:id, password:password},
                success: function(data) {
-                 console.log(data);
                  if(data == 'true'){
                     frm.submit();
                  } else if (data == 'false'){

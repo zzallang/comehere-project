@@ -602,35 +602,30 @@ body .container {
 	    $('#1-star').click(function () {
 	      swal("1점을 선택 했습니다.");
 	      starResult = $(this).val();
-	      console.log("선택" + starResult);
 	    });
 	  });
 	  $(document).ready(function () {
 	      $('#2-stars').click(function () {
 	        swal("2점을 선택 했습니다.");
 	        starResult = $(this).val();
-	        console.log("선택" + starResult);
 	      });
 	    });
 	  $(document).ready(function () {
 	      $('#3-stars').click(function () {
 	        swal("3점을 선택 했습니다.");
 	        starResult = $(this).val();
-	        console.log("선택" + starResult);
 	      });
 	    });
 	  $(document).ready(function () {
 	      $('#4-stars').click(function () {
 	        swal("4점을 선택 했습니다.");
 	        starResult = $(this).val();
-	        console.log("선택" + starResult);
 	      });
 	    });
 	  $(document).ready(function () {
 	      $('#5-stars').click(function () {
 	        swal("5점을 선택 했습니다.");
 	        starResult = $(this).val();
-	        console.log("선택" + starResult);
 	      });
 	    });
 	  
@@ -638,17 +633,14 @@ body .container {
 
 	<script>
 	    
-	       console.log("결과1" + starResult);
    
 	function makeReview() {
         let reviewtitle = $('#reviewtitle').val()
         let reviewcont = $('#reviewcont').val()
         let reviewadd = $('#reviewadd').val()
         let reviewcancle = $('#revoewcancle').val()
-         console.log("결과2" + starResult);
         let reviewno = $('input[name=no]').val();
         let reviewfiles = $('input[name=files]').val();
-        console.log("1 " + reviewno + "2 " + reviewfiles);
 
         
         if (starResult == '') {
@@ -677,9 +669,7 @@ swal({
     buttons : ["아니요", "예"],
   }).then(function(isConfirm) {
     if (isConfirm) {
-    	console.log("ddd1");
       $('#reviewAdd').submit();
-      console.log("ddd2");
   } else{
     return false;
   }

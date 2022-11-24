@@ -440,17 +440,11 @@
             const imgSize = "";
             let[imgUrl, imgPath] = $('.profile').attr('src').split('files/');
             img.src = imgPath;
-              console.log(imgPath);
-              console.log(img.src);
-              console.log(imgPath.height);
-              console.log(imgPath.width);
             if (img.width > img.height) {
               imgSize = img.height;
-              console.log(imgSize + "dd");
               $('.profile').css('max-height', imgSize);
             } else if (img.width < img.height) {
               imgSize = img.width;
-              console.log(imgSize + "dd");
               $('.profile').css('max-width', imgSize);
             }
             

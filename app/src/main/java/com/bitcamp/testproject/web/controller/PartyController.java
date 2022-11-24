@@ -52,7 +52,6 @@ public class PartyController {
       ReviewService reviewService,
       PartyMemberService partyMemberService,
       ServletContext sc) {
-    System.out.println("PartyController() 호출됨!");
     this.partyService = partyService;
     this.regionService = regionService;
     this.sportsService = sportsService;
@@ -126,7 +125,6 @@ public class PartyController {
 
   @GetMapping("list")
   public void list(Criteria cri, Model model) throws Exception {
-    System.out.println(cri);
     PageMaker pageMaker = new PageMaker();
 
     cri.setPerPageNum(8);
@@ -134,7 +132,6 @@ public class PartyController {
     pageMaker.setCri(cri);
     pageMaker.setDisplayPageNum(2);
     pageMaker.setTotalCount(partyService.listCount());
-    System.out.println(pageMaker.getDisplayPageNum());
 
     model.addAttribute("partys", partyService.list(cri));
     model.addAttribute("regions", regionService.list());
@@ -169,7 +166,6 @@ public class PartyController {
         "partys",
         partyService.list2(gu, sports, partyDate, partyTime, searchText, listStar, listCreate, listPartyDate, cri));
     model.addAttribute("pageMaker", pageMaker);
-    System.out.printf("%s, %s, %s, %s, %s, %s, %s, %s\n", gu, sports, partyDate, partyTime, searchText, listStar, listCreate, listPartyDate);
   }
 
   @GetMapping("list-ajax-page")
@@ -197,8 +193,6 @@ public class PartyController {
         "partys",
         partyService.list2(gu, sports, partyDate, partyTime, searchText, listStar, listCreate, listPartyDate, cri));
     model.addAttribute("pageMaker", pageMaker);
-    System.out.println(pageMaker);
-    System.out.printf("%s, %s, %s, %s, %s, %s, %s\n", gu, sports, partyDate, partyTime, searchText, listStar, listCreate, listPartyDate);
   }
 
   @SuppressWarnings({"rawtypes", "unchecked"})
@@ -218,7 +212,6 @@ public class PartyController {
     }
 
     Party party = partyService.get(no);
-    System.out.println(party);
     int sportNo = party.getSports().getNo();
     int userNo = party.getUser().getNo();
     List<Review> reviewList = reviewService.list(userNo, sportNo);
@@ -239,10 +232,7 @@ public class PartyController {
   @GetMapping("detail-ajax")
   @ResponseBody
   public Object reviewDetail(int no, int reviewNo, Model model, Criteria cri) throws Exception {
-    System.out.println(reviewNo);
     Review review = reviewService.get(reviewNo);
-    System.out.println(review);
-
 
     return review;
 
@@ -299,7 +289,6 @@ public class PartyController {
 
   @GetMapping("party-end-ajax")
   public String partyEnd(int no) throws Exception {
-    System.out.println("도착함?");
     if (!partyService.partyEnd(no)) {
       throw new Exception("모임을 종료할 수 없습니다!");
     }

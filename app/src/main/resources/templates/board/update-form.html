@@ -290,8 +290,6 @@ function readImage(input) {
     if(input.files && input.files[0]) {
         const reader = new FileReader();
         reader.onload = function(e){
-        	console.log(e.target);
-        	console.log(e.target.result);
             const previewImage = document.getElementById("previewImg");
             previewImage.src = e.target.result;
         }

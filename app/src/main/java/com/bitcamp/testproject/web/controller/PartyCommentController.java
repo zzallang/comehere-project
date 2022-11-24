@@ -39,7 +39,6 @@ public class PartyCommentController {
   @GetMapping("list")
   @ResponseBody
   public Object list(int pageNo, int partyNo) {
-    System.out.println(">>>>>>" + pageNo);
 
     // 몇번 페이지인지 기록하고 넘기기
     Criteria cri = new Criteria();

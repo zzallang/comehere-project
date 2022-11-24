@@ -30,7 +30,6 @@ public class AuthController {
   MemberService memberService;
 
   public AuthController(MemberService memberService) {
-    System.out.println("AuthController() 호출됨!");
     this.memberService = memberService;
   }
 
@@ -58,7 +57,6 @@ public class AuthController {
       String[] url2 = url[1].split("/");
       if (url2[0].equals("auth")) {
         ModelAndView mv = new ModelAndView("redirect:../");
-        System.out.println("도착함 ");
         session.setAttribute("loginMember", member);
         return mv;    
       }
@@ -175,7 +173,7 @@ public class AuthController {
     boolean result = memberService.updatePW(password, email, id);
 
     if (result != false) {
-      System.out.println("변경 실패");
+      throw new Exception("변경 실패");
     } 
     return "redirect:form";
   }
@@ -184,7 +182,6 @@ public class AuthController {
   @ResponseBody
   public String idEmailCheck( String id,String email , HttpSession session) throws Exception {
     Member result = memberService.idEmailCheck(id,email);
-    System.out.println(result);
 
     if (result == null) {
       System.out.println("회원 없음");
@@ -203,7 +200,6 @@ public class AuthController {
       System.out.println("회원 없음");
       return "false";
     }
-    System.out.println(result.getActive());
 
     if (result.getActive() == 0) {
       System.out.println("탈퇴한 회원");
@@ -216,9 +212,7 @@ public class AuthController {
   @ResponseBody
   public String findIdCheck( String name,String email , HttpSession session) throws Exception {
     Member result = memberService.findIdCheck(name,email);
-    System.out.println("name" + name);
-    System.out.println("email" + email);
-    System.out.println("result" + result);
+
     if (result == null) {
       System.out.println("회원 없음");
       return "false";

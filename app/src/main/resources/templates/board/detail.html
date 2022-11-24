@@ -507,7 +507,7 @@
             <div style="height: 34px;">
               <span style="float: right;">
                 <a data-th-if="${session.loginMember} != null and ${session.loginMember.no} == ${board.writer.no}" 
-                   data-th-href="@{updateForm(no=${board.no})}" 
+                   data-th-href="@{update-form(no=${board.no})}" 
                    class="btn btn-primary bnt-setting" 
                    role="button">수정</a>
                 <a data-th-if="${session.loginMember} != null and ${session.loginMember.no} == ${board.writer.no}" 
@@ -938,7 +938,6 @@ let tatlleNo = -1; /* 신고 사유 번호 초기화 */
 
 function commentComplain(number) {
   objNo = number;
-  console.log(number);
   $("#reportForm").attr("value", number);
   $("#reportForm").attr("name", "댓글");
 
@@ -1045,7 +1044,6 @@ btnModal.forEach((btn) => {
 $("#singo").click(function a () {
     $('input:checkbox[name=reports]').each(function (index) {
       if($(this).is(":checked")==true){
-        console.log("신고사유번호 : " + $(this).attr("id"));
         tatlleNo = $(this).attr("id");
       }
     });
@@ -1055,7 +1053,6 @@ $("#singo").click(function a () {
     }
     let value = $("#reportForm").val(); /* 신고할 게시글/댓글 번호 */
     let name = $("#reportForm").attr("name"); /* 신고할 대상이 '게시글'이라는 것을 알림 */
-    console.log("게시글/댓글 번호 " + value + "게시글이니? 댓글이니? 표시 " + name);
     
     $.ajax({
       type: "POST",

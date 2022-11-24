@@ -144,7 +144,7 @@
         join (select p2.pno pno2, p2.sno from party p2 join party_members pm on p2.pno=pm.pno where pm.auth=1) p3 on pr.pno=p3.pno2
         join sports s on s.sno=p3.sno
        where
-         pr.act=1 and pr.mno=m.mno and p3.pno2=p.pno) star
+         pr.act=1 and pr.mno=m.mno and p3.pno2=p.pno and p3.sno=p.sno) star
     from 
       party p
       join region r on p.rno = r.rno
@@ -496,7 +496,4 @@ SELECT
   </update>
   
 </mapper>
-
-
-
 

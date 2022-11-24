@@ -409,7 +409,6 @@
 <script>
 function joinInfoSubmit() {
 	var form = document.getElementById("joinForm");
-	console.log(form);
 	const formData = new FormData(form);
 	const request = new XMLHttpRequest();
 	request.open("POST", "/app/sign-up");
@@ -423,7 +422,6 @@ $('.reviewStarVal').ready(function () {
   
   let starArr = [];
   let starVal = $('.reviewStarVal').val();
-  console.log(starVal);
 }
     
     
@@ -435,17 +433,11 @@ $('.profile').ready(function () {
   const imgSize = "";
   let[imgUrl, imgPath] = $('.profile').attr('src').split('files/');
   img.src = imgPath;
-    console.log(imgPath);
-    console.log(img.src);
-    console.log(imgPath.height);
-    console.log(imgPath.width);
   if (img.width > img.height) {
     imgSize = img.height;
-    console.log(imgSize + "dd");
     $('.profile').css('max-height', imgSize);
   } else if (img.width < img.height) {
     imgSize = img.width;
-    console.log(imgSize + "dd");
     $('.profile').css('max-width', imgSize);
   }
   
@@ -453,15 +445,11 @@ $('.profile').ready(function () {
 
 
 function partyEnd(pdate) {
-	console.log("들어온 모임일자" + pdate);
 	let partyNo = $('#partyNo').val();
-	console.log("들어온 모임번호" + partyNo);
 	var now = new Date();
 	var partyDate = new Date(pdate);
-	console.log(now + " " + partyDate);
 	if(pdate){
 		  if(partyDate > now){
-		    console.log("모임 일자가 현재 날짜보다 빠릅니다.");
 		    swal({
                 text: '모임 일자가 현재 날짜보다 빠릅니다.',
                 icon: 'success',
@@ -485,7 +473,6 @@ function partyEnd(pdate) {
 		                icon: 'success',
 		                closeOnClickOutside: false
 		              }).then(() => {
-		                console.log("dhk");
 		                window.location.href="my-party";
 		              });
 		              }

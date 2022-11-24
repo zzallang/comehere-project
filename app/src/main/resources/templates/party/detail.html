@@ -1139,7 +1139,6 @@ $('.reviewStarVal').ready(function () {
 	
 	let starArr = [];
 	let starVal = $('.reviewStarVal').val();
-	console.log(starVal);
 }
 		
 		
@@ -1151,17 +1150,11 @@ $('.profile').ready(function () {
 	const imgSize = "";
 	let[imgUrl, imgPath] = $('.profile').attr('src').split('files/');
 	img.src = imgPath;
-    console.log(imgPath);
-    console.log(img.src);
-	  console.log(imgPath.height);
-	  console.log(imgPath.width);
 	if (img.width > img.height) {
 		imgSize = img.height;
-		console.log(imgSize + "dd");
 		$('.profile').css('max-height', imgSize);
 	} else if (img.width < img.height) {
     imgSize = img.width;
-    console.log(imgSize + "dd");
     $('.profile').css('max-width', imgSize);
 	}
 	
@@ -1303,9 +1296,7 @@ function starImg (sVal) {
 
 function sexText(sex) {
     if (sex == 0) {
-      
-    console.log("확인용 ");
-      $('#reviewDetailWriterSex').text('여자');
+            $('#reviewDetailWriterSex').text('여자');
     }
     if (sex == 1) {
         $('#reviewDetailWriterSex').text('남자');
@@ -1452,7 +1443,6 @@ function getId(pageId) {
         });
         document.querySelectorAll('.page-item').forEach((pageBtn) => {
         	pageBtn.addEventListener('click', function(e) {
-        		console.log("하이");
         			$('.page-item').removeClass('active');
           		$(e.currentTarget).addClass('active');
           });
@@ -1664,9 +1654,7 @@ function commentList(){
 	<script>
   let tatlleVal = "";
               function commentComplain(number) {
-            	  console.log(number);
             	  tatlleVal = number;
-                console.log(tatlleVal);
 
                 $("#reportForm").attr("value", number);
                 $("#reportForm").attr("name", "댓글");
@@ -1710,11 +1698,9 @@ function commentList(){
                       let partyNumber = (window.location.search).substring(4,window.location.lengh);
                       $("#reportForm").attr("value", partyNumber);
                       $("#reportForm").attr("name", "파티");
-                         console.log(btnModal);
                           btnModal.forEach((btn) => {
                           btn.addEventListener('click', (e) => {
                         	  tatlleVal = e.currentTarget.id;
-                          console.log(tatlleVal);
                           modal.style.display = 'flex';
            // x버튼 누르면 종료
                       const closeBtn = modal.querySelector('.close-area');
@@ -1773,14 +1759,10 @@ $("#singo").click(function() {
 
     $('input:checkbox[name=reports]').each(function (index) {
       if($(this).is(":checked")==true){
-        console.log($(this).attr("id"));
         id = $(this).attr("id");
       }
-    });
-                  console.log($("#reportForm").val());
-                  console.log($("#reportForm").attr("name"));
-
-                  let value = $("#reportForm").val();
+    })
+    let value = $("#reportForm").val();
                   let name = $("#reportForm").attr("name");
 
     $.ajax({
@@ -1791,7 +1773,6 @@ $("#singo").click(function() {
                         swal("신고 완료 했습니다.");
                       document.getElementById("modal").style.display = 'none';
                       checkTag.setAttribute('checked', 'false');
-                      console.log("성공!");
                       
         },
       });

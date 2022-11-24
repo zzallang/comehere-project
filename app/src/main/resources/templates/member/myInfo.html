@@ -236,7 +236,6 @@
             
             /* 관심지역 선택한 값 불러오기 시작*/
                  let memberRestion1 = [[${member.FavoriteRegion[0].Region.no}]]; // 예) 금천구의 번호
-                 console.log(memberRestion1);
                
                  let regionOptionLength1 = $("#favoriteRegion1").find("option").length; // select box 안에 option 개수 조회
                
@@ -248,7 +247,6 @@
                  }
             
             let memberRestion2 = [[${member.FavoriteRegion[1].Region.no}]]; // 예) 금천구의 번호
-            console.log(memberRestion2);
 
             let regionOptionLength2 = $("#favoriteRegion2").find("option").length; // select box 안에 option 개수 조회
 
@@ -262,7 +260,6 @@
             
             /* 관심운동 선택한 값 불러오기 시작*/
             let memberRestion3 = [[${member.FavoriteSports[0].Sports.no}]]; // 예) 금천구의 번호
-            console.log(memberRestion3);
 
             let sportsOptionLength1 = $("#favoriteSports1").find("option").length; // select box 안에 option 개수 조회
 
@@ -274,7 +271,6 @@
             }
             
             let memberRestion4 = [[${member.FavoriteSports[1].Sports.no}]]; // 예) 금천구의 번호
-            console.log(memberRestion4);
 
             let sportsOptionLength2 = $("#favoriteSports2").find("option").length; // select box 안에 option 개수 조회
 
@@ -421,9 +417,7 @@
 						let no="";
 						  /*<![CDATA[*/
 						  function deleteMember(no) {
-							  console.log("GHKRDLS");
 						    let memberNo = no
-						    console.log(memberNo);
 						    location.href=`delete_pw_check_viewer?no=${memberNo}`;
 						  }
 						  /*]]>*/
@@ -450,17 +444,11 @@
 					  const imgSize = "";
 					  let[imgUrl, imgPath] = $('.profile').attr('src').split('files/');
 					  img.src = imgPath;
-					    console.log(imgPath);
-					    console.log(img.src);
-					    console.log(imgPath.height);
-					    console.log(imgPath.width);
 					  if (img.width > img.height) {
 					    imgSize = img.height;
-					    console.log(imgSize + "dd");
 					    $('.profile').css('max-height', imgSize);
 					  } else if (img.width < img.height) {
 					    imgSize = img.width;
-					    console.log(imgSize + "dd");
 					    $('.profile').css('max-width', imgSize);
 					  }
 					  

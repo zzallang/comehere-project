@@ -3,9 +3,7 @@ var pageNum ="";
 $('#pageButton' + param).addClass('active');
 
   document.querySelectorAll('.page-item').forEach((pageBtn) => {
-  console.log("bbbbbd");
   pageBtn.addEventListener('click', function(e) {
-  console.log("얌마????!");
       $('.page-item').removeClass('active');
       pageNum = $(e.currentTarget).find('button').val();
   });
@@ -24,7 +22,6 @@ let page = "0";
 
 let btnValue = "";
 
-console.log("js준비");
 
 $("#region_sigu").change(() => {
   loadList(getListConditions())
@@ -61,7 +58,6 @@ $("#list_reset").click(() => {
 });
 
 $("#list_star").click(() => {
-  console.log($("#list_star").attr('id'))
   changeBtnValue($("#list_star").attr('id'), $("#list_star").val())
   loadList(getListConditions())
 });
@@ -83,8 +79,6 @@ $(document).on("click", "#prevPage", () => {
 });
 
 $(document).on("click", ".pageNum", (e) => {
-  console.log($(e.target).val());
-  console.log($(e.target).text());
   let pageValue = "";
   if ($(e.target).text() != "") {
     pageValue = $(e.target).text();
@@ -160,7 +154,6 @@ function getListConditions(pageValue) {
     params.listPartyDate = $("#list_partyDate").val();
   }
   if (pageValue != "") {
-    console.log(pageValue);
     params.page = pageValue;
   }
   
@@ -168,16 +161,13 @@ function getListConditions(pageValue) {
 }
 
 function loadList(params) {
-  
-  console.log(params);
-  
+    
   $.ajax({
     type: "GET",
     url: "/app/party/list-ajax",
     data: params,
     success: function(result) {
         
-      console.log(result);
       $('#partyList').html(result);
 
       }
@@ -192,16 +182,12 @@ function loadPage(params) {
     url: "/app/party/list-ajax-page",
     data: params,
     success: function(result) {
-      console.log(result);
 
       $('#partyPage').html(result);
-              console.log("ddd");
 
       $('#pageButton' + pageNum).addClass('active');
     document.querySelectorAll('.page-item').forEach((pageBtn) => {
-  console.log("bbbbbd");
   pageBtn.addEventListener('click', function(e) {
-  console.log("얌마????!");
       $('.page-item').removeClass('active');
       pageNum = $(e.currentTarget).find('button').val();
   });

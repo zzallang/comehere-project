@@ -17,18 +17,15 @@ public class LoginCheckFilter implements Filter {
 
   @Override
   public void init(FilterConfig filterConfig) throws ServletException {
-    System.out.println("LoginCheckFilter.init() 실행!");
   }
 
   @Override
   public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
       throws IOException, ServletException {
-    System.out.println("LoginCheckFilter.doFilter() 실행!");
 
     HttpServletRequest httpRequest = (HttpServletRequest) request;
     HttpServletResponse httpResponse = (HttpServletResponse) response;
 
-    System.out.println(httpRequest.getContextPath());
     String servletPath = httpRequest.getServletPath();
 
     // 콘텐트를 등록,변경,삭제하는 경우 로그인 여부를 검사한다.

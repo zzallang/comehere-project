@@ -182,7 +182,6 @@ public class DefaultBoardService implements BoardService {
 
   @Override
   public List<Map<String, Object>> listWithKeyword(Criteria cri, Search search) {
-    System.out.println("bsercice" + cri);
     // 값들을 Map에 담아서 보내기
     Map<String, Object> searchObj = new HashMap<>(); 
     searchObj.put("search", search);

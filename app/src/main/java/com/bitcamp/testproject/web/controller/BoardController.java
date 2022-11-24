@@ -196,7 +196,7 @@ public class BoardController {
   }
 
 
-  @GetMapping("updateForm")
+  @GetMapping("update-form")
   public Model updateForm(int no, Model model) throws Exception {
     Board board = boardService.get(no);
 

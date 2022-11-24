@@ -185,7 +185,7 @@ body .container {
 	<!-- banner section start -->
 	<div id="mainImg" class="layout_padding banner_section">
 		<div class="container" style="width:1200px;">
-			<div id="costum_slider" class="carousel slide" data-ride="carousel">
+			<div id="costum_slider" class="carousel slide" data-ride="carousel" data-interval="false">
 				<div class="carousel-inner">
 					<div class="carousel-item active">
 						<h1 class="furniture_text9">운동찾기</h1>
@@ -255,7 +255,6 @@ body .container {
                 } else if ($('#mainImg').attr("class") == 'layout_padding banner_section2') {
                   $('#mainImg')
                       .removeClass('banner_section2');
-                  console.log("다음 시작");
                   $('#mainImg').addClass('banner_section');
                 }
               });
@@ -266,7 +265,6 @@ body .container {
                   $('#mainImg').removeClass('banner_section');
                   $('#mainImg').addClass('banner_section2');
                 } else if ($('#mainImg').attr("class") == 'layout_padding banner_section2') {
-                  console.log("이전 시작");
                   $('#mainImg')
                       .removeClass('banner_section2');
                   $('#mainImg').addClass('banner_section');
