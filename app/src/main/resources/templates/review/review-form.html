@@ -558,9 +558,9 @@ body .container {
 										</div>
 										<div id='image_preview' class="col-md6">
 											<div class="col-md9">
-												<input name='files' type='file' id='btnAtt' multiple='multiple' />
+												<input class="image_inputType_file btn btn-primary" name='files' type='file' id='btnAtt fileTag' multiple='multiple' />
+                    <button type="button" class="btn btn-outline-secondary file" id="btn-upload">사진첨부</button>
                             <input type="hidden" name="no" data-th-value="${party.no}">
-                        
 											</div>
 											<div id='att_zone' data-placeholder='파일을 첨부 하려면 파일 선택 버튼을 클릭하거나 파일을 드래그앤드롭 하세요'></div>
 										</div>
@@ -788,6 +788,19 @@ swal({
 		    }
 		  }
 		)('att_zone', 'btnAtt')
+		
+		
+		
+		
+		$(function () {
+    $('#btn-upload').click(function (e) {
+      e.preventDefault();
+      $('#fileTag').click();
+      });
+    });
+    
+    
+    
 </script>
 
 

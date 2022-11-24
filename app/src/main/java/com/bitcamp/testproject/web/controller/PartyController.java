@@ -129,7 +129,7 @@ public class PartyController {
     System.out.println(cri);
     PageMaker pageMaker = new PageMaker();
 
-    cri.setPerPageNum(12);
+    cri.setPerPageNum(8);
 
     pageMaker.setCri(cri);
     pageMaker.setDisplayPageNum(2);
@@ -158,7 +158,7 @@ public class PartyController {
 
     PageMaker pageMaker = new PageMaker();
 
-    cri.setPerPageNum(12);
+    cri.setPerPageNum(8);
 
 
     pageMaker.setCri(cri);
@@ -186,7 +186,7 @@ public class PartyController {
       Model model) throws Exception {
     PageMaker pageMaker = new PageMaker();
 
-    cri.setPerPageNum(12);
+    cri.setPerPageNum(8);
 
 
     pageMaker.setCri(cri);

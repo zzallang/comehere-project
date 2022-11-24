@@ -144,7 +144,6 @@
         </div>
       </nav>
     </div>
-  </div>
 	<!-- header section end -->
       <!-- furnitures section start -->
      <!-- 게시판 카테고리 이동 시작 -->
@@ -171,7 +170,8 @@
                           <div class="clg1">
                             <img id="previewImg" th:if="${board.thumbnail != null}"  th:src="@{'/board/files/' + ${board.thumbnail}}" alt="Avatar" class="image party_detail_img in-img">
                             <img id="previewImg" th:if="${board.thumbnail == null}"  src="../images/nothumbnail.png" alt="Avatar" class="in-img">
-                            <input class="post_form2"  id="fileTag" name='file' type="file">
+                            <input class="post_form2 image_inputType_file btn btn-primary"  id="fileTag" name='file' type="file">
+                    <button type="button" class="btn btn-outline-secondary file" id="btn-upload">사진첨부</button>
                           </div>
                             <div class="clg2">
                               <span style="color: gray; font-size: 1.3em;">챌린지게시판이란 무엇인가요?</span> <br>
@@ -314,7 +314,12 @@ function updateCancel() {
 	}
 	
 	
-
+$(function () {
+    $('#btn-upload').click(function (e) {
+      e.preventDefault();
+      $('#fileTag').click();
+      });
+    });
 </script>
 
 <!--    <script src="../js/jquery.min.js"></script> -->

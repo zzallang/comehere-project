@@ -465,12 +465,12 @@ SELECT
      pm.auth = 0
     AND
       p.act = 0
-    AND
-     pm.mno = #{memberNo}
    AND
    (pr.mno is null
    or
     pr.mno != pm.mno)
+        AND
+     pm.mno = #{memberNo}
     ORDER BY 
       p.pno desc
   </select>

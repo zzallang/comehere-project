@@ -871,8 +871,8 @@ list-style {
 }
 .my-page {
   background-color: white;
-  min-width: 970px;
-  max-width: 970px;
+  min-width: 800px;
+  max-width: 800px;
 }
 .my-page tr {
   text-align:center;
