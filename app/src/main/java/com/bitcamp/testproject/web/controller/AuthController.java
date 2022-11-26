@@ -226,7 +226,10 @@ public class AuthController {
     return result.getId();
   }
 
-
+  @GetMapping("login")
+  public String login() {
+    return "auth/login";
+  }
   // 헌식 끝
 
 }
