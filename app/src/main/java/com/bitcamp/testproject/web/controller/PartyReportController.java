@@ -35,7 +35,7 @@ public class PartyReportController {
     if (name.equals("파티")) {
       partyReportService.addMemberReport(reportMap);
     }
-    return"redirect:../board/detail?no=" + partyNo;
+    return"redirect:../party/detail?no=" + partyNo;
   }
 
 
