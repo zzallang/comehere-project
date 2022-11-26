@@ -1212,3 +1212,30 @@ margin-right: auto;
   min-width:1280px !important;
   margin: auto !important;
 }
+.imgimg {
+  max-width: 150px;
+  max-height: 170px;
+  min-width: 150px;
+  min-height: 170px;
+  line-height: 170px;
+}
+.imgimg img {
+  vertical-align:middle;
+}
+.btn.btn-outline-secondary {
+  margin-top: 10px;
+  color: #0d6efd;
+  background-color: #ffffff00;
+  border: 1px solid grey;
+}
+.btn.btn-outline-secondary:hover {
+  color:#ffffff;
+  background-color: #0d6efd;
+  transition:all .3s ease;
+}
+.image_inputType_file {
+  position: absolute;
+}
+#fileTag {
+  display:none;
+}

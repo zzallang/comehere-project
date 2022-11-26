@@ -465,7 +465,8 @@
 										<img id="previewImg" th:if="${party.thumbnail != null}" th:src="@{'/party/files/' + ${party.thumbnail}}" alt="Avatar" class="image previewImgparty_detail_img previewImg"> <img id="previewImg" th:if="${party.thumbnail == null}" src="/app/party/files/nothumbnail.png" alt="Avatar" class="image previewImg">
 									</div>
 								</div>
-								<input id="fileTag" class="fileTag" name='file' type="file">
+								<input class="image_inputType_file btn btn-primary fileTag" id="fileTag" name='file' type="file">
+                    <button type="button" class="btn btn-outline-secondary file" id="btn-upload">사진첨부</button>
 							</div>
 							<div class="party_form_header">
 								<div class="party_form_title">
@@ -609,6 +610,15 @@
 			});
 
 		}
+		
+		
+        // 인풋 태그 대신 버튼 태그로 보내기
+        $(function () {
+            $('#btn-upload').click(function (e) {
+              e.preventDefault();
+              $('#fileTag').click();
+              });
+            });
 	</script>
 
 	<script type="text/javascript">

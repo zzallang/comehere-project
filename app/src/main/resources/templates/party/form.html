@@ -209,6 +209,7 @@
   margin: auto !important;
   float: none !important;
 }
+
 </style>
 </head>
 <body>
@@ -253,12 +254,11 @@
 						<div class="party_form_wrap">
 							<div class="party_form_img">
 								<div class="party_form_img_wrap">
-									<div style="margin: auto 0; display: flex; justify-content: center; align-items: center;">
 										<img id="previewImg" class="image previewImgparty_detail_img previewImg" src="/app/party/files/nothumbnail.png">
-									</div>
-								</div>
-								<input id="fileTag" name='file' type="file">
-							</div>
+              </div>
+							<input class="image_inputType_file btn btn-primary" id="fileTag" name='file' type="file">
+                    <button type="button" class="btn btn-outline-secondary file" id="btn-upload">사진첨부</button>
+              </div>
 							<div class="party_form_header">
 								<div class="party_form_content">
 									<select class="form-selectJd">
@@ -456,6 +456,16 @@
 				}
 			});
 		}
+		
+		
+		
+		
+        $(function () {
+            $('#btn-upload').click(function (e) {
+              e.preventDefault();
+              $('#fileTag').click();
+              });
+            });
 	</script>
 	<!-- 썸머노트 자바스크립트 끝 -->
 	<!-- 카카오 지도 시작 -->
