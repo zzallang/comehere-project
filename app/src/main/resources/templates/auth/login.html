@@ -125,28 +125,7 @@
         </div>
       </div>
       <!-- header section end -->
-  <!-- contact section start -->
-  <div class="contact_section9 layout_padding9">
-    <div class="container">
-      <div class="">
-        <div class="form-container form">
-          <table border='1'>
-            <input type="hidden" name="id" id="id">
-            <tr>
-              <input type="text" class="email-bt8" placeholder="이름를 입력해주세요" size='30' name="name" id="name">
-            </tr>
-            <tr>
-              <input type="text" class="email-bt9" placeholder="E-Mail를 입력해주세요" size='30' name="email" id="email">
-            </tr>
-          </table>
-          <p>
-            <button type="button" class="btnon1" id="findID" onclick="bt();">아이디 찾기</button>
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
-  
+
     
     
   <ul>
@@ -164,14 +143,14 @@
   <!-- 카카오 스크립트 -->
   <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
   <script>
-  Kakao.init('8890a67c089173194979845f9389950d'); //발급받은 키 중 javascript키를 사용해준다.
+  Kakao.init('b39c64d7af17e8559cd528ffff85e9a0'); //발급받은 키 중 javascript키를 사용해준다.
   console.log(Kakao.isInitialized()); // sdk초기화여부판단
   //카카오로그인
   function kakaoLogin() {
     Kakao.Auth.login({
       success: function (response) {
         Kakao.API.request({
-          url: '/v2/user/me',
+          url: '../',
           success: function (response) {
             console.log(response)
           },
@@ -189,7 +168,7 @@
   function kakaoLogout() {
     if (Kakao.Auth.getAccessToken()) {
       Kakao.API.request({
-        url: '/v1/user/unlink',
+        url: '../',
         success: function (response) {
           console.log(response)
         },
