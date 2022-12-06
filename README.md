@@ -4,6 +4,20 @@
 프로젝트 진행기간
 - 2022년 9월 8일 ~ 2022년 11월 25일
 
+프로젝트 주요 사용 기술 
+ # Front
+ 
+ 
+ ![](https://velog.velcdn.com/images/hunsik0302/post/c97f0932-b749-43af-a7af-e8c1e8751177/image.PNG)
+
+ # Back
+ 
+ ![](https://velog.velcdn.com/images/hunsik0302/post/5e6a71a1-0602-452c-a284-a7d31c3b287c/image.PNG)
+
+ # etc
+ ![](https://velog.velcdn.com/images/hunsik0302/post/0a0c5ad5-029a-4231-8f49-3b55ed952ad1/image.PNG)
+
+
 프로젝트 수행 절차
 
 ![](https://velog.velcdn.com/images/hunsik0302/post/4b44e069-c5fe-453f-858d-e1b604309d9a/image.PNG)
@@ -11,7 +25,8 @@
 프로젝트 수행
 
 1. Kakao Oven을 통한 UI 프로토타입 작성
- ![](https://velog.velcdn.com/images/hunsik0302/post/907b3396-7bb2-4ec9-a044-41039fcd13de/image.PNG)
+![](https://velog.velcdn.com/images/hunsik0302/post/5c0125d7-553f-40e2-8500-15bef781f7c0/image.PNG)
+
 
 2. Use-Case 작성
 
