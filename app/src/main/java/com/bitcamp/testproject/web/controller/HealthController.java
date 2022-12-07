@@ -25,5 +25,6 @@ public class HealthController {
     public String add(Health health) throws  Exception{
         healthService.insert(health);
         return "health/main";
+
     }
 }
