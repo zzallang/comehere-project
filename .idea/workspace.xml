@@ -5,8 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="96f05625-8e96-46ea-9065-167963c92328" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/app/src/main/resources/templates/health/detail.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/resources/templates/health/list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bitcamp/testproject/dao/HealthDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/bitcamp/testproject/dao/HealthDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bitcamp/testproject/service/HealthService.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/bitcamp/testproject/service/HealthService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bitcamp/testproject/web/controller/HealthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/bitcamp/testproject/web/controller/HealthController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/resources/com/bitcamp/testproject/dao/HealthDao.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/resources/com/bitcamp/testproject/dao/HealthDao.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/resources/templates/auth/find-id.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/resources/templates/auth/find-id.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/resources/templates/auth/find-password.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/resources/templates/auth/find-password.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/resources/templates/health/main.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/resources/templates/health/main.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,6 +36,9 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
   <component name="ProjectId" id="2IXwHO9XQJE0nLJFEzdbWrJR1YX" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
@@ -41,12 +53,13 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/sik/git/comehere-project/app/src/main/resources/com/bitcamp/testproject/dao&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;coverage&quot;
+    &quot;last_opened_file_path&quot;: &quot;/Users/sik/git/comehere-project/app/src/main/resources/templates/health&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;testing.instrumented.configuration&quot;
   }
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app/src/main/resources/templates/health" />
       <recent name="$PROJECT_DIR$/app/src/main/resources/com/bitcamp/testproject/dao" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
@@ -94,6 +107,21 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/bitcamp/testproject/App.java</url>
+          <line>13</line>
+          <properties class="com.bitcamp.testproject.App" method="main">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

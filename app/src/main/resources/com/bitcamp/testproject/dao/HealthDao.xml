@@ -4,31 +4,19 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.bitcamp.testproject.dao.HealthDao">
 
-	<resultMap type="member" id="memberMap">
-		<id column="mno" property="no"/>
-		<result column="name" property="name"/>
-		<result column="id" property="id"/>
-		<result column="email" property="email"/>
-		<result column="pwd" property="password"/>
-		<result column="nick" property="nickname"/>
-		<result column="tel" property="tel"/>
-		<result column="bday" property="birthday"/>
-		<result column="sex" property="sex"/>
-		<result column="filepath" property="filepath"/>
-		<result column="cdt" property="createdDate"/>
-		<result column="black" property="black"/>
-		<result column="act" property="active"/>
-	</resultMap>
-	
-	<select id="add" resultMap="memberMap">
-    select
-      *
-    from
-      member
-    where
-      id=#{id} and pwd=sha2(#{password},256)
-  </select>
-	
+	<insert id="insert" >
+		insert into health(title, writer, content)
+		values(#{title}, #{writer}, #{content})
+	</insert>
+
+	<select id="findAll" resultType="health">
+		select
+			title,
+			writer,
+			content
+		from
+			health
+	</select>
 
 </mapper>
 
