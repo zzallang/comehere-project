@@ -2,6 +2,7 @@ package com.bitcamp.testproject.vo;
 
 public class Health {
 
+    private int no;
     private String title;
     private String writer;
     private String content;
@@ -10,10 +11,19 @@ public class Health {
     @Override
     public String toString() {
         return "Health{" +
-                "title='" + title + '\'' +
+                "no=" + no +
+                ", title='" + title + '\'' +
                 ", writer='" + writer + '\'' +
                 ", content='" + content + '\'' +
                 '}';
+    }
+
+    public int getNo() {
+        return no;
+    }
+
+    public void setNo(int no) {
+        this.no = no;
     }
 
     public String getTitle() {

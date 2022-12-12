@@ -21,4 +21,18 @@ public class HealthService {
                 System.out.println("findall 실행");
                 return healthDao.findAll();
         }
+        public Health findDetail(int no) throws Exception{ // 왜 리턴타입은 Health 이죠?
+//                System.out.println("findDetail 실행");
+                return healthDao.findDetail(no);
+        }
+
+        public int update(Health health) throws Exception{
+//                System.out.println("서비스 update 실행" + health);
+                return healthDao.update(health);
+        }
+        public  int delete(int no) throws Exception{
+                System.out.println("서비스 delete 실행" + no);
+                return healthDao.delete(no);
+        }
+
 }

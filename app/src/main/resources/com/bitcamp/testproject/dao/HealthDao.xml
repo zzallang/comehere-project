@@ -5,12 +5,13 @@
 <mapper namespace="com.bitcamp.testproject.dao.HealthDao">
 
 	<insert id="insert" >
-		insert into health(title, writer, content)
-		values(#{title}, #{writer}, #{content})
+		insert into health(no,title, writer, content)
+		values(#{no},#{title}, #{writer}, #{content})
 	</insert>
 
 	<select id="findAll" resultType="health">
 		select
+			no,
 			title,
 			writer,
 			content
@@ -18,6 +19,34 @@
 			health
 	</select>
 
+	<select id="findDetail" resultType="health">
+			select
+				no,
+				title,
+				writer,
+				content
+			from
+				health
+			where
+				no=#{no}
+	</select>
+	
+	<update id="update">
+		UPDATE health
+		SET
+		title = #{title},
+		content = #{content}
+		where
+		no = #{no}
+	</update>
+
+	<delete id="delete">
+		delete
+		from
+			health
+		where
+			no= #{no}
+	</delete>
 </mapper>
 
 

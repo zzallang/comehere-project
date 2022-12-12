@@ -11,4 +11,10 @@ public interface HealthDao {
   int insert(Health health);
   List<Health> findAll();
 
+  Health findDetail(int no);
+
+  int update(Health health);
+
+  int delete(int no);
+
 }

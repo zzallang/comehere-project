@@ -15,12 +15,13 @@
         </thead>
 
         <tr th:each="health : ${health}">
-            <td th:text="${health.title}" data-th-href="detail">title</td>
+            <td><a th:href="@{/health/detail(no=${health.no})}" th:text="${health.title}"></a></td>
             <td th:text="${health.writer}"></td>
             <td th:text="${health.content}"></td>
         </tr>
 
     </table>
 
+    <a href="form">새글작성</a>
 </body>
 </html>

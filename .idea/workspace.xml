@@ -5,17 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="96f05625-8e96-46ea-9065-167963c92328" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/app/src/main/resources/templates/health/detail.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/resources/templates/health/list.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/resources/templates/health/up.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bitcamp/testproject/dao/HealthDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/bitcamp/testproject/dao/HealthDao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bitcamp/testproject/service/HealthService.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/bitcamp/testproject/service/HealthService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bitcamp/testproject/vo/Health.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/bitcamp/testproject/vo/Health.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bitcamp/testproject/web/controller/HealthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/bitcamp/testproject/web/controller/HealthController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/resources/com/bitcamp/testproject/dao/HealthDao.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/resources/com/bitcamp/testproject/dao/HealthDao.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/resources/templates/auth/find-id.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/resources/templates/auth/find-id.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/resources/templates/auth/find-password.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/resources/templates/auth/find-password.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/resources/templates/health/main.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/resources/templates/health/main.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/resources/templates/health/detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/resources/templates/health/detail.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/resources/templates/health/list.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/resources/templates/health/list.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
