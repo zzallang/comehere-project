@@ -104,5 +104,10 @@ DB 모델링 할때 또한 합숙을 하며 밤새 우리 멤버 테이블안에
 
 11.토이 프로젝트 수행
 
+ 1) form 출력
 ![](https://velog.velcdn.com/images/hunsik0302/post/94bcb7a4-5715-4378-baf4-cb619ca1a904/image.png)
+
+2) list 출력
+![](https://velog.velcdn.com/images/hunsik0302/post/b0cfc64c-e2bd-4322-a799-c87da0de5ea6/image.png)
+
 
