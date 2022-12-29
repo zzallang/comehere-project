@@ -1,5 +1,11 @@
 # 모임 커뮤니티 개발한 신입 개발자 이헌식 Potofolio
 
+학력 
+
+신안산대학교 졸업
+컴퓨터정보과 전문학사(2011.10.07 최우수상(졸업작품 전시회))
+
+
 프로젝트 소개
 - 운동모임을 빠르고 간편하게 찾을 수 있고, 누구나 쉽게 모임을 만들거나 참여할 수 있는 모임 기능과 더불어 회원들이 서로 소통하고 정보를 공유할수 있는 커뮤니티 기능을 가진 종합 운동 사이트.
 
@@ -17,7 +23,6 @@
 프로젝트 아키텍처
 
 ![](https://velog.velcdn.com/images/hunsik0302/post/a697957b-72a7-484e-a9c9-a55d2e1d6f4d/image.png)
-
 
 
 프로젝트 수행 절차
@@ -103,17 +108,4 @@
 되는 계기가 되었고, 개발자는 평생 배우며 살아가야 한다는 그 사실이 가슴을 뛰게 한다.
 
 
-
-
-11.토이 프로젝트 수행
-
- 1) form 
-![](https://velog.velcdn.com/images/hunsik0302/post/94bcb7a4-5715-4378-baf4-cb619ca1a904/image.png)
-
-2) list 
-![](https://velog.velcdn.com/images/hunsik0302/post/b0cfc64c-e2bd-4322-a799-c87da0de5ea6/image.png)
-
-3) detail
-
-![](https://velog.velcdn.com/images/hunsik0302/post/495b3e88-4f3d-47bc-96e8-3b151f10bf41/image.png)
 
