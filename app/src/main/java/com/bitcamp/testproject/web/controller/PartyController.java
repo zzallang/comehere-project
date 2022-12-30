@@ -52,7 +52,7 @@ public class PartyController {
       ReviewService reviewService,
       PartyMemberService partyMemberService,
       ServletContext sc) {
-    System.out.println("PartyController() 호출됨!");
+
     this.partyService = partyService;
     this.regionService = regionService;
     this.sportsService = sportsService;
