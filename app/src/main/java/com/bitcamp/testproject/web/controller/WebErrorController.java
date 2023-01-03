@@ -20,11 +20,9 @@ public class WebErrorController implements ErrorController {
       int statusCode = Integer.valueOf(status.toString());
 
       if(statusCode == HttpStatus.NOT_FOUND.value()){
-        System.out.println("나오니????????404");
         return VIEW_PATH + "404";
       }
       if(statusCode == HttpStatus.FORBIDDEN.value()){
-        System.out.println("나오니????????500");
         return VIEW_PATH + "500";
       }
     }
